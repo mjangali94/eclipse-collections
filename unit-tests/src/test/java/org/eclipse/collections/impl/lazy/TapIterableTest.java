@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy;
 
 import org.eclipse.collections.api.InternalIterable;
@@ -20,22 +19,19 @@ import org.eclipse.collections.impl.utility.LazyIterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TapIterableTest extends AbstractLazyIterableTestCase
-{
+public class TapIterableTest extends AbstractLazyIterableTestCase {
+
     @Override
-    protected <T> LazyIterable<T> newWith(T... elements)
-    {
+    protected <T> LazyIterable<T> newWith(T... elements) {
         Appendable builder = new StringBuilder();
         Procedure<T> appendProcedure = Procedures.append(builder);
         return LazyIterate.tap(FastList.newListWith(elements), appendProcedure);
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         StringBuilder builder = new StringBuilder();
         Procedure<Integer> appendProcedure = Procedures.append(builder);
-
         InternalIterable<Integer> tap = new TapIterable<>(Interval.oneTo(5), appendProcedure);
         Procedure<Integer> appendDouble = each -> builder.append(each * 2);
         tap.forEach(appendDouble);
@@ -43,8 +39,7 @@ public class TapIterableTest extends AbstractLazyIterableTestCase
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         StringBuilder builder = new StringBuilder();
         Procedure<Integer> appendProcedure = Procedures.append(builder);
         InternalIterable<Integer> tap = new TapIterable<>(Interval.oneTo(5), appendProcedure);
@@ -57,25 +52,62 @@ public class TapIterableTest extends AbstractLazyIterableTestCase
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         StringBuilder builder = new StringBuilder();
         Procedure<Integer> appendProcedure = Procedures.append(builder);
         InternalIterable<Integer> tap = new TapIterable<>(Interval.oneTo(5), appendProcedure);
-        for (Integer each : tap)
-        {
+        for (Integer each : tap) {
             builder.append(each + 1);
         }
         Assert.assertEquals("1223344556", builder.toString());
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         StringBuilder builder = new StringBuilder();
         Procedure<Integer> appendProcedure = Procedures.append(builder);
         InternalIterable<Integer> tap = new TapIterable<>(Interval.oneTo(5), appendProcedure);
         tap.forEachWith((each, aBuilder) -> aBuilder.append(each - 1), builder);
         Assert.assertEquals("1021324354", builder.toString());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        private TapIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new TapIterableTest();
+        }
+
+        @java.lang.Override
+        public TapIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.primitive;
 
 import org.eclipse.collections.api.set.primitive.ImmutableBooleanSet;
@@ -18,27 +17,58 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableBooleanSetFactoryImplTest
-{
+public class ImmutableBooleanSetFactoryImplTest {
+
     @Test
-    public void of()
-    {
+    public void of() {
         Verify.assertEmpty(BooleanSets.immutable.of());
         Assert.assertEquals(BooleanHashSet.newSetWith(true).toImmutable(), BooleanSets.immutable.of(true));
     }
 
     @Test
-    public void with()
-    {
+    public void with() {
         Verify.assertEmpty(BooleanSets.immutable.with(null));
-        Assert.assertEquals(BooleanHashSet.newSetWith(false).toImmutable(), BooleanSets.immutable.with(new boolean[]{false}));
+        Assert.assertEquals(BooleanHashSet.newSetWith(false).toImmutable(), BooleanSets.immutable.with(new boolean[] { false }));
     }
 
     @Test
-    public void ofAll()
-    {
+    public void ofAll() {
         ImmutableBooleanSet set = BooleanSets.immutable.of(true, false);
         Assert.assertEquals(BooleanHashSet.newSet(set).toImmutable(), BooleanSets.immutable.ofAll(set));
         Assert.assertEquals(BooleanHashSet.newSet(BooleanArrayList.newListWith(true, false, true)).toImmutable(), BooleanSets.immutable.ofAll(BooleanArrayList.newListWith(true, false)));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_of() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::of, this.description("of"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::with, this.description("with"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAll, this.description("ofAll"));
+        }
+
+        private ImmutableBooleanSetFactoryImplTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableBooleanSetFactoryImplTest();
+        }
+
+        @java.lang.Override
+        public ImmutableBooleanSetFactoryImplTest implementation() {
+            return this.implementation;
+        }
     }
 }

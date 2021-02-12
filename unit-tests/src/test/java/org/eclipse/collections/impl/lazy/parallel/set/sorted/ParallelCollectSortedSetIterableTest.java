@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set.sorted;
 
 import org.eclipse.collections.api.list.ListIterable;
@@ -18,32 +17,41 @@ import org.eclipse.collections.impl.factory.SortedSets;
 import org.eclipse.collections.impl.lazy.parallel.list.ParallelListIterableTestCase;
 import org.eclipse.collections.impl.list.mutable.FastList;
 
-public class ParallelCollectSortedSetIterableTest extends ParallelListIterableTestCase
-{
+public class ParallelCollectSortedSetIterableTest extends ParallelListIterableTestCase {
+
     @Override
-    protected ParallelListIterable<Integer> classUnderTest()
-    {
+    protected ParallelListIterable<Integer> classUnderTest() {
         return this.newWith(44, 43, 42, 41, 33, 32, 31, 22, 21, 11);
     }
 
     @Override
-    protected ParallelListIterable<Integer> newWith(Integer... littleElements)
-    {
-        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements)
-                .asParallel(this.executorService, this.batchSize)
-                .collect(i -> i / 10);
+    protected ParallelListIterable<Integer> newWith(Integer... littleElements) {
+        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).asParallel(this.executorService, this.batchSize).collect(i -> i / 10);
     }
 
     @Override
-    protected MutableList<Integer> getExpected()
-    {
+    protected MutableList<Integer> getExpected() {
         return FastList.newListWith(4, 4, 4, 4, 3, 3, 3, 2, 2, 1);
     }
 
     @Override
-    protected ListIterable<Integer> getExpectedWith(Integer... littleElements)
-    {
-        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements)
-                .collect(i -> i / 10);
+    protected ListIterable<Integer> getExpectedWith(Integer... littleElements) {
+        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).collect(i -> i / 10);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ParallelCollectSortedSetIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelCollectSortedSetIterableTest();
+        }
+
+        @java.lang.Override
+        public ParallelCollectSortedSetIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

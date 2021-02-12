@@ -7,14 +7,12 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.fixed;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.LazyIterable;
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.bag.MutableBag;
@@ -46,188 +44,157 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.mList;
 
 /**
  * JUnit test for {@link AbstractMemoryEfficientMutableSet}.
  */
-public abstract class AbstractMemoryEfficientMutableSetTestCase
-{
+public abstract class AbstractMemoryEfficientMutableSetTestCase {
+
     protected abstract MutableSet<String> classUnderTest();
 
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         Verify.assertInstanceOf(SynchronizedMutableSet.class, this.classUnderTest().asSynchronized());
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void remove_throws()
-    {
+    public void remove_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.remove("1");
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addAll_throws()
-    {
+    public void addAll_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.addAll(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addAllIterable_throws()
-    {
+    public void addAllIterable_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.addAllIterable(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void add_duplicate_throws()
-    {
+    public void add_duplicate_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.add("1");
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void add_throws()
-    {
+    public void add_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.add(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAll_throws()
-    {
+    public void removeAll_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.removeAll(mList("1", "2"));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAllIterable_throws()
-    {
+    public void removeAllIterable_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.removeAllIterable(mList("1", "2"));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void retainAll_throws()
-    {
+    public void retainAll_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.retainAll(mList("1", "2"));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void retainAllIterable_throws()
-    {
+    public void retainAllIterable_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.retainAllIterable(mList("1", "2"));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void clear_throws()
-    {
+    public void clear_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.clear();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeIf_throws()
-    {
+    public void removeIf_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.removeIf(Predicates.equal("1"));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeIfWith_throws()
-    {
+    public void removeIfWith_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.removeIfWith(Object::equals, "1");
     }
 
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         MutableSet<String> set = this.classUnderTest();
         int size = set.size();
-
         Iterator<String> iterator = set.iterator();
-        for (int i = size; i-- > 0; )
-        {
+        for (int i = size; i-- > 0; ) {
             String integerString = iterator.next();
             Assert.assertEquals(size, Integer.parseInt(integerString) + i);
         }
-
         Assert.assertThrows(NoSuchElementException.class, iterator::next);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void iteratorRemove_throws()
-    {
+    public void iteratorRemove_throws() {
         MutableSet<String> set = this.classUnderTest();
         set.iterator().remove();
     }
 
     @Test(expected = NullPointerException.class)
-    public void min_null_throws()
-    {
+    public void min_null_throws() {
         this.classUnderTestWithNull().min(String::compareTo);
     }
 
     @Test(expected = NullPointerException.class)
-    public void max_null_throws()
-    {
+    public void max_null_throws() {
         this.classUnderTestWithNull().max(String::compareTo);
     }
 
     @Test(expected = NullPointerException.class)
-    public void min_null_throws_without_comparator()
-    {
+    public void min_null_throws_without_comparator() {
         this.classUnderTestWithNull().min();
     }
 
     @Test(expected = NullPointerException.class)
-    public void max_null_throws_without_comparator()
-    {
+    public void max_null_throws_without_comparator() {
         this.classUnderTestWithNull().max();
     }
 
     protected abstract MutableSet<String> classUnderTestWithNull();
 
     @Test
-    public void iterationWithIterator()
-    {
+    public void iterationWithIterator() {
         Iterator<String> iterator = this.classUnderTest().iterator();
-        while (iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             this.classUnderTest().contains(iterator.next());
         }
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void iteratorWillGetUpsetIfYouPushItTooFar()
-    {
+    public void iteratorWillGetUpsetIfYouPushItTooFar() {
         Iterator<String> iterator = this.classUnderTest().iterator();
-        for (int i = 0; i < this.classUnderTest().size() + 1; i++)
-        {
+        for (int i = 0; i < this.classUnderTest().size() + 1; i++) {
             iterator.next();
         }
     }
 
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         Verify.assertEqualsAndHashCode(UnifiedSet.newSet(this.classUnderTest()), this.classUnderTest());
     }
 
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         MutableSet<String> set = this.classUnderTest();
-        MutableSetMultimap<Boolean, String> multimap =
-                set.groupBy(object -> IntegerPredicates.isOdd().accept(Integer.parseInt(object)));
-
+        MutableSetMultimap<Boolean, String> multimap = set.groupBy(object -> IntegerPredicates.isOdd().accept(Integer.parseInt(object)));
         MutableMap<Boolean, RichIterable<String>> actualMap = multimap.toMap();
         int halfSize = this.classUnderTest().size() / 2;
         boolean odd = this.classUnderTest().size() % 2 != 0;
@@ -236,68 +203,45 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Test
-    public void groupByEach()
-    {
+    public void groupByEach() {
         MutableSet<Integer> set = this.classUnderTest().collect(Integer::valueOf);
-
         MutableMultimap<Integer, Integer> expected = UnifiedSetMultimap.newMultimap();
         set.forEach(Procedures.cast(value -> expected.putAll(-value, Interval.fromTo(value, set.size()))));
-
-        Multimap<Integer, Integer> actual =
-                set.groupByEach(new NegativeIntervalFunction());
+        Multimap<Integer, Integer> actual = set.groupByEach(new NegativeIntervalFunction());
         Assert.assertEquals(expected, actual);
-
-        Multimap<Integer, Integer> actualWithTarget =
-                set.groupByEach(new NegativeIntervalFunction(), UnifiedSetMultimap.newMultimap());
+        Multimap<Integer, Integer> actualWithTarget = set.groupByEach(new NegativeIntervalFunction(), UnifiedSetMultimap.newMultimap());
         Assert.assertEquals(expected, actualWithTarget);
     }
 
     @Test
-    public void zip()
-    {
+    public void zip() {
         MutableSet<String> set = this.classUnderTest();
         List<Object> nulls = Collections.nCopies(set.size(), null);
         List<Object> nullsPlusOne = Collections.nCopies(set.size() + 1, null);
         List<Object> nullsMinusOne = Collections.nCopies(set.size() - 1, null);
-
         MutableSet<Pair<String, Object>> pairs = set.zip(nulls);
         Assert.assertEquals(set, pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne));
         Assert.assertEquals(nulls, pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
-
         MutableSet<Pair<String, Object>> pairsPlusOne = set.zip(nullsPlusOne);
         Assert.assertEquals(set, pairsPlusOne.collect((Function<Pair<String, ?>, String>) Pair::getOne));
         Assert.assertEquals(nulls, pairsPlusOne.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
-
         MutableSet<Pair<String, Object>> pairsMinusOne = set.zip(nullsMinusOne);
         Assert.assertEquals(set.size() - 1, pairsMinusOne.size());
         Assert.assertTrue(set.containsAll(pairsMinusOne.collect((Function<Pair<String, ?>, String>) Pair::getOne)));
-
-        Assert.assertEquals(
-                set.zip(nulls),
-                set.zip(nulls, UnifiedSet.newSet()));
+        Assert.assertEquals(set.zip(nulls), set.zip(nulls, UnifiedSet.newSet()));
     }
 
     @Test
-    public void zipWithIndex()
-    {
+    public void zipWithIndex() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<Pair<String, Integer>> pairs = set.zipWithIndex();
-
-        Assert.assertEquals(
-                set,
-                pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne));
-        Assert.assertEquals(
-                Interval.zeroTo(set.size() - 1).toSet(),
-                pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo));
-
-        Assert.assertEquals(
-                set.zipWithIndex(),
-                set.zipWithIndex(UnifiedSet.newSet()));
+        Assert.assertEquals(set, pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne));
+        Assert.assertEquals(Interval.zeroTo(set.size() - 1).toSet(), pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo));
+        Assert.assertEquals(set.zipWithIndex(), set.zipWithIndex(UnifiedSet.newSet()));
     }
 
     @Test
-    public void testClone()
-    {
+    public void testClone() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> clone = set.clone();
         Assert.assertNotSame(clone, set);
@@ -305,130 +249,109 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Test
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         Verify.assertInstanceOf(UnmodifiableMutableSet.class, this.classUnderTest().asUnmodifiable());
     }
 
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         Verify.assertInstanceOf(ImmutableSet.class, this.classUnderTest().toImmutable());
     }
 
     @Test
-    public void min()
-    {
+    public void min() {
         Assert.assertEquals("1", this.classUnderTest().min(String::compareTo));
     }
 
     @Test
-    public void max()
-    {
+    public void max() {
         Assert.assertEquals("1", this.classUnderTest().max(Comparators.reverse(String::compareTo)));
     }
 
     @Test
-    public void min_without_comparator()
-    {
+    public void min_without_comparator() {
         Assert.assertEquals("1", this.classUnderTest().min());
     }
 
     @Test
-    public void max_without_comparator()
-    {
+    public void max_without_comparator() {
         Assert.assertEquals(String.valueOf(this.classUnderTest().size()), this.classUnderTest().max());
     }
 
     @Test
-    public void minBy()
-    {
+    public void minBy() {
         Assert.assertEquals("1", this.classUnderTest().minBy(String::valueOf));
     }
 
     @Test
-    public void maxBy()
-    {
+    public void maxBy() {
         Assert.assertEquals(String.valueOf(this.classUnderTest().size()), this.classUnderTest().maxBy(String::valueOf));
     }
 
     @Test
-    public void chunk()
-    {
+    public void chunk() {
         MutableSet<String> set = this.classUnderTest();
         RichIterable<RichIterable<String>> chunks = set.chunk(2);
         MutableList<Integer> sizes = chunks.collect(RichIterable::size, FastList.newList());
         MutableBag<Integer> hashBag = Bags.mutable.of();
         hashBag.addOccurrences(2, this.classUnderTest().size() / 2);
-        if (this.classUnderTest().size() % 2 != 0)
-        {
+        if (this.classUnderTest().size() % 2 != 0) {
             hashBag.add(1);
         }
         Assert.assertEquals(hashBag, sizes.toBag());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void chunk_zero_throws()
-    {
+    public void chunk_zero_throws() {
         this.classUnderTest().chunk(0);
     }
 
     @Test
-    public void chunk_large_size()
-    {
+    public void chunk_large_size() {
         MutableSet<String> set = this.classUnderTest();
         Assert.assertEquals(set, set.chunk(10).getFirst());
     }
 
     @Test
-    public void union()
-    {
+    public void union() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> union = set.union(UnifiedSet.newSetWith("a", "b", "c", "1"));
         Verify.assertSize(set.size() + 3, union);
         Assert.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
         Verify.assertContainsAll(union, "a", "b", "c");
-
         Assert.assertEquals(set, set.union(UnifiedSet.newSetWith("1")));
     }
 
     @Test
-    public void unionInto()
-    {
+    public void unionInto() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> union = set.unionInto(UnifiedSet.newSetWith("a", "b", "c", "1"), UnifiedSet.newSet());
         Verify.assertSize(set.size() + 3, union);
         Assert.assertTrue(union.containsAllIterable(Interval.oneTo(set.size()).collect(String::valueOf)));
         Verify.assertContainsAll(union, "a", "b", "c");
-
         Assert.assertEquals(set, set.unionInto(UnifiedSet.newSetWith("1"), UnifiedSet.newSet()));
     }
 
     @Test
-    public void intersect()
-    {
+    public void intersect() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> intersect = set.intersect(UnifiedSet.newSetWith("a", "b", "c", "1"));
         Verify.assertSize(1, intersect);
         Assert.assertEquals(UnifiedSet.newSetWith("1"), intersect);
-
         Verify.assertEmpty(set.intersect(UnifiedSet.newSetWith("not present")));
     }
 
     @Test
-    public void intersectInto()
-    {
+    public void intersectInto() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> intersect = set.intersectInto(UnifiedSet.newSetWith("a", "b", "c", "1"), UnifiedSet.newSet());
         Verify.assertSize(1, intersect);
         Assert.assertEquals(UnifiedSet.newSetWith("1"), intersect);
-
         Verify.assertEmpty(set.intersectInto(UnifiedSet.newSetWith("not present"), UnifiedSet.newSet()));
     }
 
     @Test
-    public void difference()
-    {
+    public void difference() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> difference = set.difference(UnifiedSet.newSetWith("2", "3", "4", "not present"));
         Assert.assertEquals(UnifiedSet.newSetWith("1"), difference);
@@ -436,8 +359,7 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Test
-    public void differenceInto()
-    {
+    public void differenceInto() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> difference = set.differenceInto(UnifiedSet.newSetWith("2", "3", "4", "not present"), UnifiedSet.newSet());
         Assert.assertEquals(UnifiedSet.newSetWith("1"), difference);
@@ -445,57 +367,44 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Test
-    public void symmetricDifference()
-    {
+    public void symmetricDifference() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<String> difference = set.symmetricDifference(UnifiedSet.newSetWith("2", "3", "4", "5", "not present"));
         Verify.assertContains("1", difference);
         Assert.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
-        for (int i = 2; i <= set.size(); i++)
-        {
+        for (int i = 2; i <= set.size(); i++) {
             Verify.assertNotContains(String.valueOf(i), difference);
         }
-
         Verify.assertSize(set.size() + 1, set.symmetricDifference(UnifiedSet.newSetWith("not present")));
     }
 
     @Test
-    public void symmetricDifferenceInto()
-    {
+    public void symmetricDifferenceInto() {
         MutableSet<String> set = this.classUnderTest();
-        MutableSet<String> difference = set.symmetricDifferenceInto(
-                UnifiedSet.newSetWith("2", "3", "4", "5", "not present"),
-                UnifiedSet.newSet());
+        MutableSet<String> difference = set.symmetricDifferenceInto(UnifiedSet.newSetWith("2", "3", "4", "5", "not present"), UnifiedSet.newSet());
         Verify.assertContains("1", difference);
         Assert.assertTrue(difference.containsAllIterable(Interval.fromTo(set.size() + 1, 5).collect(String::valueOf)));
-        for (int i = 2; i <= set.size(); i++)
-        {
+        for (int i = 2; i <= set.size(); i++) {
             Verify.assertNotContains(String.valueOf(i), difference);
         }
-
-        Verify.assertSize(
-                set.size() + 1,
-                set.symmetricDifferenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.newSet()));
+        Verify.assertSize(set.size() + 1, set.symmetricDifferenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.newSet()));
     }
 
     @Test
-    public void isSubsetOf()
-    {
+    public void isSubsetOf() {
         MutableSet<String> set = this.classUnderTest();
         Assert.assertTrue(set.isSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
     }
 
     @Test
-    public void isProperSubsetOf()
-    {
+    public void isProperSubsetOf() {
         MutableSet<String> set = this.classUnderTest();
         Assert.assertTrue(set.isProperSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
         Assert.assertFalse(set.isProperSubsetOf(set));
     }
 
     @Test
-    public void powerSet()
-    {
+    public void powerSet() {
         MutableSet<String> set = this.classUnderTest();
         MutableSet<UnsortedSetIterable<String>> powerSet = set.powerSet();
         Verify.assertSize((int) StrictMath.pow(2, set.size()), powerSet);
@@ -504,21 +413,15 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Test
-    public void cartesianProduct()
-    {
+    public void cartesianProduct() {
         MutableSet<String> set = this.classUnderTest();
         LazyIterable<Pair<String, String>> cartesianProduct = set.cartesianProduct(UnifiedSet.newSetWith("One", "Two"));
         Verify.assertIterableSize(set.size() * 2, cartesianProduct);
-        Assert.assertEquals(
-                set,
-                cartesianProduct
-                        .select(Predicates.attributeEqual((Function<Pair<?, String>, String>) Pair::getTwo, "One"))
-                        .collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
+        Assert.assertEquals(set, cartesianProduct.select(Predicates.attributeEqual((Function<Pair<?, String>, String>) Pair::getTwo, "One")).collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
     }
 
     @Test
-    public void with()
-    {
+    public void with() {
         MutableSet<String> set = this.classUnderTest();
         Assert.assertFalse(set.contains("11"));
         MutableSet<String> setWith = set.with("11");
@@ -529,8 +432,7 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Test
-    public void withAll()
-    {
+    public void withAll() {
         MutableSet<String> set = this.classUnderTest();
         Verify.assertContainsNone(set, "11", "12");
         MutableSet<String> setWith = set.withAll(FastList.newListWith("11", "12"));
@@ -541,8 +443,7 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Test
-    public void without()
-    {
+    public void without() {
         MutableSet<String> set = this.classUnderTest();
         Assert.assertSame(set, set.without("11"));
         MutableList<String> list = set.toList();
@@ -554,8 +455,7 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
     }
 
     @Test
-    public void withoutAll()
-    {
+    public void withoutAll() {
         MutableSet<String> set = this.classUnderTest().with("11").with("12");
         MutableSet<String> setWithout = set.withoutAll(FastList.newListWith("11", "12"));
         Assert.assertTrue(setWithout.containsAll(this.classUnderTest()));
@@ -564,15 +464,340 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase
         Assert.assertSame(setWithout, setWithout.withoutAll(FastList.newList()));
     }
 
-    protected static void assertSetType(MutableSet<?> original, MutableSet<?> modified)
-    {
-        if (original instanceof FixedSizeSet && modified.size() < 5)
-        {
+    protected static void assertSetType(MutableSet<?> original, MutableSet<?> modified) {
+        if (original instanceof FixedSizeSet && modified.size() < 5) {
             Verify.assertInstanceOf(FixedSizeSet.class, modified);
-        }
-        else
-        {
+        } else {
             Verify.assertInstanceOf(UnifiedSet.class, modified);
         }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::remove_throws, this.description("remove_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAll_throws, this.description("addAll_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllIterable_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAllIterable_throws, this.description("addAllIterable_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add_duplicate_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::add_duplicate_throws, this.description("add_duplicate_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::add_throws, this.description("add_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAll_throws, this.description("removeAll_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterable_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAllIterable_throws, this.description("removeAllIterable_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::retainAll_throws, this.description("retainAll_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAllIterable_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::retainAllIterable_throws, this.description("retainAllIterable_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::clear_throws, this.description("clear_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeIf_throws, this.description("removeIf_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWith_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeIfWith_throws, this.description("removeIfWith_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iteratorRemove_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::iteratorRemove_throws, this.description("iteratorRemove_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::min_null_throws, this.description("min_null_throws"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::max_null_throws, this.description("max_null_throws"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_throws_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::min_null_throws_without_comparator, this.description("min_null_throws_without_comparator"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_throws_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::max_null_throws_without_comparator, this.description("max_null_throws_without_comparator"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterationWithIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterationWithIterator, this.description("iterationWithIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iteratorWillGetUpsetIfYouPushItTooFar() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::iteratorWillGetUpsetIfYouPushItTooFar, this.description("iteratorWillGetUpsetIfYouPushItTooFar"), java.util.NoSuchElementException.class);
+        }
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEach, this.description("groupByEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipWithIndex, this.description("zipWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min, this.description("min"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max, this.description("max"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min_without_comparator, this.description("min_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max_without_comparator, this.description("max_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minBy, this.description("minBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxBy, this.description("maxBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk, this.description("chunk"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk_zero_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::chunk_zero_throws, this.description("chunk_zero_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk_large_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk_large_size, this.description("chunk_large_size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_union() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::union, this.description("union"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_unionInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::unionInto, this.description("unionInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intersect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intersect, this.description("intersect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intersectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intersectInto, this.description("intersectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_difference() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::difference, this.description("difference"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_differenceInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::differenceInto, this.description("differenceInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_symmetricDifference() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::symmetricDifference, this.description("symmetricDifference"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_symmetricDifferenceInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::symmetricDifferenceInto, this.description("symmetricDifferenceInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isSubsetOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isSubsetOf, this.description("isSubsetOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isProperSubsetOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isProperSubsetOf, this.description("isProperSubsetOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_powerSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::powerSet, this.description("powerSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_cartesianProduct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::cartesianProduct, this.description("cartesianProduct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::with, this.description("with"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withAll, this.description("withAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_without() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::without, this.description("without"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withoutAll, this.description("withoutAll"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractMemoryEfficientMutableSetTestCase implementation();
     }
 }

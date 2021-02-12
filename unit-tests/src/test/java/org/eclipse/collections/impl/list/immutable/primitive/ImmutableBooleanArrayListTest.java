@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.immutable.primitive;
 
 import org.eclipse.collections.api.list.primitive.ImmutableBooleanList;
@@ -20,40 +19,75 @@ import org.junit.Test;
 /**
  * JUnit test for {@link ImmutableBooleanArrayList}.
  */
-public class ImmutableBooleanArrayListTest extends AbstractImmutableBooleanListTestCase
-{
+public class ImmutableBooleanArrayListTest extends AbstractImmutableBooleanListTestCase {
+
     @Override
-    protected ImmutableBooleanList classUnderTest()
-    {
+    protected ImmutableBooleanList classUnderTest() {
         return ImmutableBooleanArrayList.newListWith(true, false, true);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void newCollection_throws_empty()
-    {
+    public void newCollection_throws_empty() {
         ImmutableBooleanArrayList.newListWith();
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void newCollection_throws_single()
-    {
+    public void newCollection_throws_single() {
         ImmutableBooleanArrayList.newListWith(true);
     }
 
     @Override
     @Test
-    public void newCollection()
-    {
+    public void newCollection() {
         super.newCollection();
         Assert.assertEquals(BooleanArrayList.newListWith(true, false, true), ImmutableBooleanArrayList.newList(BooleanArrayList.newListWith(true, false, true)));
     }
 
     @Override
     @Test
-    public void size()
-    {
+    public void size() {
         super.size();
         Verify.assertSize(3, ImmutableBooleanArrayList.newList(BooleanArrayList.newListWith(true, false, true)));
         Verify.assertSize(3, BooleanLists.immutable.ofAll(ImmutableBooleanArrayList.newList(BooleanArrayList.newListWith(true, false, true))));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollection_throws_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::newCollection_throws_empty, this.description("newCollection_throws_empty"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollection_throws_single() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::newCollection_throws_single, this.description("newCollection_throws_single"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newCollection, this.description("newCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        private ImmutableBooleanArrayListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableBooleanArrayListTest();
+        }
+
+        @java.lang.Override
+        public ImmutableBooleanArrayListTest implementation() {
+            return this.implementation;
+        }
     }
 }

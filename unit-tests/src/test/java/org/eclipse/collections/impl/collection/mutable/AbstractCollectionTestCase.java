@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.collection.mutable;
 
 import java.util.Collections;
-
 import org.eclipse.collections.api.collection.ImmutableCollection;
 import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.api.list.MutableList;
@@ -30,18 +28,16 @@ import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iList;
 import static org.eclipse.collections.impl.factory.Iterables.mSet;
 
 /**
  * Abstract JUnit test for {@link MutableCollection}s.
  */
-public abstract class AbstractCollectionTestCase extends AbstractRichIterableTestCase
-{
+public abstract class AbstractCollectionTestCase extends AbstractRichIterableTestCase {
+
     @Test
-    public void newEmpty()
-    {
+    public void newEmpty() {
         MutableCollection<Object> collection = this.newWith().newEmpty();
         Verify.assertEmpty(collection);
         Verify.assertSize(0, collection);
@@ -49,8 +45,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         Verify.assertInstanceOf(MutableCollection.class, this.newWith());
         Verify.assertInstanceOf(ImmutableCollection.class, this.newWith().toImmutable());
     }
@@ -59,8 +54,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     protected abstract <T> MutableCollection<T> newWith(T... littleElements);
 
     @Test
-    public void testNewWith()
-    {
+    public void testNewWith() {
         MutableCollection<Integer> collection = this.newWith(1);
         Verify.assertNotEmpty(collection);
         Verify.assertSize(1, collection);
@@ -68,8 +62,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void testNewWithWith()
-    {
+    public void testNewWithWith() {
         MutableCollection<Integer> collection = this.newWith(1, 2);
         Verify.assertNotEmpty(collection);
         Verify.assertSize(2, collection);
@@ -77,8 +70,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void testNewWithWithWith()
-    {
+    public void testNewWithWithWith() {
         MutableCollection<Integer> collection = this.newWith(1, 2, 3);
         Verify.assertNotEmpty(collection);
         Verify.assertSize(3, collection);
@@ -86,8 +78,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void testNewWithVarArgs()
-    {
+    public void testNewWithVarArgs() {
         MutableCollection<Integer> collection = this.newWith(1, 2, 3, 4);
         Verify.assertNotEmpty(collection);
         Verify.assertSize(4, collection);
@@ -95,95 +86,73 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void addAll()
-    {
+    public void addAll() {
         MutableCollection<Integer> collection = this.newWith();
         Assert.assertTrue(collection.addAll(FastList.newListWith(1, 2, 3)));
         Assert.assertFalse(collection.addAll(Collections.emptyList()));
         Verify.assertContainsAll(collection, 1, 2, 3);
-
         boolean result = collection.addAll(FastList.newListWith(1, 2, 3));
-        if (collection.size() == 3)
-        {
+        if (collection.size() == 3) {
             Assert.assertFalse("addAll did not modify the collection", result);
-        }
-        else
-        {
+        } else {
             Assert.assertTrue("addAll modified the collection", result);
         }
         Verify.assertContainsAll(collection, 1, 2, 3);
     }
 
     @Test
-    public void addAllIterable()
-    {
+    public void addAllIterable() {
         MutableCollection<Integer> collection1 = this.newWith();
         Assert.assertTrue(collection1.addAllIterable(FastList.newListWith(1, 2, 3)));
         Verify.assertContainsAll(collection1, 1, 2, 3);
-
         boolean result1 = collection1.addAllIterable(FastList.newListWith(1, 2, 3));
-        if (collection1.size() == 3)
-        {
+        if (collection1.size() == 3) {
             Assert.assertFalse("addAllIterable did not modify the collection", result1);
-        }
-        else
-        {
+        } else {
             Assert.assertTrue("addAllIterable modified the collection", result1);
         }
         Verify.assertContainsAll(collection1, 1, 2, 3);
-
         MutableCollection<Integer> collection2 = this.newWith();
         Assert.assertTrue(collection2.addAllIterable(UnifiedSet.newSetWith(1, 2, 3)));
         Verify.assertContainsAll(collection2, 1, 2, 3);
-
         boolean result2 = collection2.addAllIterable(UnifiedSet.newSetWith(1, 2, 3));
-        if (collection1.size() == 3)
-        {
+        if (collection1.size() == 3) {
             Assert.assertFalse("addAllIterable did not modify the collection", result2);
-        }
-        else
-        {
+        } else {
             Assert.assertTrue("addAllIterable modified the collection", result2);
         }
         Verify.assertContainsAll(collection2, 1, 2, 3);
     }
 
     @Test
-    public void removeAll()
-    {
+    public void removeAll() {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3);
         Assert.assertTrue(objects.removeAll(FastList.newListWith(1, 2, 4)));
         Assert.assertEquals(Bags.mutable.of(3), objects.toBag());
-
         MutableCollection<Integer> objects2 = this.newWith(1, 2, 3);
         Assert.assertFalse(objects2.removeAll(FastList.newListWith(4, 5)));
         Assert.assertEquals(Bags.mutable.of(1, 2, 3), objects2.toBag());
     }
 
     @Test
-    public void removeAllIterable()
-    {
+    public void removeAllIterable() {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3);
         Assert.assertTrue(objects.removeAllIterable(FastList.newListWith(1, 2, 4)));
         Assert.assertEquals(Bags.mutable.of(3), objects.toBag());
-
         MutableCollection<Integer> objects2 = this.newWith(1, 2, 3);
         Assert.assertFalse(objects2.removeAllIterable(FastList.newListWith(4, 5)));
         Assert.assertEquals(Bags.mutable.of(1, 2, 3), objects2.toBag());
     }
 
     @Test
-    public void retainAll()
-    {
+    public void retainAll() {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3);
         Assert.assertTrue(objects.retainAll(mSet(1, 2)));
         Verify.assertSize(2, objects);
         Verify.assertContainsAll(objects, 1, 2);
-
         MutableCollection<Integer> integers1 = this.newWith(0);
         Assert.assertFalse(integers1.retainAll(FastList.newListWith(1, 0)));
         Assert.assertEquals(Bags.mutable.of(0), integers1.toBag());
-
         MutableCollection<Integer> integers2 = this.newWith(1, 2, 3);
         Integer copy = new Integer(1);
         Assert.assertTrue(integers2.retainAll(FastList.newListWith(copy)));
@@ -192,21 +161,18 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void retainAllIterable()
-    {
+    public void retainAllIterable() {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3);
         Assert.assertTrue(objects.retainAllIterable(iList(1, 2)));
         Verify.assertSize(2, objects);
         Verify.assertContainsAll(objects, 1, 2);
-
         MutableCollection<Integer> integers = this.newWith(0);
         Assert.assertFalse(integers.retainAllIterable(FastList.newListWith(1, 0)));
         Assert.assertEquals(Bags.mutable.of(0), integers.toBag());
     }
 
     @Test
-    public void clear()
-    {
+    public void clear() {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3);
         objects.clear();
         Verify.assertSize(0, objects);
@@ -216,24 +182,21 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void injectIntoWith()
-    {
+    public void injectIntoWith() {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3);
         Integer result = objects.injectIntoWith(1, (injectedValued, item, parameter) -> injectedValued + item + parameter, 0);
         Assert.assertEquals(Integer.valueOf(7), result);
     }
 
     @Test
-    public void removeObject()
-    {
+    public void removeObject() {
         MutableCollection<Integer> objects = this.newWith(1, 2, 3);
         objects.remove(3);
         Verify.assertSize(2, objects);
     }
 
     @Test
-    public void selectAndRejectWith()
-    {
+    public void selectAndRejectWith() {
         MutableCollection<Integer> objects = this.newWith(1, 2);
         Twin<MutableList<Integer>> result = objects.selectAndRejectWith(Object::equals, 1);
         Verify.assertSize(1, result.getOne());
@@ -241,40 +204,34 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void removeIf()
-    {
+    public void removeIf() {
         MutableCollection<Integer> objects1 = this.newWith(1, 2, 3);
         objects1.add(null);
         Assert.assertTrue(objects1.removeIf(Predicates.isNull()));
         Verify.assertSize(3, objects1);
         Verify.assertContainsAll(objects1, 1, 2, 3);
-
         MutableCollection<Integer> objects2 = this.newWith(3, 4, 5);
         Assert.assertTrue(objects2.removeIf(Predicates.equal(3)));
         Assert.assertFalse(objects2.removeIf(Predicates.equal(6)));
-
         MutableCollection<Integer> objects3 = this.newWith(1, 2, 3, 4, 5);
         Assert.assertTrue(objects3.removeIf(Predicates.greaterThan(0)));
         Assert.assertFalse(objects3.removeIf(Predicates.equal(5)));
     }
 
     @Test
-    public void removeIfWith()
-    {
+    public void removeIfWith() {
         MutableCollection<Integer> objects1 = this.newWith(1, 2, 3, 4);
         Assert.assertTrue(objects1.removeIfWith(Predicates2.lessThan(), 3));
         Verify.assertSize(2, objects1);
         Verify.assertContainsAll(objects1, 3, 4);
         Assert.assertFalse(objects1.removeIfWith(Predicates2.greaterThan(), 6));
-
         MutableCollection<Integer> objects2 = this.newWith(1, 2, 3, 4, 5);
         Assert.assertTrue(objects2.removeIfWith(Predicates2.greaterThan(), 0));
         Assert.assertFalse(objects2.removeIfWith(Predicates2.greaterThan(), 3));
     }
 
     @Test
-    public void with()
-    {
+    public void with() {
         MutableCollection<Integer> coll = this.newWith(1, 2, 3);
         MutableCollection<Integer> collWith = coll.with(4);
         Assert.assertSame(coll, collWith);
@@ -282,8 +239,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void withAll()
-    {
+    public void withAll() {
         MutableCollection<Integer> coll = this.newWith(1, 2, 3);
         MutableCollection<Integer> collWith = coll.withAll(FastList.newListWith(4, 5));
         Assert.assertSame(coll, collWith);
@@ -291,8 +247,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void without()
-    {
+    public void without() {
         MutableCollection<Integer> coll = this.newWith(1, 2, 3);
         MutableCollection<Integer> collWithout = coll.without(2);
         Assert.assertSame(coll, collWithout);
@@ -300,8 +255,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void withoutAll()
-    {
+    public void withoutAll() {
         MutableCollection<Integer> coll = this.newWith(1, 2, 3, 4, 5);
         MutableCollection<Integer> collWithout = coll.withoutAll(FastList.newListWith(2, 4));
         Assert.assertSame(coll, collWithout);
@@ -309,8 +263,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void largeCollectionStreamToBagMultimap()
-    {
+    public void largeCollectionStreamToBagMultimap() {
         MutableCollection<Integer> collection = this.newWith(Interval.oneTo(100000).toArray());
         MutableBagMultimap<Integer, Integer> expected = collection.groupBy(each -> each % 100, Multimaps.mutable.bag.empty());
         Assert.assertEquals(expected, collection.stream().collect(Collectors2.toBagMultimap(each -> each % 100)));
@@ -318,8 +271,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     }
 
     @Test
-    public void asLazy()
-    {
+    public void asLazy() {
         Verify.assertInstanceOf(LazyIterableAdapter.class, this.newWith().asLazy());
     }
 
@@ -328,4 +280,166 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
 
     @Test
     public abstract void asUnmodifiable();
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewWith, this.description("testNewWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewWithWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewWithWith, this.description("testNewWithWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewWithWithWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewWithWithWith, this.description("testNewWithWithWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewWithVarArgs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewWithVarArgs, this.description("testNewWithVarArgs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAll, this.description("addAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllIterable, this.description("addAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll, this.description("removeAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllIterable, this.description("removeAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAll, this.description("retainAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAllIterable, this.description("retainAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::clear, this.description("clear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoWith, this.description("injectIntoWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeObject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeObject, this.description("removeObject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectAndRejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectAndRejectWith, this.description("selectAndRejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIf, this.description("removeIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWith, this.description("removeIfWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::with, this.description("with"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withAll, this.description("withAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_without() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::without, this.description("without"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withoutAll, this.description("withoutAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_largeCollectionStreamToBagMultimap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::largeCollectionStreamToBagMultimap, this.description("largeCollectionStreamToBagMultimap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazy, this.description("asLazy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractCollectionTestCase implementation();
+    }
 }

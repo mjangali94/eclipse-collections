@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.fixed;
 
 import java.io.ByteArrayOutputStream;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.eclipse.collections.api.block.function.Function2;
 import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.api.list.MutableList;
@@ -41,19 +39,17 @@ import org.slf4j.LoggerFactory;
 /**
  * JUnit test for {@link ArrayAdapter}.
  */
-public class ArrayAdapterTest extends AbstractListTestCase
-{
+public class ArrayAdapterTest extends AbstractListTestCase {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ArrayAdapterTest.class);
 
     @Override
-    protected <T> MutableList<T> newWith(T... littleElements)
-    {
+    protected <T> MutableList<T> newWith(T... littleElements) {
         return ArrayAdapter.newArrayWith(littleElements);
     }
 
     @Test
-    public void testNewList()
-    {
+    public void testNewList() {
         MutableList<Integer> collection = this.newArray();
         Verify.assertEmpty(collection);
         Verify.assertSize(0, collection);
@@ -62,21 +58,18 @@ public class ArrayAdapterTest extends AbstractListTestCase
         Verify.assertInstanceOf(ArrayAdapter.class, collection1);
     }
 
-    private MutableList<Integer> newArray()
-    {
+    private MutableList<Integer> newArray() {
         return ArrayAdapter.newArray();
     }
 
     @Test
-    public void adapt()
-    {
+    public void adapt() {
         MutableList<Integer> collection = ArrayAdapter.newArrayWith();
         Verify.assertEmpty(collection);
     }
 
     @Test
-    public void newListWith()
-    {
+    public void newListWith() {
         MutableList<Integer> collection = ArrayAdapter.newArrayWith(1);
         Verify.assertNotEmpty(collection);
         Verify.assertSize(1, collection);
@@ -84,8 +77,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
     }
 
     @Test
-    public void newListWithWith()
-    {
+    public void newListWithWith() {
         MutableList<Integer> collection = ArrayAdapter.newArrayWith(1, 2);
         Verify.assertNotEmpty(collection);
         Verify.assertSize(2, collection);
@@ -93,8 +85,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
     }
 
     @Test
-    public void newListWithWithWith()
-    {
+    public void newListWithWithWith() {
         MutableList<Integer> collection = ArrayAdapter.newArrayWith(1, 2, 3);
         Verify.assertNotEmpty(collection);
         Verify.assertSize(3, collection);
@@ -102,8 +93,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
     }
 
     @Test
-    public void newListWithVarArgs()
-    {
+    public void newListWithVarArgs() {
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4);
         Verify.assertNotEmpty(collection);
         Verify.assertSize(4, collection);
@@ -112,10 +102,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         super.forEach();
-
         List<Integer> result = new ArrayList<>();
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4);
         collection.forEach(CollectionAddProcedure.on(result));
@@ -125,10 +113,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void forEachFromTo()
-    {
+    public void forEachFromTo() {
         super.forEachFromTo();
-
         MutableList<Integer> result = Lists.mutable.of();
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4);
         collection.forEach(2, 3, result::add);
@@ -138,10 +124,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         super.forEachWithIndex();
-
         List<Integer> result = new ArrayList<>();
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4);
         collection.forEachWithIndex((object, index) -> result.add(object + index));
@@ -149,92 +133,70 @@ public class ArrayAdapterTest extends AbstractListTestCase
     }
 
     @Test
-    public void add()
-    {
+    public void add() {
         MutableList<String> collection = ArrayAdapter.newArray();
         Assert.assertThrows(UnsupportedOperationException.class, () -> collection.add(null));
     }
 
     @Override
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         super.allSatisfy();
-
         Assert.assertTrue(this.newWith(1, 2, 3).allSatisfy(Integer.class::isInstance));
         Assert.assertFalse(this.newWith(1, 2, 3).allSatisfy(Integer.valueOf(1)::equals));
     }
 
     @Override
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         super.anySatisfy();
-
         Assert.assertFalse(this.newWith(1, 2, 3).anySatisfy(String.class::isInstance));
         Assert.assertTrue(this.newWith(1, 2, 3).anySatisfy(Integer.class::isInstance));
     }
 
     @Override
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         super.noneSatisfy();
-
         Assert.assertTrue(this.newWith(1, 2, 3).noneSatisfy(String.class::isInstance));
         Assert.assertFalse(this.newWith(1, 2, 3).noneSatisfy(Integer.valueOf(1)::equals));
     }
 
     @Override
     @Test
-    public void count()
-    {
+    public void count() {
         super.count();
-
         Assert.assertEquals(3, this.newWith(1, 2, 3).count(Integer.class::isInstance));
     }
 
     @Override
     @Test
-    public void collectIf()
-    {
+    public void collectIf() {
         super.collectIf();
-
-        Verify.assertContainsAll(this.newWith(1, 2, 3).collectIf(
-                Integer.class::isInstance,
-                String::valueOf), "1", "2", "3");
-        Verify.assertContainsAll(this.newWith(1, 2, 3).collectIf(
-                Integer.class::isInstance,
-                String::valueOf,
-                new ArrayList<>()), "1", "2", "3");
+        Verify.assertContainsAll(this.newWith(1, 2, 3).collectIf(Integer.class::isInstance, String::valueOf), "1", "2", "3");
+        Verify.assertContainsAll(this.newWith(1, 2, 3).collectIf(Integer.class::isInstance, String::valueOf, new ArrayList<>()), "1", "2", "3");
     }
 
     @Override
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         super.getFirst();
-
         Assert.assertEquals(Integer.valueOf(1), this.newWith(1, 2, 3).getFirst());
         Assert.assertNotEquals(Integer.valueOf(3), this.newWith(1, 2, 3).getFirst());
     }
 
     @Override
     @Test
-    public void getLast()
-    {
+    public void getLast() {
         super.getLast();
-
         Assert.assertNotEquals(Integer.valueOf(1), this.newWith(1, 2, 3).getLast());
         Assert.assertEquals(Integer.valueOf(3), this.newWith(1, 2, 3).getLast());
     }
 
     @Override
     @Test
-    public void isEmpty()
-    {
+    public void isEmpty() {
         super.isEmpty();
-
         Verify.assertEmpty(this.newArray());
         Verify.assertNotEmpty(this.newWith(1, 2));
         Assert.assertTrue(this.newWith(1, 2).notEmpty());
@@ -242,14 +204,11 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         super.iterator();
-
         MutableList<Integer> objects = this.newWith(1, 2, 3);
         Iterator<Integer> iterator = objects.iterator();
-        for (int i = objects.size(); i-- > 0; )
-        {
+        for (int i = objects.size(); i-- > 0; ) {
             Integer integer = iterator.next();
             Assert.assertEquals(3, integer.intValue() + i);
         }
@@ -257,10 +216,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         super.injectInto();
-
         MutableList<Integer> objects = this.newWith(1, 2, 3);
         Integer result = objects.injectInto(1, AddFunction.INTEGER);
         Assert.assertEquals(Integer.valueOf(7), result);
@@ -268,10 +225,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void toArray()
-    {
+    public void toArray() {
         super.toArray();
-
         MutableList<Integer> objects = this.newWith(1, 2, 3);
         Object[] array = objects.toArray();
         Verify.assertSize(3, array);
@@ -279,7 +234,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
         Verify.assertSize(3, array2);
         Integer[] array3 = objects.toArray(new Integer[1]);
         Verify.assertSize(3, array3);
-        Integer[] expected = {1, 2, 3};
+        Integer[] expected = { 1, 2, 3 };
         Assert.assertArrayEquals(expected, array);
         Assert.assertArrayEquals(expected, array2);
         Assert.assertArrayEquals(expected, array3);
@@ -287,10 +242,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void selectAndRejectWith()
-    {
+    public void selectAndRejectWith() {
         super.selectAndRejectWith();
-
         MutableList<Integer> objects = this.newWith(1, 2);
         Twin<MutableList<Integer>> result = objects.selectAndRejectWith(Object::equals, 1);
         Verify.assertSize(1, result.getOne());
@@ -299,51 +252,42 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void removeIf()
-    {
+    public void removeIf() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> ArrayAdapter.newArrayWith(1, 2, 3, null).removeIf(Predicates.isNull()));
     }
 
     @Override
     @Test
-    public void removeIndex()
-    {
+    public void removeIndex() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> ArrayAdapter.newArrayWith(1, 2, 3, null).remove(0));
     }
 
     @Override
     @Test
-    public void removeIfWith()
-    {
+    public void removeIfWith() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> ArrayAdapter.newArrayWith(1, 2, 3, null).removeIfWith((each, ignored) -> each == null, null));
     }
 
     @Override
     @Test
-    public void indexOf()
-    {
+    public void indexOf() {
         super.indexOf();
-
         MutableList<Integer> objects = ArrayAdapter.newArrayWith(1, 2, 3);
         Assert.assertEquals(1, objects.indexOf(2));
     }
 
     @Override
     @Test
-    public void lastIndexOf()
-    {
+    public void lastIndexOf() {
         super.lastIndexOf();
-
         MutableList<Integer> objects = ArrayAdapter.newArrayWith(1, 2, 3);
         Assert.assertEquals(1, objects.lastIndexOf(2));
     }
 
     @Override
     @Test
-    public void set()
-    {
+    public void set() {
         super.set();
-
         MutableList<Integer> objects = ArrayAdapter.newArrayWith(1, 2, 3);
         Assert.assertEquals(Integer.valueOf(2), objects.set(1, 4));
         Assert.assertEquals(FastList.newListWith(1, 4, 3), objects);
@@ -351,10 +295,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         super.equalsAndHashCode();
-
         ArrayAdapter<Integer> array1 = ArrayAdapter.newArrayWith(1, 2, 3, 4);
         ArrayAdapter<Integer> array2 = ArrayAdapter.newArrayWith(1, 2, 3, 4);
         ArrayAdapter<Integer> array3 = ArrayAdapter.newArrayWith(2, 3, 4);
@@ -372,10 +314,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         super.forEachWith();
-
         List<Integer> result = new ArrayList<>();
         MutableList<Integer> collection = ArrayAdapter.newArrayWith(1, 2, 3, 4);
         collection.forEachWith((argument1, argument2) -> result.add(argument1 + argument2), 0);
@@ -385,46 +325,30 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void selectWith()
-    {
+    public void selectWith() {
         super.selectWith();
-
-        Verify.assertContainsAll(ArrayAdapter.newArrayWith(1, 2, 3, 4, 5).selectWith(Predicates2.lessThan(),
-                3), 1, 2);
-        Verify.denyContainsAny(ArrayAdapter.newArrayWith(-1, 2, 3, 4, 5).selectWith(Predicates2.lessThan(),
-                3), 3, 4, 5);
-        Verify.assertContainsAll(ArrayAdapter.newArrayWith(1, 2, 3, 4, 5).selectWith(Predicates2.lessThan(),
-                3,
-                UnifiedSet.newSet()), 1, 2);
+        Verify.assertContainsAll(ArrayAdapter.newArrayWith(1, 2, 3, 4, 5).selectWith(Predicates2.lessThan(), 3), 1, 2);
+        Verify.denyContainsAny(ArrayAdapter.newArrayWith(-1, 2, 3, 4, 5).selectWith(Predicates2.lessThan(), 3), 3, 4, 5);
+        Verify.assertContainsAll(ArrayAdapter.newArrayWith(1, 2, 3, 4, 5).selectWith(Predicates2.lessThan(), 3, UnifiedSet.newSet()), 1, 2);
     }
 
     @Override
     @Test
-    public void rejectWith()
-    {
+    public void rejectWith() {
         super.rejectWith();
-
-        Verify.assertContainsAll(ArrayAdapter.newArrayWith(1, 2, 3, 4).rejectWith(Predicates2.lessThan(), 3),
-                3,
-                4);
-        Verify.assertContainsAll(ArrayAdapter.newArrayWith(1, 2, 3, 4).rejectWith(Predicates2.lessThan(),
-                3,
-                UnifiedSet.newSet()), 3, 4);
+        Verify.assertContainsAll(ArrayAdapter.newArrayWith(1, 2, 3, 4).rejectWith(Predicates2.lessThan(), 3), 3, 4);
+        Verify.assertContainsAll(ArrayAdapter.newArrayWith(1, 2, 3, 4).rejectWith(Predicates2.lessThan(), 3, UnifiedSet.newSet()), 3, 4);
     }
 
     @Override
     @Test
-    public void detectWith()
-    {
-        Assert.assertEquals(
-                Integer.valueOf(3),
-                ArrayAdapter.newArrayWith(1, 2, 3, 4, 5).detectWith(Object::equals, 3));
+    public void detectWith() {
+        Assert.assertEquals(Integer.valueOf(3), ArrayAdapter.newArrayWith(1, 2, 3, 4, 5).detectWith(Object::equals, 3));
         Assert.assertNull(ArrayAdapter.newArrayWith(1, 2, 3, 4, 5).detectWith(Object::equals, 6));
     }
 
     @Test
-    public void detectWithIfNone()
-    {
+    public void detectWithIfNone() {
         MutableList<Integer> list = ArrayAdapter.newArrayWith(1, 2, 3, 4, 5);
         Assert.assertNull(list.detectWithIfNone(Object::equals, 6, new PassThruFunction0<>(null)));
         Assert.assertEquals(Integer.valueOf(10000), list.detectWithIfNone(Object::equals, 6, new PassThruFunction0<>(Integer.valueOf(10000))));
@@ -432,69 +356,48 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void allSatisfyWith()
-    {
+    public void allSatisfyWith() {
         super.allSatisfyWith();
-
-        Assert.assertTrue(ArrayAdapter.newArrayWith(1, 2, 3).allSatisfyWith(Predicates2.instanceOf(),
-                Integer.class));
+        Assert.assertTrue(ArrayAdapter.newArrayWith(1, 2, 3).allSatisfyWith(Predicates2.instanceOf(), Integer.class));
         Assert.assertFalse(ArrayAdapter.newArrayWith(1, 2, 3).allSatisfyWith(Object::equals, 1));
     }
 
     @Override
     @Test
-    public void anySatisfyWith()
-    {
+    public void anySatisfyWith() {
         super.anySatisfyWith();
-        Assert.assertFalse(ArrayAdapter.newArrayWith(1, 2, 3).anySatisfyWith(Predicates2.instanceOf(),
-                String.class));
-        Assert.assertTrue(ArrayAdapter.newArrayWith(1, 2, 3).anySatisfyWith(Predicates2.instanceOf(),
-                Integer.class));
+        Assert.assertFalse(ArrayAdapter.newArrayWith(1, 2, 3).anySatisfyWith(Predicates2.instanceOf(), String.class));
+        Assert.assertTrue(ArrayAdapter.newArrayWith(1, 2, 3).anySatisfyWith(Predicates2.instanceOf(), Integer.class));
     }
 
     @Override
     @Test
-    public void noneSatisfyWith()
-    {
+    public void noneSatisfyWith() {
         super.noneSatisfyWith();
-
-        Assert.assertTrue(ArrayAdapter.newArrayWith(1, 2, 3).noneSatisfyWith(Predicates2.instanceOf(),
-                String.class));
+        Assert.assertTrue(ArrayAdapter.newArrayWith(1, 2, 3).noneSatisfyWith(Predicates2.instanceOf(), String.class));
         Assert.assertFalse(ArrayAdapter.newArrayWith(1, 2, 3).noneSatisfyWith(Object::equals, 1));
     }
 
     @Override
     @Test
-    public void countWith()
-    {
+    public void countWith() {
         super.countWith();
-
-        Assert.assertEquals(
-                3,
-                ArrayAdapter.newArrayWith(1, 2, 3).countWith(Predicates2.instanceOf(), Integer.class));
+        Assert.assertEquals(3, ArrayAdapter.newArrayWith(1, 2, 3).countWith(Predicates2.instanceOf(), Integer.class));
     }
 
     @Override
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         super.collectWith();
-
         Function2<Integer, Integer, Integer> addBlock = (each, parameter) -> each + parameter;
-        Assert.assertEquals(
-                FastList.newListWith(2, 3, 4),
-                ArrayAdapter.newArrayWith(1, 2, 3).collectWith(addBlock, 1));
-        Assert.assertEquals(
-                FastList.newListWith(2, 3, 4),
-                ArrayAdapter.newArrayWith(1, 2, 3).collectWith(addBlock, 1, FastList.newList()));
+        Assert.assertEquals(FastList.newListWith(2, 3, 4), ArrayAdapter.newArrayWith(1, 2, 3).collectWith(addBlock, 1));
+        Assert.assertEquals(FastList.newListWith(2, 3, 4), ArrayAdapter.newArrayWith(1, 2, 3).collectWith(addBlock, 1, FastList.newList()));
     }
 
     @Override
     @Test
-    public void injectIntoWith()
-    {
+    public void injectIntoWith() {
         super.injectIntoWith();
-
         MutableList<Integer> objects = ArrayAdapter.newArrayWith(1, 2, 3);
         Integer result = objects.injectIntoWith(1, (injectedValued, item, parameter) -> injectedValued + item + parameter, 0);
         Assert.assertEquals(Integer.valueOf(7), result);
@@ -502,10 +405,8 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         super.serialization();
-
         MutableList<Integer> collection = ArrayAdapter.newArrayWith(1, 2, 3, 4, 5);
         MutableList<Integer> deserializedCollection = SerializeTestHelper.serializeDeserialize(collection);
         Verify.assertSize(5, deserializedCollection);
@@ -514,15 +415,12 @@ public class ArrayAdapterTest extends AbstractListTestCase
     }
 
     @Test
-    public void testBAOSSize()
-    {
+    public void testBAOSSize() {
         MutableList<Integer> mutableArrayList = ArrayAdapter.newArray();
-
         List<Integer> arrayList = new ArrayList<>();
         ByteArrayOutputStream stream2 = SerializeTestHelper.getByteArrayOutputStream(arrayList);
         LOGGER.info("ArrayList size: {}", stream2.size());
         LOGGER.info("{}", stream2);
-
         ByteArrayOutputStream stream1 = SerializeTestHelper.getByteArrayOutputStream(mutableArrayList);
         LOGGER.info("ArrayAdapter size: {}", stream1.size());
         LOGGER.info("{}", stream1);
@@ -530,140 +428,110 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         // ArrayAdapter doesn't support add and cannot contain itself
-
-        Assert.assertEquals(
-                FastList.newList(this.newWith(1, 2, 3, 4)).toString(),
-                this.newWith(1, 2, 3, 4).toString());
+        Assert.assertEquals(FastList.newList(this.newWith(1, 2, 3, 4)).toString(), this.newWith(1, 2, 3, 4).toString());
     }
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         // ArrayAdapter doesn't support add and cannot contain itself
-
-        Assert.assertEquals(
-                FastList.newList(this.newWith(1, 2, 3, 4)).makeString(),
-                this.newWith(1, 2, 3, 4).makeString());
+        Assert.assertEquals(FastList.newList(this.newWith(1, 2, 3, 4)).makeString(), this.newWith(1, 2, 3, 4).makeString());
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         // ArrayAdapter doesn't support add and cannot contain itself
-
         StringBuilder stringBuilder = new StringBuilder();
         this.newWith(1, 2, 3, 4).appendString(stringBuilder);
-
-        Assert.assertEquals(
-                FastList.newList(this.newWith(1, 2, 3, 4)).makeString(),
-                stringBuilder.toString());
+        Assert.assertEquals(FastList.newList(this.newWith(1, 2, 3, 4)).makeString(), stringBuilder.toString());
     }
 
     @Override
     @Test
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         super.asUnmodifiable();
-
         Verify.assertInstanceOf(UnmodifiableMutableList.class, this.newWith().asUnmodifiable());
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void clear()
-    {
+    public void clear() {
         this.newArray().clear();
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void addAtIndex()
-    {
+    public void addAtIndex() {
         this.newArray().add(0, null);
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void addAllAtIndex()
-    {
+    public void addAllAtIndex() {
         this.newArray().addAll(0, FastList.newList());
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void addAll()
-    {
+    public void addAll() {
         this.newArray().addAll(FastList.newList());
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void addAllIterable()
-    {
+    public void addAllIterable() {
         this.newArray().addAllIterable(FastList.newList());
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void removeObject()
-    {
+    public void removeObject() {
         this.newArray().remove(null);
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAll()
-    {
+    public void removeAll() {
         this.newArray().removeAll(FastList.newList());
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAllIterable()
-    {
+    public void removeAllIterable() {
         this.newArray().removeAllIterable(FastList.newList());
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void retainAll()
-    {
+    public void retainAll() {
         this.newArray().retainAll(FastList.newList());
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void retainAllIterable()
-    {
+    public void retainAllIterable() {
         this.newArray().retainAllIterable(FastList.newList());
     }
 
     @Override
     @Test
-    public void forEachOnRange()
-    {
+    public void forEachOnRange() {
         MutableList<Integer> list = this.newWith(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-
         this.validateForEachOnRange(list, 0, 0, FastList.newListWith(0));
         this.validateForEachOnRange(list, 3, 5, FastList.newListWith(3, 4, 5));
         this.validateForEachOnRange(list, 4, 6, FastList.newListWith(4, 5, 6));
         this.validateForEachOnRange(list, 9, 9, FastList.newListWith(9));
         this.validateForEachOnRange(list, 0, 9, FastList.newListWith(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
-
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> this.validateForEachOnRange(list, 10, 10, FastList.newList()));
     }
 
     @Override
     @Test
-    public void forEachWithIndexOnRange()
-    {
+    public void forEachWithIndexOnRange() {
         MutableList<Integer> list = this.newWith(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-
         this.validateForEachWithIndexOnRange(list, 0, 0, FastList.newListWith(0));
         this.validateForEachWithIndexOnRange(list, 3, 5, FastList.newListWith(3, 4, 5));
         this.validateForEachWithIndexOnRange(list, 4, 6, FastList.newListWith(4, 5, 6));
@@ -674,8 +542,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void subList()
-    {
+    public void subList() {
         MutableList<String> list = this.newWith("A", "B", "C", "D");
         MutableList<String> sublist = list.subList(1, 3);
         Verify.assertSize(2, sublist);
@@ -684,8 +551,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void with()
-    {
+    public void with() {
         MutableCollection<Integer> coll = this.newWith(1, 2, 3);
         MutableCollection<Integer> collWith = coll.with(4);
         Assert.assertNotSame(coll, collWith);
@@ -694,8 +560,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void withAll()
-    {
+    public void withAll() {
         MutableCollection<Integer> coll = this.newWith(1, 2, 3);
         MutableCollection<Integer> collWith = coll.withAll(FastList.newListWith(4, 5));
         Assert.assertNotSame(coll, collWith);
@@ -705,8 +570,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void without()
-    {
+    public void without() {
         MutableCollection<Integer> coll = this.newWith(1, 2, 3, 2);
         MutableCollection<Integer> collWithout = coll.without(2);
         Assert.assertNotSame(coll, collWithout);
@@ -716,13 +580,406 @@ public class ArrayAdapterTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void withoutAll()
-    {
+    public void withoutAll() {
         MutableCollection<Integer> coll = this.newWith(1, 2, 4, 2, 3, 4, 5);
         MutableCollection<Integer> collWithout = coll.withoutAll(FastList.newListWith(2, 4));
         Assert.assertNotSame(coll, collWithout);
         Assert.assertEquals(FastList.newListWith(1, 3, 5), collWithout);
         Assert.assertSame(collWithout, collWithout.withoutAll(FastList.newListWith(8, 9)));
         Assert.assertSame(collWithout, collWithout.withoutAll(FastList.newList()));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewList, this.description("testNewList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_adapt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::adapt, this.description("adapt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWith, this.description("newListWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithWith, this.description("newListWithWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithWithWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithWithWith, this.description("newListWithWithWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithVarArgs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithVarArgs, this.description("newListWithVarArgs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachFromTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachFromTo, this.description("forEachFromTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::add, this.description("add"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIf, this.description("collectIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmpty, this.description("isEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectAndRejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectAndRejectWith, this.description("selectAndRejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIf, this.description("removeIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIndex, this.description("removeIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWith, this.description("removeIfWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_indexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::indexOf, this.description("indexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lastIndexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::lastIndexOf, this.description("lastIndexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_set() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::set, this.description("set"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith, this.description("selectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith, this.description("rejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWith, this.description("detectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithIfNone, this.description("detectWithIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyWith, this.description("allSatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyWith, this.description("anySatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyWith, this.description("noneSatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countWith, this.description("countWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoWith, this.description("injectIntoWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testBAOSSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testBAOSSize, this.description("testBAOSSize"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::clear, this.description("clear"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAtIndex, this.description("addAtIndex"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAllAtIndex, this.description("addAllAtIndex"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAll, this.description("addAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAllIterable, this.description("addAllIterable"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeObject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeObject, this.description("removeObject"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAll, this.description("removeAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAllIterable, this.description("removeAllIterable"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::retainAll, this.description("retainAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::retainAllIterable, this.description("retainAllIterable"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachOnRange() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachOnRange, this.description("forEachOnRange"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndexOnRange() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndexOnRange, this.description("forEachWithIndexOnRange"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subList, this.description("subList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::with, this.description("with"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withAll, this.description("withAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_without() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::without, this.description("without"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withoutAll, this.description("withoutAll"));
+        }
+
+        private ArrayAdapterTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ArrayAdapterTest();
+        }
+
+        @java.lang.Override
+        public ArrayAdapterTest implementation() {
+            return this.implementation;
+        }
     }
 }

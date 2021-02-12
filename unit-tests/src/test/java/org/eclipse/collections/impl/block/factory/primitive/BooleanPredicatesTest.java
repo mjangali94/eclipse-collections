@@ -7,18 +7,16 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.factory.primitive;
 
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public final class BooleanPredicatesTest
-{
+public final class BooleanPredicatesTest {
+
     @Test
-    public void testEqual()
-    {
+    public void testEqual() {
         Assert.assertTrue(BooleanPredicates.equal(true).accept(true));
         Assert.assertTrue(BooleanPredicates.equal(false).accept(false));
         Assert.assertFalse(BooleanPredicates.equal(true).accept(false));
@@ -26,56 +24,47 @@ public final class BooleanPredicatesTest
     }
 
     @Test
-    public void testIsTrue()
-    {
+    public void testIsTrue() {
         Assert.assertTrue(BooleanPredicates.isTrue().accept(true));
         Assert.assertFalse(BooleanPredicates.isTrue().accept(false));
     }
 
     @Test
-    public void testIsFalse()
-    {
+    public void testIsFalse() {
         Assert.assertTrue(BooleanPredicates.isFalse().accept(false));
         Assert.assertFalse(BooleanPredicates.isFalse().accept(true));
     }
 
     @Test
-    public void testAnd()
-    {
+    public void testAnd() {
         Assert.assertFalse(BooleanPredicates.and(BooleanPredicates.isTrue(), BooleanPredicates.equal(true)).accept(false));
         Assert.assertFalse(BooleanPredicates.and(BooleanPredicates.isTrue(), BooleanPredicates.equal(false)).accept(false));
         Assert.assertFalse(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.equal(true)).accept(false));
         Assert.assertTrue(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.equal(false)).accept(false));
-
         Assert.assertTrue(BooleanPredicates.and(BooleanPredicates.isTrue(), BooleanPredicates.equal(true)).accept(true));
         Assert.assertFalse(BooleanPredicates.and(BooleanPredicates.isTrue(), BooleanPredicates.equal(false)).accept(false));
         Assert.assertFalse(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.equal(true)).accept(true));
         Assert.assertFalse(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.equal(false)).accept(true));
-
         Assert.assertFalse(BooleanPredicates.and(BooleanPredicates.isFalse(), value -> !value).accept(true));
         Assert.assertTrue(BooleanPredicates.and(BooleanPredicates.isFalse(), value -> !value).accept(false));
     }
 
     @Test
-    public void testOr()
-    {
+    public void testOr() {
         Assert.assertFalse(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.equal(true)).accept(false));
         Assert.assertTrue(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.equal(false)).accept(false));
         Assert.assertTrue(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.equal(true)).accept(false));
         Assert.assertTrue(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.equal(false)).accept(false));
-
         Assert.assertTrue(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.equal(true)).accept(true));
         Assert.assertTrue(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.equal(false)).accept(true));
         Assert.assertTrue(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.equal(true)).accept(true));
         Assert.assertFalse(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.equal(false)).accept(true));
-
         Assert.assertTrue(BooleanPredicates.or(BooleanPredicates.isFalse(), value -> !value).accept(false));
         Assert.assertFalse(BooleanPredicates.or(BooleanPredicates.isFalse(), value -> !value).accept(true));
     }
 
     @Test
-    public void testNot()
-    {
+    public void testNot() {
         Assert.assertTrue(BooleanPredicates.not(BooleanPredicates.isTrue()).accept(false));
         Assert.assertFalse(BooleanPredicates.not(BooleanPredicates.isTrue()).accept(true));
         Assert.assertTrue(BooleanPredicates.not(BooleanPredicates.isFalse()).accept(true));
@@ -87,22 +76,89 @@ public final class BooleanPredicatesTest
     }
 
     @Test
-    public void testAlwaysTrue()
-    {
+    public void testAlwaysTrue() {
         Assert.assertTrue(BooleanPredicates.alwaysTrue().accept(false));
         Assert.assertTrue(BooleanPredicates.alwaysTrue().accept(true));
     }
 
     @Test
-    public void testAlwaysFalse()
-    {
+    public void testAlwaysFalse() {
         Assert.assertFalse(BooleanPredicates.alwaysFalse().accept(false));
         Assert.assertFalse(BooleanPredicates.alwaysFalse().accept(true));
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(BooleanPredicates.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEqual() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEqual, this.description("testEqual"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testIsTrue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testIsTrue, this.description("testIsTrue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testIsFalse() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testIsFalse, this.description("testIsFalse"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testAnd() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testAnd, this.description("testAnd"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testOr() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testOr, this.description("testOr"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNot() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNot, this.description("testNot"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testAlwaysTrue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testAlwaysTrue, this.description("testAlwaysTrue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testAlwaysFalse() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testAlwaysFalse, this.description("testAlwaysFalse"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private BooleanPredicatesTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BooleanPredicatesTest();
+        }
+
+        @java.lang.Override
+        public BooleanPredicatesTest implementation() {
+            return this.implementation;
+        }
     }
 }

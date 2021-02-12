@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.immutable;
 
 import org.eclipse.collections.api.set.ImmutableSet;
@@ -15,19 +14,16 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableTripletonSetTest
-        extends AbstractImmutableSetTestCase
-{
+public class ImmutableTripletonSetTest extends AbstractImmutableSetTestCase {
+
     @Override
-    protected ImmutableSet<Integer> classUnderTest()
-    {
+    protected ImmutableSet<Integer> classUnderTest() {
         return new ImmutableTripletonSet<>(1, 2, 3);
     }
 
     @Override
     @Test
-    public void newWithout()
-    {
+    public void newWithout() {
         ImmutableSet<Integer> immutable = this.classUnderTest();
         Verify.assertSize(2, immutable.newWithout(3).castToSet());
         Verify.assertSize(2, immutable.newWithout(2).castToSet());
@@ -36,8 +32,35 @@ public class ImmutableTripletonSetTest
     }
 
     @Test
-    public void getOnly()
-    {
+    public void getOnly() {
         Assert.assertThrows(IllegalStateException.class, () -> this.classUnderTest().getOnly());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithout() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithout, this.description("newWithout"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getOnly, this.description("getOnly"));
+        }
+
+        private ImmutableTripletonSetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableTripletonSetTest();
+        }
+
+        @java.lang.Override
+        public ImmutableTripletonSetTest implementation() {
+            return this.implementation;
+        }
     }
 }

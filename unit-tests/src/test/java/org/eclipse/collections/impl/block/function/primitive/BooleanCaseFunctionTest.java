@@ -7,42 +7,68 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function.primitive;
 
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BooleanCaseFunctionTest
-{
+public class BooleanCaseFunctionTest {
+
     @Test
-    public void noopCase()
-    {
+    public void noopCase() {
         BooleanCaseFunction<Boolean> function = new BooleanCaseFunction<>();
         Assert.assertNull(function.valueOf(true));
     }
 
     @Test
-    public void basicCase()
-    {
+    public void basicCase() {
         BooleanCaseFunction<Boolean> function = new BooleanCaseFunction<>();
         function.addCase(value -> value, Boolean::valueOf);
         Assert.assertEquals(Boolean.valueOf(true), function.valueOf(true));
     }
 
     @Test
-    public void defaultValue()
-    {
-        BooleanCaseFunction<String> function = new BooleanCaseFunction<>(e -> "Yow!")
-                .addCase(e -> e, e -> "Patience, grasshopper");
-
+    public void defaultValue() {
+        BooleanCaseFunction<String> function = new BooleanCaseFunction<>(e -> "Yow!").addCase(e -> e, e -> "Patience, grasshopper");
         Assert.assertEquals("Yow!", function.valueOf(false));
-
         function.setDefault(i -> "Patience, young grasshopper");
         Assert.assertEquals("Patience, grasshopper", function.valueOf(true));
         Assert.assertEquals("Patience, young grasshopper", function.valueOf(false));
-
         Verify.assertContains("BooleanCaseFunction", function.toString());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noopCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noopCase, this.description("noopCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_basicCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::basicCase, this.description("basicCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_defaultValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::defaultValue, this.description("defaultValue"));
+        }
+
+        private BooleanCaseFunctionTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BooleanCaseFunctionTest();
+        }
+
+        @java.lang.Override
+        public BooleanCaseFunctionTest implementation() {
+            return this.implementation;
+        }
     }
 }

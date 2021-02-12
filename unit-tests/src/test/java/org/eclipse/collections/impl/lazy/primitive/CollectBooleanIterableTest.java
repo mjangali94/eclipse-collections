@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.primitive;
 
 import org.eclipse.collections.api.BooleanIterable;
@@ -24,21 +23,18 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CollectBooleanIterableTest
-{
+public class CollectBooleanIterableTest {
+
     private final BooleanIterable booleanIterable = Interval.zeroTo(2).collectBoolean(PrimitiveFunctions.integerIsPositive());
 
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         long count = 0;
         long isTrueCount = 0;
         BooleanIterator iterator = this.booleanIterable.booleanIterator();
-        while (iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             count++;
-            if (iterator.next())
-            {
+            if (iterator.next()) {
                 isTrueCount++;
             }
         }
@@ -47,26 +43,22 @@ public class CollectBooleanIterableTest
     }
 
     @Test
-    public void size()
-    {
+    public void size() {
         Assert.assertEquals(3, this.booleanIterable.size());
     }
 
     @Test
-    public void empty()
-    {
+    public void empty() {
         Assert.assertTrue(this.booleanIterable.notEmpty());
         Assert.assertFalse(this.booleanIterable.isEmpty());
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         long[] value = new long[2];
         this.booleanIterable.forEach(each -> {
             value[0]++;
-            if (each)
-            {
+            if (each) {
                 value[1]++;
             }
         });
@@ -75,53 +67,45 @@ public class CollectBooleanIterableTest
     }
 
     @Test
-    public void count()
-    {
+    public void count() {
         Assert.assertEquals(2, this.booleanIterable.count(BooleanPredicates.equal(true)));
         Assert.assertEquals(1, this.booleanIterable.count(BooleanPredicates.equal(false)));
     }
 
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         Assert.assertTrue(this.booleanIterable.anySatisfy(BooleanPredicates.equal(true)));
     }
 
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         Assert.assertFalse(this.booleanIterable.noneSatisfy(BooleanPredicates.equal(true)));
     }
 
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         Assert.assertFalse(this.booleanIterable.allSatisfy(BooleanPredicates.equal(false)));
     }
 
     @Test
-    public void select()
-    {
+    public void select() {
         Assert.assertEquals(2, this.booleanIterable.select(BooleanPredicates.equal(true)).size());
         Assert.assertEquals(1, this.booleanIterable.select(BooleanPredicates.equal(false)).size());
     }
 
     @Test
-    public void reject()
-    {
+    public void reject() {
         Assert.assertEquals(1, this.booleanIterable.reject(BooleanPredicates.equal(true)).size());
         Assert.assertEquals(2, this.booleanIterable.reject(BooleanPredicates.equal(false)).size());
     }
 
     @Test
-    public void detectIfNone()
-    {
+    public void detectIfNone() {
         Assert.assertTrue(this.booleanIterable.detectIfNone(BooleanPredicates.equal(true), false));
     }
 
     @Test
-    public void toArray()
-    {
+    public void toArray() {
         boolean[] actual = Interval.zeroTo(2).collectBoolean(PrimitiveFunctions.integerIsPositive()).toArray();
         Assert.assertEquals(3, actual.length);
         Assert.assertFalse(actual[0]);
@@ -130,15 +114,13 @@ public class CollectBooleanIterableTest
     }
 
     @Test
-    public void contains()
-    {
+    public void contains() {
         Assert.assertFalse(Interval.fromTo(-4, 0).collectBoolean(PrimitiveFunctions.integerIsPositive()).contains(true));
         Assert.assertTrue(Interval.fromTo(-2, 2).collectBoolean(PrimitiveFunctions.integerIsPositive()).contains(true));
     }
 
     @Test
-    public void containsAllArray()
-    {
+    public void containsAllArray() {
         BooleanIterable booleanIterable = Interval.oneTo(3).collectBoolean(PrimitiveFunctions.integerIsPositive());
         Assert.assertTrue(booleanIterable.containsAll(true));
         Assert.assertTrue(booleanIterable.containsAll(true, true));
@@ -147,8 +129,7 @@ public class CollectBooleanIterableTest
     }
 
     @Test
-    public void containsAllIterable()
-    {
+    public void containsAllIterable() {
         BooleanIterable booleanIterable = Interval.oneTo(3).collectBoolean(PrimitiveFunctions.integerIsPositive());
         Assert.assertTrue(booleanIterable.containsAll(BooleanArrayList.newListWith(true)));
         Assert.assertTrue(booleanIterable.containsAll(BooleanArrayList.newListWith(true, true)));
@@ -157,28 +138,24 @@ public class CollectBooleanIterableTest
     }
 
     @Test
-    public void collect()
-    {
+    public void collect() {
         Assert.assertEquals(FastList.newListWith("false", "true", "true"), this.booleanIterable.collect(String::valueOf).toList());
     }
 
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals("[false, true, true]", this.booleanIterable.toString());
     }
 
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals("false, true, true", this.booleanIterable.makeString());
         Assert.assertEquals("false/true/true", this.booleanIterable.makeString("/"));
         Assert.assertEquals("[false, true, true]", this.booleanIterable.makeString("[", ", ", "]"));
     }
 
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         StringBuilder appendable = new StringBuilder();
         this.booleanIterable.appendString(appendable);
         Assert.assertEquals("false, true, true", appendable.toString());
@@ -191,27 +168,177 @@ public class CollectBooleanIterableTest
     }
 
     @Test
-    public void toList()
-    {
+    public void toList() {
         Assert.assertEquals(BooleanArrayList.newListWith(false, true, true), this.booleanIterable.toList());
     }
 
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         Assert.assertEquals(BooleanHashSet.newSetWith(false, true), this.booleanIterable.toSet());
     }
 
     @Test
-    public void toBag()
-    {
+    public void toBag() {
         Assert.assertEquals(BooleanHashBag.newBagWith(false, true, true), this.booleanIterable.toBag());
     }
 
     @Test
-    public void asLazy()
-    {
+    public void asLazy() {
         Assert.assertEquals(this.booleanIterable.toSet(), this.booleanIterable.asLazy().toSet());
         Verify.assertInstanceOf(LazyBooleanIterable.class, this.booleanIterable.asLazy());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::empty, this.description("empty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNone, this.description("detectIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllArray, this.description("containsAllArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllIterable, this.description("containsAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toBag, this.description("toBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazy, this.description("asLazy"));
+        }
+
+        private CollectBooleanIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new CollectBooleanIterableTest();
+        }
+
+        @java.lang.Override
+        public CollectBooleanIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

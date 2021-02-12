@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.collection.mutable.primitive;
 
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.BooleanIterable;
 import org.eclipse.collections.api.collection.primitive.MutableBooleanCollection;
 import org.eclipse.collections.api.iterator.MutableBooleanIterator;
@@ -25,8 +23,8 @@ import org.junit.Test;
 /**
  * Abstract JUnit test for {@link MutableBooleanCollection}s.
  */
-public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractBooleanIterableTestCase
-{
+public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractBooleanIterableTestCase {
+
     @Override
     protected abstract MutableBooleanCollection classUnderTest();
 
@@ -37,15 +35,13 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     protected abstract MutableBooleanCollection newMutableCollectionWith(boolean... elements);
 
     @Test
-    public void clear()
-    {
+    public void clear() {
         MutableBooleanCollection collection = this.classUnderTest();
         collection.clear();
         Verify.assertSize(0, collection);
         Verify.assertEmpty(collection);
         Assert.assertFalse(collection.contains(true));
         Assert.assertFalse(collection.contains(false));
-
         MutableBooleanCollection collection0 = this.newWith();
         MutableBooleanCollection collection1 = this.newWith(false);
         MutableBooleanCollection collection2 = this.newWith(true);
@@ -80,16 +76,14 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
 
     @Override
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         super.testEquals();
         Verify.assertPostSerializedEqualsAndHashCode(this.newWith());
     }
 
     @Override
     @Test
-    public void containsAllArray()
-    {
+    public void containsAllArray() {
         super.containsAllArray();
         MutableBooleanCollection emptyCollection = this.newWith();
         Assert.assertFalse(emptyCollection.containsAll(true));
@@ -102,8 +96,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
 
     @Override
     @Test
-    public void containsAllIterable()
-    {
+    public void containsAllIterable() {
         super.containsAllIterable();
         MutableBooleanCollection emptyCollection = this.newWith();
         Assert.assertTrue(emptyCollection.containsAll(new BooleanArrayList()));
@@ -115,8 +108,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void add()
-    {
+    public void add() {
         MutableBooleanCollection emptyCollection = this.newWith();
         Assert.assertTrue(emptyCollection.add(true));
         Assert.assertEquals(this.newMutableCollectionWith(true), emptyCollection);
@@ -132,8 +124,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void addAllArray()
-    {
+    public void addAllArray() {
         MutableBooleanCollection collection = this.classUnderTest();
         Assert.assertFalse(collection.addAll());
         Assert.assertTrue(collection.addAll(false, true, false));
@@ -143,15 +134,13 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void addAllIterable()
-    {
+    public void addAllIterable() {
         MutableBooleanCollection collection = this.classUnderTest();
         Assert.assertFalse(collection.addAll(this.newMutableCollectionWith()));
         Assert.assertTrue(collection.addAll(this.newMutableCollectionWith(false, true, false)));
         Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false), collection);
         Assert.assertTrue(collection.addAll(this.newMutableCollectionWith(true, false, true, false, true)));
         Assert.assertEquals(this.newMutableCollectionWith(true, false, true, false, true, false, true, false, true, false, true), collection);
-
         MutableBooleanCollection emptyCollection = this.newWith();
         Assert.assertTrue(emptyCollection.addAll(BooleanArrayList.newListWith(true, false, true, false, true)));
         Assert.assertFalse(emptyCollection.addAll(new BooleanArrayList()));
@@ -159,8 +148,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void remove()
-    {
+    public void remove() {
         MutableBooleanCollection collection = this.classUnderTest();
         Assert.assertTrue(collection.remove(false));
         Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
@@ -168,7 +156,6 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
         Assert.assertTrue(collection.remove(true));
         Assert.assertEquals(this.newMutableCollectionWith(true), collection);
-
         MutableBooleanCollection collection1 = this.newWith();
         Assert.assertFalse(collection1.remove(false));
         Assert.assertEquals(this.newMutableCollectionWith(), collection1);
@@ -178,7 +165,6 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(false), collection1);
         Assert.assertTrue(collection1.remove(false));
         Assert.assertEquals(this.newMutableCollectionWith(), collection1);
-
         MutableBooleanCollection collection2 = this.newWith();
         Assert.assertFalse(collection2.remove(true));
         Assert.assertEquals(this.newMutableCollectionWith(), collection2);
@@ -191,10 +177,8 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void removeAll()
-    {
+    public void removeAll() {
         Assert.assertFalse(this.newWith().removeAll(true));
-
         MutableBooleanCollection collection = this.classUnderTest();
         Assert.assertFalse(collection.removeAll());
         Assert.assertTrue(collection.removeAll(true));
@@ -203,7 +187,6 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(false), collection);
         Assert.assertTrue(collection.removeAll(false, true));
         Assert.assertEquals(this.newMutableCollectionWith(), collection);
-
         MutableBooleanCollection booleanArrayCollection = this.newWith(false, false);
         Assert.assertFalse(booleanArrayCollection.removeAll(true));
         Assert.assertEquals(this.newMutableCollectionWith(false, false), booleanArrayCollection);
@@ -213,21 +196,17 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertFalse(collection1.removeAll());
         Assert.assertTrue(collection1.removeAll(true, false));
         Assert.assertEquals(this.newMutableCollectionWith(), collection1);
-
         MutableBooleanCollection trueFalseList = this.newWith(true, false);
         Assert.assertTrue(trueFalseList.removeAll(true));
         Assert.assertEquals(this.newMutableCollectionWith(false), trueFalseList);
-
         MutableBooleanCollection collection2 = this.newWith(true, false, true, false, true);
         Assert.assertFalse(collection2.removeAll());
         Assert.assertTrue(collection2.removeAll(true, true));
         Assert.assertEquals(this.newMutableCollectionWith(false, false), collection2);
-
         MutableBooleanCollection collection3 = this.newWith(true, false, true, false, true);
         Assert.assertFalse(collection3.removeAll());
         Assert.assertTrue(collection3.removeAll(true, false));
         Assert.assertEquals(this.newMutableCollectionWith(), collection3);
-
         MutableBooleanCollection collection4 = this.newWith(true, false, true, false, true);
         Assert.assertFalse(collection4.removeAll());
         Assert.assertTrue(collection4.removeAll(false, false));
@@ -235,15 +214,13 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void removeAll_iterable()
-    {
+    public void removeAll_iterable() {
         MutableBooleanCollection collection = this.classUnderTest();
         Assert.assertFalse(collection.removeAll(this.newMutableCollectionWith()));
         Assert.assertTrue(collection.removeAll(this.newMutableCollectionWith(false)));
         Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
         Assert.assertTrue(collection.removeAll(this.newMutableCollectionWith(true, true)));
         Assert.assertEquals(this.newMutableCollectionWith(), collection);
-
         MutableBooleanCollection list = this.classUnderTest();
         Assert.assertFalse(list.removeAll(new BooleanArrayList()));
         MutableBooleanCollection booleanArrayList = this.newWith(false, false);
@@ -257,7 +234,6 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(), list);
         Assert.assertFalse(list.removeAll(BooleanArrayList.newListWith(true, false)));
         Assert.assertEquals(this.newMutableCollectionWith(), list);
-
         MutableBooleanCollection list1 = this.newWith(true, false, true, true);
         Assert.assertFalse(list1.removeAll(new BooleanArrayList()));
         Assert.assertTrue(list1.removeAll(BooleanArrayList.newListWith(true, true)));
@@ -266,22 +242,19 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(false), list1);
         Assert.assertTrue(list1.removeAll(BooleanArrayList.newListWith(false, false)));
         Assert.assertEquals(this.newMutableCollectionWith(), list1);
-
         MutableBooleanCollection list2 = this.newWith(true, false, true, false, true);
         Assert.assertTrue(list2.removeAll(BooleanHashBag.newBagWith(true, false)));
         Assert.assertEquals(this.newMutableCollectionWith(), list2);
     }
 
     @Test
-    public void retainAll_iterable()
-    {
+    public void retainAll_iterable() {
         MutableBooleanCollection collection = this.classUnderTest();
         Assert.assertFalse(collection.retainAll(true, false));
         Assert.assertTrue(collection.retainAll(true));
         Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
         Assert.assertTrue(collection.retainAll(false, false));
         Assert.assertEquals(this.newMutableCollectionWith(), collection);
-
         MutableBooleanCollection list = this.classUnderTest();
         Assert.assertFalse(list.retainAll(false, false, true));
         MutableBooleanCollection booleanArrayList = this.newWith(false, false);
@@ -295,7 +268,6 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(), list);
         Assert.assertFalse(list.retainAll(true, false));
         Assert.assertEquals(this.newMutableCollectionWith(), list);
-
         MutableBooleanCollection list1 = this.newWith(true, false, true, true);
         Assert.assertFalse(list1.retainAll(false, false, true));
         Assert.assertTrue(list1.retainAll(false, false));
@@ -304,22 +276,19 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(false), list1);
         Assert.assertTrue(list1.retainAll(true, true));
         Assert.assertEquals(this.newMutableCollectionWith(), list1);
-
         MutableBooleanCollection list2 = this.newWith(true, false, true, false, true);
         Assert.assertTrue(list2.retainAll());
         Assert.assertEquals(this.newMutableCollectionWith(), list2);
     }
 
     @Test
-    public void retainAll()
-    {
+    public void retainAll() {
         MutableBooleanCollection collection = this.classUnderTest();
         Assert.assertFalse(collection.retainAll(this.newMutableCollectionWith(true, false)));
         Assert.assertTrue(collection.retainAll(this.newMutableCollectionWith(true)));
         Assert.assertEquals(this.newMutableCollectionWith(true, true), collection);
         Assert.assertTrue(collection.retainAll(this.newMutableCollectionWith(false, false)));
         Assert.assertEquals(this.newMutableCollectionWith(), collection);
-
         MutableBooleanCollection list = this.classUnderTest();
         Assert.assertFalse(list.retainAll(BooleanArrayList.newListWith(false, false, true)));
         MutableBooleanCollection booleanArrayList = this.newWith(false, false);
@@ -333,7 +302,6 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(), list);
         Assert.assertFalse(list.retainAll(BooleanArrayList.newListWith(true, false)));
         Assert.assertEquals(this.newMutableCollectionWith(), list);
-
         MutableBooleanCollection list1 = this.newWith(true, false, true, true);
         Assert.assertFalse(list1.retainAll(BooleanArrayList.newListWith(false, false, true)));
         Assert.assertTrue(list1.retainAll(BooleanArrayList.newListWith(false, false)));
@@ -342,15 +310,13 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(false), list1);
         Assert.assertTrue(list1.retainAll(BooleanArrayList.newListWith(true, true)));
         Assert.assertEquals(this.newMutableCollectionWith(), list1);
-
         MutableBooleanCollection list2 = this.newWith(true, false, true, false, true);
         Assert.assertTrue(list2.retainAll(new BooleanHashBag()));
         Assert.assertEquals(this.newMutableCollectionWith(), list2);
     }
 
     @Test
-    public void with()
-    {
+    public void with() {
         MutableBooleanCollection emptyCollection = this.newWith();
         MutableBooleanCollection collection = emptyCollection.with(true);
         MutableBooleanCollection collection0 = this.newWith().with(true).with(false);
@@ -366,8 +332,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void withAll()
-    {
+    public void withAll() {
         MutableBooleanCollection emptyCollection = this.newWith();
         MutableBooleanCollection collection = emptyCollection.withAll(this.newMutableCollectionWith(true));
         MutableBooleanCollection collection0 = this.newWith().withAll(this.newMutableCollectionWith(true, false));
@@ -383,8 +348,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void without()
-    {
+    public void without() {
         MutableBooleanCollection collection = this.newWith(true, false, true, false, true);
         Assert.assertEquals(this.newMutableCollectionWith(true, true, false, true), collection.without(false));
         Assert.assertEquals(this.newMutableCollectionWith(true, false, true), collection.without(true));
@@ -393,23 +357,19 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertEquals(this.newMutableCollectionWith(true), collection.without(false));
         Assert.assertEquals(this.newMutableCollectionWith(), collection.without(true));
         Assert.assertEquals(this.newMutableCollectionWith(), collection.without(false));
-
         MutableBooleanCollection collection1 = this.newWith(true, false, true, false, true);
         Assert.assertSame(collection1, collection1.without(false));
         Assert.assertEquals(this.newMutableCollectionWith(true, true, false, true), collection1);
     }
 
     @Test
-    public void withoutAll()
-    {
+    public void withoutAll() {
         MutableBooleanCollection mainCollection = this.newWith(true, false, true, false, true);
         Assert.assertEquals(this.newMutableCollectionWith(true, true, true), mainCollection.withoutAll(this.newMutableCollectionWith(false, false)));
-
         MutableBooleanCollection collection = this.newWith(true, false, true, false, true);
         Assert.assertEquals(this.newMutableCollectionWith(true, true, true), collection.withoutAll(BooleanHashBag.newBagWith(false)));
         Assert.assertEquals(this.newMutableCollectionWith(), collection.withoutAll(BooleanHashBag.newBagWith(true, false)));
         Assert.assertEquals(this.newMutableCollectionWith(), collection.withoutAll(BooleanHashBag.newBagWith(true, false)));
-
         MutableBooleanCollection trueCollection = this.newWith(true, true, true);
         Assert.assertEquals(this.newMutableCollectionWith(true, true, true), trueCollection.withoutAll(BooleanArrayList.newListWith(false)));
         MutableBooleanCollection mutableBooleanCollection = trueCollection.withoutAll(BooleanArrayList.newListWith(true));
@@ -418,8 +378,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         MutableBooleanCollection collection = this.classUnderTest();
         Verify.assertInstanceOf(this.newWith(true, false, true).asSynchronized().getClass(), collection.asSynchronized());
         Assert.assertEquals(this.newWith(true, false, true).asSynchronized(), collection.asSynchronized());
@@ -427,22 +386,19 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         Verify.assertInstanceOf(this.newWith(true, false, true).asUnmodifiable().getClass(), this.classUnderTest().asUnmodifiable());
         Assert.assertEquals(this.newWith(true, false, true).asUnmodifiable(), this.classUnderTest().asUnmodifiable());
         Assert.assertEquals(this.classUnderTest(), this.classUnderTest().asUnmodifiable());
     }
 
     @Test
-    public void booleanIterator_with_remove()
-    {
+    public void booleanIterator_with_remove() {
         MutableBooleanCollection booleanIterable = this.classUnderTest();
         MutableBooleanIterator iterator = booleanIterable.booleanIterator();
         int iterationCount = booleanIterable.size();
         int iterableSize = booleanIterable.size();
-        for (int i = 0; i < iterationCount; i++)
-        {
+        for (int i = 0; i < iterationCount; i++) {
             Verify.assertSize(iterableSize--, booleanIterable);
             Assert.assertTrue(iterator.hasNext());
             iterator.next();
@@ -455,8 +411,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void iterator_throws_on_invocation_of_remove_before_next()
-    {
+    public void iterator_throws_on_invocation_of_remove_before_next() {
         MutableBooleanCollection booleanIterable = this.newWith(true, false);
         MutableBooleanIterator iterator = booleanIterable.booleanIterator();
         Assert.assertTrue(iterator.hasNext());
@@ -464,8 +419,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void iterator_throws_on_consecutive_invocation_of_remove()
-    {
+    public void iterator_throws_on_consecutive_invocation_of_remove() {
         MutableBooleanCollection booleanIterable = this.newWith(true, false);
         MutableBooleanIterator iterator = booleanIterable.booleanIterator();
         iterator.next();
@@ -474,31 +428,158 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
     }
 
     @Test
-    public void chunk()
-    {
+    public void chunk() {
         BooleanIterable iterable1 = this.newWith(true);
-        Verify.assertIterablesEqual(
-                Lists.mutable.with(this.newMutableCollectionWith(true)).toSet(),
-                iterable1.chunk(1).toSet());
-
+        Verify.assertIterablesEqual(Lists.mutable.with(this.newMutableCollectionWith(true)).toSet(), iterable1.chunk(1).toSet());
         BooleanIterable iterable2 = this.newWith(false);
-        Verify.assertIterablesEqual(
-                Lists.mutable.with(this.newMutableCollectionWith(false)).toSet(),
-                iterable2.chunk(1).toSet());
-
+        Verify.assertIterablesEqual(Lists.mutable.with(this.newMutableCollectionWith(false)).toSet(), iterable2.chunk(1).toSet());
         BooleanIterable iterable3 = this.newWith(false, true);
-        Verify.assertIterablesEqual(
-                Lists.mutable.with(this.newMutableCollectionWith(false), this.newMutableCollectionWith(true)).toSet(),
-                iterable3.chunk(1).toSet());
-
-        Verify.assertIterablesEqual(
-                Lists.mutable.with(this.newMutableCollectionWith(false, true)),
-                iterable3.chunk(2));
-        Verify.assertIterablesEqual(
-                Lists.mutable.with(this.newMutableCollectionWith(false, true)),
-                iterable3.chunk(3));
-
+        Verify.assertIterablesEqual(Lists.mutable.with(this.newMutableCollectionWith(false), this.newMutableCollectionWith(true)).toSet(), iterable3.chunk(1).toSet());
+        Verify.assertIterablesEqual(Lists.mutable.with(this.newMutableCollectionWith(false, true)), iterable3.chunk(2));
+        Verify.assertIterablesEqual(Lists.mutable.with(this.newMutableCollectionWith(false, true)), iterable3.chunk(3));
         Assert.assertThrows(IllegalArgumentException.class, () -> this.classUnderTest().chunk(0));
         Assert.assertThrows(IllegalArgumentException.class, () -> this.classUnderTest().chunk(-1));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::clear, this.description("clear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEquals, this.description("testEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllArray, this.description("containsAllArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllIterable, this.description("containsAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::add, this.description("add"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllArray, this.description("addAllArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllIterable, this.description("addAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove, this.description("remove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll, this.description("removeAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll_iterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll_iterable, this.description("removeAll_iterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll_iterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAll_iterable, this.description("retainAll_iterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAll, this.description("retainAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::with, this.description("with"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withAll, this.description("withAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_without() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::without, this.description("without"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withoutAll, this.description("withoutAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_booleanIterator_with_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::booleanIterator_with_remove, this.description("booleanIterator_with_remove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator_throws_on_invocation_of_remove_before_next() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator_throws_on_invocation_of_remove_before_next, this.description("iterator_throws_on_invocation_of_remove_before_next"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator_throws_on_consecutive_invocation_of_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator_throws_on_consecutive_invocation_of_remove, this.description("iterator_throws_on_consecutive_invocation_of_remove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk, this.description("chunk"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractMutableBooleanCollectionTestCase implementation();
     }
 }

@@ -7,55 +7,47 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.stack.immutable;
 
 import java.util.EmptyStackException;
-
 import org.eclipse.collections.api.stack.ImmutableStack;
 import org.eclipse.collections.impl.factory.Stacks;
 import org.eclipse.collections.impl.stack.mutable.ArrayStack;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableArrayStackTest extends ImmutableStackTestCase
-{
+public class ImmutableArrayStackTest extends ImmutableStackTestCase {
+
     @Override
-    protected <T> ImmutableStack<T> newStackWith(T... elements)
-    {
+    protected <T> ImmutableStack<T> newStackWith(T... elements) {
         return Stacks.immutable.of(elements);
     }
 
     @Override
-    protected <T> ImmutableStack<T> newStackFromTopToBottom(T... elements)
-    {
+    protected <T> ImmutableStack<T> newStackFromTopToBottom(T... elements) {
         return Stacks.immutable.ofReversed(elements);
     }
 
     @Override
-    protected <T> ImmutableStack<T> newStackFromTopToBottom(Iterable<T> elements)
-    {
+    protected <T> ImmutableStack<T> newStackFromTopToBottom(Iterable<T> elements) {
         return Stacks.immutable.ofAllReversed(elements);
     }
 
     @Override
-    protected <T> ImmutableStack<T> newStack(Iterable<T> elements)
-    {
+    protected <T> ImmutableStack<T> newStack(Iterable<T> elements) {
         return Stacks.immutable.ofAll(elements);
     }
 
     @Override
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         super.testEquals();
         Assert.assertEquals(ImmutableArrayStack.newStack(), ArrayStack.newStackWith());
         Assert.assertNotEquals(this.newStackWith(4, 5, 6), ArrayStack.newStackWith(1, 2, 3));
     }
 
     @Test
-    public void push()
-    {
+    public void push() {
         ImmutableStack<Integer> stack = this.newStackWith(1, 2, 3);
         ImmutableStack<Integer> modifiedStack = stack.push(4);
         Assert.assertEquals(this.newStackWith(1, 2, 3, 4), modifiedStack);
@@ -63,7 +55,6 @@ public class ImmutableArrayStackTest extends ImmutableStackTestCase
         Assert.assertEquals(this.newStackWith(1, 2, 3), stack);
         modifiedStack.push(5);
         Assert.assertEquals(this.newStackWith(1, 2, 3), stack);
-
         ImmutableStack<Integer> stack1 = this.newStackWith();
         ImmutableStack<Integer> modifiedStack1 = stack1.push(1);
         Assert.assertEquals(this.newStackWith(1), modifiedStack1);
@@ -74,16 +65,13 @@ public class ImmutableArrayStackTest extends ImmutableStackTestCase
     }
 
     @Test
-    public void pop()
-    {
+    public void pop() {
         Assert.assertThrows(EmptyStackException.class, () -> this.newStackWith().pop());
-
         ImmutableStack<Integer> stack = this.newStackWith(1, 2, 3);
         ImmutableStack<Integer> modifiedStack = stack.pop();
         Assert.assertEquals(this.newStackWith(1, 2), modifiedStack);
         Assert.assertNotSame(modifiedStack, stack);
         Assert.assertEquals(this.newStackWith(1, 2, 3), stack);
-
         ImmutableStack<Integer> stack1 = this.newStackWith(1);
         ImmutableStack<Integer> modifiedStack1 = stack1.pop();
         Assert.assertEquals(this.newStackWith(), modifiedStack1);
@@ -92,23 +80,59 @@ public class ImmutableArrayStackTest extends ImmutableStackTestCase
     }
 
     @Test
-    public void popCount()
-    {
+    public void popCount() {
         Assert.assertThrows(EmptyStackException.class, () -> this.newStackWith().pop(1));
-
         Assert.assertEquals(this.newStackWith(), this.newStackWith().pop(0));
-
         ImmutableStack<Integer> stack = this.newStackWith(1, 2, 3);
         ImmutableStack<Integer> modifiedStack = stack.pop(1);
         Assert.assertEquals(this.newStackWith(1, 2), modifiedStack);
         Assert.assertNotSame(modifiedStack, stack);
         Assert.assertNotSame(this.newStackWith(1, 2, 3), stack);
-
         ImmutableStack<Integer> stack1 = this.newStackWith(1);
         Assert.assertThrows(IllegalArgumentException.class, () -> stack1.pop(2));
         ImmutableStack<Integer> modifiedStack1 = stack1.pop(1);
         Assert.assertEquals(this.newStackWith(), modifiedStack1);
         Assert.assertNotSame(modifiedStack1, stack1);
         Assert.assertEquals(this.newStackWith(1), stack1);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEquals, this.description("testEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_push() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::push, this.description("push"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_pop() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::pop, this.description("pop"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_popCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::popCount, this.description("popCount"));
+        }
+
+        private ImmutableArrayStackTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableArrayStackTest();
+        }
+
+        @java.lang.Override
+        public ImmutableArrayStackTest implementation() {
+            return this.implementation;
+        }
     }
 }

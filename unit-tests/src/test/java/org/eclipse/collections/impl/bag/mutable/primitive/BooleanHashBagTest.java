@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable.primitive;
 
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.bag.primitive.MutableBooleanBag;
 import org.eclipse.collections.api.iterator.BooleanIterator;
 import org.eclipse.collections.api.list.primitive.MutableBooleanList;
@@ -25,34 +23,28 @@ import org.junit.Test;
 /**
  * JUnit test for {@link BooleanHashBag}.
  */
-public class BooleanHashBagTest extends AbstractMutableBooleanBagTestCase
-{
+public class BooleanHashBagTest extends AbstractMutableBooleanBagTestCase {
+
     @Override
-    protected BooleanHashBag classUnderTest()
-    {
+    protected BooleanHashBag classUnderTest() {
         return BooleanHashBag.newBagWith(true, false, true);
     }
 
     @Override
-    protected BooleanHashBag newWith(boolean... elements)
-    {
+    protected BooleanHashBag newWith(boolean... elements) {
         return BooleanHashBag.newBagWith(elements);
     }
 
     @Override
     @Test
-    public void newCollection()
-    {
+    public void newCollection() {
         super.newCollection();
-        Assert.assertEquals(
-                BooleanHashBag.newBagWith(true, false, true, false, true),
-                BooleanHashBag.newBag(BooleanArrayList.newListWith(true, false, true, false, true)));
+        Assert.assertEquals(BooleanHashBag.newBagWith(true, false, true, false, true), BooleanHashBag.newBag(BooleanArrayList.newListWith(true, false, true, false, true)));
     }
 
     @Override
     @Test
-    public void size()
-    {
+    public void size() {
         super.size();
         Verify.assertSize(3, BooleanHashBag.newBagWith(true, false, true));
         Verify.assertSize(3, new BooleanHashBag(BooleanHashBag.newBagWith(true, false, true)));
@@ -61,8 +53,7 @@ public class BooleanHashBagTest extends AbstractMutableBooleanBagTestCase
 
     @Override
     @Test
-    public void with()
-    {
+    public void with() {
         super.with();
         BooleanHashBag hashBag = new BooleanHashBag().with(true);
         BooleanHashBag emptyBag = new BooleanHashBag();
@@ -80,8 +71,7 @@ public class BooleanHashBagTest extends AbstractMutableBooleanBagTestCase
 
     @Override
     @Test
-    public void booleanIterator()
-    {
+    public void booleanIterator() {
         super.booleanIterator();
         BooleanHashBag bag = this.newWith(true, false, false, true, true, true);
         BooleanIterator iterator = bag.booleanIterator();
@@ -98,14 +88,12 @@ public class BooleanHashBagTest extends AbstractMutableBooleanBagTestCase
         Assert.assertTrue(iterator.hasNext());
         Assert.assertTrue(iterator.next());
         Assert.assertFalse(iterator.hasNext());
-
         Assert.assertThrows(NoSuchElementException.class, iterator::next);
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         super.appendString();
         StringBuilder appendable2 = new StringBuilder();
         BooleanHashBag bag1 = this.newWith(false, false, true);
@@ -115,8 +103,7 @@ public class BooleanHashBagTest extends AbstractMutableBooleanBagTestCase
 
     @Override
     @Test
-    public void toList()
-    {
+    public void toList() {
         super.toList();
         MutableBooleanList list = this.newWith(true, true, true, false).toList();
         Assert.assertEquals(list, BooleanArrayList.newListWith(false, true, true, true));
@@ -124,13 +111,69 @@ public class BooleanHashBagTest extends AbstractMutableBooleanBagTestCase
 
     @Override
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         super.selectUnique();
-
         MutableBooleanBag bag = this.classUnderTest();
         MutableBooleanSet expected = BooleanSets.mutable.with(false);
         MutableBooleanSet actual = bag.selectUnique();
         Assert.assertEquals(expected, actual);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newCollection, this.description("newCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::with, this.description("with"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_booleanIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::booleanIterator, this.description("booleanIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        private BooleanHashBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BooleanHashBagTest();
+        }
+
+        @java.lang.Override
+        public BooleanHashBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

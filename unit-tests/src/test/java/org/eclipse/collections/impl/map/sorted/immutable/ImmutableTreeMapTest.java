@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.sorted.immutable;
 
 import java.util.Arrays;
@@ -15,7 +14,6 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
 import org.eclipse.collections.api.LazyIterable;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.map.MapIterable;
@@ -34,64 +32,54 @@ import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableTreeMapTest extends ImmutableSortedMapTestCase
-{
+public class ImmutableTreeMapTest extends ImmutableSortedMapTestCase {
+
     @Override
-    protected ImmutableSortedMap<Integer, String> classUnderTest()
-    {
+    protected ImmutableSortedMap<Integer, String> classUnderTest() {
         return SortedMaps.immutable.of(1, "1", 2, "2", 3, "3", 4, "4");
     }
 
     @Override
-    protected ImmutableSortedMap<Integer, String> classUnderTest(Comparator<? super Integer> comparator)
-    {
+    protected ImmutableSortedMap<Integer, String> classUnderTest(Comparator<? super Integer> comparator) {
         return SortedMaps.immutable.of(comparator, 1, "1", 2, "2", 3, "3", 4, "4");
     }
 
     @Override
-    protected <K, V> MapIterable<K, V> newMap()
-    {
+    protected <K, V> MapIterable<K, V> newMap() {
         return new ImmutableTreeMap<>(SortedMaps.mutable.of());
     }
 
     @Override
-    protected <K, V> MapIterable<K, V> newMapWithKeyValue(K key1, V value1)
-    {
+    protected <K, V> MapIterable<K, V> newMapWithKeyValue(K key1, V value1) {
         return SortedMaps.immutable.of(key1, value1);
     }
 
     @Override
-    protected <K, V> MapIterable<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    protected <K, V> MapIterable<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2) {
         return SortedMaps.immutable.of(key1, value1, key2, value2);
     }
 
     @Override
-    protected <K, V> MapIterable<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3)
-    {
+    protected <K, V> MapIterable<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         return SortedMaps.immutable.of(key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    protected <K, V> MapIterable<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
+    protected <K, V> MapIterable<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         return SortedMaps.immutable.of(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
     @Override
-    protected int size()
-    {
+    protected int size() {
         return 4;
     }
 
     @Override
-    public void entrySet()
-    {
+    public void entrySet() {
         super.entrySet();
-
         Interval interval = Interval.oneTo(100);
         LazyIterable<Pair<String, Integer>> pairs = interval.collect(Object::toString).zip(interval);
-        MutableSortedMap<String, Integer> mutableSortedMap = new TreeSortedMap<>(pairs.toArray(new Pair[]{}));
+        MutableSortedMap<String, Integer> mutableSortedMap = new TreeSortedMap<>(pairs.toArray(new Pair[] {}));
         ImmutableSortedMap<String, Integer> immutableSortedMap = mutableSortedMap.toImmutable();
         MutableList<Map.Entry<String, Integer>> entries = FastList.newList(immutableSortedMap.castToSortedMap().entrySet());
         MutableList<Map.Entry<String, Integer>> sortedEntries = entries.toSortedListBy(Map.Entry::getKey);
@@ -100,53 +88,45 @@ public class ImmutableTreeMapTest extends ImmutableSortedMapTestCase
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals("{1=1, 2=2, 3=3, 4=4}", this.classUnderTest().toString());
         Assert.assertEquals("{4=4, 3=3, 2=2, 1=1}", this.classUnderTest(Comparators.reverseNaturalOrder()).toString());
         Assert.assertEquals("{}", new ImmutableTreeMap<>(new TreeSortedMap<>()).toString());
     }
 
     @Test(expected = NullPointerException.class)
-    public void nullConstructor()
-    {
+    public void nullConstructor() {
         new ImmutableTreeMap<Integer, Integer>(null);
     }
 
     @Test
-    public void firstKey()
-    {
+    public void firstKey() {
         Assert.assertEquals(Integer.valueOf(1), new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).firstKey());
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void firstKey_throws()
-    {
+    public void firstKey_throws() {
         new ImmutableTreeMap<>(new TreeSortedMap<>()).firstKey();
     }
 
     @Test
-    public void lastKey()
-    {
+    public void lastKey() {
         Assert.assertEquals(Integer.valueOf(4), new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).lastKey());
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void lastKey_throws()
-    {
+    public void lastKey_throws() {
         new ImmutableTreeMap<>(new TreeSortedMap<>()).lastKey();
     }
 
     @Test
-    public void keySet()
-    {
+    public void keySet() {
         ImmutableTreeMap<Integer, String> immutableSortedMap = new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4"));
         Verify.assertSetsEqual(Sets.mutable.of(1, 2, 3, 4), immutableSortedMap.keySet());
     }
 
     @Test
-    public void keySetContains()
-    {
+    public void keySetContains() {
         ImmutableTreeMap<Integer, String> immutableSortedMap = new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4"));
         Set<Integer> keySet = immutableSortedMap.keySet();
         Assert.assertTrue(keySet.contains(1));
@@ -157,8 +137,7 @@ public class ImmutableTreeMapTest extends ImmutableSortedMapTestCase
     }
 
     @Test
-    public void keySetContainsAll()
-    {
+    public void keySetContainsAll() {
         ImmutableTreeMap<Integer, String> immutableSortedMap = new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4"));
         Set<Integer> keySet = immutableSortedMap.keySet();
         Assert.assertTrue(keySet.containsAll(UnifiedSet.newSetWith(1, 2, 3, 4)));
@@ -174,30 +153,26 @@ public class ImmutableTreeMapTest extends ImmutableSortedMapTestCase
     }
 
     @Test
-    public void keySetIsEmpty()
-    {
+    public void keySetIsEmpty() {
         Assert.assertFalse(new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).keySet().isEmpty());
         Assert.assertTrue(new ImmutableTreeMap<Integer, String>(SortedMaps.mutable.of()).keySet().isEmpty());
     }
 
     @Test
-    public void keySetToString()
-    {
+    public void keySetToString() {
         Assert.assertEquals("[1, 2, 3, 4]", new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).keySet().toString());
         Assert.assertEquals("[1, 2, 3, 4]", new ImmutableTreeMap<>(SortedMaps.mutable.of(4, "4", 3, "3", 2, "2", 1, "1")).keySet().toString());
         Assert.assertEquals("[4, 3, 2, 1]", new ImmutableTreeMap<>(SortedMaps.mutable.of(Comparators.reverseNaturalOrder(), 4, "4", 3, "3", 2, "2", 1, "1")).keySet().toString());
     }
 
     @Test
-    public void keySetEqualsAndHashCode()
-    {
+    public void keySetEqualsAndHashCode() {
         ImmutableTreeMap<Integer, String> map = new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3"));
         Verify.assertEqualsAndHashCode(UnifiedSet.newSetWith(1, 2, 3), map.keySet());
     }
 
     @Test
-    public void keySetToArray()
-    {
+    public void keySetToArray() {
         ImmutableTreeMap<Integer, String> immutableSortedMap = new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4"));
         MutableList<Integer> expected = FastList.newListWith(1, 2, 3, 4).toSortedList();
         Set<Integer> keySet = immutableSortedMap.keySet();
@@ -207,90 +182,245 @@ public class ImmutableTreeMapTest extends ImmutableSortedMapTestCase
         array[3] = 5;
         Assert.assertEquals(expected, FastList.newListWith(keySet.toArray()).toSortedList());
         Assert.assertEquals(FastList.newListWith(1, 2, 3, 5).toSortedList(), FastList.newListWith(array).toSortedList());
-
         Assert.assertEquals(expected, FastList.newListWith(keySet.toArray(new Integer[keySet.size()])).toSortedList());
     }
 
     @Test
-    public void keySet_toArray_withSmallTarget()
-    {
+    public void keySet_toArray_withSmallTarget() {
         ImmutableTreeMap<Integer, String> immutableSortedMap = new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4"));
-        Integer[] destination = new Integer[2]; // deliberately to small to force the method to allocate one of the correct size
+        // deliberately to small to force the method to allocate one of the correct size
+        Integer[] destination = new Integer[2];
         Integer[] result = immutableSortedMap.keySet().toArray(destination);
         Arrays.sort(result);
-        Assert.assertArrayEquals(new Integer[]{1, 2, 3, 4}, result);
+        Assert.assertArrayEquals(new Integer[] { 1, 2, 3, 4 }, result);
     }
 
     @Test
-    public void keySet_ToArray_withLargeTarget()
-    {
+    public void keySet_ToArray_withLargeTarget() {
         ImmutableTreeMap<Integer, String> immutableSortedMap = new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4"));
-        Integer[] target = new Integer[6]; // deliberately large to force the extra to be set to null
+        // deliberately large to force the extra to be set to null
+        Integer[] target = new Integer[6];
         target[4] = 42;
         target[5] = 42;
         Integer[] result = immutableSortedMap.keySet().toArray(target);
         ArrayIterate.sort(result, result.length, Comparators.safeNullsHigh(Integer::compareTo));
-        Assert.assertArrayEquals(new Integer[]{1, 2, 3, 4, 42, null}, result);
+        Assert.assertArrayEquals(new Integer[] { 1, 2, 3, 4, 42, null }, result);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addToKeySet()
-    {
+    public void addToKeySet() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).keySet().add(5);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addAllToKeySet()
-    {
+    public void addAllToKeySet() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).keySet().addAll(FastList.newListWith(5, 6, 7));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeFromKeySet()
-    {
+    public void removeFromKeySet() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).keySet().remove(1);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAllFromKeySet()
-    {
+    public void removeAllFromKeySet() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).keySet().removeAll(FastList.newListWith(1, 2, 3));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void retainAllFromKeySet()
-    {
+    public void retainAllFromKeySet() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).keySet().retainAll(FastList.newListWith(1, 2, 3, 4));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void clearFromKeySet()
-    {
+    public void clearFromKeySet() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).keySet().clear();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void subMap()
-    {
+    public void subMap() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).subMap(0, 1);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void headMap()
-    {
+    public void headMap() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).headMap(1);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void tailMap()
-    {
+    public void tailMap() {
         new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4")).tailMap(0);
     }
 
     @Test
-    public void ofSortedMap()
-    {
+    public void ofSortedMap() {
         ImmutableTreeMap<Integer, String> immutableMap = new ImmutableTreeMap<>(SortedMaps.mutable.of(1, "1", 2, "2", 3, "3", 4, "4"));
         Assert.assertSame(immutableMap, SortedMaps.immutable.ofSortedMap(immutableMap));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_nullConstructor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::nullConstructor, this.description("nullConstructor"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_firstKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::firstKey, this.description("firstKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_firstKey_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::firstKey_throws, this.description("firstKey_throws"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lastKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::lastKey, this.description("lastKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lastKey_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::lastKey_throws, this.description("lastKey_throws"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySet, this.description("keySet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySetContains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySetContains, this.description("keySetContains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySetContainsAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySetContainsAll, this.description("keySetContainsAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySetIsEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySetIsEmpty, this.description("keySetIsEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySetToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySetToString, this.description("keySetToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySetEqualsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySetEqualsAndHashCode, this.description("keySetEqualsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySetToArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySetToArray, this.description("keySetToArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySet_toArray_withSmallTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySet_toArray_withSmallTarget, this.description("keySet_toArray_withSmallTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySet_ToArray_withLargeTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySet_ToArray_withLargeTarget, this.description("keySet_ToArray_withLargeTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addToKeySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addToKeySet, this.description("addToKeySet"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllToKeySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAllToKeySet, this.description("addAllToKeySet"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeFromKeySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeFromKeySet, this.description("removeFromKeySet"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllFromKeySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAllFromKeySet, this.description("removeAllFromKeySet"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAllFromKeySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::retainAllFromKeySet, this.description("retainAllFromKeySet"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clearFromKeySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::clearFromKeySet, this.description("clearFromKeySet"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::subMap, this.description("subMap"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_headMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::headMap, this.description("headMap"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tailMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::tailMap, this.description("tailMap"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofSortedMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofSortedMap, this.description("ofSortedMap"));
+        }
+
+        private ImmutableTreeMapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableTreeMapTest();
+        }
+
+        @java.lang.Override
+        public ImmutableTreeMapTest implementation() {
+            return this.implementation;
+        }
     }
 }

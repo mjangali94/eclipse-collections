@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.parallel;
 
 import org.eclipse.collections.api.block.procedure.Procedure;
@@ -22,72 +21,53 @@ import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ParallelArrayIterateTest
-{
+public class ParallelArrayIterateTest {
+
     @Test
-    public void parallelForEach()
-    {
+    public void parallelForEach() {
         Sum sum1 = new IntegerSum(0);
         Integer[] array1 = this.createIntegerArray(16);
         ParallelArrayIterate.forEach(array1, new SumProcedure<>(sum1), new SumCombiner<>(sum1), 1, array1.length / 2);
         Assert.assertEquals(16, sum1.getValue());
-
         Sum sum2 = new IntegerSum(0);
         Integer[] array2 = this.createIntegerArray(7);
         ParallelArrayIterate.forEach(array2, new SumProcedure<>(sum2), new SumCombiner<>(sum2));
         Assert.assertEquals(7, sum2.getValue());
-
         Sum sum3 = new IntegerSum(0);
         Integer[] array3 = this.createIntegerArray(15);
         ParallelArrayIterate.forEach(array3, new SumProcedure<>(sum3), new SumCombiner<>(sum3), 1, array3.length / 2);
         Assert.assertEquals(15, sum3.getValue());
-
         Sum sum4 = new IntegerSum(0);
         Integer[] array4 = this.createIntegerArray(35);
         ParallelArrayIterate.forEach(array4, new SumProcedure<>(sum4), new SumCombiner<>(sum4));
         Assert.assertEquals(35, sum4.getValue());
-
         Sum sum5 = new IntegerSum(0);
         Integer[] array5 = this.createIntegerArray(40);
         ParallelArrayIterate.forEach(array5, new SumProcedure<>(sum5), new SumCombiner<>(sum5), 1, array5.length / 2);
         Assert.assertEquals(40, sum5.getValue());
     }
 
-    private Integer[] createIntegerArray(int size)
-    {
+    private Integer[] createIntegerArray(int size) {
         Integer[] array = new Integer[size];
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             array[i] = 1;
         }
         return array;
     }
 
     @Test
-    public void parallelForEachException()
-    {
-        Assert.assertThrows(
-                RuntimeException.class,
-                () -> ParallelArrayIterate.forEach(
-                        Interval.zeroTo(5).toArray(),
-                        new PassThruProcedureFactory<Procedure<Object>>(object ->
-                        {
-                            throw new RuntimeException("Thread death on its way!");
-                        }),
-                        new PassThruCombiner<>(),
-                        1,
-                        5));
+    public void parallelForEachException() {
+        Assert.assertThrows(RuntimeException.class, () -> ParallelArrayIterate.forEach(Interval.zeroTo(5).toArray(), new PassThruProcedureFactory<Procedure<Object>>(object -> {
+            throw new RuntimeException("Thread death on its way!");
+        }), new PassThruCombiner<>(), 1, 5));
     }
 
-    private Sum parallelSum(Object[] array, Sum parallelSum)
-    {
+    private Sum parallelSum(Object[] array, Sum parallelSum) {
         ParallelArrayIterate.forEach(array, new SumProcedure<>(parallelSum), new SumCombiner<>(parallelSum));
         return parallelSum;
     }
 
-    private void basicTestParallelSums(Object[] array, Sum parallelSum1, Sum parallelSum2)
-            throws InterruptedException
-    {
+    private void basicTestParallelSums(Object[] array, Sum parallelSum1, Sum parallelSum2) throws InterruptedException {
         Thread thread1 = new Thread(() -> this.parallelSum(array, parallelSum1));
         thread1.start();
         Thread thread2 = new Thread(() -> this.parallelSum(array, parallelSum2));
@@ -97,8 +77,7 @@ public class ParallelArrayIterateTest
     }
 
     @Test
-    public void parallelForEachPerformanceOneThread()
-    {
+    public void parallelForEachPerformanceOneThread() {
         Object[] array = Interval.zeroTo(100).toArray();
         Sum parallelSum = new LongSum(0);
         this.parallelSum(array, parallelSum);
@@ -108,8 +87,7 @@ public class ParallelArrayIterateTest
     }
 
     @Test
-    public void parallelForEachPerformanceTwoThreads() throws InterruptedException
-    {
+    public void parallelForEachPerformanceTwoThreads() throws InterruptedException {
         Object[] array = Interval.zeroTo(100).toArray();
         Sum parallelSum1 = new LongSum(0);
         Sum parallelSum2 = new LongSum(0);
@@ -121,11 +99,7 @@ public class ParallelArrayIterateTest
         Assert.assertEquals(parallelSum2, linearSum2);
     }
 
-    private void basicTestLinearSums(
-            Object[] array,
-            Sum linearSum1,
-            Sum linearSum2) throws InterruptedException
-    {
+    private void basicTestLinearSums(Object[] array, Sum linearSum1, Sum linearSum2) throws InterruptedException {
         Thread thread1 = new Thread(() -> this.linearSum(array, linearSum1));
         thread1.start();
         Thread thread2 = new Thread(() -> this.linearSum(array, linearSum2));
@@ -134,14 +108,58 @@ public class ParallelArrayIterateTest
         thread2.join();
     }
 
-    private void linearSum(Object[] array, Sum linearSum)
-    {
+    private void linearSum(Object[] array, Sum linearSum) {
         ArrayIterate.forEach(array, new SumProcedure<>(linearSum));
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(ParallelArrayIterate.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_parallelForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::parallelForEach, this.description("parallelForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_parallelForEachException() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::parallelForEachException, this.description("parallelForEachException"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_parallelForEachPerformanceOneThread() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::parallelForEachPerformanceOneThread, this.description("parallelForEachPerformanceOneThread"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_parallelForEachPerformanceTwoThreads() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::parallelForEachPerformanceTwoThreads, this.description("parallelForEachPerformanceTwoThreads"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private ParallelArrayIterateTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelArrayIterateTest();
+        }
+
+        @java.lang.Override
+        public ParallelArrayIterateTest implementation() {
+            return this.implementation;
+        }
     }
 }

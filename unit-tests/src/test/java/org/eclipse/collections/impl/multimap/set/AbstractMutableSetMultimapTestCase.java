@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap.set;
 
 import org.eclipse.collections.api.list.MutableList;
@@ -31,8 +30,8 @@ import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutableMultimapTestCase
-{
+public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutableMultimapTestCase {
+
     @Override
     protected abstract <K, V> MutableSetMultimap<K, V> newMultimap();
 
@@ -43,17 +42,10 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
     protected abstract <K, V> MutableSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2);
 
     @Override
-    protected abstract <K, V> MutableSetMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3);
+    protected abstract <K, V> MutableSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3);
 
     @Override
-    protected abstract <K, V> MutableSetMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3,
-            K key4, V value4);
+    protected abstract <K, V> MutableSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4);
 
     @Override
     protected abstract <K, V> MutableSetMultimap<K, V> newMultimap(Pair<K, V>... pairs);
@@ -66,10 +58,8 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Test
     @Override
-    public void putAllPairs()
-    {
+    public void putAllPairs() {
         super.putAllPairs();
-
         MutableMultimap<Integer, String> multimap = this.newMultimapWithKeysValues(1, "One", 2, "2");
         MutableList<Pair<Integer, String>> pairs = Lists.mutable.of(Tuples.pair(1, "One"));
         Assert.assertFalse(multimap.putAllPairs(pairs));
@@ -79,8 +69,7 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     @Test
-    public void flip()
-    {
+    public void flip() {
         SetMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("Less than 2", 1, "Less than 3", 1, "Less than 3", 2, "Less than 3", 2);
         SetMultimap<Integer, String> flipped = multimap.flip();
         Assert.assertEquals(Sets.immutable.with("Less than 3"), flipped.get(2));
@@ -89,8 +78,7 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     @Test
-    public void selectKeysValues()
-    {
+    public void selectKeysValues() {
         MutableSetMultimap<String, Integer> multimap = this.newMultimap();
         multimap.putAll("One", FastList.newListWith(1, 1, 2, 3, 4));
         multimap.putAll("Two", FastList.newListWith(2, 2, 3, 4, 5));
@@ -102,8 +90,7 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     @Test
-    public void rejectKeysValues()
-    {
+    public void rejectKeysValues() {
         MutableSetMultimap<String, Integer> multimap = this.newMultimap();
         multimap.putAll("One", FastList.newListWith(1, 1, 2, 3, 4));
         multimap.putAll("Two", FastList.newListWith(2, 2, 3, 4, 5));
@@ -115,10 +102,8 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     @Test
-    public void selectKeysMultiValues()
-    {
+    public void selectKeysMultiValues() {
         super.selectKeysMultiValues();
-
         MutableSetMultimap<Integer, String> multimap = this.newMultimap();
         multimap.putAll(1, FastList.newListWith("1", "3", "4"));
         multimap.putAll(2, FastList.newListWith("2", "3", "4", "5", "2"));
@@ -132,10 +117,8 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     @Test
-    public void rejectKeysMultiValues()
-    {
+    public void rejectKeysMultiValues() {
         super.rejectKeysMultiValues();
-
         MutableSetMultimap<Integer, String> multimap = this.newMultimap();
         multimap.putAll(1, FastList.newListWith("1", "2", "3", "4", "5", "1"));
         multimap.putAll(2, FastList.newListWith("2", "3", "4", "5", "1"));
@@ -149,8 +132,7 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     @Test
-    public void collectKeysValues()
-    {
+    public void collectKeysValues() {
         MutableSetMultimap<String, Integer> multimap = this.newMultimap();
         multimap.putAll("1", FastList.newListWith(1, 2, 3, 4));
         multimap.putAll("2", FastList.newListWith(2, 3, 4, 5));
@@ -159,7 +141,6 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
         expectedMultimap1.putAll(1, FastList.newListWith("1Value", "2Value", "3Value", "4Value"));
         expectedMultimap1.putAll(2, FastList.newListWith("2Value", "3Value", "4Value", "5Value"));
         Verify.assertBagMultimapsEqual(expectedMultimap1, collectedMultimap1);
-
         MutableBagMultimap<Integer, String> collectedMultimap2 = multimap.collectKeysValues((key, value) -> Tuples.pair(1, value + "Value"));
         MutableBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("1Value", "2Value", "3Value", "4Value"));
@@ -169,8 +150,7 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     @Test
-    public void collectKeyMultiValues()
-    {
+    public void collectKeyMultiValues() {
         MutableSetMultimap<String, Integer> multimap1 = this.newMultimap();
         multimap1.putAll("1", FastList.newListWith(1, 2, 3, 4));
         multimap1.putAll("2", FastList.newListWith(2, 3, 4, 5));
@@ -179,32 +159,16 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
         expectedMultimap1.putAll(1, FastList.newListWith("1Value", "2Value", "3Value", "4Value"));
         expectedMultimap1.putAll(2, FastList.newListWith("2Value", "3Value", "4Value", "5Value"));
         Verify.assertBagMultimapsEqual(expectedMultimap1, collectedMultimap1);
-
         MutableBagMultimap<Integer, String> collectedMultimap2 = multimap1.collectKeyMultiValues(key -> 1, value -> value + "Value");
-
         MutableBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("1Value", "2Value", "3Value", "4Value"));
         expectedMultimap2.putAll(1, FastList.newListWith("2Value", "3Value", "4Value", "5Value"));
         Verify.assertBagMultimapsEqual(expectedMultimap2, collectedMultimap2);
-
-        Multimap<String, Integer> multimap2 = this.newMultimap(
-                Tuples.pair("1", 1),
-                Tuples.pair("1", 1),
-                Tuples.pair("1", 12),
-                Tuples.pair("2", 2),
-                Tuples.pair("2", 2),
-                Tuples.pair("3", 3));
-        Multimap<Integer, Integer> collectedMultimap3 = multimap2.collectKeyMultiValues(
-                key -> 1,
-                value -> value % 2 == 0 ? value + 1 : value,
-                Multimaps.mutable.set.empty());
+        Multimap<String, Integer> multimap2 = this.newMultimap(Tuples.pair("1", 1), Tuples.pair("1", 1), Tuples.pair("1", 12), Tuples.pair("2", 2), Tuples.pair("2", 2), Tuples.pair("3", 3));
+        Multimap<Integer, Integer> collectedMultimap3 = multimap2.collectKeyMultiValues(key -> 1, value -> value % 2 == 0 ? value + 1 : value, Multimaps.mutable.set.empty());
         SetMultimap<Integer, Integer> expectedMultimap3 = Multimaps.mutable.set.with(1, 1, 1, 13, 1, 3);
         Assert.assertEquals(expectedMultimap3, collectedMultimap3);
-
-        Multimap<Integer, Integer> collectedMultimap4 = multimap2.collectKeyMultiValues(
-                key -> 1,
-                value -> value % 2 == 0 ? value + 1 : value,
-                Multimaps.mutable.list.empty());
+        Multimap<Integer, Integer> collectedMultimap4 = multimap2.collectKeyMultiValues(key -> 1, value -> value % 2 == 0 ? value + 1 : value, Multimaps.mutable.list.empty());
         MutableListMultimap<Integer, Integer> expectedMultimap4 = Multimaps.mutable.list.with(1, 1, 1, 3, 1, 13);
         expectedMultimap4.put(1, 3);
         Assert.assertEquals(expectedMultimap4.keySet(), collectedMultimap4.keySet());
@@ -213,8 +177,7 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     @Test
-    public void collectValues()
-    {
+    public void collectValues() {
         MutableSetMultimap<String, Integer> multimap = this.newMultimap();
         multimap.putAll("1", FastList.newListWith(1, 2, 3, 4));
         multimap.putAll("2", FastList.newListWith(2, 3, 4, 5));
@@ -223,5 +186,69 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
         expectedMultimap.putAll("1", FastList.newListWith("1Value", "2Value", "3Value", "4Value"));
         expectedMultimap.putAll("2", FastList.newListWith("2Value", "3Value", "4Value", "5Value"));
         Verify.assertBagMultimapsEqual(expectedMultimap, collectedMultimap);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAllPairs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putAllPairs, this.description("putAllPairs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flip, this.description("flip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectKeysValues, this.description("selectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectKeysValues, this.description("rejectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectKeysMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectKeysMultiValues, this.description("selectKeysMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectKeysMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectKeysMultiValues, this.description("rejectKeysMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectKeysValues, this.description("collectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectKeyMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectKeyMultiValues, this.description("collectKeyMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectValues, this.description("collectValues"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractMutableSetMultimapTestCase implementation();
     }
 }

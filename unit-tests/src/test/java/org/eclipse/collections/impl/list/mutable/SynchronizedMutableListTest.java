@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import org.eclipse.collections.api.list.MutableList;
@@ -18,27 +17,23 @@ import org.junit.Test;
 /**
  * JUnit test for {@link SynchronizedMutableList}.
  */
-public class SynchronizedMutableListTest extends AbstractListTestCase
-{
+public class SynchronizedMutableListTest extends AbstractListTestCase {
+
     @Override
-    protected <T> MutableList<T> newWith(T... littleElements)
-    {
+    protected <T> MutableList<T> newWith(T... littleElements) {
         return new SynchronizedMutableList<>(FastList.newListWith(littleElements));
     }
 
     @Override
     @Test
-    public void newEmpty()
-    {
+    public void newEmpty() {
         super.newEmpty();
-
         Verify.assertInstanceOf(SynchronizedMutableList.class, this.newWith().newEmpty());
     }
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         super.equalsAndHashCode();
         Verify.assertPostSerializedEqualsAndHashCode(this.newWith(1, 2, 3));
         Verify.assertInstanceOf(SynchronizedMutableList.class, this.newWith(1, 2, 3));
@@ -46,25 +41,68 @@ public class SynchronizedMutableListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         MutableList<Object> list = this.newWith(1, 2, 3);
         Assert.assertEquals("[1, 2, 3]", list.toString());
     }
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         Appendable builder = new StringBuilder();
         this.newWith(1, 2, 3).appendString(builder);
         Assert.assertEquals("1, 2, 3", builder.toString());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newEmpty, this.description("newEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        private SynchronizedMutableListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedMutableListTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedMutableListTest implementation() {
+            return this.implementation;
+        }
     }
 }

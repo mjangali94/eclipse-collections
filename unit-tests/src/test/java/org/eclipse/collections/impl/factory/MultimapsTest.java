@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import org.eclipse.collections.api.multimap.bag.BagMultimap;
@@ -35,11 +34,10 @@ import org.eclipse.collections.impl.tuple.Tuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MultimapsTest
-{
+public class MultimapsTest {
+
     @Test
-    public void immutableList()
-    {
+    public void immutableList() {
         ImmutableListMultimap<Integer, Integer> empty = Multimaps.immutable.list.of();
         ImmutableListMultimap<Integer, Integer> emptyWith = Multimaps.immutable.list.with();
         Verify.assertEmpty(empty);
@@ -54,8 +52,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void immutableSet()
-    {
+    public void immutableSet() {
         ImmutableSetMultimap<Integer, Integer> empty = Multimaps.immutable.set.of();
         ImmutableSetMultimap<Integer, Integer> emptyWith = Multimaps.immutable.set.with();
         Verify.assertEmpty(empty);
@@ -70,8 +67,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void immutableSortedSet()
-    {
+    public void immutableSortedSet() {
         ImmutableSortedSetMultimap<Integer, Integer> empty = Multimaps.immutable.sortedSet.of(Integer::compareTo);
         ImmutableSortedSetMultimap<Integer, Integer> emptyWith = Multimaps.immutable.sortedSet.with(Integer::compareTo);
         Verify.assertEmpty(empty);
@@ -88,8 +84,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void immutableSortedBagMultimap()
-    {
+    public void immutableSortedBagMultimap() {
         ImmutableSortedBagMultimap<Integer, Integer> emptyWith = Multimaps.immutable.sortedBag.with(Integer::compareTo);
         ImmutableSortedBagMultimap<Integer, Integer> emptyOf = Multimaps.immutable.sortedBag.of(Integer::compareTo);
         Verify.assertEmpty(emptyWith);
@@ -127,8 +122,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void immutableSortedBagMultimapWithoutComparator()
-    {
+    public void immutableSortedBagMultimapWithoutComparator() {
         ImmutableSortedBagMultimap<Integer, Integer> emptyWith = Multimaps.immutable.sortedBag.with();
         ImmutableSortedBagMultimap<Integer, Integer> emptyOf = Multimaps.immutable.sortedBag.of();
         Verify.assertEmpty(emptyWith);
@@ -166,8 +160,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void immutableBag()
-    {
+    public void immutableBag() {
         ImmutableBagMultimap<Integer, Integer> empty = Multimaps.immutable.bag.of();
         ImmutableBagMultimap<Integer, Integer> emptyWith = Multimaps.immutable.bag.with();
         Verify.assertEmpty(empty);
@@ -182,8 +175,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void mutableList()
-    {
+    public void mutableList() {
         MutableListMultimap<Integer, Integer> empty = Multimaps.mutable.list.of();
         MutableListMultimap<Integer, Integer> emptyWith = Multimaps.mutable.list.with();
         Verify.assertEmpty(empty);
@@ -199,8 +191,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void mutableSet()
-    {
+    public void mutableSet() {
         MutableSetMultimap<Integer, Integer> empty = Multimaps.mutable.set.of();
         MutableSetMultimap<Integer, Integer> emptyWith = Multimaps.mutable.set.with();
         Verify.assertEmpty(empty);
@@ -216,8 +207,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void mutableSortedSet()
-    {
+    public void mutableSortedSet() {
         MutableSortedSetMultimap<Integer, Integer> empty = Multimaps.mutable.sortedSet.of(Integer::compareTo);
         MutableSortedSetMultimap<Integer, Integer> emptyWith = Multimaps.mutable.sortedSet.with(Integer::compareTo);
         Verify.assertEmpty(empty);
@@ -233,8 +223,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void mutableBag()
-    {
+    public void mutableBag() {
         MutableBagMultimap<Integer, Integer> empty = Multimaps.mutable.bag.of();
         MutableBagMultimap<Integer, Integer> emptyWith = Multimaps.mutable.bag.with();
         Verify.assertEmpty(empty);
@@ -250,8 +239,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void mutableSortedBagMultimap()
-    {
+    public void mutableSortedBagMultimap() {
         MutableSortedBagMultimap<Object, Object> empty = Multimaps.mutable.sortedBag.empty();
         MutableSortedBagMultimap<Object, Object> emptyWith = Multimaps.mutable.sortedBag.with();
         MutableSortedBagMultimap<Object, Object> emptyOf = Multimaps.mutable.sortedBag.of();
@@ -293,8 +281,7 @@ public class MultimapsTest
     }
 
     @Test
-    public void mutableSortedBagMultimapWithComparator()
-    {
+    public void mutableSortedBagMultimapWithComparator() {
         MutableSortedBagMultimap<String, String> empty = Multimaps.mutable.sortedBag.empty(String::compareTo);
         MutableSortedBagMultimap<String, String> emptyWith = Multimaps.mutable.sortedBag.with(String::compareTo);
         MutableSortedBagMultimap<String, String> emptyOf = Multimaps.mutable.sortedBag.of(String::compareTo);
@@ -336,8 +323,101 @@ public class MultimapsTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(Multimaps.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableList, this.description("immutableList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSet, this.description("immutableSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSortedSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSortedSet, this.description("immutableSortedSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSortedBagMultimap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSortedBagMultimap, this.description("immutableSortedBagMultimap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSortedBagMultimapWithoutComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSortedBagMultimapWithoutComparator, this.description("immutableSortedBagMultimapWithoutComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableBag, this.description("immutableBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableList, this.description("mutableList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSet, this.description("mutableSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSortedSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSortedSet, this.description("mutableSortedSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableBag, this.description("mutableBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSortedBagMultimap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSortedBagMultimap, this.description("mutableSortedBagMultimap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSortedBagMultimapWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSortedBagMultimapWithComparator, this.description("mutableSortedBagMultimapWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private MultimapsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MultimapsTest();
+        }
+
+        @java.lang.Override
+        public MultimapsTest implementation() {
+            return this.implementation;
+        }
     }
 }

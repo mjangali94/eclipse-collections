@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import java.io.Serializable;
@@ -16,62 +15,52 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.RandomAccess;
-
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.Test;
 
-public class NullSafeSortingTest
-{
+public class NullSafeSortingTest {
+
     @Test
-    public void emptyFastList()
-    {
+    public void emptyFastList() {
         Lists.mutable.of().sortThis(null);
     }
 
     @Test
-    public void fastListWithOneElement()
-    {
+    public void fastListWithOneElement() {
         FastList.newListWith(1).sortThis(null);
     }
 
     @Test
-    public void fastListWithThreeElements()
-    {
+    public void fastListWithThreeElements() {
         FastList.newListWith(1, 2, 3).sortThis(null);
     }
 
     @Test
-    public void arrayIterate()
-    {
+    public void arrayIterate() {
         Object[] array0 = {};
         ArrayIterate.sort(array0, 0, null);
-
-        Object[] array1 = {1};
+        Object[] array1 = { 1 };
         ArrayIterate.sort(array1, 1, null);
-
-        Object[] array2 = {1, 2};
+        Object[] array2 = { 1, 2 };
         ArrayIterate.sort(array2, 2, null);
     }
 
     @Test
-    public void emptyArrayListAdapter()
-    {
+    public void emptyArrayListAdapter() {
         ListAdapter.adapt(new ArrayList<>()).sortThis(null);
     }
 
     @Test
-    public void arrayListAdapterWithOneElement()
-    {
+    public void arrayListAdapterWithOneElement() {
         MutableList<Integer> list = ListAdapter.adapt(new ArrayList<>());
         list.add(1);
         list.sortThis(null);
     }
 
     @Test
-    public void arrayListAdapterWithThreeElements()
-    {
+    public void arrayListAdapterWithThreeElements() {
         MutableList<Integer> list = ListAdapter.adapt(new ArrayList<>());
         list.add(1);
         list.add(2);
@@ -80,64 +69,142 @@ public class NullSafeSortingTest
     }
 
     @Test
-    public void adaptedSingletonList()
-    {
+    public void adaptedSingletonList() {
         ListAdapter.adapt(Collections.singletonList(1)).sortThis(null);
     }
 
     @Test
-    public void adaptedCustomList()
-    {
+    public void adaptedCustomList() {
         MutableList<Integer> adapt = ListAdapter.adapt(new CustomList<>(1, 2));
         adapt.sortThis(null);
     }
 
     @Test
-    public void emptyList()
-    {
+    public void emptyList() {
         Lists.fixedSize.of().sortThis(null);
     }
 
     @Test
-    public void singletonList()
-    {
+    public void singletonList() {
         Lists.fixedSize.of(1).sortThis(null);
     }
 
     @Test
-    public void doubletonList()
-    {
+    public void doubletonList() {
         Lists.fixedSize.of(1, 2).sortThis(null);
     }
 
-    private static final class CustomList<E>
-            extends AbstractList<E>
-            implements RandomAccess, Serializable
-    {
+    private static final class CustomList<E> extends AbstractList<E> implements RandomAccess, Serializable {
+
         private static final long serialVersionUID = 1L;
+
         private final List<E> delegate;
 
-        private CustomList(E obj1, E obj2)
-        {
+        private CustomList(E obj1, E obj2) {
             this.delegate = Lists.fixedSize.of(obj1, obj2);
         }
 
         @Override
-        public int size()
-        {
+        public int size() {
             return this.delegate.size();
         }
 
         @Override
-        public E get(int index)
-        {
+        public E get(int index) {
             return this.delegate.get(index);
         }
 
         @Override
-        public E set(int index, E element)
-        {
+        public E set(int index, E element) {
             return this.delegate.set(index, element);
+        }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_emptyFastList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::emptyFastList, this.description("emptyFastList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fastListWithOneElement() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fastListWithOneElement, this.description("fastListWithOneElement"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fastListWithThreeElements() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fastListWithThreeElements, this.description("fastListWithThreeElements"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_arrayIterate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::arrayIterate, this.description("arrayIterate"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_emptyArrayListAdapter() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::emptyArrayListAdapter, this.description("emptyArrayListAdapter"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_arrayListAdapterWithOneElement() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::arrayListAdapterWithOneElement, this.description("arrayListAdapterWithOneElement"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_arrayListAdapterWithThreeElements() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::arrayListAdapterWithThreeElements, this.description("arrayListAdapterWithThreeElements"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_adaptedSingletonList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::adaptedSingletonList, this.description("adaptedSingletonList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_adaptedCustomList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::adaptedCustomList, this.description("adaptedCustomList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_emptyList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::emptyList, this.description("emptyList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_singletonList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::singletonList, this.description("singletonList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_doubletonList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::doubletonList, this.description("doubletonList"));
+        }
+
+        private NullSafeSortingTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new NullSafeSortingTest();
+        }
+
+        @java.lang.Override
+        public NullSafeSortingTest implementation() {
+            return this.implementation;
         }
     }
 }

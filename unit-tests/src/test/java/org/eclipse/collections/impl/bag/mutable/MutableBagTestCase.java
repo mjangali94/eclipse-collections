@@ -7,13 +7,11 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.ImmutableBagIterable;
@@ -45,8 +43,8 @@ import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class MutableBagTestCase extends AbstractCollectionTestCase
-{
+public abstract class MutableBagTestCase extends AbstractCollectionTestCase {
+
     @Override
     protected abstract <T> MutableBagIterable<T> newWith(T... littleElements);
 
@@ -54,8 +52,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Test
     @Override
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         super.equalsAndHashCode();
         Assert.assertNotEquals(this.newWith(1, 1, 2, 3), this.newWith(1, 2, 2, 3));
         Verify.assertEqualsAndHashCode(this.newWith(null, null, 2, 3), this.newWith(null, 2, null, 3));
@@ -64,8 +61,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void toStringOfItemToCount()
-    {
+    public void toStringOfItemToCount() {
         Assert.assertEquals("{}", this.newWith().toStringOfItemToCount());
         Assert.assertEquals("{1=3}", this.newWith(1, 1, 1).toStringOfItemToCount());
         String actual = this.newWith(1, 2, 2).toStringOfItemToCount();
@@ -73,15 +69,13 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void toMapOfItemToCount()
-    {
+    public void toMapOfItemToCount() {
         MutableBagIterable<Integer> bag = this.newWith(1, 2, 2, 3, 3, 3);
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), bag.toMapOfItemToCount());
     }
 
     @Test
-    public void add()
-    {
+    public void add() {
         MutableBagIterable<Integer> bag = this.newWith();
         bag.add(1);
         bag.add(1);
@@ -92,20 +86,16 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 2);
         MutableList<Integer> validate = Lists.mutable.of();
-        for (Integer each : bag)
-        {
+        for (Integer each : bag) {
             validate.add(each);
         }
         Assert.assertEquals(HashBag.newBagWith(1, 1, 2), HashBag.newBag(validate));
-
         Iterator<Integer> iterator = bag.iterator();
         MutableBagIterable<Integer> expected = this.newWith(1, 1, 2);
         Assert.assertThrows(IllegalStateException.class, iterator::remove);
-
         this.assertIteratorRemove(bag, iterator, expected);
         this.assertIteratorRemove(bag, iterator, expected);
         this.assertIteratorRemove(bag, iterator, expected);
@@ -114,8 +104,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
         Assert.assertThrows(NoSuchElementException.class, iterator::next);
     }
 
-    private void assertIteratorRemove(MutableBagIterable<Integer> bag, Iterator<Integer> iterator, MutableBagIterable<Integer> expected)
-    {
+    private void assertIteratorRemove(MutableBagIterable<Integer> bag, Iterator<Integer> iterator, MutableBagIterable<Integer> expected) {
         Assert.assertTrue(iterator.hasNext());
         Integer first = iterator.next();
         iterator.remove();
@@ -125,8 +114,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void iteratorRemove()
-    {
+    public void iteratorRemove() {
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4);
         Iterator<Integer> iterator = bag.iterator();
         iterator.next();
@@ -146,8 +134,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void iteratorRemove2()
-    {
+    public void iteratorRemove2() {
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4);
         Iterator<Integer> iterator = bag.iterator();
         iterator.next();
@@ -167,10 +154,8 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Override
     @Test
-    public void removeIf()
-    {
+    public void removeIf() {
         super.removeIf();
-
         MutableBagIterable<Integer> objects = this.newWith(4, 1, 3, 3, 2);
         Assert.assertTrue(objects.removeIf(Predicates.equal(2)));
         Assert.assertEquals(HashBag.newBagWith(1, 3, 3, 4), objects);
@@ -180,8 +165,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Override
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 2);
         MutableList<Integer> validate = Lists.mutable.of();
         bag.forEach(CollectionAddProcedure.on(validate));
@@ -189,8 +173,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void forEachWithOccurrences()
-    {
+    public void forEachWithOccurrences() {
         MutableBagIterable<Integer> bag = this.newWith();
         bag.addOccurrences(1, 3);
         bag.addOccurrences(2, 2);
@@ -209,38 +192,22 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void collectWithOccurrences()
-    {
+    public void collectWithOccurrences() {
         Bag<Integer> bag1 = this.newWith(3, 3, 3, 2, 2, 1);
-        Bag<ObjectIntPair<Integer>> actual1 =
-                bag1.collectWithOccurrences(PrimitiveTuples::pair, Bags.mutable.empty());
-        Bag<ObjectIntPair<Integer>> expected1 =
-                Bags.immutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1));
+        Bag<ObjectIntPair<Integer>> actual1 = bag1.collectWithOccurrences(PrimitiveTuples::pair, Bags.mutable.empty());
+        Bag<ObjectIntPair<Integer>> expected1 = Bags.immutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1));
         Assert.assertEquals(expected1, actual1);
         Assert.assertEquals(expected1, bag1.collectWithOccurrences(PrimitiveTuples::pair));
-
-        Set<ObjectIntPair<Integer>> actual2 =
-                bag1.collectWithOccurrences(PrimitiveTuples::pair, Sets.mutable.empty());
-        ImmutableSet<ObjectIntPair<Integer>> expected2 =
-                Sets.immutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1));
+        Set<ObjectIntPair<Integer>> actual2 = bag1.collectWithOccurrences(PrimitiveTuples::pair, Sets.mutable.empty());
+        ImmutableSet<ObjectIntPair<Integer>> expected2 = Sets.immutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1));
         Assert.assertEquals(expected2, actual2);
-
         Bag<Integer> bag2 = this.newWith(3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 4, 5, 7);
-        Assert.assertEquals(
-                this.newWith(8, 5, 6, 5, 6, 8),
-                bag2.collectWithOccurrences((each, index) -> each + index));
+        Assert.assertEquals(this.newWith(8, 5, 6, 5, 6, 8), bag2.collectWithOccurrences((each, index) -> each + index));
     }
 
     @Override
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         super.toImmutable();
         Verify.assertInstanceOf(MutableBagIterable.class, this.newWith());
         Verify.assertInstanceOf(ImmutableBagIterable.class, this.newWith().toImmutable());
@@ -249,23 +216,20 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Test
     @Override
-    public void getLast()
-    {
+    public void getLast() {
         Assert.assertEquals(Integer.valueOf(1), this.newWith(1).getLast());
         Assert.assertEquals(Integer.valueOf(3), this.newWith(3).getLast());
     }
 
     @Test
-    public void occurrencesOf()
-    {
+    public void occurrencesOf() {
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 2);
         Assert.assertEquals(2, bag.occurrencesOf(1));
         Assert.assertEquals(1, bag.occurrencesOf(2));
     }
 
     @Test
-    public void addOccurrences()
-    {
+    public void addOccurrences() {
         MutableBagIterable<String> bag = this.newWith();
         Assert.assertEquals(0, bag.addOccurrences("0", 0));
         Assert.assertEquals(1, bag.addOccurrences("1", 1));
@@ -279,69 +243,53 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void addOccurrences_throws()
-    {
+    public void addOccurrences_throws() {
         this.newWith().addOccurrences(new Object(), -1);
     }
 
     @Test
-    public void removeOccurrences()
-    {
+    public void removeOccurrences() {
         MutableBagIterable<String> bag = this.newWith("betamax-tape", "betamax-tape");
         MutableBagIterable<String> expected = HashBag.newBag(bag);
-
         Assert.assertFalse(bag.removeOccurrences("dvd", 2));
         MutableBagTestCase.assertBagsEqual(expected, bag);
-
         Assert.assertFalse(bag.removeOccurrences("dvd", 0));
         MutableBagTestCase.assertBagsEqual(expected, bag);
-
         Assert.assertFalse(bag.removeOccurrences("betamax-tape", 0));
         MutableBagTestCase.assertBagsEqual(expected, bag);
-
         Assert.assertTrue(bag.removeOccurrences("betamax-tape", 1));
         MutableBagTestCase.assertBagsEqual(HashBag.newBagWith("betamax-tape"), bag);
-
         Assert.assertTrue(bag.removeOccurrences("betamax-tape", 10));
         MutableBagTestCase.assertBagsEqual(HashBag.<String>newBag(), bag);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void removeOccurrences_throws()
-    {
+    public void removeOccurrences_throws() {
         this.newWith().removeOccurrences(new Object(), -1);
     }
 
     @Test
-    public void setOccurrences()
-    {
+    public void setOccurrences() {
         MutableBagIterable<String> bag = this.newWith();
         MutableBagIterable<String> expected = this.newWith("betamax-tape", "betamax-tape");
-
         Assert.assertTrue(bag.setOccurrences("betamax-tape", 2));
         MutableBagTestCase.assertBagsEqual(expected, bag);
-
         Assert.assertFalse(bag.setOccurrences("betamax-tape", 2));
         MutableBagTestCase.assertBagsEqual(expected, bag);
-
         Assert.assertFalse(bag.setOccurrences("dvd", 0));
         MutableBagTestCase.assertBagsEqual(expected, bag);
-
         Assert.assertTrue(bag.setOccurrences("betamax-tape", 3));
         MutableBagTestCase.assertBagsEqual(expected.with("betamax-tape"), bag);
-
         Assert.assertTrue(bag.setOccurrences("betamax-tape", 0));
         MutableBagTestCase.assertBagsEqual(HashBag.<String>newBag(), bag);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void setOccurrences_throws()
-    {
+    public void setOccurrences_throws() {
         this.newWith().setOccurrences(new Object(), -1);
     }
 
-    protected static void assertBagsEqual(Bag<?> expected, Bag<?> actual)
-    {
+    protected static void assertBagsEqual(Bag<?> expected, Bag<?> actual) {
         Assert.assertEquals(expected.toMapOfItemToCount(), actual.toMapOfItemToCount());
         Assert.assertEquals(expected.sizeDistinct(), actual.sizeDistinct());
         Assert.assertEquals(expected.size(), actual.size());
@@ -349,17 +297,13 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void toSortedListWith()
-    {
-        Assert.assertEquals(
-                FastList.newListWith(1, 2, 2, 3, 3, 3),
-                this.newWith(3, 3, 3, 2, 2, 1).toSortedList());
+    public void toSortedListWith() {
+        Assert.assertEquals(FastList.newListWith(1, 2, 2, 3, 3, 3), this.newWith(3, 3, 3, 2, 2, 1).toSortedList());
     }
 
     @Override
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         super.toSet();
         MutableBagIterable<Integer> bag = this.newWith(3, 3, 3, 2, 2, 1);
         Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3), bag.toSet());
@@ -367,8 +311,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Override
     @Test
-    public void toList()
-    {
+    public void toList() {
         super.toList();
         MutableBagIterable<Integer> bag = this.newWith(1, 1, 1);
         Assert.assertEquals(FastList.newListWith(1, 1, 1), bag.toList());
@@ -376,10 +319,8 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Override
     @Test
-    public void removeObject()
-    {
+    public void removeObject() {
         super.removeObject();
-
         MutableBagIterable<String> bag = this.newWith("dakimakura", "dakimakura");
         Assert.assertFalse(bag.remove("Mr. T"));
         Assert.assertTrue(bag.remove("dakimakura"));
@@ -390,31 +331,26 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         Verify.assertInstanceOf(SynchronizedBag.class, this.newWith().asSynchronized());
     }
 
     @Override
     @Test
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         Verify.assertInstanceOf(UnmodifiableBag.class, this.newWith().asUnmodifiable());
     }
 
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         MutableBagIterable<String> bag = this.newWith("One", "Two", "Two", "Three", "Three", "Three");
         Verify.assertPostSerializedEqualsAndHashCode(bag);
     }
 
     @Override
     @Test
-    public void partition()
-    {
+    public void partition() {
         super.partition();
-
         MutableBagIterable<Integer> integers = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         PartitionMutableCollection<Integer> result = integers.partition(IntegerPredicates.isEven());
         Assert.assertEquals(Iterables.iBag(2, 2, 4, 4, 4, 4), result.getSelected());
@@ -423,10 +359,8 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Override
     @Test
-    public void partitionWith()
-    {
+    public void partitionWith() {
         super.partitionWith();
-
         MutableBagIterable<Integer> integers = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         PartitionMutableCollection<Integer> result = integers.partitionWith(Predicates2.in(), integers.select(IntegerPredicates.isEven()));
         Assert.assertEquals(Iterables.iBag(2, 2, 4, 4, 4, 4), result.getSelected());
@@ -434,33 +368,20 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void selectByOccurrences()
-    {
+    public void selectByOccurrences() {
         MutableBagIterable<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         Assert.assertEquals(Iterables.iBag(1, 1, 1, 1, 3, 3), integers.selectByOccurrences(IntPredicates.isEven()));
     }
 
     @Test
-    public void selectDuplicates()
-    {
+    public void selectDuplicates() {
         MutableBagIterable<Integer> integers = this.newWith(0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 5);
         Assert.assertEquals(Iterables.iBag(1, 1, 1, 1, 2, 2, 2, 3, 3), integers.selectDuplicates());
     }
 
     @Test
-    public void topOccurrences()
-    {
-        MutableBagIterable<String> strings = Bags.mutable.withOccurrences(
-                PrimitiveTuples.pair("one", 1),
-                PrimitiveTuples.pair("two", 2),
-                PrimitiveTuples.pair("three", 3),
-                PrimitiveTuples.pair("four", 4),
-                PrimitiveTuples.pair("five", 5),
-                PrimitiveTuples.pair("six", 6),
-                PrimitiveTuples.pair("seven", 7),
-                PrimitiveTuples.pair("eight", 8),
-                PrimitiveTuples.pair("nine", 9),
-                PrimitiveTuples.pair("ten", 10));
+    public void topOccurrences() {
+        MutableBagIterable<String> strings = Bags.mutable.withOccurrences(PrimitiveTuples.pair("one", 1), PrimitiveTuples.pair("two", 2), PrimitiveTuples.pair("three", 3), PrimitiveTuples.pair("four", 4), PrimitiveTuples.pair("five", 5), PrimitiveTuples.pair("six", 6), PrimitiveTuples.pair("seven", 7), PrimitiveTuples.pair("eight", 8), PrimitiveTuples.pair("nine", 9), PrimitiveTuples.pair("ten", 10));
         MutableList<ObjectIntPair<String>> top5 = strings.topOccurrences(5);
         Verify.assertSize(5, top5);
         Assert.assertEquals("ten", top5.getFirst().getOne());
@@ -483,21 +404,18 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void anySatisfyWithOccurrences()
-    {
+    public void anySatisfyWithOccurrences() {
         Bag<Integer> bag = this.newWith(3, 3, 3, 2, 2, 1);
         Assert.assertTrue(bag.anySatisfyWithOccurrences((object, value) -> object.equals(3) && value == 3));
         Assert.assertTrue(bag.anySatisfyWithOccurrences((object, value) -> object.equals(2) && value == 2));
         Assert.assertTrue(bag.anySatisfyWithOccurrences((object, value) -> object.equals(3)));
-
         Assert.assertFalse(bag.anySatisfyWithOccurrences((object, value) -> object.equals(2) && value == 5));
         Assert.assertFalse(bag.anySatisfyWithOccurrences((object, value) -> object.equals(1) && value == 7));
         Assert.assertFalse(bag.anySatisfyWithOccurrences((object, value) -> object.equals(10)));
     }
 
     @Test
-    public void noneSatisfyWithOccurrences()
-    {
+    public void noneSatisfyWithOccurrences() {
         Bag<Integer> bag = this.newWith(3, 3, 3, 2, 2, 1);
         Assert.assertTrue(bag.noneSatisfyWithOccurrences((object, value) -> object.equals(3) && value == 1));
         Assert.assertTrue(bag.noneSatisfyWithOccurrences((object, value) -> object.equals(30)));
@@ -508,8 +426,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void allSatisfyWithOccurrences()
-    {
+    public void allSatisfyWithOccurrences() {
         Bag<Integer> bag = this.newWith(3, 3, 3);
         Assert.assertTrue(bag.allSatisfyWithOccurrences((object, value) -> object.equals(3) && value == 3));
         Assert.assertTrue(bag.allSatisfyWithOccurrences((object, value) -> object.equals(3)));
@@ -522,8 +439,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void detectWithOccurrences()
-    {
+    public void detectWithOccurrences() {
         Bag<Integer> bag = this.newWith(3, 3, 3, 2, 2, 1);
         Assert.assertEquals((Integer) 3, bag.detectWithOccurrences((object, value) -> object.equals(3) && value == 3));
         Assert.assertEquals((Integer) 3, bag.detectWithOccurrences((object, value) -> object.equals(3)));
@@ -534,19 +450,8 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void bottomOccurrences()
-    {
-        MutableBagIterable<String> strings = Bags.mutable.ofOccurrences(
-                PrimitiveTuples.pair("one", 1),
-                PrimitiveTuples.pair("two", 2),
-                PrimitiveTuples.pair("three", 3),
-                PrimitiveTuples.pair("four", 4),
-                PrimitiveTuples.pair("five", 5),
-                PrimitiveTuples.pair("six", 6),
-                PrimitiveTuples.pair("seven", 7),
-                PrimitiveTuples.pair("eight", 8),
-                PrimitiveTuples.pair("nine", 9),
-                PrimitiveTuples.pair("ten", 10));
+    public void bottomOccurrences() {
+        MutableBagIterable<String> strings = Bags.mutable.ofOccurrences(PrimitiveTuples.pair("one", 1), PrimitiveTuples.pair("two", 2), PrimitiveTuples.pair("three", 3), PrimitiveTuples.pair("four", 4), PrimitiveTuples.pair("five", 5), PrimitiveTuples.pair("six", 6), PrimitiveTuples.pair("seven", 7), PrimitiveTuples.pair("eight", 8), PrimitiveTuples.pair("nine", 9), PrimitiveTuples.pair("ten", 10));
         MutableList<ObjectIntPair<String>> bottom5 = strings.bottomOccurrences(5);
         Verify.assertSize(5, bottom5);
         Assert.assertEquals("one", bottom5.getFirst().getOne());
@@ -569,8 +474,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     }
 
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         MutableBag<String> bag = Bags.mutable.with("0", "1", "1", "1", "1", "2", "2", "2", "3", "3", "4", "5");
         MutableSet<String> expected = Sets.mutable.with("0", "4", "5");
         MutableSet<String> actual = bag.selectUnique();
@@ -579,14 +483,254 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
 
     @Override
     @Test
-    public void zip()
-    {
+    public void zip() {
         super.zip();
         RichIterable<String> bag = this.newWith("1", "2", "3");
-        Bag<Pair<String, String>> expected = this.newWith(
-                Tuples.pair("1", "1"),
-                Tuples.pair("2", "2"),
-                Tuples.pair("3", "3"));
+        Bag<Pair<String, String>> expected = this.newWith(Tuples.pair("1", "1"), Tuples.pair("2", "2"), Tuples.pair("3", "3"));
         Assert.assertEquals(expected, bag.zip(bag::iterator).toBag());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toStringOfItemToCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toStringOfItemToCount, this.description("toStringOfItemToCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMapOfItemToCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMapOfItemToCount, this.description("toMapOfItemToCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::add, this.description("add"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iteratorRemove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iteratorRemove, this.description("iteratorRemove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iteratorRemove2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iteratorRemove2, this.description("iteratorRemove2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIf, this.description("removeIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithOccurrences, this.description("forEachWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithOccurrences, this.description("collectWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_occurrencesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::occurrencesOf, this.description("occurrencesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addOccurrences, this.description("addOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addOccurrences_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addOccurrences_throws, this.description("addOccurrences_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeOccurrences, this.description("removeOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeOccurrences_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeOccurrences_throws, this.description("removeOccurrences_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_setOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::setOccurrences, this.description("setOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_setOccurrences_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::setOccurrences_throws, this.description("setOccurrences_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedListWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedListWith, this.description("toSortedListWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeObject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeObject, this.description("removeObject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition, this.description("partition"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith, this.description("partitionWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectByOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectByOccurrences, this.description("selectByOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectDuplicates() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectDuplicates, this.description("selectDuplicates"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_topOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::topOccurrences, this.description("topOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyWithOccurrences, this.description("anySatisfyWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyWithOccurrences, this.description("noneSatisfyWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyWithOccurrences, this.description("allSatisfyWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithOccurrences, this.description("detectWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_bottomOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::bottomOccurrences, this.description("bottomOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract MutableBagTestCase implementation();
     }
 }

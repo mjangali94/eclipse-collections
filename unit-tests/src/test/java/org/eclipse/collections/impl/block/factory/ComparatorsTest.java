@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.factory;
 
 import java.io.Serializable;
@@ -18,7 +17,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import org.eclipse.collections.api.block.SerializableComparator;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.primitive.BooleanFunction;
@@ -39,50 +37,38 @@ import org.eclipse.collections.impl.test.domain.Person;
 import org.eclipse.collections.impl.tuple.Tuples;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iList;
 import static org.eclipse.collections.impl.factory.Iterables.mList;
 
-public class ComparatorsTest
-{
+public class ComparatorsTest {
+
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(Comparators.class);
     }
 
     @Test
-    public void naturalOrder()
-    {
+    public void naturalOrder() {
         MutableList<String> list = FastList.newListWith("1", "4", "2", "3");
-        Assert.assertEquals(
-                FastList.newListWith("1", "2", "3", "4"),
-                list.sortThis(Comparators.naturalOrder()));
+        Assert.assertEquals(FastList.newListWith("1", "2", "3", "4"), list.sortThis(Comparators.naturalOrder()));
         Assert.assertThrows(NullPointerException.class, () -> FastList.newListWith("1", "2", null, "4").sortThis(Comparators.naturalOrder()));
     }
 
     @Test
-    public void reverseNaturalOrder()
-    {
+    public void reverseNaturalOrder() {
         MutableList<String> list = FastList.newListWith("1", "4", "2", "3");
-        Assert.assertEquals(
-                FastList.newListWith("4", "3", "2", "1"),
-                list.sortThis(Comparators.reverseNaturalOrder()));
+        Assert.assertEquals(FastList.newListWith("4", "3", "2", "1"), list.sortThis(Comparators.reverseNaturalOrder()));
     }
 
     @Test
-    public void reverse()
-    {
+    public void reverse() {
         MutableList<String> list = FastList.newListWith("1", "4", "2", "3");
-        Assert.assertEquals(
-                FastList.newListWith("4", "3", "2", "1"),
-                list.sortThis(Comparators.reverse(String::compareTo)));
+        Assert.assertEquals(FastList.newListWith("4", "3", "2", "1"), list.sortThis(Comparators.reverse(String::compareTo)));
         Assert.assertThrows(NullPointerException.class, () -> Comparators.reverse(null));
     }
 
     @Test
-    public void safeNullsLow()
-    {
+    public void safeNullsLow() {
         SerializableComparator<Integer> comparator = Comparators.safeNullsLow(Comparators.byFunction(Functions.getIntegerPassThru()));
         Assert.assertEquals(-1, comparator.compare(null, 1));
         Assert.assertEquals(1, comparator.compare(1, null));
@@ -91,8 +77,7 @@ public class ComparatorsTest
     }
 
     @Test
-    public void byBooleanFunction()
-    {
+    public void byBooleanFunction() {
         SerializableComparator<Integer> comparator = Comparators.byBooleanFunction((BooleanFunction<Integer>) anObject -> anObject.intValue() % 2 == 0);
         Verify.assertPositive(comparator.compare(2, 1));
         Verify.assertZero(comparator.compare(1, 1));
@@ -101,49 +86,41 @@ public class ComparatorsTest
     }
 
     @Test
-    public void byByteFunction()
-    {
+    public void byByteFunction() {
         this.assertScalarFunctionParameter(Comparators.byByteFunction((ByteFunction<Integer>) Integer::byteValue));
     }
 
     @Test
-    public void byCharFunction()
-    {
+    public void byCharFunction() {
         this.assertScalarFunctionParameter(Comparators.byCharFunction((CharFunction<Integer>) anObject -> (char) anObject.intValue()));
     }
 
     @Test
-    public void byDoubleFunction()
-    {
+    public void byDoubleFunction() {
         this.assertScalarFunctionParameter(Comparators.byDoubleFunction((DoubleFunction<Integer>) Integer::doubleValue));
     }
 
     @Test
-    public void byFloatFunction()
-    {
+    public void byFloatFunction() {
         this.assertScalarFunctionParameter(Comparators.byFloatFunction((FloatFunction<Integer>) Integer::floatValue));
     }
 
     @Test
-    public void byIntFunction()
-    {
+    public void byIntFunction() {
         this.assertScalarFunctionParameter(Comparators.byIntFunction((IntFunction<Integer>) Integer::intValue));
     }
 
     @Test
-    public void byLongFunction()
-    {
+    public void byLongFunction() {
         this.assertScalarFunctionParameter(Comparators.byLongFunction((LongFunction<Integer>) Integer::longValue));
     }
 
     @Test
-    public void byShortFunction()
-    {
+    public void byShortFunction() {
         this.assertScalarFunctionParameter(Comparators.byShortFunction((ShortFunction<Integer>) Integer::shortValue));
     }
 
-    private void assertScalarFunctionParameter(SerializableComparator<Integer> comparator)
-    {
+    private void assertScalarFunctionParameter(SerializableComparator<Integer> comparator) {
         Verify.assertPositive(comparator.compare(2, 1));
         Verify.assertPositive(comparator.compare(-1, -2));
         Verify.assertZero(comparator.compare(1, 1));
@@ -154,8 +131,7 @@ public class ComparatorsTest
     }
 
     @Test
-    public void safeNullsHigh()
-    {
+    public void safeNullsHigh() {
         SerializableComparator<Integer> comparator = Comparators.safeNullsHigh(Comparators.byFunction(Functions.getIntegerPassThru()));
         Assert.assertEquals(1, comparator.compare(null, 1));
         Assert.assertEquals(-1, comparator.compare(1, null));
@@ -164,31 +140,24 @@ public class ComparatorsTest
     }
 
     @Test
-    public void chainedComparator()
-    {
+    public void chainedComparator() {
         Assert.assertThrows(IllegalArgumentException.class, Comparators::chain);
-
         Comparator<Person> byName = Comparators.byFunction(Person.TO_FIRST);
         Comparator<Person> byAge = Comparators.byFunction(Person.TO_AGE);
-
         Person fred10 = new Person("Fred", "Smith", 10);
         Person jim10 = new Person("Jim", "Smith", 10);
         Person jim16 = new Person("Jim", "Smith", 16);
         Person sheila12 = new Person("Sheila", "Smith", 12);
         Person sheila14 = new Person("Sheila", "Smith", 14);
-
         MutableList<Person> people = mList(jim16, fred10, sheila14, sheila12, fred10, jim10);
-
         MutableList<Person> expectedNameThenAgeOrder = mList(fred10, fred10, jim10, jim16, sheila12, sheila14);
         MutableList<Person> expectedAgeThenNameOrder = mList(fred10, fred10, jim10, sheila12, sheila14, jim16);
-
         Verify.assertListsEqual(expectedNameThenAgeOrder, people.sortThis(Comparators.chain(byName, byAge)));
         Verify.assertListsEqual(expectedAgeThenNameOrder, people.sortThis(Comparators.chain(byAge, byName)));
     }
 
     @Test
-    public void fromFunctions()
-    {
+    public void fromFunctions() {
         Person raab = new Person(null, "Raab", 0);
         Person white = new Person(null, "White", 0);
         Comparator<Person> personComparator = Comparators.fromFunctions(Person.TO_LAST);
@@ -198,46 +167,39 @@ public class ComparatorsTest
     }
 
     @Test
-    public void fromFunctionsSafeNullsHigh()
-    {
+    public void fromFunctionsSafeNullsHigh() {
         Person bob = new Person("Bob", null, 0);
         Person dan = new Person("Dan", "Witwicky", 0);
         Person alice = new Person("Alice", "Liddell", 0);
         Person carol = new Person("Carol", null, 0);
-
         Comparator<Person> personComparator = Comparators.byFunctionNullsLast(Person::getLastName);
         Verify.assertNegative(personComparator.compare(alice, bob));
         Verify.assertPositive(personComparator.compare(carol, alice));
         Verify.assertNegative(personComparator.compare(alice, dan));
         Verify.assertZero(personComparator.compare(bob, carol));
-
         MutableList<Person> people = Lists.mutable.of(bob, dan, carol, alice);
         people.sortThis(personComparator);
         Assert.assertEquals(Lists.immutable.of(alice, dan, bob, carol), people);
     }
 
     @Test
-    public void fromFunctionsSafeNullsLow()
-    {
+    public void fromFunctionsSafeNullsLow() {
         Person bob = new Person("Bob", null, 0);
         Person dan = new Person("Dan", "Witwicky", 0);
         Person alice = new Person("Alice", "Liddell", 0);
         Person carol = new Person("Carol", null, 0);
-
         Comparator<Person> personComparator = Comparators.byFunctionNullsFirst(Person::getLastName);
         Verify.assertPositive(personComparator.compare(alice, bob));
         Verify.assertNegative(personComparator.compare(carol, alice));
         Verify.assertNegative(personComparator.compare(alice, dan));
         Verify.assertZero(personComparator.compare(bob, carol));
-
         MutableList<Person> people = Lists.mutable.of(bob, dan, carol, alice);
         people.sortThis(personComparator);
         Assert.assertEquals(Lists.immutable.of(bob, carol, alice, dan), people);
     }
 
     @Test
-    public void fromFunctionsWithTwoArgs()
-    {
+    public void fromFunctionsWithTwoArgs() {
         Person raab = new Person("Don", "Raab", 0);
         Person white = new Person("Barry", "White", 0);
         Person manilow = new Person("Barry", "Manilow", 0);
@@ -250,8 +212,7 @@ public class ComparatorsTest
     }
 
     @Test
-    public void fromFunctionsWithThreeArgs()
-    {
+    public void fromFunctionsWithThreeArgs() {
         Person raab = new Person("Don", "Raab", 21);
         Person white = new Person("Barry", "White", 16);
         Person manilow = new Person("Barry", "Manilow", 60);
@@ -267,115 +228,263 @@ public class ComparatorsTest
     }
 
     @Test
-    public void descendingCollectionSizeCompare()
-    {
-        MutableList<List<Integer>> list = FastList.newListWith(
-                Interval.oneTo(1),
-                Interval.oneTo(3),
-                Interval.oneTo(2));
+    public void descendingCollectionSizeCompare() {
+        MutableList<List<Integer>> list = FastList.newListWith(Interval.oneTo(1), Interval.oneTo(3), Interval.oneTo(2));
         list.sortThis(Comparators.descendingCollectionSizeComparator());
-        Assert.assertEquals(
-                FastList.<MutableList<Integer>>newListWith(
-                        FastList.newListWith(1, 2, 3),
-                        FastList.newListWith(1, 2),
-                        FastList.newListWith(1)),
-                list);
+        Assert.assertEquals(FastList.<MutableList<Integer>>newListWith(FastList.newListWith(1, 2, 3), FastList.newListWith(1, 2), FastList.newListWith(1)), list);
     }
 
     @Test
-    public void ascendingCollectionSizeCompare()
-    {
-        MutableList<List<Integer>> list = FastList.newListWith(
-                Interval.oneTo(1),
-                Interval.oneTo(3),
-                Interval.oneTo(2));
+    public void ascendingCollectionSizeCompare() {
+        MutableList<List<Integer>> list = FastList.newListWith(Interval.oneTo(1), Interval.oneTo(3), Interval.oneTo(2));
         list.sortThis(Comparators.ascendingCollectionSizeComparator());
-        Assert.assertEquals(
-                FastList.<MutableList<Integer>>newListWith(
-                        FastList.newListWith(1),
-                        FastList.newListWith(1, 2),
-                        FastList.newListWith(1, 2, 3)),
-                list);
+        Assert.assertEquals(FastList.<MutableList<Integer>>newListWith(FastList.newListWith(1), FastList.newListWith(1, 2), FastList.newListWith(1, 2, 3)), list);
     }
 
     @Test
-    public void nullSafeEquals()
-    {
+    public void nullSafeEquals() {
         Assert.assertTrue(Comparators.nullSafeEquals("Fred", "Fred"));
         Assert.assertTrue(Comparators.nullSafeEquals(null, null));
-
         Assert.assertFalse(Comparators.nullSafeEquals("Fred", "Jim"));
         Assert.assertFalse(Comparators.nullSafeEquals("Fred", null));
         Assert.assertFalse(Comparators.nullSafeEquals(null, "Jim"));
     }
 
     @Test
-    public void nullSafeCompare()
-    {
+    public void nullSafeCompare() {
         Assert.assertEquals(0, Comparators.nullSafeCompare(null, null));
         Assert.assertEquals(0, Comparators.nullSafeCompare("Sheila", "Sheila"));
-
         Assert.assertTrue(Comparators.nullSafeCompare("Fred", "Jim") < 0);
         Assert.assertTrue(Comparators.nullSafeCompare("Sheila", "Jim") > 0);
-
         Assert.assertEquals(1, Comparators.nullSafeCompare("Fred", null));
         Assert.assertEquals(-1, Comparators.nullSafeCompare(null, "Jim"));
     }
 
     @Test
-    public void byFirstOfPair()
-    {
+    public void byFirstOfPair() {
         MutableList<Pair<Integer, String>> list = FastList.newListWith(Tuples.pair(3, "B"), Tuples.pair(1, "C"), Tuples.pair(2, "A"));
         MutableList<Pair<Integer, String>> sorted = FastList.newListWith(Tuples.pair(1, "C"), Tuples.pair(2, "A"), Tuples.pair(3, "B"));
         Verify.assertListsEqual(sorted, list.sortThis(Comparators.byFirstOfPair(Integer::compareTo)));
     }
 
     @Test
-    public void bySecondOfPair()
-    {
+    public void bySecondOfPair() {
         MutableList<Pair<Integer, String>> list = FastList.newListWith(Tuples.pair(3, "B"), Tuples.pair(1, "C"), Tuples.pair(2, "A"));
         MutableList<Pair<Integer, String>> sorted = FastList.newListWith(Tuples.pair(2, "A"), Tuples.pair(3, "B"), Tuples.pair(1, "C"));
         Verify.assertListsEqual(sorted, list.sortThis(Comparators.bySecondOfPair(String::compareTo)));
     }
 
     @Test
-    public void specializedComparator()
-    {
+    public void specializedComparator() {
         OneOfEach february = new OneOfEach(Timestamp.valueOf("2004-02-12 22:20:30"));
         OneOfEach april = new OneOfEach(Timestamp.valueOf("2004-04-12 22:20:30"));
         OneOfEach december = new OneOfEach(Timestamp.valueOf("2004-12-12 22:20:30"));
-
         Comparator<OneOfEach> comparator = Comparators.byFunction(OneOfEach.TO_DATE_VALUE, new FancyDateComparator());
-
-        Assert.assertEquals(
-                iList(april, december, february),
-                iList(february, april, december).toSortedList(comparator));
+        Assert.assertEquals(iList(april, december, february), iList(february, april, december).toSortedList(comparator));
     }
 
-    public static class OneOfEach
-    {
+    public static class OneOfEach {
+
         public static final Function<OneOfEach, Date> TO_DATE_VALUE = oneOfEach -> new Date(oneOfEach.dateValue.getTime());
+
         private Date dateValue = Timestamp.valueOf("2004-12-12 22:20:30");
 
-        public OneOfEach(Date dateValue)
-        {
+        public OneOfEach(Date dateValue) {
             this.dateValue = new Date(dateValue.getTime());
         }
     }
 
-    public static class FancyDateComparator implements Comparator<Date>, Serializable
-    {
+    public static class FancyDateComparator implements Comparator<Date>, Serializable {
+
         private static final String FANCY_DATE_FORMAT = "EEE, MMM d, ''yy";
+
         private static final long serialVersionUID = 1L;
 
         private final DateFormat formatter = new SimpleDateFormat(FANCY_DATE_FORMAT, Locale.ENGLISH);
 
         @Override
-        public int compare(Date o1, Date o2)
-        {
+        public int compare(Date o1, Date o2) {
             String date1 = this.formatter.format(o1);
             String date2 = this.formatter.format(o2);
             return date1.compareTo(date2);
+        }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_naturalOrder() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::naturalOrder, this.description("naturalOrder"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseNaturalOrder() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseNaturalOrder, this.description("reverseNaturalOrder"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverse() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverse, this.description("reverse"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_safeNullsLow() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::safeNullsLow, this.description("safeNullsLow"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byBooleanFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byBooleanFunction, this.description("byBooleanFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byByteFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byByteFunction, this.description("byByteFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byCharFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byCharFunction, this.description("byCharFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byDoubleFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byDoubleFunction, this.description("byDoubleFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byFloatFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byFloatFunction, this.description("byFloatFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byIntFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byIntFunction, this.description("byIntFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byLongFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byLongFunction, this.description("byLongFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byShortFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byShortFunction, this.description("byShortFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_safeNullsHigh() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::safeNullsHigh, this.description("safeNullsHigh"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chainedComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chainedComparator, this.description("chainedComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromFunctions() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromFunctions, this.description("fromFunctions"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromFunctionsSafeNullsHigh() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromFunctionsSafeNullsHigh, this.description("fromFunctionsSafeNullsHigh"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromFunctionsSafeNullsLow() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromFunctionsSafeNullsLow, this.description("fromFunctionsSafeNullsLow"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromFunctionsWithTwoArgs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromFunctionsWithTwoArgs, this.description("fromFunctionsWithTwoArgs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromFunctionsWithThreeArgs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromFunctionsWithThreeArgs, this.description("fromFunctionsWithThreeArgs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_descendingCollectionSizeCompare() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::descendingCollectionSizeCompare, this.description("descendingCollectionSizeCompare"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ascendingCollectionSizeCompare() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ascendingCollectionSizeCompare, this.description("ascendingCollectionSizeCompare"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_nullSafeEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::nullSafeEquals, this.description("nullSafeEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_nullSafeCompare() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::nullSafeCompare, this.description("nullSafeCompare"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_byFirstOfPair() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::byFirstOfPair, this.description("byFirstOfPair"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_bySecondOfPair() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::bySecondOfPair, this.description("bySecondOfPair"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_specializedComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::specializedComparator, this.description("specializedComparator"));
+        }
+
+        private ComparatorsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ComparatorsTest();
+        }
+
+        @java.lang.Override
+        public ComparatorsTest implementation() {
+            return this.implementation;
         }
     }
 }

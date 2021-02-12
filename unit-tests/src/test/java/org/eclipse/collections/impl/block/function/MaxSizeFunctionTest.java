@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function;
 
 import org.eclipse.collections.impl.factory.Maps;
@@ -18,19 +17,45 @@ import org.junit.Test;
 /**
  * Junit test for {@link MaxSizeFunction}.
  */
-public class MaxSizeFunctionTest
-{
+public class MaxSizeFunctionTest {
+
     @Test
-    public void maxSizeCollection()
-    {
+    public void maxSizeCollection() {
         Assert.assertEquals(Integer.valueOf(3), MaxSizeFunction.COLLECTION.value(2, FastList.newListWith(1, 2, 3)));
         Assert.assertEquals(Integer.valueOf(3), MaxSizeFunction.COLLECTION.value(3, FastList.newListWith(1, 2)));
     }
 
     @Test
-    public void maxSizeMap()
-    {
+    public void maxSizeMap() {
         Assert.assertEquals(Integer.valueOf(3), MaxSizeFunction.MAP.value(2, Maps.mutable.of(1, 1, 2, 2, 3, 3)));
         Assert.assertEquals(Integer.valueOf(3), MaxSizeFunction.MAP.value(3, Maps.mutable.of(1, 1, 2, 2)));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxSizeCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxSizeCollection, this.description("maxSizeCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxSizeMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxSizeMap, this.description("maxSizeMap"));
+        }
+
+        private MaxSizeFunctionTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MaxSizeFunctionTest();
+        }
+
+        @java.lang.Override
+        public MaxSizeFunctionTest implementation() {
+            return this.implementation;
+        }
     }
 }

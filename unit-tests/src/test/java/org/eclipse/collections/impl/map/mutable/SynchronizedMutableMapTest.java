@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable;
 
 import org.eclipse.collections.api.map.MutableMap;
@@ -15,35 +14,46 @@ import org.eclipse.collections.api.map.MutableMap;
 /**
  * JUnit test for {@link SynchronizedMutableMap}.
  */
-public class SynchronizedMutableMapTest extends MutableMapTestCase
-{
+public class SynchronizedMutableMapTest extends MutableMapTestCase {
+
     @Override
-    public <K, V> MutableMap<K, V> newMap()
-    {
+    public <K, V> MutableMap<K, V> newMap() {
         return new SynchronizedMutableMap<>(UnifiedMap.newMap());
     }
 
     @Override
-    public <K, V> MutableMap<K, V> newMapWithKeyValue(K key, V value)
-    {
+    public <K, V> MutableMap<K, V> newMapWithKeyValue(K key, V value) {
         return new SynchronizedMutableMap<>(UnifiedMap.newWithKeysValues(key, value));
     }
 
     @Override
-    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2) {
         return new SynchronizedMutableMap<>(UnifiedMap.newWithKeysValues(key1, value1, key2, value2));
     }
 
     @Override
-    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3)
-    {
+    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         return new SynchronizedMutableMap<>(UnifiedMap.newWithKeysValues(key1, value1, key2, value2, key3, value3));
     }
 
     @Override
-    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
+    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         return new SynchronizedMutableMap<>(UnifiedMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private SynchronizedMutableMapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedMutableMapTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedMutableMapTest implementation() {
+            return this.implementation;
+        }
     }
 }

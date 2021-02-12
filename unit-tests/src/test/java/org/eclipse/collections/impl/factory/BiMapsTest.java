@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import java.util.Map;
-
 import org.eclipse.collections.api.bimap.ImmutableBiMap;
 import org.eclipse.collections.api.bimap.MutableBiMap;
 import org.eclipse.collections.api.factory.bimap.ImmutableBiMapFactory;
@@ -23,11 +21,10 @@ import org.eclipse.collections.impl.tuple.Tuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BiMapsTest
-{
+public class BiMapsTest {
+
     @Test
-    public void immutable()
-    {
+    public void immutable() {
         ImmutableBiMapFactory factory = BiMaps.immutable;
         Assert.assertEquals(HashBiMap.newMap(), factory.of());
         Verify.assertInstanceOf(ImmutableBiMap.class, factory.of());
@@ -55,8 +52,7 @@ public class BiMapsTest
     }
 
     @Test
-    public void mutable()
-    {
+    public void mutable() {
         MutableBiMapFactory factory = BiMaps.mutable;
         Assert.assertEquals(HashBiMap.newMap(), factory.of());
         Verify.assertInstanceOf(MutableBiMap.class, factory.of());
@@ -71,8 +67,41 @@ public class BiMapsTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(BiMaps.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutable, this.description("immutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutable, this.description("mutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private BiMapsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BiMapsTest();
+        }
+
+        @java.lang.Override
+        public BiMapsTest implementation() {
+            return this.implementation;
+        }
     }
 }

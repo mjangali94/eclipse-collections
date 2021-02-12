@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function;
 
 import org.eclipse.collections.api.list.MutableList;
@@ -18,45 +17,64 @@ import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class IfFunctionTest
-{
+public class IfFunctionTest {
+
     @Test
-    public void iterate()
-    {
+    public void iterate() {
         UnifiedMap<Integer, Integer> map = UnifiedMap.newMap(5);
         map.put(1, 1);
         map.put(2, 2);
         map.put(3, 3);
         map.put(4, 4);
         map.put(5, 5);
-
-        IfFunction<Integer, Integer> function = new IfFunction<>(
-                IntegerPredicates.isEven(),
-                (Integer ignored) -> 1,
-                (Integer ignored) -> 0);
+        IfFunction<Integer, Integer> function = new IfFunction<>(IntegerPredicates.isEven(), (Integer ignored) -> 1, (Integer ignored) -> 0);
         MutableList<Integer> result = map.valuesView().collect(function).toList();
-
         Assert.assertEquals(FastList.newListWith(0, 1, 0, 1, 0), result);
     }
 
     @Test
-    public void testIf()
-    {
-        IfFunction<Integer, Boolean> function = new IfFunction<>(
-                Predicates.greaterThan(5),
-                (Integer ignored) -> true);
-
+    public void testIf() {
+        IfFunction<Integer, Boolean> function = new IfFunction<>(Predicates.greaterThan(5), (Integer ignored) -> true);
         Assert.assertTrue(function.valueOf(10));
     }
 
     @Test
-    public void ifElse()
-    {
-        IfFunction<Integer, Boolean> function = new IfFunction<>(
-                Predicates.greaterThan(5),
-                (Integer ignored) -> true,
-                (Integer ignored) -> false);
-
+    public void ifElse() {
+        IfFunction<Integer, Boolean> function = new IfFunction<>(Predicates.greaterThan(5), (Integer ignored) -> true, (Integer ignored) -> false);
         Assert.assertFalse(function.valueOf(1));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterate, this.description("iterate"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testIf, this.description("testIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ifElse() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ifElse, this.description("ifElse"));
+        }
+
+        private IfFunctionTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new IfFunctionTest();
+        }
+
+        @java.lang.Override
+        public IfFunctionTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set;
 
 import org.eclipse.collections.api.set.MutableSet;
@@ -15,35 +14,58 @@ import org.eclipse.collections.api.set.ParallelUnsortedSetIterable;
 import org.eclipse.collections.impl.factory.Sets;
 import org.junit.Test;
 
-public class ImmutableUnifiedSetParallelSetIterableTest extends ParallelUnsortedSetIterableTestCase
-{
+public class ImmutableUnifiedSetParallelSetIterableTest extends ParallelUnsortedSetIterableTestCase {
+
     @Override
-    protected ParallelUnsortedSetIterable<Integer> classUnderTest()
-    {
+    protected ParallelUnsortedSetIterable<Integer> classUnderTest() {
         return this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
     }
 
     @Override
-    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements)
-    {
+    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements) {
         return Sets.immutable.with(littleElements).asParallel(this.executorService, this.batchSize);
     }
 
     @Override
-    protected MutableSet<Integer> getExpectedWith(Integer... littleElements)
-    {
+    protected MutableSet<Integer> getExpectedWith(Integer... littleElements) {
         return Sets.immutable.with(littleElements).toSet();
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void asParallel_small_batch()
-    {
+    public void asParallel_small_batch() {
         Sets.immutable.with(1, 2, 3, 4).asParallel(this.executorService, 0);
     }
 
     @Test(expected = NullPointerException.class)
-    public void asParallel_null_executorService()
-    {
+    public void asParallel_null_executorService() {
         Sets.immutable.with(1, 2, 3, 4).asParallel(null, 2);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asParallel_small_batch() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::asParallel_small_batch, this.description("asParallel_small_batch"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asParallel_null_executorService() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::asParallel_null_executorService, this.description("asParallel_null_executorService"), java.lang.NullPointerException.class);
+        }
+
+        private ImmutableUnifiedSetParallelSetIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableUnifiedSetParallelSetIterableTest();
+        }
+
+        @java.lang.Override
+        public ImmutableUnifiedSetParallelSetIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function;
 
 import org.eclipse.collections.impl.factory.Maps;
@@ -18,19 +17,45 @@ import org.junit.Test;
 /**
  * Junit test for {@link MinSizeFunction}.
  */
-public class MinSizeFunctionTest
-{
+public class MinSizeFunctionTest {
+
     @Test
-    public void minSizeCollection()
-    {
+    public void minSizeCollection() {
         Assert.assertEquals(Integer.valueOf(2), MinSizeFunction.COLLECTION.value(2, FastList.newListWith(1, 2, 3)));
         Assert.assertEquals(Integer.valueOf(2), MinSizeFunction.COLLECTION.value(3, FastList.newListWith(1, 2)));
     }
 
     @Test
-    public void minSizeMap()
-    {
+    public void minSizeMap() {
         Assert.assertEquals(Integer.valueOf(2), MinSizeFunction.MAP.value(2, Maps.mutable.of(1, 1, 2, 2, 3, 3)));
         Assert.assertEquals(Integer.valueOf(2), MinSizeFunction.MAP.value(3, Maps.mutable.of(1, 1, 2, 2)));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minSizeCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minSizeCollection, this.description("minSizeCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minSizeMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minSizeMap, this.description("minSizeMap"));
+        }
+
+        private MinSizeFunctionTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MinSizeFunctionTest();
+        }
+
+        @java.lang.Override
+        public MinSizeFunctionTest implementation() {
+            return this.implementation;
+        }
     }
 }

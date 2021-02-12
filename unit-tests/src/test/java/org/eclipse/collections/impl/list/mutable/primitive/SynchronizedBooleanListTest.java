@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable.primitive;
 
 import org.eclipse.collections.api.list.primitive.MutableBooleanList;
@@ -17,24 +16,21 @@ import org.junit.Test;
 /**
  * JUnit test for {@link SynchronizedBooleanList}.
  */
-public class SynchronizedBooleanListTest extends AbstractBooleanListTestCase
-{
+public class SynchronizedBooleanListTest extends AbstractBooleanListTestCase {
+
     @Override
-    protected SynchronizedBooleanList classUnderTest()
-    {
+    protected SynchronizedBooleanList classUnderTest() {
         return new SynchronizedBooleanList(BooleanArrayList.newListWith(true, false, true));
     }
 
     @Override
-    protected SynchronizedBooleanList newWith(boolean... elements)
-    {
+    protected SynchronizedBooleanList newWith(boolean... elements) {
         return new SynchronizedBooleanList(BooleanArrayList.newListWith(elements));
     }
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         super.asSynchronized();
         SynchronizedBooleanList list = this.classUnderTest();
         MutableBooleanList listWithLockObject = new SynchronizedBooleanList(BooleanArrayList.newListWith(true, false, true), new Object()).asSynchronized();
@@ -42,5 +38,27 @@ public class SynchronizedBooleanListTest extends AbstractBooleanListTestCase
         Assert.assertSame(listWithLockObject, listWithLockObject.asSynchronized());
         Assert.assertSame(list, list.asSynchronized());
         Assert.assertEquals(list, list.asSynchronized());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        private SynchronizedBooleanListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedBooleanListTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedBooleanListTest implementation() {
+            return this.implementation;
+        }
     }
 }

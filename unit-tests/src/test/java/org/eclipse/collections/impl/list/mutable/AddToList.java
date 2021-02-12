@@ -7,26 +7,23 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import java.util.List;
-
 import org.eclipse.collections.api.block.procedure.primitive.ObjectIntProcedure;
 
-public final class AddToList implements ObjectIntProcedure<Integer>
-{
+public final class AddToList implements ObjectIntProcedure<Integer> {
+
     private static final long serialVersionUID = 1L;
+
     private final List<Integer> result;
 
-    public AddToList(List<Integer> result)
-    {
+    public AddToList(List<Integer> result) {
         this.result = result;
     }
 
     @Override
-    public void value(Integer each, int index)
-    {
+    public void value(Integer each, int index) {
         this.result.add(each);
     }
 }

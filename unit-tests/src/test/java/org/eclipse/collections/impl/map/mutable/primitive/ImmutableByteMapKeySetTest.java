@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable.primitive;
 
 import org.eclipse.collections.api.set.primitive.ByteSet;
@@ -20,16 +19,13 @@ import org.junit.Test;
 /**
  * JUnit test for {@link ImmutableByteSet} created from the freeze() method.
  */
-public class ImmutableByteMapKeySetTest extends AbstractImmutableByteHashSetTestCase
-{
-    protected static ByteArrayList generateCollisions()
-    {
+public class ImmutableByteMapKeySetTest extends AbstractImmutableByteHashSetTestCase {
+
+    protected static ByteArrayList generateCollisions() {
         ByteArrayList collisions = new ByteArrayList();
         ImmutableByteMapKeySet set = (ImmutableByteMapKeySet) new ByteShortHashMap().keySet().freeze();
-        for (byte i = 2; collisions.size() <= 10; i++)
-        {
-            if (set.spreadAndMask(i) == set.spreadAndMask((byte) 2))
-            {
+        for (byte i = 2; collisions.size() <= 10; i++) {
+            if (set.spreadAndMask(i) == set.spreadAndMask((byte) 2)) {
                 collisions.add(i);
             }
         }
@@ -37,17 +33,14 @@ public class ImmutableByteMapKeySetTest extends AbstractImmutableByteHashSetTest
     }
 
     @Override
-    protected ImmutableByteSet classUnderTest()
-    {
+    protected ImmutableByteSet classUnderTest() {
         return (ImmutableByteSet) ByteShortHashMap.newWithKeysValues((byte) 1, (short) -1, (byte) 2, (short) 2, (byte) 3, (short) 4).keySet().freeze();
     }
 
     @Override
-    protected ImmutableByteSet newWith(byte... elements)
-    {
+    protected ImmutableByteSet newWith(byte... elements) {
         ByteShortHashMap byteByteHashMap = new ByteShortHashMap();
-        for (byte element : elements)
-        {
+        for (byte element : elements) {
             byteByteHashMap.put(element, element);
         }
         return (ImmutableByteSet) byteByteHashMap.keySet().freeze();
@@ -55,8 +48,7 @@ public class ImmutableByteMapKeySetTest extends AbstractImmutableByteHashSetTest
 
     @Test
     @Override
-    public void contains()
-    {
+    public void contains() {
         super.contains();
         byte collision1 = ImmutableByteMapKeySetTest.generateCollisions().getFirst();
         byte collision2 = ImmutableByteMapKeySetTest.generateCollisions().get(1);
@@ -65,5 +57,27 @@ public class ImmutableByteMapKeySetTest extends AbstractImmutableByteHashSetTest
         ByteSet byteSet = byteShortHashMap.keySet().freeze();
         Assert.assertTrue(byteSet.contains(collision1));
         Assert.assertFalse(byteSet.contains(collision2));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        private ImmutableByteMapKeySetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableByteMapKeySetTest();
+        }
+
+        @java.lang.Override
+        public ImmutableByteMapKeySetTest implementation() {
+            return this.implementation;
+        }
     }
 }

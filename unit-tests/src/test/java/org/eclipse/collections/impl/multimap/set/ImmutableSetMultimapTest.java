@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap.set;
 
 import org.eclipse.collections.api.collection.MutableCollection;
@@ -28,29 +27,25 @@ import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
-{
+public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase {
+
     @Override
-    protected <K, V> ImmutableSetMultimap<K, V> classUnderTest()
-    {
+    protected <K, V> ImmutableSetMultimap<K, V> classUnderTest() {
         return UnifiedSetMultimap.<K, V>newMultimap().toImmutable();
     }
 
     @Override
-    protected MutableCollection<String> mutableCollection()
-    {
+    protected MutableCollection<String> mutableCollection() {
         return UnifiedSet.newSet();
     }
 
     @Override
-    public void allowDuplicates()
-    {
-        // Sets do not allow duplicates
+    public void allowDuplicates() {
+    // Sets do not allow duplicates
     }
 
     @Test
-    public void forEachKeyMultiValue()
-    {
+    public void forEachKeyMultiValue() {
         MutableSet<Pair<String, Iterable<Integer>>> collection = UnifiedSet.newSet();
         MutableSetMultimap<String, Integer> multimap = UnifiedSetMultimap.newMultimap();
         multimap.put("Two", 2);
@@ -64,13 +59,8 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
 
     @Override
     @Test
-    public void flip()
-    {
-        ImmutableSetMultimap<String, Integer> multimap = this.<String, Integer>classUnderTest()
-                .newWith("Less than 2", 1)
-                .newWith("Less than 3", 1)
-                .newWith("Less than 3", 2)
-                .newWith("Less than 3", 2);
+    public void flip() {
+        ImmutableSetMultimap<String, Integer> multimap = this.<String, Integer>classUnderTest().newWith("Less than 2", 1).newWith("Less than 3", 1).newWith("Less than 3", 2).newWith("Less than 3", 2);
         ImmutableSetMultimap<Integer, String> flipped = multimap.flip();
         Assert.assertEquals(Sets.immutable.with("Less than 3"), flipped.get(2));
         Assert.assertEquals(Sets.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
@@ -78,8 +68,7 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
 
     @Override
     @Test
-    public void selectKeysValues()
-    {
+    public void selectKeysValues() {
         MutableSetMultimap<String, Integer> mutableMultimap = UnifiedSetMultimap.newMultimap();
         mutableMultimap.putAll("One", FastList.newListWith(1, 1, 2, 3, 4));
         mutableMultimap.putAll("Two", FastList.newListWith(2, 2, 3, 4, 5));
@@ -93,8 +82,7 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
 
     @Override
     @Test
-    public void rejectKeysValues()
-    {
+    public void rejectKeysValues() {
         MutableSetMultimap<String, Integer> mutableMultimap = UnifiedSetMultimap.newMultimap();
         mutableMultimap.putAll("One", FastList.newListWith(1, 1, 2, 3, 4));
         mutableMultimap.putAll("Two", FastList.newListWith(2, 2, 3, 4, 5));
@@ -108,8 +96,7 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
 
     @Override
     @Test
-    public void selectKeysMultiValues()
-    {
+    public void selectKeysMultiValues() {
         MutableSetMultimap<Integer, String> mutableMultimap = UnifiedSetMultimap.newMultimap();
         mutableMultimap.putAll(1, FastList.newListWith("1", "3", "4"));
         mutableMultimap.putAll(2, FastList.newListWith("2", "3", "4", "5", "2"));
@@ -125,8 +112,7 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
 
     @Override
     @Test
-    public void rejectKeysMultiValues()
-    {
+    public void rejectKeysMultiValues() {
         MutableSetMultimap<Integer, String> mutableMultimap = UnifiedSetMultimap.newMultimap();
         mutableMultimap.putAll(1, FastList.newListWith("1", "2", "3", "4", "5", "1"));
         mutableMultimap.putAll(2, FastList.newListWith("2", "3", "4", "5", "1"));
@@ -142,8 +128,7 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
 
     @Override
     @Test
-    public void collectKeysValues()
-    {
+    public void collectKeysValues() {
         MutableSetMultimap<String, Integer> mutableMultimap = UnifiedSetMultimap.newMultimap();
         mutableMultimap.putAll("1", FastList.newListWith(4, 3, 2, 1));
         mutableMultimap.putAll("2", FastList.newListWith(5, 4, 3, 2));
@@ -154,7 +139,6 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
         expectedMultimap.putAll(2, FastList.newListWith("2Value", "3Value", "4Value", "5Value"));
         ImmutableBagMultimap<Integer, String> expectedImmutableMultimap = expectedMultimap.toImmutable();
         Verify.assertBagMultimapsEqual(expectedImmutableMultimap, collectedMultimap);
-
         ImmutableBagMultimap<Integer, String> collectedMultimap2 = immutableMap.collectKeysValues((key, value) -> Tuples.pair(1, value + "Value"));
         MutableBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("1Value", "2Value", "3Value", "4Value"));
@@ -165,10 +149,8 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
 
     @Override
     @Test
-    public void collectKeyMultiValues()
-    {
+    public void collectKeyMultiValues() {
         super.collectKeyMultiValues();
-
         MutableSetMultimap<String, Integer> mutableMultimap = UnifiedSetMultimap.newMultimap();
         mutableMultimap.putAll("1", FastList.newListWith(4, 3, 2, 1));
         mutableMultimap.putAll("2", FastList.newListWith(5, 4, 3, 2));
@@ -179,7 +161,6 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
         expectedMultimap.putAll(2, FastList.newListWith("2Value", "3Value", "4Value", "5Value"));
         ImmutableBagMultimap<Integer, String> expectedImmutableMultimap = expectedMultimap.toImmutable();
         Verify.assertBagMultimapsEqual(expectedImmutableMultimap, collectedMultimap);
-
         ImmutableBagMultimap<Integer, String> collectedMultimap2 = immutableMap.collectKeyMultiValues(key -> 1, value -> value + "Value");
         MutableBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("1Value", "2Value", "3Value", "4Value"));
@@ -190,8 +171,7 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
 
     @Override
     @Test
-    public void collectValues()
-    {
+    public void collectValues() {
         MutableSetMultimap<String, Integer> mutableMultimap = UnifiedSetMultimap.newMultimap();
         mutableMultimap.putAll("1", FastList.newListWith(1, 2, 3, 4));
         mutableMultimap.putAll("2", FastList.newListWith(2, 3, 4, 5));
@@ -202,5 +182,75 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
         expectedMultimap.putAll("2", FastList.newListWith("2Value", "3Value", "4Value", "5Value"));
         ImmutableBagMultimap<String, String> expectedImmutableMultimap = expectedMultimap.toImmutable();
         Verify.assertBagMultimapsEqual(expectedImmutableMultimap, collectedMultimap);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKeyMultiValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachKeyMultiValue, this.description("forEachKeyMultiValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flip, this.description("flip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectKeysValues, this.description("selectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectKeysValues, this.description("rejectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectKeysMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectKeysMultiValues, this.description("selectKeysMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectKeysMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectKeysMultiValues, this.description("rejectKeysMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectKeysValues, this.description("collectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectKeyMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectKeyMultiValues, this.description("collectKeyMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectValues, this.description("collectValues"));
+        }
+
+        private ImmutableSetMultimapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableSetMultimapTest();
+        }
+
+        @java.lang.Override
+        public ImmutableSetMultimapTest implementation() {
+            return this.implementation;
+        }
     }
 }

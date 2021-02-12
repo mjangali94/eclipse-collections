@@ -7,14 +7,12 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.sorted.mutable;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.SortedSet;
-
 import org.eclipse.collections.api.LazyIterable;
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
@@ -55,8 +53,8 @@ import org.junit.Test;
 /**
  * Abstract JUnit test for {@link MutableSortedSet}s.
  */
-public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCase
-{
+public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCase {
+
     @Override
     protected abstract <T> MutableSortedSet<T> newWith(T... littleElements);
 
@@ -64,62 +62,50 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         super.toImmutable();
         Verify.assertInstanceOf(ImmutableSortedSet.class, this.newWith().toImmutable());
     }
 
     @Override
     @Test
-    public void addAll()
-    {
+    public void addAll() {
         super.addAll();
-
         TreeSortedSet<Integer> expected = TreeSortedSet.newSet(Lists.mutable.with(1, 2, 3));
         MutableSortedSet<Integer> collection = this.newWith();
-
         Assert.assertTrue(collection.addAll(Lists.mutable.with(3, 2, 1)));
         Assert.assertEquals(expected, collection);
-
         Assert.assertFalse(collection.addAll(Lists.mutable.with(1, 2, 3)));
         Assert.assertEquals(expected, collection);
     }
 
     @Override
     @Test
-    public void addAllIterable()
-    {
+    public void addAllIterable() {
         super.addAllIterable();
-
         TreeSortedSet<Integer> expected = TreeSortedSet.newSet(Lists.mutable.with(1, 2, 3));
         MutableSortedSet<Integer> collection = this.newWith();
-
         Assert.assertTrue(collection.addAllIterable(Lists.mutable.with(1, 2, 3)));
         Assert.assertEquals(expected, collection);
-
         Assert.assertFalse(collection.addAllIterable(Lists.mutable.with(1, 2, 3)));
         Assert.assertEquals(expected, collection);
     }
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals("[1, 2]", this.newWith(1, 2).toString());
     }
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals(this.newWith(1, 2, 3).toString(), '[' + this.newWith(1, 2, 3).makeString() + ']');
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         MutableCollection<Integer> mutableCollection = this.newWith(1, 2, 3);
         Appendable builder = new StringBuilder();
         mutableCollection.appendString(builder);
@@ -128,8 +114,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void removeIf()
-    {
+    public void removeIf() {
         MutableSortedSet<Integer> objects = this.newWith(4, 1, 3, 2);
         Assert.assertTrue(objects.removeIf(Predicates.equal(2)));
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 3, 4), objects);
@@ -137,8 +122,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         super.equalsAndHashCode();
         MutableSortedSet<Integer> sortedSet = this.newWith(1, 2, 3, 4);
         MutableSet<Integer> hashSet = UnifiedSet.newSet(sortedSet);
@@ -147,10 +131,8 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void tap()
-    {
+    public void tap() {
         super.tap();
-
         MutableList<Integer> tapRevResult = Lists.mutable.of();
         MutableSortedSet<Integer> revInt = this.newWith(Collections.reverseOrder(), 1, 2, 4, 3, 5);
         Assert.assertSame(revInt, revInt.tap(tapRevResult::add));
@@ -158,23 +140,19 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void corresponds()
-    {
+    public void corresponds() {
         MutableSortedSet<Integer> integers1 = this.newWith(1, 2, 3, 4);
         Assert.assertFalse(integers1.corresponds(this.newWith(1, 2, 3, 4, 5), Predicates2.alwaysTrue()));
-
         MutableList<Integer> integers2 = integers1.collect(integer -> integer + 1, FastList.newList());
         Assert.assertTrue(integers1.corresponds(integers2, Predicates2.lessThan()));
         Assert.assertFalse(integers1.corresponds(integers2, Predicates2.greaterThan()));
-
         MutableSortedSet<Integer> integers3 = this.newWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1);
         Assert.assertFalse(integers3.corresponds(integers1, Predicates2.equal()));
     }
 
     @Override
     @Test
-    public void select()
-    {
+    public void select() {
         super.select();
         MutableSortedSet<Integer> integers = this.newWith(3, 2, 1, 4, 5);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(3, 2, 1), integers.select(Predicates.lessThanOrEqualTo(3)));
@@ -185,26 +163,21 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void selectWith()
-    {
+    public void selectWith() {
         super.selectWith();
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3), this.newWith(3, 1, 2, 5, 3).selectWith(Predicates2.lessThan(), 4));
     }
 
     @Override
     @Test
-    public void selectWith_target()
-    {
+    public void selectWith_target() {
         super.selectWith_target();
-        Verify.assertSortedSetsEqual(
-                TreeSortedSet.newSetWith(1, 2, 3),
-                this.newWith(3, 1, 2, 5, 3).selectWith(Predicates2.lessThan(), 4, TreeSortedSet.newSet()));
+        Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3), this.newWith(3, 1, 2, 5, 3).selectWith(Predicates2.lessThan(), 4, TreeSortedSet.newSet()));
     }
 
     @Override
     @Test
-    public void reject()
-    {
+    public void reject() {
         super.reject();
         MutableSortedSet<Integer> integers = this.newWith(4, 2, 1, 3, 5, 6);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3, 4), integers.reject(Predicates.greaterThan(4)));
@@ -215,26 +188,21 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void rejectWith()
-    {
+    public void rejectWith() {
         super.rejectWith();
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3), this.newWith(3, 1, 2, 5, 4).rejectWith(Predicates2.greaterThan(), 3));
     }
 
     @Override
     @Test
-    public void rejectWith_target()
-    {
+    public void rejectWith_target() {
         super.rejectWith();
-        Verify.assertSortedSetsEqual(
-                TreeSortedSet.newSetWith(1, 2, 3),
-                this.newWith(3, 1, 2, 5, 4).rejectWith(Predicates2.greaterThan(), 3, TreeSortedSet.newSet()));
+        Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3), this.newWith(3, 1, 2, 5, 4).rejectWith(Predicates2.greaterThan(), 3, TreeSortedSet.newSet()));
     }
 
     @Override
     @Test
-    public void partition()
-    {
+    public void partition() {
         MutableSortedSet<Integer> integers = this.newWith(Comparators.reverseNaturalOrder(), 4, 2, 1, 3, 5, 6);
         PartitionMutableSortedSet<Integer> partition = integers.partition(IntegerPredicates.isEven());
         Verify.assertSortedSetsEqual(this.newWith(Comparators.reverseNaturalOrder(), 6, 4, 2), partition.getSelected());
@@ -245,8 +213,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void partitionWith()
-    {
+    public void partitionWith() {
         MutableSortedSet<Integer> integers = this.newWith(Comparators.reverseNaturalOrder(), 4, 2, 1, 3, 5, 6);
         PartitionMutableSortedSet<Integer> partition = integers.partitionWith(Predicates2.in(), integers.select(IntegerPredicates.isEven()));
         Verify.assertSortedSetsEqual(this.newWith(Comparators.reverseNaturalOrder(), 6, 4, 2), partition.getSelected());
@@ -256,8 +223,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void partitionWhile()
-    {
+    public void partitionWhile() {
         MutableSortedSet<Integer> integers = this.newWith(Comparators.reverseNaturalOrder(), 4, 2, 1, 3, 5, 6);
         PartitionMutableSortedSet<Integer> partition = integers.partitionWhile(Predicates.greaterThan(3));
         Verify.assertSortedSetsEqual(this.newWith(Comparators.reverseNaturalOrder(), 6, 5, 4), partition.getSelected());
@@ -267,8 +233,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void takeWhile()
-    {
+    public void takeWhile() {
         MutableSortedSet<Integer> integers = this.newWith(Comparators.reverseNaturalOrder(), 4, 2, 1, 3, 5, 6);
         MutableSortedSet<Integer> take = integers.takeWhile(Predicates.greaterThan(3));
         Verify.assertSortedSetsEqual(this.newWith(Comparators.reverseNaturalOrder(), 6, 5, 4), take);
@@ -276,8 +241,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void dropWhile()
-    {
+    public void dropWhile() {
         MutableSortedSet<Integer> integers = this.newWith(Comparators.reverseNaturalOrder(), 4, 2, 1, 3, 5, 6);
         MutableSortedSet<Integer> drop = integers.dropWhile(Predicates.greaterThan(3));
         Verify.assertSortedSetsEqual(this.newWith(Comparators.reverseNaturalOrder(), 3, 2, 1), drop);
@@ -285,8 +249,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         MutableSortedSet<Integer> integers = this.newWith(Comparators.reverseNaturalOrder(), 4, 2, 1, 3, 5, 6);
         MutableSortedSet<Integer> distinct = integers.distinct();
         Assert.assertEquals(integers, distinct);
@@ -295,8 +258,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void collect()
-    {
+    public void collect() {
         super.collect();
         MutableSortedSet<Integer> integers = this.newWith(4, 3, 1, 6, 5, 2);
         Verify.assertListsEqual(Lists.mutable.with("1", "2", "3", "4", "5", "6"), integers.collect(String::valueOf));
@@ -308,75 +270,52 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
      * @since 9.1.
      */
     @Test
-    public void collectWithIndex()
-    {
+    public void collectWithIndex() {
         MutableSortedSet<Integer> integers = this.newWith(4, 5, 6);
-        MutableList<ObjectIntPair<Integer>> expected =
-                Lists.mutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(4), 0),
-                        PrimitiveTuples.pair(Integer.valueOf(5), 1),
-                        PrimitiveTuples.pair(Integer.valueOf(6), 2));
-        Verify.assertListsEqual(
-                expected,
-                integers.collectWithIndex(PrimitiveTuples::pair));
+        MutableList<ObjectIntPair<Integer>> expected = Lists.mutable.with(PrimitiveTuples.pair(Integer.valueOf(4), 0), PrimitiveTuples.pair(Integer.valueOf(5), 1), PrimitiveTuples.pair(Integer.valueOf(6), 2));
+        Verify.assertListsEqual(expected, integers.collectWithIndex(PrimitiveTuples::pair));
     }
 
     /**
      * @since 9.1.
      */
     @Test
-    public void collectWithIndexWithTarget()
-    {
+    public void collectWithIndexWithTarget() {
         MutableSortedSet<Integer> integers = this.newWith(4, 5, 6);
-        MutableList<ObjectIntPair<Integer>> expected =
-                Lists.mutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(4), 0),
-                        PrimitiveTuples.pair(Integer.valueOf(5), 1),
-                        PrimitiveTuples.pair(Integer.valueOf(6), 2));
-        Verify.assertListsEqual(
-                expected,
-                integers.collectWithIndex(PrimitiveTuples::pair, Lists.mutable.empty()));
+        MutableList<ObjectIntPair<Integer>> expected = Lists.mutable.with(PrimitiveTuples.pair(Integer.valueOf(4), 0), PrimitiveTuples.pair(Integer.valueOf(5), 1), PrimitiveTuples.pair(Integer.valueOf(6), 2));
+        Verify.assertListsEqual(expected, integers.collectWithIndex(PrimitiveTuples::pair, Lists.mutable.empty()));
     }
 
     @Override
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         super.collectWith();
         MutableSortedSet<Integer> integers = this.newWith(Collections.reverseOrder(), 1, 2, 3, 4, 5);
-        Function2<Integer, Integer, String> addParamFunction =
-                (each, parameter) -> ((Integer) (each + parameter)).toString();
+        Function2<Integer, Integer, String> addParamFunction = (each, parameter) -> ((Integer) (each + parameter)).toString();
         Verify.assertListsEqual(Lists.mutable.with("4", "3", "2", "1", "0"), integers.collectWith(addParamFunction, -1));
     }
 
     @Override
     @Test
-    public void collectWith_target()
-    {
+    public void collectWith_target() {
         super.collectWith_target();
         MutableSortedSet<Integer> integers = this.newWith(Collections.reverseOrder(), 1, 2, 3, 4, 5);
-        Function2<Integer, Integer, String> addParamFunction =
-                (each, parameter) -> ((Integer) (each + parameter)).toString();
+        Function2<Integer, Integer, String> addParamFunction = (each, parameter) -> ((Integer) (each + parameter)).toString();
         Verify.assertIterablesEqual(TreeSortedSet.newSetWith("4", "3", "2", "1", "0"), integers.collectWith(addParamFunction, -1, TreeSortedSet.newSet()));
     }
 
     @Override
     @Test
-    public void flatCollect()
-    {
+    public void flatCollect() {
         super.flatCollect();
         MutableSortedSet<Integer> collection = this.newWith(Collections.reverseOrder(), 2, 4, 2, 1, 3);
-        Function<Integer, MutableList<String>> function =
-                object -> Lists.mutable.with(String.valueOf(object));
-        Verify.assertListsEqual(
-                Lists.mutable.with("4", "3", "2", "1"),
-                collection.flatCollect(function));
+        Function<Integer, MutableList<String>> function = object -> Lists.mutable.with(String.valueOf(object));
+        Verify.assertListsEqual(Lists.mutable.with("4", "3", "2", "1"), collection.flatCollect(function));
     }
 
     @Override
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         super.groupBy();
         MutableSortedSet<Integer> integers = this.newWith(Collections.reverseOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9);
         Function<Integer, Boolean> isOddFunction = object -> IntegerPredicates.isOdd().accept(object);
@@ -388,24 +327,19 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void groupByEach()
-    {
+    public void groupByEach() {
         super.groupByEach();
         MutableSortedSet<Integer> set = this.newWith(Collections.reverseOrder(), 1, 2, 3, 4, 5, 6, 7);
         NegativeIntervalFunction function = new NegativeIntervalFunction();
         MutableSortedSetMultimap<Integer, Integer> expected = this.newWith(Collections.<Integer>reverseOrder()).groupByEach(function);
-        for (int i = 1; i < 8; i++)
-        {
+        for (int i = 1; i < 8; i++) {
             expected.putAll(-i, Interval.fromTo(i, 7));
         }
-        MutableSortedSetMultimap<Integer, Integer> actual =
-                set.groupByEach(function);
+        MutableSortedSetMultimap<Integer, Integer> actual = set.groupByEach(function);
         Assert.assertEquals(expected, actual);
-        MutableSortedSetMultimap<Integer, Integer> actualWithTarget =
-                set.groupByEach(function, this.<Integer>newWith().groupByEach(function));
+        MutableSortedSetMultimap<Integer, Integer> actualWithTarget = set.groupByEach(function, this.<Integer>newWith().groupByEach(function));
         Assert.assertEquals(expected, actualWithTarget);
-        for (int i = 1; i < 8; ++i)
-        {
+        for (int i = 1; i < 8; ++i) {
             Verify.assertSortedSetsEqual(expected.get(-i), actual.get(-i));
             Verify.assertSortedSetsEqual(expected.get(-i), actualWithTarget.get(-i).toSortedSet(Collections.reverseOrder()));
         }
@@ -413,49 +347,40 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
         Verify.assertSize(7, actualWithTarget.keysView().toList());
     }
 
-    private static final class Holder
-    {
+    private static final class Holder {
+
         private final int number;
 
-        private Holder(int i)
-        {
+        private Holder(int i) {
             this.number = i;
         }
 
         @Override
-        public boolean equals(Object o)
-        {
-            if (this == o)
-            {
+        public boolean equals(Object o) {
+            if (this == o) {
                 return true;
             }
-            if (o == null || this.getClass() != o.getClass())
-            {
+            if (o == null || this.getClass() != o.getClass()) {
                 return false;
             }
-
             Holder holder = (Holder) o;
-
             return this.number == holder.number;
         }
 
         @Override
-        public int hashCode()
-        {
+        public int hashCode() {
             return this.number;
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return String.valueOf(this.number);
         }
     }
 
     @Override
     @Test
-    public void zip()
-    {
+    public void zip() {
         super.zip();
         MutableSortedSet<Integer> revInt = this.newWith(Collections.reverseOrder(), 2, 3, 5, 1, 4);
         MutableSortedSet<Integer> integers = this.newWith(1, 3, 2, 4, 5);
@@ -465,35 +390,28 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
         Verify.assertSize(5, revZip);
         Iterator<Pair<Integer, Integer>> zipItr = zip.iterator();
         Iterator<Pair<Integer, Integer>> revZipItr = revZip.iterator();
-
-        for (int i = 1; i < 6; ++i)
-        {
+        for (int i = 1; i < 6; ++i) {
             Assert.assertEquals(Tuples.pair(i, 6 - i), zipItr.next());
             Assert.assertEquals(Tuples.pair(6 - i, i), revZipItr.next());
         }
-
         Person john = new Person("John", "Smith");
         Person jane = new Person("Jane", "Smith");
         Person johnDoe = new Person("John", "Doe");
         MutableSortedSet<Person> people = this.newWith(john, johnDoe);
         MutableList<Holder> list = Lists.mutable.with(new Holder(1), new Holder(2), new Holder(3));
         MutableList<Pair<Person, Holder>> pairs = people.zip(list);
-        Assert.assertEquals(
-                Lists.mutable.with(Tuples.pair(johnDoe, new Holder(1)), Tuples.pair(john, new Holder(2))),
-                pairs.toList());
+        Assert.assertEquals(Lists.mutable.with(Tuples.pair(johnDoe, new Holder(1)), Tuples.pair(john, new Holder(2))), pairs.toList());
         Assert.assertTrue(pairs.add(Tuples.pair(new Person("Jack", "Baker"), new Holder(3))));
         Assert.assertEquals(Tuples.pair(new Person("Jack", "Baker"), new Holder(3)), pairs.getLast());
     }
 
     @Override
     @Test
-    public void zipWithIndex()
-    {
+    public void zipWithIndex() {
         super.zipWithIndex();
         MutableSortedSet<Integer> integers = this.newWith(Collections.reverseOrder(), 1, 3, 5, 2, 4);
         Iterator<Pair<Integer, Integer>> zip = integers.zipWithIndex().iterator();
-        for (int i = 5; i > 0; --i)
-        {
+        for (int i = 5; i > 0; --i) {
             Assert.assertEquals(Tuples.pair(i, 5 - i), zip.next());
         }
         Person john = new Person("John", "Smith");
@@ -505,16 +423,14 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void union()
-    {
+    public void union() {
         MutableSortedSet<String> set = this.newWith("d", "c", "b", "a");
         MutableSortedSet<String> union = set.union(UnifiedSet.newSetWith("a", "e", "g", "b", "f"));
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith("a", "b", "c", "d", "e", "f", "g"), union);
     }
 
     @Test
-    public void unionInto()
-    {
+    public void unionInto() {
         MutableSortedSet<String> set = this.newWith("1", "2", "3", "4");
         MutableSet<String> union = set.unionInto(UnifiedSet.newSetWith("1", "2", "5", "3"), UnifiedSet.newSet());
         Verify.assertSetsEqual(UnifiedSet.newSetWith("1", "2", "3", "4", "5"), union);
@@ -524,16 +440,14 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void intersect()
-    {
+    public void intersect() {
         MutableSortedSet<String> set = this.newWith("4", "2", "1", "3");
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith("1", "2"), set.intersect(UnifiedSet.newSetWith("7", "5", "6", "1", "8", "2")));
         Verify.assertEmpty(set.intersect(UnifiedSet.newSetWith("5", "6", "8", "9")));
     }
 
     @Test
-    public void intersectInto()
-    {
+    public void intersectInto() {
         MutableSortedSet<String> set = this.newWith("2", "4", "3", "1");
         MutableSet<String> intersect = set.intersectInto(UnifiedSet.newSetWith("a", "b", "4", "c", "1"), UnifiedSet.newSet());
         Verify.assertSetsEqual(UnifiedSet.newSetWith("1", "4"), intersect);
@@ -541,8 +455,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void difference()
-    {
+    public void difference() {
         MutableSortedSet<String> set = this.newWith("5", "2", "3", "4", "1");
         MutableSortedSet<String> difference = set.difference(UnifiedSet.newSetWith("2", "3", "4", "not present"));
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith("1", "5"), difference);
@@ -550,8 +463,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void differenceInto()
-    {
+    public void differenceInto() {
         MutableSortedSet<String> set = this.newWith("1", "2", "3", "4");
         MutableSet<String> difference = set.differenceInto(UnifiedSet.newSetWith("2", "3", "4", "not present"), UnifiedSet.newSet());
         Assert.assertEquals(UnifiedSet.newSetWith("1"), difference);
@@ -559,8 +471,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void symmetricDifference()
-    {
+    public void symmetricDifference() {
         MutableSortedSet<String> set = this.newWith("3", "4", "1", "2");
         MutableSortedSet<String> difference = set.symmetricDifference(UnifiedSet.newSetWith("6", "3", "4", "5"));
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith("1", "2", "5", "6"), difference);
@@ -568,57 +479,36 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void symmetricDifferenceInto()
-    {
+    public void symmetricDifferenceInto() {
         MutableSortedSet<String> set = this.newWith("2", "1", "3", "4");
-        MutableSet<String> difference = set.symmetricDifferenceInto(
-                UnifiedSet.newSetWith("4", "2", "3", "5"),
-                UnifiedSet.newSet());
+        MutableSet<String> difference = set.symmetricDifferenceInto(UnifiedSet.newSetWith("4", "2", "3", "5"), UnifiedSet.newSet());
         Verify.assertSetsEqual(UnifiedSet.newSetWith("1", "5"), difference);
-        Verify.assertSetsEqual(
-                UnifiedSet.newSet(set).with("not present"),
-                set.symmetricDifferenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.newSet()));
+        Verify.assertSetsEqual(UnifiedSet.newSet(set).with("not present"), set.symmetricDifferenceInto(UnifiedSet.newSetWith("not present"), UnifiedSet.newSet()));
     }
 
     @Test
-    public void isSubsetOf()
-    {
+    public void isSubsetOf() {
         MutableSortedSet<String> set = this.newWith("3", "4", "1", "2");
         Assert.assertTrue(set.isSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
     }
 
     @Test
-    public void isProperSubsetOf()
-    {
+    public void isProperSubsetOf() {
         MutableSortedSet<String> set = this.newWith("3", "1", "4", "1", "2", "3");
         Assert.assertTrue(set.isProperSubsetOf(UnifiedSet.newSetWith("1", "2", "3", "4", "5")));
         Assert.assertFalse(set.isProperSubsetOf(set));
     }
 
     @Test
-    public void powerSet()
-    {
+    public void powerSet() {
         MutableSortedSet<String> set = this.newWith("1", "2", "3", "4", "5", "test");
         MutableSortedSet<SortedSetIterable<String>> powerSet = set.powerSet();
-
         Verify.assertSize((int) StrictMath.pow(2, set.size()), powerSet);
         Verify.assertContains(TreeSortedSet.<String>newSet(), powerSet);
         Verify.assertContains(set, powerSet);
-
         MutableSortedSet<SortedSetIterable<Integer>> intPowerSet = this.newWith(1, 2, 3).powerSet();
         MutableSortedSet<SortedSetIterable<Integer>> revPowerSet = this.newWith(Collections.reverseOrder(), 1, 2, 3, 4, 5, 6).powerSet();
-
-        MutableList<TreeSortedSet<Integer>> expectedSortedSet =
-                Lists.mutable.with(
-                        TreeSortedSet.newSet(),
-                        TreeSortedSet.newSetWith(1),
-                        TreeSortedSet.newSetWith(2),
-                        TreeSortedSet.newSetWith(3),
-                        TreeSortedSet.newSetWith(1, 2),
-                        TreeSortedSet.newSetWith(1, 3),
-                        TreeSortedSet.newSetWith(2, 3),
-                        TreeSortedSet.newSetWith(1, 2, 3));
-
+        MutableList<TreeSortedSet<Integer>> expectedSortedSet = Lists.mutable.with(TreeSortedSet.newSet(), TreeSortedSet.newSetWith(1), TreeSortedSet.newSetWith(2), TreeSortedSet.newSetWith(3), TreeSortedSet.newSetWith(1, 2), TreeSortedSet.newSetWith(1, 3), TreeSortedSet.newSetWith(2, 3), TreeSortedSet.newSetWith(1, 2, 3));
         Verify.assertListsEqual(expectedSortedSet, intPowerSet.toList());
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(Collections.reverseOrder(), 1, 2, 3, 4, 5, 6), (SortedSet<Integer>) revPowerSet.getLast());
         Verify.assertInstanceOf(TreeSortedSet.class, intPowerSet);
@@ -626,21 +516,15 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void cartesianProduct()
-    {
+    public void cartesianProduct() {
         MutableSortedSet<String> set = this.newWith("1", "2", "3", "4", "1", "2", "3", "4");
         LazyIterable<Pair<String, String>> cartesianProduct = set.cartesianProduct(UnifiedSet.newSetWith("One", "Two"));
         Verify.assertIterableSize(set.size() * 2, cartesianProduct);
-        Assert.assertEquals(
-                set,
-                cartesianProduct
-                        .select(Predicates.attributeEqual((Function<Pair<?, String>, String>) Pair::getTwo, "One"))
-                        .collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
+        Assert.assertEquals(set, cartesianProduct.select(Predicates.attributeEqual((Function<Pair<?, String>, String>) Pair::getTwo, "One")).collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
     }
 
     @Test
-    public void firstLast()
-    {
+    public void firstLast() {
         MutableSortedSet<Integer> set = this.newWith(1, 2, 3, 4, 5);
         Assert.assertEquals(Integer.valueOf(1), set.first());
         Assert.assertEquals(Integer.valueOf(5), set.last());
@@ -650,8 +534,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void testClone()
-    {
+    public void testClone() {
         MutableSortedSet<Integer> set = this.newWith(1, 2, 3);
         MutableSortedSet<Integer> clone = set.clone();
         Assert.assertNotSame(set, clone);
@@ -660,86 +543,65 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void toSortedSet_natural_ordering()
-    {
+    public void toSortedSet_natural_ordering() {
         super.toSortedSet_natural_ordering();
         MutableSortedSet<Integer> integers = this.newWith(Collections.reverseOrder(), 1, 2, 3, 4, 5);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3, 4, 5), integers.toSortedSet());
     }
 
     @Test
-    public void subSet()
-    {
+    public void subSet() {
         MutableSortedSet<Integer> set = this.newWith(1, 2, 3, 4, 5);
         MutableSortedSet<Integer> subSet = set.subSet(1, 4);
-
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3), subSet);
-
         subSet.clear();
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(4, 5), set);
-
         subSet.addAll(Lists.mutable.with(1, 2));
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 4, 5), set);
-
         subSet.remove(1);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(2, 4, 5), set);
-
         set.clear();
         Verify.assertEmpty(subSet);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> subSet.add(5));
         Assert.assertThrows(IllegalArgumentException.class, () -> subSet.add(0));
     }
 
     @Test
-    public void headSet()
-    {
+    public void headSet() {
         MutableSortedSet<Integer> set = this.newWith(1, 2, 3, 4, 5);
         MutableSortedSet<Integer> subSet = set.headSet(4);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3), subSet);
-
         subSet.clear();
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(4, 5), set);
-
         subSet.addAll(Lists.mutable.with(1, 2));
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 4, 5), set);
-
         subSet.remove(1);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(2, 4, 5), set);
-
         set.clear();
         Verify.assertEmpty(subSet);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> subSet.add(6));
         Assert.assertTrue(subSet.add(0));
     }
 
     @Test
-    public void tailSet()
-    {
+    public void tailSet() {
         MutableSortedSet<Integer> set = this.newWith(1, 2, 3, 4, 5);
         MutableSortedSet<Integer> subSet = set.tailSet(2);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(2, 3, 4, 5), subSet);
-
         subSet.clear();
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1), set);
-
         subSet.addAll(Lists.mutable.with(2, 3));
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2, 3), set);
-
         subSet.remove(3);
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(1, 2), set);
-
         set.clear();
         Verify.assertEmpty(subSet);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> subSet.add(1));
         Assert.assertTrue(subSet.add(10));
     }
 
     @Override
-    public void selectInstancesOf()
-    {
+    public void selectInstancesOf() {
         MutableSortedSet<Number> numbers = this.newWith((o1, o2) -> Double.compare(o1.doubleValue(), o2.doubleValue()), 1, 2.0, 3, 4.0, 5);
         MutableSortedSet<Integer> integers = numbers.selectInstancesOf(Integer.class);
         Assert.assertEquals(UnifiedSet.newSetWith(1, 3, 5), integers);
@@ -747,8 +609,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void toStack()
-    {
+    public void toStack() {
         MutableSortedSet<Integer> integers = this.newWith(Comparators.reverseNaturalOrder(), 4, 2, 1, 3, 5, 6);
         MutableStack<Integer> stack = integers.toStack();
         Assert.assertEquals(Stacks.immutable.with(6, 5, 4, 3, 2, 1), stack);
@@ -756,8 +617,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void toSortedBag_natural_ordering()
-    {
+    public void toSortedBag_natural_ordering() {
         RichIterable<Integer> integers = this.newWith(1, 2, 5, 3, 4);
         MutableSortedBag<Integer> bag = integers.toSortedBag();
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 2, 3, 4, 5), bag);
@@ -765,8 +625,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test
-    public void toSortedBag_with_comparator()
-    {
+    public void toSortedBag_with_comparator() {
         RichIterable<Integer> integers = this.newWith(2, 4, 1, 3);
         MutableSortedBag<Integer> bag = integers.toSortedBag(Collections.reverseOrder());
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(Collections.reverseOrder(), 4, 3, 2, 1), bag);
@@ -774,15 +633,13 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test(expected = NullPointerException.class)
-    public void toSortedBag_with_null()
-    {
+    public void toSortedBag_with_null() {
         this.newWith(3, 4, null, 1, 2).toSortedBag();
     }
 
     @Override
     @Test
-    public void toSortedBagBy()
-    {
+    public void toSortedBagBy() {
         RichIterable<Integer> integers = this.newWith(2, 4, 1, 3);
         MutableSortedBag<Integer> bag = integers.toSortedBagBy(String::valueOf);
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 2, 3, 4), bag);
@@ -790,34 +647,28 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
 
     @Override
     @Test(expected = NullPointerException.class)
-    public void min_null_safe()
-    {
+    public void min_null_safe() {
         super.min_null_safe();
     }
 
     @Override
     @Test(expected = NullPointerException.class)
-    public void max_null_safe()
-    {
+    public void max_null_safe() {
         super.max_null_safe();
     }
 
     @Test
-    public void forEachWithIndexWithFromTo()
-    {
+    public void forEachWithIndexWithFromTo() {
         MutableSortedSet<Integer> integers = this.newWith(Comparators.reverseNaturalOrder(), 9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
         StringBuilder builder = new StringBuilder();
         integers.forEachWithIndex(5, 7, (each, index) -> builder.append(each).append(index));
         Assert.assertEquals("453627", builder.toString());
-
         StringBuilder builder2 = new StringBuilder();
         integers.forEachWithIndex(5, 5, (each, index) -> builder2.append(each).append(index));
         Assert.assertEquals("45", builder2.toString());
-
         StringBuilder builder3 = new StringBuilder();
         integers.forEachWithIndex(0, 9, (each, index) -> builder3.append(each).append(index));
         Assert.assertEquals("90817263544536271809", builder3.toString());
-
         MutableList<Integer> result = Lists.mutable.of();
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> integers.forEachWithIndex(-1, 0, new AddToList(result)));
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> integers.forEachWithIndex(0, -1, new AddToList(result)));
@@ -825,37 +676,24 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void forEachWithIndexOnRange()
-    {
+    public void forEachWithIndexOnRange() {
         MutableSortedSet<Integer> set = this.newWith(Comparators.reverseNaturalOrder(), 9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
-
         this.validateForEachWithIndexOnRange(set, 0, 0, SortedSets.mutable.with(Comparators.reverseNaturalOrder(), 9));
         this.validateForEachWithIndexOnRange(set, 3, 5, SortedSets.mutable.with(Comparators.reverseNaturalOrder(), 6, 5, 4));
         this.validateForEachWithIndexOnRange(set, 9, 9, SortedSets.mutable.with(Comparators.reverseNaturalOrder(), 0));
         this.validateForEachWithIndexOnRange(set, 0, 9, SortedSets.mutable.with(Comparators.reverseNaturalOrder(), 9, 8, 7, 6, 5, 4, 3, 2, 1, 0));
-        Assert.assertThrows(
-                IndexOutOfBoundsException.class,
-                () -> this.validateForEachWithIndexOnRange(set, 10, 10, SortedSets.mutable.with(Comparators.reverseNaturalOrder())));
-
-        Assert.assertThrows(
-                IllegalArgumentException.class,
-                () -> this.validateForEachWithIndexOnRange(set, 9, 0, SortedSets.mutable.with(Comparators.reverseNaturalOrder(), 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)));
+        Assert.assertThrows(IndexOutOfBoundsException.class, () -> this.validateForEachWithIndexOnRange(set, 10, 10, SortedSets.mutable.with(Comparators.reverseNaturalOrder())));
+        Assert.assertThrows(IllegalArgumentException.class, () -> this.validateForEachWithIndexOnRange(set, 9, 0, SortedSets.mutable.with(Comparators.reverseNaturalOrder(), 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)));
     }
 
-    protected void validateForEachWithIndexOnRange(
-            MutableSortedSet<Integer> set,
-            int from,
-            int to,
-            MutableSortedSet<Integer> expectedOutput)
-    {
+    protected void validateForEachWithIndexOnRange(MutableSortedSet<Integer> set, int from, int to, MutableSortedSet<Integer> expectedOutput) {
         MutableSortedSet<Integer> outputSet = SortedSets.mutable.of(Comparators.reverseNaturalOrder());
         set.forEach(from, to, outputSet::add);
         Verify.assertSortedSetsEqual(expectedOutput, outputSet);
     }
 
     @Test
-    public void indexOf()
-    {
+    public void indexOf() {
         MutableSortedSet<Integer> objects = this.newWith(Comparators.reverseNaturalOrder(), 3, 2, 1);
         Assert.assertEquals(0, objects.indexOf(3));
         Assert.assertEquals(1, objects.indexOf(2));
@@ -864,13 +702,11 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void detectIndex()
-    {
+    public void detectIndex() {
         MutableSortedSet<Integer> integers1 = this.newWith(1, 2, 3, 4);
         Assert.assertEquals(1, integers1.detectIndex(integer -> integer % 2 == 0));
         Assert.assertEquals(0, integers1.detectIndex(integer -> integer % 2 != 0));
         Assert.assertEquals(-1, integers1.detectIndex(integer -> integer % 5 == 0));
-
         MutableSortedSet<Integer> integers2 = this.newWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1);
         Assert.assertEquals(0, integers2.detectIndex(integer -> integer % 2 == 0));
         Assert.assertEquals(1, integers2.detectIndex(integer -> integer % 2 != 0));
@@ -878,13 +714,11 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void detectLastIndex()
-    {
+    public void detectLastIndex() {
         MutableSortedSet<Integer> integers1 = this.newWith(1, 2, 3, 4);
         Assert.assertEquals(3, integers1.detectLastIndex(integer -> integer % 2 == 0));
         Assert.assertEquals(2, integers1.detectLastIndex(integer -> integer % 2 != 0));
         Assert.assertEquals(-1, integers1.detectLastIndex(integer -> integer % 5 == 0));
-
         MutableSortedSet<Integer> integers2 = this.newWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1);
         Assert.assertEquals(3, integers2.detectLastIndex(integer -> integer % 2 == 0));
         Assert.assertEquals(2, integers2.detectLastIndex(integer -> integer % 2 != 0));
@@ -892,18 +726,14 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void toReversed()
-    {
+    public void toReversed() {
         MutableSortedSet<Integer> integers = this.newWith(1, 2, 3, 4);
         MutableSortedSet<Integer> reversed = integers.toReversed();
-        Assert.assertEquals(
-                SortedSets.mutable.with(Comparators.reverseNaturalOrder(), 3, 2, 1),
-                reversed);
+        Assert.assertEquals(SortedSets.mutable.with(Comparators.reverseNaturalOrder(), 3, 2, 1), reversed);
     }
 
     @Test
-    public void reverseForEach()
-    {
+    public void reverseForEach() {
         MutableList<Integer> list = Lists.mutable.empty();
         MutableSortedSet<Integer> integers = this.newWith(1, 2, 3, 4);
         integers.reverseForEach(list::add);
@@ -911,8 +741,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void reverseForEachWithIndex()
-    {
+    public void reverseForEachWithIndex() {
         MutableList<Integer> list = Lists.mutable.empty();
         MutableSortedSet<Integer> integers = this.newWith(1, 2, 3, 4);
         integers.reverseForEachWithIndex((each, index) -> list.add(each + index));
@@ -920,15 +749,13 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test
-    public void take()
-    {
+    public void take() {
         MutableSortedSet<Integer> integers1 = this.newWith(1, 2, 3, 4);
         Assert.assertEquals(SortedSets.mutable.of(integers1.comparator()), integers1.take(0));
         Assert.assertSame(integers1.comparator(), integers1.take(0).comparator());
         Assert.assertEquals(SortedSets.mutable.of(integers1.comparator(), 1, 2, 3), integers1.take(3));
         Assert.assertSame(integers1.comparator(), integers1.take(3).comparator());
         Assert.assertEquals(SortedSets.mutable.of(integers1.comparator(), 1, 2, 3), integers1.take(integers1.size() - 1));
-
         MutableSortedSet<Integer> expectedSet = this.newWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1);
         MutableSortedSet<Integer> integers2 = this.newWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1);
         Assert.assertEquals(expectedSet, integers2.take(integers2.size()));
@@ -937,14 +764,12 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void take_throws()
-    {
+    public void take_throws() {
         this.newWith(1, 2, 3).take(-1);
     }
 
     @Test
-    public void drop()
-    {
+    public void drop() {
         MutableSortedSet<Integer> integers1 = this.newWith(1, 2, 3, 4);
         Assert.assertEquals(integers1, integers1.drop(0));
         Assert.assertSame(integers1.comparator(), integers1.drop(0).comparator());
@@ -952,7 +777,6 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
         Assert.assertEquals(SortedSets.mutable.of(integers1.comparator(), 4), integers1.drop(3));
         Assert.assertSame(integers1.comparator(), integers1.drop(3).comparator());
         Assert.assertEquals(SortedSets.mutable.of(integers1.comparator(), 4), integers1.drop(integers1.size() - 1));
-
         MutableSortedSet<Integer> expectedSet = SortedSets.mutable.of(Comparators.reverseNaturalOrder());
         MutableSortedSet<Integer> integers2 = this.newWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1);
         Assert.assertEquals(expectedSet, integers2.drop(integers2.size()));
@@ -961,24 +785,457 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void drop_throws()
-    {
+    public void drop_throws() {
         this.newWith(1, 2, 3).drop(-1);
     }
 
     @Test
-    public void getFirstOptional()
-    {
+    public void getFirstOptional() {
         Assert.assertEquals(Integer.valueOf(1), this.newWith(1, 2).getFirstOptional().get());
         Assert.assertTrue(this.newWith(1, 2).getFirstOptional().isPresent());
         Assert.assertFalse(this.newWith().getFirstOptional().isPresent());
     }
 
     @Test
-    public void getLastOptional()
-    {
+    public void getLastOptional() {
         Assert.assertEquals(Integer.valueOf(2), this.newWith(1, 2).getLastOptional().get());
         Assert.assertTrue(this.newWith(1, 2).getLastOptional().isPresent());
         Assert.assertFalse(this.newWith().getLastOptional().isPresent());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAll, this.description("addAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllIterable, this.description("addAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIf, this.description("removeIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tap, this.description("tap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_corresponds() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::corresponds, this.description("corresponds"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith, this.description("selectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith_target, this.description("selectWith_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith, this.description("rejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith_target, this.description("rejectWith_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition, this.description("partition"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith, this.description("partitionWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWhile, this.description("partitionWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_takeWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::takeWhile, this.description("takeWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_dropWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::dropWhile, this.description("dropWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithIndex, this.description("collectWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithIndexWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithIndexWithTarget, this.description("collectWithIndexWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith_target, this.description("collectWith_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollect, this.description("flatCollect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEach, this.description("groupByEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipWithIndex, this.description("zipWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_union() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::union, this.description("union"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_unionInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::unionInto, this.description("unionInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intersect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intersect, this.description("intersect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intersectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intersectInto, this.description("intersectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_difference() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::difference, this.description("difference"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_differenceInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::differenceInto, this.description("differenceInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_symmetricDifference() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::symmetricDifference, this.description("symmetricDifference"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_symmetricDifferenceInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::symmetricDifferenceInto, this.description("symmetricDifferenceInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isSubsetOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isSubsetOf, this.description("isSubsetOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isProperSubsetOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isProperSubsetOf, this.description("isProperSubsetOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_powerSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::powerSet, this.description("powerSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_cartesianProduct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::cartesianProduct, this.description("cartesianProduct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_firstLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::firstLast, this.description("firstLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedSet_natural_ordering() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedSet_natural_ordering, this.description("toSortedSet_natural_ordering"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subSet, this.description("subSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_headSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::headSet, this.description("headSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tailSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tailSet, this.description("tailSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toStack() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toStack, this.description("toStack"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBag_natural_ordering() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedBag_natural_ordering, this.description("toSortedBag_natural_ordering"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBag_with_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedBag_with_comparator, this.description("toSortedBag_with_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBag_with_null() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::toSortedBag_with_null, this.description("toSortedBag_with_null"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBagBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedBagBy, this.description("toSortedBagBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_safe() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::min_null_safe, this.description("min_null_safe"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_safe() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::max_null_safe, this.description("max_null_safe"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndexWithFromTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndexWithFromTo, this.description("forEachWithIndexWithFromTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndexOnRange() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndexOnRange, this.description("forEachWithIndexOnRange"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_indexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::indexOf, this.description("indexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIndex, this.description("detectIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectLastIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectLastIndex, this.description("detectLastIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toReversed() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toReversed, this.description("toReversed"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEach, this.description("reverseForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEachWithIndex, this.description("reverseForEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::take, this.description("take"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::take_throws, this.description("take_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::drop, this.description("drop"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::drop_throws, this.description("drop_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstOptional() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstOptional, this.description("getFirstOptional"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLastOptional() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLastOptional, this.description("getLastOptional"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractSortedSetTestCase implementation();
     }
 }

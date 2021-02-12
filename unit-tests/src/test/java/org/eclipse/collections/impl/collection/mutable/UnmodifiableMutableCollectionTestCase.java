@@ -7,14 +7,12 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.collection.mutable;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.primitive.BooleanFunction;
 import org.eclipse.collections.api.block.function.primitive.ByteFunction;
@@ -42,223 +40,191 @@ import org.junit.Test;
 /**
  * Abstract JUnit test for {@link UnmodifiableMutableCollection}.
  */
-public abstract class UnmodifiableMutableCollectionTestCase<T>
-{
+public abstract class UnmodifiableMutableCollectionTestCase<T> {
+
     protected abstract MutableCollection<T> getCollection();
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeIfWith()
-    {
+    public void removeIfWith() {
         this.getCollection().removeIfWith(null, null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeIf()
-    {
+    public void removeIf() {
         Predicate<Object> predicate = null;
         this.getCollection().removeIf(predicate);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void remove()
-    {
+    public void remove() {
         this.getCollection().remove(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void iteratorRemove()
-    {
+    public void iteratorRemove() {
         Iterator<?> iterator = this.getCollection().iterator();
         iterator.next();
         iterator.remove();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void add()
-    {
+    public void add() {
         this.getCollection().add(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addAll()
-    {
+    public void addAll() {
         this.getCollection().addAll(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addAllIterable()
-    {
+    public void addAllIterable() {
         this.getCollection().addAllIterable(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAll()
-    {
+    public void removeAll() {
         this.getCollection().removeAll(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAllIterable()
-    {
+    public void removeAllIterable() {
         this.getCollection().removeAllIterable(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void retainAll()
-    {
+    public void retainAll() {
         this.getCollection().retainAll(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void retainAllIterable()
-    {
+    public void retainAllIterable() {
         this.getCollection().retainAllIterable(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void clear()
-    {
+    public void clear() {
         this.getCollection().clear();
     }
 
     @Test
-    public void testMakeString()
-    {
+    public void testMakeString() {
         Assert.assertEquals(this.getCollection().toString(), '[' + this.getCollection().makeString() + ']');
     }
 
     @Test
-    public void testAppendString()
-    {
+    public void testAppendString() {
         Appendable builder = new StringBuilder();
         this.getCollection().appendString(builder);
         Assert.assertEquals(this.getCollection().toString(), '[' + builder.toString() + ']');
     }
 
     @Test
-    public void select()
-    {
+    public void select() {
         Assert.assertEquals(this.getCollection(), this.getCollection().select(ignored -> true));
         Assert.assertNotEquals(this.getCollection(), this.getCollection().select(ignored -> false));
     }
 
     @Test
-    public void selectWith()
-    {
+    public void selectWith() {
         Assert.assertEquals(this.getCollection(), this.getCollection().selectWith((ignored1, ignored2) -> true, null));
         Assert.assertNotEquals(this.getCollection(), this.getCollection().selectWith((ignored1, ignored2) -> false, null));
     }
 
     @Test
-    public void reject()
-    {
+    public void reject() {
         Assert.assertEquals(this.getCollection(), this.getCollection().reject(ignored1 -> false));
         Assert.assertNotEquals(this.getCollection(), this.getCollection().reject(ignored -> true));
     }
 
     @Test
-    public void rejectWith()
-    {
+    public void rejectWith() {
         Assert.assertEquals(this.getCollection(), this.getCollection().rejectWith((ignored11, ignored21) -> false, null));
         Assert.assertNotEquals(this.getCollection(), this.getCollection().rejectWith((ignored1, ignored2) -> true, null));
     }
 
     @Test
-    public void partition()
-    {
+    public void partition() {
         PartitionMutableCollection<?> partition = this.getCollection().partition(ignored -> true);
         Assert.assertEquals(this.getCollection(), partition.getSelected());
         Assert.assertNotEquals(this.getCollection(), partition.getRejected());
     }
 
     @Test
-    public void partitionWith()
-    {
+    public void partitionWith() {
         PartitionMutableCollection<?> partition = this.getCollection().partitionWith((ignored1, ignored2) -> true, null);
         Assert.assertEquals(this.getCollection(), partition.getSelected());
         Assert.assertNotEquals(this.getCollection(), partition.getRejected());
     }
 
     @Test
-    public void collect()
-    {
+    public void collect() {
         Assert.assertEquals(this.getCollection(), this.getCollection().collect(Functions.getPassThru()));
         Assert.assertNotEquals(this.getCollection(), this.getCollection().collect(Object::getClass));
     }
 
     @Test
-    public void collectInt()
-    {
+    public void collectInt() {
         IntFunction<T> intFunction = anObject -> anObject == null ? 0 : 1;
         Verify.assertSize(this.getCollection().size(), this.getCollection().collectInt(intFunction));
     }
 
     @Test
-    public void collectBoolean()
-    {
+    public void collectBoolean() {
         BooleanFunction<T> booleanFunction = Objects::isNull;
         Verify.assertSize(this.getCollection().size(), this.getCollection().collectBoolean(booleanFunction));
     }
 
     @Test
-    public void collectByte()
-    {
+    public void collectByte() {
         ByteFunction<T> byteFunction = anObject -> anObject == null ? (byte) 0 : (byte) 1;
         Verify.assertSize(this.getCollection().size(), this.getCollection().collectByte(byteFunction));
     }
 
     @Test
-    public void collectChar()
-    {
+    public void collectChar() {
         CharFunction<T> charFunction = anObject -> anObject == null ? '0' : '1';
         Verify.assertSize(this.getCollection().size(), this.getCollection().collectChar(charFunction));
     }
 
     @Test
-    public void collectDouble()
-    {
+    public void collectDouble() {
         DoubleFunction<T> doubleFunction = anObject -> anObject == null ? 0.0d : 1.0d;
         Verify.assertSize(this.getCollection().size(), this.getCollection().collectDouble(doubleFunction));
     }
 
     @Test
-    public void collectFloat()
-    {
+    public void collectFloat() {
         FloatFunction<T> floatFunction = anObject -> anObject == null ? 0.0f : 1.0f;
         Verify.assertSize(this.getCollection().size(), this.getCollection().collectFloat(floatFunction));
     }
 
     @Test
-    public void collectLong()
-    {
+    public void collectLong() {
         LongFunction<T> longFunction = anObject -> anObject == null ? 0L : 1L;
         Verify.assertSize(this.getCollection().size(), this.getCollection().collectLong(longFunction));
     }
 
     @Test
-    public void collectShort()
-    {
+    public void collectShort() {
         ShortFunction<T> shortFunction = anObject -> (short) (anObject == null ? 0 : 1);
         Verify.assertSize(this.getCollection().size(), this.getCollection().collectShort(shortFunction));
     }
 
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         Assert.assertEquals(this.getCollection(), this.getCollection().collectWith(Functions2.fromFunction(Functions.getPassThru()), null));
         Assert.assertNotEquals(this.getCollection(), this.getCollection().collectWith(Functions2.fromFunction(Object::getClass), null));
     }
 
     @Test
-    public void collectIf()
-    {
+    public void collectIf() {
         Assert.assertEquals(this.getCollection(), this.getCollection().collectIf(ignored -> true, Functions.getPassThru()));
         Assert.assertNotEquals(this.getCollection(), this.getCollection().collectIf(ignored -> false, Object::getClass));
     }
 
     @Test
-    public void newEmpty()
-    {
+    public void newEmpty() {
         MutableCollection<Object> collection = (MutableCollection<Object>) this.getCollection().newEmpty();
         Verify.assertEmpty(collection);
         collection.add("test");
@@ -266,99 +232,319 @@ public abstract class UnmodifiableMutableCollectionTestCase<T>
     }
 
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         Assert.assertEquals(this.getCollection().size(), this.getCollection().groupBy(Functions.getPassThru()).size());
     }
 
     @Test
-    public void zip()
-    {
+    public void zip() {
         MutableCollection<Object> collection = (MutableCollection<Object>) this.getCollection();
         List<Object> nulls = Collections.nCopies(collection.size(), null);
         List<Object> nullsPlusOne = Collections.nCopies(collection.size() + 1, null);
         List<Object> nullsMinusOne = Collections.nCopies(collection.size() - 1, null);
-
         MutableCollection<Pair<Object, Object>> pairs = collection.zip(nulls);
-        Assert.assertEquals(
-                collection.toSet(),
-                pairs.collect((Function<Pair<Object, ?>, Object>) Pair::getOne).toSet());
-        Assert.assertEquals(
-                nulls,
-                pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
-
+        Assert.assertEquals(collection.toSet(), pairs.collect((Function<Pair<Object, ?>, Object>) Pair::getOne).toSet());
+        Assert.assertEquals(nulls, pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
         MutableCollection<Pair<Object, Object>> pairsPlusOne = collection.zip(nullsPlusOne);
-        Assert.assertEquals(
-                collection.toSet(),
-                pairsPlusOne.collect((Function<Pair<Object, ?>, Object>) Pair::getOne).toSet());
+        Assert.assertEquals(collection.toSet(), pairsPlusOne.collect((Function<Pair<Object, ?>, Object>) Pair::getOne).toSet());
         Assert.assertEquals(nulls, pairsPlusOne.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
-
         MutableCollection<Pair<Object, Object>> pairsMinusOne = collection.zip(nullsMinusOne);
         Assert.assertEquals(collection.size() - 1, pairsMinusOne.size());
         Assert.assertTrue(collection.containsAll(pairsMinusOne.collect((Function<Pair<Object, ?>, Object>) Pair::getOne)));
-
-        Assert.assertEquals(
-                collection.zip(nulls).toSet(),
-                collection.zip(nulls, new UnifiedSet<>()));
+        Assert.assertEquals(collection.zip(nulls).toSet(), collection.zip(nulls, new UnifiedSet<>()));
     }
 
     @Test
-    public void zipWithIndex()
-    {
+    public void zipWithIndex() {
         MutableCollection<Object> collection = (MutableCollection<Object>) this.getCollection();
         MutableCollection<Pair<Object, Integer>> pairs = collection.zipWithIndex();
-
-        Assert.assertEquals(
-                collection.toSet(),
-                pairs.collect((Function<Pair<Object, ?>, Object>) Pair::getOne).toSet());
-        Assert.assertEquals(
-                Interval.zeroTo(collection.size() - 1).toSet(),
-                pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo, UnifiedSet.newSet()));
-
-        Assert.assertEquals(
-                collection.zipWithIndex().toSet(),
-                collection.zipWithIndex(new UnifiedSet<>()));
+        Assert.assertEquals(collection.toSet(), pairs.collect((Function<Pair<Object, ?>, Object>) Pair::getOne).toSet());
+        Assert.assertEquals(Interval.zeroTo(collection.size() - 1).toSet(), pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo, UnifiedSet.newSet()));
+        Assert.assertEquals(collection.zipWithIndex().toSet(), collection.zipWithIndex(new UnifiedSet<>()));
     }
 
     @Test
-    public void flatCollect()
-    {
+    public void flatCollect() {
         MutableCollection<Object> collection = (MutableCollection<Object>) this.getCollection();
-        Assert.assertEquals(
-                this.getCollection().toBag(),
-                collection.flatCollect((Function<Object, Iterable<Object>>) Lists.fixedSize::of).toBag());
+        Assert.assertEquals(this.getCollection().toBag(), collection.flatCollect((Function<Object, Iterable<Object>>) Lists.fixedSize::of).toBag());
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void with()
-    {
+    public void with() {
         this.getCollection().with(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void withAll()
-    {
+    public void withAll() {
         this.getCollection().withAll(FastList.newList());
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void without()
-    {
+    public void without() {
         this.getCollection().without(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void withoutAll()
-    {
+    public void withoutAll() {
         this.getCollection().withoutAll(FastList.newList());
     }
 
     @Test
-    public void tap()
-    {
+    public void tap() {
         MutableList<T> tapResult = Lists.mutable.of();
         MutableCollection<T> collection = this.getCollection();
         Assert.assertSame(collection, collection.tap(tapResult::add));
         Assert.assertEquals(collection.toList(), tapResult);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeIf, this.description("removeIf"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::remove, this.description("remove"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iteratorRemove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::iteratorRemove, this.description("iteratorRemove"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::add, this.description("add"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAll, this.description("addAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAllIterable, this.description("addAllIterable"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAll, this.description("removeAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAllIterable, this.description("removeAllIterable"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::retainAll, this.description("retainAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::retainAllIterable, this.description("retainAllIterable"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::clear, this.description("clear"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testMakeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testMakeString, this.description("testMakeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testAppendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testAppendString, this.description("testAppendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith, this.description("selectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith, this.description("rejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition, this.description("partition"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith, this.description("partitionWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectInt, this.description("collectInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectBoolean() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectBoolean, this.description("collectBoolean"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectByte() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectByte, this.description("collectByte"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectChar() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectChar, this.description("collectChar"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectDouble, this.description("collectDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectFloat, this.description("collectFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectLong, this.description("collectLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectShort() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectShort, this.description("collectShort"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIf, this.description("collectIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newEmpty, this.description("newEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipWithIndex, this.description("zipWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollect, this.description("flatCollect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::with, this.description("with"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::withAll, this.description("withAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_without() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::without, this.description("without"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::withoutAll, this.description("withoutAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tap, this.description("tap"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract UnmodifiableMutableCollectionTestCase implementation();
     }
 }

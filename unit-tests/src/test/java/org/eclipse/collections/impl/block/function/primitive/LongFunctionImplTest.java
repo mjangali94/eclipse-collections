@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function.primitive;
 
 import org.junit.Assert;
@@ -16,20 +15,39 @@ import org.junit.Test;
 /**
  * Junit test for {@link LongFunctionImpl}.
  */
-public class LongFunctionImplTest
-{
+public class LongFunctionImplTest {
+
     @Test
-    public void valueOf()
-    {
-        LongFunctionImpl<Long> longFunction = new LongFunctionImpl<Long>()
-        {
-            public long longValueOf(Long each)
-            {
+    public void valueOf() {
+        LongFunctionImpl<Long> longFunction = new LongFunctionImpl<Long>() {
+
+            public long longValueOf(Long each) {
                 return each.longValue();
             }
         };
-
         Assert.assertEquals(1L, longFunction.longValueOf(1L));
         Assert.assertEquals(1L, longFunction.valueOf(1L).longValue());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_valueOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::valueOf, this.description("valueOf"));
+        }
+
+        private LongFunctionImplTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new LongFunctionImplTest();
+        }
+
+        @java.lang.Override
+        public LongFunctionImplTest implementation() {
+            return this.implementation;
+        }
     }
 }

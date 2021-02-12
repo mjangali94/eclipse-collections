@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.list;
 
 import org.eclipse.collections.api.list.ListIterable;
@@ -15,26 +14,36 @@ import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.list.mutable.FastList;
 
-public class ParallelSelectListIterableTest extends ParallelListIterableTestCase
-{
+public class ParallelSelectListIterableTest extends ParallelListIterableTestCase {
+
     @Override
-    protected ParallelListIterable<Integer> classUnderTest()
-    {
+    protected ParallelListIterable<Integer> classUnderTest() {
         return this.newWith(-1, 1, -1, 2, -1, 2, -1, 3, -1, 3, -1, 3, 5, 4, 5, 4, 5, 4, 5, 4, 5);
     }
 
     @Override
-    protected ParallelListIterable<Integer> newWith(Integer... littleElements)
-    {
-        return FastList.newListWith(littleElements)
-                .asParallel(this.executorService, this.batchSize)
-                .select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    protected ParallelListIterable<Integer> newWith(Integer... littleElements) {
+        return FastList.newListWith(littleElements).asParallel(this.executorService, this.batchSize).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
     }
 
     @Override
-    protected ListIterable<Integer> getExpectedWith(Integer... littleElements)
-    {
-        return FastList.newListWith(littleElements)
-                .select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    protected ListIterable<Integer> getExpectedWith(Integer... littleElements) {
+        return FastList.newListWith(littleElements).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ParallelSelectListIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelSelectListIterableTest();
+        }
+
+        @java.lang.Override
+        public ParallelSelectListIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

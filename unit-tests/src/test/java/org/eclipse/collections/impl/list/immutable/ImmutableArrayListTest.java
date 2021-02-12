@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.immutable;
 
 import org.eclipse.collections.api.list.ImmutableList;
@@ -30,17 +29,15 @@ import org.junit.Test;
 /**
  * JUnit test for {@link ImmutableArrayList}.
  */
-public class ImmutableArrayListTest extends AbstractImmutableListTestCase
-{
+public class ImmutableArrayListTest extends AbstractImmutableListTestCase {
+
     @Override
-    protected ImmutableList<Integer> classUnderTest()
-    {
+    protected ImmutableList<Integer> classUnderTest() {
         return this.newList(1, 2, 3);
     }
 
     @Test
-    public void newWith()
-    {
+    public void newWith() {
         ImmutableList<Integer> list = this.newList(1, 2, 3);
         ImmutableList<Integer> with = list.newWith(4);
         Assert.assertNotEquals(list, with);
@@ -48,8 +45,7 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase
     }
 
     @Test
-    public void newWithAll()
-    {
+    public void newWithAll() {
         ImmutableList<Integer> list = this.newList(1, 2, 3);
         ImmutableList<Integer> withAll = list.newWithAll(FastList.newListWith(4, 5));
         Assert.assertNotEquals(list, withAll);
@@ -57,27 +53,22 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase
     }
 
     @Test
-    public void newWithOut()
-    {
+    public void newWithOut() {
         ImmutableList<Integer> list = this.newList(1, 2, 3, 4);
         ImmutableList<Integer> without4 = list.newWithout(4);
         Assert.assertNotEquals(list, without4);
         Assert.assertEquals(FastList.newListWith(1, 2, 3), without4);
-
         ImmutableList<Integer> without1 = list.newWithout(1);
         Assert.assertNotEquals(list, without1);
         Assert.assertEquals(FastList.newListWith(2, 3, 4), without1);
-
         ImmutableList<Integer> without0 = list.newWithout(0);
         Assert.assertSame(list, without0);
-
         ImmutableList<Integer> without5 = list.newWithout(5);
         Assert.assertSame(list, without5);
     }
 
     @Test
-    public void newWithoutAll()
-    {
+    public void newWithoutAll() {
         ImmutableList<Integer> list = this.newList(1, 2, 3, 4, 5);
         ImmutableList<Integer> withoutAll = list.newWithoutAll(FastList.newListWith(4, 5));
         Assert.assertNotEquals(list, withoutAll);
@@ -88,39 +79,32 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase
         Assert.assertEquals(FastList.newList(Interval.fromTo(11, 20)), largeWithoutAll);
         ImmutableList<Integer> largeWithoutAll2 = largeWithoutAll.newWithoutAll(Interval.fromTo(11, 15));
         Assert.assertEquals(FastList.newList(Interval.fromTo(16, 20)), largeWithoutAll2);
-        ImmutableList<Integer> largeWithoutAll3 =
-                largeWithoutAll2.newWithoutAll(UnifiedSet.newSet(Interval.fromTo(16, 19)));
+        ImmutableList<Integer> largeWithoutAll3 = largeWithoutAll2.newWithoutAll(UnifiedSet.newSet(Interval.fromTo(16, 19)));
         Assert.assertEquals(FastList.newListWith(20), largeWithoutAll3);
     }
 
-    private ImmutableArrayList<Integer> newList(Integer... elements)
-    {
+    private ImmutableArrayList<Integer> newList(Integer... elements) {
         return ImmutableArrayList.newListWith(elements);
     }
 
-    private ImmutableList<Integer> newListWith(int one, int two)
-    {
+    private ImmutableList<Integer> newListWith(int one, int two) {
         return ImmutableArrayList.newListWith(one, two);
     }
 
-    private ImmutableList<Integer> newListWith(int one, int two, int three)
-    {
+    private ImmutableList<Integer> newListWith(int one, int two, int three) {
         return ImmutableArrayList.newListWith(one, two, three);
     }
 
-    private ImmutableList<Integer> newListWith(int... littleElements)
-    {
+    private ImmutableList<Integer> newListWith(int... littleElements) {
         Integer[] bigElements = new Integer[littleElements.length];
-        for (int i = 0; i < littleElements.length; i++)
-        {
+        for (int i = 0; i < littleElements.length; i++) {
             bigElements[i] = littleElements[i];
         }
         return ImmutableArrayList.newListWith(bigElements);
     }
 
     @Test
-    public void newListWith()
-    {
+    public void newListWith() {
         ImmutableList<Integer> collection = ImmutableArrayList.newListWith(1);
         Assert.assertTrue(collection.notEmpty());
         Assert.assertEquals(1, collection.size());
@@ -128,8 +112,7 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase
     }
 
     @Test
-    public void newListWithVarArgs()
-    {
+    public void newListWithVarArgs() {
         ImmutableList<Integer> collection = this.newListWith(1, 2, 3, 4);
         Assert.assertTrue(collection.notEmpty());
         Assert.assertEquals(4, collection.size());
@@ -138,25 +121,21 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase
     }
 
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         ImmutableArrayList<Integer> integers = ImmutableArrayList.newListWith(1, 2, 3, 4);
         MutableSet<Integer> set = integers.toSet();
         Verify.assertContainsAll(set, 1, 2, 3, 4);
     }
 
     @Test
-    public void toMap()
-    {
+    public void toMap() {
         ImmutableArrayList<Integer> integers = ImmutableArrayList.newListWith(1, 2, 3, 4);
-        MutableMap<String, String> map =
-                integers.toMap(String::valueOf, String::valueOf);
+        MutableMap<String, String> map = integers.toMap(String::valueOf, String::valueOf);
         Assert.assertEquals(UnifiedMap.newWithKeysValues("1", "1", "2", "2", "3", "3", "4", "4"), map);
     }
 
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         ImmutableList<Integer> collection = ImmutableArrayList.newListWith(1, 2, 3, 4, 5);
         ImmutableList<Integer> deserializedCollection = SerializeTestHelper.serializeDeserialize(collection);
         Assert.assertEquals(5, deserializedCollection.size());
@@ -165,23 +144,20 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void forEachWithIndexIllegalFrom()
-    {
+    public void forEachWithIndexIllegalFrom() {
         MutableList<Integer> result = Lists.mutable.of();
         this.newList(1, 2).forEachWithIndex(-1, 2, new AddToList(result));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void forEachWithIndexIllegalTo()
-    {
+    public void forEachWithIndexIllegalTo() {
         MutableList<Integer> result = Lists.mutable.of();
         this.newList(1, 2).forEachWithIndex(1, -2, new AddToList(result));
     }
 
     @Test
     @Override
-    public void get()
-    {
+    public void get() {
         ImmutableList<Integer> list = this.classUnderTest();
         Assert.assertThrows(ArrayIndexOutOfBoundsException.class, () -> list.get(list.size() + 1));
         Assert.assertThrows(ArrayIndexOutOfBoundsException.class, () -> list.get(-1));
@@ -189,65 +165,187 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase
 
     @Test
     @Override
-    public void iteratorRemove()
-    {
-        try
-        {
+    public void iteratorRemove() {
+        try {
             this.classUnderTest().iterator().remove();
             Assert.fail("Should not reach here! Exception should be thrown on previous line.");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Assert.assertTrue(e instanceof IllegalStateException || e instanceof UnsupportedOperationException);
         }
     }
 
     @Test
-    public void groupByUniqueKey()
-    {
-        Assert.assertEquals(
-                UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3),
-                this.classUnderTest().groupByUniqueKey(id -> id));
+    public void groupByUniqueKey() {
+        Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), this.classUnderTest().groupByUniqueKey(id -> id));
     }
 
     @Test(expected = IllegalStateException.class)
-    public void groupByUniqueKey_throws()
-    {
+    public void groupByUniqueKey_throws() {
         this.classUnderTest().groupByUniqueKey(Functions.getFixedValue(1));
     }
 
     @Test
-    public void groupByUniqueKey_target()
-    {
-        MutableMap<Integer, Integer> integers =
-                this.classUnderTest().groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0));
+    public void groupByUniqueKey_target() {
+        MutableMap<Integer, Integer> integers = this.classUnderTest().groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0));
         Assert.assertEquals(UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3), integers);
     }
 
     @Test(expected = IllegalStateException.class)
-    public void groupByUniqueKey_target_throws()
-    {
+    public void groupByUniqueKey_target_throws() {
         this.classUnderTest().groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(2, 2));
     }
 
     @Test
-    public void getOnly()
-    {
+    public void getOnly() {
         ImmutableList<Integer> list = this.newList(2);
         Assert.assertEquals(Integer.valueOf(2), list.getOnly());
     }
 
     @Test(expected = IllegalStateException.class)
-    public void getOnly_exception_when_empty()
-    {
+    public void getOnly_exception_when_empty() {
         ImmutableList<Integer> list = this.newList();
         list.getOnly();
     }
 
     @Test(expected = IllegalStateException.class)
-    public void getOnly_exception_when_multiple_items()
-    {
+    public void getOnly_exception_when_multiple_items() {
         ImmutableList<Integer> list = this.newList(1, 2, 3);
         list.getOnly();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWith, this.description("newWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithAll, this.description("newWithAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithOut() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithOut, this.description("newWithOut"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithoutAll, this.description("newWithoutAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWith, this.description("newListWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithVarArgs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithVarArgs, this.description("newListWithVarArgs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMap, this.description("toMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndexIllegalFrom() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::forEachWithIndexIllegalFrom, this.description("forEachWithIndexIllegalFrom"), java.lang.IndexOutOfBoundsException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndexIllegalTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::forEachWithIndexIllegalTo, this.description("forEachWithIndexIllegalTo"), java.lang.IndexOutOfBoundsException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_get() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::get, this.description("get"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iteratorRemove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iteratorRemove, this.description("iteratorRemove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey, this.description("groupByUniqueKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::groupByUniqueKey_throws, this.description("groupByUniqueKey_throws"), java.lang.IllegalStateException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey_target, this.description("groupByUniqueKey_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_target_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::groupByUniqueKey_target_throws, this.description("groupByUniqueKey_target_throws"), java.lang.IllegalStateException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getOnly, this.description("getOnly"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly_exception_when_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getOnly_exception_when_empty, this.description("getOnly_exception_when_empty"), java.lang.IllegalStateException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly_exception_when_multiple_items() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getOnly_exception_when_multiple_items, this.description("getOnly_exception_when_multiple_items"), java.lang.IllegalStateException.class);
+        }
+
+        private ImmutableArrayListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableArrayListTest();
+        }
+
+        @java.lang.Override
+        public ImmutableArrayListTest implementation() {
+            return this.implementation;
+        }
     }
 }

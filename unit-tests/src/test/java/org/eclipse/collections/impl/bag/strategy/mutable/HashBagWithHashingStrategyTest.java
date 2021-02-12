@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.strategy.mutable;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -26,28 +25,29 @@ import org.junit.Test;
 /**
  * JUnit test suite for {@link HashBagWithHashingStrategy}.
  */
-public class HashBagWithHashingStrategyTest extends MutableBagTestCase
-{
+public class HashBagWithHashingStrategyTest extends MutableBagTestCase {
+
     private static final HashingStrategy<Person> FIRST_NAME_HASHING_STRATEGY = HashingStrategies.fromFunction(Person.TO_FIRST);
+
     private static final HashingStrategy<Person> LAST_NAME_HASHING_STRATEGY = HashingStrategies.fromFunction(Person.TO_LAST);
 
     private static final Person JOHNSMITH = new Person("John", "Smith");
+
     private static final Person JANESMITH = new Person("Jane", "Smith");
+
     private static final Person JOHNDOE = new Person("John", "Doe");
+
     private static final Person JANEDOE = new Person("Jane", "Doe");
 
     @Override
-    protected <T> MutableBag<T> newWith(T... littleElements)
-    {
+    protected <T> MutableBag<T> newWith(T... littleElements) {
         return HashBagWithHashingStrategy.newBagWith(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), littleElements);
     }
 
     @Override
-    protected <T> MutableBag<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
-    {
+    protected <T> MutableBag<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences) {
         MutableBag<T> bag = this.newWith();
-        for (int i = 0; i < elementsWithOccurrences.length; i++)
-        {
+        for (int i = 0; i < elementsWithOccurrences.length; i++) {
             ObjectIntPair<T> itemToAdd = elementsWithOccurrences[i];
             bag.addOccurrences(itemToAdd.getOne(), itemToAdd.getTwo());
         }
@@ -55,8 +55,7 @@ public class HashBagWithHashingStrategyTest extends MutableBagTestCase
     }
 
     @Test
-    public void newBag_throws()
-    {
+    public void newBag_throws() {
         Assert.assertThrows(IllegalArgumentException.class, () -> HashBagWithHashingStrategy.newBag(null));
         Assert.assertThrows(IllegalArgumentException.class, () -> HashBagWithHashingStrategy.newBag(null, 1));
         Assert.assertThrows(IllegalArgumentException.class, () -> HashBagWithHashingStrategy.newBag(null, Bags.mutable.empty()));
@@ -66,8 +65,7 @@ public class HashBagWithHashingStrategyTest extends MutableBagTestCase
 
     @Override
     @Test
-    public void removeAllIterable()
-    {
+    public void removeAllIterable() {
         super.removeAllIterable();
         MutableBag<Integer> objects = this.newWith(1, 2, 3);
         Assert.assertTrue(objects.removeAllIterable(Bags.mutable.of(1, 2, 4)));
@@ -76,86 +74,65 @@ public class HashBagWithHashingStrategyTest extends MutableBagTestCase
 
     @Override
     @Test
-    public void addAll()
-    {
+    public void addAll() {
         super.addAll();
         MutableBag<Integer> bag1 = this.newWith();
         Assert.assertTrue(bag1.addAll(this.newWith(1, 1, 2, 3)));
         Verify.assertContainsAll(bag1, 1, 2, 3);
-
         Assert.assertTrue(bag1.addAll(this.newWith(1, 2, 3)));
         Verify.assertSize(7, bag1);
         Assert.assertFalse(bag1.addAll(this.newWith()));
         Verify.assertContainsAll(bag1, 1, 2, 3);
-
         MutableBag<Integer> bag2 = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         bag2.addAll(this.newWith(5, 5, 5, 5, 5));
-
         Verify.assertBagsEqual(this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5), bag2);
-
         MutableBag<Integer> bag3 = this.newWith(1, 2, 2, 3, 3, 3);
         bag3.addAll(this.newWith(1));
-
         Verify.assertBagsEqual(this.newWith(1, 1, 2, 2, 3, 3, 3), bag3);
     }
 
     @Test
-    public void hashingStrategy()
-    {
+    public void hashingStrategy() {
         HashBagWithHashingStrategy<Integer> map = HashBagWithHashingStrategy.newBagWith(HashingStrategies.defaultStrategy(), 1, 1, 2, 2);
         Assert.assertSame(HashingStrategies.defaultStrategy(), map.hashingStrategy());
     }
 
     @Test
-    public void contains_with_hashing_strategy()
-    {
-        HashBagWithHashingStrategy<Person> bag = HashBagWithHashingStrategy.newBagWith(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, JANEDOE, JANEDOE, JOHNSMITH, JOHNSMITH, JOHNSMITH, JANESMITH, JANESMITH, JANESMITH, JANESMITH);
+    public void contains_with_hashing_strategy() {
+        HashBagWithHashingStrategy<Person> bag = HashBagWithHashingStrategy.newBagWith(LAST_NAME_HASHING_STRATEGY, JOHNDOE, JANEDOE, JANEDOE, JOHNSMITH, JOHNSMITH, JOHNSMITH, JANESMITH, JANESMITH, JANESMITH, JANESMITH);
         Verify.assertContains(JOHNDOE, bag);
         Assert.assertEquals(3, bag.occurrencesOf(JOHNDOE));
-
         Verify.assertContains(JOHNSMITH, bag);
         Assert.assertEquals(7, bag.occurrencesOf(JOHNSMITH));
-
         Verify.assertContains(JANEDOE, bag);
         Verify.assertContains(JANESMITH, bag);
     }
 
     @Test
-    public void equals_with_hashing_strategy()
-    {
+    public void equals_with_hashing_strategy() {
         HashBagWithHashingStrategy<Person> bag1 = HashBagWithHashingStrategy.newBagWith(LAST_NAME_HASHING_STRATEGY, JOHNDOE, JANEDOE, JOHNSMITH, JANESMITH);
         HashBagWithHashingStrategy<Person> bag2 = HashBagWithHashingStrategy.newBagWith(FIRST_NAME_HASHING_STRATEGY, JOHNDOE, JANEDOE, JOHNSMITH, JANESMITH);
-
         Assert.assertEquals(bag1, bag2);
         Assert.assertEquals(bag2, bag1);
         Assert.assertNotEquals(bag1.hashCode(), bag2.hashCode());
-
-        HashBagWithHashingStrategy<Person> bag3 = HashBagWithHashingStrategy.newBagWith(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, JANEDOE, JANEDOE, JOHNSMITH, JOHNSMITH, JOHNSMITH, JANESMITH, JANESMITH, JANESMITH, JANESMITH);
+        HashBagWithHashingStrategy<Person> bag3 = HashBagWithHashingStrategy.newBagWith(LAST_NAME_HASHING_STRATEGY, JOHNDOE, JANEDOE, JANEDOE, JOHNSMITH, JOHNSMITH, JOHNSMITH, JANESMITH, JANESMITH, JANESMITH, JANESMITH);
         HashBagWithHashingStrategy<Person> bag4 = HashBagWithHashingStrategy.newBag(bag3.hashingStrategy(), bag3);
         MutableBag<Person> hashBag = HashBag.newBag(bag3);
-
         Verify.assertEqualsAndHashCode(bag3, bag4);
         Assert.assertTrue(bag3.equals(hashBag) && hashBag.equals(bag3) && bag3.hashCode() != hashBag.hashCode());
-
-        HashBag<Person> people = HashBag.newBagWith(
-                JOHNDOE, JANEDOE, JANEDOE, JOHNSMITH, JOHNSMITH, JOHNSMITH, JANESMITH, JANESMITH, JANESMITH, JANESMITH);
+        HashBag<Person> people = HashBag.newBagWith(JOHNDOE, JANEDOE, JANEDOE, JOHNSMITH, JOHNSMITH, JOHNSMITH, JANESMITH, JANESMITH, JANESMITH, JANESMITH);
         HashBagWithHashingStrategy<Person> bag5 = HashBagWithHashingStrategy.newBag(LAST_NAME_HASHING_STRATEGY, people);
         Assert.assertNotEquals(bag5, people);
     }
 
     @Test
-    public void addOccurrences_occurrencesOf_with_hashing_strategy()
-    {
+    public void addOccurrences_occurrencesOf_with_hashing_strategy() {
         HashBagWithHashingStrategy<String> bag = HashBagWithHashingStrategy.newBagWith(HashingStrategies.defaultStrategy(), "1", "2", "2");
         bag.addOccurrences(null, 5);
-
-        //Testing getting values from no chains
+        // Testing getting values from no chains
         Assert.assertEquals(1, bag.occurrencesOf("1"));
         Assert.assertEquals(2, bag.occurrencesOf("2"));
         Assert.assertEquals(5, bag.occurrencesOf(null));
-
         HashBagWithHashingStrategy<Person> bag2 = HashBagWithHashingStrategy.newBag(LAST_NAME_HASHING_STRATEGY);
         bag2.addOccurrences(JOHNSMITH, 1);
         Assert.assertEquals(1, bag2.occurrencesOf(JOHNSMITH));
@@ -164,19 +141,78 @@ public class HashBagWithHashingStrategyTest extends MutableBagTestCase
     }
 
     @Test
-    public void remove_with_hashing_strategy()
-    {
-        HashBagWithHashingStrategy<Person> bag = HashBagWithHashingStrategy.newBagWith(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, JANEDOE, JANEDOE, JOHNSMITH, JOHNSMITH, JOHNSMITH, JANESMITH, JANESMITH, JANESMITH, JANESMITH);
-
+    public void remove_with_hashing_strategy() {
+        HashBagWithHashingStrategy<Person> bag = HashBagWithHashingStrategy.newBagWith(LAST_NAME_HASHING_STRATEGY, JOHNDOE, JANEDOE, JANEDOE, JOHNSMITH, JOHNSMITH, JOHNSMITH, JANESMITH, JANESMITH, JANESMITH, JANESMITH);
         bag.removeOccurrences(JANEDOE, 3);
         Assert.assertEquals(HashBagWithHashingStrategy.newBagWith(LAST_NAME_HASHING_STRATEGY, JOHNSMITH, JOHNSMITH, JOHNSMITH, JOHNSMITH, JOHNSMITH, JOHNSMITH, JOHNSMITH), bag);
         bag.removeOccurrences(JOHNSMITH, 7);
-
         Verify.assertEmpty(bag);
-
         HashBagWithHashingStrategy<Integer> bag2 = HashBagWithHashingStrategy.newBagWith(HashingStrategies.defaultStrategy(), 1, null, null, 3, 3, 3);
         bag2.removeOccurrences(null, 2);
         Assert.assertEquals(HashBagWithHashingStrategy.newBagWith(HashingStrategies.defaultStrategy(), 1, 3, 3, 3), bag2);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newBag_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newBag_throws, this.description("newBag_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllIterable, this.description("removeAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAll, this.description("addAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_hashingStrategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::hashingStrategy, this.description("hashingStrategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains_with_hashing_strategy, this.description("contains_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equals_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equals_with_hashing_strategy, this.description("equals_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addOccurrences_occurrencesOf_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addOccurrences_occurrencesOf_with_hashing_strategy, this.description("addOccurrences_occurrencesOf_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove_with_hashing_strategy, this.description("remove_with_hashing_strategy"));
+        }
+
+        private HashBagWithHashingStrategyTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBagWithHashingStrategyTest();
+        }
+
+        @java.lang.Override
+        public HashBagWithHashingStrategyTest implementation() {
+            return this.implementation;
+        }
     }
 }

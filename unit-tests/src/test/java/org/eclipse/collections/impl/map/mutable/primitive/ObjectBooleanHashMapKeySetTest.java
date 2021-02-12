@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable.primitive;
 
 import org.eclipse.collections.api.map.primitive.MutableObjectBooleanMap;
@@ -15,35 +14,46 @@ import org.eclipse.collections.api.map.primitive.MutableObjectBooleanMap;
 /**
  * JUnit test for {@link ObjectBooleanHashMap#keySet()}.
  */
-public class ObjectBooleanHashMapKeySetTest extends ObjectBooleanHashMapKeySetTestCase
-{
+public class ObjectBooleanHashMapKeySetTest extends ObjectBooleanHashMapKeySetTestCase {
+
     @Override
-    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1)
-    {
+    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1);
     }
 
     @Override
-    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2)
-    {
+    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2);
     }
 
     @Override
-    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2, String key3, boolean value3)
-    {
+    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2, String key3, boolean value3) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2, String key3, boolean value3, String key4, boolean value4)
-    {
+    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2, String key3, boolean value3, String key4, boolean value4) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
     @Override
-    public MutableObjectBooleanMap<String> newEmptyMap()
-    {
+    public MutableObjectBooleanMap<String> newEmptyMap() {
         return ObjectBooleanHashMap.newMap();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ObjectBooleanHashMapKeySetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ObjectBooleanHashMapKeySetTest();
+        }
+
+        @java.lang.Override
+        public ObjectBooleanHashMapKeySetTest implementation() {
+            return this.implementation;
+        }
     }
 }

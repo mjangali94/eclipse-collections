@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -19,11 +18,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class HashingStrategyBagsTest
-{
+public class HashingStrategyBagsTest {
+
     @Test
-    public void mutable()
-    {
+    public void mutable() {
         MutableHashingStrategyBagFactory factory = HashingStrategyBags.mutable;
         Assert.assertEquals(HashBag.newBag(), factory.of(HashingStrategies.defaultStrategy()));
         Verify.assertInstanceOf(MutableBag.class, factory.of(HashingStrategies.defaultStrategy()));
@@ -42,8 +40,35 @@ public class HashingStrategyBagsTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(HashingStrategyBags.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutable, this.description("mutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private HashingStrategyBagsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashingStrategyBagsTest();
+        }
+
+        @java.lang.Override
+        public HashingStrategyBagsTest implementation() {
+            return this.implementation;
+        }
     }
 }

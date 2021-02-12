@@ -7,13 +7,11 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable.primitive;
 
 import java.lang.reflect.Field;
 import java.util.BitSet;
 import java.util.Iterator;
-
 import org.eclipse.collections.api.block.function.primitive.BooleanFunction;
 import org.eclipse.collections.api.block.function.primitive.BooleanFunction0;
 import org.eclipse.collections.api.block.function.primitive.BooleanToBooleanFunction;
@@ -22,8 +20,8 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObjectBooleanMapTestCase
-{
+public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObjectBooleanMapTestCase {
+
     private final MutableObjectBooleanMap<String> map = this.classUnderTest();
 
     private final Class<?> targetClass = this.getTargetClass();
@@ -33,49 +31,41 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     protected abstract <T> MutableObjectBooleanMap<T> newMapWithInitialCapacity(int size);
 
     @Test
-    public void defaultInitialCapacity() throws Exception
-    {
+    public void defaultInitialCapacity() throws Exception {
         Field keys = this.targetClass.getDeclaredField("keys");
         keys.setAccessible(true);
         Field values = this.targetClass.getDeclaredField("values");
         values.setAccessible(true);
-
         MutableObjectBooleanMap<String> hashMap = this.getEmptyMap();
         Assert.assertEquals(16L, ((Object[]) keys.get(hashMap)).length);
         Assert.assertEquals(64L, ((BitSet) values.get(hashMap)).size());
     }
 
     @Test
-    public void newWithInitialCapacity() throws Exception
-    {
+    public void newWithInitialCapacity() throws Exception {
         Field keys = this.targetClass.getDeclaredField("keys");
         keys.setAccessible(true);
         Field values = this.targetClass.getDeclaredField("values");
         values.setAccessible(true);
-
         MutableObjectBooleanMap<String> hashMap = this.newMapWithInitialCapacity(3);
         Assert.assertEquals(8L, ((Object[]) keys.get(hashMap)).length);
         Assert.assertEquals(64L, ((BitSet) values.get(hashMap)).size());
-
         MutableObjectBooleanMap<String> hashMap2 = this.newMapWithInitialCapacity(15);
         Assert.assertEquals(32L, ((Object[]) keys.get(hashMap2)).length);
         Assert.assertEquals(64L, ((BitSet) values.get(hashMap)).size());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void newWithInitialCapacity_negative_throws()
-    {
+    public void newWithInitialCapacity_negative_throws() {
         this.newMapWithInitialCapacity(-1);
     }
 
     @Test
-    public void newMap() throws Exception
-    {
+    public void newMap() throws Exception {
         Field keys = this.targetClass.getDeclaredField("keys");
         keys.setAccessible(true);
         Field values = this.targetClass.getDeclaredField("values");
         values.setAccessible(true);
-
         MutableObjectBooleanMap<String> hashMap = this.getEmptyMap();
         Assert.assertEquals(16L, ((Object[]) keys.get(hashMap)).length);
         Assert.assertEquals(64L, ((BitSet) values.get(hashMap)).size());
@@ -83,8 +73,7 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void removeKeyIfAbsent()
-    {
+    public void removeKeyIfAbsent() {
         MutableObjectBooleanMap<String> map0 = this.newWithKeysValues("0", false, "1", true);
         Assert.assertTrue(map0.removeKeyIfAbsent("1", false));
         Assert.assertEquals(this.newWithKeysValues("0", false), map0);
@@ -92,7 +81,6 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         Assert.assertEquals(this.getEmptyMap(), map0);
         Assert.assertFalse(map0.removeKeyIfAbsent("1", false));
         Assert.assertTrue(map0.removeKeyIfAbsent("0", true));
-
         MutableObjectBooleanMap<String> map1 = this.newWithKeysValues("0", true, "1", false);
         Assert.assertTrue(map1.removeKeyIfAbsent("0", false));
         Assert.assertEquals(this.newWithKeysValues("1", false), map1);
@@ -100,7 +88,6 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         Assert.assertEquals(this.getEmptyMap(), map1);
         Assert.assertFalse(map1.removeKeyIfAbsent("0", false));
         Assert.assertTrue(map1.removeKeyIfAbsent("1", true));
-
         Assert.assertTrue(this.map.removeKeyIfAbsent("5", true));
         Assert.assertEquals(this.newWithKeysValues("0", true, "1", true, "2", false), this.map);
         Assert.assertTrue(this.map.removeKeyIfAbsent("0", false));
@@ -114,24 +101,19 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         Assert.assertTrue(this.map.removeKeyIfAbsent("2", true));
         Assert.assertEquals(this.getEmptyMap(), this.map);
         Verify.assertEmpty(this.map);
-
         this.map.put(null, true);
-
         Assert.assertTrue(this.map.get(null));
         Assert.assertTrue(this.map.removeKeyIfAbsent(null, false));
         Assert.assertFalse(this.map.get(null));
     }
 
     @Test
-    public void putWithRehash() throws Exception
-    {
+    public void putWithRehash() throws Exception {
         ObjectBooleanHashMap<Integer> hashMap = ObjectBooleanHashMap.newMap();
-        for (int i = 2; i < 10; i++)
-        {
+        for (int i = 2; i < 10; i++) {
             Assert.assertFalse(hashMap.containsKey(i));
             hashMap.put(i, (i & 1) == 0);
         }
-
         Field keys = ObjectBooleanHashMap.class.getDeclaredField("keys");
         Field values = ObjectBooleanHashMap.class.getDeclaredField("values");
         keys.setAccessible(true);
@@ -139,19 +121,15 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         Assert.assertEquals(16L, ((Object[]) keys.get(hashMap)).length);
         Assert.assertEquals(64L, ((BitSet) values.get(hashMap)).size());
         Verify.assertSize(8, hashMap);
-        for (int i = 2; i < 10; i++)
-        {
+        for (int i = 2; i < 10; i++) {
             Assert.assertTrue(hashMap.containsKey(i));
         }
-
         Assert.assertTrue(hashMap.containsValue(false));
         Assert.assertTrue(hashMap.containsValue(true));
         hashMap.put(10, true);
         Assert.assertEquals(32L, ((Object[]) keys.get(hashMap)).length);
         Assert.assertEquals(64L, ((BitSet) values.get(hashMap)).size());
-
-        for (int i = 11; i < 75; i++)
-        {
+        for (int i = 11; i < 75; i++) {
             Assert.assertFalse(String.valueOf(i), hashMap.containsKey(i));
             hashMap.put(i, (i & 1) == 0);
         }
@@ -160,8 +138,7 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void getIfAbsentPut()
-    {
+    public void getIfAbsentPut() {
         MutableObjectBooleanMap<Integer> map1 = this.getEmptyMap();
         Assert.assertTrue(map1.getIfAbsentPut(0, true));
         Assert.assertTrue(map1.getIfAbsentPut(0, false));
@@ -169,7 +146,6 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         Assert.assertTrue(map1.getIfAbsentPut(1, true));
         Assert.assertTrue(map1.getIfAbsentPut(1, false));
         Assert.assertEquals(this.newWithKeysValues(0, true, 1, true), map1);
-
         MutableObjectBooleanMap<Integer> map2 = this.getEmptyMap();
         Assert.assertFalse(map2.getIfAbsentPut(1, false));
         Assert.assertFalse(map2.getIfAbsentPut(1, true));
@@ -177,7 +153,6 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         Assert.assertFalse(map2.getIfAbsentPut(0, false));
         Assert.assertFalse(map2.getIfAbsentPut(0, true));
         Assert.assertEquals(this.newWithKeysValues(0, false, 1, false), map2);
-
         MutableObjectBooleanMap<Integer> map3 = this.getEmptyMap();
         Assert.assertTrue(map3.getIfAbsentPut(null, true));
         Assert.assertTrue(map3.getIfAbsentPut(null, false));
@@ -185,10 +160,8 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void updateValue()
-    {
+    public void updateValue() {
         BooleanToBooleanFunction flip = value -> !value;
-
         MutableObjectBooleanMap<Integer> map1 = this.getEmptyMap();
         Assert.assertTrue(map1.updateValue(0, false, flip));
         Assert.assertEquals(this.newWithKeysValues(0, true), map1);
@@ -198,7 +171,6 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         Assert.assertEquals(this.newWithKeysValues(0, false, 1, false), map1);
         Assert.assertTrue(map1.updateValue(1, true, flip));
         Assert.assertEquals(this.newWithKeysValues(0, false, 1, true), map1);
-
         MutableObjectBooleanMap<Integer> map2 = this.getEmptyMap();
         Assert.assertTrue(map2.updateValue(1, false, flip));
         Assert.assertEquals(this.newWithKeysValues(1, true), map2);
@@ -208,7 +180,6 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         Assert.assertEquals(this.newWithKeysValues(0, false, 1, false), map2);
         Assert.assertTrue(map2.updateValue(0, true, flip));
         Assert.assertEquals(this.newWithKeysValues(0, true, 1, false), map2);
-
         MutableObjectBooleanMap<Integer> map3 = this.getEmptyMap();
         Assert.assertFalse(map3.updateValue(null, true, flip));
         Assert.assertEquals(this.newWithKeysValues(null, false), map3);
@@ -218,8 +189,7 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
 
     @Override
     @Test
-    public void withKeysValues()
-    {
+    public void withKeysValues() {
         super.withKeysValues();
         ObjectBooleanHashMap<Integer> hashMap0 = new ObjectBooleanHashMap<Integer>().withKeysValues(1, true, 2, false);
         ObjectBooleanHashMap<Integer> hashMap1 = new ObjectBooleanHashMap<Integer>().withKeysValues(1, false, 2, false, 3, true);
@@ -230,28 +200,21 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         ObjectBooleanHashMap<Integer> hashMap0 = new ObjectBooleanHashMap<Integer>().withKeysValues(1, true, 2, true, 3, false, 4, false);
-
         Integer total = hashMap0.injectInto(Integer.valueOf(0), (result, value) -> {
-            if (value)
-            {
+            if (value) {
                 return result + 2;
             }
-
             return result;
         });
-
         Assert.assertEquals(Integer.valueOf(4), total);
     }
 
     @Test
-    public void put_every_slot()
-    {
+    public void put_every_slot() {
         ObjectBooleanHashMap<String> hashMap = ObjectBooleanHashMap.newMap();
-        for (int each = 2; each < 100; each++)
-        {
+        for (int each = 2; each < 100; each++) {
             Assert.assertFalse(hashMap.get(String.valueOf(each)));
             hashMap.put(String.valueOf(each), each % 2 == 0);
             Assert.assertEquals(each % 2 == 0, hashMap.get(String.valueOf(each)));
@@ -261,11 +224,9 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void remove_iterator_every_slot()
-    {
+    public void remove_iterator_every_slot() {
         ObjectBooleanHashMap<String> hashMap = ObjectBooleanHashMap.newMap();
-        for (int each = 2; each < 100; each++)
-        {
+        for (int each = 2; each < 100; each++) {
             Assert.assertFalse(hashMap.get(String.valueOf(each)));
             hashMap.put(String.valueOf(each), false);
             Iterator<String> iterator = hashMap.keySet().iterator();
@@ -277,11 +238,9 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void getIfAbsentPut_every_slot()
-    {
+    public void getIfAbsentPut_every_slot() {
         ObjectBooleanHashMap<String> hashMap = ObjectBooleanHashMap.newMap();
-        for (int each = 2; each < 100; each++)
-        {
+        for (int each = 2; each < 100; each++) {
             Assert.assertFalse(hashMap.get(String.valueOf(each)));
             hashMap.getIfAbsentPut(String.valueOf(each), each % 2 == 0);
             Assert.assertEquals(each % 2 == 0, hashMap.get(String.valueOf(each)));
@@ -289,14 +248,10 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void getIfAbsentPutWith_every_slot()
-    {
+    public void getIfAbsentPutWith_every_slot() {
         BooleanFunction<String> functionLength = String::isEmpty;
-
         MutableObjectBooleanMap<String> hashMap = this.getEmptyMap();
-
-        for (int each = 2; each < 100; each++)
-        {
+        for (int each = 2; each < 100; each++) {
             Assert.assertFalse(hashMap.get(String.valueOf(each)));
             Assert.assertTrue(hashMap.getIfAbsentPutWith(String.valueOf(each), functionLength, ""));
             Assert.assertTrue(hashMap.get(String.valueOf(each)));
@@ -304,14 +259,10 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void getIfAbsentPutWithKey_every_slot()
-    {
+    public void getIfAbsentPutWithKey_every_slot() {
         BooleanFunction<Integer> function = (Integer each) -> each % 2 == 0;
-
         MutableObjectBooleanMap<Integer> hashMap = this.getEmptyMap();
-
-        for (int each = 2; each < 100; each++)
-        {
+        for (int each = 2; each < 100; each++) {
             Assert.assertFalse(hashMap.get(each));
             Assert.assertEquals(each % 2 == 0, hashMap.getIfAbsentPutWithKey(each, function));
             Assert.assertEquals(each % 2 == 0, hashMap.get(each));
@@ -319,14 +270,10 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void getIfAbsentPut_Function_every_slot()
-    {
+    public void getIfAbsentPut_Function_every_slot() {
         BooleanFunction0 factory = () -> true;
-
         MutableObjectBooleanMap<String> hashMap = this.getEmptyMap();
-
-        for (int each = 2; each < 100; each++)
-        {
+        for (int each = 2; each < 100; each++) {
             Assert.assertFalse(hashMap.get(String.valueOf(each)));
             Assert.assertTrue(hashMap.getIfAbsentPut(String.valueOf(each), factory));
             Assert.assertTrue(hashMap.get(String.valueOf(each)));
@@ -334,17 +281,125 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
     }
 
     @Test
-    public void updateValue_every_slot()
-    {
+    public void updateValue_every_slot() {
         BooleanToBooleanFunction function = (boolean value) -> !value;
-
         ObjectBooleanHashMap<String> hashMap = new ObjectBooleanHashMap<>();
-
-        for (int each = 2; each < 100; each++)
-        {
+        for (int each = 2; each < 100; each++) {
             Assert.assertFalse(hashMap.get(String.valueOf(each)));
             Assert.assertEquals(each % 2 != 0, hashMap.updateValue(String.valueOf(each), each % 2 == 0, function));
             Assert.assertEquals(each % 2 != 0, hashMap.get(String.valueOf(each)));
         }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_defaultInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::defaultInitialCapacity, this.description("defaultInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithInitialCapacity, this.description("newWithInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithInitialCapacity_negative_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::newWithInitialCapacity_negative_throws, this.description("newWithInitialCapacity_negative_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newMap, this.description("newMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeKeyIfAbsent() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeKeyIfAbsent, this.description("removeKeyIfAbsent"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putWithRehash() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putWithRehash, this.description("putWithRehash"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPut() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPut, this.description("getIfAbsentPut"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_updateValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::updateValue, this.description("updateValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withKeysValues, this.description("withKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_put_every_slot() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::put_every_slot, this.description("put_every_slot"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove_iterator_every_slot() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove_iterator_every_slot, this.description("remove_iterator_every_slot"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPut_every_slot() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPut_every_slot, this.description("getIfAbsentPut_every_slot"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPutWith_every_slot() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPutWith_every_slot, this.description("getIfAbsentPutWith_every_slot"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPutWithKey_every_slot() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPutWithKey_every_slot, this.description("getIfAbsentPutWithKey_every_slot"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPut_Function_every_slot() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPut_Function_every_slot, this.description("getIfAbsentPut_Function_every_slot"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_updateValue_every_slot() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::updateValue_every_slot, this.description("updateValue_every_slot"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract ObjectBooleanHashMapTestCase implementation();
     }
 }

@@ -7,28 +7,40 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bimap.mutable;
 
 import org.eclipse.collections.api.bimap.MutableBiMap;
 
-public class HashBiMapValuesTest extends AbstractMutableBiMapValuesTestCase
-{
+public class HashBiMapValuesTest extends AbstractMutableBiMapValuesTestCase {
+
     @Override
-    public MutableBiMap<Float, String> newMapWithKeysValues(float key1, String value1, float key2, String value2)
-    {
+    public MutableBiMap<Float, String> newMapWithKeysValues(float key1, String value1, float key2, String value2) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2);
     }
 
     @Override
-    public HashBiMap<Float, Integer> newMapWithKeysValues(float key1, Integer value1, float key2, Integer value2, float key3, Integer value3)
-    {
+    public HashBiMap<Float, Integer> newMapWithKeysValues(float key1, Integer value1, float key2, Integer value2, float key3, Integer value3) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    public HashBiMap<Float, Integer> newMapWithKeysValues(float key1, Integer value1, float key2, Integer value2, float key3, Integer value3, float key4, Integer value4)
-    {
+    public HashBiMap<Float, Integer> newMapWithKeysValues(float key1, Integer value1, float key2, Integer value2, float key3, Integer value3, float key4, Integer value4) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private HashBiMapValuesTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBiMapValuesTest();
+        }
+
+        @java.lang.Override
+        public HashBiMapValuesTest implementation() {
+            return this.implementation;
+        }
     }
 }

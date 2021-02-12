@@ -7,50 +7,40 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.test.domain;
 
-public final class Key implements Comparable<Key>
-{
+public final class Key implements Comparable<Key> {
+
     private final String value;
 
-    public Key(String value)
-    {
+    public Key(String value) {
         this.value = value;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj)
-        {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (obj == null || this.getClass() != obj.getClass())
-        {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-
         Key that = (Key) obj;
-
         return this.value.equals(that.value);
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return this.value.hashCode();
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Key{ '" + this.value + "' }";
     }
 
     @Override
-    public int compareTo(Key o)
-    {
+    public int compareTo(Key o) {
         return this.value.compareTo(o.value);
     }
 }

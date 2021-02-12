@@ -7,12 +7,10 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bimap.mutable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.bimap.BiMap;
 import org.eclipse.collections.api.bimap.ImmutableBiMap;
 import org.eclipse.collections.api.bimap.MutableBiMap;
@@ -30,8 +28,8 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTestCase
-{
+public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTestCase {
+
     public abstract MutableBiMap<Integer, Character> classUnderTest();
 
     public abstract MutableBiMap<Integer, Character> getEmptyMap();
@@ -51,56 +49,43 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
     @Override
     protected abstract <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4);
 
-    public static void assertBiMapsEqual(BiMap<?, ?> expected, BiMap<?, ?> actual)
-    {
+    public static void assertBiMapsEqual(BiMap<?, ?> expected, BiMap<?, ?> actual) {
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(expected.inverse(), actual.inverse());
     }
 
     @Test
     @Override
-    public void flip()
-    {
+    public void flip() {
         Verify.assertEmpty(this.newMap().flip());
-
         MutableSetMultimap<Integer, String> expected = UnifiedSetMultimap.newMultimap();
         expected.put(1, "One");
         expected.put(2, "Two");
         expected.put(3, "Three");
         expected.put(4, "Four");
-
-        Assert.assertEquals(
-                expected,
-                this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3, "Four", 4).flip());
+        Assert.assertEquals(expected, this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3, "Four", 4).flip());
     }
 
     @Test
-    public void size()
-    {
+    public void size() {
         Verify.assertSize(3, this.classUnderTest());
         Verify.assertSize(0, this.getEmptyMap());
     }
 
     @Test
-    public void forcePut()
-    {
+    public void forcePut() {
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
         Assert.assertNull(biMap.forcePut(4, 'd'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null, null, 'b', 3, 'c', 4, 'd'), biMap);
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, null, null, 'b', 3, 'c', 4, 'd'), biMap);
-
         Assert.assertNull(biMap.forcePut(1, null));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null, null, 'b', 3, 'c', 4, 'd'), biMap);
-
         Assert.assertNull(biMap.forcePut(1, 'e'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'e', null, 'b', 3, 'c', 4, 'd'), biMap);
-
         Assert.assertNull(biMap.forcePut(5, 'e'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(5, 'e', null, 'b', 3, 'c', 4, 'd'), biMap);
-
         Assert.assertEquals(Character.valueOf('d'), biMap.forcePut(4, 'e'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(4, 'e', null, 'b', 3, 'c'), biMap);
-
         HashBiMap<Integer, Character> actual = HashBiMap.newMap();
         actual.forcePut(1, null);
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null), actual);
@@ -108,25 +93,19 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void put()
-    {
+    public void put() {
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
         Assert.assertNull(biMap.put(4, 'd'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null, null, 'b', 3, 'c', 4, 'd'), biMap);
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, null, null, 'b', 3, 'c', 4, 'd'), biMap);
-
         Assert.assertNull(biMap.put(1, null));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null, null, 'b', 3, 'c', 4, 'd'), biMap);
-
         Assert.assertNull(biMap.put(1, 'e'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'e', null, 'b', 3, 'c', 4, 'd'), biMap);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> biMap.put(5, 'e'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'e', null, 'b', 3, 'c', 4, 'd'), biMap);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> biMap.put(4, 'e'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'e', null, 'b', 3, 'c', 4, 'd'), biMap);
-
         HashBiMap<Integer, Character> actual = HashBiMap.newMap();
         actual.put(1, null);
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null), actual);
@@ -134,8 +113,7 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void flipUniqueValues()
-    {
+    public void flipUniqueValues() {
         MutableBiMap<Integer, Character> map = this.classUnderTest();
         MutableBiMap<Character, Integer> result = map.flipUniqueValues();
         Assert.assertEquals(map.inverse(), result);
@@ -145,46 +123,39 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
     }
 
     @Test
-    public void get()
-    {
+    public void get() {
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
         Assert.assertNull(biMap.get(1));
         Assert.assertEquals(Character.valueOf('b'), biMap.get(null));
         Assert.assertEquals(Character.valueOf('c'), biMap.get(3));
         Assert.assertNull(biMap.get(4));
-
         Assert.assertNull(biMap.put(4, 'd'));
         Assert.assertNull(biMap.get(1));
         Assert.assertEquals(Character.valueOf('b'), biMap.get(null));
         Assert.assertEquals(Character.valueOf('c'), biMap.get(3));
         Assert.assertEquals(Character.valueOf('d'), biMap.get(4));
-
         Assert.assertNull(biMap.put(1, null));
         Assert.assertNull(biMap.get(1));
         Assert.assertEquals(Character.valueOf('b'), biMap.get(null));
         Assert.assertEquals(Character.valueOf('c'), biMap.get(3));
         Assert.assertEquals(Character.valueOf('d'), biMap.get(4));
-
         Assert.assertNull(biMap.forcePut(1, 'e'));
         Assert.assertEquals(Character.valueOf('e'), biMap.get(1));
         Assert.assertEquals(Character.valueOf('b'), biMap.get(null));
         Assert.assertEquals(Character.valueOf('c'), biMap.get(3));
         Assert.assertEquals(Character.valueOf('d'), biMap.get(4));
-
         Assert.assertNull(biMap.forcePut(5, 'e'));
         Assert.assertNull(biMap.get(1));
         Assert.assertEquals(Character.valueOf('e'), biMap.get(5));
         Assert.assertEquals(Character.valueOf('b'), biMap.get(null));
         Assert.assertEquals(Character.valueOf('c'), biMap.get(3));
         Assert.assertEquals(Character.valueOf('d'), biMap.get(4));
-
         Assert.assertEquals(Character.valueOf('d'), biMap.forcePut(4, 'e'));
         Assert.assertNull(biMap.get(1));
         Assert.assertNull(biMap.get(5));
         Assert.assertEquals(Character.valueOf('b'), biMap.get(null));
         Assert.assertEquals(Character.valueOf('c'), biMap.get(3));
         Assert.assertEquals(Character.valueOf('e'), biMap.get(4));
-
         HashBiMap<Integer, Character> actual = HashBiMap.newMap();
         Assert.assertNull(actual.get(1));
         actual.put(1, null);
@@ -193,49 +164,40 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void containsKey()
-    {
+    public void containsKey() {
         super.containsKey();
-
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
-
         Assert.assertTrue(biMap.containsKey(1));
         Assert.assertTrue(biMap.containsKey(null));
         Assert.assertTrue(biMap.containsKey(3));
         Assert.assertFalse(biMap.containsKey(4));
-
         Assert.assertNull(biMap.put(4, 'd'));
         Assert.assertTrue(biMap.containsKey(1));
         Assert.assertTrue(biMap.containsKey(null));
         Assert.assertTrue(biMap.containsKey(3));
         Assert.assertTrue(biMap.containsKey(4));
-
         Assert.assertNull(biMap.put(1, null));
         Assert.assertTrue(biMap.containsKey(1));
         Assert.assertTrue(biMap.containsKey(null));
         Assert.assertTrue(biMap.containsKey(3));
         Assert.assertTrue(biMap.containsKey(4));
-
         Assert.assertNull(biMap.forcePut(1, 'e'));
         Assert.assertTrue(biMap.containsKey(1));
         Assert.assertTrue(biMap.containsKey(null));
         Assert.assertTrue(biMap.containsKey(3));
         Assert.assertTrue(biMap.containsKey(4));
-
         Assert.assertNull(biMap.forcePut(5, 'e'));
         Assert.assertFalse(biMap.containsKey(1));
         Assert.assertTrue(biMap.containsKey(5));
         Assert.assertTrue(biMap.containsKey(null));
         Assert.assertTrue(biMap.containsKey(3));
         Assert.assertTrue(biMap.containsKey(4));
-
         Assert.assertEquals(Character.valueOf('d'), biMap.forcePut(4, 'e'));
         Assert.assertFalse(biMap.containsKey(1));
         Assert.assertTrue(biMap.containsKey(null));
         Assert.assertTrue(biMap.containsKey(3));
         Assert.assertTrue(biMap.containsKey(4));
         Assert.assertFalse(biMap.containsKey(5));
-
         HashBiMap<Integer, Character> actual = HashBiMap.newMap();
         actual.put(1, null);
         Assert.assertTrue(actual.containsKey(1));
@@ -244,50 +206,41 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void containsValue()
-    {
+    public void containsValue() {
         super.containsValue();
-
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
-
         Assert.assertTrue(biMap.containsValue(null));
         Assert.assertTrue(biMap.containsValue('b'));
         Assert.assertTrue(biMap.containsValue('c'));
         Assert.assertFalse(biMap.containsValue('d'));
-
         Assert.assertNull(biMap.put(4, 'd'));
         Assert.assertTrue(biMap.containsValue(null));
         Assert.assertTrue(biMap.containsValue('b'));
         Assert.assertTrue(biMap.containsValue('c'));
         Assert.assertTrue(biMap.containsValue('d'));
-
         Assert.assertNull(biMap.put(1, null));
         Assert.assertTrue(biMap.containsValue(null));
         Assert.assertTrue(biMap.containsValue('b'));
         Assert.assertTrue(biMap.containsValue('c'));
         Assert.assertTrue(biMap.containsValue('d'));
-
         Assert.assertNull(biMap.forcePut(1, 'e'));
         Assert.assertTrue(biMap.containsValue('e'));
         Assert.assertFalse(biMap.containsValue(null));
         Assert.assertTrue(biMap.containsValue('b'));
         Assert.assertTrue(biMap.containsValue('c'));
         Assert.assertTrue(biMap.containsValue('d'));
-
         Assert.assertNull(biMap.forcePut(5, 'e'));
         Assert.assertFalse(biMap.containsValue(null));
         Assert.assertTrue(biMap.containsValue('e'));
         Assert.assertTrue(biMap.containsValue('b'));
         Assert.assertTrue(biMap.containsValue('c'));
         Assert.assertTrue(biMap.containsValue('d'));
-
         Assert.assertEquals(Character.valueOf('d'), biMap.forcePut(4, 'e'));
         Assert.assertFalse(biMap.containsValue(null));
         Assert.assertTrue(biMap.containsValue('e'));
         Assert.assertTrue(biMap.containsValue('b'));
         Assert.assertTrue(biMap.containsValue('c'));
         Assert.assertFalse(biMap.containsValue('d'));
-
         HashBiMap<Integer, Character> actual = HashBiMap.newMap();
         actual.put(1, null);
         Assert.assertTrue(actual.containsValue(null));
@@ -296,16 +249,13 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void putAll()
-    {
+    public void putAll() {
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
         biMap.putAll(UnifiedMap.newMap());
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null, null, 'b', 3, 'c'), biMap);
-
         biMap.putAll(UnifiedMap.newWithKeysValues(1, null, null, 'b', 3, 'c'));
         HashBiMap<Integer, Character> expected = HashBiMap.newWithKeysValues(1, null, null, 'b', 3, 'c');
         Assert.assertEquals(expected, biMap);
-
         biMap.putAll(UnifiedMap.newWithKeysValues(4, 'd', 5, 'e', 6, 'f'));
         expected.put(4, 'd');
         expected.put(5, 'e');
@@ -314,8 +264,7 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
     }
 
     @Test
-    public void remove()
-    {
+    public void remove() {
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
         Assert.assertNull(biMap.remove(4));
         Verify.assertSize(3, biMap);
@@ -323,25 +272,21 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
         Assert.assertNull(biMap.get(1));
         Assert.assertNull(biMap.inverse().get(null));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(null, 'b', 3, 'c'), biMap);
-
         Assert.assertEquals(Character.valueOf('b'), biMap.remove(null));
         Assert.assertNull(biMap.get(null));
         Assert.assertNull(biMap.inverse().get('b'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(3, 'c'), biMap);
-
         Assert.assertEquals(Character.valueOf('c'), biMap.remove(3));
         Assert.assertNull(biMap.get(3));
         Assert.assertNull(biMap.inverse().get('c'));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newMap(), biMap);
         Verify.assertEmpty(biMap);
-
         Assert.assertNull(HashBiMap.newMap().remove(1));
     }
 
     @Override
     @Test
-    public void clear()
-    {
+    public void clear() {
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
         biMap.clear();
         Verify.assertEmpty(biMap);
@@ -349,8 +294,7 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
     }
 
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals("{}", this.getEmptyMap().toString());
         String actualString = HashBiMap.newWithKeysValues(1, null, 2, 'b').toString();
         Assert.assertTrue("{1=null, 2=b}".equals(actualString) || "{2=b, 1=null}".equals(actualString));
@@ -358,10 +302,8 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         super.equalsAndHashCode();
-
         MutableBiMap<Integer, Character> emptyMap = this.getEmptyMap();
         Verify.assertEqualsAndHashCode(UnifiedMap.newMap(), emptyMap);
         Assert.assertEquals(emptyMap, emptyMap);
@@ -373,25 +315,19 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void nullCollisionWithCastInEquals()
-    {
+    public void nullCollisionWithCastInEquals() {
         MutableBiMap<IntegerWithCast, String> mutableMap = this.newMap();
         mutableMap.put(new IntegerWithCast(0), "Test 2");
         mutableMap.forcePut(new IntegerWithCast(0), "Test 3");
         mutableMap.put(null, "Test 1");
-        Assert.assertEquals(
-                this.newMapWithKeysValues(
-                        new IntegerWithCast(0), "Test 3",
-                        null, "Test 1"),
-                mutableMap);
+        Assert.assertEquals(this.newMapWithKeysValues(new IntegerWithCast(0), "Test 3", null, "Test 1"), mutableMap);
         Assert.assertEquals("Test 3", mutableMap.get(new IntegerWithCast(0)));
         Assert.assertEquals("Test 1", mutableMap.get(null));
     }
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         MutableSet<Character> expected = UnifiedSet.newSetWith(null, 'b', 'c');
         MutableSet<Character> actual = UnifiedSet.newSet();
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
@@ -400,17 +336,14 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
         Assert.assertThrows(IllegalStateException.class, iterator::remove);
         Verify.assertSize(3, biMap);
         Verify.assertSize(3, biMap.inverse());
-        for (int i = 0; i < 3; i++)
-        {
+        for (int i = 0; i < 3; i++) {
             Assert.assertTrue(iterator.hasNext());
             actual.add(iterator.next());
         }
         Assert.assertEquals(expected, actual);
         Assert.assertFalse(iterator.hasNext());
         Assert.assertThrows(NoSuchElementException.class, iterator::next);
-
         Iterator<Character> iteratorRemove = biMap.iterator();
-
         Assert.assertTrue(iteratorRemove.hasNext());
         Character first = iteratorRemove.next();
         iteratorRemove.remove();
@@ -420,7 +353,6 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
         Assert.assertEquals(expectedMap.inverse(), biMap.inverse());
         Verify.assertSize(2, biMap);
         Verify.assertSize(2, biMap.inverse());
-
         Assert.assertTrue(iteratorRemove.hasNext());
         Character second = iteratorRemove.next();
         iteratorRemove.remove();
@@ -429,7 +361,6 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
         Assert.assertEquals(expectedMap.inverse(), biMap.inverse());
         Verify.assertSize(1, biMap);
         Verify.assertSize(1, biMap.inverse());
-
         Assert.assertTrue(iteratorRemove.hasNext());
         Character third = iteratorRemove.next();
         iteratorRemove.remove();
@@ -438,26 +369,21 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
         Assert.assertEquals(expectedMap.inverse(), biMap.inverse());
         Verify.assertEmpty(biMap);
         Verify.assertEmpty(biMap.inverse());
-
         Assert.assertFalse(iteratorRemove.hasNext());
         Assert.assertThrows(NoSuchElementException.class, iteratorRemove::next);
     }
 
     @Override
     @Test
-    public void withMapNull()
-    {
+    public void withMapNull() {
         Assert.assertThrows(NullPointerException.class, () -> this.newMap().withMap(null));
     }
 
     @Override
     @Test
-    public void updateValueWith()
-    {
+    public void updateValueWith() {
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
-        Function2<Character, Boolean, Character> toUpperOrLowerCase = (character, parameter) -> parameter
-                ? Character.toUpperCase(character)
-                : Character.toLowerCase(character);
+        Function2<Character, Boolean, Character> toUpperOrLowerCase = (character, parameter) -> parameter ? Character.toUpperCase(character) : Character.toLowerCase(character);
         Assert.assertEquals(Character.valueOf('D'), biMap.updateValueWith(4, () -> 'd', toUpperOrLowerCase, true));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null, null, 'b', 3, 'c', 4, 'D'), biMap);
         Assert.assertEquals(Character.valueOf('B'), biMap.updateValueWith(null, () -> 'd', toUpperOrLowerCase, true));
@@ -468,8 +394,7 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void updateValue()
-    {
+    public void updateValue() {
         MutableBiMap<Integer, Character> biMap = this.classUnderTest();
         Assert.assertEquals(Character.valueOf('D'), biMap.updateValue(4, () -> 'd', Character::toUpperCase));
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, null, null, 'b', 3, 'c', 4, 'D'), biMap);
@@ -479,29 +404,25 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
 
     @Override
     @Test
-    public void updateValue_collisions()
-    {
-        // testing collisions not applicable here
+    public void updateValue_collisions() {
+    // testing collisions not applicable here
     }
 
     @Override
     @Test
-    public void updateValueWith_collisions()
-    {
-        // testing collisions not applicable here
+    public void updateValueWith_collisions() {
+    // testing collisions not applicable here
     }
 
     @Override
-    public void toImmutable()
-    {
+    public void toImmutable() {
         ImmutableBiMap<Integer, Character> expectedImmutableBiMap = BiMaps.immutable.of(null, 'b', 1, null, 3, 'c');
         ImmutableBiMap<Integer, Character> characters = this.classUnderTest().toImmutable();
         Assert.assertEquals(expectedImmutableBiMap, characters);
     }
 
     @Test
-    public void testClone()
-    {
+    public void testClone() {
         MutableBiMap<Integer, String> map = this.newMapWithKeysValues(1, "One", 2, "Two");
         MutableBiMap<Integer, String> clone = map.clone();
         Assert.assertNotSame(map, clone);
@@ -509,11 +430,152 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
     }
 
     @Test
-    public void into()
-    {
+    public void into() {
         MutableBiMap<Integer, Character> map = this.newMapWithKeysValues(1, 'a', 2, 'b');
         MutableSet<Character> target = Sets.mutable.of('c');
         map.into(target);
         Verify.assertSetsEqual(Sets.mutable.of('a', 'b', 'c'), target);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flip, this.description("flip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forcePut() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forcePut, this.description("forcePut"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_put() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::put, this.description("put"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flipUniqueValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flipUniqueValues, this.description("flipUniqueValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_get() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::get, this.description("get"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsKey, this.description("containsKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsValue, this.description("containsValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putAll, this.description("putAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove, this.description("remove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::clear, this.description("clear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_nullCollisionWithCastInEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::nullCollisionWithCastInEquals, this.description("nullCollisionWithCastInEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withMapNull() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withMapNull, this.description("withMapNull"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_updateValueWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::updateValueWith, this.description("updateValueWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_updateValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::updateValue, this.description("updateValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_updateValue_collisions() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::updateValue_collisions, this.description("updateValue_collisions"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_updateValueWith_collisions() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::updateValueWith_collisions, this.description("updateValueWith_collisions"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_into() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::into, this.description("into"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractMutableBiMapTestCase implementation();
     }
 }

@@ -7,28 +7,40 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bimap.mutable;
 
 import org.eclipse.collections.api.bimap.MutableBiMap;
 
-public class HashBiMapInverseValuesTest extends AbstractMutableBiMapValuesTestCase
-{
+public class HashBiMapInverseValuesTest extends AbstractMutableBiMapValuesTestCase {
+
     @Override
-    public MutableBiMap<Float, String> newMapWithKeysValues(float key1, String value1, float key2, String value2)
-    {
+    public MutableBiMap<Float, String> newMapWithKeysValues(float key1, String value1, float key2, String value2) {
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2).inverse();
     }
 
     @Override
-    public MutableBiMap<Float, Integer> newMapWithKeysValues(float key1, Integer value1, float key2, Integer value2, float key3, Integer value3)
-    {
+    public MutableBiMap<Float, Integer> newMapWithKeysValues(float key1, Integer value1, float key2, Integer value2, float key3, Integer value3) {
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2, value3, key3).inverse();
     }
 
     @Override
-    public MutableBiMap<Float, Integer> newMapWithKeysValues(float key1, Integer value1, float key2, Integer value2, float key3, Integer value3, float key4, Integer value4)
-    {
+    public MutableBiMap<Float, Integer> newMapWithKeysValues(float key1, Integer value1, float key2, Integer value2, float key3, Integer value3, float key4, Integer value4) {
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2, value3, key3, value4, key4).inverse();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private HashBiMapInverseValuesTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBiMapInverseValuesTest();
+        }
+
+        @java.lang.Override
+        public HashBiMapInverseValuesTest implementation() {
+            return this.implementation;
+        }
     }
 }

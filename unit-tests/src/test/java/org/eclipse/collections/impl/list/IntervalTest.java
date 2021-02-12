@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list;
 
 import java.math.BigInteger;
@@ -20,7 +19,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
-
 import org.eclipse.collections.api.LazyIterable;
 import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.block.procedure.primitive.ObjectIntProcedure;
@@ -43,61 +41,48 @@ import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class IntervalTest
-{
+public class IntervalTest {
+
     @Test
-    public void into()
-    {
-        int sum = Interval.oneTo(5)
-                .select(Predicates.lessThan(5))
-                .into(FastList.newList())
-                .injectInto(0, AddFunction.INTEGER_TO_INT);
+    public void into() {
+        int sum = Interval.oneTo(5).select(Predicates.lessThan(5)).into(FastList.newList()).injectInto(0, AddFunction.INTEGER_TO_INT);
         Assert.assertEquals(10, sum);
     }
 
     @Test
-    public void fromToExclusive()
-    {
+    public void fromToExclusive() {
         // Positive forward
         Verify.assertEqualsAndHashCode(Interval.from(1), Interval.fromToExclusive(1, 2));
         Verify.assertEqualsAndHashCode(Interval.fromTo(1, 10), Interval.fromToExclusive(1, 11));
-
         // Positive reverse
         Verify.assertEqualsAndHashCode(Interval.from(2), Interval.fromToExclusive(2, 1));
         Verify.assertEqualsAndHashCode(Interval.fromTo(10, 2), Interval.fromToExclusive(10, 1));
-
         // Negative forward
         Verify.assertEqualsAndHashCode(Interval.from(-1), Interval.fromToExclusive(-1, 0));
         Verify.assertEqualsAndHashCode(Interval.fromTo(-10, -1), Interval.fromToExclusive(-10, 0));
-
         // Negative reverse
         Verify.assertEqualsAndHashCode(Interval.from(-1), Interval.fromToExclusive(-1, 0));
         Verify.assertEqualsAndHashCode(Interval.fromTo(-1, -10), Interval.fromToExclusive(-1, -11));
-
         // MIN Value should throw an error
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromToExclusive(Integer.MIN_VALUE, Integer.MIN_VALUE));
-
         Verify.assertSize(Integer.MAX_VALUE, Interval.fromToExclusive(Integer.MIN_VALUE, -1));
         Verify.assertSize(Integer.MAX_VALUE, Interval.fromToExclusive(0, Integer.MAX_VALUE));
         Verify.assertSize(10, Interval.fromToExclusive(0, 10));
         Verify.assertSize(10, Interval.fromToExclusive(-10, 0));
         Verify.assertSize(20, Interval.fromToExclusive(-10, 10));
-
         this.compareRangeAndInterval(0, 10);
         this.compareRangeAndInterval(-1, 1);
         this.compareRangeAndInterval(-10, 10);
     }
 
-    private void compareRangeAndInterval(int start, int end)
-    {
+    private void compareRangeAndInterval(int start, int end) {
         ImmutableList<Integer> rangeList = Lists.immutable.fromStream(IntStream.range(start, end).boxed());
         ImmutableList<Integer> intervalList = Lists.immutable.fromStream(Interval.fromToExclusive(start, end).stream());
         Verify.assertEqualsAndHashCode(rangeList, intervalList);
     }
 
     @Test
-    public void fromAndToAndBy()
-    {
+    public void fromAndToAndBy() {
         Interval interval = Interval.from(1);
         Interval interval2 = interval.to(10);
         Interval interval3 = interval2.by(2);
@@ -106,12 +91,10 @@ public class IntervalTest
         Verify.assertEqualsAndHashCode(interval3, Interval.fromToBy(1, 10, 2));
         Verify.assertSize(Integer.MAX_VALUE, Interval.fromTo(Integer.MIN_VALUE + 1, -1));
         Verify.assertSize(Integer.MAX_VALUE, Interval.fromTo(1, Integer.MAX_VALUE));
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromTo(Integer.MIN_VALUE, Integer.MAX_VALUE));
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromTo(-1, Integer.MAX_VALUE));
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromToBy(Integer.MIN_VALUE, Integer.MAX_VALUE, 2));
         Verify.assertSize(Interval.fromTo(Integer.MIN_VALUE + 1, -1).size(), Interval.oneTo(Integer.MAX_VALUE));
-
         Assert.assertEquals(Lists.mutable.with(0), Interval.fromToBy(0, 2, 3));
         Assert.assertEquals(Lists.mutable.with(0), Interval.fromToBy(0, -2, -3));
         Assert.assertEquals(Lists.mutable.with(1_000_000_000), Interval.fromToBy(1_000_000_000, 2_000_000_000, 1_500_000_000));
@@ -121,35 +104,29 @@ public class IntervalTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromToBy_throws_step_size_zero()
-    {
+    public void fromToBy_throws_step_size_zero() {
         Interval.fromToBy(0, 0, 0);
     }
 
     @Test
-    public void fromToBy_with_same_start_and_end_with_negative_step()
-    {
+    public void fromToBy_with_same_start_and_end_with_negative_step() {
         MutableList<Integer> integers = Interval.fromToBy(2, 2, -2).toList();
-
         Verify.assertSize(1, integers);
         Verify.assertContains(2, integers);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void oneToBy_throws_step_size_zero()
-    {
+    public void oneToBy_throws_step_size_zero() {
         Interval.oneToBy(1, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void zeroToBy_throws_step_size_zero()
-    {
+    public void zeroToBy_throws_step_size_zero() {
         Interval.zeroToBy(0, 0);
     }
 
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         Interval interval1 = Interval.oneTo(5);
         Interval interval2 = Interval.oneTo(5);
         Interval interval3 = Interval.zeroTo(5);
@@ -157,28 +134,22 @@ public class IntervalTest
         Verify.assertEqualsAndHashCode(interval1, interval2);
         Assert.assertNotEquals(interval1, interval3);
         Assert.assertNotEquals(interval3, interval1);
-
         Verify.assertEqualsAndHashCode(Interval.fromToBy(1, 5, 2), Interval.fromToBy(1, 6, 2));
         Verify.assertEqualsAndHashCode(FastList.newListWith(1, 2, 3), Interval.fromTo(1, 3));
         Verify.assertEqualsAndHashCode(FastList.newListWith(3, 2, 1), Interval.fromTo(3, 1));
-
         Assert.assertNotEquals(FastList.newListWith(1, 2, 3, 4), Interval.fromTo(1, 3));
         Assert.assertNotEquals(FastList.newListWith(1, 2, 4), Interval.fromTo(1, 3));
         Assert.assertNotEquals(FastList.newListWith(3, 2, 0), Interval.fromTo(3, 1));
-
         Verify.assertEqualsAndHashCode(FastList.newListWith(-1, -2, -3), Interval.fromTo(-1, -3));
-
         Verify.assertEqualsAndHashCode(FastList.newListWith(1, 2), Interval.fromToExclusive(1, 3));
         Verify.assertEqualsAndHashCode(FastList.newListWith(3, 2, 1), Interval.fromToExclusive(3, 0));
-
         Assert.assertNotEquals(FastList.newListWith(1, 2, 3, 4), Interval.fromToExclusive(1, 4));
         Assert.assertNotEquals(FastList.newListWith(1, 2, 4), Interval.fromToExclusive(1, 2));
         Assert.assertNotEquals(FastList.newListWith(3, 2, 0), Interval.fromToExclusive(3, 1));
     }
 
     @Test
-    public void forEachOnFromToInterval()
-    {
+    public void forEachOnFromToInterval() {
         MutableList<Integer> result = Lists.mutable.of();
         Interval interval = Interval.oneTo(5);
         interval.forEach(CollectionAddProcedure.on(result));
@@ -186,8 +157,7 @@ public class IntervalTest
     }
 
     @Test
-    public void forEachWithExecutor()
-    {
+    public void forEachWithExecutor() {
         MutableList<Integer> result = Lists.mutable.of();
         Interval interval = Interval.oneTo(5);
         interval.forEach(CollectionAddProcedure.on(result), Executors.newSingleThreadExecutor());
@@ -195,8 +165,7 @@ public class IntervalTest
     }
 
     @Test
-    public void forEachWithExecutorInReverse()
-    {
+    public void forEachWithExecutorInReverse() {
         MutableList<Integer> result = Lists.mutable.of();
         Interval interval = Interval.fromToBy(5, 1, -1);
         interval.forEach(CollectionAddProcedure.on(result), Executors.newSingleThreadExecutor());
@@ -204,8 +173,7 @@ public class IntervalTest
     }
 
     @Test
-    public void runWithExecutor() throws InterruptedException
-    {
+    public void runWithExecutor() throws InterruptedException {
         MutableList<String> result = Lists.mutable.of();
         ExecutorService service = Executors.newSingleThreadExecutor();
         Interval.oneTo(3).run(() -> result.add(null), service);
@@ -215,8 +183,7 @@ public class IntervalTest
     }
 
     @Test
-    public void runWithExecutorInReverse() throws InterruptedException
-    {
+    public void runWithExecutorInReverse() throws InterruptedException {
         MutableList<String> result = Lists.mutable.of();
         ExecutorService service = Executors.newSingleThreadExecutor();
         Interval.fromTo(3, 1).run(() -> result.add(null), service);
@@ -226,8 +193,7 @@ public class IntervalTest
     }
 
     @Test
-    public void reverseForEachOnFromToInterval()
-    {
+    public void reverseForEachOnFromToInterval() {
         List<Integer> result = new ArrayList<>();
         Interval interval = Interval.oneTo(5);
         interval.reverseForEach(result::add);
@@ -236,7 +202,6 @@ public class IntervalTest
         Verify.assertContains(5, result);
         Assert.assertEquals(Integer.valueOf(5), Iterate.getFirst(result));
         Assert.assertEquals(Integer.valueOf(1), Iterate.getLast(result));
-
         result.clear();
         interval.reverseThis().reverseForEach(result::add);
         Verify.assertSize(5, result);
@@ -247,8 +212,7 @@ public class IntervalTest
     }
 
     @Test
-    public void forEachOnFromToByInterval()
-    {
+    public void forEachOnFromToByInterval() {
         List<Integer> result = new ArrayList<>();
         Interval interval = Interval.fromToBy(1, 5, 2);
         interval.forEach(CollectionAddProcedure.on(result));
@@ -259,8 +223,7 @@ public class IntervalTest
     }
 
     @Test
-    public void forEachOnFromToByInterval2()
-    {
+    public void forEachOnFromToByInterval2() {
         List<Integer> result = new ArrayList<>();
         Interval interval = Interval.fromToBy(5, 1, -2);
         interval.forEach(CollectionAddProcedure.on(result));
@@ -271,47 +234,40 @@ public class IntervalTest
     }
 
     @Test
-    public void injectIntoOnFromToByInterval()
-    {
+    public void injectIntoOnFromToByInterval() {
         Interval interval = Interval.oneTo(5);
         Assert.assertEquals(Integer.valueOf(20), interval.injectInto(5, AddFunction.INTEGER));
         Assert.assertEquals(Integer.valueOf(20), interval.reverseThis().injectInto(5, AddFunction.INTEGER));
     }
 
     @Test
-    public void injectIntoOnFromToBySameStartEndNegativeStepInterval()
-    {
+    public void injectIntoOnFromToBySameStartEndNegativeStepInterval() {
         Interval interval = Interval.fromToBy(2, 2, -2);
-
         Assert.assertEquals(Integer.valueOf(0), interval.injectInto(-2, AddFunction.INTEGER));
         Assert.assertEquals(Integer.valueOf(0), interval.reverseThis().injectInto(-2, AddFunction.INTEGER));
     }
 
     @Test
-    public void sumInterval()
-    {
+    public void sumInterval() {
         int sum = Interval.oneTo(5).injectInto(0, AddFunction.INTEGER_TO_INT);
         Assert.assertEquals(15, sum);
     }
 
     @Test
-    public void maxInterval()
-    {
+    public void maxInterval() {
         Integer value = Interval.oneTo(5).injectInto(0, Integer::max);
         Assert.assertEquals(5, value.intValue());
     }
 
     @Test
-    public void reverseInjectIntoOnFromToByInterval()
-    {
+    public void reverseInjectIntoOnFromToByInterval() {
         Interval interval = Interval.oneTo(5);
         Assert.assertEquals(Integer.valueOf(20), interval.reverseInjectInto(5, AddFunction.INTEGER));
         Assert.assertEquals(Integer.valueOf(20), interval.reverseThis().reverseInjectInto(5, AddFunction.INTEGER));
     }
 
     @Test
-    public void collectOnFromToByInterval()
-    {
+    public void collectOnFromToByInterval() {
         Interval interval = Interval.oneToBy(5, 2);
         LazyIterable<String> result = interval.collect(String::valueOf);
         Verify.assertIterableSize(3, result);
@@ -320,8 +276,7 @@ public class IntervalTest
     }
 
     @Test
-    public void collectOnFromToInterval()
-    {
+    public void collectOnFromToInterval() {
         Interval interval = Interval.oneTo(5);
         LazyIterable<String> result = interval.collect(String::valueOf);
         Verify.assertIterableSize(5, result);
@@ -329,24 +284,21 @@ public class IntervalTest
     }
 
     @Test
-    public void selectOnFromToInterval()
-    {
+    public void selectOnFromToInterval() {
         Interval interval = Interval.oneTo(5);
         Assert.assertEquals(FastList.newListWith(2, 4), interval.select(IntegerPredicates.isEven()).toList());
         Assert.assertEquals(FastList.newListWith(4, 2), interval.reverseThis().select(IntegerPredicates.isEven()).toList());
     }
 
     @Test
-    public void rejectOnFromToInterval()
-    {
+    public void rejectOnFromToInterval() {
         Interval interval = Interval.oneTo(5);
         Assert.assertEquals(FastList.newListWith(1, 3, 5), interval.reject(IntegerPredicates.isEven()).toList());
         Assert.assertEquals(FastList.newListWith(5, 3, 1), interval.reverseThis().reject(IntegerPredicates.isEven()).toList());
     }
 
     @Test
-    public void reverseThis()
-    {
+    public void reverseThis() {
         Interval interval = Interval.fromToBy(5, 1, -1);
         Interval interval2 = interval.reverseThis();
         List<Integer> result = new ArrayList<>();
@@ -355,24 +307,21 @@ public class IntervalTest
     }
 
     @Test
-    public void intervalAsArray()
-    {
-        Assert.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, Interval.toArray(1, 5));
+    public void intervalAsArray() {
+        Assert.assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5 }, Interval.toArray(1, 5));
     }
 
     @Test
-    public void intervalAsIntArray()
-    {
-        Assert.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, Interval.fromTo(1, 5).toIntArray());
-        Assert.assertArrayEquals(new int[]{1, 2, 3, 4}, Interval.fromToExclusive(1, 5).toIntArray());
-        Assert.assertArrayEquals(new int[]{5, 4, 3, 2}, Interval.fromToExclusive(5, 1).toIntArray());
-        Assert.assertArrayEquals(new int[]{-1, -2, -3, -4}, Interval.fromToExclusive(-1, -5).toIntArray());
-        Assert.assertArrayEquals(new int[]{-5, -4, -3, -2}, Interval.fromToExclusive(-5, -1).toIntArray());
+    public void intervalAsIntArray() {
+        Assert.assertArrayEquals(new int[] { 1, 2, 3, 4, 5 }, Interval.fromTo(1, 5).toIntArray());
+        Assert.assertArrayEquals(new int[] { 1, 2, 3, 4 }, Interval.fromToExclusive(1, 5).toIntArray());
+        Assert.assertArrayEquals(new int[] { 5, 4, 3, 2 }, Interval.fromToExclusive(5, 1).toIntArray());
+        Assert.assertArrayEquals(new int[] { -1, -2, -3, -4 }, Interval.fromToExclusive(-1, -5).toIntArray());
+        Assert.assertArrayEquals(new int[] { -5, -4, -3, -2 }, Interval.fromToExclusive(-5, -1).toIntArray());
     }
 
     @Test
-    public void intervalAsReverseArray()
-    {
+    public void intervalAsReverseArray() {
         Integer[] array = Interval.toReverseArray(1, 5);
         Verify.assertSize(5, array);
         Assert.assertTrue(ArrayIterate.contains(array, 1));
@@ -382,40 +331,35 @@ public class IntervalTest
     }
 
     @Test
-    public void intervalToList()
-    {
+    public void intervalToList() {
         MutableList<Integer> list = Interval.fromTo(1, 5).toList();
         Verify.assertSize(5, list);
         Verify.assertContainsAll(list, 1, 2, 3, 4, 5);
     }
 
     @Test
-    public void intervalAsReverseList()
-    {
+    public void intervalAsReverseList() {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
         Verify.assertSize(5, list);
         Verify.assertStartsWith(list, 5, 4, 3, 2, 1);
     }
 
     @Test
-    public void intervalToSet()
-    {
+    public void intervalToSet() {
         MutableSet<Integer> set = Interval.toSet(1, 5);
         Verify.assertSize(5, set);
         Verify.assertContainsAll(set, 1, 2, 3, 4, 5);
     }
 
     @Test
-    public void invalidIntervals()
-    {
+    public void invalidIntervals() {
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromToBy(5, 1, 2));
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromToBy(5, 1, 0));
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromToBy(-5, 1, -1));
     }
 
     @Test
-    public void toFastList()
-    {
+    public void toFastList() {
         Interval interval = Interval.evensFromTo(0, 10);
         FastList<Integer> toList = (FastList<Integer>) interval.toList();
         Verify.assertStartsWith(toList, 0, 2, 4, 6, 8, 10);
@@ -423,8 +367,7 @@ public class IntervalTest
     }
 
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         Interval interval = Interval.evensFromTo(0, 10);
         MutableSet<Integer> set = interval.toSet();
         Verify.assertContainsAll(set, 0, 2, 4, 6, 8, 10);
@@ -432,74 +375,61 @@ public class IntervalTest
     }
 
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Interval interval = Interval.evensFromTo(0, 10);
         Assert.assertEquals("Interval from: 0 to: 10 step: 2 size: 6", interval.toString());
     }
 
     @Test
-    public void evens()
-    {
+    public void evens() {
         Interval interval = Interval.evensFromTo(0, 10);
-        int[] evens = {0, 2, 4, 6, 8, 10};
-        int[] odds = {1, 3, 5, 7, 9};
+        int[] evens = { 0, 2, 4, 6, 8, 10 };
+        int[] odds = { 1, 3, 5, 7, 9 };
         this.assertIntervalContainsAll(interval, evens);
         this.denyIntervalContainsAny(interval, odds);
         Verify.assertSize(6, interval);
-
         Interval reverseInterval = Interval.evensFromTo(10, 0);
         this.assertIntervalContainsAll(reverseInterval, evens);
         this.denyIntervalContainsAny(reverseInterval, odds);
         Verify.assertSize(6, reverseInterval);
-
         Interval negativeInterval = Interval.evensFromTo(-5, 5);
-        int[] negativeEvens = {-4, -2, 0, 2, 4};
-        int[] negativeOdds = {-3, -1, 1, 3};
+        int[] negativeEvens = { -4, -2, 0, 2, 4 };
+        int[] negativeOdds = { -3, -1, 1, 3 };
         this.assertIntervalContainsAll(negativeInterval, negativeEvens);
         this.denyIntervalContainsAny(negativeInterval, negativeOdds);
         Verify.assertSize(5, negativeInterval);
-
         Interval reverseNegativeInterval = Interval.evensFromTo(5, -5);
         this.assertIntervalContainsAll(reverseNegativeInterval, negativeEvens);
         this.denyIntervalContainsAny(reverseNegativeInterval, negativeOdds);
         Verify.assertSize(5, reverseNegativeInterval);
     }
 
-    private void assertIntervalContainsAll(Interval interval, int[] expectedValues)
-    {
-        for (int value : expectedValues)
-        {
+    private void assertIntervalContainsAll(Interval interval, int[] expectedValues) {
+        for (int value : expectedValues) {
             Verify.assertContains(value, interval);
         }
     }
 
-    private void denyIntervalContainsAny(Interval interval, int[] expectedValues)
-    {
-        for (int value : expectedValues)
-        {
+    private void denyIntervalContainsAny(Interval interval, int[] expectedValues) {
+        for (int value : expectedValues) {
             Verify.assertNotContains(value, interval);
         }
     }
 
     @Test
-    public void odds()
-    {
+    public void odds() {
         Interval interval1 = Interval.oddsFromTo(0, 10);
         Assert.assertTrue(interval1.containsAll(1, 3, 5, 7, 9));
         Assert.assertTrue(interval1.containsNone(2, 4, 6, 8));
         Verify.assertSize(5, interval1);
-
         Interval reverseInterval1 = Interval.oddsFromTo(10, 0);
         Assert.assertTrue(reverseInterval1.containsAll(1, 3, 5, 7, 9));
         Assert.assertTrue(reverseInterval1.containsNone(0, 2, 4, 6, 8, 10));
         Verify.assertSize(5, reverseInterval1);
-
         Interval interval2 = Interval.oddsFromTo(-5, 5);
         Assert.assertTrue(interval2.containsAll(-5, -3, -1, 1, 3, 5));
         Assert.assertTrue(interval2.containsNone(-4, -2, 0, 2, 4));
         Verify.assertSize(6, interval2);
-
         Interval reverseInterval2 = Interval.oddsFromTo(5, -5);
         Assert.assertTrue(reverseInterval2.containsAll(-5, -3, -1, 1, 3, 5));
         Assert.assertTrue(reverseInterval2.containsNone(-4, -2, 0, 2, 4));
@@ -507,8 +437,7 @@ public class IntervalTest
     }
 
     @Test
-    public void size()
-    {
+    public void size() {
         Verify.assertSize(100, Interval.fromTo(1, 100));
         Verify.assertSize(100, Interval.fromToExclusive(1, 101));
         Verify.assertSize(50, Interval.fromToBy(1, 100, 2));
@@ -527,7 +456,6 @@ public class IntervalTest
         Verify.assertSize(9, Interval.fromToExclusive(0, -9));
         Verify.assertSize(3, Interval.evensFromTo(2, -2));
         Verify.assertSize(2, Interval.oddsFromTo(2, -2));
-
         // Positive Ranges
         Verify.assertSize(10, Interval.zeroTo(9));
         Verify.assertSize(2_000_000_000, Interval.oneTo(2_000_000_000));
@@ -565,8 +493,7 @@ public class IntervalTest
     }
 
     @Test
-    public void contains()
-    {
+    public void contains() {
         Verify.assertContains(0, Interval.zero());
         Assert.assertTrue(Interval.oneTo(5).containsAll(1, 5));
         Assert.assertTrue(Interval.oneTo(5).containsNone(6, 7));
@@ -578,14 +505,11 @@ public class IntervalTest
         Verify.assertNotContains(-5, Interval.fromToExclusive(-1, -5));
         Verify.assertNotContains(0, Interval.fromToExclusive(-1, -5));
         Verify.assertNotContains(1, Interval.fromTo(-1, -5));
-
         Verify.assertContains(Integer.valueOf(0), Interval.zero());
         Verify.assertNotContains(Integer.valueOf(0), Interval.oneTo(5));
         Verify.assertNotContains(Integer.valueOf(1), Interval.fromTo(-1, -5));
         Verify.assertNotContains(Integer.valueOf(1), Interval.fromToExclusive(-1, -5));
-
         Verify.assertNotContains(new Object(), Interval.zeroTo(5));
-
         Interval bigInterval = Interval.fromToBy(Integer.MIN_VALUE, Integer.MAX_VALUE, 1_000_000);
         Assert.assertTrue(bigInterval.contains(Integer.MIN_VALUE + 1_000_000));
         Assert.assertFalse(bigInterval.contains(Integer.MIN_VALUE + 1_000_001));
@@ -593,28 +517,17 @@ public class IntervalTest
         Assert.assertFalse(bigInterval.contains(Integer.MIN_VALUE + (1_000_001 * 10)));
         Assert.assertTrue(bigInterval.contains(Integer.MIN_VALUE + (1_000_000 * 100)));
         Assert.assertFalse(bigInterval.contains(Integer.MIN_VALUE + (1_000_001 * 100)));
-        Assert.assertTrue(
-                Interval.fromToBy(1_000_000_000, 2_000_000_000, 1_500_000_000)
-                        .contains(1_000_000_000));
-        Assert.assertTrue(
-                Interval.fromToBy(-1_000_000_000, -2_000_000_000, -1_500_000_000)
-                        .contains(-1_000_000_000));
-
+        Assert.assertTrue(Interval.fromToBy(1_000_000_000, 2_000_000_000, 1_500_000_000).contains(1_000_000_000));
+        Assert.assertTrue(Interval.fromToBy(-1_000_000_000, -2_000_000_000, -1_500_000_000).contains(-1_000_000_000));
         int minValue = -1_000_000_000;
         int maxValue = 1_000_000_000;
         Interval largeInterval = Interval.fromToBy(minValue, maxValue, 10);
-
-        Assert.assertTrue(largeInterval.containsAll(
-                maxValue - 10,
-                maxValue - 100,
-                maxValue - 1000,
-                maxValue - 10000));
+        Assert.assertTrue(largeInterval.containsAll(maxValue - 10, maxValue - 100, maxValue - 1000, maxValue - 10000));
         Assert.assertTrue(largeInterval.contains(minValue + 10));
     }
 
     @Test
-    public void largeReverseUnderflowTest()
-    {
+    public void largeReverseUnderflowTest() {
         Interval reverse = Interval.fromToBy(Integer.MAX_VALUE, Integer.MIN_VALUE + 10, -10);
         Assert.assertFalse(reverse.contains(Integer.MIN_VALUE + 10));
         Assert.assertEquals(Integer.valueOf(Integer.MAX_VALUE), reverse.getFirst());
@@ -640,8 +553,7 @@ public class IntervalTest
     }
 
     @Test
-    public void forwardOverflowTest()
-    {
+    public void forwardOverflowTest() {
         Integer from = Integer.valueOf(Integer.MAX_VALUE - 10);
         Integer second = Integer.valueOf(Integer.MAX_VALUE - 2);
         long expected = from.longValue() + second.longValue();
@@ -654,28 +566,15 @@ public class IntervalTest
         interval.each(each -> result.add(each.longValue()));
         Assert.assertEquals(expected, result.longValue());
         result.clear();
-        Assert.assertEquals(
-                expected,
-                interval.injectInto(new MutableLong(), MutableLong::add).longValue());
-        Assert.assertEquals(
-                2,
-                interval.injectInto(0, (int value, Integer each) -> value + 1));
-        Assert.assertEquals(
-                2L,
-                interval.injectInto(0L, (long value, Integer each) -> value + 1));
-        Assert.assertEquals(
-                2.0,
-                interval.injectInto(0.0, (double value, Integer each) -> value + 1.0),
-                0.0);
-        Assert.assertEquals(
-                2.0f,
-                interval.injectInto(0.0f, (float value, Integer each) -> value + 1.0f),
-                0.0f);
+        Assert.assertEquals(expected, interval.injectInto(new MutableLong(), MutableLong::add).longValue());
+        Assert.assertEquals(2, interval.injectInto(0, (int value, Integer each) -> value + 1));
+        Assert.assertEquals(2L, interval.injectInto(0L, (long value, Integer each) -> value + 1));
+        Assert.assertEquals(2.0, interval.injectInto(0.0, (double value, Integer each) -> value + 1.0), 0.0);
+        Assert.assertEquals(2.0f, interval.injectInto(0.0f, (float value, Integer each) -> value + 1.0f), 0.0f);
     }
 
     @Test
-    public void reverseOverflowTest()
-    {
+    public void reverseOverflowTest() {
         Integer from = Integer.valueOf(Integer.MIN_VALUE + 10);
         Integer second = Integer.valueOf(Integer.MIN_VALUE + 2);
         long expected = (long) from + (long) second;
@@ -687,25 +586,14 @@ public class IntervalTest
         interval.each(each -> result.add(each.longValue()));
         Assert.assertEquals(expected, result.longValue());
         Assert.assertEquals(expected, interval.injectInto(new MutableLong(), MutableLong::add).longValue());
-        Assert.assertEquals(
-                2,
-                interval.injectInto(0, (int value, Integer each) -> value + 1));
-        Assert.assertEquals(
-                2L,
-                interval.injectInto(0L, (long value, Integer each) -> value + 1));
-        Assert.assertEquals(
-                2.0,
-                interval.injectInto(0.0, (double value, Integer each) -> value + 1.0),
-                0.0);
-        Assert.assertEquals(
-                2.0f,
-                interval.injectInto(0.0f, (float value, Integer each) -> value + 1.0f),
-                0.0f);
+        Assert.assertEquals(2, interval.injectInto(0, (int value, Integer each) -> value + 1));
+        Assert.assertEquals(2L, interval.injectInto(0L, (long value, Integer each) -> value + 1));
+        Assert.assertEquals(2.0, interval.injectInto(0.0, (double value, Integer each) -> value + 1.0), 0.0);
+        Assert.assertEquals(2.0f, interval.injectInto(0.0f, (float value, Integer each) -> value + 1.0f), 0.0f);
     }
 
     @Test
-    public void factorial()
-    {
+    public void factorial() {
         Assert.assertThrows(IllegalStateException.class, () -> Interval.fromTo(-1, -5).factorial());
         Assert.assertEquals(1, Interval.zero().factorial().intValue());
         Assert.assertEquals(1, Interval.oneTo(1).factorial().intValue());
@@ -716,8 +604,7 @@ public class IntervalTest
     }
 
     @Test
-    public void product()
-    {
+    public void product() {
         Assert.assertEquals(0, Interval.zero().product().intValue());
         Assert.assertEquals(0, Interval.fromTo(-1, 1).product().intValue());
         Assert.assertEquals(2, Interval.fromTo(-2, -1).product().intValue());
@@ -733,8 +620,7 @@ public class IntervalTest
     }
 
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         Interval zero = Interval.zero();
         Iterator<Integer> zeroIterator = zero.iterator();
         Assert.assertTrue(zeroIterator.hasNext());
@@ -742,16 +628,14 @@ public class IntervalTest
         Assert.assertFalse(zeroIterator.hasNext());
         Interval oneToFive = Interval.oneTo(5);
         Iterator<Integer> oneToFiveIterator = oneToFive.iterator();
-        for (int i = 1; i < 6; i++)
-        {
+        for (int i = 1; i < 6; i++) {
             Assert.assertTrue(oneToFiveIterator.hasNext());
             Assert.assertEquals(Integer.valueOf(i), oneToFiveIterator.next());
         }
         Assert.assertThrows(NoSuchElementException.class, oneToFiveIterator::next);
         Interval threeToNegativeThree = Interval.fromTo(3, -3);
         Iterator<Integer> threeToNegativeThreeIterator = threeToNegativeThree.iterator();
-        for (int i = 3; i > -4; i--)
-        {
+        for (int i = 3; i > -4; i--) {
             Assert.assertTrue(threeToNegativeThreeIterator.hasNext());
             Assert.assertEquals(Integer.valueOf(i), threeToNegativeThreeIterator.next());
         }
@@ -760,21 +644,18 @@ public class IntervalTest
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         IntegerSum sum = new IntegerSum(0);
         Interval.oneTo(5).forEachWithIndex((ObjectIntProcedure<Integer>) (each, index) -> sum.add(each + index));
         Assert.assertEquals(25, sum.getIntSum());
         IntegerSum zeroSum = new IntegerSum(0);
         Interval.fromTo(0, -4).forEachWithIndex((ObjectIntProcedure<Integer>) (each, index) -> zeroSum.add(each + index));
         Assert.assertEquals(0, zeroSum.getIntSum());
-
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> Interval.zeroTo(10).forEachWithIndex(null, -1, 10));
     }
 
     @Test
-    public void run()
-    {
+    public void run() {
         IntegerSum sum = new IntegerSum(0);
         Interval.oneTo(5).run(() -> sum.add(1));
         Assert.assertEquals(5, sum.getIntSum());
@@ -784,8 +665,7 @@ public class IntervalTest
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         IntegerSum sum = new IntegerSum(0);
         Interval.oneTo(5).forEachWith((Integer each, Integer parameter) -> sum.add(each + parameter), 0);
         Assert.assertEquals(15, sum.getIntSum());
@@ -795,45 +675,37 @@ public class IntervalTest
     }
 
     @Test
-    public void select()
-    {
+    public void select() {
         Interval interval = Interval.fromTo(10, -10).by(-5);
-
         MutableList<Integer> expected = FastList.newListWith(10, 0, -10);
         Assert.assertEquals(expected, interval.select(IntegerPredicates.isEven()).toList());
         Assert.assertEquals(expected, interval.select(IntegerPredicates.isEven(), FastList.newList()));
     }
 
     @Test
-    public void reject()
-    {
+    public void reject() {
         Interval interval = Interval.fromTo(10, -10).by(-5);
-
         MutableList<Integer> expected = FastList.newListWith(5, -5);
         Assert.assertEquals(expected, interval.reject(IntegerPredicates.isEven(), FastList.newList()));
     }
 
     @Test
-    public void collect()
-    {
+    public void collect() {
         Interval interval = Interval.fromTo(10, -10).by(-5);
-
         MutableList<String> expected = FastList.newListWith("10", "5", "0", "-5", "-10");
         Assert.assertEquals(expected, interval.collect(String::valueOf).toList());
         Assert.assertEquals(expected, interval.collect(String::valueOf, FastList.newList()));
     }
 
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         Assert.assertEquals(Integer.valueOf(10), Interval.fromTo(10, -10).by(-5).getFirst());
         Assert.assertEquals(Integer.valueOf(-10), Interval.fromTo(-10, 10).by(5).getFirst());
         Assert.assertEquals(Integer.valueOf(0), Interval.zero().getFirst());
     }
 
     @Test
-    public void getLast()
-    {
+    public void getLast() {
         Assert.assertEquals(Integer.valueOf(-10), Interval.fromTo(10, -10).by(-5).getLast());
         Assert.assertEquals(Integer.valueOf(-10), Interval.fromTo(10, -12).by(-5).getLast());
         Assert.assertEquals(Integer.valueOf(10), Interval.fromTo(-10, 10).by(5).getLast());
@@ -842,69 +714,55 @@ public class IntervalTest
     }
 
     @Test
-    public void forEach_with_start_end()
-    {
+    public void forEach_with_start_end() {
         Interval interval = Interval.fromTo(-10, 12).by(5);
-
         MutableList<Integer> forwardResult = Lists.mutable.of();
         interval.forEach(CollectionAddProcedure.on(forwardResult), 1, 3);
         Assert.assertEquals(FastList.newListWith(-5, 0, 5), forwardResult);
-
         MutableList<Integer> backwardsResult = Lists.mutable.of();
         interval.forEach(CollectionAddProcedure.on(backwardsResult), 3, 1);
         Assert.assertEquals(FastList.newListWith(5, 0, -5), backwardsResult);
-
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> interval.forEach(null, -1, 3));
     }
 
     @Test
-    public void forEachWith_with_start_end()
-    {
+    public void forEachWith_with_start_end() {
         Interval interval = Interval.fromTo(-10, 12).by(5);
-
         MutableList<Integer> forwardResult = Lists.mutable.of();
         interval.forEachWithIndex(new AddParametersProcedure(forwardResult), 1, 3);
         Assert.assertEquals(FastList.newListWith(-4, 2, 8), forwardResult);
-
         MutableList<Integer> backwardsResult = Lists.mutable.of();
         interval.forEachWithIndex(new AddParametersProcedure(backwardsResult), 3, 1);
         Assert.assertEquals(FastList.newListWith(8, 2, -4), backwardsResult);
     }
 
     @Test
-    public void forEach_with_same_start_and_end_with_negative_step()
-    {
+    public void forEach_with_same_start_and_end_with_negative_step() {
         Interval interval = Interval.fromToBy(2, 2, -2);
-
         MutableInteger counter = new MutableInteger(0);
         interval.forEach((Procedure<Integer>) each -> counter.add(1));
-
         Assert.assertEquals(1, counter.toInteger().intValue());
     }
 
     @Test
-    public void indexOf()
-    {
+    public void indexOf() {
         Interval interval = Interval.fromTo(-10, 12).by(5);
         Assert.assertEquals(0, interval.indexOf(-10));
         Assert.assertEquals(1, interval.indexOf(-5));
         Assert.assertEquals(2, interval.indexOf(0));
         Assert.assertEquals(3, interval.indexOf(5));
         Assert.assertEquals(4, interval.indexOf(10));
-
         Assert.assertEquals(-1, interval.indexOf(-15));
         Assert.assertEquals(-1, interval.indexOf(-11));
         Assert.assertEquals(-1, interval.indexOf(-9));
         Assert.assertEquals(-1, interval.indexOf(11));
         Assert.assertEquals(-1, interval.indexOf(15));
-
         Interval backwardsInterval = Interval.fromTo(10, -12).by(-5);
         Assert.assertEquals(0, backwardsInterval.indexOf(10));
         Assert.assertEquals(1, backwardsInterval.indexOf(5));
         Assert.assertEquals(2, backwardsInterval.indexOf(0));
         Assert.assertEquals(3, backwardsInterval.indexOf(-5));
         Assert.assertEquals(4, backwardsInterval.indexOf(-10));
-
         Assert.assertEquals(-1, backwardsInterval.indexOf(15));
         Assert.assertEquals(-1, backwardsInterval.indexOf(11));
         Assert.assertEquals(-1, backwardsInterval.indexOf(9));
@@ -913,29 +771,25 @@ public class IntervalTest
     }
 
     @Test
-    public void lastIndexOf()
-    {
+    public void lastIndexOf() {
         Interval interval = Interval.fromTo(-10, 12).by(5);
         Assert.assertEquals(0, interval.lastIndexOf(-10));
         Assert.assertEquals(1, interval.lastIndexOf(-5));
         Assert.assertEquals(2, interval.lastIndexOf(0));
         Assert.assertEquals(3, interval.lastIndexOf(5));
         Assert.assertEquals(4, interval.lastIndexOf(10));
-
         Assert.assertEquals(-1, interval.lastIndexOf(-15));
         Assert.assertEquals(-1, interval.lastIndexOf(-11));
         Assert.assertEquals(-1, interval.lastIndexOf(-9));
         Assert.assertEquals(-1, interval.lastIndexOf(11));
         Assert.assertEquals(-1, interval.lastIndexOf(15));
         Assert.assertEquals(-1, interval.lastIndexOf(new Object()));
-
         Interval backwardsInterval = Interval.fromTo(10, -12).by(-5);
         Assert.assertEquals(0, backwardsInterval.lastIndexOf(10));
         Assert.assertEquals(1, backwardsInterval.lastIndexOf(5));
         Assert.assertEquals(2, backwardsInterval.lastIndexOf(0));
         Assert.assertEquals(3, backwardsInterval.lastIndexOf(-5));
         Assert.assertEquals(4, backwardsInterval.lastIndexOf(-10));
-
         Assert.assertEquals(-1, backwardsInterval.lastIndexOf(15));
         Assert.assertEquals(-1, backwardsInterval.lastIndexOf(11));
         Assert.assertEquals(-1, backwardsInterval.lastIndexOf(9));
@@ -944,190 +798,640 @@ public class IntervalTest
     }
 
     @Test
-    public void get()
-    {
+    public void get() {
         Interval interval = Interval.fromTo(-10, 12).by(5);
         Verify.assertItemAtIndex(Integer.valueOf(-10), 0, interval);
         Verify.assertItemAtIndex(Integer.valueOf(-5), 1, interval);
         Verify.assertItemAtIndex(Integer.valueOf(0), 2, interval);
         Verify.assertItemAtIndex(Integer.valueOf(5), 3, interval);
         Verify.assertItemAtIndex(Integer.valueOf(10), 4, interval);
-
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> interval.get(-1));
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> interval.get(5));
     }
 
     @Test
-    public void subList()
-    {
+    public void subList() {
         Interval interval = Interval.fromTo(1, 5);
         Assert.assertEquals(FastList.newListWith(2, 3), interval.subList(1, 3));
     }
 
     @Test
-    public void containsAll()
-    {
+    public void containsAll() {
         Assert.assertTrue(Interval.fromTo(1, 3).containsAll(FastList.newListWith(1, 2, 3)));
         Assert.assertFalse(Interval.fromTo(1, 3).containsAll(FastList.newListWith(1, 2, 4)));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void add()
-    {
+    public void add() {
         Interval.fromTo(1, 3).add(4);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void add_at_index()
-    {
+    public void add_at_index() {
         Interval.fromTo(1, 3).add(0, 4);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void remove()
-    {
+    public void remove() {
         Interval.fromTo(1, 3).remove(Integer.valueOf(4));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void remove_at_index()
-    {
+    public void remove_at_index() {
         Interval.fromTo(1, 3).remove(0);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addAll()
-    {
+    public void addAll() {
         Interval.fromTo(1, 3).addAll(FastList.newListWith(4, 5, 6));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addAll_at_index()
-    {
+    public void addAll_at_index() {
         Interval.fromTo(1, 3).addAll(0, FastList.newListWith(4, 5, 6));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAll()
-    {
+    public void removeAll() {
         Interval.fromTo(1, 3).removeAll(FastList.newListWith(4, 5, 6));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void retainAll()
-    {
+    public void retainAll() {
         Interval.fromTo(1, 3).retainAll(FastList.newListWith(4, 5, 6));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void clear()
-    {
+    public void clear() {
         Interval.fromTo(1, 3).clear();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void set()
-    {
+    public void set() {
         Interval.fromTo(1, 3).set(0, 0);
     }
 
     @Test
-    public void take()
-    {
+    public void take() {
         Verify.assertIterableEmpty(Interval.fromTo(1, 3).take(0));
         Assert.assertEquals(FastList.newListWith(1, 2), Interval.fromTo(1, 3).take(2));
         Assert.assertEquals(FastList.newListWith(1, 2), Interval.fromTo(1, 2).take(3));
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromTo(1, 3).take(-1));
     }
 
     @Test
-    public void drop()
-    {
+    public void drop() {
         Assert.assertEquals(FastList.newListWith(3, 4), Interval.fromTo(1, 4).drop(2));
         Assert.assertEquals(FastList.newListWith(1, 2, 3, 4), Interval.fromTo(1, 4).drop(0));
         Verify.assertIterableEmpty(Interval.fromTo(1, 2).drop(3));
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Interval.fromTo(1, 3).drop(-1));
     }
 
     @Test
-    public void takeWhile()
-    {
+    public void takeWhile() {
         Verify.assertIterableEmpty(Interval.fromTo(1, 3).takeWhile(Predicates.alwaysFalse()).toList());
         Assert.assertEquals(FastList.newListWith(1, 2), Interval.fromTo(1, 3).takeWhile(each -> each <= 2).toList());
         Assert.assertEquals(FastList.newListWith(1, 2), Interval.fromTo(1, 2).takeWhile(Predicates.alwaysTrue()).toList());
-
         Assert.assertThrows(IllegalStateException.class, () -> Interval.fromTo(1, 3).takeWhile(null));
     }
 
     @Test
-    public void dropWhile()
-    {
+    public void dropWhile() {
         Assert.assertEquals(FastList.newListWith(3, 4), Interval.fromTo(1, 4).dropWhile(each -> each <= 2).toList());
         Assert.assertEquals(FastList.newListWith(1, 2, 3, 4), Interval.fromTo(1, 4).dropWhile(Predicates.alwaysFalse()).toList());
         Verify.assertIterableEmpty(Interval.fromTo(1, 2).dropWhile(Predicates.alwaysTrue()).toList());
-
         Assert.assertThrows(IllegalStateException.class, () -> Interval.fromTo(1, 3).dropWhile(null));
     }
 
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         LazyIterable<Integer> integers = Interval.oneTo(1000000000);
-
-        Assert.assertEquals(
-                FastList.newListWith(1, 2, 3, 4, 5),
-                integers.distinct().take(5).toList());
-
+        Assert.assertEquals(FastList.newListWith(1, 2, 3, 4, 5), integers.distinct().take(5).toList());
         LazyIterable<Integer> lazyInterval = Interval.oneTo(1000000).flatCollect(Interval::oneTo);
         LazyIterable<Integer> distinct = lazyInterval.distinct();
         LazyIterable<Integer> take = distinct.take(5);
         Assert.assertEquals(Lists.immutable.of(1, 2, 3, 4, 5), take.toList());
     }
 
-    private static final class AddParametersProcedure implements ObjectIntProcedure<Integer>
-    {
+    private static final class AddParametersProcedure implements ObjectIntProcedure<Integer> {
+
         private final MutableList<Integer> forwardResult;
 
-        private AddParametersProcedure(MutableList<Integer> forwardResult)
-        {
+        private AddParametersProcedure(MutableList<Integer> forwardResult) {
             this.forwardResult = forwardResult;
         }
 
         @Override
-        public void value(Integer each, int index)
-        {
+        public void value(Integer each, int index) {
             this.forwardResult.add(each + index);
         }
     }
 
     @Test
-    public void tap()
-    {
+    public void tap() {
         MutableList<Integer> tapResult = Lists.mutable.of();
         Interval interval = Interval.fromTo(10, -10).by(-5);
         LazyIterable<Integer> lazyTapIterable = interval.tap(tapResult::add);
-        lazyTapIterable.each(x ->
-        {
-        }); //force evaluation
+        lazyTapIterable.each(x -> {
+        });
+        // force evaluation
         Assert.assertEquals(interval, tapResult);
     }
 
     @Test
-    public void appendStringThrows()
-    {
-        Assert.assertThrows(
-                RuntimeException.class,
-                () -> Interval.oneTo(5)
-                        .appendString(new ThrowingAppendable()));
-        Assert.assertThrows(
-                RuntimeException.class,
-                () -> Interval.oneTo(5)
-                        .appendString(new ThrowingAppendable(), ", "));
-        Assert.assertThrows(
-                RuntimeException.class,
-                () -> Interval.oneTo(5)
-                        .appendString(new ThrowingAppendable(), "[", ", ", "]"));
+    public void appendStringThrows() {
+        Assert.assertThrows(RuntimeException.class, () -> Interval.oneTo(5).appendString(new ThrowingAppendable()));
+        Assert.assertThrows(RuntimeException.class, () -> Interval.oneTo(5).appendString(new ThrowingAppendable(), ", "));
+        Assert.assertThrows(RuntimeException.class, () -> Interval.oneTo(5).appendString(new ThrowingAppendable(), "[", ", ", "]"));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_into() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::into, this.description("into"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromToExclusive() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromToExclusive, this.description("fromToExclusive"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromAndToAndBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromAndToAndBy, this.description("fromAndToAndBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromToBy_throws_step_size_zero() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::fromToBy_throws_step_size_zero, this.description("fromToBy_throws_step_size_zero"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromToBy_with_same_start_and_end_with_negative_step() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromToBy_with_same_start_and_end_with_negative_step, this.description("fromToBy_with_same_start_and_end_with_negative_step"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_oneToBy_throws_step_size_zero() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::oneToBy_throws_step_size_zero, this.description("oneToBy_throws_step_size_zero"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zeroToBy_throws_step_size_zero() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::zeroToBy_throws_step_size_zero, this.description("zeroToBy_throws_step_size_zero"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachOnFromToInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachOnFromToInterval, this.description("forEachOnFromToInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithExecutor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithExecutor, this.description("forEachWithExecutor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithExecutorInReverse() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithExecutorInReverse, this.description("forEachWithExecutorInReverse"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_runWithExecutor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::runWithExecutor, this.description("runWithExecutor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_runWithExecutorInReverse() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::runWithExecutorInReverse, this.description("runWithExecutorInReverse"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEachOnFromToInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEachOnFromToInterval, this.description("reverseForEachOnFromToInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachOnFromToByInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachOnFromToByInterval, this.description("forEachOnFromToByInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachOnFromToByInterval2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachOnFromToByInterval2, this.description("forEachOnFromToByInterval2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoOnFromToByInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoOnFromToByInterval, this.description("injectIntoOnFromToByInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoOnFromToBySameStartEndNegativeStepInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoOnFromToBySameStartEndNegativeStepInterval, this.description("injectIntoOnFromToBySameStartEndNegativeStepInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumInterval, this.description("sumInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxInterval, this.description("maxInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseInjectIntoOnFromToByInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseInjectIntoOnFromToByInterval, this.description("reverseInjectIntoOnFromToByInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectOnFromToByInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectOnFromToByInterval, this.description("collectOnFromToByInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectOnFromToInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectOnFromToInterval, this.description("collectOnFromToInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectOnFromToInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectOnFromToInterval, this.description("selectOnFromToInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectOnFromToInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectOnFromToInterval, this.description("rejectOnFromToInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseThis() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseThis, this.description("reverseThis"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intervalAsArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intervalAsArray, this.description("intervalAsArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intervalAsIntArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intervalAsIntArray, this.description("intervalAsIntArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intervalAsReverseArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intervalAsReverseArray, this.description("intervalAsReverseArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intervalToList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intervalToList, this.description("intervalToList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intervalAsReverseList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intervalAsReverseList, this.description("intervalAsReverseList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intervalToSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intervalToSet, this.description("intervalToSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_invalidIntervals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::invalidIntervals, this.description("invalidIntervals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toFastList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toFastList, this.description("toFastList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_evens() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::evens, this.description("evens"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_odds() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::odds, this.description("odds"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_largeReverseUnderflowTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::largeReverseUnderflowTest, this.description("largeReverseUnderflowTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forwardOverflowTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forwardOverflowTest, this.description("forwardOverflowTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseOverflowTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseOverflowTest, this.description("reverseOverflowTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_factorial() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::factorial, this.description("factorial"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_product() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::product, this.description("product"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_run() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::run, this.description("run"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach_with_start_end() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach_with_start_end, this.description("forEach_with_start_end"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith_with_start_end() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith_with_start_end, this.description("forEachWith_with_start_end"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach_with_same_start_and_end_with_negative_step() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach_with_same_start_and_end_with_negative_step, this.description("forEach_with_same_start_and_end_with_negative_step"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_indexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::indexOf, this.description("indexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lastIndexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::lastIndexOf, this.description("lastIndexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_get() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::get, this.description("get"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subList, this.description("subList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAll, this.description("containsAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::add, this.description("add"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add_at_index() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::add_at_index, this.description("add_at_index"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::remove, this.description("remove"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove_at_index() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::remove_at_index, this.description("remove_at_index"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAll, this.description("addAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll_at_index() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addAll_at_index, this.description("addAll_at_index"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAll, this.description("removeAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::retainAll, this.description("retainAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::clear, this.description("clear"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_set() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::set, this.description("set"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::take, this.description("take"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::drop, this.description("drop"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_takeWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::takeWhile, this.description("takeWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_dropWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::dropWhile, this.description("dropWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tap, this.description("tap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendStringThrows() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendStringThrows, this.description("appendStringThrows"));
+        }
+
+        private IntervalTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new IntervalTest();
+        }
+
+        @java.lang.Override
+        public IntervalTest implementation() {
+            return this.implementation;
+        }
     }
 }

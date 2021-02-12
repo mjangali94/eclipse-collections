@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.procedure;
 
 import org.eclipse.collections.api.block.procedure.primitive.ObjectIntProcedure;
@@ -18,11 +17,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ObjectIntProceduresTest
-{
+public class ObjectIntProceduresTest {
+
     @Test
-    public void fromObjectIntProcedure()
-    {
+    public void fromObjectIntProcedure() {
         MutableList<Integer> result = FastList.newList();
         ObjectIntProcedure<Integer> objectIntProcedure = ObjectIntProcedures.fromProcedure(result::add);
         objectIntProcedure.value(1, 0);
@@ -30,8 +28,35 @@ public class ObjectIntProceduresTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(ObjectIntProcedures.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromObjectIntProcedure() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromObjectIntProcedure, this.description("fromObjectIntProcedure"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private ObjectIntProceduresTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ObjectIntProceduresTest();
+        }
+
+        @java.lang.Override
+        public ObjectIntProceduresTest implementation() {
+            return this.implementation;
+        }
     }
 }

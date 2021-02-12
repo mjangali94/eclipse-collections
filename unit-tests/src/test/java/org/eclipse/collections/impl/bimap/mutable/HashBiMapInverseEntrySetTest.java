@@ -7,40 +7,50 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bimap.mutable;
 
 import org.eclipse.collections.api.bimap.MutableBiMap;
 
-public class HashBiMapInverseEntrySetTest extends AbstractMutableBiMapEntrySetTest
-{
+public class HashBiMapInverseEntrySetTest extends AbstractMutableBiMapEntrySetTest {
+
     @Override
-    protected <K, V> MutableBiMap<K, V> newMap()
-    {
+    protected <K, V> MutableBiMap<K, V> newMap() {
         return HashBiMap.<V, K>newMap().inverse();
     }
 
     @Override
-    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2) {
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2).inverse();
     }
 
     @Override
-    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3)
-    {
+    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2, value3, key3).inverse();
     }
 
     @Override
-    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
+    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2, value3, key3, value4, key4).inverse();
     }
 
     @Override
-    protected <K, V> MutableBiMap<K, V> newMapWithKeyValue(K key, V value)
-    {
+    protected <K, V> MutableBiMap<K, V> newMapWithKeyValue(K key, V value) {
         return HashBiMap.newWithKeysValues(value, key).inverse();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private HashBiMapInverseEntrySetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBiMapInverseEntrySetTest();
+        }
+
+        @java.lang.Override
+        public HashBiMapInverseEntrySetTest implementation() {
+            return this.implementation;
+        }
     }
 }

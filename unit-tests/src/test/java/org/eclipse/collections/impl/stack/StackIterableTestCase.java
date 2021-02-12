@@ -7,14 +7,12 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.stack;
 
 import java.util.Collections;
 import java.util.EmptyStackException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.bag.sorted.SortedBag;
 import org.eclipse.collections.api.block.function.Function;
@@ -81,12 +79,10 @@ import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class StackIterableTestCase
-        extends AbstractRichIterableTestCase
-{
+public abstract class StackIterableTestCase extends AbstractRichIterableTestCase {
+
     @Override
-    protected <T> StackIterable<T> newWith(T... littleElements)
-    {
+    protected <T> StackIterable<T> newWith(T... littleElements) {
         return this.newStackWith(littleElements);
     }
 
@@ -99,85 +95,69 @@ public abstract class StackIterableTestCase
     protected abstract <T> StackIterable<T> newStack(Iterable<T> elements);
 
     @Test
-    public void testNewStackFromTopToBottom()
-    {
-        Assert.assertEquals(
-                this.newStackWith(3, 2, 1),
-                this.newStackFromTopToBottom(1, 2, 3));
+    public void testNewStackFromTopToBottom() {
+        Assert.assertEquals(this.newStackWith(3, 2, 1), this.newStackFromTopToBottom(1, 2, 3));
     }
 
     @Test(expected = EmptyStackException.class)
-    public void peek_empty_throws()
-    {
+    public void peek_empty_throws() {
         this.newStackWith().peek();
     }
 
     @Test(expected = EmptyStackException.class)
-    public void peek_int_empty_throws()
-    {
+    public void peek_int_empty_throws() {
         this.newStackWith().peek(1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void peek_int_count_throws()
-    {
+    public void peek_int_count_throws() {
         this.newStackWith(1, 2, 3).peek(4);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void peek_int_neg_throws()
-    {
+    public void peek_int_neg_throws() {
         this.newStackWith(1, 2, 3).peek(-1);
     }
 
     @Test
-    public void peek_illegal_arguments()
-    {
+    public void peek_illegal_arguments() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         Assert.assertThrows(IllegalArgumentException.class, () -> stack.peek(-1));
-
         Assert.assertThrows(IllegalArgumentException.class, () -> stack.peek(4));
-
         Assert.assertEquals(Lists.mutable.with(1, 2, 3), stack.peek(3));
     }
 
     @Test
-    public void peek()
-    {
+    public void peek() {
         Assert.assertEquals("3", this.newStackWith("1", "2", "3").peek());
         Assert.assertEquals(Lists.mutable.with(), this.newStackWith("1", "2", "3").peek(0));
         Assert.assertEquals(Lists.mutable.with("3", "2"), this.newStackWith("1", "2", "3").peek(2));
     }
 
     @Test
-    public void peekAt()
-    {
+    public void peekAt() {
         Assert.assertEquals("3", this.newStackWith("1", "2", "3").peekAt(0));
         Assert.assertEquals("2", this.newStackWith("1", "2", "3").peekAt(1));
         Assert.assertEquals("1", this.newStackWith("1", "2", "3").peekAt(2));
     }
 
     @Test
-    public void peekAt_illegal_arguments()
-    {
+    public void peekAt_illegal_arguments() {
         StackIterable<String> stack = this.newStackWith("1", "2", "3");
         Assert.assertThrows(IllegalArgumentException.class, () -> stack.peekAt(stack.size()));
     }
 
     @Test
-    public void size()
-    {
+    public void size() {
         StackIterable<Integer> stack1 = this.newStackWith();
         Assert.assertEquals(0, stack1.size());
-
         StackIterable<Integer> stack2 = this.newStackWith(1, 2);
         Assert.assertEquals(2, stack2.size());
     }
 
     @Override
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3);
         Assert.assertEquals(Integer.valueOf(3), stack.getFirst());
         Assert.assertEquals(stack.peek(), stack.getFirst());
@@ -188,23 +168,20 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void getLast()
-    {
+    public void getLast() {
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3);
         Assert.assertEquals(Integer.valueOf(1), stack.getLast());
     }
 
     @Test
-    public void containsAll()
-    {
+    public void containsAll() {
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3, 4);
         Assert.assertTrue(stack.containsAll(Interval.oneTo(2)));
         Assert.assertFalse(stack.containsAll(Lists.mutable.with(1, 2, 5)));
     }
 
     @Test
-    public void containsAllArguments()
-    {
+    public void containsAllArguments() {
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3, 4);
         Assert.assertTrue(stack.containsAllArguments(2, 1, 3));
         Assert.assertFalse(stack.containsAllArguments(2, 1, 3, 5));
@@ -212,15 +189,11 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collect()
-    {
+    public void collect() {
         StackIterable<Boolean> stack = this.newStackFromTopToBottom(Boolean.TRUE, Boolean.FALSE, null);
         CountingFunction<Object, String> function = CountingFunction.of(String::valueOf);
-        Assert.assertEquals(
-                this.newStackFromTopToBottom("true", "false", "null"),
-                stack.collect(function));
+        Assert.assertEquals(this.newStackFromTopToBottom("true", "false", "null"), stack.collect(function));
         Assert.assertEquals(3, function.count);
-
         Assert.assertEquals(Lists.mutable.with("true", "false", "null"), stack.collect(String::valueOf, FastList.newList()));
     }
 
@@ -228,15 +201,9 @@ public abstract class StackIterableTestCase
      * @since 9.1.
      */
     @Test
-    public void collectWithIndex()
-    {
+    public void collectWithIndex() {
         StackIterable<String> stack = this.newStackFromTopToBottom("4", "3", "2", "1");
-
-        StackIterable<ObjectIntPair<String>> expected = this.newStackFromTopToBottom(
-                PrimitiveTuples.pair("4", 0),
-                PrimitiveTuples.pair("3", 1),
-                PrimitiveTuples.pair("2", 2),
-                PrimitiveTuples.pair("1", 3));
+        StackIterable<ObjectIntPair<String>> expected = this.newStackFromTopToBottom(PrimitiveTuples.pair("4", 0), PrimitiveTuples.pair("3", 1), PrimitiveTuples.pair("2", 2), PrimitiveTuples.pair("1", 3));
         Assert.assertEquals(expected, stack.collectWithIndex(PrimitiveTuples::pair));
     }
 
@@ -244,32 +211,22 @@ public abstract class StackIterableTestCase
      * @since 9.1.
      */
     @Test
-    public void collectWithIndexWithTarget()
-    {
+    public void collectWithIndexWithTarget() {
         StackIterable<String> stack = this.newStackFromTopToBottom("4", "3", "2", "1");
-
-        MutableList<ObjectIntPair<String>> expected = Lists.mutable.with(
-                PrimitiveTuples.pair("4", 0),
-                PrimitiveTuples.pair("3", 1),
-                PrimitiveTuples.pair("2", 2),
-                PrimitiveTuples.pair("1", 3));
+        MutableList<ObjectIntPair<String>> expected = Lists.mutable.with(PrimitiveTuples.pair("4", 0), PrimitiveTuples.pair("3", 1), PrimitiveTuples.pair("2", 2), PrimitiveTuples.pair("1", 3));
         Assert.assertEquals(expected, stack.collectWithIndex(PrimitiveTuples::pair, Lists.mutable.empty()));
     }
 
     @Override
     @Test
-    public void collectBoolean()
-    {
+    public void collectBoolean() {
         StackIterable<String> stack = this.newStackFromTopToBottom("true", "nah", "TrUe", "false");
-        Assert.assertEquals(
-                BooleanArrayStack.newStackFromTopToBottom(true, false, true, false),
-                stack.collectBoolean(Boolean::parseBoolean));
+        Assert.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true, false, true, false), stack.collectBoolean(Boolean::parseBoolean));
     }
 
     @Override
     @Test
-    public void collectBooleanWithTarget()
-    {
+    public void collectBooleanWithTarget() {
         BooleanHashSet target = new BooleanHashSet();
         StackIterable<String> stack = this.newStackFromTopToBottom("true", "nah", "TrUe", "false");
         BooleanHashSet result = stack.collectBoolean(Boolean::parseBoolean, target);
@@ -279,16 +236,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collectByte()
-    {
+    public void collectByte() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         Assert.assertEquals(ByteArrayStack.newStackFromTopToBottom((byte) 1, (byte) 2, (byte) 3), stack.collectByte(PrimitiveFunctions.unboxIntegerToByte()));
     }
 
     @Override
     @Test
-    public void collectByteWithTarget()
-    {
+    public void collectByteWithTarget() {
         ByteHashSet target = new ByteHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         ByteHashSet result = stack.collectByte(PrimitiveFunctions.unboxIntegerToByte(), target);
@@ -298,16 +253,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collectChar()
-    {
+    public void collectChar() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         Assert.assertEquals(CharArrayStack.newStackFromTopToBottom((char) 1, (char) 2, (char) 3), stack.collectChar(PrimitiveFunctions.unboxIntegerToChar()));
     }
 
     @Override
     @Test
-    public void collectCharWithTarget()
-    {
+    public void collectCharWithTarget() {
         CharHashSet target = new CharHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CharHashSet result = stack.collectChar(PrimitiveFunctions.unboxIntegerToChar(), target);
@@ -317,16 +270,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collectDouble()
-    {
+    public void collectDouble() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         Assert.assertEquals(DoubleArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectDouble(PrimitiveFunctions.unboxIntegerToDouble()));
     }
 
     @Override
     @Test
-    public void collectDoubleWithTarget()
-    {
+    public void collectDoubleWithTarget() {
         DoubleHashSet target = new DoubleHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         DoubleHashSet result = stack.collectDouble(PrimitiveFunctions.unboxIntegerToDouble(), target);
@@ -336,16 +287,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collectFloat()
-    {
+    public void collectFloat() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         Assert.assertEquals(FloatArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectFloat(PrimitiveFunctions.unboxIntegerToFloat()));
     }
 
     @Override
     @Test
-    public void collectFloatWithTarget()
-    {
+    public void collectFloatWithTarget() {
         FloatHashSet target = new FloatHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         FloatHashSet result = stack.collectFloat(PrimitiveFunctions.unboxIntegerToFloat(), target);
@@ -355,16 +304,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collectInt()
-    {
+    public void collectInt() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         Assert.assertEquals(IntArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectInt(PrimitiveFunctions.unboxIntegerToInt()));
     }
 
     @Override
     @Test
-    public void collectIntWithTarget()
-    {
+    public void collectIntWithTarget() {
         IntHashSet target = new IntHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         IntHashSet result = stack.collectInt(PrimitiveFunctions.unboxIntegerToInt(), target);
@@ -374,16 +321,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collectLong()
-    {
+    public void collectLong() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         Assert.assertEquals(LongArrayStack.newStackFromTopToBottom(1, 2, 3), stack.collectLong(PrimitiveFunctions.unboxIntegerToLong()));
     }
 
     @Override
     @Test
-    public void collectLongWithTarget()
-    {
+    public void collectLongWithTarget() {
         LongHashSet target = new LongHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         LongHashSet result = stack.collectLong(PrimitiveFunctions.unboxIntegerToLong(), target);
@@ -393,16 +338,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collectShort()
-    {
+    public void collectShort() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         Assert.assertEquals(ShortArrayStack.newStackFromTopToBottom((short) 1, (short) 2, (short) 3), stack.collectShort(PrimitiveFunctions.unboxIntegerToShort()));
     }
 
     @Override
     @Test
-    public void collectShortWithTarget()
-    {
+    public void collectShortWithTarget() {
         ShortHashSet target = new ShortHashSet();
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         ShortHashSet result = stack.collectShort(PrimitiveFunctions.unboxIntegerToShort(), target);
@@ -412,94 +355,65 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void collectIf()
-    {
+    public void collectIf() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3, 4, 5);
-
         CountingPredicate<Integer> predicate1 = CountingPredicate.of(Predicates.lessThan(3));
         CountingFunction<Object, String> function1 = CountingFunction.of(String::valueOf);
-        Assert.assertEquals(
-                this.newStackFromTopToBottom("1", "2"),
-                stack.collectIf(predicate1, function1));
+        Assert.assertEquals(this.newStackFromTopToBottom("1", "2"), stack.collectIf(predicate1, function1));
         Assert.assertEquals(5, predicate1.count);
         Assert.assertEquals(2, function1.count);
-
         CountingPredicate<Integer> predicate2 = CountingPredicate.of(Predicates.lessThan(3));
         CountingFunction<Object, String> function2 = CountingFunction.of(String::valueOf);
-        Assert.assertEquals(
-                Lists.mutable.with("1", "2"),
-                stack.collectIf(predicate2, function2, FastList.newList()));
+        Assert.assertEquals(Lists.mutable.with("1", "2"), stack.collectIf(predicate2, function2, FastList.newList()));
         Assert.assertEquals(5, predicate2.count);
         Assert.assertEquals(2, function2.count);
     }
 
     @Override
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(3, 2, 1);
-        Assert.assertEquals(
-                ArrayStack.newStackFromTopToBottom(4, 3, 2),
-                stack.collectWith(AddFunction.INTEGER, 1));
+        Assert.assertEquals(ArrayStack.newStackFromTopToBottom(4, 3, 2), stack.collectWith(AddFunction.INTEGER, 1));
     }
 
     @Test
-    public void collectWithTarget()
-    {
+    public void collectWithTarget() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(3, 2, 1);
-        Assert.assertEquals(
-                Lists.mutable.with(4, 3, 2),
-                stack.collectWith(AddFunction.INTEGER, 1, FastList.newList()));
+        Assert.assertEquals(Lists.mutable.with(4, 3, 2), stack.collectWith(AddFunction.INTEGER, 1, FastList.newList()));
     }
 
     @Override
     @Test
-    public void flatCollect()
-    {
+    public void flatCollect() {
         StackIterable<String> stack = this.newStackFromTopToBottom("1", "One", "2", "Two");
-
-        CountingFunction<String, Iterable<Character>> function = CountingFunction.of(object ->
-        {
+        CountingFunction<String, Iterable<Character>> function = CountingFunction.of(object -> {
             MutableList<Character> result = Lists.mutable.of();
             char[] chars = object.toCharArray();
-            for (char aChar : chars)
-            {
+            for (char aChar : chars) {
                 result.add(Character.valueOf(aChar));
             }
             return result;
         });
-
-        Assert.assertEquals(
-                this.newStackFromTopToBottom('1', 'O', 'n', 'e', '2', 'T', 'w', 'o'),
-                stack.flatCollect(function));
+        Assert.assertEquals(this.newStackFromTopToBottom('1', 'O', 'n', 'e', '2', 'T', 'w', 'o'), stack.flatCollect(function));
         Assert.assertEquals(4, function.count);
-
-        Assert.assertEquals(
-                Lists.mutable.with('1', 'O', 'n', 'e', '2', 'T', 'w', 'o'),
-                stack.flatCollect(function, FastList.newList()));
+        Assert.assertEquals(Lists.mutable.with('1', 'O', 'n', 'e', '2', 'T', 'w', 'o'), stack.flatCollect(function, FastList.newList()));
     }
 
     @Override
     @Test
-    public void select()
-    {
+    public void select() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate<Object> predicate = new CountingPredicate<>(Integer.valueOf(1)::equals);
         StackIterable<Integer> actual = stack.select(predicate);
         Assert.assertEquals(this.newStackFromTopToBottom(1), actual);
         Assert.assertEquals(3, predicate.count);
-        Assert.assertEquals(
-                this.newStackFromTopToBottom(2, 3),
-                stack.select(Predicates.greaterThan(1)));
-        Assert.assertEquals(
-                Lists.mutable.with(2, 3),
-                stack.select(Predicates.greaterThan(1), FastList.newList()));
+        Assert.assertEquals(this.newStackFromTopToBottom(2, 3), stack.select(Predicates.greaterThan(1)));
+        Assert.assertEquals(Lists.mutable.with(2, 3), stack.select(Predicates.greaterThan(1), FastList.newList()));
     }
 
     @Override
     @Test
-    public void selectInstancesOf()
-    {
+    public void selectInstancesOf() {
         StackIterable<Number> numbers = this.newStackFromTopToBottom(1, 2.0, 3, 4.0, 5);
         Assert.assertEquals(this.newStackFromTopToBottom(1, 3, 5), numbers.selectInstancesOf(Integer.class));
         Assert.assertEquals(this.<Number>newStackFromTopToBottom(1, 2.0, 3, 4.0, 5), numbers.selectInstancesOf(Number.class));
@@ -507,58 +421,40 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void selectWith()
-    {
-        Assert.assertEquals(
-                ArrayStack.newStackFromTopToBottom(2, 1),
-                this.newStackFromTopToBottom(5, 4, 3, 2, 1).selectWith(Predicates2.lessThan(), 3));
+    public void selectWith() {
+        Assert.assertEquals(ArrayStack.newStackFromTopToBottom(2, 1), this.newStackFromTopToBottom(5, 4, 3, 2, 1).selectWith(Predicates2.lessThan(), 3));
     }
 
     @Test
-    public void selectWithTarget()
-    {
-        Assert.assertEquals(
-                UnifiedSet.newSetWith(2, 1),
-                this.newStackFromTopToBottom(5, 4, 3, 2, 1).selectWith(Predicates2.lessThan(), 3, UnifiedSet.newSet()));
+    public void selectWithTarget() {
+        Assert.assertEquals(UnifiedSet.newSetWith(2, 1), this.newStackFromTopToBottom(5, 4, 3, 2, 1).selectWith(Predicates2.lessThan(), 3, UnifiedSet.newSet()));
     }
 
     @Override
     @Test
-    public void reject()
-    {
+    public void reject() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(3, 2, 1);
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.greaterThan(2));
-        Assert.assertEquals(
-                this.newStackFromTopToBottom(2, 1),
-                stack.reject(predicate));
+        Assert.assertEquals(this.newStackFromTopToBottom(2, 1), stack.reject(predicate));
         Assert.assertEquals(3, predicate.count);
-        Assert.assertEquals(
-                Lists.mutable.with(2, 1),
-                stack.reject(Predicates.greaterThan(2), FastList.newList()));
+        Assert.assertEquals(Lists.mutable.with(2, 1), stack.reject(Predicates.greaterThan(2), FastList.newList()));
     }
 
     @Override
     @Test
-    public void rejectWith()
-    {
+    public void rejectWith() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(3, 2, 1);
-        Assert.assertEquals(
-                this.newStackFromTopToBottom(2, 1),
-                stack.rejectWith(Predicates2.greaterThan(), 2));
+        Assert.assertEquals(this.newStackFromTopToBottom(2, 1), stack.rejectWith(Predicates2.greaterThan(), 2));
     }
 
     @Test
-    public void rejectWithTarget()
-    {
-        Assert.assertEquals(
-                UnifiedSet.newSetWith(5, 4, 3),
-                this.newStackFromTopToBottom(5, 4, 3, 2, 1).rejectWith(Predicates2.lessThan(), 3, UnifiedSet.newSet()));
+    public void rejectWithTarget() {
+        Assert.assertEquals(UnifiedSet.newSetWith(5, 4, 3), this.newStackFromTopToBottom(5, 4, 3, 2, 1).rejectWith(Predicates2.lessThan(), 3, UnifiedSet.newSet()));
     }
 
     @Override
     @Test
-    public void detect()
-    {
+    public void detect() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.lessThan(3));
         Assert.assertEquals(Integer.valueOf(1), stack.detect(predicate));
@@ -568,8 +464,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void detectWith()
-    {
+    public void detectWith() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate2<Integer, Integer> predicate = new CountingPredicate2<>(Predicates2.<Integer>lessThan());
         Assert.assertEquals(Integer.valueOf(1), stack.detectWith(predicate, 3));
@@ -579,37 +474,26 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void detectIfNone()
-    {
+    public void detectIfNone() {
         Function0<Integer> defaultResultFunction = new PassThruFunction0<>(-1);
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.lessThan(3));
-        Assert.assertEquals(
-                Integer.valueOf(1),
-                this.newStackFromTopToBottom(1, 2, 3, 4, 5).detectIfNone(predicate, defaultResultFunction));
+        Assert.assertEquals(Integer.valueOf(1), this.newStackFromTopToBottom(1, 2, 3, 4, 5).detectIfNone(predicate, defaultResultFunction));
         Assert.assertEquals(1, predicate.count);
-        Assert.assertEquals(
-                Integer.valueOf(-1),
-                this.newStackWith(1, 2, 3, 4, 5).detectIfNone(Predicates.lessThan(-1), defaultResultFunction));
+        Assert.assertEquals(Integer.valueOf(-1), this.newStackWith(1, 2, 3, 4, 5).detectIfNone(Predicates.lessThan(-1), defaultResultFunction));
     }
 
     @Test
-    public void detectWithIfNone()
-    {
+    public void detectWithIfNone() {
         Function0<Integer> defaultResultFunction = new PassThruFunction0<>(-1);
         CountingPredicate2<Integer, Integer> predicate = new CountingPredicate2<>(Predicates2.<Integer>lessThan());
-        Assert.assertEquals(
-                Integer.valueOf(1),
-                this.newStackFromTopToBottom(1, 2, 3, 4, 5).detectWithIfNone(predicate, Integer.valueOf(3), defaultResultFunction));
+        Assert.assertEquals(Integer.valueOf(1), this.newStackFromTopToBottom(1, 2, 3, 4, 5).detectWithIfNone(predicate, Integer.valueOf(3), defaultResultFunction));
         Assert.assertEquals(1, predicate.count);
-        Assert.assertEquals(
-                Integer.valueOf(-1),
-                this.newStackWith(1, 2, 3, 4, 5).detectIfNone(Predicates.lessThan(-1), defaultResultFunction));
+        Assert.assertEquals(Integer.valueOf(-1), this.newStackWith(1, 2, 3, 4, 5).detectIfNone(Predicates.lessThan(-1), defaultResultFunction));
     }
 
     @Override
     @Test
-    public void partition()
-    {
+    public void partition() {
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.lessThan(3));
         PartitionStack<Integer> partition = this.newStackFromTopToBottom(1, 2, 3, 4, 5).partition(predicate);
         Assert.assertEquals(5, predicate.count);
@@ -619,8 +503,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void partitionWith()
-    {
+    public void partitionWith() {
         PartitionStack<Integer> partition = this.newStackFromTopToBottom(1, 2, 3, 4, 5).partitionWith(Predicates2.lessThan(), 3);
         Assert.assertEquals(this.newStackFromTopToBottom(1, 2), partition.getSelected());
         Assert.assertEquals(this.newStackFromTopToBottom(3, 4, 5), partition.getRejected());
@@ -628,46 +511,26 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void zip()
-    {
+    public void zip() {
         StackIterable<String> stack = this.newStackFromTopToBottom("7", "6", "5", "4", "3", "2", "1");
         List<Integer> interval = Interval.oneTo(7);
-
-        StackIterable<Pair<String, Integer>> expected = this.newStackFromTopToBottom(
-                Tuples.pair("7", 1),
-                Tuples.pair("6", 2),
-                Tuples.pair("5", 3),
-                Tuples.pair("4", 4),
-                Tuples.pair("3", 5),
-                Tuples.pair("2", 6),
-                Tuples.pair("1", 7));
-
+        StackIterable<Pair<String, Integer>> expected = this.newStackFromTopToBottom(Tuples.pair("7", 1), Tuples.pair("6", 2), Tuples.pair("5", 3), Tuples.pair("4", 4), Tuples.pair("3", 5), Tuples.pair("2", 6), Tuples.pair("1", 7));
         Assert.assertEquals(expected, stack.zip(interval));
-
-        Assert.assertEquals(
-                expected.toSet(),
-                stack.zip(interval, UnifiedSet.newSet()));
+        Assert.assertEquals(expected.toSet(), stack.zip(interval, UnifiedSet.newSet()));
     }
 
     @Override
     @Test
-    public void zipWithIndex()
-    {
+    public void zipWithIndex() {
         StackIterable<String> stack = this.newStackFromTopToBottom("4", "3", "2", "1");
-
-        StackIterable<Pair<String, Integer>> expected = this.newStackFromTopToBottom(
-                Tuples.pair("4", 0),
-                Tuples.pair("3", 1),
-                Tuples.pair("2", 2),
-                Tuples.pair("1", 3));
+        StackIterable<Pair<String, Integer>> expected = this.newStackFromTopToBottom(Tuples.pair("4", 0), Tuples.pair("3", 1), Tuples.pair("2", 2), Tuples.pair("1", 3));
         Assert.assertEquals(expected, stack.zipWithIndex());
         Assert.assertEquals(expected.toSet(), stack.zipWithIndex(UnifiedSet.newSet()));
     }
 
     @Override
     @Test
-    public void count()
-    {
+    public void count() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3, 4, 5);
         CountingPredicate<Integer> predicate = new CountingPredicate<>(Predicates.greaterThan(2));
         Assert.assertEquals(3, stack.count(predicate));
@@ -677,8 +540,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void countWith()
-    {
+    public void countWith() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3, 4, 5);
         CountingPredicate2<Object, Object> predicate = new CountingPredicate2<>(Object::equals);
         Assert.assertEquals(1, stack.countWith(predicate, 1));
@@ -688,8 +550,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate<Object> predicate = new CountingPredicate<>(Integer.valueOf(1)::equals);
         Assert.assertTrue(stack.anySatisfy(predicate));
@@ -699,8 +560,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         StackIterable<Integer> stack = this.newStackWith(3, 3, 3);
         CountingPredicate<Object> predicate = new CountingPredicate<>(Integer.valueOf(3)::equals);
         Assert.assertTrue(stack.allSatisfy(predicate));
@@ -710,8 +570,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         StackIterable<Integer> stack = this.newStackWith(3, 3, 3);
         CountingPredicate<Object> predicate = new CountingPredicate<>(Integer.valueOf(4)::equals);
         Assert.assertTrue(stack.noneSatisfy(predicate));
@@ -721,8 +580,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void anySatisfyWith()
-    {
+    public void anySatisfyWith() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
         CountingPredicate2<Object, Object> predicate = new CountingPredicate2<>(Object::equals);
         Assert.assertTrue(stack.anySatisfyWith(predicate, 1));
@@ -732,8 +590,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void allSatisfyWith()
-    {
+    public void allSatisfyWith() {
         StackIterable<Integer> stack = this.newStackWith(3, 3, 3);
         CountingPredicate2<Object, Object> predicate = new CountingPredicate2<>(Object::equals);
         Assert.assertTrue(stack.allSatisfyWith(predicate, 3));
@@ -743,8 +600,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void noneSatisfyWith()
-    {
+    public void noneSatisfyWith() {
         StackIterable<Integer> stack = this.newStackWith(3, 3, 3);
         CountingPredicate2<Object, Object> predicate = new CountingPredicate2<>(Object::equals);
         Assert.assertTrue(stack.noneSatisfyWith(predicate, 4));
@@ -754,28 +610,16 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void injectInto()
-    {
-        Assert.assertEquals(
-                Integer.valueOf(10),
-                this.newStackWith(1, 2, 3, 4).injectInto(Integer.valueOf(0), AddFunction.INTEGER));
-        Assert.assertEquals(
-                10,
-                this.newStackWith(1, 2, 3, 4).injectInto(0, AddFunction.INTEGER_TO_INT));
-        Assert.assertEquals(
-                7.0,
-                this.newStackWith(1.0, 2.0, 3.0).injectInto(1.0d, AddFunction.DOUBLE_TO_DOUBLE), 0.001);
-        Assert.assertEquals(
-                7,
-                this.newStackWith(1, 2, 3).injectInto(1L, AddFunction.INTEGER_TO_LONG));
-        Assert.assertEquals(
-                7.0,
-                this.newStackWith(1, 2, 3).injectInto(1.0f, AddFunction.INTEGER_TO_FLOAT), 0.001);
+    public void injectInto() {
+        Assert.assertEquals(Integer.valueOf(10), this.newStackWith(1, 2, 3, 4).injectInto(Integer.valueOf(0), AddFunction.INTEGER));
+        Assert.assertEquals(10, this.newStackWith(1, 2, 3, 4).injectInto(0, AddFunction.INTEGER_TO_INT));
+        Assert.assertEquals(7.0, this.newStackWith(1.0, 2.0, 3.0).injectInto(1.0d, AddFunction.DOUBLE_TO_DOUBLE), 0.001);
+        Assert.assertEquals(7, this.newStackWith(1, 2, 3).injectInto(1L, AddFunction.INTEGER_TO_LONG));
+        Assert.assertEquals(7.0, this.newStackWith(1, 2, 3).injectInto(1.0f, AddFunction.INTEGER_TO_FLOAT), 0.001);
     }
 
     @Test
-    public void sumOf()
-    {
+    public void sumOf() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3, 4);
         Assert.assertEquals(10, stack.sumOfInt(integer -> integer));
         Assert.assertEquals(10, stack.sumOfLong(Integer::longValue));
@@ -784,145 +628,93 @@ public abstract class StackIterableTestCase
     }
 
     @Test
-    public void sumOfFloatConsistentRounding()
-    {
+    public void sumOfFloatConsistentRounding() {
         MutableList<Integer> list = Interval.oneTo(100_000).toList().shuffleThis();
-        StackIterable<Integer> stack = this.newStackWith(list.toArray(new Integer[]{}));
-
+        StackIterable<Integer> stack = this.newStackWith(list.toArray(new Integer[] {}));
         // The test only ensures the consistency/stability of rounding. This is not meant to test the "correctness" of the float calculation result.
         // Indeed the lower bits of this calculation result are always incorrect due to the information loss of original float values.
-        Assert.assertEquals(
-                1.082323233761663,
-                stack.sumOfFloat(i -> 1.0f / (i.floatValue() * i.floatValue() * i.floatValue() * i.floatValue())),
-                1.0e-15);
+        Assert.assertEquals(1.082323233761663, stack.sumOfFloat(i -> 1.0f / (i.floatValue() * i.floatValue() * i.floatValue() * i.floatValue())), 1.0e-15);
     }
 
     @Test
-    public void sumOfDoubleConsistentRounding()
-    {
+    public void sumOfDoubleConsistentRounding() {
         MutableList<Integer> list = Interval.oneTo(100_000).toList().shuffleThis();
-        StackIterable<Integer> stack = this.newStackWith(list.toArray(new Integer[]{}));
-
-        Assert.assertEquals(
-                1.082323233711138,
-                stack.sumOfDouble(i -> 1.0d / (i.doubleValue() * i.doubleValue() * i.doubleValue() * i.doubleValue())),
-                1.0e-15);
+        StackIterable<Integer> stack = this.newStackWith(list.toArray(new Integer[] {}));
+        Assert.assertEquals(1.082323233711138, stack.sumOfDouble(i -> 1.0d / (i.doubleValue() * i.doubleValue() * i.doubleValue() * i.doubleValue())), 1.0e-15);
     }
 
     @Override
     @Test
-    public void sumByFloatConsistentRounding()
-    {
+    public void sumByFloatConsistentRounding() {
         MutableList<Integer> group1 = Interval.oneTo(100_000).toList().shuffleThis();
         MutableList<Integer> group2 = Interval.fromTo(100_001, 200_000).toList().shuffleThis();
         MutableList<Integer> integers = Lists.mutable.withAll(group1);
         integers.addAll(group2);
-        StackIterable<Integer> values = this.newStackWith(integers.toArray(new Integer[]{}));
-        ObjectDoubleMap<Integer> result = values.sumByFloat(
-                integer -> integer > 100_000 ? 2 : 1,
-                integer ->
-                {
-                    Integer i = integer > 100_000 ? integer - 100_000 : integer;
-                    return 1.0f / (i.floatValue() * i.floatValue() * i.floatValue() * i.floatValue());
-                });
-
+        StackIterable<Integer> values = this.newStackWith(integers.toArray(new Integer[] {}));
+        ObjectDoubleMap<Integer> result = values.sumByFloat(integer -> integer > 100_000 ? 2 : 1, integer -> {
+            Integer i = integer > 100_000 ? integer - 100_000 : integer;
+            return 1.0f / (i.floatValue() * i.floatValue() * i.floatValue() * i.floatValue());
+        });
         // The test only ensures the consistency/stability of rounding. This is not meant to test the "correctness" of the float calculation result.
         // Indeed the lower bits of this calculation result are always incorrect due to the information loss of original float values.
-        Assert.assertEquals(
-                1.082323233761663,
-                result.get(1),
-                1.0e-15);
-
-        Assert.assertEquals(
-                1.082323233761663,
-                result.get(2),
-                1.0e-15);
+        Assert.assertEquals(1.082323233761663, result.get(1), 1.0e-15);
+        Assert.assertEquals(1.082323233761663, result.get(2), 1.0e-15);
     }
 
     @Override
     @Test
-    public void sumByDoubleConsistentRounding()
-    {
+    public void sumByDoubleConsistentRounding() {
         MutableList<Integer> group1 = Interval.oneTo(100_000).toList().shuffleThis();
         MutableList<Integer> group2 = Interval.fromTo(100_001, 200_000).toList().shuffleThis();
         MutableList<Integer> integers = Lists.mutable.withAll(group1);
         integers.addAll(group2);
-        StackIterable<Integer> values = this.newStackWith(integers.toArray(new Integer[]{}));
-        ObjectDoubleMap<Integer> result = values.sumByDouble(
-                integer -> integer > 100_000 ? 2 : 1,
-                integer ->
-                {
-                    Integer i = integer > 100_000 ? integer - 100_000 : integer;
-                    return 1.0d / (i.doubleValue() * i.doubleValue() * i.doubleValue() * i.doubleValue());
-                });
-
-        Assert.assertEquals(
-                1.082323233711138,
-                result.get(1),
-                1.0e-15);
-
-        Assert.assertEquals(
-                1.082323233711138,
-                result.get(2),
-                1.0e-15);
+        StackIterable<Integer> values = this.newStackWith(integers.toArray(new Integer[] {}));
+        ObjectDoubleMap<Integer> result = values.sumByDouble(integer -> integer > 100_000 ? 2 : 1, integer -> {
+            Integer i = integer > 100_000 ? integer - 100_000 : integer;
+            return 1.0d / (i.doubleValue() * i.doubleValue() * i.doubleValue() * i.doubleValue());
+        });
+        Assert.assertEquals(1.082323233711138, result.get(1), 1.0e-15);
+        Assert.assertEquals(1.082323233711138, result.get(2), 1.0e-15);
     }
 
     @Override
     @Test
-    public void max()
-    {
-        Assert.assertEquals(
-                Integer.valueOf(4),
-                this.newStackFromTopToBottom(4, 3, 2, 1).max());
-        Assert.assertEquals(
-                Integer.valueOf(1),
-                this.newStackFromTopToBottom(4, 3, 2, 1).max(Comparators.reverseNaturalOrder()));
+    public void max() {
+        Assert.assertEquals(Integer.valueOf(4), this.newStackFromTopToBottom(4, 3, 2, 1).max());
+        Assert.assertEquals(Integer.valueOf(1), this.newStackFromTopToBottom(4, 3, 2, 1).max(Comparators.reverseNaturalOrder()));
     }
 
     @Override
     @Test
-    public void maxBy()
-    {
-        Assert.assertEquals(
-                Integer.valueOf(3),
-                this.newStackWith(1, 2, 3).maxBy(String::valueOf));
+    public void maxBy() {
+        Assert.assertEquals(Integer.valueOf(3), this.newStackWith(1, 2, 3).maxBy(String::valueOf));
     }
 
     @Override
     @Test
-    public void min()
-    {
-        Assert.assertEquals(
-                Integer.valueOf(1),
-                this.newStackWith(1, 2, 3, 4).min());
-        Assert.assertEquals(
-                Integer.valueOf(4),
-                this.newStackWith(1, 2, 3, 4).min(Comparators.reverseNaturalOrder()));
+    public void min() {
+        Assert.assertEquals(Integer.valueOf(1), this.newStackWith(1, 2, 3, 4).min());
+        Assert.assertEquals(Integer.valueOf(4), this.newStackWith(1, 2, 3, 4).min(Comparators.reverseNaturalOrder()));
     }
 
     @Override
     @Test
-    public void minBy()
-    {
+    public void minBy() {
         CountingFunction<Object, String> function = CountingFunction.of(String::valueOf);
-        Assert.assertEquals(
-                Integer.valueOf(1),
-                this.newStackWith(1, 2, 3).minBy(function));
+        Assert.assertEquals(Integer.valueOf(1), this.newStackWith(1, 2, 3).minBy(function));
         Assert.assertEquals(3, function.count);
     }
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(4, 3, 2, 1);
         Assert.assertEquals("[4, 3, 2, 1]", stack.toString());
     }
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals("3, 2, 1", this.newStackFromTopToBottom(3, 2, 1).makeString());
         Assert.assertEquals("3~2~1", this.newStackFromTopToBottom(3, 2, 1).makeString("~"));
         Assert.assertEquals("[3/2/1]", this.newStackFromTopToBottom(3, 2, 1).makeString("[", "/", "]"));
@@ -930,18 +722,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         StackIterable<String> stack = this.newStackFromTopToBottom("3", "2", "1");
         Appendable appendable = new StringBuilder();
-
         stack.appendString(appendable);
         Assert.assertEquals("3, 2, 1", appendable.toString());
-
         Appendable appendable2 = new StringBuilder();
         stack.appendString(appendable2, "/");
         Assert.assertEquals("3/2/1", appendable2.toString());
-
         Appendable appendable3 = new StringBuilder();
         stack.appendString(appendable3, "[", "/", "]");
         Assert.assertEquals("[3/2/1]", appendable3.toString());
@@ -949,79 +737,57 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         StackIterable<String> stack = this.newStackWith("1", "2", "3");
-        ListMultimap<Boolean, String> expected = FastListMultimap.newMultimap(
-                Tuples.pair(Boolean.TRUE, "3"),
-                Tuples.pair(Boolean.FALSE, "2"),
-                Tuples.pair(Boolean.TRUE, "1"));
+        ListMultimap<Boolean, String> expected = FastListMultimap.newMultimap(Tuples.pair(Boolean.TRUE, "3"), Tuples.pair(Boolean.FALSE, "2"), Tuples.pair(Boolean.TRUE, "1"));
         Assert.assertEquals(expected, stack.groupBy(object -> IntegerPredicates.isOdd().accept(Integer.parseInt(object))));
         Assert.assertEquals(expected, stack.groupBy(object -> IntegerPredicates.isOdd().accept(Integer.parseInt(object)), FastListMultimap.newMultimap()));
     }
 
     @Override
     @Test
-    public void groupByEach()
-    {
+    public void groupByEach() {
         StackIterable<Integer> stack = this.newStackFromTopToBottom(1, 2, 3);
-
         MutableMultimap<Integer, Integer> expected = FastListMultimap.newMultimap();
         stack.forEach(Procedures.cast(value -> expected.putAll(-value, Interval.fromTo(value, stack.size()))));
-
-        Multimap<Integer, Integer> actual =
-                stack.groupByEach(new NegativeIntervalFunction());
+        Multimap<Integer, Integer> actual = stack.groupByEach(new NegativeIntervalFunction());
         Assert.assertEquals(expected, actual);
-
-        Multimap<Integer, Integer> actualWithTarget =
-                stack.groupByEach(new NegativeIntervalFunction(), FastListMultimap.newMultimap());
+        Multimap<Integer, Integer> actualWithTarget = stack.groupByEach(new NegativeIntervalFunction(), FastListMultimap.newMultimap());
         Assert.assertEquals(expected, actualWithTarget);
     }
 
     @Override
     @Test
-    public void groupByUniqueKey()
-    {
+    public void groupByUniqueKey() {
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), this.newStackWith(1, 2, 3).groupByUniqueKey(id -> id));
     }
 
     @Test(expected = IllegalStateException.class)
-    public void groupByUniqueKey_throws()
-    {
+    public void groupByUniqueKey_throws() {
         this.newStackWith(1, 2, 3).groupByUniqueKey(Functions.getFixedValue(1));
     }
 
     @Override
     @Test
-    public void groupByUniqueKey_target()
-    {
+    public void groupByUniqueKey_target() {
         MutableMap<Integer, Integer> integers = this.newStackWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0));
         Assert.assertEquals(UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3), integers);
     }
 
     @Test(expected = IllegalStateException.class)
-    public void groupByUniqueKey_target_throws()
-    {
+    public void groupByUniqueKey_target_throws() {
         this.newStackWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(2, 2));
     }
 
     @Override
     @Test
-    public void chunk()
-    {
-        Verify.assertIterablesEqual(
-                FastList.<RichIterable<String>>newListWith(
-                        Lists.mutable.with("7", "6"),
-                        Lists.mutable.with("5", "4"),
-                        Lists.mutable.with("3", "2"),
-                        Lists.mutable.with("1")),
-                this.newStackFromTopToBottom("7", "6", "5", "4", "3", "2", "1").chunk(2));
+    public void chunk() {
+        Verify.assertIterablesEqual(FastList.<RichIterable<String>>newListWith(Lists.mutable.with("7", "6"), Lists.mutable.with("5", "4"), Lists.mutable.with("3", "2"), Lists.mutable.with("1")), this.newStackFromTopToBottom("7", "6", "5", "4", "3", "2", "1").chunk(2));
     }
 
     @Override
     @Test
-    public void chunk_single()
-    {
+    public void chunk_single() {
         RichIterable<String> collection = this.newWith("1");
         RichIterable<RichIterable<String>> groups = collection.chunk(2);
         Verify.assertIterablesEqual(Lists.mutable.with(1), groups.collect(RichIterable::size));
@@ -1029,16 +795,14 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void chunk_large_size()
-    {
+    public void chunk_large_size() {
         RichIterable<String> collection = this.newWith("1", "2", "3", "4", "5", "6", "7");
         Verify.assertIterablesEqual(collection, collection.chunk(10).getOnly());
     }
 
     @Override
     @Test
-    public void tap()
-    {
+    public void tap() {
         MutableList<String> tapResult = Lists.mutable.of();
         StackIterable<String> stack = this.newStackWith("1", "2", "3", "4", "5");
         Assert.assertSame(stack, stack.tap(tapResult::add));
@@ -1047,8 +811,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         StackIterable<String> stack = this.newStackWith("1", "2", "3", "4", "5");
         Appendable builder = new StringBuilder();
         Procedure<String> appendProcedure = Procedures.append(builder);
@@ -1058,8 +821,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         StackIterable<String> stack = this.newStackWith("1", "2", "3", "4");
         StringBuilder builder = new StringBuilder();
         stack.forEachWith((argument1, argument2) -> builder.append(argument1).append(argument2), 0);
@@ -1068,8 +830,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         StackIterable<String> stack = this.newStackFromTopToBottom("5", "4", "3", "2", "1");
         StringBuilder builder = new StringBuilder();
         stack.forEachWithIndex((each, index) -> builder.append(each).append(index));
@@ -1078,213 +839,147 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void toList()
-    {
-        Assert.assertEquals(
-                Lists.mutable.with(4, 3, 2, 1),
-                this.newStackFromTopToBottom(4, 3, 2, 1).toList());
+    public void toList() {
+        Assert.assertEquals(Lists.mutable.with(4, 3, 2, 1), this.newStackFromTopToBottom(4, 3, 2, 1).toList());
     }
 
     @Test
-    public void toStack()
-    {
+    public void toStack() {
         Assert.assertEquals(this.newStackFromTopToBottom(3, 2, 1), this.newStackFromTopToBottom(3, 2, 1).toStack());
     }
 
     @Test
-    public void toSortedList()
-    {
-        Assert.assertEquals(
-                Interval.oneTo(4),
-                this.newStackFromTopToBottom(4, 3, 1, 2).toSortedList());
-        Assert.assertEquals(
-                Interval.fromTo(4, 1),
-                this.newStackFromTopToBottom(4, 3, 1, 2).toSortedList(Collections.reverseOrder()));
+    public void toSortedList() {
+        Assert.assertEquals(Interval.oneTo(4), this.newStackFromTopToBottom(4, 3, 1, 2).toSortedList());
+        Assert.assertEquals(Interval.fromTo(4, 1), this.newStackFromTopToBottom(4, 3, 1, 2).toSortedList(Collections.reverseOrder()));
     }
 
     @Override
     @Test
-    public void toSortedListBy()
-    {
+    public void toSortedListBy() {
         MutableList<Integer> list = FastList.newList(Interval.oneTo(10)).shuffleThis();
-        Assert.assertEquals(
-                Interval.oneTo(10),
-                this.newStack(list).toSortedListBy(Functions.getIntegerPassThru()));
+        Assert.assertEquals(Interval.oneTo(10), this.newStack(list).toSortedListBy(Functions.getIntegerPassThru()));
     }
 
     @Override
     @Test
-    public void toSet()
-    {
-        Assert.assertEquals(
-                UnifiedSet.newSetWith(4, 3, 2, 1),
-                this.newStackWith(1, 2, 3, 4).toSet());
+    public void toSet() {
+        Assert.assertEquals(UnifiedSet.newSetWith(4, 3, 2, 1), this.newStackWith(1, 2, 3, 4).toSet());
     }
 
     @Test
-    public void toSortedSet()
-    {
+    public void toSortedSet() {
         MutableSortedSet<Integer> expected = TreeSortedSet.newSetWith(1, 2, 4, 5);
         StackIterable<Integer> stack = this.newStackWith(2, 1, 5, 4);
-
         Assert.assertEquals(expected, stack.toSortedSet());
         Assert.assertEquals(Lists.mutable.with(1, 2, 4, 5), stack.toSortedSet().toList());
-
         MutableSortedSet<Integer> reversed = stack.toSortedSet(Comparators.reverseNaturalOrder());
         Verify.assertSortedSetsEqual(reversed, stack.toSortedSet(Comparators.reverseNaturalOrder()));
-        Assert.assertEquals(
-                Lists.mutable.with(5, 4, 2, 1),
-                stack.toSortedSet(Comparators.reverseNaturalOrder()).toList());
+        Assert.assertEquals(Lists.mutable.with(5, 4, 2, 1), stack.toSortedSet(Comparators.reverseNaturalOrder()).toList());
     }
 
     @Override
     @Test
-    public void toSortedSetBy()
-    {
+    public void toSortedSetBy() {
         SetIterable<Integer> expected = UnifiedSet.newSetWith(10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
-
         StackIterable<Integer> stack = this.newStackWith(5, 2, 4, 3, 1, 6, 7, 8, 9, 10);
-        Assert.assertEquals(
-                expected,
-                stack.toSortedSetBy(String::valueOf));
-        Assert.assertEquals(
-                Lists.mutable.with(1, 10, 2, 3, 4, 5, 6, 7, 8, 9),
-                stack.toSortedSetBy(String::valueOf).toList());
+        Assert.assertEquals(expected, stack.toSortedSetBy(String::valueOf));
+        Assert.assertEquals(Lists.mutable.with(1, 10, 2, 3, 4, 5, 6, 7, 8, 9), stack.toSortedSetBy(String::valueOf).toList());
     }
 
     @Override
     @Test
-    public void toBag()
-    {
-        Assert.assertEquals(
-                Bags.mutable.of("C", "B", "A"),
-                this.newStackFromTopToBottom("C", "B", "A").toBag());
+    public void toBag() {
+        Assert.assertEquals(Bags.mutable.of("C", "B", "A"), this.newStackFromTopToBottom("C", "B", "A").toBag());
     }
 
     @Test
-    public void toSortedBag()
-    {
+    public void toSortedBag() {
         SortedBag<Integer> expected = TreeBag.newBagWith(1, 2, 2, 4, 5);
         StackIterable<Integer> stack = this.newStackWith(2, 2, 1, 5, 4);
-
         Verify.assertSortedBagsEqual(expected, stack.toSortedBag());
         Assert.assertEquals(Lists.mutable.with(1, 2, 2, 4, 5), stack.toSortedBag().toList());
-
         SortedBag<Integer> expected2 = TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 1, 2, 2, 4, 5);
         Verify.assertSortedBagsEqual(expected2, stack.toSortedBag(Comparators.reverseNaturalOrder()));
-        Assert.assertEquals(
-                Lists.mutable.with(5, 4, 2, 2, 1),
-                stack.toSortedBag(Comparators.reverseNaturalOrder()).toList());
+        Assert.assertEquals(Lists.mutable.with(5, 4, 2, 2, 1), stack.toSortedBag(Comparators.reverseNaturalOrder()).toList());
     }
 
     @Override
     @Test
-    public void toSortedBagBy()
-    {
+    public void toSortedBagBy() {
         SortedBag<Integer> expected = TreeBag.newBagWith(1, 2, 3, 3, 4, 5);
-
         StackIterable<Integer> stack = this.newStackWith(1, 2, 3, 3, 4, 5);
-        Verify.assertSortedBagsEqual(
-                expected,
-                stack.toSortedBagBy(String::valueOf));
+        Verify.assertSortedBagsEqual(expected, stack.toSortedBagBy(String::valueOf));
     }
 
     @Override
     @Test
-    public void toMap()
-    {
-        Assert.assertEquals(
-                UnifiedMap.newWithKeysValues("4", "4", "3", "3", "2", "2", "1", "1"),
-                this.newStackFromTopToBottom(4, 3, 2, 1).toMap(String::valueOf, String::valueOf));
+    public void toMap() {
+        Assert.assertEquals(UnifiedMap.newWithKeysValues("4", "4", "3", "3", "2", "2", "1", "1"), this.newStackFromTopToBottom(4, 3, 2, 1).toMap(String::valueOf, String::valueOf));
     }
 
     @Override
     @Test
-    public void toSortedMap()
-    {
-        Assert.assertEquals(
-                UnifiedMap.newWithKeysValues(3, "3", 2, "2", 1, "1"),
-                this.newStackFromTopToBottom(3, 2, 1).toSortedMap(Functions.getIntegerPassThru(), String::valueOf));
-
-        Assert.assertEquals(
-                TreeSortedMap.newMapWith(Comparators.reverseNaturalOrder(), 3, "3", 2, "2", 1, "1"),
-                this.newStackFromTopToBottom(3, 2, 1).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getIntegerPassThru(), String::valueOf));
-
-        Assert.assertEquals(
-                TreeSortedMap.newMapWith(Comparators.reverseNaturalOrder(), 3, "3", 2, "2", 1, "1"),
-                this.newStackFromTopToBottom(3, 2, 1).toSortedMapBy(key -> -key, Functions.getIntegerPassThru(), String::valueOf));
+    public void toSortedMap() {
+        Assert.assertEquals(UnifiedMap.newWithKeysValues(3, "3", 2, "2", 1, "1"), this.newStackFromTopToBottom(3, 2, 1).toSortedMap(Functions.getIntegerPassThru(), String::valueOf));
+        Assert.assertEquals(TreeSortedMap.newMapWith(Comparators.reverseNaturalOrder(), 3, "3", 2, "2", 1, "1"), this.newStackFromTopToBottom(3, 2, 1).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getIntegerPassThru(), String::valueOf));
+        Assert.assertEquals(TreeSortedMap.newMapWith(Comparators.reverseNaturalOrder(), 3, "3", 2, "2", 1, "1"), this.newStackFromTopToBottom(3, 2, 1).toSortedMapBy(key -> -key, Functions.getIntegerPassThru(), String::valueOf));
     }
 
     @Test
-    public void asLazy()
-    {
-        Assert.assertEquals(
-                Lists.mutable.with("3", "2", "1"),
-                this.newStackFromTopToBottom("3", "2", "1").asLazy().toList());
+    public void asLazy() {
+        Assert.assertEquals(Lists.mutable.with("3", "2", "1"), this.newStackFromTopToBottom("3", "2", "1").asLazy().toList());
     }
 
     @Override
     @Test
-    public void toArray()
-    {
-        Assert.assertArrayEquals(new Object[]{4, 3, 2, 1}, this.newStackFromTopToBottom(4, 3, 2, 1).toArray());
-        Assert.assertArrayEquals(new Integer[]{4, 3, 2, 1}, this.newStackFromTopToBottom(4, 3, 2, 1).toArray(new Integer[0]));
+    public void toArray() {
+        Assert.assertArrayEquals(new Object[] { 4, 3, 2, 1 }, this.newStackFromTopToBottom(4, 3, 2, 1).toArray());
+        Assert.assertArrayEquals(new Integer[] { 4, 3, 2, 1 }, this.newStackFromTopToBottom(4, 3, 2, 1).toArray(new Integer[0]));
     }
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         StringBuilder builder = new StringBuilder();
         StackIterable<String> stack = this.newStackFromTopToBottom("5", "4", "3", "2", "1");
-        for (String string : stack)
-        {
+        for (String string : stack) {
             builder.append(string);
         }
         Assert.assertEquals("54321", builder.toString());
     }
 
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         StackIterable<Integer> stack1 = this.newStackFromTopToBottom(1, 2, 3, 4);
         StackIterable<Integer> stack2 = this.newStackFromTopToBottom(1, 2, 3, 4);
         StackIterable<Integer> stack3 = this.newStackFromTopToBottom(5, 2, 1, 4);
         StackIterable<Integer> stack4 = this.newStackFromTopToBottom(1, 2, 3);
         StackIterable<Integer> stack5 = this.newStackFromTopToBottom(1, 2, 3, 4, 5);
         StackIterable<Integer> stack6 = this.newStackFromTopToBottom(1, 2, 3, null);
-
         Verify.assertEqualsAndHashCode(stack1, stack2);
         Verify.assertPostSerializedEqualsAndHashCode(this.newStackWith(1, 2, 3, 4));
         Assert.assertNotEquals(stack1, stack3);
         Assert.assertNotEquals(stack1, stack4);
         Assert.assertNotEquals(stack1, stack5);
         Assert.assertNotEquals(stack1, stack6);
-
         Verify.assertPostSerializedEqualsAndHashCode(this.newStackWith(null, null, null));
-
         Assert.assertEquals(Stacks.mutable.of(), this.newStackWith());
     }
 
     @Test
-    public void testHashCode()
-    {
+    public void testHashCode() {
         StackIterable<Integer> stack1 = this.newStackWith(1, 2, 3, 5);
         StackIterable<Integer> stack2 = this.newStackWith(1, 2, 3, 4);
         Assert.assertNotEquals(stack1.hashCode(), stack2.hashCode());
-
-        Assert.assertEquals(
-                31 * 31 * 31 * 31 + 1 * 31 * 31 * 31 + 2 * 31 * 31 + 3 * 31 + 4,
-                this.newStackFromTopToBottom(1, 2, 3, 4).hashCode());
+        Assert.assertEquals(31 * 31 * 31 * 31 + 1 * 31 * 31 * 31 + 2 * 31 * 31 + 3 * 31 + 4, this.newStackFromTopToBottom(1, 2, 3, 4).hashCode());
         Assert.assertEquals(31 * 31 * 31, this.newStackFromTopToBottom(null, null, null).hashCode());
-
         Assert.assertNotEquals(this.newStackFromTopToBottom(1, 2, 3, 4).hashCode(), this.newStackFromTopToBottom(4, 3, 2, 1).hashCode());
     }
 
     @Override
     @Test
-    public void aggregateByMutating()
-    {
+    public void aggregateByMutating() {
         Function0<AtomicInteger> valueCreator = AtomicInteger::new;
         StackIterable<Integer> collection = this.newStackWith(1, 1, 1, 2, 2, 3);
         MapIterable<String, AtomicInteger> aggregation = collection.aggregateInPlaceBy(String::valueOf, valueCreator, AtomicInteger::addAndGet);
@@ -1295,8 +990,7 @@ public abstract class StackIterableTestCase
 
     @Override
     @Test
-    public void aggregateByNonMutating()
-    {
+    public void aggregateByNonMutating() {
         Function0<Integer> valueCreator = () -> 0;
         Function2<Integer, Integer, Integer> sumAggregator = (integer1, integer2) -> integer1 + integer2;
         StackIterable<Integer> collection = this.newStackWith(1, 1, 1, 2, 2, 3);
@@ -1306,78 +1000,708 @@ public abstract class StackIterableTestCase
         Assert.assertEquals(3, aggregation.get("3").intValue());
     }
 
-    private static final class CountingPredicate<T>
-            implements Predicate<T>
-    {
+    private static final class CountingPredicate<T> implements Predicate<T> {
+
         private static final long serialVersionUID = 1L;
+
         private final Predicate<T> predicate;
+
         private int count;
 
-        private CountingPredicate(Predicate<T> predicate)
-        {
+        private CountingPredicate(Predicate<T> predicate) {
             this.predicate = predicate;
         }
 
-        private static <T> CountingPredicate<T> of(Predicate<T> predicate)
-        {
+        private static <T> CountingPredicate<T> of(Predicate<T> predicate) {
             return new CountingPredicate<>(predicate);
         }
 
         @Override
-        public boolean accept(T anObject)
-        {
+        public boolean accept(T anObject) {
             this.count++;
             return this.predicate.accept(anObject);
         }
     }
 
-    private static final class CountingPredicate2<T1, T2>
-            implements Predicate2<T1, T2>
-    {
+    private static final class CountingPredicate2<T1, T2> implements Predicate2<T1, T2> {
+
         private static final long serialVersionUID = 1L;
+
         private final Predicate2<T1, T2> predicate;
+
         private int count;
 
-        private CountingPredicate2(Predicate2<T1, T2> predicate)
-        {
+        private CountingPredicate2(Predicate2<T1, T2> predicate) {
             this.predicate = predicate;
         }
 
-        private static <T1, T2> CountingPredicate2<T1, T2> of(Predicate2<T1, T2> predicate)
-        {
+        private static <T1, T2> CountingPredicate2<T1, T2> of(Predicate2<T1, T2> predicate) {
             return new CountingPredicate2<>(predicate);
         }
 
         @Override
-        public boolean accept(T1 each, T2 parameter)
-        {
+        public boolean accept(T1 each, T2 parameter) {
             this.count++;
             return this.predicate.accept(each, parameter);
         }
     }
 
-    private static final class CountingFunction<T, V>
-            implements Function<T, V>
-    {
+    private static final class CountingFunction<T, V> implements Function<T, V> {
+
         private static final long serialVersionUID = 1L;
+
         private int count;
+
         private final Function<T, V> function;
 
-        private CountingFunction(Function<T, V> function)
-        {
+        private CountingFunction(Function<T, V> function) {
             this.function = function;
         }
 
-        private static <T, V> CountingFunction<T, V> of(Function<T, V> function)
-        {
+        private static <T, V> CountingFunction<T, V> of(Function<T, V> function) {
             return new CountingFunction<>(function);
         }
 
         @Override
-        public V valueOf(T object)
-        {
+        public V valueOf(T object) {
             this.count++;
             return this.function.valueOf(object);
         }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewStackFromTopToBottom() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewStackFromTopToBottom, this.description("testNewStackFromTopToBottom"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_peek_empty_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::peek_empty_throws, this.description("peek_empty_throws"), java.util.EmptyStackException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_peek_int_empty_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::peek_int_empty_throws, this.description("peek_int_empty_throws"), java.util.EmptyStackException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_peek_int_count_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::peek_int_count_throws, this.description("peek_int_count_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_peek_int_neg_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::peek_int_neg_throws, this.description("peek_int_neg_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_peek_illegal_arguments() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::peek_illegal_arguments, this.description("peek_illegal_arguments"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_peek() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::peek, this.description("peek"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_peekAt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::peekAt, this.description("peekAt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_peekAt_illegal_arguments() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::peekAt_illegal_arguments, this.description("peekAt_illegal_arguments"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getLast, this.description("getLast"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAll, this.description("containsAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllArguments() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllArguments, this.description("containsAllArguments"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithIndex, this.description("collectWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithIndexWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithIndexWithTarget, this.description("collectWithIndexWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectBoolean() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectBoolean, this.description("collectBoolean"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectBooleanWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectBooleanWithTarget, this.description("collectBooleanWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectByte() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectByte, this.description("collectByte"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectByteWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectByteWithTarget, this.description("collectByteWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectChar() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectChar, this.description("collectChar"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectCharWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectCharWithTarget, this.description("collectCharWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectDouble, this.description("collectDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectDoubleWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectDoubleWithTarget, this.description("collectDoubleWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectFloat, this.description("collectFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectFloatWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectFloatWithTarget, this.description("collectFloatWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectInt, this.description("collectInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIntWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIntWithTarget, this.description("collectIntWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectLong, this.description("collectLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectLongWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectLongWithTarget, this.description("collectLongWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectShort() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectShort, this.description("collectShort"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectShortWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectShortWithTarget, this.description("collectShortWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIf, this.description("collectIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithTarget, this.description("collectWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollect, this.description("flatCollect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectInstancesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectInstancesOf, this.description("selectInstancesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith, this.description("selectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWithTarget, this.description("selectWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith, this.description("rejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWithTarget, this.description("rejectWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detect, this.description("detect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWith, this.description("detectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNone, this.description("detectIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithIfNone, this.description("detectWithIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition, this.description("partition"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith, this.description("partitionWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipWithIndex, this.description("zipWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countWith, this.description("countWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyWith, this.description("anySatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyWith, this.description("allSatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyWith, this.description("noneSatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOf, this.description("sumOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOfFloatConsistentRounding() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOfFloatConsistentRounding, this.description("sumOfFloatConsistentRounding"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOfDoubleConsistentRounding() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOfDoubleConsistentRounding, this.description("sumOfDoubleConsistentRounding"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumByFloatConsistentRounding() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumByFloatConsistentRounding, this.description("sumByFloatConsistentRounding"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumByDoubleConsistentRounding() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumByDoubleConsistentRounding, this.description("sumByDoubleConsistentRounding"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max, this.description("max"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxBy, this.description("maxBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min, this.description("min"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minBy, this.description("minBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEach, this.description("groupByEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey, this.description("groupByUniqueKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::groupByUniqueKey_throws, this.description("groupByUniqueKey_throws"), java.lang.IllegalStateException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey_target, this.description("groupByUniqueKey_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_target_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::groupByUniqueKey_target_throws, this.description("groupByUniqueKey_target_throws"), java.lang.IllegalStateException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk, this.description("chunk"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk_single() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk_single, this.description("chunk_single"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk_large_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk_large_size, this.description("chunk_large_size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tap, this.description("tap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toStack() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toStack, this.description("toStack"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedList, this.description("toSortedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedListBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedListBy, this.description("toSortedListBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedSet, this.description("toSortedSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedSetBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedSetBy, this.description("toSortedSetBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toBag, this.description("toBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedBag, this.description("toSortedBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBagBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedBagBy, this.description("toSortedBagBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMap, this.description("toMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedMap, this.description("toSortedMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazy, this.description("asLazy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEquals, this.description("testEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testHashCode, this.description("testHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_aggregateByMutating() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::aggregateByMutating, this.description("aggregateByMutating"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_aggregateByNonMutating() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::aggregateByNonMutating, this.description("aggregateByNonMutating"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract StackIterableTestCase implementation();
     }
 }

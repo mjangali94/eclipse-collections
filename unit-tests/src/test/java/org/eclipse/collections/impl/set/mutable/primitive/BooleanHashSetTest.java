@@ -7,35 +7,30 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.mutable.primitive;
 
 import java.lang.reflect.Field;
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.iterator.MutableBooleanIterator;
 import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BooleanHashSetTest extends AbstractBooleanSetTestCase
-{
+public class BooleanHashSetTest extends AbstractBooleanSetTestCase {
+
     @Override
-    protected BooleanHashSet classUnderTest()
-    {
+    protected BooleanHashSet classUnderTest() {
         return BooleanHashSet.newSetWith(true, false, true);
     }
 
     @Override
-    protected BooleanHashSet newWith(boolean... elements)
-    {
+    protected BooleanHashSet newWith(boolean... elements) {
         return BooleanHashSet.newSetWith(elements);
     }
 
     @Test
-    public void construction() throws Exception
-    {
+    public void construction() throws Exception {
         Field table = BooleanHashSet.class.getDeclaredField("state");
         table.setAccessible(true);
         Assert.assertEquals(0, table.get(new BooleanHashSet()));
@@ -43,14 +38,12 @@ public class BooleanHashSetTest extends AbstractBooleanSetTestCase
 
     @Override
     @Test
-    public void newCollection()
-    {
+    public void newCollection() {
         super.newCollection();
         BooleanHashSet set0 = this.newWith();
         BooleanHashSet set1 = this.newWith(false);
         BooleanHashSet set2 = this.newWith(true);
         BooleanHashSet set3 = this.newWith(true, false);
-
         BooleanHashSet setFromList = BooleanHashSet.newSet(BooleanArrayList.newListWith(true, true, false));
         BooleanHashSet setFromSet0 = BooleanHashSet.newSet(set0);
         BooleanHashSet setFromSet1 = BooleanHashSet.newSet(set1);
@@ -65,10 +58,8 @@ public class BooleanHashSetTest extends AbstractBooleanSetTestCase
 
     @Override
     @Test
-    public void booleanIterator_with_remove()
-    {
+    public void booleanIterator_with_remove() {
         super.booleanIterator_with_remove();
-
         BooleanHashSet falseSet = this.newWith(false);
         MutableBooleanIterator mutableBooleanIterator = falseSet.booleanIterator();
         Assert.assertTrue(mutableBooleanIterator.hasNext());
@@ -91,5 +82,39 @@ public class BooleanHashSetTest extends AbstractBooleanSetTestCase
         Verify.assertEmpty(emptySet);
         Assert.assertThrows(NoSuchElementException.class, mutableBooleanIterator::next);
         Assert.assertThrows(IllegalStateException.class, mutableBooleanIterator::remove);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_construction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::construction, this.description("construction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newCollection, this.description("newCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_booleanIterator_with_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::booleanIterator_with_remove, this.description("booleanIterator_with_remove"));
+        }
+
+        private BooleanHashSetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BooleanHashSetTest();
+        }
+
+        @java.lang.Override
+        public BooleanHashSetTest implementation() {
+            return this.implementation;
+        }
     }
 }

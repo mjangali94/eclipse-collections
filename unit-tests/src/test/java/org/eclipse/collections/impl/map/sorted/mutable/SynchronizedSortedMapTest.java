@@ -7,75 +7,79 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.sorted.mutable;
 
 import java.util.Comparator;
-
 import org.eclipse.collections.api.map.sorted.MutableSortedMap;
 
 /**
  * JUnit test for {@link SynchronizedSortedMap}.
  */
-public class SynchronizedSortedMapTest extends MutableSortedMapTestCase
-{
+public class SynchronizedSortedMapTest extends MutableSortedMapTestCase {
+
     @Override
-    public <K, V> MutableSortedMap<K, V> newMap(Comparator<? super K> comparator)
-    {
+    public <K, V> MutableSortedMap<K, V> newMap(Comparator<? super K> comparator) {
         return new SynchronizedSortedMap<>(TreeSortedMap.newMap(comparator));
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMapWithKeyValue(Comparator<? super K> comparator, K key, V value)
-    {
+    public <K, V> MutableSortedMap<K, V> newMapWithKeyValue(Comparator<? super K> comparator, K key, V value) {
         return new SynchronizedSortedMap<>(TreeSortedMap.<K, V>newMap(comparator).with(key, value));
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(Comparator<? super K> comparator, K key1, V value1, K key2, V value2)
-    {
+    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(Comparator<? super K> comparator, K key1, V value1, K key2, V value2) {
         return new SynchronizedSortedMap<>(TreeSortedMap.<K, V>newMap(comparator).with(key1, value1, key2, value2));
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(Comparator<? super K> comparator, K key1, V value1, K key2, V value2, K key3, V value3)
-    {
+    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(Comparator<? super K> comparator, K key1, V value1, K key2, V value2, K key3, V value3) {
         return new SynchronizedSortedMap<>(TreeSortedMap.<K, V>newMap(comparator).with(key1, value1, key2, value2, key3, value3));
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(Comparator<? super K> comparator, K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
+    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(Comparator<? super K> comparator, K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         return new SynchronizedSortedMap<>(TreeSortedMap.<K, V>newMap(comparator).with(key1, value1, key2, value2, key3, value3, key4, value4));
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMap()
-    {
+    public <K, V> MutableSortedMap<K, V> newMap() {
         return new SynchronizedSortedMap<>(TreeSortedMap.newMap());
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMapWithKeyValue(K key, V value)
-    {
+    public <K, V> MutableSortedMap<K, V> newMapWithKeyValue(K key, V value) {
         return new SynchronizedSortedMap<>(TreeSortedMap.newMapWith(key, value));
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2) {
         return new SynchronizedSortedMap<>(TreeSortedMap.newMapWith(key1, value1, key2, value2));
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3)
-    {
+    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         return new SynchronizedSortedMap<>(TreeSortedMap.newMapWith(key1, value1, key2, value2, key3, value3));
     }
 
     @Override
-    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
+    public <K, V> MutableSortedMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         return new SynchronizedSortedMap<>(TreeSortedMap.newMapWith(key1, value1, key2, value2, key3, value3, key4, value4));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private SynchronizedSortedMapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedSortedMapTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedSortedMapTest implementation() {
+            return this.implementation;
+        }
     }
 }

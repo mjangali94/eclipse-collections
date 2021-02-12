@@ -7,16 +7,30 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import org.eclipse.collections.api.list.MutableList;
 
-public class FastListAsUnmodifiableTest extends UnmodifiableMutableListTestCase
-{
+public class FastListAsUnmodifiableTest extends UnmodifiableMutableListTestCase {
+
     @Override
-    protected MutableList<Integer> getCollection()
-    {
+    protected MutableList<Integer> getCollection() {
         return FastList.newListWith(1).asUnmodifiable();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private FastListAsUnmodifiableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new FastListAsUnmodifiableTest();
+        }
+
+        @java.lang.Override
+        public FastListAsUnmodifiableTest implementation() {
+            return this.implementation;
+        }
     }
 }

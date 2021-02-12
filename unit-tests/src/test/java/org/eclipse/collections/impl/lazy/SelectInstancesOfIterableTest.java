@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy;
 
 import org.eclipse.collections.api.InternalIterable;
@@ -22,19 +21,17 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
-{
+public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(SelectInstancesOfIterableTest.class);
 
     @Override
-    protected <T> LazyIterable<T> newWith(T... elements)
-    {
+    protected <T> LazyIterable<T> newWith(T... elements) {
         return (LazyIterable<T>) LazyIterate.selectInstancesOf(FastList.newListWith(elements), Object.class);
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         InternalIterable<Integer> select = new SelectInstancesOfIterable<>(FastList.newListWith(1, 2.0, 3, 4.0, 5), Integer.class);
         Sum sum = new IntegerSum(0);
         select.forEach(new SumProcedure<>(sum));
@@ -42,14 +39,12 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         InternalIterable<Integer> select = new SelectInstancesOfIterable<>(FastList.newListWith(1, 2.0, 3, 4.0, 5), Integer.class);
         Sum sum = new IntegerSum(0);
         select.forEachWithIndex((object, index) -> {
             sum.add(object);
             sum.add(index);
-
             LOGGER.info("value={} index={}", object, index);
         });
         Assert.assertEquals(12, sum.getValue().intValue());
@@ -57,20 +52,17 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         InternalIterable<Integer> select = new SelectInstancesOfIterable<>(FastList.newListWith(1, 2.0, 3, 4.0, 5), Integer.class);
         Sum sum = new IntegerSum(0);
-        for (Integer each : select)
-        {
+        for (Integer each : select) {
             sum.add(each);
         }
         Assert.assertEquals(9, sum.getValue().intValue());
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         InternalIterable<Integer> select = new SelectInstancesOfIterable<>(FastList.newListWith(1, 2.0, 3, 4.0, 5), Integer.class);
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
@@ -79,44 +71,107 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
 
     @Override
     @Test
-    public void min_null_throws()
-    {
+    public void min_null_throws() {
         // Impossible for SelectInstancesOfIterable to contain null
         super.min_null_throws();
     }
 
     @Override
     @Test
-    public void max_null_throws()
-    {
+    public void max_null_throws() {
         // Impossible for SelectInstancesOfIterable to contain null
         super.max_null_throws();
     }
 
     @Override
     @Test
-    public void min_null_throws_without_comparator()
-    {
+    public void min_null_throws_without_comparator() {
         // Impossible for SelectInstancesOfIterable to contain null
         super.min_null_throws_without_comparator();
     }
 
     @Override
     @Test
-    public void max_null_throws_without_comparator()
-    {
+    public void max_null_throws_without_comparator() {
         // Impossible for SelectInstancesOfIterable to contain null
         super.max_null_throws_without_comparator();
     }
 
     @Override
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         super.distinct();
         SelectInstancesOfIterable<Double> iterable = new SelectInstancesOfIterable<>(FastList.newListWith(3.0, 2.0, 3, 2.0, 4.0, 5, 1.0, 3.0, 1.0, 5.0), Double.class);
-        Assert.assertEquals(
-                FastList.newListWith(3.0, 2.0, 4.0, 1.0, 5.0),
-                iterable.distinct().toList());
+        Assert.assertEquals(FastList.newListWith(3.0, 2.0, 4.0, 1.0, 5.0), iterable.distinct().toList());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min_null_throws, this.description("min_null_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max_null_throws, this.description("max_null_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_throws_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min_null_throws_without_comparator, this.description("min_null_throws_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_throws_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max_null_throws_without_comparator, this.description("max_null_throws_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        private SelectInstancesOfIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SelectInstancesOfIterableTest();
+        }
+
+        @java.lang.Override
+        public SelectInstancesOfIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

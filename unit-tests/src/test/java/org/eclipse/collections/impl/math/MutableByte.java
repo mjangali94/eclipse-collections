@@ -7,135 +7,113 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.math;
 
-public class MutableByte extends Number implements Comparable<MutableByte>
-{
+public class MutableByte extends Number implements Comparable<MutableByte> {
+
     private static final long serialVersionUID = 1L;
+
     private byte value = 0;
 
-    public MutableByte(byte value)
-    {
+    public MutableByte(byte value) {
         this.value = value;
     }
 
-    public MutableByte()
-    {
+    public MutableByte() {
         this((byte) 0);
     }
 
     @Override
-    public boolean equals(Object other)
-    {
-        if (this == other)
-        {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (other == null || this.getClass() != other.getClass())
-        {
+        if (other == null || this.getClass() != other.getClass()) {
             return false;
         }
         return this.value == ((MutableByte) other).value;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return this.intValue();
     }
 
     @Override
-    public int compareTo(MutableByte other)
-    {
+    public int compareTo(MutableByte other) {
         return Byte.compare(this.value, other.value);
     }
 
-    public void setValue(byte value)
-    {
+    public void setValue(byte value) {
         this.value = value;
     }
 
-    public MutableByte add(byte number)
-    {
+    public MutableByte add(byte number) {
         this.value += number;
         return this;
     }
 
-    public MutableByte subtract(byte number)
-    {
+    public MutableByte subtract(byte number) {
         this.value -= number;
         return this;
     }
 
-    public MutableByte multiply(byte number)
-    {
+    public MutableByte multiply(byte number) {
         this.value *= number;
         return this;
     }
 
-    public MutableByte divide(byte number)
-    {
+    public MutableByte divide(byte number) {
         this.value /= number;
         return this;
     }
 
-    public MutableByte min(byte number)
-    {
+    public MutableByte min(byte number) {
         this.value = (byte) Math.min(this.intValue(), (int) number);
         return this;
     }
 
-    public MutableByte max(byte number)
-    {
+    public MutableByte max(byte number) {
         this.value = (byte) Math.max(this.intValue(), (int) number);
         return this;
     }
 
-    public MutableByte abs()
-    {
+    public MutableByte abs() {
         this.value = (byte) Math.abs(this.intValue());
         return this;
     }
 
-    public Byte toByte()
-    {
+    public Byte toByte() {
         return Byte.valueOf(this.value);
     }
 
     @Override
-    public int intValue()
-    {
+    public int intValue() {
         return (int) this.value;
     }
 
     @Override
-    public long longValue()
-    {
+    public long longValue() {
         return (long) this.value;
     }
 
     @Override
-    public float floatValue()
-    {
+    public float floatValue() {
         return (float) this.value;
     }
 
     @Override
-    public double doubleValue()
-    {
+    public double doubleValue() {
         return (double) this.value;
     }
 
     @Override
-    public byte byteValue()
-    {
+    public byte byteValue() {
         return this.value;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "MutableByte{value=" + this.value + '}';
     }
 }

@@ -7,35 +7,42 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.bag;
 
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.bag.ParallelBag;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
 
-public class ParallelCollectBagTest extends ParallelBagTestCase
-{
+public class ParallelCollectBagTest extends ParallelBagTestCase {
+
     @Override
-    protected ParallelBag<Integer> classUnderTest()
-    {
+    protected ParallelBag<Integer> classUnderTest() {
         return this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
     }
 
     @Override
-    protected ParallelBag<Integer> newWith(Integer... littleElements)
-    {
-        return HashBag.newBagWith(littleElements)
-                .asParallel(this.executorService, this.batchSize)
-                .collect(String::valueOf)
-                .collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
+    protected ParallelBag<Integer> newWith(Integer... littleElements) {
+        return HashBag.newBagWith(littleElements).asParallel(this.executorService, this.batchSize).collect(String::valueOf).collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
     }
 
     @Override
-    protected MutableBag<Integer> getExpectedWith(Integer... littleElements)
-    {
-        return HashBag.newBagWith(littleElements)
-                .collect(String::valueOf)
-                .collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
+    protected MutableBag<Integer> getExpectedWith(Integer... littleElements) {
+        return HashBag.newBagWith(littleElements).collect(String::valueOf).collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ParallelCollectBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelCollectBagTest();
+        }
+
+        @java.lang.Override
+        public ParallelCollectBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable.primitive;
 
 import org.eclipse.collections.api.bag.primitive.MutableBooleanBag;
@@ -19,24 +18,21 @@ import org.junit.Test;
 /**
  * JUnit test for {@link SynchronizedBooleanBag}.
  */
-public class SynchronizedBooleanBagTest extends AbstractMutableBooleanBagTestCase
-{
+public class SynchronizedBooleanBagTest extends AbstractMutableBooleanBagTestCase {
+
     @Override
-    protected final SynchronizedBooleanBag classUnderTest()
-    {
+    protected final SynchronizedBooleanBag classUnderTest() {
         return new SynchronizedBooleanBag(BooleanHashBag.newBagWith(true, false, true));
     }
 
     @Override
-    protected SynchronizedBooleanBag newWith(boolean... elements)
-    {
+    protected SynchronizedBooleanBag newWith(boolean... elements) {
         return new SynchronizedBooleanBag(BooleanHashBag.newBagWith(elements));
     }
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         super.asSynchronized();
         SynchronizedBooleanBag bagWithLockObject = new SynchronizedBooleanBag(BooleanHashBag.newBagWith(true, false, true), new Object());
         Assert.assertSame(bagWithLockObject, bagWithLockObject.asSynchronized());
@@ -47,13 +43,33 @@ public class SynchronizedBooleanBagTest extends AbstractMutableBooleanBagTestCas
     }
 
     @Override
-    public void selectUnique()
-    {
+    public void selectUnique() {
         super.selectUnique();
-
         MutableBooleanBag bag = this.classUnderTest();
         MutableBooleanSet expected = BooleanSets.mutable.with(false);
         MutableBooleanSet actual = bag.selectUnique();
         Assert.assertEquals(expected, actual);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        private SynchronizedBooleanBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedBooleanBagTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedBooleanBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

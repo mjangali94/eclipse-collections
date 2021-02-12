@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory.primitive;
 
 import org.eclipse.collections.api.factory.list.primitive.ImmutableBooleanListFactory;
@@ -17,11 +16,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BooleanListsTest
-{
+public class BooleanListsTest {
+
     @Test
-    public void immutables()
-    {
+    public void immutables() {
         ImmutableBooleanListFactory listFactory = BooleanLists.immutable;
         Assert.assertEquals(new BooleanArrayList(), listFactory.of());
         Verify.assertInstanceOf(ImmutableBooleanList.class, listFactory.of());
@@ -50,16 +48,14 @@ public class BooleanListsTest
     }
 
     @Test
-    public void emptyList()
-    {
+    public void emptyList() {
         Verify.assertEmpty(BooleanLists.immutable.of());
         Assert.assertSame(BooleanLists.immutable.of(), BooleanLists.immutable.of());
         Verify.assertPostSerializedIdentity(BooleanLists.immutable.of());
     }
 
     @Test
-    public void newListWith()
-    {
+    public void newListWith() {
         ImmutableBooleanList list = BooleanLists.immutable.of();
         Assert.assertEquals(list, BooleanLists.immutable.of(list.toArray()));
         Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(true));
@@ -78,25 +74,23 @@ public class BooleanListsTest
 
     @SuppressWarnings("RedundantArrayCreation")
     @Test
-    public void newListWithArray()
-    {
+    public void newListWithArray() {
         ImmutableBooleanList list = BooleanLists.immutable.of();
-        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[]{true}));
-        Assert.assertEquals(list = list.newWith(false), BooleanLists.immutable.of(new boolean[]{true, false}));
-        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[]{true, false, true}));
-        Assert.assertEquals(list = list.newWith(false), BooleanLists.immutable.of(new boolean[]{true, false, true, false}));
-        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[]{true, false, true, false, true}));
-        Assert.assertEquals(list = list.newWith(false), BooleanLists.immutable.of(new boolean[]{true, false, true, false, true, false}));
-        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[]{true, false, true, false, true, false, true}));
-        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[]{true, false, true, false, true, false, true, true}));
-        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[]{true, false, true, false, true, false, true, true, true}));
-        Assert.assertEquals(list = list.newWith(false), BooleanLists.immutable.of(new boolean[]{true, false, true, false, true, false, true, true, true, false}));
-        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[]{true, false, true, false, true, false, true, true, true, false, true}));
+        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[] { true }));
+        Assert.assertEquals(list = list.newWith(false), BooleanLists.immutable.of(new boolean[] { true, false }));
+        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[] { true, false, true }));
+        Assert.assertEquals(list = list.newWith(false), BooleanLists.immutable.of(new boolean[] { true, false, true, false }));
+        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[] { true, false, true, false, true }));
+        Assert.assertEquals(list = list.newWith(false), BooleanLists.immutable.of(new boolean[] { true, false, true, false, true, false }));
+        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[] { true, false, true, false, true, false, true }));
+        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[] { true, false, true, false, true, false, true, true }));
+        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[] { true, false, true, false, true, false, true, true, true }));
+        Assert.assertEquals(list = list.newWith(false), BooleanLists.immutable.of(new boolean[] { true, false, true, false, true, false, true, true, true, false }));
+        Assert.assertEquals(list = list.newWith(true), BooleanLists.immutable.of(new boolean[] { true, false, true, false, true, false, true, true, true, false, true }));
     }
 
     @Test
-    public void newListWithList()
-    {
+    public void newListWithList() {
         ImmutableBooleanList list = BooleanLists.immutable.of();
         BooleanArrayList booleanArrayList = BooleanArrayList.newListWith(true);
         Assert.assertEquals(list = list.newWith(true), booleanArrayList.toImmutable());
@@ -113,8 +107,7 @@ public class BooleanListsTest
     }
 
     @Test
-    public void newListWithWithList()
-    {
+    public void newListWithWithList() {
         Assert.assertEquals(new BooleanArrayList(), BooleanLists.immutable.ofAll(new BooleanArrayList()));
         Assert.assertEquals(BooleanArrayList.newListWith(true), BooleanLists.immutable.ofAll(BooleanArrayList.newListWith(true)));
         Assert.assertEquals(BooleanArrayList.newListWith(true, false), BooleanLists.immutable.ofAll(BooleanArrayList.newListWith(true, false)));
@@ -122,8 +115,65 @@ public class BooleanListsTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(BooleanLists.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutables, this.description("immutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_emptyList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::emptyList, this.description("emptyList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWith, this.description("newListWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithArray, this.description("newListWithArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithList, this.description("newListWithList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithWithList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithWithList, this.description("newListWithWithList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private BooleanListsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BooleanListsTest();
+        }
+
+        @java.lang.Override
+        public BooleanListsTest implementation() {
+            return this.implementation;
+        }
     }
 }

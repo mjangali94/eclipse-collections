@@ -7,24 +7,44 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.procedure;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CollectIfProcedureTest
-{
+public class CollectIfProcedureTest {
+
     private static final int THE_ANSWER = 42;
 
     @Test
-    public void constructorWithSize()
-    {
+    public void constructorWithSize() {
         CollectIfProcedure<Integer, String> underTestTrue = new CollectIfProcedure<>(10, String::valueOf, ignored -> true);
         CollectIfProcedure<Integer, String> underTestFalse = new CollectIfProcedure<>(10, String::valueOf, ignored -> false);
         underTestTrue.value(THE_ANSWER);
         underTestFalse.value(THE_ANSWER);
         Assert.assertTrue(underTestTrue.getCollection().contains("42"));
         Assert.assertFalse(underTestFalse.getCollection().contains("42"));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_constructorWithSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::constructorWithSize, this.description("constructorWithSize"));
+        }
+
+        private CollectIfProcedureTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new CollectIfProcedureTest();
+        }
+
+        @java.lang.Override
+        public CollectIfProcedureTest implementation() {
+            return this.implementation;
+        }
     }
 }

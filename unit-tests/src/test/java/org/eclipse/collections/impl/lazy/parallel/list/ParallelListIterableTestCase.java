@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.list;
 
 import org.eclipse.collections.api.list.ListIterable;
@@ -16,8 +15,8 @@ import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.lazy.parallel.ParallelIterableTestCase;
 import org.eclipse.collections.impl.list.mutable.FastList;
 
-public abstract class ParallelListIterableTestCase extends ParallelIterableTestCase
-{
+public abstract class ParallelListIterableTestCase extends ParallelIterableTestCase {
+
     @Override
     protected abstract ParallelListIterable<Integer> classUnderTest();
 
@@ -25,26 +24,32 @@ public abstract class ParallelListIterableTestCase extends ParallelIterableTestC
     protected abstract ParallelListIterable<Integer> newWith(Integer... littleElements);
 
     @Override
-    protected MutableList<Integer> getExpected()
-    {
+    protected MutableList<Integer> getExpected() {
         return FastList.newListWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
     }
 
     @Override
-    protected ListIterable<Integer> getExpectedWith(Integer... littleElements)
-    {
+    protected ListIterable<Integer> getExpectedWith(Integer... littleElements) {
         return FastList.newListWith(littleElements);
     }
 
     @Override
-    protected boolean isOrdered()
-    {
+    protected boolean isOrdered() {
         return true;
     }
 
     @Override
-    protected boolean isUnique()
-    {
+    protected boolean isUnique() {
         return false;
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract ParallelListIterableTestCase implementation();
     }
 }

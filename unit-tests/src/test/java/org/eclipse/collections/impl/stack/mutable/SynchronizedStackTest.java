@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.stack.mutable;
 
 import org.eclipse.collections.api.stack.MutableStack;
@@ -17,35 +16,52 @@ import org.junit.Test;
 /**
  * JUnit test for {@link SynchronizedStack}.
  */
-public class SynchronizedStackTest extends MutableStackTestCase
-{
+public class SynchronizedStackTest extends MutableStackTestCase {
+
     @Override
-    protected <T> MutableStack<T> newStackWith(T... elements)
-    {
+    protected <T> MutableStack<T> newStackWith(T... elements) {
         return new SynchronizedStack<>(ArrayStack.newStackWith(elements));
     }
 
     @Override
-    protected <T> MutableStack<T> newStackFromTopToBottom(T... elements)
-    {
+    protected <T> MutableStack<T> newStackFromTopToBottom(T... elements) {
         return new SynchronizedStack<>(ArrayStack.newStackFromTopToBottom(elements));
     }
 
     @Override
-    protected <T> MutableStack<T> newStackFromTopToBottom(Iterable<T> elements)
-    {
+    protected <T> MutableStack<T> newStackFromTopToBottom(Iterable<T> elements) {
         return new SynchronizedStack<>(ArrayStack.newStackFromTopToBottom(elements));
     }
 
     @Override
-    protected <T> MutableStack<T> newStack(Iterable<T> elements)
-    {
+    protected <T> MutableStack<T> newStack(Iterable<T> elements) {
         return new SynchronizedStack<>(ArrayStack.newStack(elements));
     }
 
     @Test
-    public void testNullStack()
-    {
+    public void testNullStack() {
         Assert.assertThrows(IllegalArgumentException.class, () -> SynchronizedStack.of(null));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNullStack() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNullStack, this.description("testNullStack"));
+        }
+
+        private SynchronizedStackTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedStackTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedStackTest implementation() {
+            return this.implementation;
+        }
     }
 }

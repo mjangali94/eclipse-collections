@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.stack.immutable.primitive;
 
 import org.eclipse.collections.api.stack.primitive.ImmutableBooleanStack;
@@ -19,23 +18,48 @@ import org.junit.Test;
 /**
  * JUnit test for {@link ImmutableBooleanArrayStack}.
  */
-public class ImmutableBooleanArrayStackTest extends AbstractImmutableBooleanStackTestCase
-{
+public class ImmutableBooleanArrayStackTest extends AbstractImmutableBooleanStackTestCase {
+
     @Override
-    protected ImmutableBooleanStack classUnderTest()
-    {
+    protected ImmutableBooleanStack classUnderTest() {
         return ImmutableBooleanArrayStack.newStackWith(true, false, true, false);
     }
 
     @Test
-    public void newWithIterable()
-    {
+    public void newWithIterable() {
         Assert.assertEquals(BooleanArrayStack.newStackWith(true, true, false), this.newWithIterable(BooleanArrayList.newListWith(true, true, false)));
     }
 
     @Test
-    public void newWithTopToBottom()
-    {
+    public void newWithTopToBottom() {
         Assert.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true, true, false), this.newWithTopToBottom(true, true, false));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithIterable, this.description("newWithIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithTopToBottom() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithTopToBottom, this.description("newWithTopToBottom"));
+        }
+
+        private ImmutableBooleanArrayStackTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableBooleanArrayStackTest();
+        }
+
+        @java.lang.Override
+        public ImmutableBooleanArrayStackTest implementation() {
+            return this.implementation;
+        }
     }
 }

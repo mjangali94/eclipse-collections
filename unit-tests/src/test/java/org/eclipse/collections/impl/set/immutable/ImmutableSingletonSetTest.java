@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.immutable;
 
 import org.eclipse.collections.api.collection.ImmutableCollection;
@@ -15,51 +14,90 @@ import org.eclipse.collections.api.set.ImmutableSet;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableSingletonSetTest
-        extends AbstractImmutableSetTestCase
-{
+public class ImmutableSingletonSetTest extends AbstractImmutableSetTestCase {
+
     @Override
-    protected ImmutableSet<Integer> classUnderTest()
-    {
+    protected ImmutableSet<Integer> classUnderTest() {
         return new ImmutableSingletonSet<>(1);
     }
 
     @Test
     @Override
-    public void min_null_throws()
-    {
+    public void min_null_throws() {
         // Collections with one element should not throw to emulate the JDK Collections behavior
         super.min_null_throws();
     }
 
     @Test
     @Override
-    public void max_null_throws()
-    {
+    public void max_null_throws() {
         // Collections with one element should not throw to emulate the JDK Collections behavior
         super.max_null_throws();
     }
 
     @Test
     @Override
-    public void min_null_throws_without_comparator()
-    {
+    public void min_null_throws_without_comparator() {
         // Collections with one element should not throw to emulate the JDK Collections behavior
         super.min_null_throws_without_comparator();
     }
 
     @Test
     @Override
-    public void max_null_throws_without_comparator()
-    {
+    public void max_null_throws_without_comparator() {
         // Collections with one element should not throw to emulate the JDK Collections behavior
         super.max_null_throws_without_comparator();
     }
 
     @Test
-    public void getOnly()
-    {
+    public void getOnly() {
         ImmutableCollection<Integer> integers = this.classUnderTest();
         Assert.assertEquals(Integer.valueOf(1), integers.getOnly());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min_null_throws, this.description("min_null_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max_null_throws, this.description("max_null_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_throws_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min_null_throws_without_comparator, this.description("min_null_throws_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_throws_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max_null_throws_without_comparator, this.description("max_null_throws_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getOnly, this.description("getOnly"));
+        }
+
+        private ImmutableSingletonSetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableSingletonSetTest();
+        }
+
+        @java.lang.Override
+        public ImmutableSingletonSetTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,12 +7,10 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.collection.mutable;
 
 import java.util.Collection;
 import java.util.Collections;
-
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.Function2;
@@ -57,84 +55,52 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iList;
 
 /**
  * JUnit test for {@link UnmodifiableMutableCollection}.
  */
-public class UnmodifiableMutableCollectionTest
-{
+public class UnmodifiableMutableCollectionTest {
+
     private static final String METALLICA = "Metallica";
 
     private MutableCollection<String> mutableCollection;
+
     private MutableCollection<String> unmodifiableCollection;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         this.mutableCollection = FastList.<String>newList().with(METALLICA, "Bon Jovi", "Europe", "Scorpions");
         this.unmodifiableCollection = new UnmodifiableMutableCollection<>(this.mutableCollection);
     }
 
     @Test
-    public void delegatingMethods()
-    {
+    public void delegatingMethods() {
         Assert.assertEquals(this.mutableCollection.notEmpty(), this.unmodifiableCollection.notEmpty());
         Assert.assertEquals(this.mutableCollection.isEmpty(), this.unmodifiableCollection.isEmpty());
         Assert.assertEquals(this.mutableCollection.size(), this.unmodifiableCollection.size());
         Assert.assertEquals(this.mutableCollection.getFirst(), this.unmodifiableCollection.getFirst());
         Assert.assertEquals(this.mutableCollection.getLast(), this.unmodifiableCollection.getLast());
-        Assert.assertEquals(
-                this.mutableCollection.count(ignored6 -> true),
-                this.unmodifiableCollection.count(ignored5 -> true));
+        Assert.assertEquals(this.mutableCollection.count(ignored6 -> true), this.unmodifiableCollection.count(ignored5 -> true));
         Verify.assertSize(4, this.unmodifiableCollection.select(ignored4 -> true));
         Verify.assertSize(4, this.unmodifiableCollection.select(ignored3 -> true, FastList.newList()));
         Verify.assertSize(1, this.unmodifiableCollection.selectWith(Object::equals, METALLICA));
-        Verify.assertSize(
-                1,
-                this.unmodifiableCollection.selectWith(
-                        Object::equals,
-                        METALLICA,
-                        FastList.newList()));
+        Verify.assertSize(1, this.unmodifiableCollection.selectWith(Object::equals, METALLICA, FastList.newList()));
         Verify.assertSize(2, this.unmodifiableCollection.reject(StringPredicates.contains("p")));
-        Verify.assertSize(
-                2,
-                this.unmodifiableCollection.reject(StringPredicates.contains("p"), FastList.newList()));
+        Verify.assertSize(2, this.unmodifiableCollection.reject(StringPredicates.contains("p"), FastList.newList()));
         Verify.assertSize(3, this.unmodifiableCollection.rejectWith(Object::equals, METALLICA));
-        Verify.assertSize(
-                3,
-                this.unmodifiableCollection.rejectWith(
-                        Object::equals,
-                        METALLICA,
-                        FastList.newList()));
+        Verify.assertSize(3, this.unmodifiableCollection.rejectWith(Object::equals, METALLICA, FastList.newList()));
         Verify.assertSize(4, this.unmodifiableCollection.collect(Functions.getStringPassThru()));
-        Verify.assertSize(
-                4,
-                this.unmodifiableCollection.collect(
-                        Functions.getStringPassThru(),
-                        FastList.newList()));
-
+        Verify.assertSize(4, this.unmodifiableCollection.collect(Functions.getStringPassThru(), FastList.newList()));
         Function<String, Collection<String>> flattenFunction = object -> FastList.newListWith(object, object);
         Verify.assertSize(8, this.unmodifiableCollection.flatCollect(flattenFunction));
         Verify.assertSize(8, this.unmodifiableCollection.flatCollect(flattenFunction, FastList.newList()));
-
         Verify.assertSize(4, this.unmodifiableCollection.collectIf(ignored2 -> true, Functions.getStringPassThru()));
-        Verify.assertSize(
-                4,
-                this.unmodifiableCollection.collectIf(
-                        ignored1 -> true,
-                        Functions.getStringPassThru(),
-                        FastList.newList()));
+        Verify.assertSize(4, this.unmodifiableCollection.collectIf(ignored1 -> true, Functions.getStringPassThru(), FastList.newList()));
         Assert.assertEquals(METALLICA, this.unmodifiableCollection.detect(StringPredicates.contains("allic")));
-        Assert.assertEquals(
-                "Not found",
-                this.unmodifiableCollection.detectIfNone(
-                        StringPredicates.contains("donna"),
-                        new PassThruFunction0<>("Not found")));
+        Assert.assertEquals("Not found", this.unmodifiableCollection.detectIfNone(StringPredicates.contains("donna"), new PassThruFunction0<>("Not found")));
         Assert.assertEquals(METALLICA, this.unmodifiableCollection.detectWith(Object::equals, METALLICA));
-        Assert.assertEquals("Not found", this.unmodifiableCollection.detectWithIfNone(Object::equals, "Madonna",
-                new PassThruFunction0<>("Not found")));
+        Assert.assertEquals("Not found", this.unmodifiableCollection.detectWithIfNone(Object::equals, "Madonna", new PassThruFunction0<>("Not found")));
         Assert.assertEquals(4, this.unmodifiableCollection.count(ignored -> true));
         Assert.assertEquals(1, this.unmodifiableCollection.countWith(Object::equals, METALLICA));
         Assert.assertTrue(this.unmodifiableCollection.anySatisfy(StringPredicates.contains("allic")));
@@ -142,261 +108,405 @@ public class UnmodifiableMutableCollectionTest
         Assert.assertTrue(this.unmodifiableCollection.allSatisfy(Predicates.notNull()));
         Assert.assertTrue(this.unmodifiableCollection.allSatisfyWith((ignored1, ignored2) -> true, ""));
         Assert.assertEquals(this.mutableCollection, this.unmodifiableCollection.toList());
-        Verify.assertListsEqual(
-                Lists.mutable.of("Bon Jovi", "Europe", METALLICA, "Scorpions"),
-                this.unmodifiableCollection.toSortedList());
-        Verify.assertListsEqual(
-                Lists.mutable.of("Scorpions", METALLICA, "Europe", "Bon Jovi"),
-                this.unmodifiableCollection.toSortedList(Collections.reverseOrder()));
+        Verify.assertListsEqual(Lists.mutable.of("Bon Jovi", "Europe", METALLICA, "Scorpions"), this.unmodifiableCollection.toSortedList());
+        Verify.assertListsEqual(Lists.mutable.of("Scorpions", METALLICA, "Europe", "Bon Jovi"), this.unmodifiableCollection.toSortedList(Collections.reverseOrder()));
         Verify.assertSize(4, this.unmodifiableCollection.toSet());
         Verify.assertSize(4, this.unmodifiableCollection.toMap(Functions.getStringPassThru(), Functions.getStringPassThru()));
     }
 
     @Test
-    public void delegatingCollectPrimitiveMethods()
-    {
+    public void delegatingCollectPrimitiveMethods() {
         MutableCollection<Integer> mutable = Interval.oneTo(4).toList();
         MutableCollection<Integer> unmodifiable = new UnmodifiableMutableCollection<>(mutable);
-
         MutableBooleanCollection expectedBooleans = mutable.collectBoolean(PrimitiveFunctions.integerIsPositive());
         Assert.assertEquals(expectedBooleans, unmodifiable.collectBoolean(PrimitiveFunctions.integerIsPositive()));
         Assert.assertEquals(BooleanArrayList.newListWith(true, true, true, true), expectedBooleans);
-
         MutableByteCollection expectedBytes = mutable.collectByte(PrimitiveFunctions.unboxIntegerToByte());
         Assert.assertEquals(expectedBytes, unmodifiable.collectByte(PrimitiveFunctions.unboxIntegerToByte()));
         Assert.assertEquals(ByteArrayList.newListWith((byte) 1, (byte) 2, (byte) 3, (byte) 4), expectedBytes);
-
         MutableCharCollection expectedChars = mutable.collectChar(PrimitiveFunctions.unboxIntegerToChar());
         Assert.assertEquals(expectedChars, unmodifiable.collectChar(PrimitiveFunctions.unboxIntegerToChar()));
         Assert.assertEquals(CharArrayList.newListWith((char) 1, (char) 2, (char) 3, (char) 4), expectedChars);
-
         MutableDoubleCollection expectedDoubles = mutable.collectDouble(PrimitiveFunctions.unboxIntegerToDouble());
         Assert.assertEquals(expectedDoubles, unmodifiable.collectDouble(PrimitiveFunctions.unboxIntegerToDouble()));
         Assert.assertEquals(DoubleArrayList.newListWith(1.0d, 2.0d, 3.0d, 4.0d), expectedDoubles);
-
         MutableFloatCollection expectedFloats = mutable.collectFloat(PrimitiveFunctions.unboxIntegerToFloat());
         Assert.assertEquals(expectedFloats, unmodifiable.collectFloat(PrimitiveFunctions.unboxIntegerToFloat()));
         Assert.assertEquals(FloatArrayList.newListWith(1.0f, 2.0f, 3.0f, 4.0f), expectedFloats);
-
         MutableIntCollection expectedInts = mutable.collectInt(PrimitiveFunctions.unboxIntegerToInt());
         Assert.assertEquals(expectedInts, unmodifiable.collectInt(PrimitiveFunctions.unboxIntegerToInt()));
         Assert.assertEquals(IntArrayList.newListWith(1, 2, 3, 4), expectedInts);
-
         MutableLongCollection expectedLongs = mutable.collectLong(PrimitiveFunctions.unboxIntegerToLong());
         Assert.assertEquals(expectedLongs, unmodifiable.collectLong(PrimitiveFunctions.unboxIntegerToLong()));
         Assert.assertEquals(LongArrayList.newListWith(1L, 2L, 3L, 4L), expectedLongs);
-
         MutableShortCollection expectedShorts = mutable.collectShort(PrimitiveFunctions.unboxIntegerToShort());
         Assert.assertEquals(expectedShorts, unmodifiable.collectShort(PrimitiveFunctions.unboxIntegerToShort()));
         Assert.assertEquals(ShortArrayList.newListWith((short) 1, (short) 2, (short) 3, (short) 4), expectedShorts);
     }
 
     @Test
-    public void nullCollection()
-    {
+    public void nullCollection() {
         Assert.assertThrows(NullPointerException.class, () -> new UnmodifiableMutableCollection<>(null));
     }
 
     @Test
-    public void add()
-    {
+    public void add() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.unmodifiableCollection.add("Madonna"));
     }
 
     @Test
-    public void remove()
-    {
+    public void remove() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.unmodifiableCollection.remove(METALLICA));
     }
 
     @Test
-    public void addAll()
-    {
+    public void addAll() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.unmodifiableCollection.addAll(FastList.<String>newList().with("Madonna")));
     }
 
     @Test
-    public void removeAll()
-    {
+    public void removeAll() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.unmodifiableCollection.removeAll(FastList.<String>newList().with(METALLICA)));
     }
 
     @Test
-    public void retainAll()
-    {
+    public void retainAll() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.unmodifiableCollection.retainAll(FastList.<String>newList().with(METALLICA)));
     }
 
     @Test
-    public void clear()
-    {
+    public void clear() {
         Assert.assertThrows(UnsupportedOperationException.class, this.unmodifiableCollection::clear);
     }
 
     @Test
-    public void transparencyOfMutableChanges()
-    {
+    public void transparencyOfMutableChanges() {
         this.mutableCollection.remove(METALLICA);
         Verify.assertSize(this.mutableCollection.size(), this.unmodifiableCollection);
     }
 
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         Function2<String, String, String> function = (band, parameter) -> parameter + band.charAt(0);
-        Assert.assertEquals(
-                FastList.newListWith(">M", ">B", ">E", ">S"),
-                this.unmodifiableCollection.collectWith(function, ">"));
+        Assert.assertEquals(FastList.newListWith(">M", ">B", ">E", ">S"), this.unmodifiableCollection.collectWith(function, ">"));
         Assert.assertEquals(FastList.newListWith("*M", "*B", "*E", "*S"), this.unmodifiableCollection.collectWith(function, "*", FastList.newList()));
     }
 
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         Function2<String, String, String> function = (injectValue, band) -> injectValue + band.charAt(0);
         Assert.assertEquals(">MBES", this.unmodifiableCollection.injectInto(">", function));
     }
 
     @Test
-    public void injectIntoWith()
-    {
-        Function3<String, String, String, String> function =
-                (injectValue, band, parameter) -> injectValue + band.charAt(0) + parameter;
+    public void injectIntoWith() {
+        Function3<String, String, String, String> function = (injectValue, band, parameter) -> injectValue + band.charAt(0) + parameter;
         Assert.assertEquals(">M*B*E*S*", this.unmodifiableCollection.injectIntoWith(">", function, "*"));
     }
 
     @Test
-    public void removeIf()
-    {
+    public void removeIf() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.unmodifiableCollection.removeIf(Predicates.notNull()));
     }
 
     @Test
-    public void removeIfWith()
-    {
+    public void removeIfWith() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.unmodifiableCollection.removeIfWith((ignored1, ignored2) -> true, METALLICA));
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void with()
-    {
+    public void with() {
         this.unmodifiableCollection.with(METALLICA);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void withAll()
-    {
+    public void withAll() {
         this.unmodifiableCollection.withAll(this.mutableCollection);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void without()
-    {
+    public void without() {
         this.unmodifiableCollection.without(METALLICA);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void withoutAll()
-    {
+    public void withoutAll() {
         this.unmodifiableCollection.withoutAll(this.mutableCollection);
     }
 
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         Counter counter = new Counter();
-        for (Object each : this.unmodifiableCollection)
-        {
+        for (Object each : this.unmodifiableCollection) {
             counter.increment();
         }
         Assert.assertEquals(4, counter.getCount());
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         Counter counter = new Counter();
         this.unmodifiableCollection.forEach(Procedures.cast(band -> counter.increment()));
         Assert.assertEquals(4, counter.getCount());
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         StringBuilder buf = new StringBuilder();
         this.unmodifiableCollection.forEachWith((band, param) -> buf.append(param).append('<').append(band).append('>'), "GreatBand");
         Assert.assertEquals("GreatBand<Metallica>GreatBand<Bon Jovi>GreatBand<Europe>GreatBand<Scorpions>", buf.toString());
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         Counter counter = new Counter();
         this.unmodifiableCollection.forEachWithIndex((band, index) -> counter.add(index));
         Assert.assertEquals(6, counter.getCount());
     }
 
     @Test
-    public void selectAndRejectWith()
-    {
-        Twin<MutableList<String>> twin =
-                this.unmodifiableCollection.selectAndRejectWith(Object::equals, METALLICA);
+    public void selectAndRejectWith() {
+        Twin<MutableList<String>> twin = this.unmodifiableCollection.selectAndRejectWith(Object::equals, METALLICA);
         Verify.assertSize(1, twin.getOne());
         Verify.assertSize(3, twin.getTwo());
     }
 
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         RichIterable<Integer> list = this.newWith(1, 2, 3, 4, 5, 6, 7);
         Function<Integer, Boolean> isOddFunction = object -> IntegerPredicates.isOdd().accept(object);
-
-        MutableMap<Boolean, RichIterable<Integer>> expected =
-                UnifiedMap.newWithKeysValues(
-                        Boolean.TRUE, FastList.newListWith(1, 3, 5, 7),
-                        Boolean.FALSE, FastList.newListWith(2, 4, 6));
-
+        MutableMap<Boolean, RichIterable<Integer>> expected = UnifiedMap.newWithKeysValues(Boolean.TRUE, FastList.newListWith(1, 3, 5, 7), Boolean.FALSE, FastList.newListWith(2, 4, 6));
         Multimap<Boolean, Integer> multimap = list.groupBy(isOddFunction);
         Assert.assertEquals(expected, multimap.toMap());
-
         Multimap<Boolean, Integer> multimap2 = list.groupBy(isOddFunction, FastListMultimap.newMultimap());
         Assert.assertEquals(expected, multimap2.toMap());
     }
 
-    private <T> UnmodifiableMutableCollection<T> newWith(T... elements)
-    {
+    private <T> UnmodifiableMutableCollection<T> newWith(T... elements) {
         return new UnmodifiableMutableCollection<>(FastList.newListWith(elements));
     }
 
     @Test
-    public void toSortedSet()
-    {
+    public void toSortedSet() {
         this.unmodifiableCollection = this.newWith("2", "4", "1", "3");
         MutableSortedSet<String> set = this.unmodifiableCollection.toSortedSet();
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith("1", "2", "3", "4"), set);
     }
 
     @Test
-    public void toSortedSet_with_comparator()
-    {
+    public void toSortedSet_with_comparator() {
         this.unmodifiableCollection = this.newWith("2", "4", "4", "2", "1", "4", "1", "3");
         MutableSortedSet<String> set = this.unmodifiableCollection.toSortedSet(Collections.reverseOrder());
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(Collections.reverseOrder(), "1", "2", "3", "4"), set);
     }
 
     @Test
-    public void toSortedSetBy()
-    {
+    public void toSortedSetBy() {
         this.unmodifiableCollection = this.newWith("2", "4", "1", "3");
         MutableSortedSet<String> set = this.unmodifiableCollection.toSortedSetBy(Functions.getStringToInteger());
         Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith("1", "2", "3", "4"), set);
     }
 
     @Test
-    public void selectInstancesOf()
-    {
+    public void selectInstancesOf() {
         MutableCollection<Number> numbers = UnmodifiableMutableCollection.of(FastList.newListWith(1, 2.0, 3, 4.0, 5));
         Assert.assertEquals(iList(1, 3, 5), numbers.selectInstancesOf(Integer.class));
         Assert.assertEquals(iList(1, 2.0, 3, 4.0, 5), numbers.selectInstancesOf(Number.class));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_delegatingMethods() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::delegatingMethods, this.description("delegatingMethods"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_delegatingCollectPrimitiveMethods() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::delegatingCollectPrimitiveMethods, this.description("delegatingCollectPrimitiveMethods"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_nullCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::nullCollection, this.description("nullCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::add, this.description("add"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove, this.description("remove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAll, this.description("addAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll, this.description("removeAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAll, this.description("retainAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::clear, this.description("clear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_transparencyOfMutableChanges() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::transparencyOfMutableChanges, this.description("transparencyOfMutableChanges"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoWith, this.description("injectIntoWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIf, this.description("removeIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWith, this.description("removeIfWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::with, this.description("with"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::withAll, this.description("withAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_without() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::without, this.description("without"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::withoutAll, this.description("withoutAll"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectAndRejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectAndRejectWith, this.description("selectAndRejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedSet, this.description("toSortedSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedSet_with_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedSet_with_comparator, this.description("toSortedSet_with_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedSetBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedSetBy, this.description("toSortedSetBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectInstancesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectInstancesOf, this.description("selectInstancesOf"));
+        }
+
+        @java.lang.Override
+        public void before() throws java.lang.Throwable {
+            super.before();
+            this.implementation().setUp();
+        }
+
+        private UnmodifiableMutableCollectionTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new UnmodifiableMutableCollectionTest();
+        }
+
+        @java.lang.Override
+        public UnmodifiableMutableCollectionTest implementation() {
+            return this.implementation;
+        }
     }
 }

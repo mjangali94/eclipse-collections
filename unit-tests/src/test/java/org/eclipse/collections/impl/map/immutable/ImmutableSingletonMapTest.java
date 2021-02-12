@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.immutable;
 
 import org.eclipse.collections.api.list.MutableList;
@@ -29,24 +28,21 @@ import org.junit.Test;
 /**
  * JUnit test for {@link ImmutableSingletonMap}.
  */
-public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCase
-{
+public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCase {
+
     @Override
-    protected ImmutableMap<Integer, String> classUnderTest()
-    {
+    protected ImmutableMap<Integer, String> classUnderTest() {
         return new ImmutableSingletonMap<>(1, "1");
     }
 
     @Override
-    protected int size()
-    {
+    protected int size() {
         return 1;
     }
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         super.equalsAndHashCode();
         ImmutableMap<Integer, String> map1 = new ImmutableSingletonMap<>(1, "One");
         ImmutableMap<Integer, String> map2 = new ImmutableSingletonMap<>(1, "One");
@@ -54,8 +50,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
     }
 
     @Test
-    public void equalsAndHashCodeWithNulls()
-    {
+    public void equalsAndHashCodeWithNulls() {
         ImmutableMap<Integer, String> map1 = new ImmutableSingletonMap<>(null, null);
         MutableMap<Integer, String> map2 = Maps.fixedSize.of(null, null);
         Verify.assertEqualsAndHashCode(map1, map2);
@@ -63,8 +58,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void forEachValue()
-    {
+    public void forEachValue() {
         super.forEachValue();
         MutableList<String> collection = Lists.mutable.of();
         this.classUnderTest().forEachValue(CollectionAddProcedure.on(collection));
@@ -73,8 +67,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         super.forEach();
         MutableList<String> collection = Lists.mutable.of();
         this.classUnderTest().forEach(CollectionAddProcedure.on(collection));
@@ -83,12 +76,10 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         super.iterator();
         MutableList<String> collection = Lists.mutable.of();
-        for (String eachValue : this.classUnderTest())
-        {
+        for (String eachValue : this.classUnderTest()) {
             collection.add(eachValue);
         }
         Assert.assertEquals(FastList.newListWith("1"), collection);
@@ -96,8 +87,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void forEachKey()
-    {
+    public void forEachKey() {
         super.forEachKey();
         MutableList<Integer> collection = Lists.mutable.of();
         ImmutableMap<Integer, String> map = this.classUnderTest();
@@ -107,8 +97,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void getIfAbsent_function()
-    {
+    public void getIfAbsent_function() {
         super.getIfAbsent_function();
         ImmutableMap<Integer, String> map = this.classUnderTest();
         Assert.assertNull(map.get(4));
@@ -119,10 +108,8 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void getOrDefault()
-    {
+    public void getOrDefault() {
         super.getOrDefault();
-
         ImmutableMap<Integer, String> map = this.classUnderTest();
         Assert.assertNull(map.get(4));
         Assert.assertEquals("4", map.getOrDefault(4, "4"));
@@ -132,8 +119,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void getIfAbsent()
-    {
+    public void getIfAbsent() {
         super.getIfAbsent();
         ImmutableMap<Integer, String> map = this.classUnderTest();
         Assert.assertNull(map.get(4));
@@ -144,8 +130,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void getIfAbsentWith()
-    {
+    public void getIfAbsentWith() {
         super.getIfAbsentWith();
         ImmutableMap<Integer, String> map = this.classUnderTest();
         Assert.assertNull(map.get(4));
@@ -156,8 +141,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void ifPresentApply()
-    {
+    public void ifPresentApply() {
         super.ifPresentApply();
         ImmutableMap<Integer, String> map = this.classUnderTest();
         Assert.assertNull(map.ifPresentApply(4, Functions.getPassThru()));
@@ -166,16 +150,14 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void notEmpty()
-    {
+    public void notEmpty() {
         super.notEmpty();
         Assert.assertTrue(this.classUnderTest().notEmpty());
     }
 
     @Override
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         super.forEachWith();
         MutableList<Integer> result = Lists.mutable.of();
         ImmutableMap<Integer, Integer> map = new ImmutableSingletonMap<>(1, 1);
@@ -185,8 +167,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         super.forEachWithIndex();
         MutableList<String> result = Lists.mutable.of();
         ImmutableMap<Integer, String> map = new ImmutableSingletonMap<>(1, "One");
@@ -199,13 +180,11 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void keyValuesView()
-    {
+    public void keyValuesView() {
         super.keyValuesView();
         MutableList<String> result = Lists.mutable.of();
         ImmutableMap<Integer, String> map = new ImmutableSingletonMap<>(1, "One");
-        for (Pair<Integer, String> entry : map.keyValuesView())
-        {
+        for (Pair<Integer, String> entry : map.keyValuesView()) {
             result.add(entry.getTwo());
         }
         Assert.assertEquals(FastList.newListWith("One"), result);
@@ -213,13 +192,11 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void valuesView()
-    {
+    public void valuesView() {
         super.valuesView();
         MutableList<String> result = Lists.mutable.of();
         ImmutableMap<Integer, String> map = new ImmutableSingletonMap<>(1, "One");
-        for (String value : map.valuesView())
-        {
+        for (String value : map.valuesView()) {
             result.add(value);
         }
         Assert.assertEquals(FastList.newListWith("One"), result);
@@ -227,13 +204,11 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void keysView()
-    {
+    public void keysView() {
         super.keysView();
         MutableList<Integer> result = Lists.mutable.of();
         ImmutableMap<Integer, String> map = new ImmutableSingletonMap<>(1, "One");
-        for (Integer key : map.keysView())
-        {
+        for (Integer key : map.keysView()) {
             result.add(key);
         }
         Assert.assertEquals(FastList.newListWith(1), result);
@@ -241,74 +216,202 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         ImmutableMap<Integer, String> map = new ImmutableSingletonMap<>(1, "One");
         Assert.assertEquals("{1=One}", map.toString());
     }
 
     @Test
-    public void asLazyKeys()
-    {
+    public void asLazyKeys() {
         MutableList<Integer> keys = Maps.fixedSize.of(1, 1).keysView().toSortedList();
         Assert.assertEquals(FastList.newListWith(1), keys);
     }
 
     @Test
-    public void asLazyValues()
-    {
+    public void asLazyValues() {
         MutableList<Integer> values = Maps.fixedSize.of(1, 1).valuesView().toSortedList();
         Assert.assertEquals(FastList.newListWith(1), values);
     }
 
     @Test
-    public void getOnly()
-    {
+    public void getOnly() {
         ImmutableSingletonMap<Integer, String> singletonMap = new ImmutableSingletonMap<>(1, "One");
         Assert.assertEquals("One", singletonMap.getOnly());
     }
 
     @Override
-    public void select()
-    {
+    public void select() {
         ImmutableMap<Integer, String> map = this.classUnderTest();
-
         ImmutableMap<Integer, String> empty = map.select((ignored1, ignored2) -> false);
         Verify.assertInstanceOf(ImmutableEmptyMap.class, empty);
-
         ImmutableMap<Integer, String> full = map.select((ignored1, ignored2) -> true);
         Verify.assertInstanceOf(ImmutableSingletonMap.class, full);
         Assert.assertEquals(map, full);
     }
 
     @Override
-    public void reject()
-    {
+    public void reject() {
         ImmutableMap<Integer, String> map = this.classUnderTest();
-
         ImmutableMap<Integer, String> empty = map.reject((ignored1, ignored2) -> true);
         Verify.assertInstanceOf(ImmutableEmptyMap.class, empty);
         Assert.assertEquals(new ImmutableEmptyMap<Integer, String>(), empty);
-
         ImmutableMap<Integer, String> full = map.reject((ignored1, ignored2) -> false);
         Verify.assertInstanceOf(ImmutableSingletonMap.class, full);
         Assert.assertEquals(map, full);
     }
 
     @Override
-    public void detect()
-    {
+    public void detect() {
         ImmutableMap<Integer, String> map = this.classUnderTest();
-
         Pair<Integer, String> actual = map.detect((ignored1, ignored2) -> true);
         Assert.assertEquals(Tuples.pair(1, "1"), actual);
-
         Assert.assertNull(map.detect((ignored1, ignored2) -> false));
     }
 
     @Override
-    protected <K, V> ImmutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
+    protected <K, V> ImmutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         return new ImmutableSingletonMap<>(key1, value1);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCodeWithNulls() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCodeWithNulls, this.description("equalsAndHashCodeWithNulls"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachValue, this.description("forEachValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachKey, this.description("forEachKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsent_function() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsent_function, this.description("getIfAbsent_function"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOrDefault() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getOrDefault, this.description("getOrDefault"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsent() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsent, this.description("getIfAbsent"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentWith, this.description("getIfAbsentWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ifPresentApply() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ifPresentApply, this.description("ifPresentApply"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::notEmpty, this.description("notEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keyValuesView() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keyValuesView, this.description("keyValuesView"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_valuesView() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::valuesView, this.description("valuesView"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keysView() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keysView, this.description("keysView"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazyKeys() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazyKeys, this.description("asLazyKeys"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazyValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazyValues, this.description("asLazyValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getOnly, this.description("getOnly"));
+        }
+
+        private ImmutableSingletonMapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableSingletonMapTest();
+        }
+
+        @java.lang.Override
+        public ImmutableSingletonMapTest implementation() {
+            return this.implementation;
+        }
     }
 }

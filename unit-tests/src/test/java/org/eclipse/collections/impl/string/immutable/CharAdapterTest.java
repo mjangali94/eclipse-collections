@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.string.immutable;
 
 import org.eclipse.collections.api.LazyCharIterable;
@@ -19,41 +18,36 @@ import org.eclipse.collections.impl.list.immutable.primitive.AbstractImmutableCh
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CharAdapterTest extends AbstractImmutableCharListTestCase
-{
+public class CharAdapterTest extends AbstractImmutableCharListTestCase {
+
     private static final String UNICODE_STRING = "\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09";
 
     @Override
-    protected ImmutableCharList classUnderTest()
-    {
+    protected ImmutableCharList classUnderTest() {
         return CharAdapter.from((char) 1, (char) 2, (char) 3);
     }
 
     @Override
-    protected ImmutableCharList newWith(char... elements)
-    {
+    protected ImmutableCharList newWith(char... elements) {
         return CharAdapter.from(elements);
     }
 
     @SuppressWarnings("StringBufferReplaceableByString")
     @Test
-    public void stringBuilder()
-    {
+    public void stringBuilder() {
         CharAdapter adapt = CharAdapter.adapt(UNICODE_STRING);
         Assert.assertEquals(UNICODE_STRING, new StringBuilder(adapt).toString());
     }
 
     @Test
-    public void subSequence()
-    {
+    public void subSequence() {
         CharAdapter adapt = CharAdapter.adapt(UNICODE_STRING);
         CharSequence sequence = adapt.subSequence(1, 3);
         Assert.assertEquals(UNICODE_STRING.subSequence(1, 3), sequence);
     }
 
     @Override
-    public void toBag()
-    {
+    public void toBag() {
         super.toBag();
         MutableCharBag expected = CharBags.mutable.empty();
         expected.addOccurrences('a', 3);
@@ -64,14 +58,12 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         ImmutableCharList list = this.classUnderTest();
         StringBuilder expectedString = new StringBuilder();
         StringBuilder expectedString1 = new StringBuilder();
         int size = list.size();
-        for (char each = 0; each < size; each++)
-        {
+        for (char each = 0; each < size; each++) {
             expectedString.append((char) (each + (char) 1));
             expectedString1.append((char) (each + (char) 1));
             expectedString.append(each == size - 1 ? "" : ", ");
@@ -83,13 +75,11 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         StringBuilder expectedString = new StringBuilder();
         StringBuilder expectedString1 = new StringBuilder();
         int size = this.classUnderTest().size();
-        for (char each = 0; each < size; each++)
-        {
+        for (char each = 0; each < size; each++) {
             expectedString.append((char) (each + (char) 1));
             expectedString1.append((char) (each + (char) 1));
             expectedString.append(each == size - 1 ? "" : ", ");
@@ -106,20 +96,17 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         StringBuilder expectedString = new StringBuilder();
         int size = this.classUnderTest().size();
-        for (char each = 0; each < size; each++)
-        {
+        for (char each = 0; each < size; each++) {
             expectedString.append((char) (each + (char) 1));
         }
         Assert.assertEquals(expectedString.toString(), this.classUnderTest().toString());
     }
 
     @Test
-    public void getCharacter()
-    {
+    public void getCharacter() {
         CharAdapter adapter = Strings.asChars("123");
         Assert.assertEquals(Character.valueOf('1'), adapter.getCharacter(0));
         Assert.assertEquals(Character.valueOf('2'), adapter.getCharacter(1));
@@ -127,16 +114,14 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
     }
 
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         CharAdapter adapter = Strings.asChars("123");
         ImmutableCharList immutable = adapter.toImmutable();
         Assert.assertSame(adapter, immutable);
     }
 
     @Test
-    public void asReversed()
-    {
+    public void asReversed() {
         CharAdapter adapter = Strings.asChars("123");
         LazyCharIterable iterable = adapter.asReversed();
         String string = iterable.makeString("");
@@ -144,26 +129,94 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
     }
 
     @Test
-    public void dotProduct()
-    {
+    public void dotProduct() {
         CharAdapter adapter = Strings.asChars("123");
-        Assert.assertThrows(
-                UnsupportedOperationException.class,
-                () ->
-                {
-                    adapter.dotProduct(adapter);
-                });
+        Assert.assertThrows(UnsupportedOperationException.class, () -> {
+            adapter.dotProduct(adapter);
+        });
     }
 
     @Test
-    public void binarySearch()
-    {
+    public void binarySearch() {
         CharAdapter adapter = Strings.asChars("123");
-        Assert.assertThrows(
-                UnsupportedOperationException.class,
-                () ->
-                {
-                    adapter.binarySearch('2');
-                });
+        Assert.assertThrows(UnsupportedOperationException.class, () -> {
+            adapter.binarySearch('2');
+        });
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_stringBuilder() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::stringBuilder, this.description("stringBuilder"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subSequence() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subSequence, this.description("subSequence"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getCharacter() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getCharacter, this.description("getCharacter"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asReversed() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asReversed, this.description("asReversed"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_dotProduct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::dotProduct, this.description("dotProduct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_binarySearch() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::binarySearch, this.description("binarySearch"));
+        }
+
+        private CharAdapterTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new CharAdapterTest();
+        }
+
+        @java.lang.Override
+        public CharAdapterTest implementation() {
+            return this.implementation;
+        }
     }
 }

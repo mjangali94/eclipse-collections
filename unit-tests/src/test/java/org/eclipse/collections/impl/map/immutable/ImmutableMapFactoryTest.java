@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.immutable;
 
 import org.eclipse.collections.api.map.ImmutableMap;
@@ -17,74 +16,62 @@ import org.eclipse.collections.impl.test.domain.Key;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableMapFactoryTest
-{
+public class ImmutableMapFactoryTest {
+
     @Test
-    public void create0()
-    {
+    public void create0() {
         ImmutableMap<String, String> map = Maps.immutable.of();
         Verify.assertEmpty(map);
     }
 
     @Test
-    public void create1()
-    {
+    public void create1() {
         ImmutableMap<String, String> map1 = Maps.immutable.of("key1", "value1");
         Verify.assertSize(1, map1);
         Verify.assertContainsKeyValue("key1", "value1", map1);
-
         ImmutableMap<String, String> map2 = Maps.immutable.of(null, null);
         Verify.assertSize(1, map2);
         Verify.assertContainsKeyValue(null, null, map2);
-
         ImmutableMap<String, String> map3 = Maps.immutable.of(null, "value1");
         Verify.assertSize(1, map3);
         Verify.assertContainsKeyValue(null, "value1", map3);
     }
 
     @Test
-    public void create2()
-    {
+    public void create2() {
         ImmutableMap<String, String> map1 = Maps.immutable.of("key1", "value1", "key2", "value2");
         Verify.assertSize(2, map1);
         Verify.assertContainsAllKeyValues(map1, "key1", "value1", "key2", "value2");
-
         ImmutableMap<String, String> map2 = Maps.immutable.of(null, "value1", "key2", "value2");
         Verify.assertContainsKeyValue(null, "value1", map2);
         Verify.assertContainsKeyValue("key2", "value2", map2);
     }
 
     @Test
-    public void create3()
-    {
+    public void create3() {
         ImmutableMap<String, String> map1 = Maps.immutable.of("key1", "value1", "key2", "value2", "key3", "value3");
         Verify.assertSize(3, map1);
         Verify.assertContainsAllKeyValues(map1, "key1", "value1", "key2", "value2", "key3", "value3");
-
         ImmutableMap<String, String> map2 = Maps.immutable.of("key1", "value1", "key2", null, null, "value3");
         Verify.assertContainsKeyValue("key2", null, map2);
         Verify.assertContainsKeyValue(null, "value3", map2);
     }
 
     @Test
-    public void createWithDuplicates()
-    {
+    public void createWithDuplicates() {
         ImmutableMap<String, String> map1 = Maps.immutable.of("k1", "v1", "k1", "v2");
         Verify.assertSize(1, map1);
         Verify.assertContainsKey("k1", map1);
         Verify.assertContainsKeyValue("k1", "v2", map1);
-
         ImmutableMap<String, String> map2 = Maps.immutable.of("k1", "v1", "k1", "v2", "k1", "v3");
         Verify.assertSize(1, map2);
         Verify.assertContainsKey("k1", map2);
         Verify.assertContainsKeyValue("k1", "v3", map2);
-
         ImmutableMap<String, String> map3 = Maps.immutable.of("k2", "v1", "k3", "v2", "k2", "v3");
         Verify.assertSize(2, map3);
         Verify.assertContainsKey("k2", map3);
         Verify.assertContainsKey("k3", map3);
         Verify.assertContainsKeyValue("k2", "v3", map3);
-
         ImmutableMap<String, String> map4 = Maps.immutable.of("k3", "v1", "k4", "v2", "k4", "v3");
         Verify.assertSize(2, map4);
         Verify.assertContainsKey("k3", map4);
@@ -93,13 +80,64 @@ public class ImmutableMapFactoryTest
     }
 
     @Test
-    public void keyPreservation()
-    {
+    public void keyPreservation() {
         Key key = new Key("key");
         Key duplicateKey = new Key("key");
         ImmutableMap<Key, Integer> map4 = ImmutableMapFactoryImpl.INSTANCE.of(key, 1, new Key("still not a dupe"), 2, new Key("me neither"), 3, duplicateKey, 4);
         Verify.assertSize(3, map4);
         Verify.assertContainsAllKeyValues(map4, key, 4, new Key("still not a dupe"), 2, new Key("me neither"), 3);
         Assert.assertSame(key, map4.keysView().detect(key::equals));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create0() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create0, this.description("create0"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create1() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create1, this.description("create1"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create2, this.description("create2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create3() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create3, this.description("create3"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_createWithDuplicates() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::createWithDuplicates, this.description("createWithDuplicates"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keyPreservation() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keyPreservation, this.description("keyPreservation"));
+        }
+
+        private ImmutableMapFactoryTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableMapFactoryTest();
+        }
+
+        @java.lang.Override
+        public ImmutableMapFactoryTest implementation() {
+            return this.implementation;
+        }
     }
 }

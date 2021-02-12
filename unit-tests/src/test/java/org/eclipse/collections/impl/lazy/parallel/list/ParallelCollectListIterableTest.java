@@ -7,35 +7,42 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.list;
 
 import org.eclipse.collections.api.list.ListIterable;
 import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.list.mutable.FastList;
 
-public class ParallelCollectListIterableTest extends ParallelListIterableTestCase
-{
+public class ParallelCollectListIterableTest extends ParallelListIterableTestCase {
+
     @Override
-    protected ParallelListIterable<Integer> classUnderTest()
-    {
+    protected ParallelListIterable<Integer> classUnderTest() {
         return this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
     }
 
     @Override
-    protected ParallelListIterable<Integer> newWith(Integer... littleElements)
-    {
-        return FastList.newListWith(littleElements)
-                .asParallel(this.executorService, this.batchSize)
-                .collect(String::valueOf)
-                .collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
+    protected ParallelListIterable<Integer> newWith(Integer... littleElements) {
+        return FastList.newListWith(littleElements).asParallel(this.executorService, this.batchSize).collect(String::valueOf).collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
     }
 
     @Override
-    protected ListIterable<Integer> getExpectedWith(Integer... littleElements)
-    {
-        return FastList.newListWith(littleElements)
-                .collect(String::valueOf)
-                .collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
+    protected ListIterable<Integer> getExpectedWith(Integer... littleElements) {
+        return FastList.newListWith(littleElements).collect(String::valueOf).collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ParallelCollectListIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelCollectListIterableTest();
+        }
+
+        @java.lang.Override
+        public ParallelCollectListIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

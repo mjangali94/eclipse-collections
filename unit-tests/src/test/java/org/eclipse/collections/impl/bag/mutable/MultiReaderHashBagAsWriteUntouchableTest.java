@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -17,29 +16,25 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MultiReaderHashBagAsWriteUntouchableTest extends AbstractCollectionTestCase
-{
+public class MultiReaderHashBagAsWriteUntouchableTest extends AbstractCollectionTestCase {
+
     @Override
-    protected <T> MutableBag<T> newWith(T... littleElements)
-    {
+    protected <T> MutableBag<T> newWith(T... littleElements) {
         return MultiReaderHashBag.newBagWith(littleElements).asWriteUntouchable();
     }
 
     @Override
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.newWith().asSynchronized());
     }
 
     @Override
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.newWith().asUnmodifiable());
     }
 
     @Test
-    public void addOccurrences()
-    {
+    public void addOccurrences() {
         MutableBag<Integer> bag = this.newWith(1, 1);
         Assert.assertEquals(4, bag.addOccurrences(1, 2));
         MutableBagTestCase.assertBagsEqual(HashBag.newBagWith(1, 1, 1, 1), bag);
@@ -50,15 +45,13 @@ public class MultiReaderHashBagAsWriteUntouchableTest extends AbstractCollection
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals("[1, 1, 2, 3]", MultiReaderHashBag.newBagWith(1, 1, 2, 3).toString());
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         Appendable builder = new StringBuilder();
         MultiReaderHashBag.newBagWith(1, 1, 2, 3).appendString(builder);
         Assert.assertEquals("1, 1, 2, 3", builder.toString());
@@ -66,17 +59,61 @@ public class MultiReaderHashBagAsWriteUntouchableTest extends AbstractCollection
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals("[1, 1, 2, 3]", MultiReaderHashBag.newBagWith(1, 1, 2, 3).toString());
     }
 
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         MutableBag<String> bag = this.newWith("0", "1", "1", "1", "1", "2", "2", "2", "3", "3", "4", "5");
         MutableSet<String> expected = Sets.mutable.with("0", "4", "5");
         MutableSet<String> actual = bag.selectUnique();
         Assert.assertEquals(expected, actual);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addOccurrences, this.description("addOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        private MultiReaderHashBagAsWriteUntouchableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MultiReaderHashBagAsWriteUntouchableTest();
+        }
+
+        @java.lang.Override
+        public MultiReaderHashBagAsWriteUntouchableTest implementation() {
+            return this.implementation;
+        }
     }
 }

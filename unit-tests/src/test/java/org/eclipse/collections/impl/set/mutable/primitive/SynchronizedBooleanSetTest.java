@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.mutable.primitive;
 
 import org.eclipse.collections.api.set.primitive.MutableBooleanSet;
@@ -17,24 +16,21 @@ import org.junit.Test;
 /**
  * JUnit test for {@link SynchronizedBooleanSet}.
  */
-public class SynchronizedBooleanSetTest extends AbstractBooleanSetTestCase
-{
+public class SynchronizedBooleanSetTest extends AbstractBooleanSetTestCase {
+
     @Override
-    protected SynchronizedBooleanSet classUnderTest()
-    {
+    protected SynchronizedBooleanSet classUnderTest() {
         return new SynchronizedBooleanSet(BooleanHashSet.newSetWith(true, false, true));
     }
 
     @Override
-    protected SynchronizedBooleanSet newWith(boolean... elements)
-    {
+    protected SynchronizedBooleanSet newWith(boolean... elements) {
         return new SynchronizedBooleanSet(BooleanHashSet.newSetWith(elements));
     }
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         super.asSynchronized();
         SynchronizedBooleanSet set = this.classUnderTest();
         MutableBooleanSet setWithLockObject = new SynchronizedBooleanSet(BooleanHashSet.newSetWith(true, false, true), new Object()).asSynchronized();
@@ -42,5 +38,27 @@ public class SynchronizedBooleanSetTest extends AbstractBooleanSetTestCase
         Assert.assertSame(setWithLockObject, setWithLockObject.asSynchronized());
         Assert.assertSame(set, set.asSynchronized());
         Assert.assertEquals(set, set.asSynchronized());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        private SynchronizedBooleanSetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedBooleanSetTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedBooleanSetTest implementation() {
+            return this.implementation;
+        }
     }
 }

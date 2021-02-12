@@ -7,19 +7,17 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function;
 
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.impl.list.Interval;
 
-public class NegativeIntervalFunction implements Function<Integer, Iterable<Integer>>
-{
+public class NegativeIntervalFunction implements Function<Integer, Iterable<Integer>> {
+
     private static final long serialVersionUID = 1L;
 
     @Override
-    public Iterable<Integer> valueOf(Integer object)
-    {
+    public Iterable<Integer> valueOf(Integer object) {
         return Interval.fromTo(-1, -object);
     }
 }

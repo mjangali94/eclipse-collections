@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.utility;
 
 import java.math.BigDecimal;
@@ -27,7 +26,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.Function0;
@@ -105,19 +103,17 @@ import org.eclipse.collections.impl.tuple.Tuples;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iBag;
 import static org.eclipse.collections.impl.factory.Iterables.iList;
 import static org.eclipse.collections.impl.factory.Iterables.iSet;
 import static org.eclipse.collections.impl.factory.Iterables.mList;
 
-public class IterateTest
-{
+public class IterateTest {
+
     private MutableList<Iterable<Integer>> iterables;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         this.iterables = Lists.mutable.of();
         this.iterables.add(Interval.oneTo(5).toList());
         this.iterables.add(Interval.oneTo(5).toSet());
@@ -135,14 +131,12 @@ public class IterateTest
     }
 
     @Test
-    public void addAllTo()
-    {
+    public void addAllTo() {
         Verify.assertContainsAll(Iterate.addAllTo(FastList.newListWith(1, 2, 3), FastList.newList()), 1, 2, 3);
     }
 
     @Test
-    public void removeAllFrom()
-    {
+    public void removeAllFrom() {
         MutableList<Integer> sourceFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableList<Integer> removeFastList = FastList.newListWith(1, 3, 5);
         Iterate.removeAllFrom(removeFastList, sourceFastList);
@@ -150,8 +144,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllFromEmptyTest()
-    {
+    public void removeAllFromEmptyTest() {
         MutableList<Integer> sourceFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableList<Integer> removeFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         Iterate.removeAllFrom(removeFastList, sourceFastList);
@@ -159,8 +152,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllFromEmptyListTest()
-    {
+    public void removeAllFromEmptyListTest() {
         MutableList<Integer> sourceFastList = FastList.newList();
         MutableList<Integer> removeFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         Iterate.removeAllFrom(removeFastList, sourceFastList);
@@ -168,8 +160,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllFromNoElementRemovedTest()
-    {
+    public void removeAllFromNoElementRemovedTest() {
         MutableList<Integer> sourceFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableList<Integer> removeFastList = FastList.newListWith(7, 8, 9);
         Iterate.removeAllFrom(removeFastList, sourceFastList);
@@ -177,8 +168,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllFromEmptyTargetListTest()
-    {
+    public void removeAllFromEmptyTargetListTest() {
         MutableList<Integer> sourceFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableList<Integer> removeFastList = FastList.newList();
         Iterate.removeAllFrom(removeFastList, sourceFastList);
@@ -186,15 +176,13 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllIterableFrom()
-    {
+    public void removeAllIterableFrom() {
         MutableList<Integer> sourceFastList1 = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableList<Integer> removeFastList1 = FastList.newListWith(1, 3, 5);
         Assert.assertTrue(Iterate.removeAllIterable(removeFastList1, sourceFastList1));
         Assert.assertEquals(Lists.immutable.with(2, 4, 6), sourceFastList1);
         Assert.assertFalse(Iterate.removeAllIterable(FastList.newListWith(0), sourceFastList1));
         Assert.assertEquals(Lists.immutable.with(2, 4, 6), sourceFastList1);
-
         MutableList<Integer> sourceFastList2 = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableSetMultimap<Integer, Integer> multimap = UnifiedSetMultimap.newMultimap(Tuples.pair(1, 1), Tuples.pair(1, 3), Tuples.pair(1, 5));
         Assert.assertTrue(Iterate.removeAllIterable(multimap.valuesView(), sourceFastList2));
@@ -204,8 +192,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllIterableFromEmptyTest()
-    {
+    public void removeAllIterableFromEmptyTest() {
         MutableList<Integer> sourceFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableList<Integer> removeFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         Assert.assertTrue(Iterate.removeAllIterable(removeFastList, sourceFastList));
@@ -213,8 +200,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllIterableFromEmptyListTest()
-    {
+    public void removeAllIterableFromEmptyListTest() {
         MutableList<Integer> sourceFastList = FastList.newList();
         MutableList<Integer> removeFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         Assert.assertFalse(Iterate.removeAllIterable(removeFastList, sourceFastList));
@@ -222,8 +208,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllIterableFromNoElementRemovedTest()
-    {
+    public void removeAllIterableFromNoElementRemovedTest() {
         MutableList<Integer> sourceFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableList<Integer> removeFastList = FastList.newListWith(7, 8, 9);
         Assert.assertFalse(Iterate.removeAllIterable(removeFastList, sourceFastList));
@@ -231,8 +216,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeAllIterableFromEmptyTargetListTest()
-    {
+    public void removeAllIterableFromEmptyTargetListTest() {
         MutableList<Integer> sourceFastList = FastList.newListWith(1, 2, 3, 4, 5, 6);
         MutableList<Integer> removeFastList = FastList.newList();
         Assert.assertFalse(Iterate.removeAllIterable(removeFastList, sourceFastList));
@@ -240,8 +224,7 @@ public class IterateTest
     }
 
     @Test
-    public void sizeOf()
-    {
+    public void sizeOf() {
         Assert.assertEquals(5, Iterate.sizeOf(Interval.oneTo(5)));
         Assert.assertEquals(5, Iterate.sizeOf(Interval.oneTo(5).toList()));
         Assert.assertEquals(5, Iterate.sizeOf(Interval.oneTo(5).asLazy()));
@@ -250,9 +233,8 @@ public class IterateTest
     }
 
     @Test
-    public void toArray()
-    {
-        Object[] expected = {1, 2, 3, 4, 5};
+    public void toArray() {
+        Object[] expected = { 1, 2, 3, 4, 5 };
         Assert.assertArrayEquals(expected, Iterate.toArray(Interval.oneTo(5)));
         Assert.assertArrayEquals(expected, Iterate.toArray(Interval.oneTo(5).toList()));
         Assert.assertArrayEquals(expected, Iterate.toArray(Interval.oneTo(5).asLazy()));
@@ -261,179 +243,119 @@ public class IterateTest
     }
 
     @Test(expected = NullPointerException.class)
-    public void toArray_NullParameter()
-    {
+    public void toArray_NullParameter() {
         Iterate.toArray(null);
     }
 
     @Test
-    public void toArray_with_array()
-    {
-        Object[] expected = {1, 2, 3, 4, 5};
+    public void toArray_with_array() {
+        Object[] expected = { 1, 2, 3, 4, 5 };
         Assert.assertArrayEquals(expected, Iterate.toArray(Interval.oneTo(5), new Object[5]));
         Assert.assertArrayEquals(expected, Iterate.toArray(Interval.oneTo(5).toList(), new Object[5]));
         Assert.assertArrayEquals(expected, Iterate.toArray(Interval.oneTo(5).asLazy(), new Object[5]));
         Assert.assertArrayEquals(expected, Iterate.toArray(Interval.oneTo(5).toSortedMap(a -> a, a -> a), new Object[5]));
         Assert.assertArrayEquals(expected, Iterate.toArray(new IterableAdapter<>(Interval.oneTo(5)), new Object[5]));
-        Assert.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7}, Iterate.toArray(new IterableAdapter<>(Interval.oneTo(7)), new Object[5]));
+        Assert.assertArrayEquals(new Integer[] { 1, 2, 3, 4, 5, 6, 7 }, Iterate.toArray(new IterableAdapter<>(Interval.oneTo(7)), new Object[5]));
     }
 
     @Test
-    public void fromToDoit()
-    {
+    public void fromToDoit() {
         MutableList<Integer> list = Lists.mutable.of();
         Interval.fromTo(6, 10).each(list::add);
         Verify.assertContainsAll(list, 6, 10);
     }
 
     @Test
-    public void reduceInPlaceCollector()
-    {
-        this.iterables.each(each -> Assert.assertEquals(
-                Iterate.toSortedList(each),
-                Iterate.reduceInPlace(each, Collectors2.toSortedList())));
-        this.iterables.each(each -> Assert.assertEquals(
-                Iterate.sumByInt(each, value -> value % 2, value -> value),
-                Iterate.reduceInPlace(each, Collectors2.sumByInt(value -> value % 2, value -> value))));
-        this.iterables.each(each -> Assert.assertEquals(
-                Iterate.groupBy(each, value -> value % 2, Multimaps.mutable.bag.empty()),
-                Iterate.reduceInPlace(each, Collectors2.toBagMultimap(value -> value % 2))));
+    public void reduceInPlaceCollector() {
+        this.iterables.each(each -> Assert.assertEquals(Iterate.toSortedList(each), Iterate.reduceInPlace(each, Collectors2.toSortedList())));
+        this.iterables.each(each -> Assert.assertEquals(Iterate.sumByInt(each, value -> value % 2, value -> value), Iterate.reduceInPlace(each, Collectors2.sumByInt(value -> value % 2, value -> value))));
+        this.iterables.each(each -> Assert.assertEquals(Iterate.groupBy(each, value -> value % 2, Multimaps.mutable.bag.empty()), Iterate.reduceInPlace(each, Collectors2.toBagMultimap(value -> value % 2))));
     }
 
     @Test
-    public void reduceInPlace()
-    {
-        this.iterables.each(each -> Assert.assertEquals(
-                Iterate.toSortedList(each),
-                Iterate.reduceInPlace(each, FastList::new, FastList::add).sortThis()));
+    public void reduceInPlace() {
+        this.iterables.each(each -> Assert.assertEquals(Iterate.toSortedList(each), Iterate.reduceInPlace(each, FastList::new, FastList::add).sortThis()));
     }
 
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         this.iterables.each(each -> Assert.assertEquals(Integer.valueOf(15), Iterate.injectInto(0, each, AddFunction.INTEGER)));
     }
 
     @Test
-    public void injectIntoInt()
-    {
+    public void injectIntoInt() {
         this.iterables.each(each -> Assert.assertEquals(15, Iterate.injectInto(0, each, AddFunction.INTEGER_TO_INT)));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.injectInto(0, null, AddFunction.INTEGER_TO_INT));
     }
 
     @Test
-    public void injectIntoLong()
-    {
+    public void injectIntoLong() {
         this.iterables.each(each -> Assert.assertEquals(15L, Iterate.injectInto(0L, each, AddFunction.INTEGER_TO_LONG)));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.injectInto(0L, null, AddFunction.INTEGER_TO_LONG));
     }
 
     @Test
-    public void injectIntoDouble()
-    {
+    public void injectIntoDouble() {
         this.iterables.each(each -> Assert.assertEquals(15.0d, Iterate.injectInto(0.0d, each, AddFunction.INTEGER_TO_DOUBLE), 0.001));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.injectInto(0.0d, null, AddFunction.INTEGER_TO_DOUBLE));
     }
 
     @Test
-    public void injectIntoFloat()
-    {
+    public void injectIntoFloat() {
         this.iterables.each(each -> Assert.assertEquals(15.0d, Iterate.injectInto(0.0f, each, AddFunction.INTEGER_TO_FLOAT), 0.001));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.injectInto(0.0f, null, AddFunction.INTEGER_TO_FLOAT));
     }
 
     @Test
-    public void injectInto2()
-    {
+    public void injectInto2() {
         Assert.assertEquals(new Double(7), Iterate.injectInto(1.0, iList(1.0, 2.0, 3.0), AddFunction.DOUBLE));
     }
 
     @Test
-    public void injectIntoString()
-    {
+    public void injectIntoString() {
         Assert.assertEquals("0123", Iterate.injectInto("0", iList("1", "2", "3"), AddFunction.STRING));
     }
 
     @Test
-    public void injectIntoMaxString()
-    {
+    public void injectIntoMaxString() {
         Assert.assertEquals(Integer.valueOf(3), Iterate.injectInto(Integer.MIN_VALUE, iList("1", "12", "123"), MaxSizeFunction.STRING));
     }
 
     @Test
-    public void injectIntoMinString()
-    {
+    public void injectIntoMinString() {
         Assert.assertEquals(Integer.valueOf(1), Iterate.injectInto(Integer.MAX_VALUE, iList("1", "12", "123"), MinSizeFunction.STRING));
     }
 
     @Test
-    public void flatCollectFromAttributes()
-    {
-        MutableList<ListContainer<String>> list = mList(
-                new ListContainer<>(Lists.mutable.of("One", "Two")),
-                new ListContainer<>(Lists.mutable.of("Two-and-a-half", "Three", "Four")),
-                new ListContainer<>(Lists.mutable.of()),
-                new ListContainer<>(Lists.mutable.of("Five")));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(list, ListContainer.getListFunction()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(Collections.synchronizedList(list), ListContainer.getListFunction()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(Collections.synchronizedCollection(list), ListContainer.getListFunction()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(LazyIterate.adapt(list), ListContainer.getListFunction()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(new ArrayList<>(list), ListContainer.getListFunction()));
+    public void flatCollectFromAttributes() {
+        MutableList<ListContainer<String>> list = mList(new ListContainer<>(Lists.mutable.of("One", "Two")), new ListContainer<>(Lists.mutable.of("Two-and-a-half", "Three", "Four")), new ListContainer<>(Lists.mutable.of()), new ListContainer<>(Lists.mutable.of("Five")));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(list, ListContainer.getListFunction()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(Collections.synchronizedList(list), ListContainer.getListFunction()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(Collections.synchronizedCollection(list), ListContainer.getListFunction()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(LazyIterate.adapt(list), ListContainer.getListFunction()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(new ArrayList<>(list), ListContainer.getListFunction()));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.flatCollect(null, null));
     }
 
     @Test
-    public void flatCollectFromAttributesWithTarget()
-    {
-        MutableList<ListContainer<String>> list = Lists.fixedSize.of(
-                new ListContainer<>(Lists.mutable.of("One", "Two")),
-                new ListContainer<>(Lists.mutable.of("Two-and-a-half", "Three", "Four")),
-                new ListContainer<>(Lists.mutable.of()),
-                new ListContainer<>(Lists.mutable.of("Five")));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(list, ListContainer.getListFunction(), FastList.newList()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(Collections.synchronizedList(list), ListContainer.getListFunction(), FastList.newList()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(Collections.synchronizedCollection(list), ListContainer.getListFunction(), FastList.newList()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(LazyIterate.adapt(list), ListContainer.getListFunction(), FastList.newList()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(new ArrayList<>(list), ListContainer.getListFunction(), FastList.newList()));
-        Assert.assertEquals(
-                iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"),
-                Iterate.flatCollect(new IterableAdapter<>(new ArrayList<>(list)), ListContainer.getListFunction(), FastList.newList()));
+    public void flatCollectFromAttributesWithTarget() {
+        MutableList<ListContainer<String>> list = Lists.fixedSize.of(new ListContainer<>(Lists.mutable.of("One", "Two")), new ListContainer<>(Lists.mutable.of("Two-and-a-half", "Three", "Four")), new ListContainer<>(Lists.mutable.of()), new ListContainer<>(Lists.mutable.of("Five")));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(list, ListContainer.getListFunction(), FastList.newList()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(Collections.synchronizedList(list), ListContainer.getListFunction(), FastList.newList()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(Collections.synchronizedCollection(list), ListContainer.getListFunction(), FastList.newList()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(LazyIterate.adapt(list), ListContainer.getListFunction(), FastList.newList()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(new ArrayList<>(list), ListContainer.getListFunction(), FastList.newList()));
+        Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), Iterate.flatCollect(new IterableAdapter<>(new ArrayList<>(list)), ListContainer.getListFunction(), FastList.newList()));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void flatCollectFromAttributesWithTarget_NullParameter()
-    {
+    public void flatCollectFromAttributesWithTarget_NullParameter() {
         Iterate.flatCollect(null, null, UnifiedSet.newSet());
     }
 
     @Test
-    public void flatCollectFromAttributesUsingStringFunction()
-    {
-        MutableList<ListContainer<String>> list = Lists.mutable.of(
-                new ListContainer<>(Lists.mutable.of("One", "Two")),
-                new ListContainer<>(Lists.mutable.of("Two-and-a-half", "Three", "Four")),
-                new ListContainer<>(Lists.mutable.of()),
-                new ListContainer<>(Lists.mutable.of("Five")));
+    public void flatCollectFromAttributesUsingStringFunction() {
+        MutableList<ListContainer<String>> list = Lists.mutable.of(new ListContainer<>(Lists.mutable.of("One", "Two")), new ListContainer<>(Lists.mutable.of("Two-and-a-half", "Three", "Four")), new ListContainer<>(Lists.mutable.of()), new ListContainer<>(Lists.mutable.of("Five")));
         Function<ListContainer<String>, List<String>> function = ListContainer::getList;
         Collection<String> result = Iterate.flatCollect(list, function);
         FastList<String> result2 = Iterate.flatCollect(list, function, FastList.newList());
@@ -442,25 +364,15 @@ public class IterateTest
     }
 
     @Test
-    public void flatCollectOneLevel()
-    {
-        MutableList<MutableList<String>> list = Lists.mutable.of(
-                Lists.mutable.of("One", "Two"),
-                Lists.mutable.of("Two-and-a-half", "Three", "Four"),
-                Lists.mutable.of(),
-                Lists.mutable.of("Five"));
+    public void flatCollectOneLevel() {
+        MutableList<MutableList<String>> list = Lists.mutable.of(Lists.mutable.of("One", "Two"), Lists.mutable.of("Two-and-a-half", "Three", "Four"), Lists.mutable.of(), Lists.mutable.of("Five"));
         Collection<String> result = Iterate.flatten(list);
         Assert.assertEquals(iList("One", "Two", "Two-and-a-half", "Three", "Four", "Five"), result);
     }
 
     @Test
-    public void flatCollectOneLevel_target()
-    {
-        MutableList<MutableList<String>> list = Lists.mutable.of(
-                Lists.mutable.of("One", "Two"),
-                Lists.mutable.of("Two-and-a-half", "Three", "Four"),
-                Lists.mutable.of(),
-                Lists.mutable.of("Five"));
+    public void flatCollectOneLevel_target() {
+        MutableList<MutableList<String>> list = Lists.mutable.of(Lists.mutable.of("One", "Two"), Lists.mutable.of("Two-and-a-half", "Three", "Four"), Lists.mutable.of(), Lists.mutable.of("Five"));
         MutableList<String> target = Lists.mutable.of();
         Collection<String> result = Iterate.flatten(list, target);
         Assert.assertSame(result, target);
@@ -468,8 +380,7 @@ public class IterateTest
     }
 
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         FastList<String> source = FastList.newListWith("Ted", "Sally", "Mary", "Bob", "Sara");
         Multimap<Character, String> result1 = Iterate.groupBy(source, StringFunctions.firstLetter());
         Multimap<Character, String> result2 = Iterate.groupBy(Collections.synchronizedList(source), StringFunctions.firstLetter());
@@ -491,8 +402,7 @@ public class IterateTest
     }
 
     @Test
-    public void groupByEach()
-    {
+    public void groupByEach() {
         MutableList<String> source = FastList.newListWith("Ted", "Sally", "Sally", "Mary", "Bob", "Sara");
         Function<String, Set<Character>> uppercaseSetFunction = new WordToItsLetters();
         Multimap<Character, String> result1 = Iterate.groupByEach(source, uppercaseSetFunction);
@@ -521,8 +431,7 @@ public class IterateTest
     }
 
     @Test
-    public void groupByWithTarget()
-    {
+    public void groupByWithTarget() {
         FastList<String> source = FastList.newListWith("Ted", "Sally", "Mary", "Bob", "Sara");
         Multimap<Character, String> result1 = Iterate.groupBy(source, StringFunctions.firstLetter(), FastListMultimap.newMultimap());
         Multimap<Character, String> result2 = Iterate.groupBy(Collections.synchronizedList(source), StringFunctions.firstLetter(), FastListMultimap.newMultimap());
@@ -544,8 +453,7 @@ public class IterateTest
     }
 
     @Test
-    public void groupByEachWithTarget()
-    {
+    public void groupByEachWithTarget() {
         MutableList<String> source = FastList.newListWith("Ted", "Sally", "Sally", "Mary", "Bob", "Sara");
         Function<String, Set<Character>> uppercaseSetFunction = StringIterate::asUppercaseSet;
         Multimap<Character, String> result1 = Iterate.groupByEach(source, uppercaseSetFunction, FastListMultimap.newMultimap());
@@ -575,47 +483,32 @@ public class IterateTest
     }
 
     @Test
-    public void groupByAndCollect()
-    {
+    public void groupByAndCollect() {
         MutableList<Integer> list = Lists.mutable.of(1, 2, 2, 3, 3, 3);
-
-        Pair<String, String>[] expectedPairs = new Pair[]{
-                Tuples.pair("Key1", "1"),
-                Tuples.pair("Key2", "2"),
-                Tuples.pair("Key2", "2"),
-                Tuples.pair("Key3", "3"),
-                Tuples.pair("Key3", "3"),
-                Tuples.pair("Key3", "3")
-        };
+        Pair<String, String>[] expectedPairs = new Pair[] { Tuples.pair("Key1", "1"), Tuples.pair("Key2", "2"), Tuples.pair("Key2", "2"), Tuples.pair("Key3", "3"), Tuples.pair("Key3", "3"), Tuples.pair("Key3", "3") };
         Function<Integer, String> keyFunction = each -> "Key" + each;
         Function<Integer, String> valueFunction = String::valueOf;
         MutableListMultimap<String, String> actualMultimap1 = Iterate.groupByAndCollect(list, keyFunction, valueFunction, Multimaps.mutable.list.empty());
         Verify.assertListMultimapsEqual(FastListMultimap.newMultimap(expectedPairs), actualMultimap1);
-
         MutableSetMultimap<String, String> actualMultimap2 = Iterate.groupByAndCollect(list, keyFunction, valueFunction, Multimaps.mutable.set.empty());
         Verify.assertSetMultimapsEqual(UnifiedSetMultimap.newMultimap(expectedPairs), actualMultimap2);
-
         MutableBagMultimap<String, String> actualMultimap3 = Iterate.groupByAndCollect(list, keyFunction, valueFunction, Multimaps.mutable.bag.empty());
         Verify.assertBagMultimapsEqual(HashBagMultimap.newMultimap(expectedPairs), actualMultimap3);
-
         MutableSortedSetMultimap<String, String> expectedMultimap4 = TreeSortedSetMultimap.newMultimap(Comparators.naturalOrder());
         expectedMultimap4.putAllPairs(expectedPairs);
         MutableSortedSetMultimap<String, String> actualMultimap4 = Iterate.groupByAndCollect(list, keyFunction, valueFunction, Multimaps.mutable.sortedSet.with(Comparators.naturalOrder()));
         Verify.assertSortedSetMultimapsEqual(expectedMultimap4, actualMultimap4);
         Assert.assertSame(expectedMultimap4.comparator(), actualMultimap4.comparator());
-
         MutableSortedSetMultimap<String, String> expectedMultimap5 = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         expectedMultimap5.putAllPairs(expectedPairs);
         MutableSortedSetMultimap<String, String> actualMultimap5 = Iterate.groupByAndCollect(list, keyFunction, valueFunction, Multimaps.mutable.sortedSet.with(Comparators.reverseNaturalOrder()));
         Verify.assertSortedSetMultimapsEqual(expectedMultimap5, actualMultimap5);
         Assert.assertSame(expectedMultimap5.comparator(), actualMultimap5.comparator());
-
         MutableSortedBagMultimap<String, String> expectedMultimap6 = TreeBagMultimap.newMultimap(Comparators.naturalOrder());
         expectedMultimap6.putAllPairs(expectedPairs);
         MutableSortedBagMultimap<String, String> actualMultimap6 = Iterate.groupByAndCollect(list, keyFunction, valueFunction, TreeBagMultimap.newMultimap(Comparators.naturalOrder()));
         Verify.assertSortedBagMultimapsEqual(expectedMultimap6, actualMultimap6);
         Assert.assertSame(expectedMultimap6.comparator(), actualMultimap6.comparator());
-
         MutableSortedBagMultimap<String, String> expectedMultimap7 = TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder());
         expectedMultimap7.putAllPairs(expectedPairs);
         MutableSortedBagMultimap<String, String> actualMultimap7 = Iterate.groupByAndCollect(list, keyFunction, valueFunction, TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder()));
@@ -624,14 +517,12 @@ public class IterateTest
     }
 
     @Test
-    public void toList()
-    {
+    public void toList() {
         Assert.assertEquals(FastList.newListWith(1, 2, 3), FastList.newList(Interval.oneTo(3)));
     }
 
     @Test
-    public void contains()
-    {
+    public void contains() {
         Assert.assertTrue(Iterate.contains(FastList.newListWith(1, 2, 3), 1));
         Assert.assertFalse(Iterate.contains(FastList.newListWith(1, 2, 3), 4));
         Assert.assertTrue(Iterate.contains(FastList.newListWith(1, 2, 3).asLazy(), 1));
@@ -641,29 +532,25 @@ public class IterateTest
         Assert.assertFalse(Iterate.contains(Interval.oneTo(3), 4));
     }
 
-    public static final class ListContainer<T>
-    {
+    public static final class ListContainer<T> {
+
         private final List<T> list;
 
-        private ListContainer(List<T> list)
-        {
+        private ListContainer(List<T> list) {
             this.list = list;
         }
 
-        private static <V> Function<ListContainer<V>, List<V>> getListFunction()
-        {
+        private static <V> Function<ListContainer<V>, List<V>> getListFunction() {
             return anObject -> anObject.list;
         }
 
-        public List<T> getList()
-        {
+        public List<T> getList() {
             return this.list;
         }
     }
 
     @Test
-    public void getFirstAndLast()
-    {
+    public void getFirstAndLast() {
         MutableList<Boolean> list = mList(Boolean.TRUE, null, Boolean.FALSE);
         Assert.assertEquals(Boolean.TRUE, Iterate.getFirst(list));
         Assert.assertEquals(Boolean.FALSE, Iterate.getLast(list));
@@ -674,58 +561,50 @@ public class IterateTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getFirst_null_throws()
-    {
+    public void getFirst_null_throws() {
         Iterate.getFirst(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getList_null_throws()
-    {
+    public void getList_null_throws() {
         Iterate.getLast(null);
     }
 
     @Test
-    public void getFirstAndLastInterval()
-    {
+    public void getFirstAndLastInterval() {
         Assert.assertEquals(Integer.valueOf(1), Iterate.getFirst(Interval.oneTo(5)));
         Assert.assertEquals(Integer.valueOf(5), Iterate.getLast(Interval.oneTo(5)));
     }
 
     @Test
-    public void getFirstAndLastLinkedList()
-    {
+    public void getFirstAndLastLinkedList() {
         List<Boolean> list = new LinkedList<>(mList(Boolean.TRUE, null, Boolean.FALSE));
         Assert.assertEquals(Boolean.TRUE, Iterate.getFirst(list));
         Assert.assertEquals(Boolean.FALSE, Iterate.getLast(list));
     }
 
     @Test
-    public void getFirstAndLastTreeSet()
-    {
+    public void getFirstAndLastTreeSet() {
         Set<String> set = new TreeSet<>(mList("1", "2"));
         Assert.assertEquals("1", Iterate.getFirst(set));
         Assert.assertEquals("2", Iterate.getLast(set));
     }
 
     @Test
-    public void getFirstAndLastCollection()
-    {
+    public void getFirstAndLastCollection() {
         Collection<Boolean> list = mList(Boolean.TRUE, null, Boolean.FALSE).asSynchronized();
         Assert.assertEquals(Boolean.TRUE, Iterate.getFirst(list));
         Assert.assertEquals(Boolean.FALSE, Iterate.getLast(list));
     }
 
     @Test
-    public void getFirstAndLastOnEmpty()
-    {
+    public void getFirstAndLastOnEmpty() {
         Assert.assertNull(Iterate.getFirst(mList()));
         Assert.assertNull(Iterate.getLast(mList()));
     }
 
     @Test
-    public void getFirstAndLastForSet()
-    {
+    public void getFirstAndLastForSet() {
         Set<Integer> orderedSet = new TreeSet<>();
         orderedSet.add(1);
         orderedSet.add(2);
@@ -735,49 +614,42 @@ public class IterateTest
     }
 
     @Test
-    public void getFirstAndLastOnEmptyForSet()
-    {
+    public void getFirstAndLastOnEmptyForSet() {
         MutableSet<Object> set = UnifiedSet.newSet();
         Assert.assertNull(Iterate.getFirst(set));
         Assert.assertNull(Iterate.getLast(set));
     }
 
-    private MutableSet<Integer> getIntegerSet()
-    {
+    private MutableSet<Integer> getIntegerSet() {
         return Interval.toSet(1, 5);
     }
 
     @Test
-    public void selectDifferentTargetCollection()
-    {
+    public void selectDifferentTargetCollection() {
         MutableSet<Integer> set = this.getIntegerSet();
         List<Integer> list = Iterate.select(set, Integer.class::isInstance, new ArrayList<>());
         Assert.assertEquals(FastList.newListWith(1, 2, 3, 4, 5), list);
     }
 
     @Test
-    public void rejectWithDifferentTargetCollection()
-    {
+    public void rejectWithDifferentTargetCollection() {
         MutableSet<Integer> set = this.getIntegerSet();
         Collection<Integer> result = Iterate.reject(set, Integer.class::isInstance, FastList.newList());
         Verify.assertEmpty(result);
     }
 
     @Test
-    public void count_empty()
-    {
+    public void count_empty() {
         Assert.assertEquals(0, Iterate.count(iList(), ignored -> true));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void count_null_throws()
-    {
+    public void count_null_throws() {
         Iterate.count(null, ignored -> true);
     }
 
     @Test
-    public void toMap()
-    {
+    public void toMap() {
         MutableSet<Integer> set = UnifiedSet.newSet(this.getIntegerSet());
         MutableMap<String, Integer> map = Iterate.toMap(set, String::valueOf);
         Verify.assertSize(5, map);
@@ -791,10 +663,9 @@ public class IterateTest
     }
 
     @Test
-    public void toMapTarget()
-    {
+    public void toMapTarget() {
         MutableSet<Integer> set = UnifiedSet.newSet(this.getIntegerSet());
-        Map<String, Integer> map =  Iterate.toMap(set, String::valueOf, object -> 10 * object, new HashMap<>());
+        Map<String, Integer> map = Iterate.toMap(set, String::valueOf, object -> 10 * object, new HashMap<>());
         Verify.assertSize(5, map);
         Object expectedValue = 10;
         Object expectedKey = "1";
@@ -806,28 +677,17 @@ public class IterateTest
     }
 
     @Test
-    public void addToMap()
-    {
+    public void addToMap() {
         MutableSet<Integer> set = this.getIntegerSet();
         MutableMap<String, Integer> map = UnifiedMap.newMap();
         map.put("the answer", 42);
-
         Iterate.addToMap(set, String::valueOf, map);
-
         Verify.assertSize(6, map);
-        Verify.assertContainsAllKeyValues(
-                map,
-                "the answer", 42,
-                "1", 1,
-                "2", 2,
-                "3", 3,
-                "4", 4,
-                "5", 5);
+        Verify.assertContainsAllKeyValues(map, "the answer", 42, "1", 1, "2", 2, "3", 3, "4", 4, "5", 5);
     }
 
     @Test
-    public void toMapSelectingKeyAndValue()
-    {
+    public void toMapSelectingKeyAndValue() {
         MutableSet<Integer> set = UnifiedSet.newSet(this.getIntegerSet());
         MutableMap<String, Integer> map = Iterate.toMap(set, String::valueOf, object -> 10 * object);
         Verify.assertSize(5, map);
@@ -839,103 +699,48 @@ public class IterateTest
     }
 
     @Test
-    public void toMultimap()
-    {
+    public void toMultimap() {
         MutableList<Integer> list = Lists.mutable.of(1, 2, 2, 3, 3, 3);
-
-        Pair<String, String>[] expectedPairs = new Pair[]{
-                Tuples.pair("Key1", "1"),
-                Tuples.pair("Key1", "1"),
-                Tuples.pair("Key2", "1"),
-                Tuples.pair("Key2", "2"),
-                Tuples.pair("Key2", "1"),
-                Tuples.pair("Key2", "2"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3")
-        };
-
+        Pair<String, String>[] expectedPairs = new Pair[] { Tuples.pair("Key1", "1"), Tuples.pair("Key1", "1"), Tuples.pair("Key2", "1"), Tuples.pair("Key2", "2"), Tuples.pair("Key2", "1"), Tuples.pair("Key2", "2"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3") };
         Function<Integer, String> keyFunction = each -> "Key" + each;
         Function<Integer, Iterable<String>> valuesFunction = each -> Lists.mutable.of("1", String.valueOf(each));
         MutableListMultimap<String, String> actualMultimap1 = Iterate.toMultimap(list, keyFunction, valuesFunction, Multimaps.mutable.list.empty());
         Verify.assertListMultimapsEqual(FastListMultimap.newMultimap(expectedPairs), actualMultimap1);
-
         MutableSetMultimap<String, String> actualMultimap2 = Iterate.toMultimap(list, keyFunction, valuesFunction, Multimaps.mutable.set.empty());
         Verify.assertSetMultimapsEqual(UnifiedSetMultimap.newMultimap(expectedPairs), actualMultimap2);
-
         MutableBagMultimap<String, String> actualMultimap3 = Iterate.toMultimap(list, keyFunction, valuesFunction, Multimaps.mutable.bag.empty());
         Verify.assertBagMultimapsEqual(HashBagMultimap.newMultimap(expectedPairs), actualMultimap3);
-
         MutableSortedSetMultimap<String, String> expectedMultimap4 = TreeSortedSetMultimap.newMultimap(Comparators.naturalOrder());
         expectedMultimap4.putAllPairs(expectedPairs);
         MutableSortedSetMultimap<String, String> actualMultimap4 = Iterate.toMultimap(list, keyFunction, valuesFunction, Multimaps.mutable.sortedSet.with(Comparators.naturalOrder()));
         Verify.assertSortedSetMultimapsEqual(expectedMultimap4, actualMultimap4);
         Assert.assertSame(expectedMultimap4.comparator(), actualMultimap4.comparator());
-
         MutableSortedSetMultimap<String, String> expectedMultimap5 = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         expectedMultimap5.putAllPairs(expectedPairs);
         MutableSortedSetMultimap<String, String> actualMultimap5 = Iterate.toMultimap(list, keyFunction, valuesFunction, Multimaps.mutable.sortedSet.with(Comparators.reverseNaturalOrder()));
         Verify.assertSortedSetMultimapsEqual(expectedMultimap5, actualMultimap5);
         Assert.assertSame(expectedMultimap5.comparator(), actualMultimap5.comparator());
-
         MutableSortedBagMultimap<String, String> expectedMultimap6 = TreeBagMultimap.newMultimap(Comparators.naturalOrder());
         expectedMultimap6.putAllPairs(expectedPairs);
         MutableSortedBagMultimap<String, String> actualMultimap6 = Iterate.toMultimap(list, keyFunction, valuesFunction, TreeBagMultimap.newMultimap(Comparators.naturalOrder()));
         Verify.assertSortedBagMultimapsEqual(expectedMultimap6, actualMultimap6);
         Assert.assertSame(expectedMultimap6.comparator(), actualMultimap6.comparator());
-
         MutableSortedBagMultimap<String, String> expectedMultimap7 = TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder());
         expectedMultimap7.putAllPairs(expectedPairs);
         MutableSortedBagMultimap<String, String> actualMultimap7 = Iterate.toMultimap(list, keyFunction, valuesFunction, TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder()));
         Verify.assertSortedBagMultimapsEqual(expectedMultimap7, actualMultimap7);
         Assert.assertSame(expectedMultimap7.comparator(), actualMultimap7.comparator());
-
         // Below tests are for examples only. They do not add any coverage.
-        BagMultimap<String, String> expectedMultimap8 = HashBagMultimap.newMultimap(
-                Tuples.pair("Key1", "1"),
-                Tuples.pair("Key2", "1"),
-                Tuples.pair("Key2", "2"),
-                Tuples.pair("Key2", "1"),
-                Tuples.pair("Key2", "2"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3"));
+        BagMultimap<String, String> expectedMultimap8 = HashBagMultimap.newMultimap(Tuples.pair("Key1", "1"), Tuples.pair("Key2", "1"), Tuples.pair("Key2", "2"), Tuples.pair("Key2", "1"), Tuples.pair("Key2", "2"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3"));
         MutableBagMultimap<String, String> actualMultimap8 = Iterate.toMultimap(list, keyFunction, each -> Sets.mutable.of("1", "1", String.valueOf(each)), Multimaps.mutable.bag.empty());
         Verify.assertBagMultimapsEqual(expectedMultimap8, actualMultimap8);
-
-        MutableBagMultimap<String, String> expectedMultimap9 = HashBagMultimap.newMultimap(
-                Tuples.pair("Key1", "1"),
-                Tuples.pair("Key1", "1"),
-                Tuples.pair("Key1", "1"),
-                Tuples.pair("Key2", "1"),
-                Tuples.pair("Key2", "1"),
-                Tuples.pair("Key2", "2"),
-                Tuples.pair("Key2", "1"),
-                Tuples.pair("Key2", "1"),
-                Tuples.pair("Key2", "2"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "1"),
-                Tuples.pair("Key3", "3"));
-
+        MutableBagMultimap<String, String> expectedMultimap9 = HashBagMultimap.newMultimap(Tuples.pair("Key1", "1"), Tuples.pair("Key1", "1"), Tuples.pair("Key1", "1"), Tuples.pair("Key2", "1"), Tuples.pair("Key2", "1"), Tuples.pair("Key2", "2"), Tuples.pair("Key2", "1"), Tuples.pair("Key2", "1"), Tuples.pair("Key2", "2"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "1"), Tuples.pair("Key3", "3"));
         MutableBagMultimap<String, String> actualMultimap9 = Iterate.toMultimap(list, keyFunction, each -> Bags.mutable.of("1", "1", String.valueOf(each)), Multimaps.mutable.bag.empty());
         Verify.assertBagMultimapsEqual(expectedMultimap9, actualMultimap9);
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         this.iterables.each(each -> {
             UnifiedSet<Integer> set = UnifiedSet.newSet();
             Iterate.forEachWithIndex(each, ObjectIntProcedures.fromProcedure(CollectionAddProcedure.on(set)));
@@ -944,16 +749,11 @@ public class IterateTest
     }
 
     @Test
-    public void selectPairs()
-    {
-        ImmutableList<Twin<String>> twins = iList(
-                Tuples.twin("1", "2"),
-                Tuples.twin("2", "1"),
-                Tuples.twin("3", "3"));
-        Collection<Twin<String>> results = Iterate.select(twins, new PairPredicate<String, String>()
-        {
-            public boolean accept(String argument1, String argument2)
-            {
+    public void selectPairs() {
+        ImmutableList<Twin<String>> twins = iList(Tuples.twin("1", "2"), Tuples.twin("2", "1"), Tuples.twin("3", "3"));
+        Collection<Twin<String>> results = Iterate.select(twins, new PairPredicate<String, String>() {
+
+            public boolean accept(String argument1, String argument2) {
                 return "1".equals(argument1) || "1".equals(argument2);
             }
         });
@@ -961,8 +761,7 @@ public class IterateTest
     }
 
     @Test
-    public void detect()
-    {
+    public void detect() {
         this.iterables.each(each -> {
             Integer result = Iterate.detect(each, Predicates.instanceOf(Integer.class));
             Assert.assertTrue(UnifiedSet.newSet(each).contains(result));
@@ -970,21 +769,18 @@ public class IterateTest
     }
 
     @Test
-    public void detectOptional()
-    {
+    public void detectOptional() {
         this.iterables.forEach(Procedures.cast(each -> {
             Optional<Integer> result = Iterate.detectOptional(each, Predicates.instanceOf(Integer.class));
             Assert.assertTrue(result.isPresent());
             Verify.assertContains(result.get(), UnifiedSet.newSet(each));
-
             Optional<Integer> emptyResult = Iterate.detectOptional(each, Predicates.instanceOf(String.class));
             Assert.assertFalse(emptyResult.isPresent());
         }));
     }
 
     @Test
-    public void detectIndex()
-    {
+    public void detectIndex() {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
         Assert.assertEquals(4, Iterate.detectIndex(list, Integer.valueOf(1)::equals));
         Assert.assertEquals(0, Iterate.detectIndex(list, Integer.valueOf(5)::equals));
@@ -993,16 +789,14 @@ public class IterateTest
     }
 
     @Test
-    public void detectIndexWithTreeSet()
-    {
+    public void detectIndexWithTreeSet() {
         Set<Integer> treeSet = new TreeSet<>(Interval.toReverseList(1, 5));
         Assert.assertEquals(0, Iterate.detectIndex(treeSet, Integer.valueOf(1)::equals));
         Assert.assertEquals(4, Iterate.detectIndex(treeSet, Integer.valueOf(5)::equals));
     }
 
     @Test
-    public void detectIndexWith()
-    {
+    public void detectIndexWith() {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
         Assert.assertEquals(4, Iterate.detectIndexWith(list, Object::equals, 1));
         Assert.assertEquals(0, Iterate.detectIndexWith(list, Object::equals, 5));
@@ -1011,16 +805,14 @@ public class IterateTest
     }
 
     @Test
-    public void detectIndexWithWithTreeSet()
-    {
+    public void detectIndexWithWithTreeSet() {
         Set<Integer> treeSet = new TreeSet<>(Interval.toReverseList(1, 5));
         Assert.assertEquals(0, Iterate.detectIndexWith(treeSet, Object::equals, 1));
         Assert.assertEquals(4, Iterate.detectIndexWith(treeSet, Object::equals, 5));
     }
 
     @Test
-    public void detectWithIfNone()
-    {
+    public void detectWithIfNone() {
         this.iterables.each(each -> {
             Integer result = Iterate.detectWithIfNone(each, Predicates2.instanceOf(), Integer.class, 5);
             Verify.assertContains(result, UnifiedSet.newSet(each));
@@ -1028,8 +820,7 @@ public class IterateTest
     }
 
     @Test
-    public void selectWith()
-    {
+    public void selectWith() {
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.selectWith(each, Predicates2.greaterThan(), 3);
             Assert.assertTrue(result.containsAll(FastList.newListWith(4, 5)));
@@ -1038,8 +829,7 @@ public class IterateTest
     }
 
     @Test
-    public void selectWithWithTarget()
-    {
+    public void selectWithWithTarget() {
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.selectWith(each, Predicates2.greaterThan(), 3, FastList.newList());
             Assert.assertTrue(result.containsAll(FastList.newListWith(4, 5)));
@@ -1048,8 +838,7 @@ public class IterateTest
     }
 
     @Test
-    public void rejectWith()
-    {
+    public void rejectWith() {
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.rejectWith(each, Predicates2.greaterThan(), 3);
             Assert.assertTrue(result.containsAll(FastList.newListWith(1, 2, 3)));
@@ -1058,8 +847,7 @@ public class IterateTest
     }
 
     @Test
-    public void rejectWithTarget()
-    {
+    public void rejectWithTarget() {
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.rejectWith(each, Predicates2.greaterThan(), 3, FastList.newList());
             Assert.assertTrue(result.containsAll(FastList.newListWith(1, 2, 3)));
@@ -1068,8 +856,7 @@ public class IterateTest
     }
 
     @Test
-    public void selectAndRejectWith()
-    {
+    public void selectAndRejectWith() {
         this.iterables.each(each -> {
             Twin<MutableList<Integer>> result = Iterate.selectAndRejectWith(each, Predicates2.greaterThan(), 3);
             Assert.assertEquals(iBag(4, 5), result.getOne().toBag());
@@ -1078,8 +865,7 @@ public class IterateTest
     }
 
     @Test
-    public void partition()
-    {
+    public void partition() {
         this.iterables.each(each -> {
             PartitionIterable<Integer> result = Iterate.partition(each, Predicates.greaterThan(3));
             Assert.assertEquals(iBag(4, 5), result.getSelected().toBag());
@@ -1088,8 +874,7 @@ public class IterateTest
     }
 
     @Test
-    public void partitionWith()
-    {
+    public void partitionWith() {
         this.iterables.each(each -> {
             PartitionIterable<Integer> result = Iterate.partitionWith(each, Predicates2.greaterThan(), 3);
             Assert.assertEquals(iBag(4, 5), result.getSelected().toBag());
@@ -1098,146 +883,125 @@ public class IterateTest
     }
 
     @Test
-    public void rejectTargetCollection()
-    {
+    public void rejectTargetCollection() {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
         MutableList<Integer> results = Iterate.reject(list, Integer.class::isInstance, FastList.newList());
         Verify.assertEmpty(results);
     }
 
     @Test
-    public void rejectOnRandomAccessTargetCollection()
-    {
+    public void rejectOnRandomAccessTargetCollection() {
         List<Integer> list = Collections.synchronizedList(Interval.toReverseList(1, 5));
         MutableList<Integer> results = Iterate.reject(list, Integer.class::isInstance, FastList.newList());
         Verify.assertEmpty(results);
     }
 
     @Test
-    public void rejectWithTargetCollection()
-    {
+    public void rejectWithTargetCollection() {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
         MutableList<Integer> results = Iterate.rejectWith(list, Predicates2.instanceOf(), Integer.class, FastList.newList());
         Verify.assertEmpty(results);
     }
 
     @Test
-    public void rejectWithOnRandomAccessTargetCollection()
-    {
+    public void rejectWithOnRandomAccessTargetCollection() {
         List<Integer> list = Collections.synchronizedList(Interval.toReverseList(1, 5));
         MutableList<Integer> results = Iterate.rejectWith(list, Predicates2.instanceOf(), Integer.class, FastList.newList());
         Verify.assertEmpty(results);
     }
 
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         this.iterables.each(each -> Assert.assertTrue(Iterate.anySatisfy(each, Integer.class::isInstance)));
     }
 
     @Test
-    public void anySatisfyWith()
-    {
+    public void anySatisfyWith() {
         this.iterables.each(each -> Assert.assertTrue(Iterate.anySatisfyWith(each, Predicates2.instanceOf(), Integer.class)));
     }
 
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         this.iterables.each(each -> Assert.assertTrue(Iterate.allSatisfy(each, Integer.class::isInstance)));
     }
 
     @Test
-    public void allSatisfyWith()
-    {
+    public void allSatisfyWith() {
         this.iterables.each(each -> Assert.assertTrue(Iterate.allSatisfyWith(each, Predicates2.instanceOf(), Integer.class)));
     }
 
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         this.iterables.each(each -> Assert.assertTrue(Iterate.noneSatisfy(each, String.class::isInstance)));
     }
 
     @Test
-    public void noneSatisfyWith()
-    {
+    public void noneSatisfyWith() {
         this.iterables.each(each -> Assert.assertTrue(Iterate.noneSatisfyWith(each, Predicates2.instanceOf(), String.class)));
     }
 
     @Test
-    public void selectWithSet()
-    {
+    public void selectWithSet() {
         Verify.assertSize(1, Iterate.selectWith(this.getIntegerSet(), Object::equals, 1));
         Verify.assertSize(1, Iterate.selectWith(this.getIntegerSet(), Object::equals, 1, FastList.newList()));
     }
 
     @Test
-    public void rejectWithSet()
-    {
+    public void rejectWithSet() {
         Verify.assertSize(4, Iterate.rejectWith(this.getIntegerSet(), Object::equals, 1));
         Verify.assertSize(4, Iterate.rejectWith(this.getIntegerSet(), Object::equals, 1, FastList.newList()));
     }
 
     @Test
-    public void detectWithSet()
-    {
+    public void detectWithSet() {
         Assert.assertEquals(Integer.valueOf(1), Iterate.detectWith(this.getIntegerSet(), Object::equals, 1));
     }
 
     @Test
-    public void detectWithRandomAccess()
-    {
+    public void detectWithRandomAccess() {
         List<Integer> list = Collections.synchronizedList(Interval.oneTo(5));
         Assert.assertEquals(Integer.valueOf(1), Iterate.detectWith(list, Object::equals, 1));
     }
 
     @Test
-    public void detectWithOptionalSet()
-    {
+    public void detectWithOptionalSet() {
         Assert.assertEquals(Optional.of(Integer.valueOf(1)), Iterate.detectWithOptional(this.getIntegerSet(), Object::equals, 1));
         Assert.assertEquals(Optional.empty(), Iterate.detectWithOptional(this.getIntegerSet(), Object::equals, 10));
     }
 
     @Test
-    public void detectWithOptionalRandomAccess()
-    {
+    public void detectWithOptionalRandomAccess() {
         List<Integer> list = Collections.synchronizedList(Interval.oneTo(5));
         Assert.assertEquals(Optional.of(Integer.valueOf(1)), Iterate.detectWithOptional(list, Object::equals, 1));
         Assert.assertEquals(Optional.empty(), Iterate.detectWithOptional(list, Object::equals, 10));
     }
 
     @Test
-    public void anySatisfyWithSet()
-    {
+    public void anySatisfyWithSet() {
         Assert.assertTrue(Iterate.anySatisfyWith(this.getIntegerSet(), Object::equals, 1));
     }
 
     @Test
-    public void allSatisfyWithSet()
-    {
+    public void allSatisfyWithSet() {
         Assert.assertFalse(Iterate.allSatisfyWith(this.getIntegerSet(), Object::equals, 1));
         Assert.assertTrue(Iterate.allSatisfyWith(this.getIntegerSet(), Predicates2.instanceOf(), Integer.class));
     }
 
     @Test
-    public void noneSatisfyWithSet()
-    {
+    public void noneSatisfyWithSet() {
         Assert.assertTrue(Iterate.noneSatisfyWith(this.getIntegerSet(), Object::equals, 100));
         Assert.assertFalse(Iterate.noneSatisfyWith(this.getIntegerSet(), Predicates2.instanceOf(), Integer.class));
     }
 
     @Test
-    public void selectAndRejectWithSet()
-    {
+    public void selectAndRejectWithSet() {
         Twin<MutableList<Integer>> result = Iterate.selectAndRejectWith(this.getIntegerSet(), Predicates2.in(), iList(1));
         Verify.assertSize(1, result.getOne());
         Verify.assertSize(4, result.getTwo());
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         this.iterables.each(each -> {
             UnifiedSet<Integer> set = UnifiedSet.newSet();
             Iterate.forEach(each, Procedures.cast(set::add));
@@ -1246,8 +1010,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectIf()
-    {
+    public void collectIf() {
         this.iterables.each(each -> {
             Collection<String> result = Iterate.collectIf(each, Predicates.greaterThan(3), String::valueOf);
             Assert.assertTrue(result.containsAll(FastList.newListWith("4", "5")));
@@ -1256,8 +1019,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectIfTarget()
-    {
+    public void collectIfTarget() {
         this.iterables.each(each -> {
             Collection<String> result = Iterate.collectIf(each, Predicates.greaterThan(3), String::valueOf, FastList.newList());
             Assert.assertTrue(result.containsAll(FastList.newListWith("4", "5")));
@@ -1266,8 +1028,7 @@ public class IterateTest
     }
 
     @Test
-    public void collect()
-    {
+    public void collect() {
         this.iterables.each(each -> {
             Collection<String> result = Iterate.collect(each, String::valueOf);
             Assert.assertTrue(result.containsAll(FastList.newListWith("1", "2", "3", "4", "5")));
@@ -1276,8 +1037,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectBoolean()
-    {
+    public void collectBoolean() {
         this.iterables.each(each -> {
             MutableBooleanCollection result = Iterate.collectBoolean(each, PrimitiveFunctions.integerIsPositive());
             Assert.assertTrue(result.containsAll(true, true, true, true, true));
@@ -1286,8 +1046,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectBooleanWithTarget()
-    {
+    public void collectBooleanWithTarget() {
         this.iterables.each(each -> {
             MutableBooleanCollection expected = new BooleanArrayList();
             MutableBooleanCollection actual = Iterate.collectBoolean(each, PrimitiveFunctions.integerIsPositive(), expected);
@@ -1298,8 +1057,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectByte()
-    {
+    public void collectByte() {
         this.iterables.each(each -> {
             MutableByteCollection result = Iterate.collectByte(each, PrimitiveFunctions.unboxIntegerToByte());
             Assert.assertTrue(result.containsAll((byte) 1, (byte) 2, (byte) 3, (byte) 4, (byte) 5));
@@ -1308,8 +1066,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectByteWithTarget()
-    {
+    public void collectByteWithTarget() {
         this.iterables.each(each -> {
             MutableByteCollection expected = new ByteArrayList();
             MutableByteCollection actual = Iterate.collectByte(each, PrimitiveFunctions.unboxIntegerToByte(), expected);
@@ -1320,8 +1077,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectChar()
-    {
+    public void collectChar() {
         this.iterables.each(each -> {
             MutableCharCollection result = Iterate.collectChar(each, PrimitiveFunctions.unboxIntegerToChar());
             Assert.assertTrue(result.containsAll((char) 1, (char) 2, (char) 3, (char) 4, (char) 5));
@@ -1330,8 +1086,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectCharWithTarget()
-    {
+    public void collectCharWithTarget() {
         this.iterables.each(each -> {
             MutableCharCollection expected = new CharArrayList();
             MutableCharCollection actual = Iterate.collectChar(each, PrimitiveFunctions.unboxIntegerToChar(), expected);
@@ -1342,8 +1097,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectDouble()
-    {
+    public void collectDouble() {
         this.iterables.each(each -> {
             MutableDoubleCollection result = Iterate.collectDouble(each, PrimitiveFunctions.unboxIntegerToDouble());
             Assert.assertTrue(result.containsAll(1.0d, 2.0d, 3.0d, 4.0d, 5.0d));
@@ -1352,8 +1106,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectDoubleWithTarget()
-    {
+    public void collectDoubleWithTarget() {
         this.iterables.each(each -> {
             MutableDoubleCollection expected = new DoubleArrayList();
             MutableDoubleCollection actual = Iterate.collectDouble(each, PrimitiveFunctions.unboxIntegerToDouble(), expected);
@@ -1364,8 +1117,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectFloat()
-    {
+    public void collectFloat() {
         this.iterables.each(each -> {
             MutableFloatCollection result = Iterate.collectFloat(each, PrimitiveFunctions.unboxIntegerToFloat());
             Assert.assertTrue(result.containsAll(1.0f, 2.0f, 3.0f, 4.0f, 5.0f));
@@ -1374,8 +1126,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectFloatWithTarget()
-    {
+    public void collectFloatWithTarget() {
         this.iterables.each(each -> {
             MutableFloatCollection expected = new FloatArrayList();
             MutableFloatCollection actual = Iterate.collectFloat(each, PrimitiveFunctions.unboxIntegerToFloat(), expected);
@@ -1386,8 +1137,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectInt()
-    {
+    public void collectInt() {
         this.iterables.each(each -> {
             MutableIntCollection result = Iterate.collectInt(each, PrimitiveFunctions.unboxIntegerToInt());
             Assert.assertTrue(result.containsAll(1, 2, 3, 4, 5));
@@ -1396,8 +1146,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectIntWithTarget()
-    {
+    public void collectIntWithTarget() {
         this.iterables.each(each -> {
             MutableIntCollection expected = new IntArrayList();
             MutableIntCollection actual = Iterate.collectInt(each, PrimitiveFunctions.unboxIntegerToInt(), expected);
@@ -1408,8 +1157,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectLong()
-    {
+    public void collectLong() {
         this.iterables.each(each -> {
             MutableLongCollection result = Iterate.collectLong(each, PrimitiveFunctions.unboxIntegerToLong());
             Assert.assertTrue(result.containsAll(1L, 2L, 3L, 4L, 5L));
@@ -1418,8 +1166,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectLongWithTarget()
-    {
+    public void collectLongWithTarget() {
         this.iterables.each(each -> {
             MutableLongCollection expected = new LongArrayList();
             MutableLongCollection actual = Iterate.collectLong(each, PrimitiveFunctions.unboxIntegerToLong(), expected);
@@ -1430,8 +1177,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectShort()
-    {
+    public void collectShort() {
         this.iterables.each(each -> {
             MutableShortCollection result = Iterate.collectShort(each, PrimitiveFunctions.unboxIntegerToShort());
             Assert.assertTrue(result.containsAll((short) 1, (short) 2, (short) 3, (short) 4, (short) 5));
@@ -1440,8 +1186,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectShortWithTarget()
-    {
+    public void collectShortWithTarget() {
         this.iterables.each(each -> {
             MutableShortCollection expected = new ShortArrayList();
             MutableShortCollection actual = Iterate.collectShort(each, PrimitiveFunctions.unboxIntegerToShort(), expected);
@@ -1452,101 +1197,79 @@ public class IterateTest
     }
 
     @Test
-    public void collect_sortedSetSource()
-    {
-        class Foo implements Comparable<Foo>
-        {
+    public void collect_sortedSetSource() {
+        class Foo implements Comparable<Foo> {
+
             private final int value;
 
-            Foo(int value)
-            {
+            Foo(int value) {
                 this.value = value;
             }
 
-            public int getValue()
-            {
+            public int getValue() {
                 return this.value;
             }
 
             @Override
-            public int compareTo(Foo that)
-            {
+            public int compareTo(Foo that) {
                 return Comparators.naturalOrder().compare(this.value, that.value);
             }
 
             @Override
-            public boolean equals(Object o)
-            {
-                if (this == o)
-                {
+            public boolean equals(Object o) {
+                if (this == o) {
                     return true;
                 }
-                if (o == null || this.getClass() != o.getClass())
-                {
+                if (o == null || this.getClass() != o.getClass()) {
                     return false;
                 }
-
                 Foo foo = (Foo) o;
-
                 return this.value == foo.value;
             }
 
             @Override
-            public int hashCode()
-            {
+            public int hashCode() {
                 return this.value;
             }
         }
+        class Bar {
 
-        class Bar
-        {
             private final int value;
 
-            Bar(int value)
-            {
+            Bar(int value) {
                 this.value = value;
             }
 
-            public int getValue()
-            {
+            public int getValue() {
                 return this.value;
             }
 
             @Override
-            public boolean equals(Object o)
-            {
-                if (this == o)
-                {
+            public boolean equals(Object o) {
+                if (this == o) {
                     return true;
                 }
-                if (o == null || this.getClass() != o.getClass())
-                {
+                if (o == null || this.getClass() != o.getClass()) {
                     return false;
                 }
-
                 Bar bar = (Bar) o;
-
                 return this.value == bar.value;
             }
 
             @Override
-            public int hashCode()
-            {
+            public int hashCode() {
                 return this.value;
             }
         }
-
         Set<Foo> foos = new TreeSet<>();
         foos.add(new Foo(1));
         foos.add(new Foo(2));
         Collection<Bar> bars = Iterate.collect(foos, foo -> new Bar(foo.getValue()));
-
         Assert.assertEquals(FastList.newListWith(new Bar(1), new Bar(2)), bars);
     }
 
     @Test
-    public void collectTarget()
-    {
+    public void collectTarget() {
         this.iterables.each(each -> {
             Collection<String> result = Iterate.collect(each, String::valueOf, UnifiedSet.newSet());
             Assert.assertTrue(result.containsAll(FastList.newListWith("1", "2", "3", "4", "5")));
@@ -1555,8 +1278,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         this.iterables.each(each -> {
             Collection<String> result = Iterate.collectWith(each, (each1, parm) -> each1 + parm, " ");
             Assert.assertTrue(result.containsAll(FastList.newListWith("1 ", "2 ", "3 ", "4 ", "5 ")));
@@ -1565,8 +1287,7 @@ public class IterateTest
     }
 
     @Test
-    public void collectWithWithTarget()
-    {
+    public void collectWithWithTarget() {
         this.iterables.each(each -> {
             Collection<String> result = Iterate.collectWith(each, (each1, parm) -> each1 + parm, " ", UnifiedSet.newSet());
             Assert.assertTrue(result.containsAll(FastList.newListWith("1 ", "2 ", "3 ", "4 ", "5 ")));
@@ -1575,37 +1296,30 @@ public class IterateTest
     }
 
     @Test
-    public void removeIf()
-    {
+    public void removeIf() {
         MutableList<Integer> integers = Interval.oneTo(5).toList();
         this.assertRemoveIfFromList(integers);
-
         MutableList<Integer> integers2 = Interval.oneTo(5).toList();
         this.assertRemoveIfFromList(Collections.synchronizedList(integers2));
-
         MutableList<Integer> integers3 = Interval.oneTo(5).toList();
         this.assertRemoveIfFromList(FastList.newList(integers3));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.removeIf(null, null));
     }
 
     @Test
-    public void removeIfWith()
-    {
+    public void removeIfWith() {
         MutableList<Integer> objects = FastList.newList(Lists.fixedSize.of(1, 2, 3, null));
         Assert.assertTrue(Iterate.removeIfWith(objects, (each1, ignored1) -> each1 == null, null));
         Verify.assertSize(3, objects);
         Verify.assertContainsAll(objects, 1, 2, 3);
-
         MutableList<Integer> objects2 = FastList.newList(Lists.fixedSize.of(null, 1, 2, 3));
         Assert.assertTrue(Iterate.removeIfWith(objects2, (each, ignored) -> each == null, null));
         Verify.assertSize(3, objects2);
         Verify.assertContainsAll(objects2, 1, 2, 3);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.removeIfWith(null, null, null));
     }
 
-    private void assertRemoveIfFromList(List<Integer> newIntegers)
-    {
+    private void assertRemoveIfFromList(List<Integer> newIntegers) {
         Assert.assertTrue(Iterate.removeIf(newIntegers, IntegerPredicates.isEven()));
         Assert.assertFalse(Iterate.removeIf(FastList.newListWith(1, 3, 5), IntegerPredicates.isEven()));
         Assert.assertFalse(Iterate.removeIf(FastList.newList(), IntegerPredicates.isEven()));
@@ -1614,31 +1328,27 @@ public class IterateTest
     }
 
     @Test
-    public void removeIfLinkedList()
-    {
+    public void removeIfLinkedList() {
         List<Integer> integers = new LinkedList<>(Interval.oneTo(5).toList());
         this.assertRemoveIfFromList(integers);
     }
 
     @Test
-    public void removeIfAll()
-    {
+    public void removeIfAll() {
         MutableList<Integer> integers = Interval.oneTo(5).toList();
         Assert.assertTrue(Iterate.removeIf(integers, ignored -> true));
         Verify.assertSize(0, integers);
     }
 
     @Test
-    public void removeIfNone()
-    {
+    public void removeIfNone() {
         MutableList<Integer> integers = Interval.oneTo(5).toList();
         Assert.assertFalse(Iterate.removeIf(integers, ignored -> false));
         Verify.assertSize(5, integers);
     }
 
     @Test
-    public void removeIfFromSet()
-    {
+    public void removeIfFromSet() {
         MutableSet<Integer> integers = Interval.toSet(1, 5);
         Assert.assertTrue(Iterate.removeIf(integers, IntegerPredicates.isEven()));
         Verify.assertContainsAll(integers, 1, 3, 5);
@@ -1646,8 +1356,7 @@ public class IterateTest
     }
 
     @Test
-    public void removeIfWithFastList()
-    {
+    public void removeIfWithFastList() {
         MutableList<Integer> objects = FastList.newListWith(1, 2, 3, null);
         Assert.assertTrue(Iterate.removeIfWith(objects, (each1, ignored1) -> each1 == null, null));
         Verify.assertSize(3, objects);
@@ -1659,22 +1368,19 @@ public class IterateTest
     }
 
     @Test
-    public void removeIfWithRandomAccess()
-    {
+    public void removeIfWithRandomAccess() {
         List<Integer> objects = Collections.synchronizedList(new ArrayList<>(Lists.fixedSize.of(1, 2, 3, null)));
         Assert.assertTrue(Iterate.removeIfWith(objects, (each1, ignored1) -> each1 == null, null));
         Verify.assertSize(3, objects);
         Verify.assertContainsAll(objects, 1, 2, 3);
-        List<Integer> objects1 =
-                Collections.synchronizedList(new ArrayList<>(Lists.fixedSize.of(null, 1, 2, 3)));
+        List<Integer> objects1 = Collections.synchronizedList(new ArrayList<>(Lists.fixedSize.of(null, 1, 2, 3)));
         Assert.assertTrue(Iterate.removeIfWith(objects1, (each, ignored) -> each == null, null));
         Verify.assertSize(3, objects1);
         Verify.assertContainsAll(objects1, 1, 2, 3);
     }
 
     @Test
-    public void removeIfWithLinkedList()
-    {
+    public void removeIfWithLinkedList() {
         List<Integer> objects = new LinkedList<>(Lists.fixedSize.of(1, 2, 3, null));
         Assert.assertTrue(Iterate.removeIfWith(objects, (each1, ignored1) -> each1 == null, null));
         Verify.assertSize(3, objects);
@@ -1686,32 +1392,22 @@ public class IterateTest
     }
 
     @Test
-    public void injectIntoIfProcedure()
-    {
+    public void injectIntoIfProcedure() {
         Integer newItemToIndex = 99;
         MutableMap<String, Integer> index1 = IterateTest.createPretendIndex(1);
         MutableMap<String, Integer> index2 = IterateTest.createPretendIndex(2);
         MutableMap<String, Integer> index3 = IterateTest.createPretendIndex(3);
         MutableMap<String, Integer> index4 = IterateTest.createPretendIndex(4);
         MutableMap<String, Integer> index5 = IterateTest.createPretendIndex(5);
-        MutableMap<String, MutableMap<String, Integer>> allIndexes = UnifiedMap.newMapWith(
-                Tuples.pair("pretend index 1", index1),
-                Tuples.pair("pretend index 2", index2),
-                Tuples.pair("pretend index 3", index3),
-                Tuples.pair("pretend index 4", index4),
-                Tuples.pair("pretend index 5", index5));
+        MutableMap<String, MutableMap<String, Integer>> allIndexes = UnifiedMap.newMapWith(Tuples.pair("pretend index 1", index1), Tuples.pair("pretend index 2", index2), Tuples.pair("pretend index 3", index3), Tuples.pair("pretend index 4", index4), Tuples.pair("pretend index 5", index5));
         MutableSet<MutableMap<String, Integer>> systemIndexes = Sets.fixedSize.of(index3, index5);
-
         MapIterate.injectIntoIf(newItemToIndex, allIndexes, Predicates.notIn(systemIndexes), (itemToAdd, index) -> {
             index.put(itemToAdd.toString(), itemToAdd);
             return itemToAdd;
         });
-
         Verify.assertSize(5, allIndexes);
-
         Verify.assertContainsKey("pretend index 2", allIndexes);
         Verify.assertContainsKey("pretend index 3", allIndexes);
-
         Verify.assertContainsKeyValue("99", newItemToIndex, index1);
         Verify.assertContainsKeyValue("99", newItemToIndex, index2);
         Verify.assertNotContainsKey("99", index3);
@@ -1719,14 +1415,12 @@ public class IterateTest
         Verify.assertNotContainsKey("99", index5);
     }
 
-    public static MutableMap<String, Integer> createPretendIndex(int initialEntry)
-    {
+    public static MutableMap<String, Integer> createPretendIndex(int initialEntry) {
         return UnifiedMap.newWithKeysValues(String.valueOf(initialEntry), initialEntry);
     }
 
     @Test
-    public void isEmpty()
-    {
+    public void isEmpty() {
         Assert.assertTrue(Iterate.isEmpty(null));
         Assert.assertTrue(Iterate.isEmpty(Lists.fixedSize.of()));
         Assert.assertFalse(Iterate.isEmpty(Lists.fixedSize.of("1")));
@@ -1739,8 +1433,7 @@ public class IterateTest
     }
 
     @Test
-    public void notEmpty()
-    {
+    public void notEmpty() {
         Assert.assertFalse(Iterate.notEmpty(null));
         Assert.assertFalse(Iterate.notEmpty(Lists.fixedSize.of()));
         Assert.assertTrue(Iterate.notEmpty(Lists.fixedSize.of("1")));
@@ -1753,24 +1446,21 @@ public class IterateTest
     }
 
     @Test
-    public void toSortedList()
-    {
+    public void toSortedList() {
         MutableList<Integer> list = Interval.toReverseList(1, 5);
         MutableList<Integer> sorted = Iterate.toSortedList(list);
         Verify.assertStartsWith(sorted, 1, 2, 3, 4, 5);
     }
 
     @Test
-    public void toSortedListWithComparator()
-    {
+    public void toSortedListWithComparator() {
         MutableList<Integer> list = Interval.oneTo(5).toList();
         MutableList<Integer> sorted = Iterate.toSortedList(list, Collections.reverseOrder());
         Verify.assertStartsWith(sorted, 5, 4, 3, 2, 1);
     }
 
     @Test
-    public void select()
-    {
+    public void select() {
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.select(each, Predicates.greaterThan(3));
             Assert.assertTrue(result.containsAll(FastList.newListWith(4, 5)));
@@ -1779,8 +1469,7 @@ public class IterateTest
     }
 
     @Test
-    public void selectTarget()
-    {
+    public void selectTarget() {
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.select(each, Predicates.greaterThan(3), FastList.newList());
             Assert.assertTrue(result.containsAll(FastList.newListWith(4, 5)));
@@ -1789,8 +1478,7 @@ public class IterateTest
     }
 
     @Test
-    public void reject()
-    {
+    public void reject() {
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.reject(each, Predicates.greaterThan(3));
             Assert.assertTrue(result.containsAll(FastList.newListWith(1, 2, 3)));
@@ -1799,8 +1487,7 @@ public class IterateTest
     }
 
     @Test
-    public void rejectTarget()
-    {
+    public void rejectTarget() {
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.reject(each, Predicates.greaterThan(3), FastList.newList());
             Assert.assertTrue(result.containsAll(FastList.newListWith(1, 2, 3)));
@@ -1809,18 +1496,15 @@ public class IterateTest
     }
 
     @Test
-    public void selectInstancesOf()
-    {
+    public void selectInstancesOf() {
         Iterable<Number> numbers1 = Collections.unmodifiableList(new ArrayList<Number>(FastList.newListWith(1, 2.0, 3, 4.0, 5)));
         Iterable<Number> numbers2 = Collections.unmodifiableCollection(new ArrayList<Number>(FastList.newListWith(1, 2.0, 3, 4.0, 5)));
-
         Verify.assertContainsAll(Iterate.selectInstancesOf(numbers1, Integer.class), 1, 3, 5);
         Verify.assertContainsAll(Iterate.selectInstancesOf(numbers2, Integer.class), 1, 3, 5);
     }
 
     @Test
-    public void count()
-    {
+    public void count() {
         this.iterables.each(each -> {
             int result = Iterate.count(each, Predicates.greaterThan(3));
             Assert.assertEquals(2, result);
@@ -1828,14 +1512,12 @@ public class IterateTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void count_null_null_throws()
-    {
+    public void count_null_null_throws() {
         Iterate.count(null, null);
     }
 
     @Test
-    public void countWith()
-    {
+    public void countWith() {
         this.iterables.each(each -> {
             int result = Iterate.countWith(each, Predicates2.greaterThan(), 3);
             Assert.assertEquals(2, result);
@@ -1843,14 +1525,12 @@ public class IterateTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void countWith_null_throws()
-    {
+    public void countWith_null_throws() {
         Iterate.countWith(null, null, null);
     }
 
     @Test
-    public void injectIntoWith()
-    {
+    public void injectIntoWith() {
         Sum result = new IntegerSum(0);
         Integer parameter = 2;
         MutableList<Integer> integers = Interval.oneTo(5).toList();
@@ -1858,24 +1538,21 @@ public class IterateTest
     }
 
     @Test
-    public void injectIntoWithRandomAccess()
-    {
+    public void injectIntoWithRandomAccess() {
         Sum result = new IntegerSum(0);
         Integer parameter = 2;
         MutableList<Integer> integers = Interval.oneTo(5).toList().asSynchronized();
         this.basicTestDoubleSum(result, integers, parameter);
     }
 
-    private void basicTestDoubleSum(Sum newResult, Collection<Integer> newIntegers, Integer newParameter)
-    {
+    private void basicTestDoubleSum(Sum newResult, Collection<Integer> newIntegers, Integer newParameter) {
         Function3<Sum, Integer, Integer, Sum> function = (sum, element, withValue) -> sum.add(element.intValue() * withValue.intValue());
         Sum sumOfDoubledValues = Iterate.injectIntoWith(newResult, newIntegers, function, newParameter);
         Assert.assertEquals(30, sumOfDoubledValues.getValue().intValue());
     }
 
     @Test
-    public void injectIntoWithHashSet()
-    {
+    public void injectIntoWithHashSet() {
         Sum result = new IntegerSum(0);
         Integer parameter = 2;
         MutableSet<Integer> integers = Interval.toSet(1, 5);
@@ -1883,8 +1560,7 @@ public class IterateTest
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         this.iterables.each(each -> {
             Sum result = new IntegerSum(0);
             Iterate.forEachWith(each, (integer, parm) -> result.add(integer.intValue() * parm.intValue()), 2);
@@ -1893,8 +1569,7 @@ public class IterateTest
     }
 
     @Test
-    public void forEachWithSets()
-    {
+    public void forEachWithSets() {
         Sum result = new IntegerSum(0);
         MutableSet<Integer> integers = Interval.toSet(1, 5);
         Iterate.forEachWith(integers, (each, parm) -> result.add(each.intValue() * parm.intValue()), 2);
@@ -1902,8 +1577,7 @@ public class IterateTest
     }
 
     @Test
-    public void sortThis()
-    {
+    public void sortThis() {
         MutableList<Integer> list = Interval.oneTo(5).toList().shuffleThis();
         Verify.assertStartsWith(Iterate.sortThis(list), 1, 2, 3, 4, 5);
         List<Integer> list3 = Interval.oneTo(5).addAllTo(new LinkedList<>());
@@ -1916,8 +1590,7 @@ public class IterateTest
     }
 
     @Test
-    public void sortThisWithPredicate()
-    {
+    public void sortThisWithPredicate() {
         MutableList<Integer> list = Interval.oneTo(5).toList();
         Interval.oneTo(5).addAllTo(list);
         list.shuffleThis();
@@ -1933,8 +1606,7 @@ public class IterateTest
     }
 
     @Test
-    public void sortThisBy()
-    {
+    public void sortThisBy() {
         MutableList<Integer> list = Interval.oneTo(5).toList();
         Interval.oneTo(5).addAllTo(list);
         list.shuffleThis();
@@ -1944,8 +1616,7 @@ public class IterateTest
     }
 
     @Test
-    public void sortThisWithComparator()
-    {
+    public void sortThisWithComparator() {
         MutableList<Integer> list = Interval.oneTo(5).toList();
         Verify.assertStartsWith(Iterate.sortThis(list, Collections.reverseOrder()), 5, 4, 3, 2, 1);
         List<Integer> list3 = Interval.oneTo(5).addAllTo(new LinkedList<>());
@@ -1953,8 +1624,7 @@ public class IterateTest
     }
 
     @Test
-    public void take()
-    {
+    public void take() {
         MutableSet<Integer> set = this.getIntegerSet();
         Verify.assertEmpty(Iterate.take(set, 0));
         Verify.assertSize(1, Iterate.take(set, 1));
@@ -1963,10 +1633,8 @@ public class IterateTest
         Verify.assertSize(5, Iterate.take(set, 5));
         Verify.assertSize(5, Iterate.take(set, 10));
         Verify.assertSize(5, Iterate.take(set, Integer.MAX_VALUE));
-
         MutableSet<Integer> set2 = UnifiedSet.newSet();
         Verify.assertEmpty(Iterate.take(set2, 2));
-
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.take(each, 2);
             Verify.assertSize(2, result);
@@ -1974,20 +1642,17 @@ public class IterateTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void take_null_throws()
-    {
+    public void take_null_throws() {
         Iterate.take(null, 1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void take_negative_throws()
-    {
+    public void take_negative_throws() {
         Iterate.take(this.getIntegerSet(), -1);
     }
 
     @Test
-    public void drop()
-    {
+    public void drop() {
         MutableSet<Integer> set = this.getIntegerSet();
         Verify.assertSize(5, Iterate.drop(set, 0));
         Verify.assertSize(4, Iterate.drop(set, 1));
@@ -1996,10 +1661,8 @@ public class IterateTest
         Verify.assertEmpty(Iterate.drop(set, 5));
         Verify.assertEmpty(Iterate.drop(set, 6));
         Verify.assertEmpty(Iterate.drop(set, Integer.MAX_VALUE));
-
         MutableSet<Integer> set2 = UnifiedSet.newSet();
         Verify.assertEmpty(Iterate.drop(set2, 2));
-
         this.iterables.each(each -> {
             Collection<Integer> result = Iterate.drop(each, 2);
             Verify.assertSize(3, result);
@@ -2007,56 +1670,47 @@ public class IterateTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void drop_null_throws()
-    {
+    public void drop_null_throws() {
         Iterate.drop(null, 1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void drop_negative_throws()
-    {
+    public void drop_negative_throws() {
         Iterate.drop(this.getIntegerSet(), -1);
     }
 
     @Test
-    public void getOnlySingleton()
-    {
+    public void getOnlySingleton() {
         Object value = new Object();
         Assert.assertSame(value, Iterate.getOnly(Lists.fixedSize.of(value)));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getOnlyEmpty()
-    {
+    public void getOnlyEmpty() {
         Iterate.getOnly(Lists.fixedSize.<String>of());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getOnlyMultiple()
-    {
+    public void getOnlyMultiple() {
         Iterate.getOnly(Lists.fixedSize.of(new Object(), new Object()));
     }
 
-    private static final class IterableAdapter<E>
-            implements Iterable<E>
-    {
+    private static final class IterableAdapter<E> implements Iterable<E> {
+
         private final Iterable<E> iterable;
 
-        private IterableAdapter(Iterable<E> newIterable)
-        {
+        private IterableAdapter(Iterable<E> newIterable) {
             this.iterable = newIterable;
         }
 
         @Override
-        public Iterator<E> iterator()
-        {
+        public Iterator<E> iterator() {
             return this.iterable.iterator();
         }
     }
 
     @Test
-    public void zip()
-    {
+    public void zip() {
         this.zip(FastList.newListWith("1", "2", "3", "4", "5", "6", "7"));
         this.zip(Arrays.asList("1", "2", "3", "4", "5", "6", "7"));
         this.zip(new HashSet<>(FastList.newListWith("1", "2", "3", "4", "5", "6", "7")));
@@ -2066,21 +1720,15 @@ public class IterateTest
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.zip(null, null, null));
     }
 
-    private void zip(Iterable<String> iterable)
-    {
+    private void zip(Iterable<String> iterable) {
         List<Object> nulls = Collections.nCopies(Iterate.sizeOf(iterable), null);
         Collection<Pair<String, Object>> pairs = Iterate.zip(iterable, nulls);
-        Assert.assertEquals(
-                UnifiedSet.newSet(iterable),
-                Iterate.collect(pairs, (Function<Pair<String, ?>, String>) Pair::getOne, UnifiedSet.newSet()));
-        Assert.assertEquals(
-                nulls,
-                Iterate.collect(pairs, (Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
+        Assert.assertEquals(UnifiedSet.newSet(iterable), Iterate.collect(pairs, (Function<Pair<String, ?>, String>) Pair::getOne, UnifiedSet.newSet()));
+        Assert.assertEquals(nulls, Iterate.collect(pairs, (Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
     }
 
     @Test
-    public void zipWithIndex()
-    {
+    public void zipWithIndex() {
         this.zipWithIndex(FastList.newListWith("1", "2", "3", "4", "5", "6", "7"));
         this.zipWithIndex(Arrays.asList("1", "2", "3", "4", "5", "6", "7"));
         this.zipWithIndex(new HashSet<>(FastList.newListWith("1", "2", "3", "4", "5", "6", "7")));
@@ -2091,56 +1739,45 @@ public class IterateTest
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.zipWithIndex(null, null));
     }
 
-    private void zipWithIndex(Iterable<String> iterable)
-    {
+    private void zipWithIndex(Iterable<String> iterable) {
         Collection<Pair<String, Integer>> pairs = Iterate.zipWithIndex(iterable);
-        Assert.assertEquals(
-                UnifiedSet.newSet(iterable),
-                Iterate.collect(pairs, (Function<Pair<String, ?>, String>) Pair::getOne, UnifiedSet.newSet()));
-        Assert.assertEquals(
-                Interval.zeroTo(Iterate.sizeOf(iterable) - 1).toSet(),
-                Iterate.collect(pairs, (Function<Pair<?, Integer>, Integer>) Pair::getTwo, UnifiedSet.newSet()));
+        Assert.assertEquals(UnifiedSet.newSet(iterable), Iterate.collect(pairs, (Function<Pair<String, ?>, String>) Pair::getOne, UnifiedSet.newSet()));
+        Assert.assertEquals(Interval.zeroTo(Iterate.sizeOf(iterable) - 1).toSet(), Iterate.collect(pairs, (Function<Pair<?, Integer>, Integer>) Pair::getTwo, UnifiedSet.newSet()));
     }
 
     @Test
-    public void chunk()
-    {
+    public void chunk() {
         MutableList<String> fastList = FastList.newListWith("1", "2", "3", "4", "5", "6", "7");
         RichIterable<RichIterable<String>> groups1 = Iterate.chunk(fastList, 2);
         RichIterable<Integer> sizes1 = groups1.collect(Functions.getSizeOf());
         Assert.assertEquals(FastList.newListWith(2, 2, 2, 1), sizes1);
-
         List<String> arrayList = new ArrayList<>(fastList);
         RichIterable<RichIterable<String>> groups2 = Iterate.chunk(arrayList, 2);
         RichIterable<Integer> sizes2 = groups2.collect(Functions.getSizeOf());
         Assert.assertEquals(FastList.newListWith(2, 2, 2, 1), sizes2);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.chunk(null, 1));
     }
 
     @Test
-    public void getOnly()
-    {
+    public void getOnly() {
         Assert.assertEquals("first", Iterate.getOnly(FastList.newListWith("first")));
         Assert.assertEquals("first", Iterate.getOnly(FastList.newListWith("first").asLazy()));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.getOnly(FastList.newListWith("first", "second")));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.getOnly(null));
     }
 
-    private static class WordToItsLetters implements Function<String, Set<Character>>
-    {
+    private static class WordToItsLetters implements Function<String, Set<Character>> {
+
         private static final long serialVersionUID = 1L;
 
         @Override
-        public Set<Character> valueOf(String name)
-        {
+        public Set<Character> valueOf(String name) {
             return StringIterate.asUppercaseSet(name);
         }
     }
 
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         this.iterables.each(each -> {
             String result = Iterate.makeString(each);
             Assert.assertEquals("1, 2, 3, 4, 5", result);
@@ -2149,8 +1786,7 @@ public class IterateTest
     }
 
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         this.iterables.each(each -> {
             StringBuilder stringBuilder = new StringBuilder();
             Iterate.appendString(each, stringBuilder);
@@ -2161,8 +1797,7 @@ public class IterateTest
     }
 
     @Test
-    public void aggregateByMutating()
-    {
+    public void aggregateByMutating() {
         this.aggregateByMutableResult(FastList.newListWith(1, 1, 1, 2, 2, 3));
         this.aggregateByMutableResult(UnifiedSet.newSetWith(1, 1, 1, 2, 2, 3));
         this.aggregateByMutableResult(HashBag.newBagWith(1, 1, 1, 2, 2, 3));
@@ -2173,19 +1808,15 @@ public class IterateTest
         Assert.assertThrows(IllegalArgumentException.class, () -> this.aggregateByMutableResult(null));
     }
 
-    private void aggregateByMutableResult(Iterable<Integer> iterable)
-    {
+    private void aggregateByMutableResult(Iterable<Integer> iterable) {
         Function0<AtomicInteger> valueCreator = AtomicInteger::new;
         Procedure2<AtomicInteger, Integer> sumAggregator = AtomicInteger::addAndGet;
         MapIterable<String, AtomicInteger> aggregation = Iterate.aggregateInPlaceBy(iterable, String::valueOf, valueCreator, sumAggregator);
-        if (iterable instanceof Set)
-        {
+        if (iterable instanceof Set) {
             Assert.assertEquals(1, aggregation.get("1").intValue());
             Assert.assertEquals(2, aggregation.get("2").intValue());
             Assert.assertEquals(3, aggregation.get("3").intValue());
-        }
-        else
-        {
+        } else {
             Assert.assertEquals(3, aggregation.get("1").intValue());
             Assert.assertEquals(4, aggregation.get("2").intValue());
             Assert.assertEquals(3, aggregation.get("3").intValue());
@@ -2193,8 +1824,7 @@ public class IterateTest
     }
 
     @Test
-    public void aggregateByImmutableResult()
-    {
+    public void aggregateByImmutableResult() {
         this.aggregateByImmutableResult(FastList.newListWith(1, 1, 1, 2, 2, 3));
         this.aggregateByImmutableResult(UnifiedSet.newSetWith(1, 1, 1, 2, 2, 3));
         this.aggregateByImmutableResult(HashBag.newBagWith(1, 1, 1, 2, 2, 3));
@@ -2205,19 +1835,15 @@ public class IterateTest
         Assert.assertThrows(IllegalArgumentException.class, () -> this.aggregateByImmutableResult(null));
     }
 
-    private void aggregateByImmutableResult(Iterable<Integer> iterable)
-    {
+    private void aggregateByImmutableResult(Iterable<Integer> iterable) {
         Function0<Integer> valueCreator = () -> 0;
         Function2<Integer, Integer, Integer> sumAggregator = (aggregate, value) -> aggregate + value;
         MapIterable<String, Integer> aggregation = Iterate.aggregateBy(iterable, String::valueOf, valueCreator, sumAggregator);
-        if (iterable instanceof Set)
-        {
+        if (iterable instanceof Set) {
             Assert.assertEquals(1, aggregation.get("1").intValue());
             Assert.assertEquals(2, aggregation.get("2").intValue());
             Assert.assertEquals(3, aggregation.get("3").intValue());
-        }
-        else
-        {
+        } else {
             Assert.assertEquals(3, aggregation.get("1").intValue());
             Assert.assertEquals(4, aggregation.get("2").intValue());
             Assert.assertEquals(3, aggregation.get("3").intValue());
@@ -2225,8 +1851,7 @@ public class IterateTest
     }
 
     @Test
-    public void sumOfInt()
-    {
+    public void sumOfInt() {
         this.iterables.each(each -> Assert.assertEquals(15L, Iterate.sumOfLong(each, value -> value)));
         long result = Iterate.sumOfInt(FastList.newListWith(2_000_000_000, 2_000_000_000, 2_000_000_000), e -> e);
         Assert.assertEquals(6_000_000_000L, result);
@@ -2234,15 +1859,13 @@ public class IterateTest
     }
 
     @Test
-    public void sumOfLong()
-    {
+    public void sumOfLong() {
         this.iterables.each(each -> Assert.assertEquals(15L, Iterate.sumOfLong(each, Integer::longValue)));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.sumOfLong(null, null));
     }
 
     @Test
-    public void sumOfFloat()
-    {
+    public void sumOfFloat() {
         this.iterables.each(each -> Assert.assertEquals(15.0d, Iterate.sumOfFloat(each, Integer::floatValue), 0.0d));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.sumOfFloat(null, null));
         double result = Iterate.sumOfFloat(FastList.newListWith(2_000_000_000, 2_000_000_000, 2_000_000_000), e -> e);
@@ -2250,31 +1873,26 @@ public class IterateTest
     }
 
     @Test
-    public void sumOfDouble()
-    {
+    public void sumOfDouble() {
         this.iterables.each(each -> Assert.assertEquals(15.0d, Iterate.sumOfDouble(each, Integer::doubleValue), 0.0d));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.sumOfDouble(null, null));
     }
 
     @Test
-    public void sumOfBigDecimal()
-    {
+    public void sumOfBigDecimal() {
         this.iterables.each(each -> Assert.assertEquals(new BigDecimal(15), Iterate.sumOfBigDecimal(each, BigDecimal::new)));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.sumOfBigDecimal(null, null));
     }
 
     @Test
-    public void sumOfBigInteger()
-    {
+    public void sumOfBigInteger() {
         this.iterables.each(each -> Assert.assertEquals(new BigInteger("15"), Iterate.sumOfBigInteger(each, integer -> new BigInteger(integer.toString()))));
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.sumOfBigDecimal(null, null));
     }
 
     @Test
-    public void sumByBigDecimal()
-    {
-        this.iterables.each(each ->
-        {
+    public void sumByBigDecimal() {
+        this.iterables.each(each -> {
             MutableMap<Integer, BigDecimal> result = Iterate.sumByBigDecimal(each, e -> e % 2, BigDecimal::new);
             Assert.assertEquals(new BigDecimal(9), result.get(1));
             Assert.assertEquals(new BigDecimal(6), result.get(0));
@@ -2282,10 +1900,8 @@ public class IterateTest
     }
 
     @Test
-    public void sumByBigInteger()
-    {
-        this.iterables.each(each ->
-        {
+    public void sumByBigInteger() {
+        this.iterables.each(each -> {
             MutableMap<Integer, BigInteger> result = Iterate.sumByBigInteger(each, e -> e % 2, i -> new BigInteger(i.toString()));
             Assert.assertEquals(new BigInteger("9"), result.get(1));
             Assert.assertEquals(new BigInteger("6"), result.get(0));
@@ -2293,40 +1909,32 @@ public class IterateTest
     }
 
     @Test
-    public void sumByInt()
-    {
-        this.iterables.each(each ->
-        {
+    public void sumByInt() {
+        this.iterables.each(each -> {
             ObjectLongMap<Integer> result = Iterate.sumByInt(each, i -> i % 2, e -> e);
             Assert.assertEquals(9, result.get(1));
             Assert.assertEquals(6, result.get(0));
         });
-        ObjectLongMap<Integer> map =
-                Iterate.sumByInt(FastList.newListWith(2_000_000_000, 2_000_000_001, 2_000_000_000, 2_000_000_001, 2_000_000_000), i -> i % 2, e -> e);
+        ObjectLongMap<Integer> map = Iterate.sumByInt(FastList.newListWith(2_000_000_000, 2_000_000_001, 2_000_000_000, 2_000_000_001, 2_000_000_000), i -> i % 2, e -> e);
         Assert.assertEquals(4_000_000_002L, map.get(1));
         Assert.assertEquals(6_000_000_000L, map.get(0));
     }
 
     @Test
-    public void sumByFloat()
-    {
-        this.iterables.each(each ->
-        {
+    public void sumByFloat() {
+        this.iterables.each(each -> {
             ObjectDoubleMap<Integer> result = Iterate.sumByFloat(each, f -> f % 2, e -> e);
             Assert.assertEquals(9.0d, result.get(1), 0.0);
             Assert.assertEquals(6.0d, result.get(0), 0.0);
         });
-        ObjectDoubleMap<Integer> map =
-                Iterate.sumByFloat(FastList.newListWith(2_000_000_000, 2_000_001, 2_000_000_000, 2_000_001, 2_000_000_000), i -> i % 2, e -> e);
+        ObjectDoubleMap<Integer> map = Iterate.sumByFloat(FastList.newListWith(2_000_000_000, 2_000_001, 2_000_000_000, 2_000_001, 2_000_000_000), i -> i % 2, e -> e);
         Assert.assertEquals((double) 4_000_002L, map.get(1), 0.00001d);
         Assert.assertEquals((double) 6_000_000_000L, map.get(0), 0.00001d);
     }
 
     @Test
-    public void sumByLong()
-    {
-        this.iterables.each(each ->
-        {
+    public void sumByLong() {
+        this.iterables.each(each -> {
             ObjectLongMap<Integer> result = Iterate.sumByLong(each, l -> l % 2, e -> e);
             Assert.assertEquals(9, result.get(1));
             Assert.assertEquals(6, result.get(0));
@@ -2334,10 +1942,8 @@ public class IterateTest
     }
 
     @Test
-    public void sumByDouble()
-    {
-        this.iterables.each(each ->
-        {
+    public void sumByDouble() {
+        this.iterables.each(each -> {
             ObjectDoubleMap<Integer> result = Iterate.sumByDouble(each, d -> d % 2, e -> e);
             Assert.assertEquals(9.0d, result.get(1), 0.0);
             Assert.assertEquals(6.0d, result.get(0), 0.0);
@@ -2345,8 +1951,7 @@ public class IterateTest
     }
 
     @Test
-    public void minBy()
-    {
+    public void minBy() {
         Assert.assertEquals(Integer.valueOf(1), Iterate.minBy(FastList.newListWith(1, 2, 3), Functions.getIntegerPassThru()));
         Assert.assertEquals(Integer.valueOf(1), Iterate.minBy(FastList.newListWith(3, 2, 1), Functions.getIntegerPassThru()));
         Assert.assertEquals(Integer.valueOf(1), Iterate.minBy(FastList.newListWith(1, 2, 3).asSynchronized(), Functions.getIntegerPassThru()));
@@ -2358,8 +1963,7 @@ public class IterateTest
     }
 
     @Test
-    public void minByThrowsOnEmpty()
-    {
+    public void minByThrowsOnEmpty() {
         Assert.assertThrows(NoSuchElementException.class, () -> Iterate.minBy(FastList.newList(), Functions.getIntegerPassThru()));
         Assert.assertThrows(NoSuchElementException.class, () -> Iterate.minBy(FastList.<Integer>newList().asSynchronized(), Functions.getIntegerPassThru()));
         Assert.assertThrows(NoSuchElementException.class, () -> Iterate.minBy(Arrays.asList(), Functions.getIntegerPassThru()));
@@ -2367,14 +1971,12 @@ public class IterateTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void minByThrowsOnNull()
-    {
+    public void minByThrowsOnNull() {
         Iterate.minBy(null, null);
     }
 
     @Test
-    public void maxBy()
-    {
+    public void maxBy() {
         Assert.assertEquals(Integer.valueOf(3), Iterate.maxBy(FastList.newListWith(1, 2, 3), Functions.getIntegerPassThru()));
         Assert.assertEquals(Integer.valueOf(3), Iterate.maxBy(FastList.newListWith(3, 2, 1), Functions.getIntegerPassThru()));
         Assert.assertEquals(Integer.valueOf(3), Iterate.maxBy(FastList.newListWith(1, 2, 3).asSynchronized(), Functions.getIntegerPassThru()));
@@ -2386,8 +1988,7 @@ public class IterateTest
     }
 
     @Test
-    public void maxByThrowsOnEmpty()
-    {
+    public void maxByThrowsOnEmpty() {
         Assert.assertThrows(NoSuchElementException.class, () -> Iterate.maxBy(FastList.newList(), Functions.getIntegerPassThru()));
         Assert.assertThrows(NoSuchElementException.class, () -> Iterate.maxBy(FastList.<Integer>newList().asSynchronized(), Functions.getIntegerPassThru()));
         Assert.assertThrows(NoSuchElementException.class, () -> Iterate.maxBy(Arrays.asList(), Functions.getIntegerPassThru()));
@@ -2395,38 +1996,1200 @@ public class IterateTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void maxByThrowsOnNull()
-    {
+    public void maxByThrowsOnNull() {
         Iterate.maxBy(null, null);
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(Iterate.class);
     }
 
     @Test
-    public void groupByUniqueKey()
-    {
+    public void groupByUniqueKey() {
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), Iterate.groupByUniqueKey(FastList.newListWith(1, 2, 3), id -> id));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void groupByUniqueKey_throws_for_null()
-    {
+    public void groupByUniqueKey_throws_for_null() {
         Iterate.groupByUniqueKey(null, id -> id);
     }
 
     @Test
-    public void groupByUniqueKey_target()
-    {
+    public void groupByUniqueKey_target() {
         Assert.assertEquals(UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3), Iterate.groupByUniqueKey(FastList.newListWith(1, 2, 3), id -> id, UnifiedMap.newWithKeysValues(0, 0)));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void groupByUniqueKey_target_throws_for_null()
-    {
+    public void groupByUniqueKey_target_throws_for_null() {
         Iterate.groupByUniqueKey(null, id -> id, UnifiedMap.newMap());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllTo, this.description("addAllTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllFrom() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllFrom, this.description("removeAllFrom"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllFromEmptyTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllFromEmptyTest, this.description("removeAllFromEmptyTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllFromEmptyListTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllFromEmptyListTest, this.description("removeAllFromEmptyListTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllFromNoElementRemovedTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllFromNoElementRemovedTest, this.description("removeAllFromNoElementRemovedTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllFromEmptyTargetListTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllFromEmptyTargetListTest, this.description("removeAllFromEmptyTargetListTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterableFrom() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllIterableFrom, this.description("removeAllIterableFrom"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterableFromEmptyTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllIterableFromEmptyTest, this.description("removeAllIterableFromEmptyTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterableFromEmptyListTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllIterableFromEmptyListTest, this.description("removeAllIterableFromEmptyListTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterableFromNoElementRemovedTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllIterableFromNoElementRemovedTest, this.description("removeAllIterableFromNoElementRemovedTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterableFromEmptyTargetListTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllIterableFromEmptyTargetListTest, this.description("removeAllIterableFromEmptyTargetListTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sizeOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sizeOf, this.description("sizeOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray_NullParameter() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::toArray_NullParameter, this.description("toArray_NullParameter"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray_with_array() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray_with_array, this.description("toArray_with_array"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromToDoit() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromToDoit, this.description("fromToDoit"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reduceInPlaceCollector() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reduceInPlaceCollector, this.description("reduceInPlaceCollector"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reduceInPlace() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reduceInPlace, this.description("reduceInPlace"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoInt, this.description("injectIntoInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoLong, this.description("injectIntoLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoDouble, this.description("injectIntoDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoFloat, this.description("injectIntoFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto2, this.description("injectInto2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoString, this.description("injectIntoString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoMaxString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoMaxString, this.description("injectIntoMaxString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoMinString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoMinString, this.description("injectIntoMinString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollectFromAttributes() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollectFromAttributes, this.description("flatCollectFromAttributes"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollectFromAttributesWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollectFromAttributesWithTarget, this.description("flatCollectFromAttributesWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollectFromAttributesWithTarget_NullParameter() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::flatCollectFromAttributesWithTarget_NullParameter, this.description("flatCollectFromAttributesWithTarget_NullParameter"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollectFromAttributesUsingStringFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollectFromAttributesUsingStringFunction, this.description("flatCollectFromAttributesUsingStringFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollectOneLevel() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollectOneLevel, this.description("flatCollectOneLevel"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollectOneLevel_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollectOneLevel_target, this.description("flatCollectOneLevel_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEach, this.description("groupByEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByWithTarget, this.description("groupByWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEachWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEachWithTarget, this.description("groupByEachWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByAndCollect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByAndCollect, this.description("groupByAndCollect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstAndLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstAndLast, this.description("getFirstAndLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getFirst_null_throws, this.description("getFirst_null_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getList_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getList_null_throws, this.description("getList_null_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstAndLastInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstAndLastInterval, this.description("getFirstAndLastInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstAndLastLinkedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstAndLastLinkedList, this.description("getFirstAndLastLinkedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstAndLastTreeSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstAndLastTreeSet, this.description("getFirstAndLastTreeSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstAndLastCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstAndLastCollection, this.description("getFirstAndLastCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstAndLastOnEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstAndLastOnEmpty, this.description("getFirstAndLastOnEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstAndLastForSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstAndLastForSet, this.description("getFirstAndLastForSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstAndLastOnEmptyForSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstAndLastOnEmptyForSet, this.description("getFirstAndLastOnEmptyForSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectDifferentTargetCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectDifferentTargetCollection, this.description("selectDifferentTargetCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWithDifferentTargetCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWithDifferentTargetCollection, this.description("rejectWithDifferentTargetCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count_empty, this.description("count_empty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::count_null_throws, this.description("count_null_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMap, this.description("toMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMapTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMapTarget, this.description("toMapTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addToMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addToMap, this.description("addToMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMapSelectingKeyAndValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMapSelectingKeyAndValue, this.description("toMapSelectingKeyAndValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMultimap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMultimap, this.description("toMultimap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectPairs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectPairs, this.description("selectPairs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detect, this.description("detect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectOptional() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectOptional, this.description("detectOptional"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIndex, this.description("detectIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIndexWithTreeSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIndexWithTreeSet, this.description("detectIndexWithTreeSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIndexWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIndexWith, this.description("detectIndexWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIndexWithWithTreeSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIndexWithWithTreeSet, this.description("detectIndexWithWithTreeSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithIfNone, this.description("detectWithIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith, this.description("selectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWithWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWithWithTarget, this.description("selectWithWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith, this.description("rejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWithTarget, this.description("rejectWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectAndRejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectAndRejectWith, this.description("selectAndRejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition, this.description("partition"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith, this.description("partitionWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectTargetCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectTargetCollection, this.description("rejectTargetCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectOnRandomAccessTargetCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectOnRandomAccessTargetCollection, this.description("rejectOnRandomAccessTargetCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWithTargetCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWithTargetCollection, this.description("rejectWithTargetCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWithOnRandomAccessTargetCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWithOnRandomAccessTargetCollection, this.description("rejectWithOnRandomAccessTargetCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyWith, this.description("anySatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyWith, this.description("allSatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyWith, this.description("noneSatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWithSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWithSet, this.description("selectWithSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWithSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWithSet, this.description("rejectWithSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithSet, this.description("detectWithSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithRandomAccess() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithRandomAccess, this.description("detectWithRandomAccess"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithOptionalSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithOptionalSet, this.description("detectWithOptionalSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithOptionalRandomAccess() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithOptionalRandomAccess, this.description("detectWithOptionalRandomAccess"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyWithSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyWithSet, this.description("anySatisfyWithSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyWithSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyWithSet, this.description("allSatisfyWithSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyWithSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyWithSet, this.description("noneSatisfyWithSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectAndRejectWithSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectAndRejectWithSet, this.description("selectAndRejectWithSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIf, this.description("collectIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIfTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIfTarget, this.description("collectIfTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectBoolean() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectBoolean, this.description("collectBoolean"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectBooleanWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectBooleanWithTarget, this.description("collectBooleanWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectByte() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectByte, this.description("collectByte"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectByteWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectByteWithTarget, this.description("collectByteWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectChar() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectChar, this.description("collectChar"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectCharWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectCharWithTarget, this.description("collectCharWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectDouble, this.description("collectDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectDoubleWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectDoubleWithTarget, this.description("collectDoubleWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectFloat, this.description("collectFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectFloatWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectFloatWithTarget, this.description("collectFloatWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectInt, this.description("collectInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIntWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIntWithTarget, this.description("collectIntWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectLong, this.description("collectLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectLongWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectLongWithTarget, this.description("collectLongWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectShort() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectShort, this.description("collectShort"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectShortWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectShortWithTarget, this.description("collectShortWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect_sortedSetSource() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect_sortedSetSource, this.description("collect_sortedSetSource"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectTarget, this.description("collectTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithWithTarget, this.description("collectWithWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIf, this.description("removeIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWith, this.description("removeIfWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfLinkedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfLinkedList, this.description("removeIfLinkedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfAll, this.description("removeIfAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfNone, this.description("removeIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfFromSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfFromSet, this.description("removeIfFromSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWithFastList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWithFastList, this.description("removeIfWithFastList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWithRandomAccess() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWithRandomAccess, this.description("removeIfWithRandomAccess"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWithLinkedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWithLinkedList, this.description("removeIfWithLinkedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoIfProcedure() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoIfProcedure, this.description("injectIntoIfProcedure"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmpty, this.description("isEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::notEmpty, this.description("notEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedList, this.description("toSortedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedListWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedListWithComparator, this.description("toSortedListWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectTarget, this.description("selectTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectTarget, this.description("rejectTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectInstancesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectInstancesOf, this.description("selectInstancesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count_null_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::count_null_null_throws, this.description("count_null_null_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countWith, this.description("countWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countWith_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::countWith_null_throws, this.description("countWith_null_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoWith, this.description("injectIntoWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoWithRandomAccess() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoWithRandomAccess, this.description("injectIntoWithRandomAccess"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoWithHashSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoWithHashSet, this.description("injectIntoWithHashSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithSets() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithSets, this.description("forEachWithSets"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThis() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThis, this.description("sortThis"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisWithPredicate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisWithPredicate, this.description("sortThisWithPredicate"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisBy, this.description("sortThisBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisWithComparator, this.description("sortThisWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::take, this.description("take"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::take_null_throws, this.description("take_null_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take_negative_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::take_negative_throws, this.description("take_negative_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::drop, this.description("drop"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::drop_null_throws, this.description("drop_null_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop_negative_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::drop_negative_throws, this.description("drop_negative_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnlySingleton() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getOnlySingleton, this.description("getOnlySingleton"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnlyEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getOnlyEmpty, this.description("getOnlyEmpty"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnlyMultiple() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getOnlyMultiple, this.description("getOnlyMultiple"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipWithIndex, this.description("zipWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk, this.description("chunk"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getOnly, this.description("getOnly"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_aggregateByMutating() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::aggregateByMutating, this.description("aggregateByMutating"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_aggregateByImmutableResult() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::aggregateByImmutableResult, this.description("aggregateByImmutableResult"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOfInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOfInt, this.description("sumOfInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOfLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOfLong, this.description("sumOfLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOfFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOfFloat, this.description("sumOfFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOfDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOfDouble, this.description("sumOfDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOfBigDecimal() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOfBigDecimal, this.description("sumOfBigDecimal"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumOfBigInteger() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumOfBigInteger, this.description("sumOfBigInteger"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumByBigDecimal() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumByBigDecimal, this.description("sumByBigDecimal"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumByBigInteger() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumByBigInteger, this.description("sumByBigInteger"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumByInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumByInt, this.description("sumByInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumByFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumByFloat, this.description("sumByFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumByLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumByLong, this.description("sumByLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumByDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumByDouble, this.description("sumByDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minBy, this.description("minBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minByThrowsOnEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minByThrowsOnEmpty, this.description("minByThrowsOnEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minByThrowsOnNull() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::minByThrowsOnNull, this.description("minByThrowsOnNull"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxBy, this.description("maxBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxByThrowsOnEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxByThrowsOnEmpty, this.description("maxByThrowsOnEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxByThrowsOnNull() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::maxByThrowsOnNull, this.description("maxByThrowsOnNull"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey, this.description("groupByUniqueKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_throws_for_null() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::groupByUniqueKey_throws_for_null, this.description("groupByUniqueKey_throws_for_null"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey_target, this.description("groupByUniqueKey_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_target_throws_for_null() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::groupByUniqueKey_target_throws_for_null, this.description("groupByUniqueKey_target_throws_for_null"), java.lang.IllegalArgumentException.class);
+        }
+
+        @java.lang.Override
+        public void before() throws java.lang.Throwable {
+            super.before();
+            this.implementation().setUp();
+        }
+
+        private IterateTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new IterateTest();
+        }
+
+        @java.lang.Override
+        public IterateTest implementation() {
+            return this.implementation;
+        }
     }
 }

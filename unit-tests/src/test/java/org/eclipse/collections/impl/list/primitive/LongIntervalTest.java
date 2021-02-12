@@ -7,12 +7,10 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.primitive;
 
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-
 import org.eclipse.collections.api.LazyLongIterable;
 import org.eclipse.collections.api.LongIterable;
 import org.eclipse.collections.api.RichIterable;
@@ -45,13 +43,12 @@ import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LongIntervalTest
-{
+public class LongIntervalTest {
+
     private final LongInterval longInterval = LongInterval.oneTo(3);
 
     @Test
-    public void fromAndToAndBy()
-    {
+    public void fromAndToAndBy() {
         LongInterval interval = LongInterval.from(1);
         LongInterval interval2 = interval.to(10);
         LongInterval interval3 = interval2.by(2);
@@ -60,12 +57,10 @@ public class LongIntervalTest
         Verify.assertEqualsAndHashCode(interval3, LongInterval.fromToBy(1, 10, 2));
         Verify.assertSize(Integer.MAX_VALUE, LongInterval.fromTo(Integer.MIN_VALUE + 1, -1));
         Verify.assertSize(Integer.MAX_VALUE, LongInterval.fromTo(1, Integer.MAX_VALUE));
-
         Assert.assertThrows(IllegalArgumentException.class, () -> LongInterval.fromTo(Integer.MIN_VALUE, Integer.MAX_VALUE));
         Assert.assertThrows(IllegalArgumentException.class, () -> LongInterval.fromTo(-1, Integer.MAX_VALUE));
         Assert.assertThrows(IllegalArgumentException.class, () -> LongInterval.fromToBy(Integer.MIN_VALUE, Integer.MAX_VALUE, 2));
         Assert.assertEquals(LongInterval.fromTo(Integer.MIN_VALUE + 1, -1).size(), LongInterval.oneTo(Integer.MAX_VALUE).size());
-
         Assert.assertEquals(LongLists.mutable.with(0), LongInterval.fromToBy(0, 2, 3));
         Assert.assertEquals(LongLists.mutable.with(0), LongInterval.fromToBy(0, -2, -3));
         Assert.assertEquals(LongLists.mutable.with(1_000_000_000), LongInterval.fromToBy(1_000_000_000, 2_000_000_000, 1_500_000_000));
@@ -75,8 +70,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void fromAndToAndByWithLongs()
-    {
+    public void fromAndToAndByWithLongs() {
         long maxint = Integer.MAX_VALUE;
         long minint = Integer.MIN_VALUE;
         LongInterval interval = LongInterval.from(maxint + 1);
@@ -85,64 +79,51 @@ public class LongIntervalTest
         Verify.assertEqualsAndHashCode(interval, LongInterval.fromTo(maxint + 1, maxint + 1));
         Verify.assertEqualsAndHashCode(interval2, LongInterval.fromTo(maxint + 1, maxint + 10));
         Verify.assertEqualsAndHashCode(interval3, LongInterval.fromToBy(maxint + 1, maxint + 10, 2));
-
         Assert.assertEquals(LongLists.mutable.with(maxint, maxint * 2, maxint * 3), LongInterval.fromToBy(maxint, maxint * 3L, maxint));
-        Assert.assertEquals(
-                LongLists.mutable.with(minint, minint + maxint, minint + maxint * 2, minint + maxint * 3),
-                LongInterval.fromToBy(minint, maxint * 2, maxint));
+        Assert.assertEquals(LongLists.mutable.with(minint, minint + maxint, minint + maxint * 2, minint + maxint * 3), LongInterval.fromToBy(minint, maxint * 2, maxint));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromToBy_throws_step_size_zero()
-    {
+    public void fromToBy_throws_step_size_zero() {
         LongInterval.fromToBy(0, 0, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromToBy_throws_on_illegal_step()
-    {
+    public void fromToBy_throws_on_illegal_step() {
         LongInterval.fromToBy(5, 0, 1);
     }
 
     @Test
-    public void fromToBy_with_same_start_and_end_with_negative_step()
-    {
+    public void fromToBy_with_same_start_and_end_with_negative_step() {
         MutableLongList integers = LongInterval.fromToBy(2, 2, -2).toList();
-
         Verify.assertEquals(1, integers.size());
         Verify.assertEquals(2, integers.getFirst());
     }
 
     @Test
-    public void fromToBy_with_same_start_and_end_with_negative_step2()
-    {
+    public void fromToBy_with_same_start_and_end_with_negative_step2() {
         MutableLongList integers = LongInterval.fromToBy(2, 2, -1).toList();
-
         Verify.assertEquals(1, integers.size());
         Verify.assertEquals(2, integers.getFirst());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void oneToBy_throws_step_size_zero()
-    {
+    public void oneToBy_throws_step_size_zero() {
         LongInterval.oneToBy(1, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void oneToBy_throws_count_size_zero()
-    {
+    public void oneToBy_throws_count_size_zero() {
         LongInterval.oneToBy(0, 1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void zeroToBy_throws_step_size_zero()
-    {
+    public void zeroToBy_throws_step_size_zero() {
         LongInterval.zeroToBy(0, 0);
     }
 
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         LongInterval interval1 = LongInterval.oneTo(5);
         LongInterval interval2 = LongInterval.oneTo(5);
         LongInterval interval3 = LongInterval.zeroTo(5);
@@ -150,22 +131,17 @@ public class LongIntervalTest
         Verify.assertEqualsAndHashCode(interval1, interval2);
         Assert.assertNotEquals(interval1, interval3);
         Assert.assertNotEquals(interval3, interval1);
-
         Verify.assertEqualsAndHashCode(LongInterval.fromToBy(1, 5, 2), LongInterval.fromToBy(1, 6, 2));
         Verify.assertEqualsAndHashCode(LongArrayList.newListWith(1, 2, 3), LongInterval.fromTo(1, 3));
         Verify.assertEqualsAndHashCode(LongArrayList.newListWith(3, 2, 1), LongInterval.fromTo(3, 1));
-
         Assert.assertNotEquals(LongArrayList.newListWith(1, 2, 3, 4), LongInterval.fromTo(1, 3));
         Assert.assertNotEquals(LongArrayList.newListWith(1, 2, 4), LongInterval.fromTo(1, 3));
         Assert.assertNotEquals(LongArrayList.newListWith(3, 2, 0), LongInterval.fromTo(3, 1));
-
         Verify.assertEqualsAndHashCode(LongArrayList.newListWith(-1, -2, -3), LongInterval.fromTo(-1, -3));
-
         Verify.assertEqualsAndHashCode(LongArrayList.newListWith(1), LongInterval.fromToBy(1, 1, 1));
         Verify.assertEqualsAndHashCode(LongArrayList.newListWith(1), LongInterval.fromToBy(1, 1, 2));
         Verify.assertEqualsAndHashCode(LongArrayList.newListWith(-1), LongInterval.fromToBy(-1, -1, -1));
         Verify.assertEqualsAndHashCode(LongArrayList.newListWith(-1), LongInterval.fromToBy(-1, -1, -2));
-
         LongInterval interval4 = LongInterval.fromTo(-1, -1_000);
         LongInterval interval5 = LongInterval.fromTo(-1, -1_000);
         LongInterval interval6 = LongInterval.fromTo(0, -999);
@@ -176,21 +152,18 @@ public class LongIntervalTest
     }
 
     @Test
-    public void sumLongInterval()
-    {
+    public void sumLongInterval() {
         Assert.assertEquals(15, (int) LongInterval.oneTo(5).sum());
     }
 
     @Test
-    public void maxLongInterval()
-    {
+    public void maxLongInterval() {
         long value = LongInterval.oneTo(5).max();
         Assert.assertEquals(5L, value);
     }
 
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         LongIterator iterator = this.longInterval.longIterator();
         Assert.assertTrue(iterator.hasNext());
         Assert.assertEquals(1L, iterator.next());
@@ -202,29 +175,23 @@ public class LongIntervalTest
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void iterator_throws()
-    {
+    public void iterator_throws() {
         LongIterator iterator = this.longInterval.longIterator();
-        while (iterator.hasNext())
-        {
+        while (iterator.hasNext()) {
             iterator.next();
         }
-
         iterator.next();
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         long[] sum = new long[1];
         this.longInterval.forEach(each -> sum[0] += each);
-
         Assert.assertEquals(6L, sum[0]);
     }
 
     @Test
-    public void each()
-    {
+    public void each() {
         MutableLongList list1 = LongLists.mutable.empty();
         LongInterval interval1 = LongInterval.oneTo(5);
         interval1.each(list1::add);
@@ -236,8 +203,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         LongInterval longInterval1 = LongInterval.oneTo(3);
         MutableLong result = longInterval1.injectInto(new MutableLong(0), MutableLong::add);
         Assert.assertEquals(new MutableLong(6), result);
@@ -247,8 +213,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void injectIntoWithIndex()
-    {
+    public void injectIntoWithIndex() {
         LongInterval interval1 = LongInterval.oneTo(3);
         MutableLong result1 = this.longInterval.injectIntoWithIndex(new MutableLong(0), (object, value, index) -> object.add(value * interval1.get(index)));
         Assert.assertEquals(new MutableLong(14), result1);
@@ -258,90 +223,56 @@ public class LongIntervalTest
     }
 
     @Test
-    public void injectIntoOnFromToBySameStartEndNegativeStepInterval()
-    {
+    public void injectIntoOnFromToBySameStartEndNegativeStepInterval() {
         LongInterval interval = LongInterval.fromToBy(2, 2, -2);
-
         Assert.assertEquals(new MutableLong(0), interval.injectInto(new MutableLong(-2), MutableLong::add));
     }
 
     @Test
-    public void chunk()
-    {
+    public void chunk() {
         LongInterval interval1 = LongInterval.fromToBy(0, 5, 1);
-        MutableList<LongInterval> expected1 = Lists.mutable.with(
-                LongInterval.fromToBy(0, 1, 1),
-                LongInterval.fromToBy(2, 3, 1),
-                LongInterval.fromToBy(4, 5, 1));
+        MutableList<LongInterval> expected1 = Lists.mutable.with(LongInterval.fromToBy(0, 1, 1), LongInterval.fromToBy(2, 3, 1), LongInterval.fromToBy(4, 5, 1));
         Assert.assertEquals(expected1, interval1.chunk(2));
-
         LongInterval interval2 = LongInterval.fromToBy(0, -5, -1);
-        MutableList<LongInterval> expected2 = Lists.mutable.with(
-                LongInterval.fromToBy(0, -1, -1),
-                LongInterval.fromToBy(-2, -3, -1),
-                LongInterval.fromToBy(-4, -5, -1));
+        MutableList<LongInterval> expected2 = Lists.mutable.with(LongInterval.fromToBy(0, -1, -1), LongInterval.fromToBy(-2, -3, -1), LongInterval.fromToBy(-4, -5, -1));
         Assert.assertEquals(expected2, interval2.chunk(2));
-
         LongInterval interval3 = LongInterval.fromToBy(0, 6, 1);
-        MutableList<LongInterval> expected3 = Lists.mutable.with(
-                LongInterval.fromToBy(0, 1, 1),
-                LongInterval.fromToBy(2, 3, 1),
-                LongInterval.fromToBy(4, 5, 1),
-                LongInterval.fromToBy(6, 6, 1));
+        MutableList<LongInterval> expected3 = Lists.mutable.with(LongInterval.fromToBy(0, 1, 1), LongInterval.fromToBy(2, 3, 1), LongInterval.fromToBy(4, 5, 1), LongInterval.fromToBy(6, 6, 1));
         Assert.assertEquals(expected3, interval3.chunk(2));
-
         LongInterval interval4 = LongInterval.fromToBy(0, -6, -1);
-        MutableList<LongInterval> expected4 = Lists.mutable.with(
-                LongInterval.fromToBy(0, -1, -1),
-                LongInterval.fromToBy(-2, -3, -1),
-                LongInterval.fromToBy(-4, -5, -1),
-                LongInterval.fromToBy(-6, -6, -1));
+        MutableList<LongInterval> expected4 = Lists.mutable.with(LongInterval.fromToBy(0, -1, -1), LongInterval.fromToBy(-2, -3, -1), LongInterval.fromToBy(-4, -5, -1), LongInterval.fromToBy(-6, -6, -1));
         RichIterable<LongIterable> actual4 = interval4.chunk(2);
         Assert.assertEquals(expected4, actual4);
-
         LongInterval interval5 = LongInterval.fromToBy(0, 6, 1);
         MutableList<LongInterval> expected5 = Lists.mutable.with(LongInterval.fromToBy(0, 6, 1));
         Assert.assertEquals(expected5, interval5.chunk(7));
-
         LongInterval interval6 = LongInterval.fromToBy(0, -6, -1);
         MutableList<LongInterval> expected6 = Lists.mutable.with(LongInterval.fromToBy(0, -6, -1));
         Assert.assertEquals(expected6, interval6.chunk(7));
-
         LongInterval interval7 = LongInterval.fromToBy(0, 6, 1);
         MutableList<LongInterval> expected7 = Lists.mutable.with(LongInterval.fromToBy(0, 6, 1));
         Assert.assertEquals(expected7, interval7.chunk(8));
-
         LongInterval interval8 = LongInterval.fromToBy(0, -6, -1);
         MutableList<LongInterval> expected8 = Lists.mutable.with(LongInterval.fromToBy(0, -6, -1));
         Assert.assertEquals(expected8, interval8.chunk(8));
-
         LongInterval interval9 = LongInterval.fromToBy(0, 9, 4);
-        MutableList<LongIterable> expected9 = Lists.mutable.with(
-                LongLists.mutable.with(0, 4),
-                LongLists.mutable.with(8));
+        MutableList<LongIterable> expected9 = Lists.mutable.with(LongLists.mutable.with(0, 4), LongLists.mutable.with(8));
         Assert.assertEquals(expected9, interval9.chunk(2));
-
         LongInterval interval10 = LongInterval.fromToBy(0, -9, -4);
-        MutableList<LongIterable> expected10 = Lists.mutable.with(
-                LongLists.mutable.with(0, -4),
-                LongLists.mutable.with(-8));
+        MutableList<LongIterable> expected10 = Lists.mutable.with(LongLists.mutable.with(0, -4), LongLists.mutable.with(-8));
         Assert.assertEquals(expected10, interval10.chunk(2));
-
         LongInterval interval11 = LongInterval.fromToBy(0, 5, 3);
         MutableList<LongIterable> expected11 = Lists.mutable.with(LongLists.mutable.with(0, 3));
         Assert.assertEquals(expected11, interval11.chunk(3));
-
         LongInterval interval12 = LongInterval.fromToBy(0, -5, -3);
         MutableList<LongIterable> expected12 = Lists.mutable.with(LongLists.mutable.with(0, -3));
         Assert.assertEquals(expected12, interval12.chunk(3));
-
         Assert.assertThrows(IllegalArgumentException.class, () -> interval12.chunk(0));
         Assert.assertThrows(IllegalArgumentException.class, () -> interval12.chunk(-1));
     }
 
     @Test
-    public void size()
-    {
+    public void size() {
         Verify.assertSize(3, this.longInterval);
         // Positive Ranges
         Verify.assertSize(10, LongInterval.zeroTo(9));
@@ -351,7 +282,6 @@ public class LongIntervalTest
         Verify.assertSize(500_000_000, LongInterval.oneTo(2_000_000_000).by(4));
         Verify.assertSize(222_222_223, LongInterval.oneTo(2_000_000_000).by(9));
         Verify.assertSize(2, LongInterval.fromToBy(Integer.MAX_VALUE - 10, Integer.MAX_VALUE, 8));
-
         // Negative Ranges
         Verify.assertSize(10, LongInterval.fromTo(0, -9));
         Verify.assertSize(2_000_000_000, LongInterval.fromTo(-1, -2_000_000_000));
@@ -368,93 +298,79 @@ public class LongIntervalTest
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void subList()
-    {
+    public void subList() {
         this.longInterval.subList(0, 1);
     }
 
     @Test
-    public void dotProduct()
-    {
+    public void dotProduct() {
         LongInterval interval = LongInterval.oneTo(3);
         Assert.assertEquals(14, this.longInterval.dotProduct(interval));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void dotProduct_throwsOnListsOfDifferentSizes()
-    {
+    public void dotProduct_throwsOnListsOfDifferentSizes() {
         LongInterval interval = LongInterval.oneTo(4);
         this.longInterval.dotProduct(interval);
     }
 
     @Test
-    public void empty()
-    {
+    public void empty() {
         Assert.assertTrue(this.longInterval.notEmpty());
         Assert.assertFalse(this.longInterval.isEmpty());
         Verify.assertNotEmpty(this.longInterval);
     }
 
     @Test
-    public void count()
-    {
+    public void count() {
         Assert.assertEquals(2L, LongInterval.zeroTo(2).count(LongPredicates.greaterThan(0)));
-
         int count = LongInterval.fromToBy(Integer.MAX_VALUE - 10, Integer.MAX_VALUE, 8).count(LongPredicates.greaterThan(0));
         Assert.assertEquals(2, count);
     }
 
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         Assert.assertTrue(LongInterval.fromTo(-1, 2).anySatisfy(LongPredicates.greaterThan(0)));
         Assert.assertFalse(LongInterval.oneTo(2).anySatisfy(LongPredicates.equal(0)));
     }
 
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         Assert.assertFalse(LongInterval.zeroTo(2).allSatisfy(LongPredicates.greaterThan(0)));
         Assert.assertTrue(LongInterval.oneTo(3).allSatisfy(LongPredicates.greaterThan(0)));
     }
 
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         Assert.assertFalse(LongInterval.zeroTo(2).noneSatisfy(LongPredicates.isEven()));
         Assert.assertTrue(LongInterval.evensFromTo(2, 10).noneSatisfy(LongPredicates.isOdd()));
     }
 
     @Test
-    public void select()
-    {
+    public void select() {
         Verify.assertSize(3, this.longInterval.select(LongPredicates.lessThan(4)));
         Verify.assertSize(2, this.longInterval.select(LongPredicates.lessThan(3)));
     }
 
     @Test
-    public void reject()
-    {
+    public void reject() {
         Verify.assertSize(0, this.longInterval.reject(LongPredicates.lessThan(4)));
         Verify.assertSize(1, this.longInterval.reject(LongPredicates.lessThan(3)));
     }
 
     @Test
-    public void detectIfNone()
-    {
+    public void detectIfNone() {
         Assert.assertEquals(1L, this.longInterval.detectIfNone(LongPredicates.lessThan(4), 0));
         Assert.assertEquals(0L, this.longInterval.detectIfNone(LongPredicates.greaterThan(3), 0));
     }
 
     @Test
-    public void collect()
-    {
+    public void collect() {
         Assert.assertEquals(FastList.newListWith(0L, 1L, 2L), this.longInterval.collect(parameter -> parameter - 1).toList());
     }
 
     @Test
-    public void lazyCollectPrimitives()
-    {
+    public void lazyCollectPrimitives() {
         Assert.assertEquals(BooleanLists.immutable.of(false, true, false), LongInterval.oneTo(3).asLazy().collectBoolean(e -> e % 2 == 0).toList());
         Assert.assertEquals(CharLists.immutable.of((char) 2, (char) 3, (char) 4), LongInterval.oneTo(3).asLazy().collectChar(e -> (char) (e + 1)).toList());
         Assert.assertEquals(ByteLists.immutable.of((byte) 2, (byte) 3, (byte) 4), LongInterval.oneTo(3).asLazy().collectByte(e -> (byte) (e + 1)).toList());
@@ -466,8 +382,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void binarySearch()
-    {
+    public void binarySearch() {
         LongInterval interval1 = LongInterval.oneTo(3);
         Assert.assertEquals(-1, interval1.binarySearch(-1));
         Assert.assertEquals(-1, interval1.binarySearch(0));
@@ -476,7 +391,6 @@ public class LongIntervalTest
         Assert.assertEquals(2, interval1.binarySearch(3));
         Assert.assertEquals(-4, interval1.binarySearch(4));
         Assert.assertEquals(-4, interval1.binarySearch(5));
-
         LongInterval interval2 = LongInterval.fromTo(7, 17).by(3);
         Assert.assertEquals(0, interval2.binarySearch(7));
         Assert.assertEquals(1, interval2.binarySearch(10));
@@ -489,7 +403,6 @@ public class LongIntervalTest
         Assert.assertEquals(-4, interval2.binarySearch(15));
         Assert.assertEquals(-5, interval2.binarySearch(17));
         Assert.assertEquals(-5, interval2.binarySearch(19));
-
         LongInterval interval3 = LongInterval.fromTo(-21, -11).by(5);
         Assert.assertEquals(-1, interval3.binarySearch(-22));
         Assert.assertEquals(0, interval3.binarySearch(-21));
@@ -498,7 +411,6 @@ public class LongIntervalTest
         Assert.assertEquals(-3, interval3.binarySearch(-15));
         Assert.assertEquals(2, interval3.binarySearch(-11));
         Assert.assertEquals(-4, interval3.binarySearch(-9));
-
         LongInterval interval4 = LongInterval.fromTo(50, 30).by(-10);
         Assert.assertEquals(-1, interval4.binarySearch(60));
         Assert.assertEquals(0, interval4.binarySearch(50));
@@ -507,7 +419,6 @@ public class LongIntervalTest
         Assert.assertEquals(-3, interval4.binarySearch(35));
         Assert.assertEquals(2, interval4.binarySearch(30));
         Assert.assertEquals(-4, interval4.binarySearch(25));
-
         LongInterval interval5 = LongInterval.fromTo(-30, -50).by(-10);
         Assert.assertEquals(-1, interval5.binarySearch(-20));
         Assert.assertEquals(0, interval5.binarySearch(-30));
@@ -516,7 +427,6 @@ public class LongIntervalTest
         Assert.assertEquals(-3, interval5.binarySearch(-47));
         Assert.assertEquals(2, interval5.binarySearch(-50));
         Assert.assertEquals(-4, interval5.binarySearch(-65));
-
         LongInterval interval6 = LongInterval.fromTo(27, -30).by(-9);
         Assert.assertEquals(-1, interval6.binarySearch(30));
         Assert.assertEquals(0, interval6.binarySearch(27));
@@ -534,7 +444,6 @@ public class LongIntervalTest
         Assert.assertEquals(6, interval6.binarySearch(-27));
         Assert.assertEquals(-8, interval6.binarySearch(-28));
         Assert.assertEquals(-8, interval6.binarySearch(-30));
-
         LongInterval interval7 = LongInterval.fromTo(-1, 1).by(1);
         Assert.assertEquals(-1, interval7.binarySearch(-2));
         Assert.assertEquals(0, interval7.binarySearch(-1));
@@ -544,8 +453,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void max()
-    {
+    public void max() {
         Assert.assertEquals(9, LongInterval.oneTo(9).max());
         Assert.assertEquals(5, LongInterval.fromTo(5, 1).max());
         Assert.assertEquals(1, LongInterval.fromTo(-5, 1).max());
@@ -553,8 +461,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void min()
-    {
+    public void min() {
         Assert.assertEquals(1, LongInterval.oneTo(9).min());
         Assert.assertEquals(1, LongInterval.fromTo(5, 1).min());
         Assert.assertEquals(-5, LongInterval.fromTo(-5, 1).min());
@@ -562,109 +469,88 @@ public class LongIntervalTest
     }
 
     @Test
-    public void minIfEmpty()
-    {
+    public void minIfEmpty() {
         Assert.assertEquals(1, LongInterval.oneTo(9).minIfEmpty(0));
     }
 
     @Test
-    public void maxIfEmpty()
-    {
+    public void maxIfEmpty() {
         Assert.assertEquals(9, LongInterval.oneTo(9).maxIfEmpty(0));
     }
 
     @Test
-    public void sum()
-    {
+    public void sum() {
         Assert.assertEquals(10L, LongInterval.oneTo(4).sum());
     }
 
     @Test
-    public void sumLong()
-    {
+    public void sumLong() {
         // checks there is no overflow the during calculation of sum() as long as the final result is <= Long.MAX_VALUE
-
         Assert.assertEquals(Long.MAX_VALUE, LongInterval.fromTo(Long.MAX_VALUE, Long.MAX_VALUE).sum());
-
         long l = Long.MAX_VALUE / 5L;
         long expectedSum = 0;
-
-        for (long i = 0L; i < 4L; i++)
-        {
+        for (long i = 0L; i < 4L; i++) {
             expectedSum += l + i;
-
             long actualSum = LongInterval.fromTo(l, l + i).sum();
-
             Assert.assertEquals("interval size : " + (i + 1), expectedSum, actualSum);
             Assert.assertTrue(actualSum > 0L);
         }
     }
 
     @Test
-    public void average()
-    {
+    public void average() {
         Assert.assertEquals(2.5, LongInterval.oneTo(4).average(), 0.0);
     }
 
     @Test
-    public void median()
-    {
+    public void median() {
         Assert.assertEquals(2.5, LongInterval.oneTo(4).median(), 0.0);
         Assert.assertEquals(3.0, LongInterval.oneTo(5).median(), 0.0);
     }
 
     @Test
-    public void toArray()
-    {
-        Assert.assertArrayEquals(new long[]{1, 2, 3, 4}, LongInterval.oneTo(4).toArray());
+    public void toArray() {
+        Assert.assertArrayEquals(new long[] { 1, 2, 3, 4 }, LongInterval.oneTo(4).toArray());
     }
 
     @Test
-    public void toList()
-    {
+    public void toList() {
         Assert.assertEquals(LongArrayList.newListWith(1, 2, 3, 4), LongInterval.oneTo(4).toList());
     }
 
     @Test
-    public void toSortedList()
-    {
+    public void toSortedList() {
         Assert.assertEquals(LongArrayList.newListWith(1, 2, 3, 4), LongInterval.oneTo(4).toReversed().toSortedList());
     }
 
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         Assert.assertEquals(LongHashSet.newSetWith(1, 2, 3, 4), LongInterval.oneTo(4).toSet());
     }
 
     @Test
-    public void toBag()
-    {
+    public void toBag() {
         Assert.assertEquals(LongHashBag.newBagWith(1, 2, 3, 4), LongInterval.oneTo(4).toBag());
     }
 
     @Test
-    public void asLazy()
-    {
+    public void asLazy() {
         Assert.assertEquals(LongInterval.oneTo(5).toSet(), LongInterval.oneTo(5).asLazy().toSet());
         Verify.assertInstanceOf(LazyLongIterable.class, LongInterval.oneTo(5).asLazy());
     }
 
     @Test
-    public void toSortedArray()
-    {
-        Assert.assertArrayEquals(new long[]{1, 2, 3, 4}, LongInterval.fromTo(4, 1).toSortedArray());
+    public void toSortedArray() {
+        Assert.assertArrayEquals(new long[] { 1, 2, 3, 4 }, LongInterval.fromTo(4, 1).toSortedArray());
     }
 
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         LongInterval list1 = LongInterval.oneTo(4);
         LongInterval list2 = LongInterval.oneTo(4);
         LongInterval list3 = LongInterval.fromTo(4, 1);
         LongInterval list4 = LongInterval.fromTo(5, 8);
         LongInterval list5 = LongInterval.fromTo(5, 7);
-
         Verify.assertEqualsAndHashCode(list1, list2);
         Verify.assertPostSerializedEqualsAndHashCode(list1);
         Assert.assertNotEquals(list1, list3);
@@ -673,28 +559,24 @@ public class LongIntervalTest
     }
 
     @Test
-    public void testHashCode()
-    {
+    public void testHashCode() {
         Assert.assertEquals(FastList.newListWith(1, 2, 3).hashCode(), LongInterval.oneTo(3).hashCode());
     }
 
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals("[1, 2, 3]", this.longInterval.toString());
     }
 
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals("1, 2, 3", this.longInterval.makeString());
         Assert.assertEquals("1/2/3", this.longInterval.makeString("/"));
         Assert.assertEquals(this.longInterval.toString(), this.longInterval.makeString("[", ", ", "]"));
     }
 
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         StringBuilder appendable2 = new StringBuilder();
         this.longInterval.appendString(appendable2);
         Assert.assertEquals("1, 2, 3", appendable2.toString());
@@ -707,91 +589,69 @@ public class LongIntervalTest
     }
 
     @Test
-    public void appendStringThrows()
-    {
-        Assert.assertThrows(
-                RuntimeException.class,
-                () -> this.longInterval.appendString(new ThrowingAppendable()));
-        Assert.assertThrows(
-                RuntimeException.class,
-                () -> this.longInterval
-                        .appendString(new ThrowingAppendable(), ", "));
-        Assert.assertThrows(
-                RuntimeException.class,
-                () -> this.longInterval
-                        .appendString(new ThrowingAppendable(), "[", ", ", "]"));
+    public void appendStringThrows() {
+        Assert.assertThrows(RuntimeException.class, () -> this.longInterval.appendString(new ThrowingAppendable()));
+        Assert.assertThrows(RuntimeException.class, () -> this.longInterval.appendString(new ThrowingAppendable(), ", "));
+        Assert.assertThrows(RuntimeException.class, () -> this.longInterval.appendString(new ThrowingAppendable(), "[", ", ", "]"));
     }
 
     @Test
-    public void toReversed()
-    {
+    public void toReversed() {
         LongInterval forward = LongInterval.oneTo(5);
         LongInterval reverse = forward.toReversed();
         Assert.assertEquals(LongArrayList.newListWith(5, 4, 3, 2, 1), reverse);
     }
 
     @Test
-    public void evens()
-    {
+    public void evens() {
         LongInterval interval = LongInterval.evensFromTo(0, 10);
-        int[] evens = {0, 2, 4, 6, 8, 10};
-        int[] odds = {1, 3, 5, 7, 9};
+        int[] evens = { 0, 2, 4, 6, 8, 10 };
+        int[] odds = { 1, 3, 5, 7, 9 };
         this.assertLongIntervalContainsAll(interval, evens);
         this.denyLongIntervalContainsAny(interval, odds);
         Assert.assertEquals(6, interval.size());
-
         LongInterval reverseLongInterval = LongInterval.evensFromTo(10, 0);
         this.assertLongIntervalContainsAll(reverseLongInterval, evens);
         this.denyLongIntervalContainsAny(reverseLongInterval, odds);
         Assert.assertEquals(6, reverseLongInterval.size());
-
         LongInterval negativeLongInterval = LongInterval.evensFromTo(-5, 5);
-        int[] negativeEvens = {-4, -2, 0, 2, 4};
-        int[] negativeOdds = {-3, -1, 1, 3};
+        int[] negativeEvens = { -4, -2, 0, 2, 4 };
+        int[] negativeOdds = { -3, -1, 1, 3 };
         this.assertLongIntervalContainsAll(negativeLongInterval, negativeEvens);
         this.denyLongIntervalContainsAny(negativeLongInterval, negativeOdds);
         Assert.assertEquals(5, negativeLongInterval.size());
-
         LongInterval reverseNegativeLongInterval = LongInterval.evensFromTo(5, -5);
         this.assertLongIntervalContainsAll(reverseNegativeLongInterval, negativeEvens);
         this.denyLongIntervalContainsAny(reverseNegativeLongInterval, negativeOdds);
         Assert.assertEquals(5, reverseNegativeLongInterval.size());
     }
 
-    private void assertLongIntervalContainsAll(LongInterval interval, int[] expectedValues)
-    {
-        for (int value : expectedValues)
-        {
+    private void assertLongIntervalContainsAll(LongInterval interval, int[] expectedValues) {
+        for (int value : expectedValues) {
             Assert.assertTrue(interval.contains(value));
         }
     }
 
-    private void denyLongIntervalContainsAny(LongInterval interval, int[] expectedValues)
-    {
-        for (int value : expectedValues)
-        {
+    private void denyLongIntervalContainsAny(LongInterval interval, int[] expectedValues) {
+        for (int value : expectedValues) {
             Assert.assertFalse(interval.contains(value));
         }
     }
 
     @Test
-    public void odds()
-    {
+    public void odds() {
         LongInterval interval1 = LongInterval.oddsFromTo(0, 10);
         Assert.assertTrue(interval1.containsAll(1, 3, 5, 7, 9));
         Assert.assertTrue(interval1.containsNone(2, 4, 6, 8));
         Assert.assertEquals(5, interval1.size());
-
         LongInterval reverseLongInterval1 = LongInterval.oddsFromTo(10, 0);
         Assert.assertTrue(reverseLongInterval1.containsAll(1, 3, 5, 7, 9));
         Assert.assertTrue(reverseLongInterval1.containsNone(0, 2, 4, 6, 8, 10));
         Assert.assertEquals(5, reverseLongInterval1.size());
-
         LongInterval interval2 = LongInterval.oddsFromTo(-5, 5);
         Assert.assertTrue(interval2.containsAll(-5, -3, -1, 1, 3, 5));
         Assert.assertTrue(interval2.containsNone(-4, -2, 0, 2, 4));
         Assert.assertEquals(6, interval2.size());
-
         LongInterval reverseLongInterval2 = LongInterval.oddsFromTo(5, -5);
         Assert.assertTrue(reverseLongInterval2.containsAll(-5, -3, -1, 1, 3, 5));
         Assert.assertTrue(reverseLongInterval2.containsNone(-4, -2, 0, 2, 4));
@@ -799,8 +659,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void intervalSize()
-    {
+    public void intervalSize() {
         Assert.assertEquals(100, LongInterval.fromTo(1, 100).size());
         Assert.assertEquals(50, LongInterval.fromToBy(1, 100, 2).size());
         Assert.assertEquals(34, LongInterval.fromToBy(1, 100, 3).size());
@@ -821,8 +680,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void contains()
-    {
+    public void contains() {
         Assert.assertTrue(LongInterval.zero().contains(0));
         Assert.assertTrue(LongInterval.oneTo(5).containsAll(1, 5));
         Assert.assertTrue(LongInterval.oneTo(5).containsNone(6, 7));
@@ -831,11 +689,9 @@ public class LongIntervalTest
         Assert.assertFalse(LongInterval.oneTo(5).contains(0));
         Assert.assertTrue(LongInterval.fromTo(-1, -5).containsAll(-1, -5));
         Assert.assertFalse(LongInterval.fromTo(-1, -5).contains(1));
-
         Assert.assertTrue(LongInterval.zero().contains(Integer.valueOf(0)));
         Assert.assertFalse(LongInterval.oneTo(5).contains(Integer.valueOf(0)));
         Assert.assertFalse(LongInterval.fromTo(-1, -5).contains(Integer.valueOf(1)));
-
         LongInterval bigLongInterval = LongInterval.fromToBy(Integer.MIN_VALUE, Integer.MAX_VALUE, 1_000_000);
         Assert.assertTrue(bigLongInterval.contains(Integer.MIN_VALUE + 1_000_000));
         Assert.assertFalse(bigLongInterval.contains(Integer.MIN_VALUE + 1_000_001));
@@ -843,28 +699,17 @@ public class LongIntervalTest
         Assert.assertFalse(bigLongInterval.contains(Integer.MIN_VALUE + (1_000_001 * 10)));
         Assert.assertTrue(bigLongInterval.contains(Integer.MIN_VALUE + (1_000_000 * 100)));
         Assert.assertFalse(bigLongInterval.contains(Integer.MIN_VALUE + (1_000_001 * 100)));
-        Assert.assertTrue(
-                LongInterval.fromToBy(1_000_000_000, 2_000_000_000, 1_500_000_000)
-                        .contains(1_000_000_000));
-        Assert.assertTrue(
-                LongInterval.fromToBy(-1_000_000_000, -2_000_000_000, -1_500_000_000)
-                        .contains(-1_000_000_000));
-
+        Assert.assertTrue(LongInterval.fromToBy(1_000_000_000, 2_000_000_000, 1_500_000_000).contains(1_000_000_000));
+        Assert.assertTrue(LongInterval.fromToBy(-1_000_000_000, -2_000_000_000, -1_500_000_000).contains(-1_000_000_000));
         int minValue = -1_000_000_000;
         int maxValue = 1_000_000_000;
         LongInterval largeInterval = LongInterval.fromToBy(minValue, maxValue, 10);
-
-        Assert.assertTrue(largeInterval.containsAll(
-                maxValue - 10,
-                maxValue - 100,
-                maxValue - 1000,
-                maxValue - 10000));
+        Assert.assertTrue(largeInterval.containsAll(maxValue - 10, maxValue - 100, maxValue - 1000, maxValue - 10000));
         Assert.assertTrue(largeInterval.contains(minValue + 10));
     }
 
     @Test
-    public void largeReverseUnderflowTest()
-    {
+    public void largeReverseUnderflowTest() {
         LongInterval reverse = LongInterval.fromToBy(Integer.MAX_VALUE, Integer.MIN_VALUE + 10, -10);
         Assert.assertFalse(reverse.contains(Integer.MIN_VALUE + 10));
         Assert.assertEquals(Integer.MAX_VALUE, reverse.getFirst());
@@ -893,8 +738,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void forwardOverflowTest()
-    {
+    public void forwardOverflowTest() {
         int from = Integer.MAX_VALUE - 10;
         int second = Integer.MAX_VALUE - 2;
         long expected = (long) from + (long) second;
@@ -909,16 +753,11 @@ public class LongIntervalTest
         interval.forEachWithIndex((each, index) -> result.add(each + index));
         Assert.assertEquals(expected + 1L, result.longValue());
         Assert.assertEquals(expected, interval.injectInto(new MutableLong(), MutableLong::add).longValue());
-        Assert.assertEquals(
-                expected + 1L,
-                interval
-                        .injectIntoWithIndex(new MutableLong(), (value, each, index) -> value.add(each + index))
-                        .longValue());
+        Assert.assertEquals(expected + 1L, interval.injectIntoWithIndex(new MutableLong(), (value, each, index) -> value.add(each + index)).longValue());
     }
 
     @Test
-    public void reverseOverflowTest()
-    {
+    public void reverseOverflowTest() {
         int from = Integer.MIN_VALUE + 10;
         int second = Integer.MIN_VALUE + 2;
         long expected = (long) from + (long) second;
@@ -934,16 +773,11 @@ public class LongIntervalTest
         interval.forEachWithIndex((each, index) -> result.add(each + index));
         Assert.assertEquals(expected + 1L, result.longValue());
         Assert.assertEquals(expected, interval.injectInto(new MutableLong(), MutableLong::add).longValue());
-        Assert.assertEquals(
-                expected + 1L,
-                interval
-                        .injectIntoWithIndex(new MutableLong(), (value, each, index) -> value.add(each + index))
-                        .longValue());
+        Assert.assertEquals(expected + 1L, interval.injectIntoWithIndex(new MutableLong(), (value, each, index) -> value.add(each + index)).longValue());
     }
 
     @Test
-    public void intervalIterator()
-    {
+    public void intervalIterator() {
         LongInterval zero = LongInterval.zero();
         LongIterator zeroIterator = zero.longIterator();
         Assert.assertTrue(zeroIterator.hasNext());
@@ -951,16 +785,14 @@ public class LongIntervalTest
         Assert.assertFalse(zeroIterator.hasNext());
         LongInterval oneToFive = LongInterval.oneTo(5);
         LongIterator oneToFiveIterator = oneToFive.longIterator();
-        for (int i = 1; i < 6; i++)
-        {
+        for (int i = 1; i < 6; i++) {
             Assert.assertTrue(oneToFiveIterator.hasNext());
             Assert.assertEquals(i, oneToFiveIterator.next());
         }
         Assert.assertThrows(NoSuchElementException.class, oneToFiveIterator::next);
         LongInterval threeToNegativeThree = LongInterval.fromTo(3, -3);
         LongIterator threeToNegativeThreeIterator = threeToNegativeThree.longIterator();
-        for (int i = 3; i > -4; i--)
-        {
+        for (int i = 3; i > -4; i--) {
             Assert.assertTrue(threeToNegativeThreeIterator.hasNext());
             Assert.assertEquals(i, threeToNegativeThreeIterator.next());
         }
@@ -968,8 +800,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         IntegerSum sum = new IntegerSum(0);
         LongInterval.oneTo(5).forEachWithIndex((each, index) -> sum.add(each + index));
         Assert.assertEquals(25, sum.getIntSum());
@@ -979,27 +810,22 @@ public class LongIntervalTest
     }
 
     @Test
-    public void forEach_with_same_start_and_end_with_negative_step()
-    {
+    public void forEach_with_same_start_and_end_with_negative_step() {
         MutableLong counter = new MutableLong(0);
-
         LongInterval interval = LongInterval.fromToBy(2, 2, -2);
         interval.forEach((LongProcedure) each -> counter.add(1));
-
         Assert.assertEquals(1, counter.toLong().intValue());
     }
 
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         Assert.assertEquals(10, LongInterval.fromTo(10, -10).by(-5).getFirst());
         Assert.assertEquals(-10, LongInterval.fromTo(-10, 10).by(5).getFirst());
         Assert.assertEquals(0, LongInterval.zero().getFirst());
     }
 
     @Test
-    public void getLast()
-    {
+    public void getLast() {
         Assert.assertEquals(-10, LongInterval.fromTo(10, -10).by(-5).getLast());
         Assert.assertEquals(-10, LongInterval.fromTo(10, -12).by(-5).getLast());
         Assert.assertEquals(10, LongInterval.fromTo(-10, 10).by(5).getLast());
@@ -1008,28 +834,24 @@ public class LongIntervalTest
     }
 
     @Test
-    public void indexOf()
-    {
+    public void indexOf() {
         LongInterval interval = LongInterval.fromTo(-10, 12).by(5);
         Assert.assertEquals(0, interval.indexOf(-10));
         Assert.assertEquals(1, interval.indexOf(-5));
         Assert.assertEquals(2, interval.indexOf(0));
         Assert.assertEquals(3, interval.indexOf(5));
         Assert.assertEquals(4, interval.indexOf(10));
-
         Assert.assertEquals(-1, interval.indexOf(-15));
         Assert.assertEquals(-1, interval.indexOf(-11));
         Assert.assertEquals(-1, interval.indexOf(-9));
         Assert.assertEquals(-1, interval.indexOf(11));
         Assert.assertEquals(-1, interval.indexOf(15));
-
         LongInterval backwardsLongInterval = LongInterval.fromTo(10, -12).by(-5);
         Assert.assertEquals(0, backwardsLongInterval.indexOf(10));
         Assert.assertEquals(1, backwardsLongInterval.indexOf(5));
         Assert.assertEquals(2, backwardsLongInterval.indexOf(0));
         Assert.assertEquals(3, backwardsLongInterval.indexOf(-5));
         Assert.assertEquals(4, backwardsLongInterval.indexOf(-10));
-
         Assert.assertEquals(-1, backwardsLongInterval.indexOf(15));
         Assert.assertEquals(-1, backwardsLongInterval.indexOf(11));
         Assert.assertEquals(-1, backwardsLongInterval.indexOf(9));
@@ -1038,28 +860,24 @@ public class LongIntervalTest
     }
 
     @Test
-    public void lastIndexOf()
-    {
+    public void lastIndexOf() {
         LongInterval interval = LongInterval.fromTo(-10, 12).by(5);
         Assert.assertEquals(0, interval.lastIndexOf(-10));
         Assert.assertEquals(1, interval.lastIndexOf(-5));
         Assert.assertEquals(2, interval.lastIndexOf(0));
         Assert.assertEquals(3, interval.lastIndexOf(5));
         Assert.assertEquals(4, interval.lastIndexOf(10));
-
         Assert.assertEquals(-1, interval.lastIndexOf(-15));
         Assert.assertEquals(-1, interval.lastIndexOf(-11));
         Assert.assertEquals(-1, interval.lastIndexOf(-9));
         Assert.assertEquals(-1, interval.lastIndexOf(11));
         Assert.assertEquals(-1, interval.lastIndexOf(15));
-
         LongInterval backwardsLongInterval = LongInterval.fromTo(10, -12).by(-5);
         Assert.assertEquals(0, backwardsLongInterval.lastIndexOf(10));
         Assert.assertEquals(1, backwardsLongInterval.lastIndexOf(5));
         Assert.assertEquals(2, backwardsLongInterval.lastIndexOf(0));
         Assert.assertEquals(3, backwardsLongInterval.lastIndexOf(-5));
         Assert.assertEquals(4, backwardsLongInterval.lastIndexOf(-10));
-
         Assert.assertEquals(-1, backwardsLongInterval.lastIndexOf(15));
         Assert.assertEquals(-1, backwardsLongInterval.lastIndexOf(11));
         Assert.assertEquals(-1, backwardsLongInterval.lastIndexOf(9));
@@ -1068,57 +886,47 @@ public class LongIntervalTest
     }
 
     @Test
-    public void get()
-    {
+    public void get() {
         LongInterval interval = LongInterval.fromTo(-10, 12).by(5);
         Assert.assertEquals(-10, interval.get(0));
         Assert.assertEquals(-5, interval.get(1));
         Assert.assertEquals(0, interval.get(2));
         Assert.assertEquals(5, interval.get(3));
         Assert.assertEquals(10, interval.get(4));
-
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> interval.get(-1));
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> interval.get(5));
     }
 
     @Test
-    public void containsAll()
-    {
+    public void containsAll() {
         Assert.assertTrue(LongInterval.fromTo(1, 3).containsAll(1, 2, 3));
         Assert.assertFalse(LongInterval.fromTo(1, 3).containsAll(1, 2, 4));
     }
 
     @Test
-    public void containsAllIterable()
-    {
+    public void containsAllIterable() {
         Assert.assertTrue(LongInterval.fromTo(1, 3).containsAll(LongInterval.fromTo(1, 3)));
         Assert.assertFalse(LongInterval.fromTo(1, 3).containsAll(LongInterval.fromTo(1, 4)));
     }
 
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         Assert.assertSame(this.longInterval, this.longInterval.distinct());
     }
 
     @Test
-    public void asReversed()
-    {
+    public void asReversed() {
         MutableLongList list = LongLists.mutable.empty();
         list.addAll(this.longInterval.asReversed());
         Assert.assertEquals(LongLists.mutable.with(3, 2, 1), list);
     }
 
     @Test
-    public void zip()
-    {
+    public void zip() {
         LongInterval interval = LongInterval.oneTo(3);
         ImmutableList<LongObjectPair<String>> zipped = interval.zip(interval.collect(Long::toString));
         ImmutableList<LongObjectPair<String>> zippedLazy = interval.zip(interval.asLazy().collect(Long::toString));
-        ImmutableList<LongObjectPair<String>> expected = Lists.immutable.with(
-                PrimitiveTuples.pair(1L, "1"),
-                PrimitiveTuples.pair(2L, "2"),
-                PrimitiveTuples.pair(3L, "3"));
+        ImmutableList<LongObjectPair<String>> expected = Lists.immutable.with(PrimitiveTuples.pair(1L, "1"), PrimitiveTuples.pair(2L, "2"), PrimitiveTuples.pair(3L, "3"));
         Assert.assertEquals(expected, zipped);
         Assert.assertEquals(expected, zippedLazy);
         Verify.assertEmpty(interval.zip(Lists.mutable.empty()));
@@ -1126,15 +934,11 @@ public class LongIntervalTest
     }
 
     @Test
-    public void zipInt()
-    {
+    public void zipInt() {
         LongInterval interval = LongInterval.oneTo(3);
         ImmutableList<LongLongPair> zipped = interval.zipLong(interval.toReversed());
         ImmutableList<LongLongPair> zippedLazy = interval.zipLong(interval.asReversed());
-        ImmutableList<LongLongPair> expected = Lists.immutable.with(
-                PrimitiveTuples.pair(1L, 3L),
-                PrimitiveTuples.pair(2L, 2L),
-                PrimitiveTuples.pair(3L, 1L));
+        ImmutableList<LongLongPair> expected = Lists.immutable.with(PrimitiveTuples.pair(1L, 3L), PrimitiveTuples.pair(2L, 2L), PrimitiveTuples.pair(3L, 1L));
         Assert.assertEquals(expected, zipped);
         Assert.assertEquals(expected, zippedLazy);
         Verify.assertEmpty(interval.zipLong(LongLists.mutable.empty()));
@@ -1142,8 +946,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void primitiveStream()
-    {
+    public void primitiveStream() {
         Assert.assertEquals(Lists.mutable.of(1L, 2L, 3L, 4L), LongInterval.oneTo(4L).primitiveStream().boxed().collect(Collectors.toList()));
         Assert.assertEquals(Lists.mutable.of(0L, 2L, 4L), LongInterval.fromToBy(0L, 5L, 2L).primitiveStream().boxed().collect(Collectors.toList()));
         Assert.assertEquals(Lists.mutable.of(5L, 3L, 1L), LongInterval.fromToBy(5L, 0L, -2L).primitiveStream().boxed().collect(Collectors.toList()));
@@ -1152,8 +955,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void primitiveParallelStream()
-    {
+    public void primitiveParallelStream() {
         Assert.assertEquals(Lists.mutable.of(1L, 2L, 3L, 4L), LongInterval.oneTo(4).primitiveParallelStream().boxed().collect(Collectors.toList()));
         Assert.assertEquals(Lists.mutable.of(0L, 2L, 4L), LongInterval.fromToBy(0, 5, 2).primitiveParallelStream().boxed().collect(Collectors.toList()));
         Assert.assertEquals(Lists.mutable.of(5L, 3L, 1L, -1L, -3L), LongInterval.fromToBy(5, -4, -2).primitiveParallelStream().boxed().collect(Collectors.toList()));
@@ -1163,15 +965,13 @@ public class LongIntervalTest
     }
 
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         LongInterval interval = LongInterval.oneTo(5);
         Assert.assertSame(interval, interval.toImmutable());
     }
 
     @Test
-    public void newWith()
-    {
+    public void newWith() {
         LongInterval interval = LongInterval.oneTo(4);
         ImmutableLongList list = interval.newWith(5);
         Assert.assertNotSame(interval, list);
@@ -1179,8 +979,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void newWithout()
-    {
+    public void newWithout() {
         LongInterval interval = LongInterval.oneTo(5);
         ImmutableLongList list = interval.newWithout(5);
         Assert.assertNotSame(interval, list);
@@ -1188,8 +987,7 @@ public class LongIntervalTest
     }
 
     @Test
-    public void newWithAll()
-    {
+    public void newWithAll() {
         LongInterval interval = LongInterval.oneTo(2);
         ImmutableLongList list = interval.newWithAll(LongInterval.fromTo(3, 5));
         Assert.assertNotSame(interval, list);
@@ -1197,11 +995,536 @@ public class LongIntervalTest
     }
 
     @Test
-    public void newWithoutAll()
-    {
+    public void newWithoutAll() {
         LongInterval interval = LongInterval.oneTo(5);
         ImmutableLongList list = interval.newWithoutAll(LongInterval.fromTo(3, 5));
         Assert.assertNotSame(interval, list);
         Assert.assertEquals(LongInterval.oneTo(2), list);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromAndToAndBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromAndToAndBy, this.description("fromAndToAndBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromAndToAndByWithLongs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromAndToAndByWithLongs, this.description("fromAndToAndByWithLongs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromToBy_throws_step_size_zero() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::fromToBy_throws_step_size_zero, this.description("fromToBy_throws_step_size_zero"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromToBy_throws_on_illegal_step() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::fromToBy_throws_on_illegal_step, this.description("fromToBy_throws_on_illegal_step"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromToBy_with_same_start_and_end_with_negative_step() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromToBy_with_same_start_and_end_with_negative_step, this.description("fromToBy_with_same_start_and_end_with_negative_step"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fromToBy_with_same_start_and_end_with_negative_step2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fromToBy_with_same_start_and_end_with_negative_step2, this.description("fromToBy_with_same_start_and_end_with_negative_step2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_oneToBy_throws_step_size_zero() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::oneToBy_throws_step_size_zero, this.description("oneToBy_throws_step_size_zero"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_oneToBy_throws_count_size_zero() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::oneToBy_throws_count_size_zero, this.description("oneToBy_throws_count_size_zero"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zeroToBy_throws_step_size_zero() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::zeroToBy_throws_step_size_zero, this.description("zeroToBy_throws_step_size_zero"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumLongInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumLongInterval, this.description("sumLongInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxLongInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxLongInterval, this.description("maxLongInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::iterator_throws, this.description("iterator_throws"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_each() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::each, this.description("each"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoWithIndex, this.description("injectIntoWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoOnFromToBySameStartEndNegativeStepInterval() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoOnFromToBySameStartEndNegativeStepInterval, this.description("injectIntoOnFromToBySameStartEndNegativeStepInterval"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk, this.description("chunk"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::subList, this.description("subList"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_dotProduct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::dotProduct, this.description("dotProduct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_dotProduct_throwsOnListsOfDifferentSizes() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::dotProduct_throwsOnListsOfDifferentSizes, this.description("dotProduct_throwsOnListsOfDifferentSizes"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::empty, this.description("empty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNone, this.description("detectIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lazyCollectPrimitives() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::lazyCollectPrimitives, this.description("lazyCollectPrimitives"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_binarySearch() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::binarySearch, this.description("binarySearch"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max, this.description("max"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min, this.description("min"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minIfEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minIfEmpty, this.description("minIfEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxIfEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxIfEmpty, this.description("maxIfEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sum() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sum, this.description("sum"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sumLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sumLong, this.description("sumLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_average() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::average, this.description("average"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_median() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::median, this.description("median"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedList, this.description("toSortedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toBag, this.description("toBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazy, this.description("asLazy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedArray, this.description("toSortedArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEquals, this.description("testEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testHashCode, this.description("testHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendStringThrows() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendStringThrows, this.description("appendStringThrows"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toReversed() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toReversed, this.description("toReversed"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_evens() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::evens, this.description("evens"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_odds() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::odds, this.description("odds"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intervalSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intervalSize, this.description("intervalSize"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_largeReverseUnderflowTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::largeReverseUnderflowTest, this.description("largeReverseUnderflowTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forwardOverflowTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forwardOverflowTest, this.description("forwardOverflowTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseOverflowTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseOverflowTest, this.description("reverseOverflowTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intervalIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intervalIterator, this.description("intervalIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach_with_same_start_and_end_with_negative_step() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach_with_same_start_and_end_with_negative_step, this.description("forEach_with_same_start_and_end_with_negative_step"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_indexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::indexOf, this.description("indexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lastIndexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::lastIndexOf, this.description("lastIndexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_get() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::get, this.description("get"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAll, this.description("containsAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllIterable, this.description("containsAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asReversed() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asReversed, this.description("asReversed"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipInt, this.description("zipInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_primitiveStream() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::primitiveStream, this.description("primitiveStream"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_primitiveParallelStream() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::primitiveParallelStream, this.description("primitiveParallelStream"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWith, this.description("newWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithout() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithout, this.description("newWithout"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithAll, this.description("newWithAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithoutAll, this.description("newWithoutAll"));
+        }
+
+        private LongIntervalTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new LongIntervalTest();
+        }
+
+        @java.lang.Override
+        public LongIntervalTest implementation() {
+            return this.implementation;
+        }
     }
 }

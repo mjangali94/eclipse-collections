@@ -7,13 +7,11 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.sorted.mutable;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
-
 import org.eclipse.collections.api.LazyIterable;
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
@@ -33,30 +31,26 @@ import org.junit.Test;
  *
  * @since 4.2
  */
-public class TreeBagTest extends AbstractMutableSortedBagTestCase
-{
+public class TreeBagTest extends AbstractMutableSortedBagTestCase {
+
     @Override
-    protected <T> MutableSortedBag<T> newWith(T... littleElements)
-    {
+    protected <T> MutableSortedBag<T> newWith(T... littleElements) {
         return TreeBag.newBagWith(littleElements);
     }
 
     @Override
-    protected <T> MutableSortedBag<T> newWith(Comparator<? super T> comparator, T... elements)
-    {
+    protected <T> MutableSortedBag<T> newWith(Comparator<? super T> comparator, T... elements) {
         return TreeBag.newBagWith(comparator, elements);
     }
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         Verify.assertInstanceOf(SynchronizedSortedBag.class, this.newWith().asSynchronized());
     }
 
     @Test
-    public void sortedBagIterableConstructor()
-    {
+    public void sortedBagIterableConstructor() {
         TreeBag<Integer> sortedBagA = TreeBag.newBag(Collections.reverseOrder());
         TreeBag<Integer> sortedBagB = TreeBag.newBag(sortedBagA.with(1).with(2, 3).with(4, 5, 6).with(1, 1, 1, 1));
         Verify.assertSortedBagsEqual(sortedBagA, sortedBagB);
@@ -65,16 +59,14 @@ public class TreeBagTest extends AbstractMutableSortedBagTestCase
     }
 
     @Test
-    public void sortedBagConstructor()
-    {
+    public void sortedBagConstructor() {
         MutableSortedBag<String> bagA = TreeBag.newBag(FastList.newListWith("a", "c", "b", "d"));
         Verify.assertSortedBagsEqual(bagA, TreeBag.newBag(bagA));
         Verify.assertSortedBagsEqual(bagA, TreeBag.newBag(bagA));
     }
 
     @Test
-    public void iterableConstructor()
-    {
+    public void iterableConstructor() {
         LazyIterable<Integer> integerLazyIterable = FastList.newListWith(2, 4, 1, 3).asLazy();
         TreeBag<Integer> sortedBag = TreeBag.newBag(Comparators.reverseNaturalOrder(), integerLazyIterable);
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 1, 2, 3, 4), sortedBag);
@@ -82,66 +74,99 @@ public class TreeBagTest extends AbstractMutableSortedBagTestCase
 
     @Override
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         MutableSortedBag<Integer> bag = this.newWith(1, 2, 3, 4, 5);
         Verify.assertPostSerializedEqualsAndHashCode(bag);
     }
 
     @Override
     @Test(expected = NullPointerException.class)
-    public void min_null_safe()
-    {
+    public void min_null_safe() {
         super.min_null_safe();
     }
 
     @Override
     @Test(expected = NullPointerException.class)
-    public void max_null_safe()
-    {
+    public void max_null_safe() {
         super.max_null_safe();
     }
 
     @Override
     @Test
-    public void collectWithOccurrences()
-    {
+    public void collectWithOccurrences() {
         Bag<Integer> bag1 = this.newWith(3, 3, 3, 2, 2, 1);
-        Bag<ObjectIntPair<Integer>> actual1 =
-                bag1.collectWithOccurrences(PrimitiveTuples::pair, Bags.mutable.empty());
-        Assert.assertEquals(
-                Bags.immutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1)),
-                actual1);
-        Assert.assertEquals(
-                Lists.mutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3)),
-                bag1.collectWithOccurrences(PrimitiveTuples::pair));
-
-        Set<ObjectIntPair<Integer>> actual2 =
-                bag1.collectWithOccurrences(PrimitiveTuples::pair, Sets.mutable.empty());
-        Assert.assertEquals(
-                Sets.immutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1)),
-                actual2);
-
+        Bag<ObjectIntPair<Integer>> actual1 = bag1.collectWithOccurrences(PrimitiveTuples::pair, Bags.mutable.empty());
+        Assert.assertEquals(Bags.immutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1)), actual1);
+        Assert.assertEquals(Lists.mutable.with(PrimitiveTuples.pair(Integer.valueOf(1), 1), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(3), 3)), bag1.collectWithOccurrences(PrimitiveTuples::pair));
+        Set<ObjectIntPair<Integer>> actual2 = bag1.collectWithOccurrences(PrimitiveTuples::pair, Sets.mutable.empty());
+        Assert.assertEquals(Sets.immutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1)), actual2);
         Bag<Integer> bag2 = this.newWith(Comparator.reverseOrder(), 3, 3, 3, 2, 2, 1);
-        Assert.assertEquals(
-                Lists.mutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1)),
-                bag2.collectWithOccurrences(PrimitiveTuples::pair));
-
+        Assert.assertEquals(Lists.mutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1)), bag2.collectWithOccurrences(PrimitiveTuples::pair));
         Bag<Integer> bag3 = this.newWith(3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 4, 5, 7);
-        Assert.assertEquals(
-                Lists.mutable.with(6, 5, 8, 5, 6, 8),
-                bag3.collectWithOccurrences((each, index) -> each + index));
+        Assert.assertEquals(Lists.mutable.with(6, 5, 8, 5, 6, 8), bag3.collectWithOccurrences((each, index) -> each + index));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortedBagIterableConstructor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortedBagIterableConstructor, this.description("sortedBagIterableConstructor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortedBagConstructor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortedBagConstructor, this.description("sortedBagConstructor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterableConstructor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterableConstructor, this.description("iterableConstructor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_safe() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::min_null_safe, this.description("min_null_safe"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_safe() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::max_null_safe, this.description("max_null_safe"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithOccurrences, this.description("collectWithOccurrences"));
+        }
+
+        private TreeBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new TreeBagTest();
+        }
+
+        @java.lang.Override
+        public TreeBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

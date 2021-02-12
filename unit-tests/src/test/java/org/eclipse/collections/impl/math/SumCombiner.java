@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.math;
 
 import org.eclipse.collections.impl.parallel.AbstractProcedureCombiner;
@@ -18,21 +17,19 @@ import org.eclipse.collections.impl.parallel.AbstractProcedureCombiner;
  * @deprecated Don't use in new tests
  */
 @Deprecated
-public final class SumCombiner<T>
-        extends AbstractProcedureCombiner<SumProcedure<T>>
-{
+public final class SumCombiner<T> extends AbstractProcedureCombiner<SumProcedure<T>> {
+
     private static final long serialVersionUID = 1L;
+
     private final Sum sum;
 
-    public SumCombiner(Sum initialSum)
-    {
+    public SumCombiner(Sum initialSum) {
         super(true);
         this.sum = initialSum;
     }
 
     @Override
-    public void combineOne(SumProcedure<T> sumProcedure)
-    {
+    public void combineOne(SumProcedure<T> sumProcedure) {
         this.sum.add(sumProcedure.getSum());
     }
 }

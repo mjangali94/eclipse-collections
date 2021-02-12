@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import java.util.ListIterator;
-
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.block.factory.Comparators;
 import org.eclipse.collections.impl.list.fixed.UnmodifiableMemoryEfficientListTestCase;
@@ -22,25 +20,22 @@ import org.junit.Test;
 /**
  * Abstract JUnit test for {@link UnmodifiableMutableList}.
  */
-public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemoryEfficientListTestCase<Integer>
-{
+public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemoryEfficientListTestCase<Integer> {
+
     @Test
-    public void testClone()
-    {
+    public void testClone() {
         Assert.assertEquals(this.getCollection(), this.getCollection().clone());
         Assert.assertNotSame(this.getCollection(), this.getCollection().clone());
     }
 
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         Verify.assertPostSerializedEqualsAndHashCode(this.getCollection());
     }
 
     @Override
     @Test
-    public void subList()
-    {
+    public void subList() {
         super.subList();
         MutableList<Integer> subList = this.getCollection().subList(0, 1);
         Assert.assertThrows(UnsupportedOperationException.class, subList::clear);
@@ -53,146 +48,268 @@ public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemory
 
     @Override
     @Test
-    public void listIterator()
-    {
+    public void listIterator() {
         ListIterator<Integer> it = this.getCollection().listIterator();
         Assert.assertFalse(it.hasPrevious());
         Assert.assertEquals(-1, it.previousIndex());
         Assert.assertEquals(0, it.nextIndex());
         it.next();
         Assert.assertEquals(1, it.nextIndex());
-
         Assert.assertThrows(UnsupportedOperationException.class, () -> it.set(null));
-
         Assert.assertThrows(UnsupportedOperationException.class, it::remove);
-
         Assert.assertThrows(UnsupportedOperationException.class, () -> it.add(null));
     }
 
     @Test
-    public void subListListIterator()
-    {
+    public void subListListIterator() {
         ListIterator<Integer> it = this.getCollection().subList(0, 1).listIterator();
         Assert.assertFalse(it.hasPrevious());
         Assert.assertEquals(-1, it.previousIndex());
         Assert.assertEquals(0, it.nextIndex());
         it.next();
         Assert.assertEquals(1, it.nextIndex());
-
         Assert.assertThrows(UnsupportedOperationException.class, () -> it.set(null));
-
         Assert.assertThrows(UnsupportedOperationException.class, it::remove);
-
         Assert.assertThrows(UnsupportedOperationException.class, () -> it.add(null));
     }
 
     @Test
-    public void set()
-    {
+    public void set() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().set(0, null));
     }
 
     @Override
     @Test
-    public void addAtIndex()
-    {
+    public void addAtIndex() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().add(0, null));
     }
 
     @Override
     @Test
-    public void addAllAtIndex()
-    {
+    public void addAllAtIndex() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().addAll(0, null));
     }
 
     @Test
-    public void removeAtIndex()
-    {
+    public void removeAtIndex() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().remove(0));
     }
 
     @Test
-    public void setAtIndex()
-    {
+    public void setAtIndex() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().set(0, null));
     }
 
     @Test
-    public void sortThis()
-    {
+    public void sortThis() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThis());
     }
 
     @Test
-    public void sortThisWithComparator()
-    {
+    public void sortThisWithComparator() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThis(Comparators.naturalOrder()));
     }
 
     @Test
-    public void sortThisBy()
-    {
+    public void sortThisBy() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisBy(String::valueOf));
     }
 
     @Test
-    public void sortThisByBoolean()
-    {
+    public void sortThisByBoolean() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisByBoolean(null));
     }
 
     @Test
-    public void sortThisByChar()
-    {
+    public void sortThisByChar() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisByChar(null));
     }
 
     @Test
-    public void sortThisByByte()
-    {
+    public void sortThisByByte() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisByByte(null));
     }
 
     @Test
-    public void sortThisByShort()
-    {
+    public void sortThisByShort() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisByShort(null));
     }
 
     @Test
-    public void sortThisByInt()
-    {
+    public void sortThisByInt() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisByInt(null));
     }
 
     @Test
-    public void sortThisByFloat()
-    {
+    public void sortThisByFloat() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisByFloat(null));
     }
 
     @Test
-    public void sortThisByLong()
-    {
+    public void sortThisByLong() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisByLong(null));
     }
 
     @Test
-    public void sortThisByDouble()
-    {
+    public void sortThisByDouble() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().sortThisByDouble(null));
     }
 
     @Test
-    public void reverseThis()
-    {
+    public void reverseThis() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.getCollection().reverseThis());
     }
 
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         Assert.assertEquals(this.getCollection(), this.getCollection());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subList, this.description("subList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_listIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::listIterator, this.description("listIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subListListIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subListListIterator, this.description("subListListIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_set() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::set, this.description("set"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAtIndex, this.description("addAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllAtIndex, this.description("addAllAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAtIndex, this.description("removeAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_setAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::setAtIndex, this.description("setAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThis() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThis, this.description("sortThis"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisWithComparator, this.description("sortThisWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisBy, this.description("sortThisBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisByBoolean() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisByBoolean, this.description("sortThisByBoolean"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisByChar() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisByChar, this.description("sortThisByChar"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisByByte() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisByByte, this.description("sortThisByByte"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisByShort() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisByShort, this.description("sortThisByShort"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisByInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisByInt, this.description("sortThisByInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisByFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisByFloat, this.description("sortThisByFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisByLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisByLong, this.description("sortThisByLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisByDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisByDouble, this.description("sortThisByDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseThis() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseThis, this.description("reverseThis"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEquals, this.description("testEquals"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract UnmodifiableMutableListTestCase implementation();
     }
 }

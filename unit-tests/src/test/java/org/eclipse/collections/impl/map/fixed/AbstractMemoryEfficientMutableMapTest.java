@@ -7,14 +7,12 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.fixed;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
 import org.eclipse.collections.api.LazyIterable;
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.bag.MutableBag;
@@ -54,15 +52,14 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.Tuples;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iList;
 import static org.eclipse.collections.impl.factory.Iterables.iSet;
 
 /**
  * JUnit test for {@link AbstractMemoryEfficientMutableMap}.
  */
-public abstract class AbstractMemoryEfficientMutableMapTest
-{
+public abstract class AbstractMemoryEfficientMutableMapTest {
+
     protected abstract MutableMap<String, String> classUnderTest();
 
     protected abstract MutableMap<String, Integer> mixedTypeClassUnderTest();
@@ -70,91 +67,77 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     public abstract void containsValue();
 
     @Test(expected = UnsupportedOperationException.class)
-    public void put_throws()
-    {
+    public void put_throws() {
         this.classUnderTest().put(null, null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void remove_throws()
-    {
+    public void remove_throws() {
         this.classUnderTest().remove(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void putAll_throws()
-    {
+    public void putAll_throws() {
         this.classUnderTest().putAll(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void clear_throws()
-    {
+    public void clear_throws() {
         this.classUnderTest().clear();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeKey_throws()
-    {
+    public void removeKey_throws() {
         this.classUnderTest().removeKey(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeAllKeys_throws()
-    {
+    public void removeAllKeys_throws() {
         this.classUnderTest().removeAllKeys(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeIf_throws()
-    {
+    public void removeIf_throws() {
         this.classUnderTest().removeIf(null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void collectKeysAndValues_throws()
-    {
+    public void collectKeysAndValues_throws() {
         this.classUnderTest().collectKeysAndValues(null, null, null);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void updateValue()
-    {
+    public void updateValue() {
         this.classUnderTest().updateValue("1", () -> "", object -> object + object);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void updateValueWith()
-    {
+    public void updateValueWith() {
         this.classUnderTest().updateValueWith("1", () -> "", String::concat, "!");
     }
 
     @Test
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         MutableMap<String, String> unmodifiable = this.classUnderTest().asUnmodifiable();
         Verify.assertMapsEqual(this.classUnderTest(), unmodifiable);
         Verify.assertInstanceOf(UnmodifiableMap.class, unmodifiable);
     }
 
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         MutableMap<String, String> synchMap = this.classUnderTest().asSynchronized();
         Verify.assertMapsEqual(this.classUnderTest(), synchMap);
         Verify.assertInstanceOf(SynchronizedMutableMap.class, synchMap);
     }
 
     @Test
-    public void newEmpty()
-    {
+    public void newEmpty() {
         MutableMap<String, String> result = this.classUnderTest().newEmpty();
         Verify.assertEmpty(result);
     }
 
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         MutableMap<String, String> map = this.classUnderTest();
         Verify.assertEqualsAndHashCode(map, map.toImmutable());
         Verify.assertInstanceOf(ImmutableMap.class, map.toImmutable());
@@ -167,23 +150,17 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     public abstract void testEqualsAndHashCode();
 
     @Test
-    public void testPostSerializedEqualsAndHashCode()
-    {
+    public void testPostSerializedEqualsAndHashCode() {
         Verify.assertPostSerializedEqualsAndHashCode(this.classUnderTest());
     }
 
     @Test
-    public void testClone()
-    {
-        try
-        {
+    public void testClone() {
+        try {
             Verify.assertShallowClone(this.classUnderTest());
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // Suppress if a Java 9 specific exception related to reflection is thrown.
-            if (!e.getClass().getCanonicalName().equals("java.lang.reflect.InaccessibleObjectException"))
-            {
+            if (!e.getClass().getCanonicalName().equals("java.lang.reflect.InaccessibleObjectException")) {
                 throw e;
             }
         }
@@ -193,13 +170,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     public abstract void select();
 
     @Test
-    public void collectValues()
-    {
+    public void collectValues() {
         MutableMap<String, String> map = this.classUnderTest();
         MutableMap<String, String> result = map.collectValues((argument1, argument2) -> new StringBuilder(argument2).reverse().toString());
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 0:
                 Verify.assertEmpty(result);
                 break;
@@ -218,14 +192,11 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void collect()
-    {
+    public void collect() {
         MutableMap<String, String> map = this.classUnderTest();
         Function2<String, String, Pair<Integer, String>> function = (argument1, argument2) -> Tuples.pair(Integer.valueOf(argument1), argument1 + ':' + new StringBuilder(argument2).reverse());
         MutableMap<Integer, String> result = map.collect(function);
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 0:
                 Verify.assertEmpty(result);
                 break;
@@ -254,52 +225,40 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     protected abstract <K, V> FixedSizeMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3);
 
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         MutableMap<String, String> map = this.classUnderTest();
-
         Assert.assertTrue(map.allSatisfy(String.class::isInstance));
         Assert.assertFalse(map.allSatisfy("Monkey"::equals));
     }
 
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         MutableMap<String, String> map = this.classUnderTest();
-
         Assert.assertTrue(map.noneSatisfy(Boolean.class::isInstance));
         Assert.assertFalse(map.noneSatisfy(String.class::isInstance));
         Assert.assertTrue(map.noneSatisfy("Monkey"::equals));
     }
 
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         MutableMap<String, String> map = this.classUnderTest();
-
         Assert.assertTrue(map.anySatisfy(String.class::isInstance));
         Assert.assertFalse(map.anySatisfy("Monkey"::equals));
     }
 
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         MutableMap<String, String> map = this.classUnderTest();
-
         StringBuilder builder1 = new StringBuilder();
         map.appendString(builder1);
         String defaultString = builder1.toString();
-
         StringBuilder builder2 = new StringBuilder();
         map.appendString(builder2, "|");
         String delimitedString = builder2.toString();
-
         StringBuilder builder3 = new StringBuilder();
         map.appendString(builder3, "{", "|", "}");
         String wrappedString = builder3.toString();
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals("One", defaultString);
                 Assert.assertEquals("One", delimitedString);
@@ -332,13 +291,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void toBag()
-    {
+    public void toBag() {
         MutableMap<String, String> map = this.classUnderTest();
-
         MutableBag<String> bag = map.toBag();
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Verify.assertContains("One", bag);
                 break;
@@ -355,20 +311,16 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void flip()
-    {
+    public void flip() {
         MutableMap<String, String> map = this.classUnderTest();
         MutableMultimap<String, String> multi = map.flip();
-
         Set<String> keySet = map.keySet();
         multi.forEachValue(each -> Verify.assertContains(each, keySet));
-
         Collection<String> values = map.values();
         multi.forEachKey(each -> Verify.assertContains(each, values));
-
         Assert.assertEquals(multi.size(), map.size());
-        Assert.assertTrue(multi.sizeDistinct() <= map.size()); // should be the same or less since values are degenerate
-
+        // should be the same or less since values are degenerate
+        Assert.assertTrue(multi.sizeDistinct() <= map.size());
         MutableMap<String, Integer> siMap = this.mixedTypeClassUnderTest();
         MutableMultimap<Integer, String> siMulti = siMap.flip();
         Assert.assertEquals(siMulti.size(), siMap.size());
@@ -376,13 +328,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void asLazy()
-    {
+    public void asLazy() {
         MutableMap<String, String> map = this.classUnderTest();
-
         LazyIterable<String> lazy = map.asLazy();
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Verify.assertContains("One", lazy.toList());
                 break;
@@ -399,13 +348,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void toList()
-    {
+    public void toList() {
         MutableMap<String, String> map = this.classUnderTest();
-
         MutableList<String> list = map.toList();
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Verify.assertContains("One", list);
                 break;
@@ -422,14 +368,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void toMap()
-    {
+    public void toMap() {
         MutableMap<String, String> map = this.newMapWithKeysValues("1", "One", "3", "Three", "4", "Four");
-
         MutableMap<Integer, String> actual = map.toMap(String::length, String::valueOf);
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals(UnifiedMap.newWithKeysValues(3, "One"), actual);
                 break;
@@ -446,13 +388,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         MutableMap<String, String> map = this.classUnderTest();
-
         MutableSet<String> set = map.toSet();
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Verify.assertContains("One", set);
                 break;
@@ -469,13 +408,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void toSortedList()
-    {
+    public void toSortedList() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         MutableList<Integer> sorted = map.toSortedList();
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals(iList(1), sorted);
                 break;
@@ -489,10 +425,8 @@ public abstract class AbstractMemoryEfficientMutableMapTest
                 Verify.assertEmpty(sorted);
                 break;
         }
-
         MutableList<Integer> reverse = map.toSortedList(Collections.reverseOrder());
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals(iList(1), reverse);
                 break;
@@ -509,13 +443,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void toSortedListBy()
-    {
+    public void toSortedListBy() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         MutableList<Integer> list = map.toSortedListBy(String::valueOf);
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals(iList(1), list);
                 break;
@@ -532,16 +463,11 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void chunk()
-    {
+    public void chunk() {
         MutableMap<String, String> map = this.classUnderTest();
-
         RichIterable<RichIterable<String>> chunks = map.chunk(2).toList();
-
         RichIterable<Integer> sizes = chunks.collect(RichIterable::size);
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals(iList(1), sizes);
                 break;
@@ -558,14 +484,11 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void collect_value()
-    {
+    public void collect_value() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
         MutableSet<String> collect = map.collect(Functions.getToString()).toSet();
         UnifiedSet<String> collectToTarget = map.collect(String::valueOf, UnifiedSet.newSet());
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Verify.assertContainsAll(collect, "1");
                 Verify.assertContainsAll(collectToTarget, "1");
@@ -585,15 +508,11 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void collectIf()
-    {
+    public void collectIf() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         MutableSet<String> collect = map.collectIf(Integer.class::isInstance, String::valueOf).toSet();
         UnifiedSet<String> collectToTarget = map.collectIf(Integer.class::isInstance, String::valueOf, UnifiedSet.newSet());
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Verify.assertContainsAll(collect, "1");
                 Verify.assertContainsAll(collectToTarget, "1");
@@ -613,14 +532,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         MutableBag<Integer> collectWith = map.collectWith(AddFunction.INTEGER, 1, HashBag.newBag());
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals(Bags.mutable.of(2), collectWith);
                 break;
@@ -637,12 +552,9 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void contains()
-    {
+    public void contains() {
         MutableMap<String, String> map = this.classUnderTest();
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertTrue(map.contains("One"));
                 Assert.assertFalse(map.contains("Two"));
@@ -660,17 +572,12 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         MutableMap<String, String> map = this.classUnderTest();
-
-        if (map.isEmpty())
-        {
+        if (map.isEmpty()) {
             String value = map.getFirst();
             Assert.assertNull(value);
-        }
-        else
-        {
+        } else {
             String value = map.getFirst();
             Assert.assertNotNull(value);
             Verify.assertContains(value, map.values());
@@ -678,17 +585,12 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void getLast()
-    {
+    public void getLast() {
         MutableMap<String, String> map = this.classUnderTest();
-
-        if (map.isEmpty())
-        {
+        if (map.isEmpty()) {
             String value = map.getLast();
             Assert.assertNull(value);
-        }
-        else
-        {
+        } else {
             String value = map.getLast();
             Assert.assertNotNull(value);
             Verify.assertContains(value, map.values());
@@ -696,12 +598,9 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void containsAllIterable()
-    {
+    public void containsAllIterable() {
         MutableMap<String, String> map = this.classUnderTest();
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertTrue(map.containsAllIterable(iList("One")));
                 break;
@@ -718,12 +617,9 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void containsAllArguments()
-    {
+    public void containsAllArguments() {
         MutableMap<String, String> map = this.classUnderTest();
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertTrue(map.containsAllArguments("One"));
                 break;
@@ -740,14 +636,10 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void count()
-    {
+    public void count() {
         MutableMap<String, String> map = this.classUnderTest();
-
         int actual = map.count(Predicates.or("One"::equals, "Three"::equals));
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals(1, actual);
                 break;
@@ -764,95 +656,57 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void detect_value()
-    {
+    public void detect_value() {
         MutableMap<String, String> map = this.classUnderTest();
-
-        if (map.isEmpty())
-        {
+        if (map.isEmpty()) {
             String resultNotFound = map.detect(ignored -> true);
             Assert.assertNull(resultNotFound);
-        }
-        else
-        {
+        } else {
             String resultFound = map.detect("One"::equals);
             Assert.assertEquals("One", resultFound);
-
             String resultNotFound = map.detect("Four"::equals);
             Assert.assertNull(resultNotFound);
         }
     }
 
     @Test
-    public void detectIfNone_value()
-    {
+    public void detectIfNone_value() {
         MutableMap<String, String> map = this.classUnderTest();
-
-        if (map.isEmpty())
-        {
+        if (map.isEmpty()) {
             String resultNotFound = map.detectIfNone(ignored -> true, () -> "Zero");
             Assert.assertEquals("Zero", resultNotFound);
-        }
-        else
-        {
+        } else {
             String resultNotFound = map.detectIfNone("Four"::equals, () -> "Zero");
             Assert.assertEquals("Zero", resultNotFound);
-
             String resultFound = map.detectIfNone("One"::equals, () -> "Zero");
             Assert.assertEquals("One", resultFound);
         }
     }
 
     @Test
-    public void flatten_value()
-    {
+    public void flatten_value() {
         MutableMap<String, String> map = this.newMapWithKeysValues("1", "One", "2", "Two");
-
-        Function<String, Iterable<Character>> function = object ->
-        {
+        Function<String, Iterable<Character>> function = object -> {
             MutableList<Character> result = Lists.mutable.of();
-            if (object != null)
-            {
+            if (object != null) {
                 char[] chars = object.toCharArray();
-                for (char aChar : chars)
-                {
+                for (char aChar : chars) {
                     result.add(Character.valueOf(aChar));
                 }
             }
             return result;
         };
-
         RichIterable<Character> blob = map.flatCollect(function);
         RichIterable<Character> blobFromTarget = map.flatCollect(function, FastList.newList());
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
-                Assert.assertTrue(blob.containsAllArguments(
-                        Character.valueOf('O'),
-                        Character.valueOf('n'),
-                        Character.valueOf('e')));
-                Assert.assertTrue(blobFromTarget.containsAllArguments(
-                        Character.valueOf('O'),
-                        Character.valueOf('n'),
-                        Character.valueOf('e')));
+                Assert.assertTrue(blob.containsAllArguments(Character.valueOf('O'), Character.valueOf('n'), Character.valueOf('e')));
+                Assert.assertTrue(blobFromTarget.containsAllArguments(Character.valueOf('O'), Character.valueOf('n'), Character.valueOf('e')));
                 break;
             case 2:
             case 3:
-                Assert.assertTrue(blob.containsAllArguments(
-                        Character.valueOf('O'),
-                        Character.valueOf('n'),
-                        Character.valueOf('e'),
-                        Character.valueOf('T'),
-                        Character.valueOf('w'),
-                        Character.valueOf('o')));
-                Assert.assertTrue(blobFromTarget.containsAllArguments(
-                        Character.valueOf('O'),
-                        Character.valueOf('n'),
-                        Character.valueOf('e'),
-                        Character.valueOf('T'),
-                        Character.valueOf('w'),
-                        Character.valueOf('o')));
+                Assert.assertTrue(blob.containsAllArguments(Character.valueOf('O'), Character.valueOf('n'), Character.valueOf('e'), Character.valueOf('T'), Character.valueOf('w'), Character.valueOf('o')));
+                Assert.assertTrue(blobFromTarget.containsAllArguments(Character.valueOf('O'), Character.valueOf('n'), Character.valueOf('e'), Character.valueOf('T'), Character.valueOf('w'), Character.valueOf('o')));
                 break;
             default:
                 Assert.assertEquals(0, blob.size());
@@ -862,16 +716,11 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         Function<Integer, Boolean> isOddFunction = object -> IntegerPredicates.isOdd().accept(object);
-
         Multimap<Boolean, Integer> expected;
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 expected = FastListMultimap.newMultimap(Tuples.pair(Boolean.TRUE, 1));
                 break;
@@ -885,38 +734,29 @@ public abstract class AbstractMemoryEfficientMutableMapTest
                 expected = FastListMultimap.newMultimap();
                 break;
         }
-
         Multimap<Boolean, Integer> actual = map.groupBy(isOddFunction);
         Assert.assertEquals(HashBagMultimap.newMultimap(expected), HashBagMultimap.newMultimap(actual));
-
         Multimap<Boolean, Integer> actualFromTarget = map.groupBy(isOddFunction, FastListMultimap.newMultimap());
         Assert.assertEquals(HashBagMultimap.newMultimap(expected), HashBagMultimap.newMultimap(actualFromTarget));
     }
 
     @Test
-    public void groupByEach()
-    {
+    public void groupByEach() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         MutableMultimap<Integer, Integer> expected = FastListMultimap.newMultimap();
-        for (int i = 1; i < map.size(); i++)
-        {
+        for (int i = 1; i < map.size(); i++) {
             expected.putAll(-i, Interval.fromTo(i, map.size()));
         }
-
         NegativeIntervalFunction function = new NegativeIntervalFunction();
         Multimap<Integer, Integer> actual = map.groupByEach(function);
-        expected.forEachKey(each ->
-        {
+        expected.forEachKey(each -> {
             Assert.assertTrue(actual.containsKey(each));
             MutableList<Integer> values = actual.get(each).toList();
             Verify.assertNotEmpty(values);
             Assert.assertTrue(expected.get(each).containsAllIterable(values));
         });
-
         Multimap<Integer, Integer> actualFromTarget = map.groupByEach(function, FastListMultimap.newMultimap());
-        expected.forEachKey(each ->
-        {
+        expected.forEachKey(each -> {
             Assert.assertTrue(actualFromTarget.containsKey(each));
             MutableList<Integer> values = actualFromTarget.get(each).toList();
             Verify.assertNotEmpty(values);
@@ -925,15 +765,11 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         Integer expectedInteger;
         IntegerSum expectedSum;
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 expectedSum = new IntegerSum(1);
                 expectedInteger = Integer.valueOf(1);
@@ -951,25 +787,19 @@ public abstract class AbstractMemoryEfficientMutableMapTest
                 expectedInteger = Integer.valueOf(0);
                 break;
         }
-
         Integer actual = map.injectInto(0, AddFunction.INTEGER);
         Assert.assertEquals(expectedInteger, actual);
-
         Sum sum = map.injectInto(new IntegerSum(0), SumProcedure.number());
         Assert.assertEquals(expectedSum, sum);
     }
 
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         MutableMap<String, String> map = this.classUnderTest();
-
         String defaultString = map.makeString();
         String delimitedString = map.makeString("|");
         String wrappedString = map.makeString("{", "|", "}");
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Assert.assertEquals("One", defaultString);
                 Assert.assertEquals("One", delimitedString);
@@ -1002,23 +832,17 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void min()
-    {
+    public void min() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         Assert.assertEquals(Integer.valueOf(1), map.min());
         Assert.assertEquals(Integer.valueOf(1), map.min(Integer::compareTo));
     }
 
     @Test
-    public void max()
-    {
+    public void max() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         Integer max;
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 max = Integer.valueOf(1);
                 break;
@@ -1031,44 +855,35 @@ public abstract class AbstractMemoryEfficientMutableMapTest
             default:
                 throw new IllegalStateException("We should not get here, this test method should be overriden by the empty map.");
         }
-
         Assert.assertEquals(max, map.max());
         Assert.assertEquals(max, map.max(Integer::compareTo));
     }
 
     @Test
-    public void minBy()
-    {
+    public void minBy() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         Assert.assertEquals(Integer.valueOf(1), map.minBy(String::valueOf));
     }
 
     @Test
-    public void maxBy()
-    {
+    public void maxBy() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
         Assert.assertEquals(Integer.valueOf(map.size()), map.maxBy(String::valueOf));
         Verify.assertContains(Integer.valueOf(map.size()), iList(1, 2, 3));
     }
 
     @Test
-    public void reject_value()
-    {
+    public void reject_value() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         MutableSet<Integer> rejected = map.reject(IntegerPredicates.isEven()).toSet();
         UnifiedSet<Integer> rejectedIntoTarget = map.reject(IntegerPredicates.isEven(), UnifiedSet.newSet());
-
         ImmutableSet<Integer> expected = this.expectReject(map.size());
         Assert.assertEquals(expected, rejected);
         Assert.assertEquals(expected, rejectedIntoTarget);
     }
 
-    private ImmutableSet<Integer> expectReject(int size)
-    {
-        switch (size)
-        {
+    private ImmutableSet<Integer> expectReject(int size) {
+        switch(size) {
             case 0:
                 return iSet();
             case 1:
@@ -1082,12 +897,9 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void rejectWith_value()
-    {
+    public void rejectWith_value() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Verify.assertEmpty(map.rejectWith(Predicates2.lessThan(), 2, UnifiedSet.newSet()));
                 break;
@@ -1104,19 +916,15 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void select_value()
-    {
+    public void select_value() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
         ImmutableSet<Integer> expected = this.expectSelect(map.size());
-
         Assert.assertEquals(expected, map.select(IntegerPredicates.isEven()).toSet());
         Assert.assertEquals(expected, map.select(IntegerPredicates.isEven(), UnifiedSet.newSet()));
     }
 
-    private ImmutableSet<Integer> expectSelect(int size)
-    {
-        switch (size)
-        {
+    private ImmutableSet<Integer> expectSelect(int size) {
+        switch(size) {
             case 0:
             case 1:
                 return iSet();
@@ -1129,12 +937,9 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void selectWith_value()
-    {
+    public void selectWith_value() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
-        switch (map.size())
-        {
+        switch(map.size()) {
             case 1:
                 Verify.assertContainsAll(map.selectWith(Predicates2.lessThan(), 3, UnifiedSet.newSet()), 1);
                 break;
@@ -1151,104 +956,67 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     }
 
     @Test
-    public void partition_value()
-    {
+    public void partition_value() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
         PartitionMutableCollection<Integer> partition = map.partition(IntegerPredicates.isEven());
-
         Assert.assertEquals(this.expectSelect(map.size()), partition.getSelected().toSet());
         Assert.assertEquals(this.expectReject(map.size()), partition.getRejected().toSet());
     }
 
     @Test
-    public void partitionWith_value()
-    {
+    public void partitionWith_value() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
         PartitionMutableCollection<Integer> partition = map.partitionWith(Predicates2.in(), map.select(IntegerPredicates.isEven()));
-
         Assert.assertEquals(this.expectSelect(map.size()), partition.getSelected().toSet());
         Assert.assertEquals(this.expectReject(map.size()), partition.getRejected().toSet());
     }
 
     @Test
-    public void toArray()
-    {
+    public void toArray() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("1", 1, "2", 2, "3", 3);
-
         Object[] array = map.toArray();
         Verify.assertSize(map.size(), array);
-
         Integer[] array2 = map.toArray(new Integer[0]);
         Verify.assertSize(map.size(), array2);
-
         Integer[] array3 = map.toArray(new Integer[map.size()]);
         Verify.assertSize(map.size(), array3);
-
-        if (map.size() > 1)
-        {
+        if (map.size() > 1) {
             Integer[] array4 = map.toArray(new Integer[map.size() - 1]);
             Verify.assertSize(map.size(), array4);
         }
-
         Integer[] array5 = map.toArray(new Integer[6]);
         Verify.assertSize(6, array5);
     }
 
     @Test
-    public void zip()
-    {
+    public void zip() {
         MutableMap<String, String> map = this.classUnderTest();
-
         List<Object> nulls = Collections.nCopies(map.size(), null);
         List<Object> nullsPlusOne = Collections.nCopies(map.size() + 1, null);
-
         RichIterable<Pair<String, Object>> pairs = map.zip(nulls);
-        Assert.assertEquals(
-                map.toSet(),
-                pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
-        Assert.assertEquals(
-                nulls,
-                pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
-
+        Assert.assertEquals(map.toSet(), pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
+        Assert.assertEquals(nulls, pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
         RichIterable<Pair<String, Object>> pairsPlusOne = map.zip(nullsPlusOne);
-        Assert.assertEquals(
-                map.toSet(),
-                pairsPlusOne.collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
+        Assert.assertEquals(map.toSet(), pairsPlusOne.collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
         Assert.assertEquals(nulls, pairsPlusOne.collect((Function<Pair<?, Object>, Object>) Pair::getTwo, Lists.mutable.of()));
-
-        if (map.notEmpty())
-        {
+        if (map.notEmpty()) {
             List<Object> nullsMinusOne = Collections.nCopies(map.size() - 1, null);
             RichIterable<Pair<String, Object>> pairsMinusOne = map.zip(nullsMinusOne);
             Assert.assertEquals(map.size() - 1, pairsMinusOne.size());
             Assert.assertTrue(map.values().containsAll(pairsMinusOne.collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet()));
         }
-
-        Assert.assertEquals(
-                map.zip(nulls).toSet(),
-                map.zip(nulls, UnifiedSet.newSet()));
+        Assert.assertEquals(map.zip(nulls).toSet(), map.zip(nulls, UnifiedSet.newSet()));
     }
 
     @Test
-    public void zipWithIndex()
-    {
+    public void zipWithIndex() {
         MutableMap<String, String> map = this.classUnderTest();
-
         RichIterable<Pair<String, Integer>> pairs = map.zipWithIndex();
-
-        Assert.assertEquals(
-                map.toSet(),
-                pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
-        if (map.notEmpty())
-        {
-            Assert.assertEquals(
-                    Interval.zeroTo(map.size() - 1).toSet(),
-                    pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo, UnifiedSet.newSet()));
+        Assert.assertEquals(map.toSet(), pairs.collect((Function<Pair<String, ?>, String>) Pair::getOne).toSet());
+        if (map.notEmpty()) {
+            Assert.assertEquals(Interval.zeroTo(map.size() - 1).toSet(), pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo, UnifiedSet.newSet()));
         }
-
-        Assert.assertEquals(
-                map.zipWithIndex().toSet(),
-                map.zipWithIndex(UnifiedSet.newSet()));
+        Assert.assertEquals(map.zipWithIndex().toSet(), map.zipWithIndex(UnifiedSet.newSet()));
     }
 
     @Test
@@ -1308,8 +1076,7 @@ public abstract class AbstractMemoryEfficientMutableMapTest
     public abstract void keySet();
 
     @Test
-    public void tap()
-    {
+    public void tap() {
         MutableList<String> tapResult = Lists.mutable.of();
         MutableMap<String, String> map = this.classUnderTest();
         Assert.assertSame(map, map.tap(tapResult::add));
@@ -1333,4 +1100,549 @@ public abstract class AbstractMemoryEfficientMutableMapTest
 
     @Test
     public abstract void asLazyValues();
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_put_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::put_throws, this.description("put_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::remove_throws, this.description("remove_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAll_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::putAll_throws, this.description("putAll_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::clear_throws, this.description("clear_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeKey_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeKey_throws, this.description("removeKey_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllKeys_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeAllKeys_throws, this.description("removeAllKeys_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeIf_throws, this.description("removeIf_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectKeysAndValues_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::collectKeysAndValues_throws, this.description("collectKeysAndValues_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_updateValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::updateValue, this.description("updateValue"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_updateValueWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::updateValueWith, this.description("updateValueWith"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newEmpty, this.description("newEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEqualsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEqualsAndHashCode, this.description("testEqualsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testPostSerializedEqualsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testPostSerializedEqualsAndHashCode, this.description("testPostSerializedEqualsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectValues, this.description("collectValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detect, this.description("detect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toBag, this.description("toBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flip, this.description("flip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazy, this.description("asLazy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMap, this.description("toMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedList, this.description("toSortedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedListBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedListBy, this.description("toSortedListBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk, this.description("chunk"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect_value, this.description("collect_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIf, this.description("collectIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllIterable, this.description("containsAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllArguments() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllArguments, this.description("containsAllArguments"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detect_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detect_value, this.description("detect_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNone_value, this.description("detectIfNone_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatten_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatten_value, this.description("flatten_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEach, this.description("groupByEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min, this.description("min"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max, this.description("max"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minBy, this.description("minBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxBy, this.description("maxBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject_value, this.description("reject_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith_value, this.description("rejectWith_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select_value, this.description("select_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith_value, this.description("selectWith_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition_value, this.description("partition_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith_value, this.description("partitionWith_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipWithIndex, this.description("zipWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withKeyValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withKeyValue, this.description("withKeyValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withAllKeyValueArguments() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withAllKeyValueArguments, this.description("withAllKeyValueArguments"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withoutKey, this.description("withoutKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutAllKeys() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withoutAllKeys, this.description("withoutAllKeys"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKeyValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachKeyValue, this.description("forEachKeyValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_nonUniqueWithKeyValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::nonUniqueWithKeyValue, this.description("nonUniqueWithKeyValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachValue, this.description("forEachValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachKey, this.description("forEachKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPut() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPut, this.description("getIfAbsentPut"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsent_function() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsent_function, this.description("getIfAbsent_function"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOrDefault() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getOrDefault, this.description("getOrDefault"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ifPresentApply() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ifPresentApply, this.description("ifPresentApply"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::notEmpty, this.description("notEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_entrySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::entrySet, this.description("entrySet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_values() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::values, this.description("values"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySet, this.description("keySet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tap, this.description("tap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPutWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPutWith, this.description("getIfAbsentPutWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentWith, this.description("getIfAbsentWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazyKeys() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazyKeys, this.description("asLazyKeys"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazyValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazyValues, this.description("asLazyValues"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractMemoryEfficientMutableMapTest implementation();
+    }
 }

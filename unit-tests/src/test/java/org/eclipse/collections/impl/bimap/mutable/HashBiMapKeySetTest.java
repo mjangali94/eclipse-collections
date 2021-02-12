@@ -7,20 +7,33 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bimap.mutable;
 
-public class HashBiMapKeySetTest extends AbstractMutableBiMapKeySetTestCase
-{
+public class HashBiMapKeySetTest extends AbstractMutableBiMapKeySetTestCase {
+
     @Override
-    public HashBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3)
-    {
+    public HashBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    public HashBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3, String key4, int value4)
-    {
+    public HashBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3, String key4, int value4) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private HashBiMapKeySetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBiMapKeySetTest();
+        }
+
+        @java.lang.Override
+        public HashBiMapKeySetTest implementation() {
+            return this.implementation;
+        }
     }
 }

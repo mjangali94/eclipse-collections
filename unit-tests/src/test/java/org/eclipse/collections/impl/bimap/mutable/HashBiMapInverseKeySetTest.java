@@ -7,22 +7,35 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bimap.mutable;
 
 import org.eclipse.collections.api.bimap.MutableBiMap;
 
-public class HashBiMapInverseKeySetTest extends AbstractMutableBiMapKeySetTestCase
-{
+public class HashBiMapInverseKeySetTest extends AbstractMutableBiMapKeySetTestCase {
+
     @Override
-    protected MutableBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3)
-    {
+    protected MutableBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3) {
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2, value3, key3).inverse();
     }
 
     @Override
-    protected MutableBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3, String key4, int value4)
-    {
+    protected MutableBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3, String key4, int value4) {
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2, value3, key3, value4, key4).inverse();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private HashBiMapInverseKeySetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBiMapInverseKeySetTest();
+        }
+
+        @java.lang.Override
+        public HashBiMapInverseKeySetTest implementation() {
+            return this.implementation;
+        }
     }
 }

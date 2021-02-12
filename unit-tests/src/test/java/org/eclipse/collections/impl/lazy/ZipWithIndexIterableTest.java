@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy;
 
 import org.eclipse.collections.impl.block.factory.Procedures;
@@ -16,25 +15,23 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ZipWithIndexIterableTest
-{
+public class ZipWithIndexIterableTest {
+
     private ZipWithIndexIterable<Integer> iterableUnderTest;
+
     private final StringBuilder buffer = new StringBuilder();
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         this.iterableUnderTest = new ZipWithIndexIterable<>(Lists.immutable.of(1, 2, 3, 4));
     }
 
-    private void assertBufferContains(String expected)
-    {
+    private void assertBufferContains(String expected) {
         Assert.assertEquals(expected, this.buffer.toString());
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         this.iterableUnderTest.forEach(Procedures.cast(argument1 -> {
             this.buffer.append("(");
             this.buffer.append(argument1);
@@ -44,8 +41,7 @@ public class ZipWithIndexIterableTest
     }
 
     @Test
-    public void forEachWIthIndex()
-    {
+    public void forEachWIthIndex() {
         this.iterableUnderTest.forEachWithIndex((each, index) -> {
             this.buffer.append("|(");
             this.buffer.append(each);
@@ -56,8 +52,7 @@ public class ZipWithIndexIterableTest
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         this.iterableUnderTest.forEachWith((argument1, argument2) -> {
             this.buffer.append("|(");
             this.buffer.append(argument1);
@@ -65,5 +60,45 @@ public class ZipWithIndexIterableTest
             this.buffer.append(argument2);
         }, "A");
         this.assertBufferContains("|(1:0),A|(2:1),A|(3:2),A|(4:3),A");
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWIthIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWIthIndex, this.description("forEachWIthIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @java.lang.Override
+        public void before() throws java.lang.Throwable {
+            super.before();
+            this.implementation().setUp();
+        }
+
+        private ZipWithIndexIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ZipWithIndexIterableTest();
+        }
+
+        @java.lang.Override
+        public ZipWithIndexIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.immutable.primitive;
 
 import org.eclipse.collections.api.map.primitive.ImmutableObjectBooleanMap;
@@ -17,29 +16,41 @@ import org.eclipse.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
 /**
  * Abstract JUnit test for {@link ImmutableObjectBooleanHashMap#keyValuesView()}.
  */
-public class ImmutableObjectBooleanHashMapKeyValuesViewTest extends AbstractObjectBooleanMapKeyValuesViewTestCase
-{
+public class ImmutableObjectBooleanHashMapKeyValuesViewTest extends AbstractObjectBooleanMapKeyValuesViewTestCase {
+
     @Override
-    public <K> ImmutableObjectBooleanMap<K> newWithKeysValues(K key1, boolean value1, K key2, boolean value2, K key3, boolean value3)
-    {
+    public <K> ImmutableObjectBooleanMap<K> newWithKeysValues(K key1, boolean value1, K key2, boolean value2, K key3, boolean value3) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2, key3, value3).toImmutable();
     }
 
     @Override
-    public <K> ImmutableObjectBooleanMap<K> newWithKeysValues(K key1, boolean value1, K key2, boolean value2)
-    {
+    public <K> ImmutableObjectBooleanMap<K> newWithKeysValues(K key1, boolean value1, K key2, boolean value2) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2).toImmutable();
     }
 
     @Override
-    public <K> ImmutableObjectBooleanMap<K> newWithKeysValues(K key1, boolean value1)
-    {
+    public <K> ImmutableObjectBooleanMap<K> newWithKeysValues(K key1, boolean value1) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1).toImmutable();
     }
 
     @Override
-    public ImmutableObjectBooleanMap<Object> newEmpty()
-    {
+    public ImmutableObjectBooleanMap<Object> newEmpty() {
         return ObjectBooleanHashMap.newMap().toImmutable();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ImmutableObjectBooleanHashMapKeyValuesViewTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableObjectBooleanHashMapKeyValuesViewTest();
+        }
+
+        @java.lang.Override
+        public ImmutableObjectBooleanHashMapKeyValuesViewTest implementation() {
+            return this.implementation;
+        }
     }
 }

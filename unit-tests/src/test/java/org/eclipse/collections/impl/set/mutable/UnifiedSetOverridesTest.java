@@ -7,36 +7,47 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.mutable;
 
-public class UnifiedSetOverridesTest extends UnifiedSetTest
-{
-    public static class UnifiedSetOverriddes<T> extends UnifiedSet<T>
-    {
-        public UnifiedSetOverriddes(int size)
-        {
+public class UnifiedSetOverridesTest extends UnifiedSetTest {
+
+    public static class UnifiedSetOverriddes<T> extends UnifiedSet<T> {
+
+        public UnifiedSetOverriddes(int size) {
             super(size);
         }
 
         @Override
-        protected int index(Object key)
-        {
+        protected int index(Object key) {
             int h = key == null ? 0 : key.hashCode();
             return h & this.table.length - 1;
         }
 
         @Override
-        public UnifiedSetOverriddes<T> newEmpty(int size)
-        {
+        public UnifiedSetOverriddes<T> newEmpty(int size) {
             return new UnifiedSetOverriddes<>(size);
         }
     }
 
     @Override
-    protected <T> UnifiedSet<T> newWith(T... littleElements)
-    {
+    protected <T> UnifiedSet<T> newWith(T... littleElements) {
         UnifiedSet<T> set = new UnifiedSetOverriddes<>(littleElements.length);
         return set.with(littleElements);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private UnifiedSetOverridesTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new UnifiedSetOverridesTest();
+        }
+
+        @java.lang.Override
+        public UnifiedSetOverridesTest implementation() {
+            return this.implementation;
+        }
     }
 }

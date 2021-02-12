@@ -7,36 +7,71 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function;
 
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MultiplyFunctionTest
-{
+public class MultiplyFunctionTest {
+
     @Test
-    public void integerBlock()
-    {
+    public void integerBlock() {
         Assert.assertEquals(Integer.valueOf(20), MultiplyFunction.INTEGER.value(2, 10));
     }
 
     @Test
-    public void doubleBlock()
-    {
+    public void doubleBlock() {
         Assert.assertEquals(new Double(20), MultiplyFunction.DOUBLE.value(2.0, 10.0));
     }
 
     @Test
-    public void longBlock()
-    {
+    public void longBlock() {
         Assert.assertEquals(Long.valueOf(20), MultiplyFunction.LONG.value(2L, 10L));
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(MultiplyFunction.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_integerBlock() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::integerBlock, this.description("integerBlock"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_doubleBlock() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::doubleBlock, this.description("doubleBlock"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_longBlock() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::longBlock, this.description("longBlock"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private MultiplyFunctionTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MultiplyFunctionTest();
+        }
+
+        @java.lang.Override
+        public MultiplyFunctionTest implementation() {
+            return this.implementation;
+        }
     }
 }

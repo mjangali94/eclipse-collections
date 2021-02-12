@@ -7,24 +7,43 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.immutable;
 
 import org.eclipse.collections.api.list.ImmutableList;
 import org.junit.Test;
 
-public class ImmutableSextupletonListTest extends AbstractImmutableListTestCase
-{
+public class ImmutableSextupletonListTest extends AbstractImmutableListTestCase {
+
     @Override
-    protected ImmutableList<Integer> classUnderTest()
-    {
+    protected ImmutableList<Integer> classUnderTest() {
         return new ImmutableSextupletonList<>(1, 2, 3, 4, 5, 6);
     }
 
     @Test(expected = IllegalStateException.class)
-    public void getOnly()
-    {
+    public void getOnly() {
         ImmutableList<Integer> list = this.classUnderTest();
         list.getOnly();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getOnly, this.description("getOnly"), java.lang.IllegalStateException.class);
+        }
+
+        private ImmutableSextupletonListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableSextupletonListTest();
+        }
+
+        @java.lang.Override
+        public ImmutableSextupletonListTest implementation() {
+            return this.implementation;
+        }
     }
 }

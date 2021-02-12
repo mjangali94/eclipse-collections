@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import org.eclipse.collections.impl.string.immutable.CharAdapter;
@@ -15,33 +14,69 @@ import org.eclipse.collections.impl.string.immutable.CodePointAdapter;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class StringsTest
-{
+public class StringsTest {
+
     @Test
-    public void asChars()
-    {
+    public void asChars() {
         CharAdapter adapter = Strings.asChars("The quick brown fox jumps over the lazy dog.");
         Assert.assertTrue(adapter.contains('T'));
     }
 
     @Test
-    public void toChars()
-    {
+    public void toChars() {
         CharAdapter adapter = Strings.toChars('H', 'e', 'l', 'l', 'o');
         Assert.assertEquals(2, adapter.count(c -> c == 'l'));
     }
 
     @Test
-    public void asCodePoints()
-    {
+    public void asCodePoints() {
         CodePointAdapter adapter = Strings.asCodePoints("The quick brown fox jumps over the lazy dog.");
         Assert.assertTrue(adapter.contains((int) 'T'));
     }
 
     @Test
-    public void toCodePoints()
-    {
+    public void toCodePoints() {
         CodePointAdapter adapter = Strings.toCodePoints((int) 'H', (int) 'e', (int) 'l', (int) 'l', (int) 'o');
         Assert.assertEquals(2, adapter.count(i -> i == (int) 'l'));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asChars() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asChars, this.description("asChars"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toChars() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toChars, this.description("toChars"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asCodePoints() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asCodePoints, this.description("asCodePoints"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toCodePoints() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toCodePoints, this.description("toCodePoints"));
+        }
+
+        private StringsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new StringsTest();
+        }
+
+        @java.lang.Override
+        public StringsTest implementation() {
+            return this.implementation;
+        }
     }
 }

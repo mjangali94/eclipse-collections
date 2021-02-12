@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable;
 
 import java.util.Collections;
-
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.block.function.Function2;
@@ -36,73 +34,57 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.ImmutableEntry;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iSet;
 
 /**
  * JUnit test for {@link ConcurrentHashMap}.
  */
-public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
-{
+public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase {
+
     public static final MutableMap<Integer, MutableBag<Integer>> SMALL_BAG_MUTABLE_MAP = Interval.oneTo(100).groupBy(each -> each % 10).toMap(HashBag::new);
 
     @Override
-    public <K, V> ConcurrentMutableMap<K, V> newMap()
-    {
+    public <K, V> ConcurrentMutableMap<K, V> newMap() {
         return ConcurrentHashMap.newMap();
     }
 
     @Override
-    public <K, V> ConcurrentMutableMap<K, V> newMapWithKeyValue(K key, V value)
-    {
+    public <K, V> ConcurrentMutableMap<K, V> newMapWithKeyValue(K key, V value) {
         return ConcurrentHashMap.<K, V>newMap().withKeyValue(key, value);
     }
 
     @Override
-    public <K, V> ConcurrentMutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    public <K, V> ConcurrentMutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2) {
         return ConcurrentHashMap.<K, V>newMap().withKeyValue(key1, value1).withKeyValue(key2, value2);
     }
 
     @Override
-    public <K, V> ConcurrentMutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3)
-    {
-        return ConcurrentHashMap.<K, V>newMap()
-                .withKeyValue(key1, value1)
-                .withKeyValue(key2, value2)
-                .withKeyValue(key3, value3);
+    public <K, V> ConcurrentMutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
+        return ConcurrentHashMap.<K, V>newMap().withKeyValue(key1, value1).withKeyValue(key2, value2).withKeyValue(key3, value3);
     }
 
     @Override
-    public <K, V> ConcurrentMutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
-        return ConcurrentHashMap.<K, V>newMap()
-                .withKeyValue(key1, value1)
-                .withKeyValue(key2, value2)
-                .withKeyValue(key3, value3)
-                .withKeyValue(key4, value4);
+    public <K, V> ConcurrentMutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
+        return ConcurrentHashMap.<K, V>newMap().withKeyValue(key1, value1).withKeyValue(key2, value2).withKeyValue(key3, value3).withKeyValue(key4, value4);
     }
 
     @Test
-    public void doubleReverseTest()
-    {
+    public void doubleReverseTest() {
         FastList<String> source = FastList.newListWith("1", "2", "3");
-        MutableList<String> expectedDoubleReverse = source.toReversed().collect(new Function<String, String>()
-        {
+        MutableList<String> expectedDoubleReverse = source.toReversed().collect(new Function<String, String>() {
+
             private String visited = "";
 
-            public String valueOf(String object)
-            {
+            public String valueOf(String object) {
                 return this.visited += object;
             }
         }).toReversed();
         Assert.assertEquals(FastList.newListWith("321", "32", "3"), expectedDoubleReverse);
-        MutableList<String> expectedNormal = source.collect(new Function<String, String>()
-        {
+        MutableList<String> expectedNormal = source.collect(new Function<String, String>() {
+
             private String visited = "";
 
-            public String valueOf(String object)
-            {
+            public String valueOf(String object) {
                 return this.visited += object;
             }
         });
@@ -110,16 +92,14 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void putIfAbsent()
-    {
+    public void putIfAbsent() {
         ConcurrentMutableMap<Integer, Integer> map = this.newMapWithKeysValues(1, 1, 2, 2);
         Assert.assertEquals(Integer.valueOf(1), map.putIfAbsent(1, 1));
         Assert.assertNull(map.putIfAbsent(3, 3));
     }
 
     @Test
-    public void replace()
-    {
+    public void replace() {
         ConcurrentMutableMap<Integer, Integer> map = this.newMapWithKeysValues(1, 1, 2, 2);
         Assert.assertEquals(Integer.valueOf(1), map.replace(1, 7));
         Assert.assertEquals(Integer.valueOf(7), map.get(1));
@@ -127,8 +107,7 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void entrySetContains()
-    {
+    public void entrySetContains() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("One", Integer.valueOf(1), "Two", Integer.valueOf(2), "Three", Integer.valueOf(3));
         Assert.assertFalse(map.entrySet().contains(null));
         Assert.assertFalse(map.entrySet().contains(ImmutableEntry.of("Zero", Integer.valueOf(0))));
@@ -136,8 +115,7 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void entrySetRemove()
-    {
+    public void entrySetRemove() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("One", Integer.valueOf(1), "Two", Integer.valueOf(2), "Three", Integer.valueOf(3));
         Assert.assertFalse(map.entrySet().remove(null));
         Assert.assertFalse(map.entrySet().remove(ImmutableEntry.of("Zero", Integer.valueOf(0))));
@@ -145,8 +123,7 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void replaceWithOldValue()
-    {
+    public void replaceWithOldValue() {
         ConcurrentMutableMap<Integer, Integer> map = this.newMapWithKeysValues(1, 1, 2, 2);
         Assert.assertTrue(map.replace(1, 1, 7));
         Assert.assertEquals(Integer.valueOf(7), map.get(1));
@@ -154,8 +131,7 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void removeWithKeyValue()
-    {
+    public void removeWithKeyValue() {
         ConcurrentMutableMap<Integer, Integer> map = this.newMapWithKeysValues(1, 1, 2, 2);
         Assert.assertTrue(map.remove(1, 1));
         Assert.assertFalse(map.remove(2, 3));
@@ -163,60 +139,46 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
 
     @Override
     @Test
-    public void removeFromEntrySet()
-    {
+    public void removeFromEntrySet() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);
         Assert.assertTrue(map.entrySet().remove(ImmutableEntry.of("Two", 2)));
         Assert.assertEquals(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
-
         Assert.assertFalse(map.entrySet().remove(ImmutableEntry.of("Four", 4)));
         Verify.assertEqualsAndHashCode(UnifiedMap.newWithKeysValues("One", 1, "Three", 3), map);
     }
 
     @Override
     @Test
-    public void removeAllFromEntrySet()
-    {
+    public void removeAllFromEntrySet() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);
-        Assert.assertTrue(map.entrySet().removeAll(FastList.newListWith(
-                ImmutableEntry.of("One", 1),
-                ImmutableEntry.of("Three", 3))));
+        Assert.assertTrue(map.entrySet().removeAll(FastList.newListWith(ImmutableEntry.of("One", 1), ImmutableEntry.of("Three", 3))));
         Assert.assertEquals(UnifiedMap.newWithKeysValues("Two", 2), map);
-
         Assert.assertFalse(map.entrySet().removeAll(FastList.newListWith(ImmutableEntry.of("Four", 4))));
         Verify.assertEqualsAndHashCode(UnifiedMap.newWithKeysValues("Two", 2), map);
     }
 
     @Override
     @Test
-    public void keySetEqualsAndHashCode()
-    {
+    public void keySetEqualsAndHashCode() {
         MutableMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);
         Verify.assertEqualsAndHashCode(UnifiedSet.newSetWith("One", "Two", "Three"), map.keySet());
     }
 
     @Test
-    public void equalsEdgeCases()
-    {
+    public void equalsEdgeCases() {
         Assert.assertNotEquals(ConcurrentHashMap.newMap().withKeyValue(1, 1), ConcurrentHashMap.newMap());
         Assert.assertNotEquals(ConcurrentHashMap.newMap().withKeyValue(1, 1), ConcurrentHashMap.newMap().withKeyValue(1, 1).withKeyValue(2, 2));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void negativeInitialSize()
-    {
+    public void negativeInitialSize() {
         ConcurrentHashMap.newMap(-1);
     }
 
     @Override
     @Test
-    public void partition_value()
-    {
-        MapIterable<String, Integer> map = this.newMapWithKeysValues(
-                "A", 1,
-                "B", 2,
-                "C", 3,
-                "D", 4);
+    public void partition_value() {
+        MapIterable<String, Integer> map = this.newMapWithKeysValues("A", 1, "B", 2, "C", 3, "D", 4);
         PartitionIterable<Integer> partition = map.partition(IntegerPredicates.isEven());
         Assert.assertEquals(iSet(2, 4), partition.getSelected().toSet());
         Assert.assertEquals(iSet(1, 3), partition.getRejected().toSet());
@@ -224,13 +186,8 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
 
     @Override
     @Test
-    public void partitionWith_value()
-    {
-        MapIterable<String, Integer> map = this.newMapWithKeysValues(
-                "A", 1,
-                "B", 2,
-                "C", 3,
-                "D", 4);
+    public void partitionWith_value() {
+        MapIterable<String, Integer> map = this.newMapWithKeysValues("A", 1, "B", 2, "C", 3, "D", 4);
         PartitionIterable<Integer> partition = map.partitionWith(Predicates2.in(), map.select(IntegerPredicates.isEven()));
         Assert.assertEquals(iSet(2, 4), partition.getSelected().toSet());
         Assert.assertEquals(iSet(1, 3), partition.getRejected().toSet());
@@ -238,24 +195,20 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
 
     @Override
     @Test
-    public void withMapNull()
-    {
+    public void withMapNull() {
         Assert.assertThrows(IllegalArgumentException.class, () -> this.newMap().withMap(null));
     }
 
     @Test
-    public void parallelGroupByIntoConcurrentHashMap()
-    {
+    public void parallelGroupByIntoConcurrentHashMap() {
         MutableMap<Integer, MutableBag<Integer>> actual = ConcurrentHashMap.newMap();
         ParallelIterate.forEach(Interval.oneTo(100), each -> actual.getIfAbsentPut(each % 10, () -> HashBag.<Integer>newBag().asSynchronized()).add(each), 10, this.executor);
         Verify.assertEqualsAndHashCode(SMALL_BAG_MUTABLE_MAP, actual);
     }
 
     @Test
-    public void parallelForEachValue()
-    {
-        ConcurrentHashMap<Integer, Integer> source =
-                ConcurrentHashMap.newMap(Interval.oneTo(100).toMap(Functions.getIntegerPassThru(), Functions.getIntegerPassThru()));
+    public void parallelForEachValue() {
+        ConcurrentHashMap<Integer, Integer> source = ConcurrentHashMap.newMap(Interval.oneTo(100).toMap(Functions.getIntegerPassThru(), Functions.getIntegerPassThru()));
         MutableMap<Integer, MutableBag<Integer>> actual = ConcurrentHashMap.newMap();
         Procedure<Integer> procedure = each -> actual.getIfAbsentPut(each % 10, () -> HashBag.<Integer>newBag().asSynchronized()).add(each);
         source.parallelForEachValue(FastList.newList(Collections.nCopies(5, procedure)), this.executor);
@@ -263,10 +216,8 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void parallelForEachEntry()
-    {
-        ConcurrentHashMap<Integer, Integer> source =
-                ConcurrentHashMap.newMap(Interval.oneTo(100).toMap(Functions.getIntegerPassThru(), Functions.getIntegerPassThru()));
+    public void parallelForEachEntry() {
+        ConcurrentHashMap<Integer, Integer> source = ConcurrentHashMap.newMap(Interval.oneTo(100).toMap(Functions.getIntegerPassThru(), Functions.getIntegerPassThru()));
         MutableMap<Integer, MutableBag<Integer>> actual = ConcurrentHashMap.newMap();
         Procedure2<Integer, Integer> procedure2 = (key, value) -> actual.getIfAbsentPut(value % 10, () -> HashBag.<Integer>newBag().asSynchronized()).add(value);
         source.parallelForEachKeyValue(FastList.newList(Collections.nCopies(5, procedure2)), this.executor);
@@ -274,8 +225,7 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void putAllInParallelSmallMap()
-    {
+    public void putAllInParallelSmallMap() {
         ConcurrentHashMap<Integer, Integer> source = ConcurrentHashMap.newMap(Interval.oneTo(100).toMap(Functions.getIntegerPassThru(), Functions.getIntegerPassThru()));
         ConcurrentHashMap<Integer, Integer> target = ConcurrentHashMap.newMap();
         target.putAllInParallel(source, 100, this.executor);
@@ -283,8 +233,7 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void putAllInParallelLargeMap()
-    {
+    public void putAllInParallelLargeMap() {
         ConcurrentHashMap<Integer, Integer> source = ConcurrentHashMap.newMap(Interval.oneTo(600).toMap(Functions.getIntegerPassThru(), Functions.getIntegerPassThru()));
         ConcurrentHashMap<Integer, Integer> target = ConcurrentHashMap.newMap();
         target.putAllInParallel(source, 100, this.executor);
@@ -292,12 +241,10 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void concurrentPutGetPutAllRemoveContainsKeyContainsValueGetIfAbsentPutTest()
-    {
+    public void concurrentPutGetPutAllRemoveContainsKeyContainsValueGetIfAbsentPutTest() {
         ConcurrentHashMap<Integer, Integer> map1 = ConcurrentHashMap.newMap();
         ConcurrentHashMap<Integer, Integer> map2 = ConcurrentHashMap.newMap();
-        ParallelIterate.forEach(Interval.oneTo(100), each ->
-        {
+        ParallelIterate.forEach(Interval.oneTo(100), each -> {
             map1.put(each, each);
             Assert.assertEquals(each, map1.get(each));
             map2.putAll(Maps.mutable.of(each, each));
@@ -321,12 +268,10 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void concurrentPutIfAbsentGetIfPresentPutTest()
-    {
+    public void concurrentPutIfAbsentGetIfPresentPutTest() {
         ConcurrentHashMap<Integer, Integer> map1 = ConcurrentHashMap.newMap();
         ConcurrentHashMap<Integer, Integer> map2 = ConcurrentHashMap.newMap();
-        ParallelIterate.forEach(Interval.oneTo(100), each ->
-        {
+        ParallelIterate.forEach(Interval.oneTo(100), each -> {
             map1.put(each, each);
             map1.put(each, each);
             Assert.assertEquals(each, map1.get(each));
@@ -340,13 +285,10 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void concurrentClear()
-    {
+    public void concurrentClear() {
         ConcurrentHashMap<Integer, Integer> map = ConcurrentHashMap.newMap();
-        ParallelIterate.forEach(Interval.oneTo(100), each ->
-        {
-            for (int i = 0; i < 10; i++)
-            {
+        ParallelIterate.forEach(Interval.oneTo(100), each -> {
+            for (int i = 0; i < 10; i++) {
                 map.put(each + i * 1000, each);
             }
             map.clear();
@@ -355,11 +297,9 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
     }
 
     @Test
-    public void concurrentRemoveAndPutIfAbsent()
-    {
+    public void concurrentRemoveAndPutIfAbsent() {
         ConcurrentHashMap<Integer, Integer> map1 = ConcurrentHashMap.newMap();
-        ParallelIterate.forEach(Interval.oneTo(100), each ->
-        {
+        ParallelIterate.forEach(Interval.oneTo(100), each -> {
             Assert.assertNull(map1.put(each, each));
             map1.remove(each);
             Assert.assertNull(map1.get(each));
@@ -369,47 +309,207 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase
             Assert.assertEquals(each, map1.getIfAbsentPutWith(each, Functions.getIntegerPassThru(), each));
             map1.remove(each);
             Assert.assertNull(map1.get(each));
-            for (int i = 0; i < 10; i++)
-            {
+            for (int i = 0; i < 10; i++) {
                 Assert.assertNull(map1.putIfAbsent(each + i * 1000, each));
             }
-            for (int i = 0; i < 10; i++)
-            {
+            for (int i = 0; i < 10; i++) {
                 Assert.assertEquals(each, map1.putIfAbsent(each + i * 1000, each));
             }
-            for (int i = 0; i < 10; i++)
-            {
+            for (int i = 0; i < 10; i++) {
                 Assert.assertEquals(each, map1.remove(each + i * 1000));
             }
         }, 1, this.executor);
     }
 
     @Test
-    public void emptyToString()
-    {
+    public void emptyToString() {
         ConcurrentHashMap<?, ?> empty = ConcurrentHashMap.newMap(0);
         Assert.assertEquals("{}", empty.toString());
     }
 
-    private static class KeyTransformer implements Function2<Integer, Integer, Integer>
-    {
+    private static class KeyTransformer implements Function2<Integer, Integer, Integer> {
+
         private static final long serialVersionUID = 1L;
 
         @Override
-        public Integer value(Integer key, Integer value)
-        {
+        public Integer value(Integer key, Integer value) {
             return key;
         }
     }
 
-    private static class ValueFactory implements Function3<Object, Object, Integer, Integer>
-    {
+    private static class ValueFactory implements Function3<Object, Object, Integer, Integer> {
+
         private static final long serialVersionUID = 1L;
 
         @Override
-        public Integer value(Object argument1, Object argument2, Integer key)
-        {
+        public Integer value(Object argument1, Object argument2, Integer key) {
             return key;
+        }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_doubleReverseTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::doubleReverseTest, this.description("doubleReverseTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putIfAbsent() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putIfAbsent, this.description("putIfAbsent"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_replace() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::replace, this.description("replace"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_entrySetContains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::entrySetContains, this.description("entrySetContains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_entrySetRemove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::entrySetRemove, this.description("entrySetRemove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_replaceWithOldValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::replaceWithOldValue, this.description("replaceWithOldValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeWithKeyValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeWithKeyValue, this.description("removeWithKeyValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeFromEntrySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeFromEntrySet, this.description("removeFromEntrySet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllFromEntrySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllFromEntrySet, this.description("removeAllFromEntrySet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySetEqualsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySetEqualsAndHashCode, this.description("keySetEqualsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsEdgeCases() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsEdgeCases, this.description("equalsEdgeCases"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_negativeInitialSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::negativeInitialSize, this.description("negativeInitialSize"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition_value, this.description("partition_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith_value() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith_value, this.description("partitionWith_value"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withMapNull() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withMapNull, this.description("withMapNull"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_parallelGroupByIntoConcurrentHashMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::parallelGroupByIntoConcurrentHashMap, this.description("parallelGroupByIntoConcurrentHashMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_parallelForEachValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::parallelForEachValue, this.description("parallelForEachValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_parallelForEachEntry() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::parallelForEachEntry, this.description("parallelForEachEntry"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAllInParallelSmallMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putAllInParallelSmallMap, this.description("putAllInParallelSmallMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAllInParallelLargeMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putAllInParallelLargeMap, this.description("putAllInParallelLargeMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_concurrentPutGetPutAllRemoveContainsKeyContainsValueGetIfAbsentPutTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::concurrentPutGetPutAllRemoveContainsKeyContainsValueGetIfAbsentPutTest, this.description("concurrentPutGetPutAllRemoveContainsKeyContainsValueGetIfAbsentPutTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_concurrentPutIfAbsentGetIfPresentPutTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::concurrentPutIfAbsentGetIfPresentPutTest, this.description("concurrentPutIfAbsentGetIfPresentPutTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_concurrentClear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::concurrentClear, this.description("concurrentClear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_concurrentRemoveAndPutIfAbsent() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::concurrentRemoveAndPutIfAbsent, this.description("concurrentRemoveAndPutIfAbsent"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_emptyToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::emptyToString, this.description("emptyToString"));
+        }
+
+        private ConcurrentHashMapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ConcurrentHashMapTest();
+        }
+
+        @java.lang.Override
+        public ConcurrentHashMapTest implementation() {
+            return this.implementation;
         }
     }
 }

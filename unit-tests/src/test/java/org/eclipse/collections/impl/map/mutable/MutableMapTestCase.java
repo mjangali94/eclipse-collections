@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable;
 
 import org.eclipse.collections.api.list.MutableList;
@@ -21,8 +20,8 @@ import org.junit.Test;
 /**
  * Abstract JUnit TestCase for {@link MutableMap}s.
  */
-public abstract class MutableMapTestCase extends MutableMapIterableTestCase
-{
+public abstract class MutableMapTestCase extends MutableMapIterableTestCase {
+
     @Override
     protected abstract <K, V> MutableMap<K, V> newMap();
 
@@ -39,8 +38,7 @@ public abstract class MutableMapTestCase extends MutableMapIterableTestCase
     protected abstract <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4);
 
     @Test
-    public void collectKeysAndValues()
-    {
+    public void collectKeysAndValues() {
         MutableMap<Integer, String> map = this.newMapWithKeysValues(1, "1", 2, "Two");
         MutableList<Integer> toAdd = FastList.newListWith(2, 3);
         map.collectKeysAndValues(toAdd, Functions.getIntegerPassThru(), String::valueOf);
@@ -49,11 +47,32 @@ public abstract class MutableMapTestCase extends MutableMapIterableTestCase
     }
 
     @Test
-    public void testClone()
-    {
+    public void testClone() {
         MutableMap<Integer, String> map = this.newMapWithKeysValues(1, "One", 2, "Two");
         MutableMap<Integer, String> clone = map.clone();
         Assert.assertNotSame(map, clone);
         Verify.assertEqualsAndHashCode(map, clone);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectKeysAndValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectKeysAndValues, this.description("collectKeysAndValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract MutableMapTestCase implementation();
     }
 }

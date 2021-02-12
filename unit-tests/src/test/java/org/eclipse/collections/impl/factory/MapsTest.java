@@ -7,12 +7,10 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
-
 import org.eclipse.collections.api.factory.map.FixedSizeMapFactory;
 import org.eclipse.collections.api.factory.map.ImmutableMapFactory;
 import org.eclipse.collections.api.factory.map.MutableMapFactory;
@@ -27,11 +25,10 @@ import org.eclipse.collections.impl.tuple.Tuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MapsTest
-{
+public class MapsTest {
+
     @Test
-    public void immutable()
-    {
+    public void immutable() {
         ImmutableMapFactory factory = Maps.immutable;
         Assert.assertEquals(UnifiedMap.newMap(), factory.of());
         Verify.assertInstanceOf(ImmutableMap.class, factory.of());
@@ -46,8 +43,7 @@ public class MapsTest
     }
 
     @Test
-    public void immutableWithDuplicateKeys()
-    {
+    public void immutableWithDuplicateKeys() {
         ImmutableMapFactory factory = Maps.immutable;
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 2), factory.of(1, 2));
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 2, 1, 2), factory.of(1, 2, 1, 2));
@@ -57,8 +53,7 @@ public class MapsTest
     }
 
     @Test
-    public void fixedSize()
-    {
+    public void fixedSize() {
         FixedSizeMapFactory undertest = Maps.fixedSize;
         Assert.assertEquals(UnifiedMap.newMap(), undertest.of());
         Verify.assertInstanceOf(FixedSizeMap.class, undertest.of());
@@ -71,8 +66,7 @@ public class MapsTest
     }
 
     @Test
-    public void fixedSizeWithDuplicateKeys()
-    {
+    public void fixedSizeWithDuplicateKeys() {
         FixedSizeMapFactory undertest = Maps.fixedSize;
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 2), undertest.of(1, 2));
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 2, 1, 2), undertest.of(1, 2, 1, 2));
@@ -82,62 +76,49 @@ public class MapsTest
     }
 
     @Test
-    public void copyMap()
-    {
+    public void copyMap() {
         Assert.assertEquals(Maps.fixedSize.of(1, "One"), Maps.immutable.ofAll(UnifiedMap.newWithKeysValues(1, "One")));
         Verify.assertInstanceOf(ImmutableMap.class, Maps.immutable.ofAll(UnifiedMap.newWithKeysValues(1, "One")));
-
         Assert.assertEquals(Maps.fixedSize.of(1, "One", 2, "Dos"), Maps.immutable.ofAll(UnifiedMap.newWithKeysValues(1, "One", 2, "Dos")));
         Verify.assertInstanceOf(ImmutableMap.class, Maps.immutable.ofAll(UnifiedMap.newWithKeysValues(1, "One", 2, "Dos")));
-
         Assert.assertEquals(Maps.fixedSize.of(1, "One", 2, "Dos", 3, "Drei"), Maps.immutable.ofAll(UnifiedMap.newWithKeysValues(1, "One", 2, "Dos", 3, "Drei")));
         Verify.assertInstanceOf(ImmutableMap.class, Maps.immutable.ofAll(UnifiedMap.newWithKeysValues(1, "One", 2, "Dos", 3, "Drei")));
-
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, "One", 2, "Dos", 3, "Drei", 4, "Quatro"), Maps.immutable.ofAll(UnifiedMap.newWithKeysValues(1, "One", 2, "Dos", 3, "Drei", 4, "Quatro")));
         Verify.assertInstanceOf(ImmutableMap.class, Maps.immutable.ofAll(UnifiedMap.newWithKeysValues(1, "One", 2, "Dos", 3, "Drei", 4, "Quatro")));
     }
 
     @Test
-    public void newMapWith()
-    {
+    public void newMapWith() {
         ImmutableMap<String, String> map1 = Maps.immutable.of("key1", "value1");
         Verify.assertSize(1, map1);
         Verify.assertContainsKeyValue("key1", "value1", map1);
-
         ImmutableMap<String, String> map2 = Maps.immutable.of("key1", "value1", "key2", "value2");
         Verify.assertSize(2, map2);
         Verify.assertContainsAllKeyValues(map2, "key1", "value1", "key2", "value2");
-
         ImmutableMap<String, String> map3 = Maps.immutable.of("key1", "value1", "key2", "value2", "key3", "value3");
         Verify.assertSize(3, map3);
         Verify.assertContainsAllKeyValues(map3, "key1", "value1", "key2", "value2", "key3", "value3");
-
         ImmutableMap<String, String> map4 = Maps.immutable.of("key1", "value1", "key2", "value2", "key3", "value3", "key4", "value4");
         Verify.assertSize(4, map4);
         Verify.assertContainsAllKeyValues(map4, "key1", "value1", "key2", "value2", "key3", "value3", "key4", "value4");
     }
 
     @Test
-    public void duplicates()
-    {
+    public void duplicates() {
         Assert.assertEquals(Maps.immutable.of(0, 0), Maps.immutable.of(0, 0, 0, 0));
         Assert.assertEquals(Maps.immutable.of(0, 0), Maps.immutable.of(0, 0, 0, 0, 0, 0));
         Assert.assertEquals(Maps.immutable.of(0, 0), Maps.immutable.of(0, 0, 0, 0, 0, 0, 0, 0));
-
         Assert.assertEquals(Maps.immutable.of(0, 0, 1, 1), Maps.immutable.of(1, 1, 0, 0, 0, 0));
         Assert.assertEquals(Maps.immutable.of(0, 0, 2, 2), Maps.immutable.of(0, 0, 2, 2, 0, 0));
         Assert.assertEquals(Maps.immutable.of(0, 0, 3, 3), Maps.immutable.of(0, 0, 0, 0, 3, 3));
-
         Assert.assertEquals(Maps.immutable.of(0, 0, 1, 1), Maps.immutable.of(1, 1, 0, 0, 0, 0, 0, 0));
         Assert.assertEquals(Maps.immutable.of(0, 0, 2, 2), Maps.immutable.of(0, 0, 2, 2, 0, 0, 0, 0));
         Assert.assertEquals(Maps.immutable.of(0, 0, 3, 3), Maps.immutable.of(0, 0, 0, 0, 3, 3, 0, 0));
         Assert.assertEquals(Maps.immutable.of(0, 0, 4, 4), Maps.immutable.of(0, 0, 0, 0, 0, 0, 4, 4));
-
         Assert.assertEquals(Maps.immutable.of(0, 0, 2, 2, 3, 3, 4, 4), Maps.immutable.of(0, 0, 2, 2, 3, 3, 4, 4));
         Assert.assertEquals(Maps.immutable.of(0, 0, 1, 1, 3, 3, 4, 4), Maps.immutable.of(1, 1, 0, 0, 3, 3, 4, 4));
         Assert.assertEquals(Maps.immutable.of(0, 0, 1, 1, 2, 2, 4, 4), Maps.immutable.of(1, 1, 2, 2, 0, 0, 4, 4));
         Assert.assertEquals(Maps.immutable.of(0, 0, 1, 1, 2, 2, 3, 3), Maps.immutable.of(1, 1, 2, 2, 3, 3, 0, 0));
-
         Assert.assertEquals(Maps.immutable.of(0, 0, 3, 3, 4, 4), Maps.immutable.of(0, 0, 0, 0, 3, 3, 4, 4));
         Assert.assertEquals(Maps.immutable.of(0, 0, 2, 2, 4, 4), Maps.immutable.of(0, 0, 2, 2, 0, 0, 4, 4));
         Assert.assertEquals(Maps.immutable.of(0, 0, 2, 2, 3, 3), Maps.immutable.of(0, 0, 2, 2, 3, 3, 0, 0));
@@ -147,22 +128,18 @@ public class MapsTest
     }
 
     @Test
-    public void mapKeyPreservation()
-    {
+    public void mapKeyPreservation() {
         Key key = new Key("key");
-
         Key duplicateKey1 = new Key("key");
         ImmutableMap<Key, Integer> map1 = Maps.immutable.of(key, 1, duplicateKey1, 2);
         Verify.assertSize(1, map1);
         Verify.assertContainsKeyValue(key, 2, map1);
         Assert.assertSame(key, map1.keysView().getFirst());
-
         Key duplicateKey2 = new Key("key");
         ImmutableMap<Key, Integer> map2 = Maps.immutable.of(key, 1, duplicateKey1, 2, duplicateKey2, 3);
         Verify.assertSize(1, map2);
         Verify.assertContainsKeyValue(key, 3, map2);
         Assert.assertSame(key, map2.keysView().getFirst());
-
         Key duplicateKey3 = new Key("key");
         ImmutableMap<Key, Integer> map3 = Maps.immutable.of(key, 1, new Key("not a dupe"), 2, duplicateKey3, 3);
         Verify.assertSize(2, map3);
@@ -171,101 +148,167 @@ public class MapsTest
     }
 
     @Test
-    public void sortedMaps()
-    {
+    public void sortedMaps() {
         MutableSortedMapFactory factory = SortedMaps.mutable;
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 2, 3, 4), factory.ofSortedMap(UnifiedMap.newWithKeysValues(1, 2, 3, 4)));
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(Maps.class);
     }
 
     @Test
-    public void ofInitialCapacity()
-    {
+    public void ofInitialCapacity() {
         MutableMap<String, String> map1 = Maps.mutable.ofInitialCapacity(0);
         this.assertPresizedMapSizeEquals(0, (UnifiedMap<String, String>) map1);
-
         MutableMap<String, String> map2 = Maps.mutable.ofInitialCapacity(5);
         this.assertPresizedMapSizeEquals(5, (UnifiedMap<String, String>) map2);
-
         MutableMap<String, String> map3 = Maps.mutable.ofInitialCapacity(20);
         this.assertPresizedMapSizeEquals(20, (UnifiedMap<String, String>) map3);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Maps.mutable.ofInitialCapacity(-12));
     }
 
     @Test
-    public void withInitialCapacity()
-    {
+    public void withInitialCapacity() {
         MutableMap<String, String> map1 = Maps.mutable.withInitialCapacity(0);
         this.assertPresizedMapSizeEquals(0, (UnifiedMap<String, String>) map1);
-
         MutableMap<String, String> map2 = Maps.mutable.withInitialCapacity(2);
         this.assertPresizedMapSizeEquals(2, (UnifiedMap<String, String>) map2);
-
         MutableMap<String, String> map3 = Maps.mutable.withInitialCapacity(3);
         this.assertPresizedMapSizeEquals(3, (UnifiedMap<String, String>) map3);
-
         MutableMap<String, String> map4 = Maps.mutable.withInitialCapacity(14);
         this.assertPresizedMapSizeEquals(14, (UnifiedMap<String, String>) map4);
-
         MutableMap<String, String> map5 = Maps.mutable.withInitialCapacity(17);
         this.assertPresizedMapSizeEquals(17, (UnifiedMap<String, String>) map5);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Maps.mutable.ofInitialCapacity(-6));
     }
 
-    private void assertPresizedMapSizeEquals(int initialCapacity, UnifiedMap<String, String> map)
-    {
-        try
-        {
+    private void assertPresizedMapSizeEquals(int initialCapacity, UnifiedMap<String, String> map) {
+        try {
             Field tableField = UnifiedMap.class.getDeclaredField("table");
             tableField.setAccessible(true);
             Object[] table = (Object[]) tableField.get(map);
-
             int size = (int) Math.ceil(initialCapacity / 0.75);
             int capacity = 1;
-            while (capacity < size)
-            {
+            while (capacity < size) {
                 capacity <<= 1;
             }
             capacity <<= 1;
-
             Assert.assertEquals(capacity, table.length);
-        }
-        catch (SecurityException ignored)
-        {
+        } catch (SecurityException ignored) {
             Assert.fail("Unable to modify the visibility of the table on UnifiedMap");
-        }
-        catch (NoSuchFieldException ignored)
-        {
+        } catch (NoSuchFieldException ignored) {
             Assert.fail("No field named table UnifiedMap");
-        }
-        catch (IllegalAccessException ignored)
-        {
+        } catch (IllegalAccessException ignored) {
             Assert.fail("No access the field table in UnifiedMap");
         }
     }
 
     @Test
-    public void ofAll()
-    {
+    public void ofAll() {
         MutableMapFactory factory = Maps.mutable;
-
         Assert.assertEquals(UnifiedMap.newMap(), factory.ofMap(new HashMap<>()));
         Verify.assertInstanceOf(UnifiedMap.class, factory.ofMap(new HashMap<>()));
-
         Assert.assertEquals(UnifiedMap.newMap(), factory.ofMapIterable(Maps.immutable.with()));
         Verify.assertInstanceOf(UnifiedMap.class, factory.ofMapIterable(Maps.immutable.with()));
-
         Assert.assertEquals(UnifiedMap.newMapWith(Tuples.pair(1, 1)), factory.ofMap(Maps.mutable.with(1, 1)));
         Verify.assertInstanceOf(UnifiedMap.class, factory.ofMap(Maps.mutable.with(1, 1)));
-
         Assert.assertEquals(UnifiedMap.newMapWith(Tuples.pair(1, 1)), factory.ofMapIterable(Maps.mutable.with(1, 1)));
         Verify.assertInstanceOf(UnifiedMap.class, factory.ofMapIterable(Maps.mutable.with(1, 1)));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutable, this.description("immutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableWithDuplicateKeys() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableWithDuplicateKeys, this.description("immutableWithDuplicateKeys"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fixedSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fixedSize, this.description("fixedSize"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fixedSizeWithDuplicateKeys() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fixedSizeWithDuplicateKeys, this.description("fixedSizeWithDuplicateKeys"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_copyMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::copyMap, this.description("copyMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newMapWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newMapWith, this.description("newMapWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_duplicates() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::duplicates, this.description("duplicates"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mapKeyPreservation() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mapKeyPreservation, this.description("mapKeyPreservation"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortedMaps() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortedMaps, this.description("sortedMaps"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofInitialCapacity, this.description("ofInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withInitialCapacity, this.description("withInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAll, this.description("ofAll"));
+        }
+
+        private MapsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MapsTest();
+        }
+
+        @java.lang.Override
+        public MapsTest implementation() {
+            return this.implementation;
+        }
     }
 }

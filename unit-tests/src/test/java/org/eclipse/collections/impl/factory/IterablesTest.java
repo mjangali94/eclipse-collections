@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import org.eclipse.collections.api.bag.ImmutableBag;
@@ -34,11 +33,10 @@ import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Test;
 
-public class IterablesTest
-{
+public class IterablesTest {
+
     @Test
-    public void immutableLists()
-    {
+    public void immutableLists() {
         this.assertEqualsAndInstanceOf(FastList.newList().toImmutable(), Iterables.iList(), ImmutableList.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(1), Iterables.iList(1), ImmutableList.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(2), Iterables.iList(1, 2), ImmutableList.class);
@@ -54,8 +52,7 @@ public class IterablesTest
     }
 
     @Test
-    public void mutableLists()
-    {
+    public void mutableLists() {
         this.assertEqualsAndInstanceOf(FastList.newList(), Iterables.mList(), MutableList.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(1), Iterables.mList(1), MutableList.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(2), Iterables.mList(1, 2), MutableList.class);
@@ -71,8 +68,7 @@ public class IterablesTest
     }
 
     @Test
-    public void immutableSets()
-    {
+    public void immutableSets() {
         this.assertEqualsAndInstanceOf(UnifiedSet.newSet().toImmutable(), Iterables.iSet(), ImmutableSet.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSet(), Iterables.iSet(1), ImmutableSet.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSet(), Iterables.iSet(1, 2), ImmutableSet.class);
@@ -88,8 +84,7 @@ public class IterablesTest
     }
 
     @Test
-    public void mutableSets()
-    {
+    public void mutableSets() {
         this.assertEqualsAndInstanceOf(UnifiedSet.newSet(), Iterables.mSet(), MutableSet.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSet(), Iterables.mSet(1), MutableSet.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSet(), Iterables.mSet(1, 2), MutableSet.class);
@@ -105,8 +100,7 @@ public class IterablesTest
     }
 
     @Test
-    public void mutableBags()
-    {
+    public void mutableBags() {
         this.assertEqualsAndInstanceOf(HashBag.newBag(), Iterables.mBag(), MutableBag.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(1).toBag(), Iterables.mBag(1), MutableBag.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(2).toBag(), Iterables.mBag(1, 2), MutableBag.class);
@@ -122,8 +116,7 @@ public class IterablesTest
     }
 
     @Test
-    public void immutableBags()
-    {
+    public void immutableBags() {
         this.assertEqualsAndInstanceOf(HashBag.newBag(), Iterables.iBag(), ImmutableBag.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(1).toBag(), Iterables.iBag(1), ImmutableBag.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(2).toBag(), Iterables.iBag(1, 2), ImmutableBag.class);
@@ -139,8 +132,7 @@ public class IterablesTest
     }
 
     @Test
-    public void immutableSortedSets()
-    {
+    public void immutableSortedSets() {
         this.assertEqualsAndInstanceOf(TreeSortedSet.newSet(), Iterables.iSortedSet(), ImmutableSortedSet.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedSet(), Iterables.iSortedSet(1), ImmutableSortedSet.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedSet(), Iterables.iSortedSet(1, 2), ImmutableSortedSet.class);
@@ -156,64 +148,39 @@ public class IterablesTest
     }
 
     @Test
-    public void immutableSortedSetsWithComparator()
-    {
+    public void immutableSortedSetsWithComparator() {
         this.assertEqualsAndInstanceOf(TreeSortedSet.newSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder()), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(5).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(6).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(7).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(8).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(9).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(10).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(11).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(5).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(6).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(7).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(8).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(9).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(10).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), ImmutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(11).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), ImmutableSortedSet.class);
     }
 
     @Test
-    public void mutableSortedSetsWithComparator()
-    {
+    public void mutableSortedSetsWithComparator() {
         this.assertEqualsAndInstanceOf(TreeSortedSet.newSet(Comparators.reverseNaturalOrder()), Iterables.iSortedSet(Comparators.reverseNaturalOrder()), ImmutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(5).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(6).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(7).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(8).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(9).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(10).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), MutableSortedSet.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(11).toSortedSet(Comparators.reverseNaturalOrder()),
-                Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(5).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(6).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(7).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(8).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(9).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(10).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10), MutableSortedSet.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(11).toSortedSet(Comparators.reverseNaturalOrder()), Iterables.mSortedSet(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11), MutableSortedSet.class);
     }
 
     @Test
-    public void mutableSortedSets()
-    {
+    public void mutableSortedSets() {
         this.assertEqualsAndInstanceOf(TreeSortedSet.newSet(), Iterables.mSortedSet(), MutableSortedSet.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedSet(), Iterables.mSortedSet(1), MutableSortedSet.class);
         this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedSet(), Iterables.mSortedSet(1, 2), MutableSortedSet.class);
@@ -229,125 +196,213 @@ public class IterablesTest
     }
 
     @Test
-    public void mutableSortedMaps()
-    {
+    public void mutableSortedMaps() {
         this.assertEqualsAndInstanceOf(TreeSortedMap.newMap(), Iterables.mSortedMap(), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(1, 1), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(1, 1, 2, 2), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(1, 1, 2, 2, 3, 3), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(1, 1, 2, 2, 3, 3, 4, 4), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(1, 1), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(1, 1, 2, 2), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(1, 1, 2, 2, 3, 3), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(1, 1, 2, 2, 3, 3, 4, 4), MutableSortedMap.class);
     }
 
     @Test
-    public void mutableSortedMapsWithComparator()
-    {
+    public void mutableSortedMapsWithComparator() {
         this.assertEqualsAndInstanceOf(TreeSortedMap.newMap(Comparators.reverseNaturalOrder()), Iterables.mSortedMap(Comparators.reverseNaturalOrder()), MutableSortedMap.class);
         this.assertEqualsAndInstanceOf(TreeSortedMap.newMap(Comparators.reverseNaturalOrder()), Iterables.mSortedMap(null), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3, 4, 4), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3, 4, 4), MutableSortedMap.class);
     }
 
     @Test
-    public void mutableSortedMapsWithFunction()
-    {
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMapBy(key -> key, Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3), MutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3, 4, 4), MutableSortedMap.class);
+    public void mutableSortedMapsWithFunction() {
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMapBy(key -> key, Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3), MutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()), Iterables.mSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3, 4, 4), MutableSortedMap.class);
     }
 
     @Test
-    public void immutableSortedMaps()
-    {
+    public void immutableSortedMaps() {
         this.assertEqualsAndInstanceOf(TreeSortedMap.newMap(), Iterables.iSortedMap(), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(1, 1), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(1, 1, 2, 2), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(1, 1, 2, 2, 3, 3), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(1, 1, 2, 2, 3, 3, 4, 4), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(1, 1), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(1, 1, 2, 2), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(1, 1, 2, 2, 3, 3), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(1, 1, 2, 2, 3, 3, 4, 4), ImmutableSortedMap.class);
     }
 
     @Test
-    public void immutableSortedMapsWithComparator()
-    {
+    public void immutableSortedMapsWithComparator() {
         this.assertEqualsAndInstanceOf(TreeSortedMap.newMap(Comparators.reverseNaturalOrder()), Iterables.iSortedMap(Comparators.reverseNaturalOrder()), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3, 4, 4), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMap(Comparators.reverseNaturalOrder(), Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3, 4, 4), ImmutableSortedMap.class);
     }
 
     @Test
-    public void immutableSortedMapsWithFunction()
-    {
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3), ImmutableSortedMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3, 4, 4), ImmutableSortedMap.class);
+    public void immutableSortedMapsWithFunction() {
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3), ImmutableSortedMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toSortedMapBy(key -> -key, Functions.getPassThru(), Functions.getPassThru()), Iterables.iSortedMap(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 3, 3, 4, 4), ImmutableSortedMap.class);
     }
 
     @Test
-    public void mutableMaps()
-    {
+    public void mutableMaps() {
         this.assertEqualsAndInstanceOf(UnifiedMap.newMap(), Iterables.mMap(), MutableMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mMap(1, 1), MutableMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mMap(1, 1, 2, 2), MutableMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mMap(1, 1, 2, 2, 3, 3), MutableMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.mMap(1, 1, 2, 2, 3, 3, 4, 4), MutableMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.mMap(1, 1), MutableMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.mMap(1, 1, 2, 2), MutableMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.mMap(1, 1, 2, 2, 3, 3), MutableMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.mMap(1, 1, 2, 2, 3, 3, 4, 4), MutableMap.class);
     }
 
     @Test
-    public void immutableMaps()
-    {
+    public void immutableMaps() {
         this.assertEqualsAndInstanceOf(UnifiedMap.newMap(), Iterables.iMap(), ImmutableMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iMap(1, 1), ImmutableMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iMap(1, 1, 2, 2), ImmutableMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iMap(1, 1, 2, 2, 3, 3), ImmutableMap.class);
-        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toMap(Functions.getPassThru(), Functions.getPassThru()),
-                Iterables.iMap(1, 1, 2, 2, 3, 3, 4, 4), ImmutableMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(1).toMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.iMap(1, 1), ImmutableMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(2).toMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.iMap(1, 1, 2, 2), ImmutableMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(3).toMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.iMap(1, 1, 2, 2, 3, 3), ImmutableMap.class);
+        this.assertEqualsAndInstanceOf(Interval.oneTo(4).toMap(Functions.getPassThru(), Functions.getPassThru()), Iterables.iMap(1, 1, 2, 2, 3, 3, 4, 4), ImmutableMap.class);
     }
 
-    public void assertEqualsAndInstanceOf(Object expected, Object actual, Class<?> clazz)
-    {
+    public void assertEqualsAndInstanceOf(Object expected, Object actual, Class<?> clazz) {
         Verify.assertEqualsAndHashCode(expected, actual);
         Verify.assertInstanceOf(clazz, actual);
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(Iterables.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableLists() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableLists, this.description("immutableLists"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableLists() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableLists, this.description("mutableLists"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSets() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSets, this.description("immutableSets"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSets() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSets, this.description("mutableSets"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableBags() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableBags, this.description("mutableBags"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableBags() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableBags, this.description("immutableBags"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSortedSets() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSortedSets, this.description("immutableSortedSets"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSortedSetsWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSortedSetsWithComparator, this.description("immutableSortedSetsWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSortedSetsWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSortedSetsWithComparator, this.description("mutableSortedSetsWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSortedSets() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSortedSets, this.description("mutableSortedSets"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSortedMaps() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSortedMaps, this.description("mutableSortedMaps"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSortedMapsWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSortedMapsWithComparator, this.description("mutableSortedMapsWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableSortedMapsWithFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableSortedMapsWithFunction, this.description("mutableSortedMapsWithFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSortedMaps() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSortedMaps, this.description("immutableSortedMaps"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSortedMapsWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSortedMapsWithComparator, this.description("immutableSortedMapsWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableSortedMapsWithFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableSortedMapsWithFunction, this.description("immutableSortedMapsWithFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutableMaps() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutableMaps, this.description("mutableMaps"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableMaps() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableMaps, this.description("immutableMaps"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private IterablesTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new IterablesTest();
+        }
+
+        @java.lang.Override
+        public IterablesTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable;
 
 import java.util.Set;
-
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.MutableBag;
@@ -34,75 +32,63 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iBag;
 
 /**
  * JUnit test for {@link SynchronizedBag}.
  */
-public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
-{
+public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase {
+
     @Override
-    protected <T> MutableBag<T> newWith(T... littleElements)
-    {
+    protected <T> MutableBag<T> newWith(T... littleElements) {
         return new SynchronizedBag<>(HashBag.newBagWith(littleElements));
     }
 
     @Override
     @Test
-    public void newEmpty()
-    {
+    public void newEmpty() {
         super.newEmpty();
-
         Verify.assertInstanceOf(SynchronizedBag.class, this.newWith().newEmpty());
     }
 
     @Override
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         Assert.assertNotNull(this.newWith(1, 2, 3).getFirst());
         Assert.assertNull(this.newWith().getFirst());
     }
 
     @Override
     @Test
-    public void getLast()
-    {
+    public void getLast() {
         Assert.assertNotNull(this.newWith(1, 2, 3).getLast());
         Assert.assertNull(this.newWith().getLast());
     }
 
     @Override
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         RichIterable<Integer> list = this.newWith(1, 2, 3, 4, 5, 6, 7);
-        Multimap<Boolean, Integer> multimap =
-                list.groupBy(object -> IntegerPredicates.isOdd().accept(object));
-
+        Multimap<Boolean, Integer> multimap = list.groupBy(object -> IntegerPredicates.isOdd().accept(object));
         Assert.assertEquals(Bags.mutable.of(1, 3, 5, 7), multimap.get(Boolean.TRUE));
         Assert.assertEquals(Bags.mutable.of(2, 4, 6), multimap.get(Boolean.FALSE));
     }
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         Verify.assertInstanceOf(SynchronizedBag.class, this.newWith().asSynchronized());
     }
 
     @Override
     @Test
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         Verify.assertInstanceOf(UnmodifiableBag.class, this.newWith().asUnmodifiable());
     }
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         super.equalsAndHashCode();
         Verify.assertPostSerializedEqualsAndHashCode(this.newWith(1, 1, 1, 2, 2, 3));
         Verify.assertInstanceOf(SynchronizedBag.class, SerializeTestHelper.serializeDeserialize(this.newWith(1, 1, 1, 2, 2, 3)));
@@ -110,10 +96,8 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
 
     @Override
     @Test
-    public void partition()
-    {
+    public void partition() {
         super.partition();
-
         MutableBag<Integer> integers = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         PartitionMutableCollection<Integer> result = integers.partition(IntegerPredicates.isEven());
         Assert.assertEquals(iBag(2, 2, 4, 4, 4, 4), result.getSelected());
@@ -122,10 +106,8 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
 
     @Override
     @Test
-    public void partitionWith()
-    {
+    public void partitionWith() {
         super.partitionWith();
-
         MutableBag<Integer> integers = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         PartitionMutableCollection<Integer> result = integers.partitionWith(Predicates2.in(), integers.select(IntegerPredicates.isEven()));
         Assert.assertEquals(iBag(2, 2, 4, 4, 4, 4), result.getSelected());
@@ -133,23 +115,18 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     }
 
     @Test
-    public void selectByOccurrences()
-    {
+    public void selectByOccurrences() {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         Assert.assertEquals(iBag(1, 1, 1, 1, 3, 3), integers.selectByOccurrences(IntPredicates.isEven()));
     }
 
     @Test
-    public void selectDuplicates()
-    {
-        Assert.assertEquals(
-                iBag(1, 1, 1, 1, 2, 2, 2, 3, 3),
-                this.newWith(0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 5).selectDuplicates());
+    public void selectDuplicates() {
+        Assert.assertEquals(iBag(1, 1, 1, 1, 2, 2, 2, 3, 3), this.newWith(0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 5).selectDuplicates());
     }
 
     @Test
-    public void addOccurrences()
-    {
+    public void addOccurrences() {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         Assert.assertEquals(6, integers.addOccurrences(1, 2));
         Verify.assertBagsEqual(this.newWith(1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4), integers);
@@ -160,8 +137,7 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     }
 
     @Test
-    public void removeOccurrences()
-    {
+    public void removeOccurrences() {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         Assert.assertEquals(1, integers.occurrencesOf(4));
         Assert.assertEquals(3, integers.occurrencesOf(2));
@@ -172,8 +148,7 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     }
 
     @Test
-    public void setOccurrences()
-    {
+    public void setOccurrences() {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         Assert.assertEquals(0, integers.occurrencesOf(5));
         Assert.assertEquals(3, integers.occurrencesOf(2));
@@ -184,24 +159,21 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     }
 
     @Test
-    public void toMapOfItemWithCount()
-    {
+    public void toMapOfItemWithCount() {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         MapIterable<Integer, Integer> result = integers.toMapOfItemToCount();
         Assert.assertEquals(Maps.mutable.with(1, 4, 2, 3, 3, 2, 4, 1), result);
     }
 
     @Test
-    public void toStringOfItemWithCount()
-    {
+    public void toStringOfItemWithCount() {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1);
         String result = integers.toStringOfItemToCount();
         Assert.assertEquals(Maps.mutable.with(1, 4).toString(), result);
     }
 
     @Test
-    public void forEachWithOccurrences()
-    {
+    public void forEachWithOccurrences() {
         MutableBag<Integer> integers = this.newWith(1, 1, 1, 1, 2, 2, 2, 3, 3, 4);
         MutableBag<Integer> result = HashBag.newBag();
         integers.forEachWithOccurrences(result::setOccurrences);
@@ -212,31 +184,18 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
      * @since 9.1.
      */
     @Test
-    public void collectWithOccurrences()
-    {
+    public void collectWithOccurrences() {
         Bag<Integer> bag = this.newWith(3, 3, 3, 2, 2, 1);
-        Bag<ObjectIntPair<Integer>> actual =
-                bag.collectWithOccurrences(PrimitiveTuples::pair, Bags.mutable.empty());
-        Bag<ObjectIntPair<Integer>> expected =
-                Bags.immutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1));
+        Bag<ObjectIntPair<Integer>> actual = bag.collectWithOccurrences(PrimitiveTuples::pair, Bags.mutable.empty());
+        Bag<ObjectIntPair<Integer>> expected = Bags.immutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1));
         Assert.assertEquals(expected, actual);
-
-        Set<ObjectIntPair<Integer>> actual2 =
-                bag.collectWithOccurrences(PrimitiveTuples::pair, Sets.mutable.empty());
-        ImmutableSet<ObjectIntPair<Integer>> expected2 =
-                Sets.immutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1));
+        Set<ObjectIntPair<Integer>> actual2 = bag.collectWithOccurrences(PrimitiveTuples::pair, Sets.mutable.empty());
+        ImmutableSet<ObjectIntPair<Integer>> expected2 = Sets.immutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1));
         Assert.assertEquals(expected2, actual2);
     }
 
     @Test
-    public void topOccurrences()
-    {
+    public void topOccurrences() {
         MutableBag<String> strings = this.newWith();
         strings.addOccurrences("one", 1);
         strings.addOccurrences("two", 2);
@@ -265,8 +224,7 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     }
 
     @Test
-    public void bottomOccurrences()
-    {
+    public void bottomOccurrences() {
         MutableBag<String> strings = this.newWith();
         strings.addOccurrences("one", 1);
         strings.addOccurrences("two", 2);
@@ -295,11 +253,152 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
     }
 
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         MutableBag<String> bag = Bags.mutable.with("0", "1", "1", "1", "1", "2", "2", "2", "3", "3", "4", "5").asSynchronized();
         MutableSet<String> expected = Sets.mutable.with("0", "4", "5");
         MutableSet<String> actual = bag.selectUnique();
         Assert.assertEquals(expected, actual);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newEmpty, this.description("newEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition, this.description("partition"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith, this.description("partitionWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectByOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectByOccurrences, this.description("selectByOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectDuplicates() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectDuplicates, this.description("selectDuplicates"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addOccurrences, this.description("addOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeOccurrences, this.description("removeOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_setOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::setOccurrences, this.description("setOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMapOfItemWithCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMapOfItemWithCount, this.description("toMapOfItemWithCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toStringOfItemWithCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toStringOfItemWithCount, this.description("toStringOfItemWithCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithOccurrences, this.description("forEachWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithOccurrences, this.description("collectWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_topOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::topOccurrences, this.description("topOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_bottomOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::bottomOccurrences, this.description("bottomOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        private SynchronizedBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedBagTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

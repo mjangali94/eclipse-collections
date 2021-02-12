@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory.primitive;
 
 import org.eclipse.collections.api.bag.primitive.ImmutableBooleanBag;
@@ -17,11 +16,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BooleanBagsTest
-{
+public class BooleanBagsTest {
+
     @Test
-    public void immutables()
-    {
+    public void immutables() {
         ImmutableBooleanBagFactory bagFactory = BooleanBags.immutable;
         Assert.assertEquals(new BooleanHashBag(), bagFactory.of());
         Verify.assertInstanceOf(ImmutableBooleanBag.class, bagFactory.of());
@@ -50,16 +48,14 @@ public class BooleanBagsTest
     }
 
     @Test
-    public void emptyBag()
-    {
+    public void emptyBag() {
         Verify.assertEmpty(BooleanBags.immutable.of());
         Assert.assertSame(BooleanBags.immutable.of(), BooleanBags.immutable.of());
         Verify.assertPostSerializedIdentity(BooleanBags.immutable.of());
     }
 
     @Test
-    public void newBagWith()
-    {
+    public void newBagWith() {
         ImmutableBooleanBag bag = BooleanBags.immutable.of();
         Assert.assertEquals(bag, BooleanBags.immutable.of(bag.toArray()));
         Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(true));
@@ -78,25 +74,23 @@ public class BooleanBagsTest
 
     @SuppressWarnings("RedundantArrayCreation")
     @Test
-    public void newBagWithArray()
-    {
+    public void newBagWithArray() {
         ImmutableBooleanBag bag = BooleanBags.immutable.of();
-        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[]{true}));
-        Assert.assertEquals(bag = bag.newWith(false), BooleanBags.immutable.of(new boolean[]{true, false}));
-        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[]{true, false, true}));
-        Assert.assertEquals(bag = bag.newWith(false), BooleanBags.immutable.of(new boolean[]{true, false, true, false}));
-        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[]{true, false, true, false, true}));
-        Assert.assertEquals(bag = bag.newWith(false), BooleanBags.immutable.of(new boolean[]{true, false, true, false, true, false}));
-        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[]{true, false, true, false, true, false, true}));
-        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[]{true, false, true, false, true, false, true, true}));
-        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[]{true, false, true, false, true, false, true, true, true}));
-        Assert.assertEquals(bag = bag.newWith(false), BooleanBags.immutable.of(new boolean[]{true, false, true, false, true, false, true, true, true, false}));
-        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[]{true, false, true, false, true, false, true, true, true, false, true}));
+        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[] { true }));
+        Assert.assertEquals(bag = bag.newWith(false), BooleanBags.immutable.of(new boolean[] { true, false }));
+        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[] { true, false, true }));
+        Assert.assertEquals(bag = bag.newWith(false), BooleanBags.immutable.of(new boolean[] { true, false, true, false }));
+        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[] { true, false, true, false, true }));
+        Assert.assertEquals(bag = bag.newWith(false), BooleanBags.immutable.of(new boolean[] { true, false, true, false, true, false }));
+        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[] { true, false, true, false, true, false, true }));
+        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[] { true, false, true, false, true, false, true, true }));
+        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[] { true, false, true, false, true, false, true, true, true }));
+        Assert.assertEquals(bag = bag.newWith(false), BooleanBags.immutable.of(new boolean[] { true, false, true, false, true, false, true, true, true, false }));
+        Assert.assertEquals(bag = bag.newWith(true), BooleanBags.immutable.of(new boolean[] { true, false, true, false, true, false, true, true, true, false, true }));
     }
 
     @Test
-    public void newBagWithBag()
-    {
+    public void newBagWithBag() {
         ImmutableBooleanBag bag = BooleanBags.immutable.of();
         BooleanHashBag booleanHashBag = BooleanHashBag.newBagWith(true);
         Assert.assertEquals(bag = bag.newWith(true), booleanHashBag.toImmutable());
@@ -113,8 +107,7 @@ public class BooleanBagsTest
     }
 
     @Test
-    public void newBagWithWithBag()
-    {
+    public void newBagWithWithBag() {
         Assert.assertEquals(new BooleanHashBag(), BooleanBags.immutable.ofAll(new BooleanHashBag()));
         Assert.assertEquals(BooleanHashBag.newBagWith(true), BooleanBags.immutable.ofAll(BooleanHashBag.newBagWith(true)));
         Assert.assertEquals(BooleanHashBag.newBagWith(true, false), BooleanBags.immutable.ofAll(BooleanHashBag.newBagWith(true, false)));
@@ -122,8 +115,65 @@ public class BooleanBagsTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(BooleanBags.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutables, this.description("immutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_emptyBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::emptyBag, this.description("emptyBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newBagWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newBagWith, this.description("newBagWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newBagWithArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newBagWithArray, this.description("newBagWithArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newBagWithBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newBagWithBag, this.description("newBagWithBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newBagWithWithBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newBagWithWithBag, this.description("newBagWithWithBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private BooleanBagsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BooleanBagsTest();
+        }
+
+        @java.lang.Override
+        public BooleanBagsTest implementation() {
+            return this.implementation;
+        }
     }
 }

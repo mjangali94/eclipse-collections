@@ -7,24 +7,37 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.list;
 
 import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.mutable.CompositeFastList;
 
-public class CompositeListParallelListIterableTest extends NonParallelListIterableTestCase
-{
+public class CompositeListParallelListIterableTest extends NonParallelListIterableTestCase {
+
     @Override
-    protected ParallelListIterable<Integer> classUnderTest()
-    {
+    protected ParallelListIterable<Integer> classUnderTest() {
         return this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
     }
 
     @Override
-    protected ParallelListIterable<Integer> newWith(Integer... littleElements)
-    {
+    protected ParallelListIterable<Integer> newWith(Integer... littleElements) {
         return new CompositeFastList<Integer>().withAll(Lists.mutable.of(littleElements)).asParallel(null, this.batchSize);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private CompositeListParallelListIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new CompositeListParallelListIterableTest();
+        }
+
+        @java.lang.Override
+        public CompositeListParallelListIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

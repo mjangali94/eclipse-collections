@@ -7,57 +7,49 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import java.io.Serializable;
 import java.util.Arrays;
-
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestCase
-{
+public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestCase {
+
     @Override
-    protected <T> MutableList<T> newWith(T... littleElements)
-    {
+    protected <T> MutableList<T> newWith(T... littleElements) {
         return MultiReaderFastList.newListWith(littleElements).asWriteUntouchable();
     }
 
     @Override
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4, 5);
         Assert.assertFalse(collection instanceof Serializable);
     }
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.newWith().asSynchronized());
     }
 
     @Override
     @Test
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.newWith().asUnmodifiable());
     }
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals("[1, 2, 3]", this.newWith(1, 2, 3).toString());
     }
 
     @Override
-    public void subList()
-    {
+    public void subList() {
         MutableList<String> list = this.newWith("A", "B", "C", "D");
         MutableList<String> sublist = list.subList(1, 3);
         Verify.assertSize(2, sublist);
@@ -83,17 +75,67 @@ public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestC
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         Appendable builder = new StringBuilder();
         this.newWith(1, 2, 3).appendString(builder);
         Assert.assertEquals("1, 2, 3", builder.toString());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        private MultiReaderFastListAsWriteUntouchableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MultiReaderFastListAsWriteUntouchableTest();
+        }
+
+        @java.lang.Override
+        public MultiReaderFastListAsWriteUntouchableTest implementation() {
+            return this.implementation;
+        }
     }
 }

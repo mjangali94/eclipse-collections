@@ -7,25 +7,50 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.tuple;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-public class AbstractImmutableEntryTest
-{
+public class AbstractImmutableEntryTest {
+
     @Test
-    public void getKeyFunction()
-    {
+    public void getKeyFunction() {
         ImmutableEntry<String, Integer> entry = new ImmutableEntry<>("foo", 2);
         Assert.assertEquals("foo", AbstractImmutableEntry.<String>getKeyFunction().valueOf(entry));
     }
 
     @Test
-    public void getValueFunction()
-    {
+    public void getValueFunction() {
         ImmutableEntry<String, Integer> entry = new ImmutableEntry<>("foo", 2);
         Assert.assertEquals(Integer.valueOf(2), AbstractImmutableEntry.<Integer>getValueFunction().valueOf(entry));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getKeyFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getKeyFunction, this.description("getKeyFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getValueFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getValueFunction, this.description("getValueFunction"));
+        }
+
+        private AbstractImmutableEntryTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new AbstractImmutableEntryTest();
+        }
+
+        @java.lang.Override
+        public AbstractImmutableEntryTest implementation() {
+            return this.implementation;
+        }
     }
 }

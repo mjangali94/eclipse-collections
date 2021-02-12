@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.immutable;
 
 import org.eclipse.collections.api.list.ImmutableList;
@@ -17,18 +16,16 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableQuadrupletonListTest extends AbstractImmutableListTestCase
-{
+public class ImmutableQuadrupletonListTest extends AbstractImmutableListTestCase {
+
     @Override
-    protected ImmutableList<Integer> classUnderTest()
-    {
+    protected ImmutableList<Integer> classUnderTest() {
         return new ImmutableQuadrupletonList<>(1, 2, 3, 4);
     }
 
     @Override
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         super.distinct();
         ImmutableList<Integer> list = new ImmutableQuadrupletonList<>(2, 1, 1, 2);
         ImmutableList<Integer> distinctList = list.distinct();
@@ -38,8 +35,7 @@ public class ImmutableQuadrupletonListTest extends AbstractImmutableListTestCase
     }
 
     @Test
-    public void distinctWithHashingStrategies()
-    {
+    public void distinctWithHashingStrategies() {
         ImmutableList<String> list = new ImmutableQuadrupletonList<>("a", "a", "B", "c");
         ImmutableList<String> distinctList = list.distinct(HashingStrategies.fromFunction(String::toLowerCase));
         Assert.assertFalse(distinctList.isEmpty());
@@ -47,9 +43,42 @@ public class ImmutableQuadrupletonListTest extends AbstractImmutableListTestCase
     }
 
     @Test(expected = IllegalStateException.class)
-    public void getOnly()
-    {
+    public void getOnly() {
         ImmutableList<Integer> list = this.classUnderTest();
         list.getOnly();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinctWithHashingStrategies() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinctWithHashingStrategies, this.description("distinctWithHashingStrategies"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getOnly, this.description("getOnly"), java.lang.IllegalStateException.class);
+        }
+
+        private ImmutableQuadrupletonListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableQuadrupletonListTest();
+        }
+
+        @java.lang.Override
+        public ImmutableQuadrupletonListTest implementation() {
+            return this.implementation;
+        }
     }
 }

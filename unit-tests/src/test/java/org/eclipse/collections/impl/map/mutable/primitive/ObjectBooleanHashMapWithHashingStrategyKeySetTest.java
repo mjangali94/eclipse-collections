@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable.primitive;
 
 import java.util.Set;
-
 import org.eclipse.collections.api.block.HashingStrategy;
 import org.eclipse.collections.api.map.primitive.MutableObjectBooleanMap;
 import org.eclipse.collections.impl.block.factory.HashingStrategies;
@@ -23,17 +21,15 @@ import org.junit.Test;
 /**
  * JUnit test for {@link ObjectBooleanHashMapWithHashingStrategy#keySet()}.
  */
-public class ObjectBooleanHashMapWithHashingStrategyKeySetTest extends ObjectBooleanHashMapKeySetTestCase
-{
-    private static final HashingStrategy<String> STRING_HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<String>()
-    {
-        public int computeHashCode(String object)
-        {
+public class ObjectBooleanHashMapWithHashingStrategyKeySetTest extends ObjectBooleanHashMapKeySetTestCase {
+
+    private static final HashingStrategy<String> STRING_HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<String>() {
+
+        public int computeHashCode(String object) {
             return object.hashCode();
         }
 
-        public boolean equals(String object1, String object2)
-        {
+        public boolean equals(String object1, String object2) {
             return object1.equals(object2);
         }
     });
@@ -41,50 +37,44 @@ public class ObjectBooleanHashMapWithHashingStrategyKeySetTest extends ObjectBoo
     private static final HashingStrategy<Person> LAST_NAME_HASHING_STRATEGY = HashingStrategies.fromFunction(Person.TO_LAST);
 
     private static final Person JOHNSMITH = new Person("John", "Smith");
+
     private static final Person JANESMITH = new Person("Jane", "Smith");
+
     private static final Person JOHNDOE = new Person("John", "Doe");
+
     private static final Person JANEDOE = new Person("Jane", "Doe");
 
     @Override
-    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1)
-    {
+    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1) {
         return ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, key1, value1);
     }
 
     @Override
-    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2)
-    {
+    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2) {
         return ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, key1, value1, key2, value2);
     }
 
     @Override
-    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2, String key3, boolean value3)
-    {
+    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2, String key3, boolean value3) {
         return ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2, String key3, boolean value3, String key4, boolean value4)
-    {
+    public MutableObjectBooleanMap<String> newMapWithKeysValues(String key1, boolean value1, String key2, boolean value2, String key3, boolean value3, String key4, boolean value4) {
         return ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
     @Override
-    public MutableObjectBooleanMap<String> newEmptyMap()
-    {
+    public MutableObjectBooleanMap<String> newEmptyMap() {
         return ObjectBooleanHashMapWithHashingStrategy.newMap(STRING_HASHING_STRATEGY);
     }
 
     @Override
     @Test
-    public void contains()
-    {
+    public void contains() {
         super.contains();
-
         Set<Person> people = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false).keySet();
-
         Verify.assertSize(2, people);
-
         Verify.assertContains(JANEDOE, people);
         Verify.assertContains(JOHNDOE, people);
         Verify.assertContains(JANESMITH, people);
@@ -93,13 +83,39 @@ public class ObjectBooleanHashMapWithHashingStrategyKeySetTest extends ObjectBoo
 
     @Override
     @Test
-    public void removeFromKeySet()
-    {
+    public void removeFromKeySet() {
         super.removeFromKeySet();
-
         ObjectBooleanHashMapWithHashingStrategy<Person> map = ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, true, JANEDOE, false, JOHNSMITH, true, JANESMITH, false);
         Set<Person> people = map.keySet();
         people.remove(JOHNDOE);
         Assert.assertEquals(map, ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNSMITH, false));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeFromKeySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeFromKeySet, this.description("removeFromKeySet"));
+        }
+
+        private ObjectBooleanHashMapWithHashingStrategyKeySetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ObjectBooleanHashMapWithHashingStrategyKeySetTest();
+        }
+
+        @java.lang.Override
+        public ObjectBooleanHashMapWithHashingStrategyKeySetTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,24 +7,37 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set.sorted;
 
 import org.eclipse.collections.api.set.sorted.ParallelSortedSetIterable;
 import org.eclipse.collections.impl.block.factory.Comparators;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
 
-public class SynchronizedSortedSetParallelSetIterableTest extends NonParallelSortedSetIterableTestCase
-{
+public class SynchronizedSortedSetParallelSetIterableTest extends NonParallelSortedSetIterableTestCase {
+
     @Override
-    protected ParallelSortedSetIterable<Integer> classUnderTest()
-    {
+    protected ParallelSortedSetIterable<Integer> classUnderTest() {
         return this.newWith(4, 3, 2, 1);
     }
 
     @Override
-    protected ParallelSortedSetIterable<Integer> newWith(Integer... littleElements)
-    {
+    protected ParallelSortedSetIterable<Integer> newWith(Integer... littleElements) {
         return TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), littleElements).asSynchronized().asParallel(this.executorService, this.batchSize);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private SynchronizedSortedSetParallelSetIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedSortedSetParallelSetIterableTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedSortedSetParallelSetIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

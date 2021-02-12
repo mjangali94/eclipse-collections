@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import java.util.stream.Stream;
-
 import org.eclipse.collections.api.factory.stack.ImmutableStackFactory;
 import org.eclipse.collections.api.factory.stack.MutableStackFactory;
 import org.eclipse.collections.api.stack.ImmutableStack;
@@ -21,11 +19,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class StacksTest
-{
+public class StacksTest {
+
     @Test
-    public void immutables()
-    {
+    public void immutables() {
         ImmutableStackFactory stackFactory = Stacks.immutable;
         Assert.assertEquals(ArrayStack.newStack(), stackFactory.of());
         Verify.assertInstanceOf(ImmutableStack.class, stackFactory.of());
@@ -56,8 +53,7 @@ public class StacksTest
     }
 
     @Test
-    public void mutables()
-    {
+    public void mutables() {
         MutableStackFactory stackFactory = Stacks.mutable;
         Assert.assertEquals(ArrayStack.newStack(), stackFactory.of());
         Verify.assertInstanceOf(MutableStack.class, stackFactory.of());
@@ -88,14 +84,12 @@ public class StacksTest
     }
 
     @Test
-    public void emptyStack()
-    {
+    public void emptyStack() {
         Assert.assertTrue(Stacks.immutable.of().isEmpty());
     }
 
     @Test
-    public void newStackWith()
-    {
+    public void newStackWith() {
         ImmutableStack<String> stack = Stacks.immutable.of();
         Assert.assertEquals(stack, Stacks.immutable.of(stack.toArray()));
         Assert.assertEquals(stack = stack.push("1"), Stacks.immutable.of("1"));
@@ -114,25 +108,23 @@ public class StacksTest
 
     @SuppressWarnings("RedundantArrayCreation")
     @Test
-    public void newStackWithArray()
-    {
+    public void newStackWithArray() {
         ImmutableStack<String> stack = Stacks.immutable.of();
-        Assert.assertEquals(stack = stack.push("1"), Stacks.immutable.of(new String[]{"1"}));
-        Assert.assertEquals(stack = stack.push("2"), Stacks.immutable.of(new String[]{"1", "2"}));
-        Assert.assertEquals(stack = stack.push("3"), Stacks.immutable.of(new String[]{"1", "2", "3"}));
-        Assert.assertEquals(stack = stack.push("4"), Stacks.immutable.of(new String[]{"1", "2", "3", "4"}));
-        Assert.assertEquals(stack = stack.push("5"), Stacks.immutable.of(new String[]{"1", "2", "3", "4", "5"}));
-        Assert.assertEquals(stack = stack.push("6"), Stacks.immutable.of(new String[]{"1", "2", "3", "4", "5", "6"}));
-        Assert.assertEquals(stack = stack.push("7"), Stacks.immutable.of(new String[]{"1", "2", "3", "4", "5", "6", "7"}));
-        Assert.assertEquals(stack = stack.push("8"), Stacks.immutable.of(new String[]{"1", "2", "3", "4", "5", "6", "7", "8"}));
-        Assert.assertEquals(stack = stack.push("9"), Stacks.immutable.of(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"}));
-        Assert.assertEquals(stack = stack.push("10"), Stacks.immutable.of(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
+        Assert.assertEquals(stack = stack.push("1"), Stacks.immutable.of(new String[] { "1" }));
+        Assert.assertEquals(stack = stack.push("2"), Stacks.immutable.of(new String[] { "1", "2" }));
+        Assert.assertEquals(stack = stack.push("3"), Stacks.immutable.of(new String[] { "1", "2", "3" }));
+        Assert.assertEquals(stack = stack.push("4"), Stacks.immutable.of(new String[] { "1", "2", "3", "4" }));
+        Assert.assertEquals(stack = stack.push("5"), Stacks.immutable.of(new String[] { "1", "2", "3", "4", "5" }));
+        Assert.assertEquals(stack = stack.push("6"), Stacks.immutable.of(new String[] { "1", "2", "3", "4", "5", "6" }));
+        Assert.assertEquals(stack = stack.push("7"), Stacks.immutable.of(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        Assert.assertEquals(stack = stack.push("8"), Stacks.immutable.of(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        Assert.assertEquals(stack = stack.push("9"), Stacks.immutable.of(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        Assert.assertEquals(stack = stack.push("10"), Stacks.immutable.of(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         Assert.assertEquals(stack = stack.push("11"), Stacks.immutable.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"));
     }
 
     @Test
-    public void newStackWithStack()
-    {
+    public void newStackWithStack() {
         ImmutableStack<String> stack = Stacks.immutable.of();
         ArrayStack<String> arrayStack = ArrayStack.newStackWith("1");
         Assert.assertEquals(stack = stack.push("1"), arrayStack.toImmutable());
@@ -159,8 +151,7 @@ public class StacksTest
     }
 
     @Test
-    public void newStackWithWithStack()
-    {
+    public void newStackWithWithStack() {
         ArrayStack<Object> expected = ArrayStack.newStack();
         Assert.assertEquals(expected, Stacks.mutable.ofAll(ArrayStack.newStack()));
         expected.push(1);
@@ -170,8 +161,71 @@ public class StacksTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(Stacks.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutables, this.description("immutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutables, this.description("mutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_emptyStack() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::emptyStack, this.description("emptyStack"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newStackWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newStackWith, this.description("newStackWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newStackWithArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newStackWithArray, this.description("newStackWithArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newStackWithStack() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newStackWithStack, this.description("newStackWithStack"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newStackWithWithStack() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newStackWithWithStack, this.description("newStackWithWithStack"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private StacksTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new StacksTest();
+        }
+
+        @java.lang.Override
+        public StacksTest implementation() {
+            return this.implementation;
+        }
     }
 }

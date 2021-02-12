@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.procedure;
 
 import org.eclipse.collections.api.block.procedure.Procedure;
@@ -21,13 +20,12 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class IfProcedureTest
-{
+public class IfProcedureTest {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(IfProcedureTest.class);
 
     @Test
-    public void procedure()
-    {
+    public void procedure() {
         MutableList<String> list1 = Lists.mutable.of();
         MutableList<String> list2 = Lists.mutable.of();
         Procedure<String> ifProcedure = new IfProcedure<>("1"::equals, list1::add, list2::add);
@@ -38,5 +36,27 @@ public class IfProcedureTest
         Verify.assertContains("1", list1);
         Assert.assertEquals(1, list2.size());
         Verify.assertContains("2", list2);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_procedure() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::procedure, this.description("procedure"));
+        }
+
+        private IfProcedureTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new IfProcedureTest();
+        }
+
+        @java.lang.Override
+        public IfProcedureTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.primitive;
 
 import org.eclipse.collections.api.InternalIterable;
@@ -20,16 +19,14 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CollectBooleanToObjectIterableTest
-{
-    private LazyIterable<Boolean> newPrimitiveWith(boolean... elements)
-    {
+public class CollectBooleanToObjectIterableTest {
+
+    private LazyIterable<Boolean> newPrimitiveWith(boolean... elements) {
         return new CollectBooleanToObjectIterable<>(BooleanArrayList.newListWith(elements), Boolean::valueOf);
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         InternalIterable<Boolean> select = this.newPrimitiveWith(true, false, true, false, true);
         Appendable builder = new StringBuilder();
         Procedure<Boolean> appendProcedure = Procedures.append(builder);
@@ -38,8 +35,7 @@ public class CollectBooleanToObjectIterableTest
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         InternalIterable<Boolean> select = this.newPrimitiveWith(true, false, true, false, true);
         StringBuilder builder = new StringBuilder();
         select.forEachWithIndex((object, index) -> {
@@ -50,20 +46,17 @@ public class CollectBooleanToObjectIterableTest
     }
 
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         InternalIterable<Boolean> select = this.newPrimitiveWith(true, false, true, false, true);
         StringBuilder builder = new StringBuilder();
-        for (Boolean each : select)
-        {
+        for (Boolean each : select) {
             builder.append(each);
         }
         Assert.assertEquals("truefalsetruefalsetrue", builder.toString());
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         InternalIterable<Boolean> select = this.newPrimitiveWith(true, false, true, false, true);
         StringBuilder builder = new StringBuilder();
         select.forEachWith((each, aBuilder) -> aBuilder.append(each), builder);
@@ -71,24 +64,77 @@ public class CollectBooleanToObjectIterableTest
     }
 
     @Test
-    public void selectInstancesOf()
-    {
-        Assert.assertEquals(
-                FastList.newListWith(true, false, true, false, true),
-                this.newPrimitiveWith(true, false, true, false, true).selectInstancesOf(Boolean.class).toList());
+    public void selectInstancesOf() {
+        Assert.assertEquals(FastList.newListWith(true, false, true, false, true), this.newPrimitiveWith(true, false, true, false, true).selectInstancesOf(Boolean.class).toList());
     }
 
     @Test
-    public void sizeEmptyNotEmpty()
-    {
+    public void sizeEmptyNotEmpty() {
         Verify.assertIterableSize(2, this.newPrimitiveWith(true, false));
         Verify.assertIterableEmpty(this.newPrimitiveWith());
         Assert.assertTrue(this.newPrimitiveWith(true, false).notEmpty());
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeThrows()
-    {
+    public void removeThrows() {
         this.newPrimitiveWith().iterator().remove();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectInstancesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectInstancesOf, this.description("selectInstancesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sizeEmptyNotEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sizeEmptyNotEmpty, this.description("sizeEmptyNotEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeThrows() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeThrows, this.description("removeThrows"), java.lang.UnsupportedOperationException.class);
+        }
+
+        private CollectBooleanToObjectIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new CollectBooleanToObjectIterableTest();
+        }
+
+        @java.lang.Override
+        public CollectBooleanToObjectIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

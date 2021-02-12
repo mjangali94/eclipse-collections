@@ -7,20 +7,33 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import java.util.ArrayList;
-
 import org.eclipse.collections.api.list.MutableList;
 
-public class ArrayListAdapterAsUnmodifiableTest extends UnmodifiableMutableListTestCase
-{
+public class ArrayListAdapterAsUnmodifiableTest extends UnmodifiableMutableListTestCase {
+
     @Override
-    protected MutableList<Integer> getCollection()
-    {
+    protected MutableList<Integer> getCollection() {
         ArrayList<Integer> list = new ArrayList<>();
         list.add(1);
         return ArrayListAdapter.adapt(list).asUnmodifiable();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ArrayListAdapterAsUnmodifiableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ArrayListAdapterAsUnmodifiableTest();
+        }
+
+        @java.lang.Override
+        public ArrayListAdapterAsUnmodifiableTest implementation() {
+            return this.implementation;
+        }
     }
 }

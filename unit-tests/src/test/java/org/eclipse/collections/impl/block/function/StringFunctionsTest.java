@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function;
 
 import org.eclipse.collections.api.block.function.Function;
@@ -17,11 +16,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public final class StringFunctionsTest
-{
+public final class StringFunctionsTest {
+
     @Test
-    public void toUpperCase()
-    {
+    public void toUpperCase() {
         Function<String, String> function = StringFunctions.toUpperCase();
         Assert.assertEquals("UPPER", function.valueOf("upper"));
         Assert.assertEquals("UPPER", function.valueOf("Upper"));
@@ -30,8 +28,7 @@ public final class StringFunctionsTest
     }
 
     @Test
-    public void toLowerCase()
-    {
+    public void toLowerCase() {
         Function<String, String> function = StringFunctions.toLowerCase();
         Assert.assertEquals("lower", function.valueOf("LOWER"));
         Assert.assertEquals("lower", function.valueOf("Lower"));
@@ -40,15 +37,13 @@ public final class StringFunctionsTest
     }
 
     @Test
-    public void toInteger()
-    {
+    public void toInteger() {
         Assert.assertEquals(-42L, StringFunctions.toInteger().valueOf("-42").longValue());
         Verify.assertInstanceOf(Integer.class, StringFunctions.toInteger().valueOf("10"));
     }
 
     @Test
-    public void length()
-    {
+    public void length() {
         Function<String, Integer> function = StringFunctions.length();
         Assert.assertEquals(Integer.valueOf(6), function.valueOf("string"));
         Assert.assertEquals(Integer.valueOf(0), function.valueOf(""));
@@ -56,8 +51,7 @@ public final class StringFunctionsTest
     }
 
     @Test
-    public void trim()
-    {
+    public void trim() {
         Function<String, String> function = StringFunctions.trim();
         Assert.assertEquals("trim", function.valueOf("trim "));
         Assert.assertEquals("trim", function.valueOf(" trim"));
@@ -68,8 +62,7 @@ public final class StringFunctionsTest
     }
 
     @Test
-    public void firstLetter()
-    {
+    public void firstLetter() {
         Function<String, Character> function = StringFunctions.firstLetter();
         Assert.assertNull(function.valueOf(null));
         Assert.assertNull(function.valueOf(""));
@@ -77,111 +70,240 @@ public final class StringFunctionsTest
     }
 
     @Test
-    public void subString()
-    {
+    public void subString() {
         Function<String, String> function1 = StringFunctions.subString(2, 5);
         String testString = "habits";
         Assert.assertEquals("bit", function1.valueOf(testString));
         Verify.assertContains("string.subString", function1.toString());
-
         Function<String, String> function2 = StringFunctions.subString(0, testString.length());
         Assert.assertEquals(testString, function2.valueOf(testString));
-
         Function<String, String> function3 = StringFunctions.subString(0, testString.length() + 1);
         Assert.assertThrows(StringIndexOutOfBoundsException.class, () -> function3.valueOf(testString));
-
         Function<String, String> function4 = StringFunctions.subString(-1, 1);
         Assert.assertThrows(StringIndexOutOfBoundsException.class, () -> function4.valueOf(testString));
     }
 
     @Test(expected = StringIndexOutOfBoundsException.class)
-    public void subString_throws_on_short_string()
-    {
+    public void subString_throws_on_short_string() {
         StringFunctions.subString(2, 4).valueOf("hi");
     }
 
     @Test(expected = NullPointerException.class)
-    public void subString_throws_on_null()
-    {
+    public void subString_throws_on_null() {
         StringFunctions.subString(2, 4).valueOf(null);
     }
 
     @Test
-    public void toPrimitiveBoolean()
-    {
+    public void toPrimitiveBoolean() {
         Assert.assertTrue(StringFunctions.toPrimitiveBoolean().booleanValueOf("true"));
         Assert.assertFalse(StringFunctions.toPrimitiveBoolean().booleanValueOf("nah"));
     }
 
     @Test
-    public void toPrimitiveByte()
-    {
+    public void toPrimitiveByte() {
         Assert.assertEquals((byte) 16, StringFunctions.toPrimitiveByte().byteValueOf("16"));
     }
 
     @Test
-    public void toFirstChar()
-    {
+    public void toFirstChar() {
         Assert.assertEquals('X', StringFunctions.toFirstChar().charValueOf("X-ray"));
     }
 
     @Test
-    public void toPrimitiveChar()
-    {
+    public void toPrimitiveChar() {
         Assert.assertEquals('A', StringFunctions.toPrimitiveChar().charValueOf("65"));
     }
 
     @Test(expected = StringIndexOutOfBoundsException.class)
-    public void toPrimitiveCharWithEmptyString()
-    {
+    public void toPrimitiveCharWithEmptyString() {
         StringFunctions.toFirstChar().charValueOf("");
     }
 
     @Test
-    public void toPrimitiveDouble()
-    {
+    public void toPrimitiveDouble() {
         Assert.assertEquals(3.14159265359d, StringFunctions.toPrimitiveDouble().doubleValueOf("3.14159265359"), 0.0);
     }
 
     @Test
-    public void toPrimitiveFloat()
-    {
+    public void toPrimitiveFloat() {
         Assert.assertEquals(3.1415d, StringFunctions.toPrimitiveFloat().floatValueOf("3.1415"), 0.00001);
     }
 
     @Test
-    public void toPrimitiveInt()
-    {
+    public void toPrimitiveInt() {
         Assert.assertEquals(256, StringFunctions.toPrimitiveInt().intValueOf("256"));
     }
 
     @Test
-    public void toPrimitiveLong()
-    {
+    public void toPrimitiveLong() {
         Assert.assertEquals(0x7fffffffffffffffL, StringFunctions.toPrimitiveLong().longValueOf("9223372036854775807"));
     }
 
     @Test
-    public void toPrimitiveShort()
-    {
+    public void toPrimitiveShort() {
         Assert.assertEquals(-32768, StringFunctions.toPrimitiveShort().shortValueOf("-32768"));
     }
 
     @Test
-    public void append()
-    {
+    public void append() {
         Verify.assertContainsAll(FastList.newListWith("1", "2", "3", "4", "5").collect(StringFunctions.append("!")), "1!", "2!", "3!", "4!", "5!");
     }
 
     @Test
-    public void prepend()
-    {
+    public void prepend() {
         Verify.assertContainsAll(FastList.newListWith("1", "2", "3", "4", "5").collect(StringFunctions.prepend("@")), "@1", "@2", "@3", "@4", "@5");
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(StringFunctions.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toUpperCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toUpperCase, this.description("toUpperCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toLowerCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toLowerCase, this.description("toLowerCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toInteger() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toInteger, this.description("toInteger"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_length() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::length, this.description("length"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_trim() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::trim, this.description("trim"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_firstLetter() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::firstLetter, this.description("firstLetter"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subString, this.description("subString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subString_throws_on_short_string() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::subString_throws_on_short_string, this.description("subString_throws_on_short_string"), java.lang.StringIndexOutOfBoundsException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subString_throws_on_null() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::subString_throws_on_null, this.description("subString_throws_on_null"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveBoolean() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toPrimitiveBoolean, this.description("toPrimitiveBoolean"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveByte() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toPrimitiveByte, this.description("toPrimitiveByte"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toFirstChar() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toFirstChar, this.description("toFirstChar"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveChar() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toPrimitiveChar, this.description("toPrimitiveChar"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveCharWithEmptyString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::toPrimitiveCharWithEmptyString, this.description("toPrimitiveCharWithEmptyString"), java.lang.StringIndexOutOfBoundsException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toPrimitiveDouble, this.description("toPrimitiveDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toPrimitiveFloat, this.description("toPrimitiveFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toPrimitiveInt, this.description("toPrimitiveInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toPrimitiveLong, this.description("toPrimitiveLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toPrimitiveShort() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toPrimitiveShort, this.description("toPrimitiveShort"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_append() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::append, this.description("append"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_prepend() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::prepend, this.description("prepend"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private StringFunctionsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new StringFunctionsTest();
+        }
+
+        @java.lang.Override
+        public StringFunctionsTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory.primitive;
 
 import org.eclipse.collections.api.factory.stack.primitive.ImmutableBooleanStackFactory;
@@ -19,11 +18,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BooleanStacksTest
-{
+public class BooleanStacksTest {
+
     @Test
-    public void immutables()
-    {
+    public void immutables() {
         ImmutableBooleanStackFactory stackFactory = BooleanStacks.immutable;
         Assert.assertEquals(BooleanArrayStack.newStackWith(), stackFactory.of());
         Verify.assertInstanceOf(ImmutableBooleanStack.class, stackFactory.of());
@@ -46,15 +44,13 @@ public class BooleanStacksTest
     }
 
     @Test
-    public void empty()
-    {
+    public void empty() {
         Assert.assertTrue(BooleanStacks.immutable.of().isEmpty());
         Assert.assertTrue(BooleanStacks.mutable.of().isEmpty());
     }
 
     @Test
-    public void newStackWith_immutable()
-    {
+    public void newStackWith_immutable() {
         ImmutableBooleanStack stack = BooleanStacks.immutable.of();
         Assert.assertEquals(stack, BooleanStacks.immutable.of(stack.toArray()));
         Assert.assertEquals(stack = stack.push(true), BooleanStacks.immutable.of(true));
@@ -65,8 +61,7 @@ public class BooleanStacksTest
     }
 
     @Test
-    public void newStackWith_mutable()
-    {
+    public void newStackWith_mutable() {
         MutableBooleanStack stack = BooleanStacks.mutable.of();
         Assert.assertEquals(stack, BooleanStacks.mutable.of(stack.toArray()));
         stack.push(true);
@@ -83,41 +78,37 @@ public class BooleanStacksTest
 
     @SuppressWarnings("RedundantArrayCreation")
     @Test
-    public void newStackWithArray_immutable()
-    {
+    public void newStackWithArray_immutable() {
         ImmutableBooleanStack stack = BooleanStacks.immutable.of();
-        Assert.assertEquals(stack = stack.push(true), BooleanStacks.immutable.of(new boolean[]{true}));
-        Assert.assertEquals(stack = stack.push(false), BooleanStacks.immutable.of(new boolean[]{true, false}));
-        Assert.assertEquals(stack = stack.push(true), BooleanStacks.immutable.of(new boolean[]{true, false, true}));
-        Assert.assertEquals(stack = stack.push(true), BooleanStacks.immutable.of(new boolean[]{true, false, true, true}));
-        Assert.assertEquals(stack = stack.push(false), BooleanStacks.immutable.of(new boolean[]{true, false, true, true, false}));
+        Assert.assertEquals(stack = stack.push(true), BooleanStacks.immutable.of(new boolean[] { true }));
+        Assert.assertEquals(stack = stack.push(false), BooleanStacks.immutable.of(new boolean[] { true, false }));
+        Assert.assertEquals(stack = stack.push(true), BooleanStacks.immutable.of(new boolean[] { true, false, true }));
+        Assert.assertEquals(stack = stack.push(true), BooleanStacks.immutable.of(new boolean[] { true, false, true, true }));
+        Assert.assertEquals(stack = stack.push(false), BooleanStacks.immutable.of(new boolean[] { true, false, true, true, false }));
     }
 
     @SuppressWarnings("RedundantArrayCreation")
     @Test
-    public void newStackWithArray_mutable()
-    {
+    public void newStackWithArray_mutable() {
         MutableBooleanStack stack = BooleanStacks.mutable.of();
         stack.push(true);
-        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[]{true}));
+        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[] { true }));
         stack.push(false);
-        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[]{true, false}));
+        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[] { true, false }));
         stack.push(true);
-        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[]{true, false, true}));
+        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[] { true, false, true }));
         stack.push(true);
-        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[]{true, false, true, true}));
+        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[] { true, false, true, true }));
         stack.push(false);
-        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[]{true, false, true, true, false}));
+        Assert.assertEquals(stack, BooleanStacks.mutable.of(new boolean[] { true, false, true, true, false }));
     }
 
     @Test
-    public void ofAllBooleanIterable()
-    {
+    public void ofAllBooleanIterable() {
         Assert.assertEquals(new BooleanArrayStack(), BooleanStacks.immutable.ofAll(BooleanLists.mutable.empty()));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true), BooleanStacks.immutable.ofAll(BooleanLists.mutable.with(true)));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true, false), BooleanStacks.immutable.ofAll(BooleanLists.mutable.with(true, false)));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true, false, false, true), BooleanStacks.immutable.ofAll(BooleanLists.mutable.with(true, false, false, true)));
-
         Assert.assertEquals(new BooleanArrayStack(), BooleanStacks.mutable.ofAll(BooleanLists.mutable.empty()));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true), BooleanStacks.mutable.ofAll(BooleanLists.mutable.with(true)));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true, false), BooleanStacks.mutable.ofAll(BooleanLists.mutable.with(true, false)));
@@ -125,13 +116,11 @@ public class BooleanStacksTest
     }
 
     @Test
-    public void ofAllIterable()
-    {
+    public void ofAllIterable() {
         Assert.assertEquals(new BooleanArrayStack(), BooleanStacks.immutable.ofAll(Lists.mutable.empty()));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true), BooleanStacks.immutable.ofAll(Lists.mutable.with(true)));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true, false), BooleanStacks.immutable.ofAll(Lists.mutable.with(true, false)));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true, false, false, true), BooleanStacks.immutable.ofAll(Lists.mutable.with(true, false, false, true)));
-
         Assert.assertEquals(new BooleanArrayStack(), BooleanStacks.mutable.ofAll(Lists.mutable.empty()));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true), BooleanStacks.mutable.ofAll(Lists.mutable.with(true)));
         Assert.assertEquals(BooleanArrayStack.newStackWith(true, false), BooleanStacks.mutable.ofAll(Lists.mutable.with(true, false)));
@@ -139,13 +128,11 @@ public class BooleanStacksTest
     }
 
     @Test
-    public void ofAllReversed()
-    {
+    public void ofAllReversed() {
         Assert.assertEquals(new BooleanArrayStack(), BooleanStacks.immutable.ofAllReversed(BooleanLists.mutable.empty()));
         Assert.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true), BooleanStacks.immutable.ofAllReversed(BooleanLists.mutable.with(true)));
         Assert.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true, false), BooleanStacks.immutable.ofAllReversed(BooleanLists.mutable.with(true, false)));
         Assert.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true, false, false, true), BooleanStacks.immutable.ofAllReversed(BooleanLists.mutable.with(true, false, false, true)));
-
         Assert.assertEquals(new BooleanArrayStack(), BooleanStacks.mutable.ofAllReversed(BooleanLists.mutable.empty()));
         Assert.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true), BooleanStacks.mutable.ofAllReversed(BooleanLists.mutable.with(true)));
         Assert.assertEquals(BooleanArrayStack.newStackFromTopToBottom(true, false), BooleanStacks.mutable.ofAllReversed(BooleanLists.mutable.with(true, false)));
@@ -153,8 +140,83 @@ public class BooleanStacksTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(BooleanStacks.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutables, this.description("immutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::empty, this.description("empty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newStackWith_immutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newStackWith_immutable, this.description("newStackWith_immutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newStackWith_mutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newStackWith_mutable, this.description("newStackWith_mutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newStackWithArray_immutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newStackWithArray_immutable, this.description("newStackWithArray_immutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newStackWithArray_mutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newStackWithArray_mutable, this.description("newStackWithArray_mutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllBooleanIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllBooleanIterable, this.description("ofAllBooleanIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllIterable, this.description("ofAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllReversed() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllReversed, this.description("ofAllReversed"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private BooleanStacksTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BooleanStacksTest();
+        }
+
+        @java.lang.Override
+        public BooleanStacksTest implementation() {
+            return this.implementation;
+        }
     }
 }

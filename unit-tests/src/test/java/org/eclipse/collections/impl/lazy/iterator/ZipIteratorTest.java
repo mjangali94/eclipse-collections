@@ -7,20 +7,40 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.iterator;
 
 import org.eclipse.collections.api.list.ImmutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.junit.Test;
 
-public class ZipIteratorTest
-{
+public class ZipIteratorTest {
+
     private static final ImmutableList<Integer> EMPTY = Lists.immutable.of();
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testRemove()
-    {
+    public void testRemove() {
         new ZipIterator<>(EMPTY, EMPTY).remove();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testRemove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::testRemove, this.description("testRemove"), java.lang.UnsupportedOperationException.class);
+        }
+
+        private ZipIteratorTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ZipIteratorTest();
+        }
+
+        @java.lang.Override
+        public ZipIteratorTest implementation() {
+            return this.implementation;
+        }
     }
 }

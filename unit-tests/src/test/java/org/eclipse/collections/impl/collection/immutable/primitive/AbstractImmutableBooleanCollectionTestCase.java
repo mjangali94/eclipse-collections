@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.collection.immutable.primitive;
 
 import org.eclipse.collections.api.collection.primitive.ImmutableBooleanCollection;
@@ -19,8 +18,8 @@ import org.junit.Test;
 /**
  * Abstract JUnit test for {@link ImmutableBooleanCollection}s.
  */
-public abstract class AbstractImmutableBooleanCollectionTestCase extends AbstractBooleanIterableTestCase
-{
+public abstract class AbstractImmutableBooleanCollectionTestCase extends AbstractBooleanIterableTestCase {
+
     @Override
     protected abstract ImmutableBooleanCollection classUnderTest();
 
@@ -30,18 +29,13 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
     @Override
     protected abstract MutableBooleanCollection newMutableCollectionWith(boolean... elements);
 
-    protected void assertSizeAndOccurrences(ImmutableBooleanCollection collection, int expectedTrueCount, int expectedFalseCount)
-    {
+    protected void assertSizeAndOccurrences(ImmutableBooleanCollection collection, int expectedTrueCount, int expectedFalseCount) {
         int trueCount = 0;
         int falseCount = 0;
-        for (boolean b : collection.toArray())
-        {
-            if (b)
-            {
+        for (boolean b : collection.toArray()) {
+            if (b) {
                 trueCount++;
-            }
-            else
-            {
+            } else {
                 falseCount++;
             }
         }
@@ -50,8 +44,7 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
     }
 
     @Test
-    public void testNewWith()
-    {
+    public void testNewWith() {
         ImmutableBooleanCollection immutableCollection = this.newWith();
         ImmutableBooleanCollection collection = immutableCollection.newWith(true);
         ImmutableBooleanCollection collection0 = immutableCollection.newWith(true).newWith(false);
@@ -67,8 +60,7 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
     }
 
     @Test
-    public void newWithAll()
-    {
+    public void newWithAll() {
         ImmutableBooleanCollection immutableCollection = this.newWith();
         ImmutableBooleanCollection collection = immutableCollection.newWithAll(this.newMutableCollectionWith(true));
         ImmutableBooleanCollection collection0 = collection.newWithAll(this.newMutableCollectionWith(false));
@@ -84,8 +76,7 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
     }
 
     @Test
-    public void newWithout()
-    {
+    public void newWithout() {
         ImmutableBooleanCollection collection3 = this.newWith(true, false, true, false, true);
         ImmutableBooleanCollection collection2 = collection3.newWithout(true);
         ImmutableBooleanCollection collection1 = collection2.newWithout(false);
@@ -93,7 +84,6 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
         ImmutableBooleanCollection collection4 = collection0.newWithout(false);
         ImmutableBooleanCollection collection5 = collection4.newWithout(true);
         ImmutableBooleanCollection collection6 = collection5.newWithout(false);
-
         this.assertSizeAndOccurrences(collection6, 0, 0);
         this.assertSizeAndOccurrences(collection5, 0, 0);
         this.assertSizeAndOccurrences(collection4, 1, 0);
@@ -103,17 +93,49 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
     }
 
     @Test
-    public void newWithoutAll()
-    {
+    public void newWithoutAll() {
         ImmutableBooleanCollection collection3 = this.newWith(true, false, true, true);
         ImmutableBooleanCollection collection2 = collection3.newWithoutAll(this.newMutableCollectionWith(true));
         ImmutableBooleanCollection collection1 = collection2.newWithoutAll(this.newMutableCollectionWith(false));
         ImmutableBooleanCollection collection0 = collection1.newWithoutAll(this.newMutableCollectionWith(true));
         ImmutableBooleanCollection collection4 = collection0.newWithoutAll(this.newMutableCollectionWith(false));
-
         this.assertSizeAndOccurrences(collection2, 0, 1);
         this.assertSizeAndOccurrences(collection1, 0, 0);
         this.assertSizeAndOccurrences(collection0, 0, 0);
         this.assertSizeAndOccurrences(collection4, 0, 0);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewWith, this.description("testNewWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithAll, this.description("newWithAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithout() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithout, this.description("newWithout"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithoutAll, this.description("newWithoutAll"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractImmutableBooleanCollectionTestCase implementation();
     }
 }

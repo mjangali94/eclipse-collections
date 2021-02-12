@@ -7,47 +7,68 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.predicate;
 
 import org.eclipse.collections.impl.tuple.Tuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class PairPredicateTest
-{
+public class PairPredicateTest {
+
     @Test
-    public void accept()
-    {
-        PairPredicate<String, Integer> pairPredicate = new PairPredicate<String, Integer>()
-        {
+    public void accept() {
+        PairPredicate<String, Integer> pairPredicate = new PairPredicate<String, Integer>() {
+
             @Override
-            public boolean accept(String argument1, Integer argument2)
-            {
+            public boolean accept(String argument1, Integer argument2) {
                 return String.valueOf(argument2).equals(argument1);
             }
         };
-
         Assert.assertTrue(pairPredicate.accept(Tuples.pair("1", 1)));
         Assert.assertFalse(pairPredicate.accept(Tuples.pair("2", 1)));
     }
 
     @Test
-    public void negate()
-    {
-        PairPredicate<String, String> pairPredicate = new PairPredicate<String, String>()
-        {
+    public void negate() {
+        PairPredicate<String, String> pairPredicate = new PairPredicate<String, String>() {
+
             @Override
-            public boolean accept(String argument1, String argument2)
-            {
+            public boolean accept(String argument1, String argument2) {
                 return argument2.equals(argument1);
             }
         };
-
         PairPredicate<String, String> negatedPredicate = pairPredicate.negate();
         Assert.assertFalse(negatedPredicate.accept(Tuples.pair("1", "1")));
         Assert.assertFalse(negatedPredicate.accept("1", "1"));
         Assert.assertTrue(negatedPredicate.accept(Tuples.pair("2", "1")));
         Assert.assertTrue(negatedPredicate.accept("2", "1"));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_accept() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::accept, this.description("accept"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_negate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::negate, this.description("negate"));
+        }
+
+        private PairPredicateTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new PairPredicateTest();
+        }
+
+        @java.lang.Override
+        public PairPredicateTest implementation() {
+            return this.implementation;
+        }
     }
 }

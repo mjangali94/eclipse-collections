@@ -7,37 +7,66 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.iterator;
 
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.impl.factory.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TapIteratorTest
-{
+public class TapIteratorTest {
+
     @Test(expected = NoSuchElementException.class)
-    public void nextIfDoesntHaveAnything()
-    {
+    public void nextIfDoesntHaveAnything() {
         new TapIterator<>(Lists.immutable.of(), object -> {
         }).next();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeIsUnsupported()
-    {
+    public void removeIsUnsupported() {
         new TapIterator<>(Lists.immutable.of().iterator(), object -> {
         }).remove();
     }
 
     @Test
-    public void nextAfterEmptyIterable()
-    {
+    public void nextAfterEmptyIterable() {
         Object expected = new Object();
-        TapIterator<Object> iterator = new TapIterator<>(
-                Lists.fixedSize.of(expected), object -> { });
+        TapIterator<Object> iterator = new TapIterator<>(Lists.fixedSize.of(expected), object -> {
+        });
         Assert.assertSame(expected, iterator.next());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_nextIfDoesntHaveAnything() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::nextIfDoesntHaveAnything, this.description("nextIfDoesntHaveAnything"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIsUnsupported() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeIsUnsupported, this.description("removeIsUnsupported"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_nextAfterEmptyIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::nextAfterEmptyIterable, this.description("nextAfterEmptyIterable"));
+        }
+
+        private TapIteratorTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new TapIteratorTest();
+        }
+
+        @java.lang.Override
+        public TapIteratorTest implementation() {
+            return this.implementation;
+        }
     }
 }

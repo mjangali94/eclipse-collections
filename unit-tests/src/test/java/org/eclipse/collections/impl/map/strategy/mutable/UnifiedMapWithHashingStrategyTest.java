@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.strategy.mutable;
 
 import java.util.Collection;
@@ -15,7 +14,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
 import org.eclipse.collections.api.block.HashingStrategy;
 import org.eclipse.collections.api.block.function.Function2;
 import org.eclipse.collections.api.block.procedure.Procedure;
@@ -45,92 +43,75 @@ import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
-{
-    //Not using the static factor method in order to have concrete types for test cases
-    private static final HashingStrategy<Integer> INTEGER_HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<Integer>()
-    {
-        public int computeHashCode(Integer object)
-        {
+public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase {
+
+    // Not using the static factor method in order to have concrete types for test cases
+    private static final HashingStrategy<Integer> INTEGER_HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<Integer>() {
+
+        public int computeHashCode(Integer object) {
             return object.hashCode();
         }
 
-        public boolean equals(Integer object1, Integer object2)
-        {
+        public boolean equals(Integer object1, Integer object2) {
             return object1.equals(object2);
         }
     });
-    private static final HashingStrategy<String> STRING_HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<String>()
-    {
-        public int computeHashCode(String object)
-        {
+
+    private static final HashingStrategy<String> STRING_HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<String>() {
+
+        public int computeHashCode(String object) {
             return object.hashCode();
         }
 
-        public boolean equals(String object1, String object2)
-        {
+        public boolean equals(String object1, String object2) {
             return object1.equals(object2);
         }
     });
 
     private static final HashingStrategy<Person> FIRST_NAME_HASHING_STRATEGY = HashingStrategies.fromFunction(Person.TO_FIRST);
+
     private static final HashingStrategy<Person> LAST_NAME_HASHING_STRATEGY = HashingStrategies.fromFunction(Person.TO_LAST);
 
     private static final Person JOHNSMITH = new Person("John", "Smith");
+
     private static final Person JANESMITH = new Person("Jane", "Smith");
+
     private static final Person JOHNDOE = new Person("John", "Doe");
+
     private static final Person JANEDOE = new Person("Jane", "Doe");
 
     @Override
-    public <K, V> MutableMap<K, V> newMap()
-    {
-        return UnifiedMapWithHashingStrategy.newMap(
-                HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()));
+    public <K, V> MutableMap<K, V> newMap() {
+        return UnifiedMapWithHashingStrategy.newMap(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()));
     }
 
     @Override
-    public <K, V> MutableMap<K, V> newMapWithKeyValue(K key, V value)
-    {
-        return UnifiedMapWithHashingStrategy.newWithKeysValues(
-                HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key, value);
+    public <K, V> MutableMap<K, V> newMapWithKeyValue(K key, V value) {
+        return UnifiedMapWithHashingStrategy.newWithKeysValues(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key, value);
     }
 
     @Override
-    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
-        return UnifiedMapWithHashingStrategy.newWithKeysValues(
-                HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key1, value1, key2, value2);
+    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2) {
+        return UnifiedMapWithHashingStrategy.newWithKeysValues(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key1, value1, key2, value2);
     }
 
     @Override
-    public <K, V> MutableMap<K, V> newMapWithKeysValues(
-            K key1, V value1, K key2, V value2, K key3,
-            V value3)
-    {
-        return UnifiedMapWithHashingStrategy.newWithKeysValues(
-                HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key1, value1, key2, value2, key3, value3);
+    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
+        return UnifiedMapWithHashingStrategy.newWithKeysValues(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    public <K, V> MutableMap<K, V> newMapWithKeysValues(
-            K key1, V value1, K key2, V value2, K key3,
-            V value3, K key4, V value4)
-    {
-        return UnifiedMapWithHashingStrategy.newWithKeysValues(
-                HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key1, value1, key2, value2, key3, value3, key4, value4);
+    public <K, V> MutableMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
+        return UnifiedMapWithHashingStrategy.newWithKeysValues(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
     @Test
-    public void constructorOfPairs()
-    {
-        Assert.assertEquals(
-                UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, "one", 2, "two", 3, "three"),
-                UnifiedMapWithHashingStrategy.newMapWith(INTEGER_HASHING_STRATEGY, Tuples.pair(1, "one"), Tuples.pair(2, "two"), Tuples.pair(3, "three")));
+    public void constructorOfPairs() {
+        Assert.assertEquals(UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, "one", 2, "two", 3, "three"), UnifiedMapWithHashingStrategy.newMapWith(INTEGER_HASHING_STRATEGY, Tuples.pair(1, "one"), Tuples.pair(2, "two"), Tuples.pair(3, "three")));
     }
 
     @Test
-    public void constructorOfIterableOfPairs()
-    {
+    public void constructorOfIterableOfPairs() {
         Pair<Integer, String> pair1 = Tuples.pair(1, "One");
         Pair<Integer, String> pair2 = Tuples.pair(2, "Two");
         Pair<Integer, String> pair3 = Tuples.pair(3, "Three");
@@ -139,15 +120,13 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
         UnifiedMapWithHashingStrategy<Integer, String> actual1 = UnifiedMapWithHashingStrategy.newMapWith(INTEGER_HASHING_STRATEGY, FastList.newListWith(pair1, pair2, pair3, pair4));
         Assert.assertEquals(expected, actual1);
         Assert.assertEquals(expected.hashingStrategy(), actual1.hashingStrategy());
-
         UnifiedMapWithHashingStrategy<Integer, String> actual2 = UnifiedMapWithHashingStrategy.newMapWith(INTEGER_HASHING_STRATEGY, UnifiedSet.newSetWith(pair1, pair2, pair3, pair4));
         Assert.assertEquals(expected, actual2);
         Assert.assertEquals(expected.hashingStrategy(), actual2.hashingStrategy());
     }
 
     @Test
-    public void newMap_throws()
-    {
+    public void newMap_throws() {
         Assert.assertThrows(IllegalArgumentException.class, () -> new UnifiedMapWithHashingStrategy<Integer, Integer>(INTEGER_HASHING_STRATEGY, -1, 0.5f));
         Assert.assertThrows(IllegalArgumentException.class, () -> new UnifiedMapWithHashingStrategy<Integer, Integer>(INTEGER_HASHING_STRATEGY, 1, -0.5f));
         Assert.assertThrows(IllegalArgumentException.class, () -> new UnifiedMapWithHashingStrategy<Integer, Integer>(INTEGER_HASHING_STRATEGY, 1, 1.5f));
@@ -155,34 +134,25 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
 
     @Override
     @Test
-    public void selectMap()
-    {
+    public void selectMap() {
         super.selectMap();
-
-        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
+        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
         Assert.assertEquals(UnifiedMap.newWithKeysValues(JOHNDOE, 2), map.select((argument1, argument2) -> "Doe".equals(argument1.getLastName())));
     }
 
     @Override
     @Test
-    public void rejectMap()
-    {
+    public void rejectMap() {
         super.rejectMap();
-
-        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
+        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
         Assert.assertEquals(UnifiedMap.newWithKeysValues(JOHNDOE, 2), map.reject((argument1, argument2) -> "Smith".equals(argument1.getLastName())));
     }
 
     @Override
     @Test
-    public void collectMap()
-    {
+    public void collectMap() {
         super.collectMap();
-
-        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JOHNSMITH, 2, JANEDOE, 3, JANESMITH, 4);
+        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JOHNSMITH, 2, JANEDOE, 3, JANESMITH, 4);
         Function2<Person, Integer, Pair<Integer, Person>> function = (Person argument1, Integer argument2) -> Tuples.pair(argument2, argument1);
         MutableMap<Integer, Person> collect = map.collect(function);
         Verify.assertSetsEqual(UnifiedSet.newSetWith(3, 4), collect.keySet());
@@ -190,43 +160,32 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void contains_with_hashing_strategy()
-    {
-        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
+    public void contains_with_hashing_strategy() {
+        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
         Assert.assertTrue(map.containsKey(JOHNDOE));
         Assert.assertTrue(map.containsValue(2));
         Assert.assertTrue(map.containsKey(JOHNSMITH));
         Assert.assertTrue(map.containsValue(4));
         Assert.assertTrue(map.containsKey(JANEDOE));
         Assert.assertTrue(map.containsKey(JANESMITH));
-
         Assert.assertFalse(map.containsValue(1));
         Assert.assertFalse(map.containsValue(3));
     }
 
     @Test
-    public void remove_with_hashing_strategy()
-    {
-        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
-
-        //Testing removing people
+    public void remove_with_hashing_strategy() {
+        UnifiedMapWithHashingStrategy<Person, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
+        // Testing removing people
         Assert.assertEquals(2, map.remove(JANEDOE).intValue());
         Assert.assertEquals(4, map.remove(JOHNSMITH).intValue());
-
         Verify.assertEmpty(map);
-
-        //Testing removing from a chain
-        UnifiedMapWithHashingStrategy<Integer, Integer> map2 =
-                UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
+        // Testing removing from a chain
+        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
         Assert.assertEquals(4, map2.remove(COLLISION_4).intValue());
         Assert.assertEquals(1, map2.remove(COLLISION_1).intValue());
         Verify.assertSize(2, map2);
-
-        //Testing removing null from a chain
-        UnifiedMapWithHashingStrategy<Integer, Integer> map3 =
-                UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, null, 2, 3, 3, 4, null);
+        // Testing removing null from a chain
+        UnifiedMapWithHashingStrategy<Integer, Integer> map3 = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, null, 2, 3, 3, 4, null);
         Assert.assertEquals(2, map3.remove(null).intValue());
         Verify.assertSize(3, map3);
         Assert.assertNull(map3.remove(4));
@@ -234,8 +193,7 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void keySet_isEmpty()
-    {
+    public void keySet_isEmpty() {
         Set<Integer> keySet = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, 1, 2, 2).keySet();
         Assert.assertFalse(keySet.isEmpty());
         keySet.clear();
@@ -243,13 +201,9 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void keySet_with_hashing_strategy()
-    {
-        Set<Person> people = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4).keySet();
-
+    public void keySet_with_hashing_strategy() {
+        Set<Person> people = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4).keySet();
         Verify.assertSize(2, people);
-
         Verify.assertContains(JANEDOE, people);
         Verify.assertContains(JOHNDOE, people);
         Verify.assertContains(JANESMITH, people);
@@ -257,8 +211,7 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void keySet_Iterator_removeFromNonChain()
-    {
+    public void keySet_Iterator_removeFromNonChain() {
         Set<Integer> keys = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, 1, 2, 2, 3, 3, 4, 4).keySet();
         Iterator<Integer> keysIterator = keys.iterator();
         keysIterator.next();
@@ -267,8 +220,7 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void weakEntryToString()
-    {
+    public void weakEntryToString() {
         Iterator<Map.Entry<Integer, Integer>> iterator = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, 1).entrySet().iterator();
         Map.Entry<Integer, Integer> element = iterator.next();
         Assert.assertEquals("1=1", element.toString());
@@ -276,15 +228,13 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
 
     @Override
     @Test
-    public void valuesCollection_Iterator_remove()
-    {
+    public void valuesCollection_Iterator_remove() {
         // a map with a chain, remove one
         UnifiedMapWithHashingStrategy<Integer, Integer> map = this.mapWithCollisionsOfSize(3);
         Iterator<Integer> iterator = map.iterator();
         iterator.next();
         iterator.remove();
         Verify.assertSize(2, map);
-
         // remove all values in chain
         iterator.next();
         iterator.remove();
@@ -294,10 +244,8 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void entry_equals_with_hashingStrategy()
-    {
-        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                INTEGER_HASHING_STRATEGY, 1, 1, 2, 2, 3, 3, 4, 4);
+    public void entry_equals_with_hashingStrategy() {
+        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, 1, 2, 2, 3, 3, 4, 4);
         Iterator<Map.Entry<Integer, Integer>> entryIterator = map.entrySet().iterator();
         Map.Entry<Integer, Integer> entry = entryIterator.next();
         ImmutableEntry<Integer, Integer> immutableEntry = ImmutableEntry.of(entry.getKey(), entry.getValue());
@@ -305,30 +253,23 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void entrySet_with_hashing_strategy()
-    {
-        Set<Map.Entry<Person, Integer>> entries = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4).entrySet();
-
+    public void entrySet_with_hashing_strategy() {
+        Set<Map.Entry<Person, Integer>> entries = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4).entrySet();
         Verify.assertSize(2, entries);
-
         Verify.assertContains(ImmutableEntry.of(JOHNDOE, 2), entries);
         Verify.assertContains(ImmutableEntry.of(JANEDOE, 2), entries);
         Verify.assertContains(ImmutableEntry.of(JOHNSMITH, 4), entries);
         Verify.assertContains(ImmutableEntry.of(JANESMITH, 4), entries);
         Verify.assertNotContains(ImmutableEntry.of(JOHNDOE, 1), entries);
         Verify.assertNotContains(ImmutableEntry.of(JANESMITH, 3), entries);
-
         Assert.assertTrue(entries.remove(ImmutableEntry.of(JANESMITH, 4)));
         Verify.assertNotContains(ImmutableEntry.of(JOHNSMITH, 4), entries);
-
         Assert.assertTrue(entries.remove(ImmutableEntry.of(JOHNDOE, 2)));
         Verify.assertEmpty(entries);
     }
 
     @Test
-    public void valuesCollection_containsAll()
-    {
+    public void valuesCollection_containsAll() {
         Collection<Integer> values = this.newMapWithKeysValues(1, 1, 2, 2, 3, 3, 4, 4).values();
         Assert.assertTrue(values.containsAll(FastList.newListWith(1, 2)));
         Assert.assertTrue(values.containsAll(FastList.newListWith(1, 2, 3, 4)));
@@ -336,72 +277,45 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void batchForEach()
-    {
-        UnifiedMapWithHashingStrategy<String, Integer> map = UnifiedMapWithHashingStrategy.<String, Integer>newMap(
-                STRING_HASHING_STRATEGY, 5).withKeysValues("1", 1, "2", 2, "3", 3, "4", 4);
+    public void batchForEach() {
+        UnifiedMapWithHashingStrategy<String, Integer> map = UnifiedMapWithHashingStrategy.<String, Integer>newMap(STRING_HASHING_STRATEGY, 5).withKeysValues("1", 1, "2", 2, "3", 3, "4", 4);
         this.batchForEachTestCases(map, 10);
-
-        UnifiedMapWithHashingStrategy<Integer, Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6);
+        UnifiedMapWithHashingStrategy<Integer, Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6);
         this.batchForEachChains(collisions, 21);
-
-        UnifiedMapWithHashingStrategy<Integer, Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null);
+        UnifiedMapWithHashingStrategy<Integer, Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null);
         this.batchForEachNullHandling(nulls, 36);
-
         this.batchForEachEmptyBatchIterable(UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY));
     }
 
     @Test
-    public void batchForEachKey()
-    {
-        Set<Integer> keys = UnifiedMapWithHashingStrategy.<Integer, String>newMap(
-                INTEGER_HASHING_STRATEGY, 5).withKeysValues(1, "1", 2, "2", 3, "3", 4, "4").keySet();
+    public void batchForEachKey() {
+        Set<Integer> keys = UnifiedMapWithHashingStrategy.<Integer, String>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(1, "1", 2, "2", 3, "3", 4, "4").keySet();
         this.batchForEachTestCases((BatchIterable<Integer>) keys, 10);
-
-        Set<Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).keySet();
+        Set<Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).keySet();
         this.batchForEachChains((BatchIterable<Integer>) collisions, 57);
-
-        Set<Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).keySet();
+        Set<Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).keySet();
         this.batchForEachNullHandling((BatchIterable<Integer>) nulls, 16);
-
         this.batchForEachEmptyBatchIterable((BatchIterable<Integer>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY).keySet());
     }
 
     @Test
-    public void batchForEachValue()
-    {
-        Collection<Integer> values = UnifiedMapWithHashingStrategy.<String, Integer>newMap(
-                STRING_HASHING_STRATEGY, 5).withKeysValues("1", 1, "2", 2, "3", 3, "4", 4).values();
+    public void batchForEachValue() {
+        Collection<Integer> values = UnifiedMapWithHashingStrategy.<String, Integer>newMap(STRING_HASHING_STRATEGY, 5).withKeysValues("1", 1, "2", 2, "3", 3, "4", 4).values();
         this.batchForEachTestCases((BatchIterable<Integer>) values, 10);
-
-        Collection<Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).values();
+        Collection<Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).values();
         this.batchForEachChains((BatchIterable<Integer>) collisions, 21);
-
-        Collection<Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).values();
+        Collection<Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).values();
         this.batchForEachNullHandling((BatchIterable<Integer>) nulls, 36);
-
-        this.batchForEachEmptyBatchIterable(
-                (BatchIterable<Integer>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY).values());
+        this.batchForEachEmptyBatchIterable((BatchIterable<Integer>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY).values());
     }
 
     @Test
-    public void batchForEachEntry()
-    {
-        //Testing batch size of 1 to 16 with no chains
-        BatchIterable<Map.Entry<Integer, Integer>> entries =
-                (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.newWithKeysValues(
-                        INTEGER_HASHING_STRATEGY, 1, 1, 2, 2, 3, 3, 4, 4).entrySet();
-        for (int sectionCount = 1; sectionCount <= 16; ++sectionCount)
-        {
+    public void batchForEachEntry() {
+        // Testing batch size of 1 to 16 with no chains
+        BatchIterable<Map.Entry<Integer, Integer>> entries = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, 1, 2, 2, 3, 3, 4, 4).entrySet();
+        for (int sectionCount = 1; sectionCount <= 16; ++sectionCount) {
             Sum sum = new IntegerSum(0);
-            for (int sectionIndex = 0; sectionIndex < sectionCount; ++sectionIndex)
-            {
+            for (int sectionIndex = 0; sectionIndex < sectionCount; ++sectionIndex) {
                 entries.batchForEach(new EntrySumProcedure(sum), sectionIndex, sectionCount);
             }
             Assert.assertEquals(20, sum.getValue());
@@ -409,46 +323,33 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void batchForEachEntry_chains()
-    {
-        BatchIterable<Map.Entry<Integer, Integer>> collisions =
-                (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                        INTEGER_HASHING_STRATEGY, 5).withKeysValues(
-                        COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).entrySet();
-        //Testing 1 batch with chains
+    public void batchForEachEntry_chains() {
+        BatchIterable<Map.Entry<Integer, Integer>> collisions = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).entrySet();
+        // Testing 1 batch with chains
         Sum sum2 = new IntegerSum(0);
-        //testing getBatchCount returns 1
+        // testing getBatchCount returns 1
         int batchCount = collisions.getBatchCount(100000);
-        for (int i = 0; i < batchCount; ++i)
-        {
+        for (int i = 0; i < batchCount; ++i) {
             collisions.batchForEach(new EntrySumProcedure(sum2), i, batchCount);
         }
         Assert.assertEquals(1, batchCount);
         Assert.assertEquals(78, sum2.getValue());
-
-        //Testing 3 batches with chains and uneven last batch
+        // Testing 3 batches with chains and uneven last batch
         Sum sum3 = new IntegerSum(0);
-        for (int i = 0; i < 5; ++i)
-        {
+        for (int i = 0; i < 5; ++i) {
             collisions.batchForEach(new EntrySumProcedure(sum3), i, 5);
         }
         Assert.assertEquals(78, sum3.getValue());
     }
 
     @Test
-    public void batchForEachEntry_null_handling()
-    {
-        //Testing batchForEach handling null keys and null values
+    public void batchForEachEntry_null_handling() {
+        // Testing batchForEach handling null keys and null values
         Sum sum4 = new IntegerSum(0);
-        BatchIterable<Map.Entry<Integer, Integer>> nulls =
-                (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                        INTEGER_HASHING_STRATEGY, 100).withKeysValues(
-                        null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).entrySet();
+        BatchIterable<Map.Entry<Integer, Integer>> nulls = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).entrySet();
         int numBatches = nulls.getBatchCount(7);
-        for (int i = 0; i < numBatches; ++i)
-        {
-            nulls.batchForEach(each ->
-            {
+        for (int i = 0; i < numBatches; ++i) {
+            nulls.batchForEach(each -> {
                 sum4.add(each.getKey() == null ? 1 : each.getKey());
                 sum4.add(each.getValue() == null ? 1 : each.getValue());
             }, i, numBatches);
@@ -457,199 +358,144 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void batchForEachEntry_emptySet()
-    {
-        //Test batchForEach on empty set, it should simply do nothing and not throw any exceptions
+    public void batchForEachEntry_emptySet() {
+        // Test batchForEach on empty set, it should simply do nothing and not throw any exceptions
         Sum sum5 = new IntegerSum(0);
-        BatchIterable<Map.Entry<Integer, Integer>> empty =
-                (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY).entrySet();
+        BatchIterable<Map.Entry<Integer, Integer>> empty = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY).entrySet();
         empty.batchForEach(new EntrySumProcedure(sum5), 0, empty.getBatchCount(1));
         Assert.assertEquals(0, sum5.getValue());
     }
 
-    private void batchForEachTestCases(BatchIterable<Integer> batchIterable, int expectedValue)
-    {
-        //Testing batch size of 1 to 16 with no chains
-        for (int sectionCount = 1; sectionCount <= 16; ++sectionCount)
-        {
+    private void batchForEachTestCases(BatchIterable<Integer> batchIterable, int expectedValue) {
+        // Testing batch size of 1 to 16 with no chains
+        for (int sectionCount = 1; sectionCount <= 16; ++sectionCount) {
             Sum sum = new IntegerSum(0);
-            for (int sectionIndex = 0; sectionIndex < sectionCount; ++sectionIndex)
-            {
+            for (int sectionIndex = 0; sectionIndex < sectionCount; ++sectionIndex) {
                 batchIterable.batchForEach(new SumProcedure<>(sum), sectionIndex, sectionCount);
             }
             Assert.assertEquals(expectedValue, sum.getValue());
         }
     }
 
-    private void batchForEachChains(BatchIterable<Integer> batchIterable, int expectedValue)
-    {
-        //Testing 1 batch with chains
+    private void batchForEachChains(BatchIterable<Integer> batchIterable, int expectedValue) {
+        // Testing 1 batch with chains
         Sum sum = new IntegerSum(0);
-        //testing getBatchCount returns 1
+        // testing getBatchCount returns 1
         int numBatches = batchIterable.getBatchCount(100000);
-        for (int i = 0; i < numBatches; ++i)
-        {
+        for (int i = 0; i < numBatches; ++i) {
             batchIterable.batchForEach(new SumProcedure<>(sum), i, numBatches);
         }
         Assert.assertEquals(1, numBatches);
         Assert.assertEquals(expectedValue, sum.getValue());
-
-        //Testing 3 batches with chains and uneven last batch
+        // Testing 3 batches with chains and uneven last batch
         Sum sum2 = new IntegerSum(0);
-        for (int i = 0; i < 5; ++i)
-        {
+        for (int i = 0; i < 5; ++i) {
             batchIterable.batchForEach(new SumProcedure<>(sum2), i, 5);
         }
         Assert.assertEquals(expectedValue, sum2.getValue());
     }
 
-    private void batchForEachNullHandling(BatchIterable<Integer> batchIterable, int expectedValue)
-    {
-        //Testing batchForEach handling null keys and null values
+    private void batchForEachNullHandling(BatchIterable<Integer> batchIterable, int expectedValue) {
+        // Testing batchForEach handling null keys and null values
         Sum sum = new IntegerSum(0);
-
-        for (int i = 0; i < batchIterable.getBatchCount(7); ++i)
-        {
+        for (int i = 0; i < batchIterable.getBatchCount(7); ++i) {
             batchIterable.batchForEach(each -> sum.add(each == null ? 1 : each), i, batchIterable.getBatchCount(7));
         }
         Assert.assertEquals(expectedValue, sum.getValue());
     }
 
-    private void batchForEachEmptyBatchIterable(BatchIterable<Integer> batchIterable)
-    {
-        //Test batchForEach on empty set, it should simply do nothing and not throw any exceptions
+    private void batchForEachEmptyBatchIterable(BatchIterable<Integer> batchIterable) {
+        // Test batchForEach on empty set, it should simply do nothing and not throw any exceptions
         Sum sum = new IntegerSum(0);
         batchIterable.batchForEach(new SumProcedure<>(sum), 0, batchIterable.getBatchCount(1));
         Assert.assertEquals(0, sum.getValue());
     }
 
     @Test
-    public void batchIterable_forEach()
-    {
-        UnifiedMapWithHashingStrategy<String, Integer> map = UnifiedMapWithHashingStrategy.<String, Integer>newMap(
-                STRING_HASHING_STRATEGY, 5).withKeysValues("1", 1, "2", 2, "3", 3, "4", 4);
+    public void batchIterable_forEach() {
+        UnifiedMapWithHashingStrategy<String, Integer> map = UnifiedMapWithHashingStrategy.<String, Integer>newMap(STRING_HASHING_STRATEGY, 5).withKeysValues("1", 1, "2", 2, "3", 3, "4", 4);
         this.batchIterable_forEach(map, 10);
-
-        UnifiedMapWithHashingStrategy<Integer, Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6);
+        UnifiedMapWithHashingStrategy<Integer, Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6);
         this.batchIterable_forEach(collisions, 21);
-
-        UnifiedMapWithHashingStrategy<Integer, Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null);
+        UnifiedMapWithHashingStrategy<Integer, Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null);
         this.batchIterable_forEachNullHandling(nulls, 33);
-
         this.batchIterable_forEachEmptyBatchIterable(UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY));
     }
 
     @Test
-    public void batchIterable_forEachKey()
-    {
-        Set<Integer> keys = UnifiedMapWithHashingStrategy.<Integer, String>newMap(
-                INTEGER_HASHING_STRATEGY, 5).withKeysValues(1, "1", 2, "2", 3, "3", 4, "4").keySet();
+    public void batchIterable_forEachKey() {
+        Set<Integer> keys = UnifiedMapWithHashingStrategy.<Integer, String>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(1, "1", 2, "2", 3, "3", 4, "4").keySet();
         this.batchIterable_forEach((BatchIterable<Integer>) keys, 10);
-
-        Set<Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).keySet();
+        Set<Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).keySet();
         this.batchIterable_forEach((BatchIterable<Integer>) collisions, 57);
-
-        Set<Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).keySet();
+        Set<Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).keySet();
         this.batchIterable_forEachNullHandling((BatchIterable<Integer>) nulls, 15);
-
         this.batchIterable_forEachEmptyBatchIterable((BatchIterable<Integer>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY).keySet());
     }
 
     @Test
-    public void batchIterable_forEachValue()
-    {
-        Collection<Integer> values = UnifiedMapWithHashingStrategy.<String, Integer>newMap(
-                STRING_HASHING_STRATEGY, 5).withKeysValues("1", 1, "2", 2, "3", 3, "4", 4).values();
+    public void batchIterable_forEachValue() {
+        Collection<Integer> values = UnifiedMapWithHashingStrategy.<String, Integer>newMap(STRING_HASHING_STRATEGY, 5).withKeysValues("1", 1, "2", 2, "3", 3, "4", 4).values();
         this.batchIterable_forEach((BatchIterable<Integer>) values, 10);
-
-        Collection<Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).values();
+        Collection<Integer> collisions = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).values();
         this.batchIterable_forEach((BatchIterable<Integer>) collisions, 21);
-
-        Collection<Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).values();
+        Collection<Integer> nulls = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).values();
         this.batchIterable_forEachNullHandling((BatchIterable<Integer>) nulls, 33);
-
-        this.batchIterable_forEachEmptyBatchIterable(
-                (BatchIterable<Integer>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY).values());
+        this.batchIterable_forEachEmptyBatchIterable((BatchIterable<Integer>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY).values());
     }
 
     @Test
-    public void batchIterable_forEachEntry()
-    {
-        BatchIterable<Map.Entry<Integer, Integer>> entries =
-                (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.newWithKeysValues(
-                        INTEGER_HASHING_STRATEGY, 1, 1, 2, 2, 3, 3, 4, 4).entrySet();
+    public void batchIterable_forEachEntry() {
+        BatchIterable<Map.Entry<Integer, Integer>> entries = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, 1, 2, 2, 3, 3, 4, 4).entrySet();
         Sum sum = new IntegerSum(0);
         entries.forEach(new EntrySumProcedure(sum));
         Assert.assertEquals(20, sum.getValue());
     }
 
     @Test
-    public void batchIterable_forEachEntry_chains()
-    {
-        BatchIterable<Map.Entry<Integer, Integer>> collisions =
-                (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                        INTEGER_HASHING_STRATEGY, 5).withKeysValues(
-                        COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).entrySet();
-
+    public void batchIterable_forEachEntry_chains() {
+        BatchIterable<Map.Entry<Integer, Integer>> collisions = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 5).withKeysValues(COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4).withKeysValues(2, 5, 3, 6).entrySet();
         Sum sum = new IntegerSum(0);
         collisions.forEach(new EntrySumProcedure(sum));
         Assert.assertEquals(78, sum.getValue());
     }
 
     @Test
-    public void batchIterable_forEachEntry_null_handling()
-    {
-        //Testing batchForEach handling null keys and null values
+    public void batchIterable_forEachEntry_null_handling() {
+        // Testing batchForEach handling null keys and null values
         Sum sum = new IntegerSum(0);
-        BatchIterable<Map.Entry<Integer, Integer>> nulls =
-                (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                        INTEGER_HASHING_STRATEGY, 100).withKeysValues(
-                        null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).entrySet();
-
-        nulls.forEach(each ->
-        {
+        BatchIterable<Map.Entry<Integer, Integer>> nulls = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 100).withKeysValues(null, 10, 1, null, 2, 11, 3, 12).withKeysValues(4, null, 5, null).entrySet();
+        nulls.forEach(each -> {
             sum.add(each.getKey() == null ? 0 : each.getKey());
             sum.add(each.getValue() == null ? 0 : each.getValue());
         });
-
         Assert.assertEquals(48, sum.getValue());
     }
 
     @Test
-    public void batchIterable_forEachEntry_emptySet()
-    {
-        //Test forEach on empty set, it should simply do nothing and not throw any exceptions
+    public void batchIterable_forEachEntry_emptySet() {
+        // Test forEach on empty set, it should simply do nothing and not throw any exceptions
         Sum sum = new IntegerSum(0);
-        BatchIterable<Map.Entry<Integer, Integer>> empty =
-                (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY).entrySet();
+        BatchIterable<Map.Entry<Integer, Integer>> empty = (BatchIterable<Map.Entry<Integer, Integer>>) UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY).entrySet();
         empty.forEach(new EntrySumProcedure(sum));
         Assert.assertEquals(0, sum.getValue());
     }
 
-    private void batchIterable_forEach(BatchIterable<Integer> batchIterable, int expectedValue)
-    {
+    private void batchIterable_forEach(BatchIterable<Integer> batchIterable, int expectedValue) {
         IntegerSum sum = new IntegerSum(0);
         batchIterable.forEach(new SumProcedure<>(sum));
         Assert.assertEquals(expectedValue, sum.getValue());
     }
 
-    private void batchIterable_forEachNullHandling(BatchIterable<Integer> batchIterable, int expectedValue)
-    {
-        //Testing forEach handling null keys and null values
+    private void batchIterable_forEachNullHandling(BatchIterable<Integer> batchIterable, int expectedValue) {
+        // Testing forEach handling null keys and null values
         Sum sum = new IntegerSum(0);
         batchIterable.forEach(each -> sum.add(each == null ? 0 : each));
         Assert.assertEquals(expectedValue, sum.getValue());
     }
 
-    private void batchIterable_forEachEmptyBatchIterable(BatchIterable<Integer> batchIterable)
-    {
-        //Test forEach on empty set, it should simply do nothing and not throw any exceptions
+    private void batchIterable_forEachEmptyBatchIterable(BatchIterable<Integer> batchIterable) {
+        // Test forEach on empty set, it should simply do nothing and not throw any exceptions
         Sum sum = new IntegerSum(0);
         batchIterable.batchForEach(new SumProcedure<>(sum), 0, batchIterable.getBatchCount(1));
         Assert.assertEquals(0, sum.getValue());
@@ -657,32 +503,23 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
 
     @Override
     @Test
-    public void forEachKeyValue()
-    {
+    public void forEachKeyValue() {
         super.forEachKeyValue();
-
         // Testing full chain
         UnifiedSet<Integer> keys = UnifiedSet.newSet();
         UnifiedSet<Integer> values = UnifiedSet.newSet();
-        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4).withKeysValues(1, 5);
-
-        map.forEachKeyValue((argument1, argument2) ->
-        {
+        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4).withKeysValues(1, 5);
+        map.forEachKeyValue((argument1, argument2) -> {
             keys.add(argument1);
             values.add(argument2);
         });
         Verify.assertSetsEqual(UnifiedSet.newSetWith(COLLISION_1, COLLISION_2, COLLISION_3, COLLISION_4, 1), keys);
         Verify.assertSetsEqual(UnifiedSet.newSetWith(1, 2, 3, 4, 5), values);
-
         // Testing when chain contains null
         UnifiedSet<Integer> keys2 = UnifiedSet.newSet();
         UnifiedSet<Integer> values2 = UnifiedSet.newSet();
-        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4);
-
-        map2.forEachKeyValue((argument1, argument2) ->
-        {
+        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, 1, 4);
+        map2.forEachKeyValue((argument1, argument2) -> {
             keys2.add(argument1);
             values2.add(argument2);
         });
@@ -691,129 +528,92 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void getMapMemoryUsedInWords()
-    {
+    public void getMapMemoryUsedInWords() {
         UnifiedMapWithHashingStrategy<String, String> map = UnifiedMapWithHashingStrategy.newMap(STRING_HASHING_STRATEGY);
         Assert.assertEquals(34, map.getMapMemoryUsedInWords());
         map.put("1", "1");
         Assert.assertEquals(34, map.getMapMemoryUsedInWords());
-
         UnifiedMapWithHashingStrategy<Integer, Integer> map2 = this.mapWithCollisionsOfSize(2);
         Assert.assertEquals(16, map2.getMapMemoryUsedInWords());
     }
 
     @Test
-    public void getHashingStrategy()
-    {
+    public void getHashingStrategy() {
         UnifiedMapWithHashingStrategy<Integer, Object> map = UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY);
         Assert.assertSame(INTEGER_HASHING_STRATEGY, map.hashingStrategy());
     }
 
     @Test
-    public void getCollidingBuckets()
-    {
+    public void getCollidingBuckets() {
         UnifiedMapWithHashingStrategy<Object, Object> map = UnifiedMapWithHashingStrategy.newMap(HashingStrategies.defaultStrategy());
         Assert.assertEquals(0, map.getCollidingBuckets());
-
         UnifiedMapWithHashingStrategy<Integer, Integer> map2 = this.mapWithCollisionsOfSize(2);
         Assert.assertEquals(1, map2.getCollidingBuckets());
-
         map2.put(42, 42);
         Assert.assertEquals(1, map2.getCollidingBuckets());
-
-        UnifiedMapWithHashingStrategy<String, String> map3 = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                STRING_HASHING_STRATEGY, "Six", "6", "Bar", "-", "Three", "3", "Five", "5");
+        UnifiedMapWithHashingStrategy<String, String> map3 = UnifiedMapWithHashingStrategy.newWithKeysValues(STRING_HASHING_STRATEGY, "Six", "6", "Bar", "-", "Three", "3", "Five", "5");
         Assert.assertEquals(2, map3.getCollidingBuckets());
     }
 
     @Override
     @Test
-    public void getIfAbsentPut()
-    {
+    public void getIfAbsentPut() {
         super.getIfAbsentPut();
-
         // this map is deliberately small to force a rehash to occur from the put method, in a map with a chained bucket
-        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(
-                INTEGER_HASHING_STRATEGY, 2, 0.75f);
+        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY, 2, 0.75f);
         MORE_COLLISIONS.forEach(Procedures.cast(each -> map.getIfAbsentPut(each, new PassThruFunction0<>(each))));
-
         Assert.assertEquals(this.mapWithCollisionsOfSize(9), map);
-
-        //Testing getting element present in chain
-        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
-        Assert.assertEquals(2, map2.getIfAbsentPut(COLLISION_2, () ->
-        {
+        // Testing getting element present in chain
+        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
+        Assert.assertEquals(2, map2.getIfAbsentPut(COLLISION_2, () -> {
             Assert.fail();
             return null;
         }).intValue());
-
-        //Testing rehashing while creating a new chained key
-        UnifiedMapWithHashingStrategy<Integer, Integer> map3 = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(
-                INTEGER_HASHING_STRATEGY, 2, 0.75f).withKeysValues(COLLISION_1, 1, 2, 2, 3, 3);
+        // Testing rehashing while creating a new chained key
+        UnifiedMapWithHashingStrategy<Integer, Integer> map3 = UnifiedMapWithHashingStrategy.<Integer, Integer>newMap(INTEGER_HASHING_STRATEGY, 2, 0.75f).withKeysValues(COLLISION_1, 1, 2, 2, 3, 3);
         Assert.assertEquals(4, map3.getIfAbsentPut(COLLISION_2, new PassThruFunction0<>(4)).intValue());
     }
 
     @Override
     @Test
-    public void getIfAbsentPutValue()
-    {
+    public void getIfAbsentPutValue() {
         super.getIfAbsentPutValue();
-
         // this map is deliberately small to force a rehash to occur from the put method, in a map with a chained bucket
-        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(
-                INTEGER_HASHING_STRATEGY, 2, 0.75f);
+        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY, 2, 0.75f);
         MORE_COLLISIONS.forEach(Procedures.cast(each -> map.getIfAbsentPut(each, each)));
-
         Assert.assertEquals(this.mapWithCollisionsOfSize(9), map);
-
-        //Testing getting element present in chain
-        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
+        // Testing getting element present in chain
+        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
         Assert.assertEquals(Integer.valueOf(2), map2.getIfAbsentPut(COLLISION_2, Integer.valueOf(5)));
         Assert.assertEquals(Integer.valueOf(5), map2.getIfAbsentPut(5, Integer.valueOf(5)));
     }
 
     @Override
     @Test
-    public void getIfAbsentPutWith()
-    {
+    public void getIfAbsentPutWith() {
         super.getIfAbsentPutWith();
-
         // this map is deliberately small to force a rehash to occur from the put method, in a map with a chained bucket
-        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(
-                INTEGER_HASHING_STRATEGY, 2, 0.75f);
+        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY, 2, 0.75f);
         MORE_COLLISIONS.forEach(Procedures.cast(each -> map.getIfAbsentPutWith(each, Functions.getIntegerPassThru(), each)));
-
         Assert.assertEquals(this.mapWithCollisionsOfSize(9), map);
-
-        //Testing getting element present in chain
-        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
+        // Testing getting element present in chain
+        UnifiedMapWithHashingStrategy<Integer, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, COLLISION_1, 1, COLLISION_2, 2, COLLISION_3, 3, COLLISION_4, 4);
         Assert.assertEquals(Integer.valueOf(2), map2.getIfAbsentPutWith(COLLISION_2, Functions.getIntegerPassThru(), Integer.valueOf(5)));
         Assert.assertEquals(Integer.valueOf(5), map2.getIfAbsentPutWith(5, Functions.getIntegerPassThru(), Integer.valueOf(5)));
     }
 
     @Test
-    public void equals_with_hashing_strategy()
-    {
-        UnifiedMapWithHashingStrategy<Person, Integer> map1 = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 1, JOHNSMITH, 1, JANESMITH, 1);
-        UnifiedMapWithHashingStrategy<Person, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                FIRST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 1, JOHNSMITH, 1, JANESMITH, 1);
-
+    public void equals_with_hashing_strategy() {
+        UnifiedMapWithHashingStrategy<Person, Integer> map1 = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 1, JOHNSMITH, 1, JANESMITH, 1);
+        UnifiedMapWithHashingStrategy<Person, Integer> map2 = UnifiedMapWithHashingStrategy.newWithKeysValues(FIRST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 1, JOHNSMITH, 1, JANESMITH, 1);
         Assert.assertEquals(map1, map2);
         Assert.assertEquals(map2, map1);
         Assert.assertNotEquals(map1.hashCode(), map2.hashCode());
-
-        UnifiedMapWithHashingStrategy<Person, Integer> map3 = UnifiedMapWithHashingStrategy.newWithKeysValues(
-                LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
+        UnifiedMapWithHashingStrategy<Person, Integer> map3 = UnifiedMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNDOE, 1, JANEDOE, 2, JOHNSMITH, 3, JANESMITH, 4);
         UnifiedMapWithHashingStrategy<Person, Integer> map4 = UnifiedMapWithHashingStrategy.newMap(map3);
         HashMap<Person, Integer> hashMap = new HashMap<>(map3);
-
         Verify.assertEqualsAndHashCode(map3, map4);
         Assert.assertTrue(map3.equals(hashMap) && hashMap.equals(map3) && map3.hashCode() != hashMap.hashCode());
-
         UnifiedMap<Person, Integer> unifiedMap = UnifiedMap.newWithKeysValues(JOHNDOE, 1, JANEDOE, 1, JOHNSMITH, 1, JANESMITH, 1);
         UnifiedMapWithHashingStrategy<Person, Integer> map5 = UnifiedMapWithHashingStrategy.newMap(LAST_NAME_HASHING_STRATEGY, unifiedMap);
         Assert.assertNotEquals(map5, unifiedMap);
@@ -821,67 +621,51 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
 
     @Override
     @Test
-    public void put()
-    {
+    public void put() {
         super.put();
-
         // this map is deliberately small to force a rehash to occur from the put method, in a map with a chained bucket
-        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(
-                INTEGER_HASHING_STRATEGY, 2, 0.75f);
+        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY, 2, 0.75f);
         COLLISIONS.forEach(0, 4, each -> Assert.assertNull(map.put(each, each)));
-
         Assert.assertEquals(this.mapWithCollisionsOfSize(5), map);
     }
 
     @Test
-    public void put_get_with_hashing_strategy()
-    {
+    public void put_get_with_hashing_strategy() {
         UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY);
-
-        //Testing putting values in non chains
+        // Testing putting values in non chains
         Assert.assertNull(map.put(1, 1));
         Assert.assertNull(map.put(2, 2));
         Assert.assertNull(map.put(3, 3));
         Assert.assertNull(map.put(4, 4));
         Assert.assertNull(map.put(5, null));
-
-        //Testing getting values from no chains
+        // Testing getting values from no chains
         Assert.assertEquals(1, map.get(1).intValue());
         Assert.assertEquals(2, map.get(2).intValue());
         Assert.assertNull(map.get(5));
-
-        //Testing putting and getting elements in a chain
+        // Testing putting and getting elements in a chain
         Assert.assertNull(map.put(COLLISION_1, 1));
         Assert.assertNull(map.get(COLLISION_2));
-
         Assert.assertNull(map.put(COLLISION_2, 2));
         Assert.assertNull(map.get(COLLISION_3));
-
         Assert.assertNull(map.put(COLLISION_3, null));
         Assert.assertNull(map.put(COLLISION_4, 4));
         Assert.assertNull(map.put(COLLISION_5, 5));
-
         Assert.assertEquals(1, map.get(COLLISION_1).intValue());
         Assert.assertEquals(5, map.get(COLLISION_5).intValue());
         Assert.assertNull(map.get(COLLISION_3));
-
         map.remove(COLLISION_2);
         Assert.assertNull(map.get(COLLISION_2));
+        // Testing for casting exceptions
+        HashingStrategy<Person> lastName = new HashingStrategy<Person>() {
 
-        //Testing for casting exceptions
-        HashingStrategy<Person> lastName = new HashingStrategy<Person>()
-        {
-            public int computeHashCode(Person object)
-            {
+            public int computeHashCode(Person object) {
                 return object.getLastName().hashCode();
             }
 
-            public boolean equals(Person object1, Person object2)
-            {
+            public boolean equals(Person object1, Person object2) {
                 return object1.equals(object2);
             }
         };
-
         UnifiedMapWithHashingStrategy<Person, Integer> map2 = UnifiedMapWithHashingStrategy.newMap(lastName);
         Assert.assertNull(map2.put(new Person("abe", "smith"), 1));
         Assert.assertNull(map2.put(new Person("brad", "smith"), 2));
@@ -889,62 +673,47 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Test
-    public void hashingStrategy()
-    {
+    public void hashingStrategy() {
         UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newWithKeysValues(INTEGER_HASHING_STRATEGY, 1, 1, 2, 2);
         Assert.assertSame(INTEGER_HASHING_STRATEGY, map.hashingStrategy());
     }
 
     @Test
-    public void trimToSize()
-    {
+    public void trimToSize() {
         UnifiedMapWithHashingStrategy<String, String> map = UnifiedMapWithHashingStrategy.newMap(STRING_HASHING_STRATEGY);
         MutableMap<String, String> expected = Maps.mutable.empty();
-
         Interval integers = Interval.fromTo(0, 250);
-        integers.each(each ->
-        {
+        integers.each(each -> {
             map.put(each.toString(), each.toString());
             expected.put(each.toString(), each.toString());
         });
-        ArrayIterate.forEach(FREQUENT_COLLISIONS, each ->
-        {
+        ArrayIterate.forEach(FREQUENT_COLLISIONS, each -> {
             map.put(each, each);
             expected.put(each, each);
         });
-
         Assert.assertEquals(expected, map);
         Assert.assertEquals(261, map.size());
-
         MutableList<Integer> toRemove = Lists.mutable.withAll(Interval.evensFromTo(0, 20));
-
         toRemove.addAll(Interval.oddsFromTo(35, 55));
-        toRemove.each(each ->
-        {
+        toRemove.each(each -> {
             map.remove(each.toString());
             expected.remove(each.toString());
         });
-
         // First assertion to verify that trim does not happen since, the table is already at the smallest required power of 2.
         Assert.assertFalse(map.trimToSize());
         Assert.assertEquals(expected, map);
         Assert.assertEquals(239, map.size());
-
-        Interval.evensFromTo(0, 250).each(each ->
-        {
+        Interval.evensFromTo(0, 250).each(each -> {
             map.remove(each.toString());
             expected.remove(each.toString());
         });
-
         // Second assertion to verify that trim happens since, the table length is less than smallest required power of 2.
         Assert.assertTrue(map.trimToSize());
         Assert.assertFalse(map.trimToSize());
         Assert.assertEquals(expected, map);
         Assert.assertEquals(124, map.size());
         expected.forEachKey(each -> Assert.assertEquals(each, map.get(each)));
-
-        integers.each(each ->
-        {
+        integers.each(each -> {
             map.remove(each.toString());
             expected.remove(each.toString());
         });
@@ -952,19 +721,15 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
         Assert.assertFalse(map.trimToSize());
         Assert.assertEquals(expected, map);
         expected.forEachKey(each -> Assert.assertEquals(each, map.get(each)));
-
         map.clear();
         expected.clear();
         Assert.assertTrue(map.trimToSize());
-
-        Interval.zeroTo(20).each(each ->
-        {
+        Interval.zeroTo(20).each(each -> {
             map.put(each.toString(), each.toString());
             expected.put(each.toString(), each.toString());
         });
         Assert.assertFalse(map.trimToSize());
-        Interval.fromTo(9, 18).each(each ->
-        {
+        Interval.fromTo(9, 18).each(each -> {
             map.remove(each.toString());
             expected.remove(each.toString());
         });
@@ -972,7 +737,6 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
         Assert.assertFalse(map.trimToSize());
         Assert.assertEquals(expected, map);
         expected.forEachKey(each -> Assert.assertEquals(each, map.get(each)));
-
         map.clear();
         Assert.assertTrue(map.trimToSize());
         Assert.assertTrue(map.isEmpty());
@@ -980,7 +744,6 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
         // Assert that trim does not happen as long as table.size is already as smaller than required
         Assert.assertFalse(map.trimToSize());
         map.put("7", "7");
-
         map.removeKey("2");
         map.removeKey("3");
         // Assert that trim does not happen as long as table.size is as smaller as required
@@ -994,7 +757,6 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
         map.put("7", "7");
         // Assert that the resized table due to put is the required size and no need to trim that.
         Assert.assertFalse(map.trimToSize());
-
         Interval.zeroTo(4).each(each -> map.put(each.toString(), each.toString()));
         Interval.oneTo(3).each(each -> map.removeKey(each.toString()));
         Assert.assertTrue(map.trimToSize());
@@ -1002,27 +764,291 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
     }
 
     @Override
-    protected UnifiedMapWithHashingStrategy<Integer, Integer> mapWithCollisionsOfSize(int size)
-    {
-        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(
-                INTEGER_HASHING_STRATEGY, size);
+    protected UnifiedMapWithHashingStrategy<Integer, Integer> mapWithCollisionsOfSize(int size) {
+        UnifiedMapWithHashingStrategy<Integer, Integer> map = UnifiedMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY, size);
         return this.populateMapWithCollisionsOfSize(size, map);
     }
 
-    private static final class EntrySumProcedure implements Procedure<Map.Entry<Integer, Integer>>
-    {
+    private static final class EntrySumProcedure implements Procedure<Map.Entry<Integer, Integer>> {
+
         private final Sum sum;
 
-        private EntrySumProcedure(Sum sum)
-        {
+        private EntrySumProcedure(Sum sum) {
             this.sum = sum;
         }
 
         @Override
-        public void value(Map.Entry<Integer, Integer> each)
-        {
+        public void value(Map.Entry<Integer, Integer> each) {
             this.sum.add(each.getKey());
             this.sum.add(each.getValue());
+        }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_constructorOfPairs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::constructorOfPairs, this.description("constructorOfPairs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_constructorOfIterableOfPairs() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::constructorOfIterableOfPairs, this.description("constructorOfIterableOfPairs"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newMap_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newMap_throws, this.description("newMap_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectMap, this.description("selectMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectMap, this.description("rejectMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectMap, this.description("collectMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains_with_hashing_strategy, this.description("contains_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove_with_hashing_strategy, this.description("remove_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySet_isEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySet_isEmpty, this.description("keySet_isEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySet_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySet_with_hashing_strategy, this.description("keySet_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySet_Iterator_removeFromNonChain() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keySet_Iterator_removeFromNonChain, this.description("keySet_Iterator_removeFromNonChain"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_weakEntryToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::weakEntryToString, this.description("weakEntryToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_valuesCollection_Iterator_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::valuesCollection_Iterator_remove, this.description("valuesCollection_Iterator_remove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_entry_equals_with_hashingStrategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::entry_equals_with_hashingStrategy, this.description("entry_equals_with_hashingStrategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_entrySet_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::entrySet_with_hashing_strategy, this.description("entrySet_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_valuesCollection_containsAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::valuesCollection_containsAll, this.description("valuesCollection_containsAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchForEach, this.description("batchForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchForEachKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchForEachKey, this.description("batchForEachKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchForEachValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchForEachValue, this.description("batchForEachValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchForEachEntry() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchForEachEntry, this.description("batchForEachEntry"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchForEachEntry_chains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchForEachEntry_chains, this.description("batchForEachEntry_chains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchForEachEntry_null_handling() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchForEachEntry_null_handling, this.description("batchForEachEntry_null_handling"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchForEachEntry_emptySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchForEachEntry_emptySet, this.description("batchForEachEntry_emptySet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchIterable_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchIterable_forEach, this.description("batchIterable_forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchIterable_forEachKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchIterable_forEachKey, this.description("batchIterable_forEachKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchIterable_forEachValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchIterable_forEachValue, this.description("batchIterable_forEachValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchIterable_forEachEntry() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchIterable_forEachEntry, this.description("batchIterable_forEachEntry"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchIterable_forEachEntry_chains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchIterable_forEachEntry_chains, this.description("batchIterable_forEachEntry_chains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchIterable_forEachEntry_null_handling() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchIterable_forEachEntry_null_handling, this.description("batchIterable_forEachEntry_null_handling"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchIterable_forEachEntry_emptySet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchIterable_forEachEntry_emptySet, this.description("batchIterable_forEachEntry_emptySet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKeyValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachKeyValue, this.description("forEachKeyValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getMapMemoryUsedInWords() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getMapMemoryUsedInWords, this.description("getMapMemoryUsedInWords"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getHashingStrategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getHashingStrategy, this.description("getHashingStrategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getCollidingBuckets() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getCollidingBuckets, this.description("getCollidingBuckets"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPut() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPut, this.description("getIfAbsentPut"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPutValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPutValue, this.description("getIfAbsentPutValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPutWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPutWith, this.description("getIfAbsentPutWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equals_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equals_with_hashing_strategy, this.description("equals_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_put() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::put, this.description("put"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_put_get_with_hashing_strategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::put_get_with_hashing_strategy, this.description("put_get_with_hashing_strategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_hashingStrategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::hashingStrategy, this.description("hashingStrategy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_trimToSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::trimToSize, this.description("trimToSize"));
+        }
+
+        private UnifiedMapWithHashingStrategyTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new UnifiedMapWithHashingStrategyTest();
+        }
+
+        @java.lang.Override
+        public UnifiedMapWithHashingStrategyTest implementation() {
+            return this.implementation;
         }
     }
 }

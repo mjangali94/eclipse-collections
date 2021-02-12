@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable.primitive;
 
 import org.eclipse.collections.impl.factory.primitive.BooleanBags;
@@ -24,41 +23,55 @@ import org.junit.Test;
 /**
  * JUnit test for empty() methods of primitive classes
  */
-public class MutableEmptyPrimitiveTest
-{
+public class MutableEmptyPrimitiveTest {
+
     @Test
-    public void isEmptyMutable()
-    {
+    public void isEmptyMutable() {
         Verify.assertEmpty(BooleanBags.mutable.empty());
         Verify.assertEmpty(BooleanBags.mutable.of());
         Verify.assertEmpty(BooleanBags.mutable.with());
-
         Verify.assertEmpty(ByteBags.mutable.empty());
         Verify.assertEmpty(ByteBags.mutable.of());
         Verify.assertEmpty(ByteBags.mutable.with());
-
         Verify.assertEmpty(CharBags.mutable.empty());
         Verify.assertEmpty(CharBags.mutable.of());
         Verify.assertEmpty(CharBags.mutable.with());
-
         Verify.assertEmpty(DoubleBags.mutable.empty());
         Verify.assertEmpty(DoubleBags.mutable.of());
         Verify.assertEmpty(DoubleBags.mutable.with());
-
         Verify.assertEmpty(FloatBags.mutable.empty());
         Verify.assertEmpty(FloatBags.mutable.of());
         Verify.assertEmpty(FloatBags.mutable.with());
-
         Verify.assertEmpty(IntBags.mutable.empty());
         Verify.assertEmpty(IntBags.mutable.of());
         Verify.assertEmpty(IntBags.mutable.with());
-
         Verify.assertEmpty(LongBags.mutable.empty());
         Verify.assertEmpty(LongBags.mutable.of());
         Verify.assertEmpty(LongBags.mutable.with());
-
         Verify.assertEmpty(ShortBags.mutable.empty());
         Verify.assertEmpty(ShortBags.mutable.of());
         Verify.assertEmpty(ShortBags.mutable.with());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmptyMutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmptyMutable, this.description("isEmptyMutable"));
+        }
+
+        private MutableEmptyPrimitiveTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MutableEmptyPrimitiveTest();
+        }
+
+        @java.lang.Override
+        public MutableEmptyPrimitiveTest implementation() {
+            return this.implementation;
+        }
     }
 }

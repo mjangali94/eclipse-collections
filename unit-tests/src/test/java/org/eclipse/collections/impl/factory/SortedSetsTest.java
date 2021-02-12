@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import java.util.Comparator;
-
 import org.eclipse.collections.api.factory.set.sorted.ImmutableSortedSetFactory;
 import org.eclipse.collections.api.factory.set.sorted.MutableSortedSetFactory;
 import org.eclipse.collections.api.set.sorted.ImmutableSortedSet;
@@ -24,11 +22,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class SortedSetsTest
-{
+public class SortedSetsTest {
+
     @Test
-    public void immutables()
-    {
+    public void immutables() {
         ImmutableSortedSetFactory factory = SortedSets.immutable;
         Assert.assertEquals(UnifiedSet.newSet(), factory.of());
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of());
@@ -51,9 +48,7 @@ public class SortedSetsTest
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of(1, 2, 3, 4, 5, 6, 7, 8));
         Assert.assertEquals(SortedSets.mutable.of(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8), factory.of(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8));
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of(Comparators.reverseNaturalOrder(), 1, 2, 3, 4, 5, 6, 7, 8));
-        Assert.assertEquals(
-                SortedSets.mutable.of(Comparators.reverseNaturalOrder(), 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 7, 8),
-                factory.of(Comparators.reverseNaturalOrder(), 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 7, 8));
+        Assert.assertEquals(SortedSets.mutable.of(Comparators.reverseNaturalOrder(), 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 7, 8), factory.of(Comparators.reverseNaturalOrder(), 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 7, 8));
         Verify.assertInstanceOf(ImmutableSortedSet.class, factory.of(Comparators.reverseNaturalOrder(), 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 7, 8));
         Assert.assertEquals(SortedSets.mutable.of(1, 2, 3, 4, 5, 6, 7, 8), factory.ofAll(SortedSets.mutable.of(1, 2, 3, 4, 5, 6, 7, 8)));
         Assert.assertEquals(SortedSets.mutable.of(1, 2, 3, 4, 5, 6, 7, 8).comparator(), factory.ofAll(SortedSets.mutable.of(1, 2, 3, 4, 5, 6, 7, 8)).comparator());
@@ -70,8 +65,7 @@ public class SortedSetsTest
     }
 
     @Test
-    public void mutables()
-    {
+    public void mutables() {
         MutableSortedSetFactory factory = SortedSets.mutable;
         Assert.assertEquals(TreeSortedSet.newSet(), factory.of());
         Verify.assertInstanceOf(MutableSortedSet.class, factory.of());
@@ -92,8 +86,41 @@ public class SortedSetsTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(SortedSets.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutables, this.description("immutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutables, this.description("mutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private SortedSetsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SortedSetsTest();
+        }
+
+        @java.lang.Override
+        public SortedSetsTest implementation() {
+            return this.implementation;
+        }
     }
 }

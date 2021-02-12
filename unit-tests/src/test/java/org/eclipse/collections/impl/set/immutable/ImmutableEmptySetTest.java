@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.immutable;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -23,26 +22,23 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableEmptySetTest extends AbstractImmutableEmptySetTestCase
-{
+public class ImmutableEmptySetTest extends AbstractImmutableEmptySetTestCase {
+
     @Override
-    protected ImmutableSet<Integer> classUnderTest()
-    {
+    protected ImmutableSet<Integer> classUnderTest() {
         return Sets.immutable.of();
     }
 
     @Override
     @Test
-    public void newWithout()
-    {
+    public void newWithout() {
         Assert.assertSame(Sets.immutable.of(), Sets.immutable.of().newWithout(1));
         Assert.assertSame(Sets.immutable.of(), Sets.immutable.of().newWithoutAll(Interval.oneTo(3)));
     }
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         ImmutableSet<Integer> immutable = this.classUnderTest();
         MutableSet<Integer> mutable = UnifiedSet.newSet(immutable);
         Verify.assertEqualsAndHashCode(mutable, immutable);
@@ -51,15 +47,53 @@ public class ImmutableEmptySetTest extends AbstractImmutableEmptySetTestCase
     }
 
     @Test
-    public void countByEach()
-    {
+    public void countByEach() {
         Assert.assertEquals(Bags.immutable.empty(), this.classUnderTest().countByEach(each -> IntInterval.oneTo(5).collect(i -> each + i)));
     }
 
     @Test
-    public void countByEach_target()
-    {
+    public void countByEach_target() {
         MutableBag<Integer> target = Bags.mutable.empty();
         Assert.assertEquals(target, this.classUnderTest().countByEach(each -> IntInterval.oneTo(5).collect(i -> each + i), target));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithout() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithout, this.description("newWithout"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countByEach, this.description("countByEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countByEach_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countByEach_target, this.description("countByEach_target"));
+        }
+
+        private ImmutableEmptySetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableEmptySetTest();
+        }
+
+        @java.lang.Override
+        public ImmutableEmptySetTest implementation() {
+            return this.implementation;
+        }
     }
 }

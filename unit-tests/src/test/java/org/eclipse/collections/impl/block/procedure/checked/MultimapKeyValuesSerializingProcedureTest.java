@@ -7,141 +7,141 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.procedure.checked;
 
 import java.io.ObjectOutput;
 import java.io.Serializable;
 import java.util.Iterator;
-
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MultimapKeyValuesSerializingProcedureTest
-{
+public class MultimapKeyValuesSerializingProcedureTest {
+
     @Test
-    public void testSerialization()
-    {
+    public void testSerialization() {
         FastListMultimap<String, String> map = new FastListMultimap<>();
         map.put("A", "alpha");
         map.put("A", "beta");
         FastList<? extends Serializable> expectedWrites = FastList.newListWith("A", 2, "alpha", "beta");
-        MultimapKeyValuesSerializingProcedure<String, String> procedure =
-                new MultimapKeyValuesSerializingProcedure<>(new MockObjectOutput(expectedWrites));
+        MultimapKeyValuesSerializingProcedure<String, String> procedure = new MultimapKeyValuesSerializingProcedure<>(new MockObjectOutput(expectedWrites));
         map.toMap().forEachKeyValue(procedure);
     }
 
-    public static final class MockObjectOutput implements ObjectOutput
-    {
+    public static final class MockObjectOutput implements ObjectOutput {
+
         private final Iterator<? extends Serializable> iterator;
 
-        public MockObjectOutput(Iterable<? extends Serializable> expectedWrites)
-        {
+        public MockObjectOutput(Iterable<? extends Serializable> expectedWrites) {
             this.iterator = expectedWrites.iterator();
         }
 
         @Override
-        public void writeObject(Object obj)
-        {
+        public void writeObject(Object obj) {
             Assert.assertEquals(this.iterator.next(), obj);
         }
 
         @Override
-        public void writeInt(int v)
-        {
+        public void writeInt(int v) {
             Assert.assertEquals(this.iterator.next(), v);
         }
 
         @Override
-        public void write(int i)
-        {
+        public void write(int i) {
             throw new RuntimeException("write not implemented");
         }
 
         @Override
-        public void write(byte[] bs)
-        {
+        public void write(byte[] bs) {
             throw new RuntimeException("write not implemented");
         }
 
         @Override
-        public void write(byte[] bs, int off, int len)
-        {
+        public void write(byte[] bs, int off, int len) {
             throw new RuntimeException("write not implemented");
         }
 
         @Override
-        public void writeBoolean(boolean v)
-        {
+        public void writeBoolean(boolean v) {
             throw new RuntimeException("writeBoolean not implemented");
         }
 
         @Override
-        public void writeByte(int v)
-        {
+        public void writeByte(int v) {
             throw new RuntimeException("writeByte not implemented");
         }
 
         @Override
-        public void writeShort(int v)
-        {
+        public void writeShort(int v) {
             throw new RuntimeException("writeShort not implemented");
         }
 
         @Override
-        public void writeChar(int v)
-        {
+        public void writeChar(int v) {
             throw new RuntimeException("writeChar not implemented");
         }
 
         @Override
-        public void writeLong(long v)
-        {
+        public void writeLong(long v) {
             throw new RuntimeException("writeLong not implemented");
         }
 
         @Override
-        public void writeFloat(float v)
-        {
+        public void writeFloat(float v) {
             throw new RuntimeException("writeFloat not implemented");
         }
 
         @Override
-        public void writeDouble(double v)
-        {
+        public void writeDouble(double v) {
             throw new RuntimeException("writeDouble not implemented");
         }
 
         @Override
-        public void writeBytes(String s)
-        {
+        public void writeBytes(String s) {
             throw new RuntimeException("writeBytes not implemented");
         }
 
         @Override
-        public void writeChars(String s)
-        {
+        public void writeChars(String s) {
             throw new RuntimeException("writeChars not implemented");
         }
 
         @Override
-        public void writeUTF(String s)
-        {
+        public void writeUTF(String s) {
             throw new RuntimeException("writeUTF not implemented");
         }
 
         @Override
-        public void flush()
-        {
+        public void flush() {
             throw new RuntimeException("flush not implemented");
         }
 
         @Override
-        public void close()
-        {
+        public void close() {
             throw new RuntimeException("close not implemented");
+        }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSerialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSerialization, this.description("testSerialization"));
+        }
+
+        private MultimapKeyValuesSerializingProcedureTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MultimapKeyValuesSerializingProcedureTest();
+        }
+
+        @java.lang.Override
+        public MultimapKeyValuesSerializingProcedureTest implementation() {
+            return this.implementation;
         }
     }
 }

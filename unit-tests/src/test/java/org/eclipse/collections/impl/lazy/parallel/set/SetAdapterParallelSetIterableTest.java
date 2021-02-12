@@ -7,26 +7,38 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set;
 
 import java.util.HashSet;
-
 import org.eclipse.collections.api.set.ParallelUnsortedSetIterable;
 import org.eclipse.collections.impl.set.mutable.SetAdapter;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 
-public class SetAdapterParallelSetIterableTest extends NonParallelUnsortedSetIterableTestCase
-{
+public class SetAdapterParallelSetIterableTest extends NonParallelUnsortedSetIterableTestCase {
+
     @Override
-    protected ParallelUnsortedSetIterable<Integer> classUnderTest()
-    {
+    protected ParallelUnsortedSetIterable<Integer> classUnderTest() {
         return this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
     }
 
     @Override
-    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements)
-    {
+    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements) {
         return SetAdapter.adapt(new HashSet<>(UnifiedSet.newSetWith(littleElements))).asParallel(this.executorService, this.batchSize);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private SetAdapterParallelSetIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SetAdapterParallelSetIterableTest();
+        }
+
+        @java.lang.Override
+        public SetAdapterParallelSetIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

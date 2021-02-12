@@ -7,58 +7,65 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable.primitive;
 
-public class ObjectBooleanHashMapTest extends ObjectBooleanHashMapTestCase
-{
+public class ObjectBooleanHashMapTest extends ObjectBooleanHashMapTestCase {
+
     private final ObjectBooleanHashMap<String> map = this.classUnderTest();
 
     @Override
-    protected ObjectBooleanHashMap<String> classUnderTest()
-    {
+    protected ObjectBooleanHashMap<String> classUnderTest() {
         return ObjectBooleanHashMap.newWithKeysValues("0", true, "1", true, "2", false);
     }
 
     @Override
-    protected <T> ObjectBooleanHashMap<T> newWithKeysValues(T key1, boolean value1)
-    {
+    protected <T> ObjectBooleanHashMap<T> newWithKeysValues(T key1, boolean value1) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1);
     }
 
     @Override
-    protected <T> ObjectBooleanHashMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2)
-    {
+    protected <T> ObjectBooleanHashMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2);
     }
 
     @Override
-    protected <T> ObjectBooleanHashMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2, T key3, boolean value3)
-    {
+    protected <T> ObjectBooleanHashMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2, T key3, boolean value3) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    protected <T> ObjectBooleanHashMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2, T key3, boolean value3, T key4, boolean value4)
-    {
+    protected <T> ObjectBooleanHashMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2, T key3, boolean value3, T key4, boolean value4) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
     @Override
-    protected <T> ObjectBooleanHashMap<T> getEmptyMap()
-    {
+    protected <T> ObjectBooleanHashMap<T> getEmptyMap() {
         return new ObjectBooleanHashMap<>();
     }
 
     @Override
-    protected <T> ObjectBooleanHashMap<T> newMapWithInitialCapacity(int size)
-    {
+    protected <T> ObjectBooleanHashMap<T> newMapWithInitialCapacity(int size) {
         return new ObjectBooleanHashMap<>(size);
     }
 
     @Override
-    protected Class<?> getTargetClass()
-    {
+    protected Class<?> getTargetClass() {
         return ObjectBooleanHashMap.class;
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ObjectBooleanHashMapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ObjectBooleanHashMapTest();
+        }
+
+        @java.lang.Override
+        public ObjectBooleanHashMapTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,22 +7,35 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.mutable;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.impl.collection.mutable.UnmodifiableMutableCollectionTestCase;
 
-public class SetAdapterAsUnmodifiableTest extends UnmodifiableMutableCollectionTestCase<Integer>
-{
+public class SetAdapterAsUnmodifiableTest extends UnmodifiableMutableCollectionTestCase<Integer> {
+
     @Override
-    protected MutableCollection<Integer> getCollection()
-    {
+    protected MutableCollection<Integer> getCollection() {
         Set<Integer> set = new HashSet<>();
         set.add(1);
         return SetAdapter.adapt(set).asUnmodifiable();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private SetAdapterAsUnmodifiableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SetAdapterAsUnmodifiableTest();
+        }
+
+        @java.lang.Override
+        public SetAdapterAsUnmodifiableTest implementation() {
+            return this.implementation;
+        }
     }
 }

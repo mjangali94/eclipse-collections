@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable.primitive;
 
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.BooleanIterable;
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.iterator.BooleanIterator;
@@ -25,73 +23,102 @@ import org.junit.Test;
 /**
  * JUnit test for {@link SynchronizedBooleanIterable}s
  */
-public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTestCase
-{
+public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTestCase {
+
     @Override
-    protected BooleanIterable classUnderTest()
-    {
+    protected BooleanIterable classUnderTest() {
         return SynchronizedBooleanIterable.of(BooleanArrayList.newListWith(true, false, true));
     }
 
     @Override
-    protected BooleanIterable newWith(boolean... elements)
-    {
+    protected BooleanIterable newWith(boolean... elements) {
         return SynchronizedBooleanIterable.of(BooleanArrayList.newListWith(elements));
     }
 
     @Override
-    protected BooleanIterable newMutableCollectionWith(boolean... elements)
-    {
+    protected BooleanIterable newMutableCollectionWith(boolean... elements) {
         return BooleanArrayList.newListWith(elements);
     }
 
     @Override
-    protected RichIterable<Object> newObjectCollectionWith(Object... elements)
-    {
+    protected RichIterable<Object> newObjectCollectionWith(Object... elements) {
         return FastList.newListWith(elements);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void null_iterable_throws()
-    {
+    public void null_iterable_throws() {
         SynchronizedBooleanIterable iterable = SynchronizedBooleanIterable.of(null);
     }
 
     @Override
     @Test
-    public void booleanIterator()
-    {
+    public void booleanIterator() {
         BooleanIterable iterable = this.newWith(true, true, false, false);
         BooleanArrayList list = BooleanArrayList.newListWith(true, true, false, false);
         BooleanIterator iterator = iterable.booleanIterator();
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             Assert.assertTrue(iterator.hasNext());
             Assert.assertTrue(list.remove(iterator.next()));
         }
         Verify.assertEmpty(list);
         Assert.assertFalse(iterator.hasNext());
-
         Assert.assertThrows(NoSuchElementException.class, iterator::next);
     }
 
     @Override
     @Test
-    public void testEquals()
-    {
-        //Testing equals() is not applicable.
+    public void testEquals() {
+    // Testing equals() is not applicable.
     }
 
     @Test
     @Override
-    public void testHashCode()
-    {
-        //Testing hashCode() is not applicable.
+    public void testHashCode() {
+    // Testing hashCode() is not applicable.
     }
 
     @Override
-    public void newCollection()
-    {
-        //Testing newCollection() is not applicable.
+    public void newCollection() {
+    // Testing newCollection() is not applicable.
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_null_iterable_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::null_iterable_throws, this.description("null_iterable_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_booleanIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::booleanIterator, this.description("booleanIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEquals, this.description("testEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testHashCode, this.description("testHashCode"));
+        }
+
+        private SynchronizedBooleanIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedBooleanIterableTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedBooleanIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

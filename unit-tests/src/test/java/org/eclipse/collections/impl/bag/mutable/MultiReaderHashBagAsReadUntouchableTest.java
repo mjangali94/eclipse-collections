@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -18,77 +17,135 @@ import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MultiReaderHashBagAsReadUntouchableTest extends UnmodifiableMutableCollectionTestCase<Integer>
-{
+public class MultiReaderHashBagAsReadUntouchableTest extends UnmodifiableMutableCollectionTestCase<Integer> {
+
     @Override
-    protected MutableBag<Integer> getCollection()
-    {
+    protected MutableBag<Integer> getCollection() {
         return MultiReaderHashBag.newBagWith(1, 1).asReadUntouchable();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void addOccurrences()
-    {
+    public void addOccurrences() {
         this.getCollection().addOccurrences(1, 1);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void removeOccurrences()
-    {
+    public void removeOccurrences() {
         this.getCollection().removeOccurrences(1, 1);
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void setOccurrences()
-    {
+    public void setOccurrences() {
         this.getCollection().setOccurrences(1, 1);
     }
 
     @Test
-    public void occurrencesOf()
-    {
+    public void occurrencesOf() {
         Assert.assertEquals(2, this.getCollection().occurrencesOf(1));
         Assert.assertEquals(0, this.getCollection().occurrencesOf(0));
     }
 
     @Test
-    public void sizeDistinct()
-    {
+    public void sizeDistinct() {
         Assert.assertEquals(1, this.getCollection().sizeDistinct());
     }
 
     @Test
-    public void toMapOfItemToCount()
-    {
+    public void toMapOfItemToCount() {
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 2), this.getCollection().toMapOfItemToCount());
     }
 
     @Test
-    public void toStringOfItemToCount()
-    {
+    public void toStringOfItemToCount() {
         Assert.assertEquals("{1=2}", this.getCollection().toStringOfItemToCount());
     }
 
     @Test
-    public void forEachWithOccurrences()
-    {
+    public void forEachWithOccurrences() {
         int[] sum = new int[1];
         this.getCollection().forEachWithOccurrences((each, occurrences) -> {
-            if (occurrences > 1)
-            {
+            if (occurrences > 1) {
                 sum[0] += each * occurrences;
             }
         });
-
         Assert.assertEquals(2, sum[0]);
     }
 
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         MutableBag<String> bag = MultiReaderHashBag.newBagWith("0", "1", "1", "1", "1", "2", "2", "2", "3", "3", "4", "5").asReadUntouchable();
         MutableSet<String> expected = Sets.mutable.with("0", "4", "5");
         MutableSet<String> actual = bag.selectUnique();
         Assert.assertEquals(expected, actual);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::addOccurrences, this.description("addOccurrences"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removeOccurrences, this.description("removeOccurrences"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_setOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::setOccurrences, this.description("setOccurrences"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_occurrencesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::occurrencesOf, this.description("occurrencesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sizeDistinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sizeDistinct, this.description("sizeDistinct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMapOfItemToCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMapOfItemToCount, this.description("toMapOfItemToCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toStringOfItemToCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toStringOfItemToCount, this.description("toStringOfItemToCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithOccurrences, this.description("forEachWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        private MultiReaderHashBagAsReadUntouchableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MultiReaderHashBagAsReadUntouchableTest();
+        }
+
+        @java.lang.Override
+        public MultiReaderHashBagAsReadUntouchableTest implementation() {
+            return this.implementation;
+        }
     }
 }

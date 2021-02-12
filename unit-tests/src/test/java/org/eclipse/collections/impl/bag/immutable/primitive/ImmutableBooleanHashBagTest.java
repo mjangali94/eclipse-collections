@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.immutable.primitive;
 
 import org.eclipse.collections.api.bag.primitive.ImmutableBooleanBag;
@@ -16,23 +15,42 @@ import org.eclipse.collections.impl.factory.primitive.BooleanSets;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableBooleanHashBagTest extends AbstractImmutableBooleanBagTestCase
-{
+public class ImmutableBooleanHashBagTest extends AbstractImmutableBooleanBagTestCase {
+
     @Override
-    protected ImmutableBooleanBag classUnderTest()
-    {
+    protected ImmutableBooleanBag classUnderTest() {
         return ImmutableBooleanHashBag.newBagWith(true, false, true);
     }
 
     @Override
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         super.selectUnique();
-
         ImmutableBooleanBag bag = this.classUnderTest();
         ImmutableBooleanSet expected = BooleanSets.immutable.with(false);
         ImmutableBooleanSet actual = bag.selectUnique();
         Assert.assertEquals(expected, actual);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        private ImmutableBooleanHashBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableBooleanHashBagTest();
+        }
+
+        @java.lang.Override
+        public ImmutableBooleanHashBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

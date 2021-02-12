@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.stack.mutable.primitive;
 
 import org.eclipse.collections.api.BooleanIterable;
@@ -19,50 +18,65 @@ import org.junit.Test;
 /**
  * JUnit test for {@link SynchronizedBooleanStack}.
  */
-public class SynchronizedBooleanStackTest extends AbstractMutableBooleanStackTestCase
-{
+public class SynchronizedBooleanStackTest extends AbstractMutableBooleanStackTestCase {
+
     @Override
-    protected SynchronizedBooleanStack classUnderTest()
-    {
+    protected SynchronizedBooleanStack classUnderTest() {
         return new SynchronizedBooleanStack(BooleanArrayStack.newStackWith(true, false, true, false));
     }
 
     @Override
-    protected SynchronizedBooleanStack newWith(boolean... elements)
-    {
+    protected SynchronizedBooleanStack newWith(boolean... elements) {
         return new SynchronizedBooleanStack(BooleanArrayStack.newStackWith(elements));
     }
 
     @Override
-    protected SynchronizedBooleanStack newMutableCollectionWith(boolean... elements)
-    {
+    protected SynchronizedBooleanStack newMutableCollectionWith(boolean... elements) {
         return new SynchronizedBooleanStack(BooleanArrayStack.newStackWith(elements));
     }
 
     @Override
-    protected SynchronizedBooleanStack newWithTopToBottom(boolean... elements)
-    {
+    protected SynchronizedBooleanStack newWithTopToBottom(boolean... elements) {
         return new SynchronizedBooleanStack(BooleanArrayStack.newStackFromTopToBottom(elements));
     }
 
     @Override
-    protected SynchronizedBooleanStack newWithIterableTopToBottom(BooleanIterable iterable)
-    {
+    protected SynchronizedBooleanStack newWithIterableTopToBottom(BooleanIterable iterable) {
         return new SynchronizedBooleanStack(BooleanArrayStack.newStackFromTopToBottom(iterable));
     }
 
     @Override
-    protected SynchronizedBooleanStack newWithIterable(BooleanIterable iterable)
-    {
+    protected SynchronizedBooleanStack newWithIterable(BooleanIterable iterable) {
         return new SynchronizedBooleanStack(BooleanArrayStack.newStack(iterable));
     }
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         MutableBooleanStack stack1 = new SynchronizedBooleanStack(BooleanArrayStack.newStackWith(true, false, true), new Object());
         Assert.assertSame(stack1, stack1.asSynchronized());
         Assert.assertEquals(stack1, stack1.asSynchronized());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        private SynchronizedBooleanStackTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedBooleanStackTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedBooleanStackTest implementation() {
+            return this.implementation;
+        }
     }
 }

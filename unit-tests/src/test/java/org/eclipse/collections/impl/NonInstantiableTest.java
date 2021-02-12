@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl;
 
 import org.eclipse.collections.impl.block.factory.PrimitiveFunctions;
@@ -44,68 +43,53 @@ import org.eclipse.collections.impl.utility.internal.primitive.BooleanIteratorIt
 import org.eclipse.collections.impl.utility.primitive.LazyBooleanIterate;
 import org.junit.Test;
 
-public class NonInstantiableTest
-{
+public class NonInstantiableTest {
+
     // TODO: Move the test for each of these classes into appropriate generated test classes
-    private static final Class<?>[] GENERATED_NON_INSTANTIABLE_CLASSES = {
-            BooleanStacks.class,
-            ByteBooleanMaps.class,
-            CharBooleanMaps.class,
-            DoubleBooleanMaps.class,
-            FloatBooleanMaps.class,
-            IntBooleanMaps.class,
-            LongBooleanMaps.class,
-            ShortBooleanMaps.class,
-            ObjectBooleanMaps.class,
-            BooleanIterableIterate.class,
-            BooleanIteratorIterate.class,
-            LazyBooleanIterate.class,
-    };
+    private static final Class<?>[] GENERATED_NON_INSTANTIABLE_CLASSES = { BooleanStacks.class, ByteBooleanMaps.class, CharBooleanMaps.class, DoubleBooleanMaps.class, FloatBooleanMaps.class, IntBooleanMaps.class, LongBooleanMaps.class, ShortBooleanMaps.class, ObjectBooleanMaps.class, BooleanIterableIterate.class, BooleanIteratorIterate.class, LazyBooleanIterate.class };
 
     // With no dedicated test class
-    private static final Class<?>[] HAND_CODED_NON_INSTANTIABLE_CLASSES = {
-            PrimitiveFunctions.class,
-
-            CharToCharFunctions.class,
-            IntToIntFunctions.class,
-
-            MaxFunction.class,
-            MaxSizeFunction.class,
-            MinFunction.class,
-            MinSizeFunction.class,
-            SubtractFunction.class,
-
-            BooleanSets.class,
-
-            Combiners.class,
-
-            PrimitiveTuples.class,
-
-            InternalArrayIterate.class,
-            IteratorIterate.class,
-            MutableCollectionIterate.class,
-            ReflectionHelper.class,
-            SetIterables.class,
-            SetIterate.class,
-            SortedMaps.class,
-            SortedSetIterables.class
-    };
+    private static final Class<?>[] HAND_CODED_NON_INSTANTIABLE_CLASSES = { PrimitiveFunctions.class, CharToCharFunctions.class, IntToIntFunctions.class, MaxFunction.class, MaxSizeFunction.class, MinFunction.class, MinSizeFunction.class, SubtractFunction.class, BooleanSets.class, Combiners.class, PrimitiveTuples.class, InternalArrayIterate.class, IteratorIterate.class, MutableCollectionIterate.class, ReflectionHelper.class, SetIterables.class, SetIterate.class, SortedMaps.class, SortedSetIterables.class };
 
     @Test
-    public void generatedNonInstantiableClassesThrow()
-    {
-        for (Class<?> aClass : GENERATED_NON_INSTANTIABLE_CLASSES)
-        {
+    public void generatedNonInstantiableClassesThrow() {
+        for (Class<?> aClass : GENERATED_NON_INSTANTIABLE_CLASSES) {
             Verify.assertClassNonInstantiable(aClass);
         }
     }
 
     @Test
-    public void handCodedNonInstantiableClassesThrow()
-    {
-        for (Class<?> aClass : HAND_CODED_NON_INSTANTIABLE_CLASSES)
-        {
+    public void handCodedNonInstantiableClassesThrow() {
+        for (Class<?> aClass : HAND_CODED_NON_INSTANTIABLE_CLASSES) {
             Verify.assertClassNonInstantiable(aClass);
+        }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_generatedNonInstantiableClassesThrow() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::generatedNonInstantiableClassesThrow, this.description("generatedNonInstantiableClassesThrow"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_handCodedNonInstantiableClassesThrow() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::handCodedNonInstantiableClassesThrow, this.description("handCodedNonInstantiableClassesThrow"));
+        }
+
+        private NonInstantiableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new NonInstantiableTest();
+        }
+
+        @java.lang.Override
+        public NonInstantiableTest implementation() {
+            return this.implementation;
         }
     }
 }

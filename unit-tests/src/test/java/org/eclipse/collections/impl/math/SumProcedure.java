@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.math;
 
 import org.eclipse.collections.api.block.function.Function;
@@ -24,56 +23,49 @@ import org.eclipse.collections.impl.parallel.ProcedureFactory;
  * @deprecated Don't use in new tests
  */
 @Deprecated
-public class SumProcedure<T>
-        implements Procedure<T>, Function2<Sum, T, Sum>, ProcedureFactory<SumProcedure<T>>
-{
+public class SumProcedure<T> implements Procedure<T>, Function2<Sum, T, Sum>, ProcedureFactory<SumProcedure<T>> {
+
     private static final long serialVersionUID = 1L;
+
     private static final SumProcedure<?> NUMBER = new SumProcedure<>();
 
     protected final Sum sum;
+
     protected final Function<? super T, ? extends Number> function;
 
-    public SumProcedure(Sum newSum)
-    {
+    public SumProcedure(Sum newSum) {
         this(newSum, null);
     }
 
-    public SumProcedure()
-    {
+    public SumProcedure() {
         this(null, null);
     }
 
-    public SumProcedure(Sum newSum, Function<? super T, ? extends Number> function)
-    {
+    public SumProcedure(Sum newSum, Function<? super T, ? extends Number> function) {
         this.sum = newSum;
         this.function = function;
     }
 
-    public static <T extends Number> SumProcedure<T> number()
-    {
+    public static <T extends Number> SumProcedure<T> number() {
         return (SumProcedure<T>) NUMBER;
     }
 
     @Override
-    public SumProcedure<T> create()
-    {
+    public SumProcedure<T> create() {
         return new SumProcedure<>(this.sum.speciesNew(), this.function);
     }
 
     @Override
-    public Sum value(Sum argument1, T argument2)
-    {
+    public Sum value(Sum argument1, T argument2) {
         return argument1.add(argument2);
     }
 
     @Override
-    public void value(T object)
-    {
+    public void value(T object) {
         this.sum.add(object);
     }
 
-    public Sum getSum()
-    {
+    public Sum getSum() {
         return this.sum;
     }
 }

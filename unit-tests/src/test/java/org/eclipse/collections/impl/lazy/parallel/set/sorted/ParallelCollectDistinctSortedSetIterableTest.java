@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set.sorted;
 
 import org.eclipse.collections.api.block.function.Function;
@@ -21,47 +20,61 @@ import org.eclipse.collections.impl.lazy.parallel.set.ParallelUnsortedSetIterabl
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ParallelCollectDistinctSortedSetIterableTest extends ParallelUnsortedSetIterableTestCase
-{
+public class ParallelCollectDistinctSortedSetIterableTest extends ParallelUnsortedSetIterableTestCase {
+
     @Override
-    protected ParallelUnsortedSetIterable<Integer> classUnderTest()
-    {
+    protected ParallelUnsortedSetIterable<Integer> classUnderTest() {
         return this.newWith(44, 43, 42, 41, 33, 32, 31, 22, 21, 11);
     }
 
     @Override
-    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements)
-    {
-        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements)
-                .asParallel(this.executorService, this.batchSize)
-                .collect(i -> i / 10)
-                .asUnique();
+    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements) {
+        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).asParallel(this.executorService, this.batchSize).collect(i -> i / 10).asUnique();
     }
 
     @Override
-    protected MutableSet<Integer> getExpectedWith(Integer... littleElements)
-    {
-        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements)
-                .collect(i -> i / 10, SortedSets.mutable.of()).toSet();
+    protected MutableSet<Integer> getExpectedWith(Integer... littleElements) {
+        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).collect(i -> i / 10, SortedSets.mutable.of()).toSet();
     }
 
     @Test
     @Override
-    public void groupBy()
-    {
+    public void groupBy() {
         Function<Integer, Boolean> isOddFunction = object -> IntegerPredicates.isOdd().accept(object);
-
-        Assert.assertEquals(
-                this.getExpected().toSet().groupBy(isOddFunction),
-                this.classUnderTest().groupBy(isOddFunction));
+        Assert.assertEquals(this.getExpected().toSet().groupBy(isOddFunction), this.classUnderTest().groupBy(isOddFunction));
     }
 
     @Test
     @Override
-    public void groupByEach()
-    {
-        Assert.assertEquals(
-                this.getExpected().toSet().groupByEach(new NegativeIntervalFunction()),
-                this.classUnderTest().groupByEach(new NegativeIntervalFunction()));
+    public void groupByEach() {
+        Assert.assertEquals(this.getExpected().toSet().groupByEach(new NegativeIntervalFunction()), this.classUnderTest().groupByEach(new NegativeIntervalFunction()));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEach, this.description("groupByEach"));
+        }
+
+        private ParallelCollectDistinctSortedSetIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelCollectDistinctSortedSetIterableTest();
+        }
+
+        @java.lang.Override
+        public ParallelCollectDistinctSortedSetIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

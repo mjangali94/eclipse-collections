@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bimap.mutable;
 
 import org.eclipse.collections.api.bimap.MutableBiMap;
@@ -17,11 +16,10 @@ import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class HashBiMapTest extends AbstractMutableBiMapTestCase
-{
+public class HashBiMapTest extends AbstractMutableBiMapTestCase {
+
     @Override
-    public HashBiMap<Integer, Character> classUnderTest()
-    {
+    public HashBiMap<Integer, Character> classUnderTest() {
         HashBiMap<Integer, Character> map = HashBiMap.newMap();
         map.put(1, null);
         map.put(null, 'b');
@@ -30,57 +28,46 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase
     }
 
     @Override
-    public HashBiMap<Integer, Character> getEmptyMap()
-    {
+    public HashBiMap<Integer, Character> getEmptyMap() {
         return HashBiMap.newMap();
     }
 
     @Override
-    protected <K, V> HashBiMap<K, V> newMap()
-    {
+    protected <K, V> HashBiMap<K, V> newMap() {
         return HashBiMap.newMap();
     }
 
     @Override
-    protected <K, V> HashBiMap<K, V> newMapWithKeyValue(K key, V value)
-    {
+    protected <K, V> HashBiMap<K, V> newMapWithKeyValue(K key, V value) {
         return HashBiMap.newWithKeysValues(key, value);
     }
 
     @Override
-    protected <K, V> HashBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    protected <K, V> HashBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2);
     }
 
     @Override
-    protected <K, V> HashBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3)
-    {
+    protected <K, V> HashBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    protected <K, V> HashBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
+    protected <K, V> HashBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
     @Test
-    public void newMap_throws()
-    {
+    public void newMap_throws() {
         Assert.assertThrows(IllegalArgumentException.class, () -> new HashBiMap<>(UnifiedMap.newMap(), null));
-
         Assert.assertThrows(IllegalArgumentException.class, () -> new HashBiMap<>(null, null));
-
         Assert.assertThrows(IllegalArgumentException.class, () -> new HashBiMap<>(null, UnifiedMap.newMap()));
-
         UnifiedMap<Object, Object> map = UnifiedMap.newMap();
         Assert.assertThrows(IllegalArgumentException.class, () -> new HashBiMap<>(map, map));
     }
 
     @Test
-    public void withKeysValues()
-    {
+    public void withKeysValues() {
         HashBiMap<Integer, Character> map = this.getEmptyMap();
         HashBiMap<Integer, Character> map1 = map.withKeysValues(1, 'a');
         AbstractMutableBiMapTestCase.assertBiMapsEqual(HashBiMap.newWithKeysValues(1, 'a'), map1);
@@ -106,22 +93,18 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase
     }
 
     @Test
-    public void inverseKeyPreservation()
-    {
+    public void inverseKeyPreservation() {
         Key key = new Key("key");
         Key duplicateKey = new Key("key");
-
         MutableBiMap<Key, Integer> biMap = this.newMapWithKeysValues(key, 1, duplicateKey, 2);
         Assert.assertSame(key, Iterate.getFirst(biMap.entrySet()).getKey());
         Assert.assertSame(key, Iterate.getFirst(biMap.inverse().entrySet()).getValue());
     }
 
     @Test
-    public void valuePreservation()
-    {
+    public void valuePreservation() {
         Key value = new Key("value");
         Key duplicateValue = new Key("value");
-
         MutableBiMap<Integer, Key> biMap = this.newMapWithKeyValue(1, value);
         biMap.forcePut(2, duplicateValue);
         Assert.assertSame(value, Iterate.getFirst(biMap.entrySet()).getValue());
@@ -129,22 +112,62 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase
     }
 
     @Test
-    public void forcePut_inverseKeyAndValuePreservation()
-    {
+    public void forcePut_inverseKeyAndValuePreservation() {
         Key key1 = new Key("1");
         Key value2 = new Key("xyz");
-
         HashBiMap<Key, Key> biMap = this.newMapWithKeysValues(key1, new Key("abc"), new Key("2"), value2);
-
         Key duplicateOfKey1 = new Key("1");
         Key duplicateOfValue2 = new Key("xyz");
-
         biMap.forcePut(duplicateOfKey1, duplicateOfValue2);
-
         Assert.assertSame(key1, Iterate.getFirst(biMap.entrySet()).getKey());
         Assert.assertSame(key1, Iterate.getFirst(biMap.inverse().entrySet()).getValue());
-
         Assert.assertSame(value2, Iterate.getFirst(biMap.entrySet()).getValue());
         Assert.assertSame(value2, Iterate.getFirst(biMap.inverse().entrySet()).getKey());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newMap_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newMap_throws, this.description("newMap_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withKeysValues, this.description("withKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_inverseKeyPreservation() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::inverseKeyPreservation, this.description("inverseKeyPreservation"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_valuePreservation() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::valuePreservation, this.description("valuePreservation"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forcePut_inverseKeyAndValuePreservation() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forcePut_inverseKeyAndValuePreservation, this.description("forcePut_inverseKeyAndValuePreservation"));
+        }
+
+        private HashBiMapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBiMapTest();
+        }
+
+        @java.lang.Override
+        public HashBiMapTest implementation() {
+            return this.implementation;
+        }
     }
 }

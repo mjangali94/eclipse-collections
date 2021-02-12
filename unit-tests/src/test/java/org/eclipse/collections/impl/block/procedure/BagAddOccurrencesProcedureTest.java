@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.procedure;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -15,35 +14,57 @@ import org.eclipse.collections.api.factory.Bags;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BagAddOccurrencesProcedureTest
-{
+public class BagAddOccurrencesProcedureTest {
+
     @Test
-    public void basicCase()
-    {
+    public void basicCase() {
         MutableBag<String> targetCollection = Bags.mutable.empty();
         BagAddOccurrencesProcedure<String> procedure = new BagAddOccurrencesProcedure<>(targetCollection);
-
         procedure.value("fred", 1);
         procedure.value("fred", 1);
         procedure.value("mary", 3);
-
         Assert.assertEquals(2, procedure.getResult().occurrencesOf("fred"));
         Assert.assertEquals(3, procedure.getResult().occurrencesOf("mary"));
         Assert.assertEquals(0, procedure.getResult().occurrencesOf("other"));
     }
 
     @Test
-    public void basicCaseUsingFactoryMethod()
-    {
+    public void basicCaseUsingFactoryMethod() {
         MutableBag<String> targetCollection = Bags.mutable.empty();
         BagAddOccurrencesProcedure<String> procedure = BagAddOccurrencesProcedure.on(targetCollection);
-
         procedure.value("fred", 1);
         procedure.value("fred", 1);
         procedure.value("mary", 3);
-
         Assert.assertEquals(2, procedure.getResult().occurrencesOf("fred"));
         Assert.assertEquals(3, procedure.getResult().occurrencesOf("mary"));
         Assert.assertEquals(0, procedure.getResult().occurrencesOf("other"));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_basicCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::basicCase, this.description("basicCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_basicCaseUsingFactoryMethod() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::basicCaseUsingFactoryMethod, this.description("basicCaseUsingFactoryMethod"));
+        }
+
+        private BagAddOccurrencesProcedureTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BagAddOccurrencesProcedureTest();
+        }
+
+        @java.lang.Override
+        public BagAddOccurrencesProcedureTest implementation() {
+            return this.implementation;
+        }
     }
 }

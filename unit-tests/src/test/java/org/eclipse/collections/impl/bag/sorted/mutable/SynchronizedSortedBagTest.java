@@ -7,12 +7,10 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.sorted.mutable;
 
 import java.util.Comparator;
 import java.util.Set;
-
 import org.eclipse.collections.api.bag.Bag;
 import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
 import org.eclipse.collections.api.list.MutableList;
@@ -28,40 +26,34 @@ import org.junit.Test;
 /**
  * JUnit test for {@link SynchronizedSortedBag}.
  */
-public class SynchronizedSortedBagTest extends AbstractMutableSortedBagTestCase
-{
+public class SynchronizedSortedBagTest extends AbstractMutableSortedBagTestCase {
+
     @Override
-    protected <T> MutableSortedBag<T> newWith(T... littleElements)
-    {
+    protected <T> MutableSortedBag<T> newWith(T... littleElements) {
         return new SynchronizedSortedBag<>(TreeBag.newBagWith(littleElements));
     }
 
     @SafeVarargs
     @Override
-    protected final <T> MutableSortedBag<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
-    {
+    protected final <T> MutableSortedBag<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences) {
         return super.newWithOccurrences(elementsWithOccurrences).asSynchronized();
     }
 
     @Override
-    protected <T> MutableSortedBag<T> newWith(Comparator<? super T> comparator, T... elements)
-    {
+    protected <T> MutableSortedBag<T> newWith(Comparator<? super T> comparator, T... elements) {
         return new SynchronizedSortedBag<>(TreeBag.newBagWith(comparator, elements));
     }
 
     @Override
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         MutableSortedBag<Object> synchronizedBag = this.newWith();
         Assert.assertSame(synchronizedBag, synchronizedBag.asSynchronized());
     }
 
     @Override
     @Test
-    public void topOccurrences()
-    {
+    public void topOccurrences() {
         super.topOccurrences();
-
         MutableSortedBag<String> mutable = TreeBag.newBag();
         mutable.addOccurrences("one", 1);
         mutable.addOccurrences("two", 2);
@@ -84,10 +76,8 @@ public class SynchronizedSortedBagTest extends AbstractMutableSortedBagTestCase
 
     @Override
     @Test
-    public void bottomOccurrences()
-    {
+    public void bottomOccurrences() {
         super.bottomOccurrences();
-
         MutableSortedBag<String> mutable = TreeBag.newBag();
         mutable.addOccurrences("one", 1);
         mutable.addOccurrences("two", 2);
@@ -110,36 +100,48 @@ public class SynchronizedSortedBagTest extends AbstractMutableSortedBagTestCase
 
     @Override
     @Test
-    public void collectWithOccurrences()
-    {
+    public void collectWithOccurrences() {
         Bag<Integer> bag1 = this.newWith(3, 3, 3, 2, 2, 1);
-        Bag<ObjectIntPair<Integer>> actual1 =
-                bag1.collectWithOccurrences(PrimitiveTuples::pair, Bags.mutable.empty());
-        Assert.assertEquals(
-                Bags.immutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1)),
-                actual1);
-        Assert.assertEquals(
-                Lists.mutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3)),
-                bag1.collectWithOccurrences(PrimitiveTuples::pair));
-
-        Set<ObjectIntPair<Integer>> actual2 =
-                bag1.collectWithOccurrences(PrimitiveTuples::pair, Sets.mutable.empty());
-        Assert.assertEquals(
-                Sets.immutable.with(
-                        PrimitiveTuples.pair(Integer.valueOf(3), 3),
-                        PrimitiveTuples.pair(Integer.valueOf(2), 2),
-                        PrimitiveTuples.pair(Integer.valueOf(1), 1)),
-                actual2);
-
+        Bag<ObjectIntPair<Integer>> actual1 = bag1.collectWithOccurrences(PrimitiveTuples::pair, Bags.mutable.empty());
+        Assert.assertEquals(Bags.immutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1)), actual1);
+        Assert.assertEquals(Lists.mutable.with(PrimitiveTuples.pair(Integer.valueOf(1), 1), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(3), 3)), bag1.collectWithOccurrences(PrimitiveTuples::pair));
+        Set<ObjectIntPair<Integer>> actual2 = bag1.collectWithOccurrences(PrimitiveTuples::pair, Sets.mutable.empty());
+        Assert.assertEquals(Sets.immutable.with(PrimitiveTuples.pair(Integer.valueOf(3), 3), PrimitiveTuples.pair(Integer.valueOf(2), 2), PrimitiveTuples.pair(Integer.valueOf(1), 1)), actual2);
         Bag<Integer> bag2 = this.newWith(3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 4, 5, 7);
-        Assert.assertEquals(
-                Lists.mutable.with(6, 5, 8, 5, 6, 8),
-                bag2.collectWithOccurrences((each, index) -> each + index));
+        Assert.assertEquals(Lists.mutable.with(6, 5, 8, 5, 6, 8), bag2.collectWithOccurrences((each, index) -> each + index));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_topOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::topOccurrences, this.description("topOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_bottomOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::bottomOccurrences, this.description("bottomOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithOccurrences, this.description("collectWithOccurrences"));
+        }
+
+        private SynchronizedSortedBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedSortedBagTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedSortedBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

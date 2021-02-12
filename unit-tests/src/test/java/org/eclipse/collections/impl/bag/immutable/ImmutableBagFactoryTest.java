@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.immutable;
 
 import org.eclipse.collections.api.bag.Bag;
@@ -17,11 +16,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableBagFactoryTest
-{
+public class ImmutableBagFactoryTest {
+
     @Test
-    public void immutables()
-    {
+    public void immutables() {
         ImmutableBag<Object> immutableBag = Bags.immutable.of();
         Verify.assertIterableSize(0, immutableBag);
         Verify.assertIterableSize(4, Bags.immutable.of(1, 2, 2, 3));
@@ -31,9 +29,36 @@ public class ImmutableBagFactoryTest
     }
 
     @Test
-    public void singletonBagCreation()
-    {
+    public void singletonBagCreation() {
         Bag<String> singleton = Bags.immutable.of("a");
         Verify.assertInstanceOf(ImmutableSingletonBag.class, singleton);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutables, this.description("immutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_singletonBagCreation() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::singletonBagCreation, this.description("singletonBagCreation"));
+        }
+
+        private ImmutableBagFactoryTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableBagFactoryTest();
+        }
+
+        @java.lang.Override
+        public ImmutableBagFactoryTest implementation() {
+            return this.implementation;
+        }
     }
 }

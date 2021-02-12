@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import org.eclipse.collections.api.factory.map.strategy.ImmutableHashingStrategyMapFactory;
@@ -20,11 +19,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class HashingStrategyMapsTest
-{
+public class HashingStrategyMapsTest {
+
     @Test
-    public void immutable()
-    {
+    public void immutable() {
         ImmutableHashingStrategyMapFactory factory = HashingStrategyMaps.immutable;
         Assert.assertEquals(UnifiedMap.newMap(), factory.of(HashingStrategies.defaultStrategy()));
         Verify.assertInstanceOf(ImmutableMap.class, factory.of(HashingStrategies.defaultStrategy()));
@@ -39,8 +37,7 @@ public class HashingStrategyMapsTest
     }
 
     @Test
-    public void mutable()
-    {
+    public void mutable() {
         MutableHashingStrategyMapFactory factory = HashingStrategyMaps.mutable;
         Assert.assertEquals(UnifiedMap.newMap(), factory.of(HashingStrategies.defaultStrategy()));
         Verify.assertInstanceOf(MutableMap.class, factory.of(HashingStrategies.defaultStrategy()));
@@ -55,8 +52,41 @@ public class HashingStrategyMapsTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(HashingStrategyMaps.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutable, this.description("immutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutable, this.description("mutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private HashingStrategyMapsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashingStrategyMapsTest();
+        }
+
+        @java.lang.Override
+        public HashingStrategyMapsTest implementation() {
+            return this.implementation;
+        }
     }
 }

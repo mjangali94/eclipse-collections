@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable;
 
 import java.util.Collections;
-
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.tuple.primitive.ObjectIntPair;
 import org.eclipse.collections.impl.factory.Bags;
@@ -21,20 +19,17 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class HashBagTest extends MutableBagTestCase
-{
+public class HashBagTest extends MutableBagTestCase {
+
     @Override
-    protected <T> MutableBag<T> newWith(T... littleElements)
-    {
+    protected <T> MutableBag<T> newWith(T... littleElements) {
         return HashBag.newBagWith(littleElements);
     }
 
     @Override
-    protected <T> MutableBag<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
-    {
+    protected <T> MutableBag<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences) {
         MutableBag<T> bag = this.newWith();
-        for (int i = 0; i < elementsWithOccurrences.length; i++)
-        {
+        for (int i = 0; i < elementsWithOccurrences.length; i++) {
             ObjectIntPair<T> itemToAdd = elementsWithOccurrences[i];
             bag.addOccurrences(itemToAdd.getOne(), itemToAdd.getTwo());
         }
@@ -42,81 +37,104 @@ public class HashBagTest extends MutableBagTestCase
     }
 
     @Test
-    public void newBagWith()
-    {
+    public void newBagWith() {
         HashBag<String> bag = new HashBag<String>().with("apple", "apple");
         assertBagsEqual(HashBag.newBagWith("apple", "apple"), bag);
-
         bag.with("hope", "hope", "hope");
         assertBagsEqual(HashBag.newBagWith("apple", "apple", "hope", "hope", "hope"), bag);
-
         bag.withAll(Collections.nCopies(5, "ubermench"));
-        Assert.assertEquals(
-                UnifiedMap.newWithKeysValues(
-                        "apple", 2,
-                        "hope", 3,
-                        "ubermench", 5),
-                bag.toMapOfItemToCount());
+        Assert.assertEquals(UnifiedMap.newWithKeysValues("apple", 2, "hope", 3, "ubermench", 5), bag.toMapOfItemToCount());
     }
 
     @Override
     @Test
-    public void addAll()
-    {
+    public void addAll() {
         super.addAll();
         MutableBag<Integer> bag1 = this.newWith();
         Assert.assertTrue(bag1.addAll(this.newWith(1, 1, 2, 3)));
         Verify.assertContainsAll(bag1, 1, 2, 3);
-
         Assert.assertTrue(bag1.addAll(this.newWith(1, 2, 3)));
         Verify.assertSize(7, bag1);
         Assert.assertFalse(bag1.addAll(this.newWith()));
         Verify.assertContainsAll(bag1, 1, 2, 3);
-
         MutableBag<Integer> bag2 = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         bag2.addAll(this.newWith(5, 5, 5, 5, 5));
-
         Verify.assertBagsEqual(this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5), bag2);
-
         MutableBag<Integer> bag3 = this.newWith(1, 2, 2, 3, 3, 3);
         bag3.addAll(this.newWith(1));
-
         Verify.assertBagsEqual(this.newWith(1, 1, 2, 2, 3, 3, 3), bag3);
     }
 
     @Override
     @Test
-    public void removeAll()
-    {
+    public void removeAll() {
         super.removeAll();
         MutableBag<Integer> bag1 = this.newWith(1, 2, 3);
         Assert.assertTrue(bag1.removeAll(this.newWith(1, 2, 4)));
         Assert.assertEquals(Bags.mutable.of(3), bag1);
-
         MutableBag<Integer> bag2 = this.newWith(1, 1, 1, 2, 2, 3, 4);
         Verify.assertSize(7, bag2);
         Assert.assertTrue(bag2.removeAll(this.newWith(1, 2, 2, 4)));
         Verify.assertSize(1, bag2);
         Assert.assertEquals(Bags.mutable.of(3), bag2);
-
         MutableBag<Integer> bag3 = this.newWith(1, 2, 3);
         Assert.assertFalse(bag3.removeAll(this.newWith(4, 5)));
         Assert.assertEquals(Bags.mutable.of(1, 2, 3), bag3);
     }
 
     @Test
-    public void newBagFromIterable()
-    {
-        assertBagsEqual(
-                HashBag.newBagWith(1, 2, 2, 3, 3, 3),
-                HashBag.newBag(FastList.newListWith(1, 2, 2, 3, 3, 3)));
+    public void newBagFromIterable() {
+        assertBagsEqual(HashBag.newBagWith(1, 2, 2, 3, 3, 3), HashBag.newBag(FastList.newListWith(1, 2, 2, 3, 3, 3)));
     }
 
     @Test
-    public void newBagFromBag()
-    {
-        Assert.assertEquals(
-                HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4),
-                HashBag.newBag(HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)));
+    public void newBagFromBag() {
+        Assert.assertEquals(HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4), HashBag.newBag(HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newBagWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newBagWith, this.description("newBagWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAll, this.description("addAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll, this.description("removeAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newBagFromIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newBagFromIterable, this.description("newBagFromIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newBagFromBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newBagFromBag, this.description("newBagFromBag"));
+        }
+
+        private HashBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBagTest();
+        }
+
+        @java.lang.Override
+        public HashBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

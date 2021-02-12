@@ -7,14 +7,12 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.factory;
 
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
 import org.eclipse.collections.api.factory.list.FixedSizeListFactory;
 import org.eclipse.collections.api.factory.list.ImmutableListFactory;
 import org.eclipse.collections.api.factory.list.MultiReaderListFactory;
@@ -31,11 +29,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ListsTest
-{
+public class ListsTest {
+
     @Test
-    public void immutables()
-    {
+    public void immutables() {
         ImmutableListFactory listFactory = Lists.immutable;
         Assert.assertEquals(FastList.newList(), listFactory.of());
         Assert.assertEquals(FastList.newList(), listFactory.with());
@@ -70,8 +67,7 @@ public class ListsTest
     }
 
     @Test
-    public void mutables()
-    {
+    public void mutables() {
         MutableListFactory listFactory = Lists.mutable;
         Assert.assertEquals(FastList.newList(), listFactory.of());
         Assert.assertEquals(FastList.newList(), listFactory.with());
@@ -106,9 +102,8 @@ public class ListsTest
     }
 
     @Test
-    public void wrapCopy()
-    {
-        Integer[] integers = {1, 2, 3, 4};
+    public void wrapCopy() {
+        Integer[] integers = { 1, 2, 3, 4 };
         MutableList<Integer> actual = Lists.mutable.wrapCopy(integers);
         MutableList<Integer> expected = Lists.mutable.with(1, 2, 3, 4);
         integers[0] = Integer.valueOf(4);
@@ -116,12 +111,10 @@ public class ListsTest
     }
 
     @Test
-    public void immutableWithListTest()
-    {
+    public void immutableWithListTest() {
         Assert.assertEquals(Lists.mutable.of(), Lists.mutable.of().toImmutable());
         Assert.assertEquals(Lists.mutable.of(1).without(1), Lists.mutable.of(1).without(1).toImmutable());
-        for (int i = 0; i < 12; i++)
-        {
+        for (int i = 0; i < 12; i++) {
             MutableList<Integer> integers = Interval.fromTo(0, i).toList();
             Assert.assertEquals(integers, integers.toImmutable());
             Assert.assertEquals(integers.toImmutable(), integers.toImmutable());
@@ -129,8 +122,7 @@ public class ListsTest
     }
 
     @Test
-    public void fixedSize()
-    {
+    public void fixedSize() {
         FixedSizeListFactory listFactory = Lists.fixedSize;
         Assert.assertEquals(FastList.newList(), listFactory.of());
         Assert.assertEquals(FastList.newList(), listFactory.with());
@@ -165,8 +157,7 @@ public class ListsTest
     }
 
     @Test
-    public void multiReader()
-    {
+    public void multiReader() {
         MultiReaderListFactory listFactory = Lists.multiReader;
         Assert.assertEquals(MultiReaderFastList.newList(), listFactory.of());
         Assert.assertEquals(MultiReaderFastList.newList(), listFactory.with());
@@ -183,28 +174,23 @@ public class ListsTest
     }
 
     @Test
-    public void castToList()
-    {
+    public void castToList() {
         List<Object> list = Lists.immutable.of().castToList();
         Assert.assertNotNull(list);
         Assert.assertSame(Lists.immutable.of(), list);
     }
 
     @Test
-    public void ofAllImmutableList()
-    {
-        for (int i = 1; i <= 11; i++)
-        {
+    public void ofAllImmutableList() {
+        for (int i = 1; i <= 11; i++) {
             Interval interval = Interval.oneTo(i);
             Verify.assertEqualsAndHashCode(interval, Lists.immutable.ofAll(interval));
         }
     }
 
     @Test
-    public void ofAllMutableList()
-    {
-        for (int i = 1; i <= 11; i++)
-        {
+    public void ofAllMutableList() {
+        for (int i = 1; i <= 11; i++) {
             Interval interval = Interval.oneTo(i);
             Verify.assertEqualsAndHashCode(interval, Lists.mutable.ofAll(interval));
             Stream<Integer> stream = IntStream.rangeClosed(1, i).boxed();
@@ -213,10 +199,8 @@ public class ListsTest
     }
 
     @Test
-    public void ofAllFixedSizedList()
-    {
-        for (int i = 1; i <= 11; i++)
-        {
+    public void ofAllFixedSizedList() {
+        for (int i = 1; i <= 11; i++) {
             Interval interval = Interval.oneTo(i);
             Verify.assertEqualsAndHashCode(interval, Lists.fixedSize.ofAll(interval));
             Stream<Integer> stream = IntStream.rangeClosed(1, i).boxed();
@@ -225,8 +209,7 @@ public class ListsTest
     }
 
     @Test
-    public void copyList()
-    {
+    public void copyList() {
         Verify.assertInstanceOf(ImmutableList.class, Lists.immutable.ofAll(Lists.fixedSize.of()));
         MutableList<Integer> list = Lists.fixedSize.of(1);
         ImmutableList<Integer> immutableList = list.toImmutable();
@@ -235,143 +218,102 @@ public class ListsTest
     }
 
     @Test
-    public void emptyList()
-    {
+    public void emptyList() {
         Assert.assertTrue(Lists.immutable.of().isEmpty());
         Assert.assertSame(Lists.immutable.of(), Lists.immutable.of());
         Verify.assertPostSerializedIdentity(Lists.immutable.of());
     }
 
     @Test
-    public void ofInitialCapacity()
-    {
+    public void ofInitialCapacity() {
         MutableList<String> list1 = Lists.mutable.ofInitialCapacity(0);
         this.assertPresizedListEquals(0, (FastList<String>) list1);
-
         MutableList<String> list2 = Lists.mutable.ofInitialCapacity(5);
         this.assertPresizedListEquals(5, (FastList<String>) list2);
-
         MutableList<String> list3 = Lists.mutable.ofInitialCapacity(20);
         this.assertPresizedListEquals(20, (FastList<String>) list3);
-
         MutableList<String> list4 = Lists.mutable.ofInitialCapacity(60);
         this.assertPresizedListEquals(60, (FastList<String>) list4);
-
         MutableList<String> list5 = Lists.mutable.ofInitialCapacity(64);
         this.assertPresizedListEquals(64, (FastList<String>) list5);
-
         MutableList<String> list6 = Lists.mutable.ofInitialCapacity(65);
         this.assertPresizedListEquals(65, (FastList<String>) list6);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Lists.mutable.ofInitialCapacity(-12));
     }
 
     @Test
-    public void withInitialCapacity()
-    {
+    public void withInitialCapacity() {
         MutableList<String> list1 = Lists.mutable.withInitialCapacity(0);
         this.assertPresizedListEquals(0, (FastList<String>) list1);
-
         MutableList<String> list2 = Lists.mutable.withInitialCapacity(14);
         this.assertPresizedListEquals(14, (FastList<String>) list2);
-
         MutableList<String> list3 = Lists.mutable.withInitialCapacity(17);
         this.assertPresizedListEquals(17, (FastList<String>) list3);
-
         MutableList<String> list4 = Lists.mutable.withInitialCapacity(25);
         this.assertPresizedListEquals(25, (FastList<String>) list4);
-
         MutableList<String> list5 = Lists.mutable.withInitialCapacity(32);
         this.assertPresizedListEquals(32, (FastList<String>) list5);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Lists.mutable.withInitialCapacity(-6));
     }
 
-    private void assertPresizedListEquals(int initialCapacity, FastList<String> list)
-    {
-        try
-        {
+    private void assertPresizedListEquals(int initialCapacity, FastList<String> list) {
+        try {
             Field itemsField = FastList.class.getDeclaredField("items");
             itemsField.setAccessible(true);
             Object[] items = (Object[]) itemsField.get(list);
             Assert.assertEquals(initialCapacity, items.length);
-        }
-        catch (SecurityException ignored)
-        {
+        } catch (SecurityException ignored) {
             Assert.fail("Unable to modify the visibility of the field 'items' on FastList");
-        }
-        catch (NoSuchFieldException ignored)
-        {
+        } catch (NoSuchFieldException ignored) {
             Assert.fail("No field named 'items' in FastList");
-        }
-        catch (IllegalAccessException ignored)
-        {
+        } catch (IllegalAccessException ignored) {
             Assert.fail("No access to the field 'items' in FastList");
         }
     }
 
     @Test
-    public void multiReaderOfInitialCapacity()
-    {
+    public void multiReaderOfInitialCapacity() {
         MutableList<String> list1 = Lists.multiReader.ofInitialCapacity(0);
         ListsTest.assertPresizedMultiReaderListEquals(0, (MultiReaderFastList<String>) list1);
-
         MutableList<String> list2 = Lists.multiReader.ofInitialCapacity(5);
         ListsTest.assertPresizedMultiReaderListEquals(5, (MultiReaderFastList<String>) list2);
-
         MutableList<String> list3 = Lists.multiReader.ofInitialCapacity(20);
         ListsTest.assertPresizedMultiReaderListEquals(20, (MultiReaderFastList<String>) list3);
-
         MutableList<String> list4 = Lists.multiReader.ofInitialCapacity(60);
         ListsTest.assertPresizedMultiReaderListEquals(60, (MultiReaderFastList<String>) list4);
-
         MutableList<String> list5 = Lists.multiReader.ofInitialCapacity(64);
         ListsTest.assertPresizedMultiReaderListEquals(64, (MultiReaderFastList<String>) list5);
-
         MutableList<String> list6 = Lists.multiReader.ofInitialCapacity(65);
         ListsTest.assertPresizedMultiReaderListEquals(65, (MultiReaderFastList<String>) list6);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Lists.multiReader.ofInitialCapacity(-12));
     }
 
     @Test
-    public void multiReaderWithInitialCapacity()
-    {
+    public void multiReaderWithInitialCapacity() {
         MutableList<String> list1 = Lists.multiReader.withInitialCapacity(0);
         ListsTest.assertPresizedMultiReaderListEquals(0, (MultiReaderFastList<String>) list1);
-
         MutableList<String> list2 = Lists.multiReader.withInitialCapacity(14);
         ListsTest.assertPresizedMultiReaderListEquals(14, (MultiReaderFastList<String>) list2);
-
         MutableList<String> list3 = Lists.multiReader.withInitialCapacity(17);
         ListsTest.assertPresizedMultiReaderListEquals(17, (MultiReaderFastList<String>) list3);
-
         MutableList<String> list4 = Lists.multiReader.withInitialCapacity(25);
         ListsTest.assertPresizedMultiReaderListEquals(25, (MultiReaderFastList<String>) list4);
-
         MutableList<String> list5 = Lists.multiReader.withInitialCapacity(32);
         ListsTest.assertPresizedMultiReaderListEquals(32, (MultiReaderFastList<String>) list5);
-
         Assert.assertThrows(IllegalArgumentException.class, () -> Lists.multiReader.withInitialCapacity(-6));
     }
 
     @Test
-    public void withNValues()
-    {
-        ImmutableList<Integer> expected =
-                IntInterval.oneTo(10).collect(each -> new Integer(1));
-        MutableList<Integer> mutable =
-                Lists.mutable.withNValues(10, () -> new Integer(1));
-        MutableList<Integer> multiReader =
-                Lists.multiReader.withNValues(10, () -> new Integer(1));
+    public void withNValues() {
+        ImmutableList<Integer> expected = IntInterval.oneTo(10).collect(each -> new Integer(1));
+        MutableList<Integer> mutable = Lists.mutable.withNValues(10, () -> new Integer(1));
+        MutableList<Integer> multiReader = Lists.multiReader.withNValues(10, () -> new Integer(1));
         Assert.assertEquals(expected, mutable);
         Assert.assertEquals(expected, multiReader);
     }
 
-    private static void assertPresizedMultiReaderListEquals(int initialCapacity, MultiReaderFastList<String> list)
-    {
-        try
-        {
+    private static void assertPresizedMultiReaderListEquals(int initialCapacity, MultiReaderFastList<String> list) {
+        try {
             Field delegateField = MultiReaderFastList.class.getDeclaredField("delegate");
             delegateField.setAccessible(true);
             FastList<String> delegate = (FastList<String>) delegateField.get(list);
@@ -379,16 +321,13 @@ public class ListsTest
             itemsField.setAccessible(true);
             Object[] items = (Object[]) itemsField.get(delegate);
             Assert.assertEquals(initialCapacity, items.length);
-        }
-        catch (SecurityException | NoSuchFieldException | IllegalAccessException e)
-        {
+        } catch (SecurityException | NoSuchFieldException | IllegalAccessException e) {
             throw new AssertionError(e);
         }
     }
 
     @Test
-    public void newListWith()
-    {
+    public void newListWith() {
         ImmutableList<String> list = Lists.immutable.of();
         Assert.assertEquals(list, Lists.immutable.of(list.toArray()));
         Assert.assertEquals(list = list.newWith("1"), Lists.immutable.of("1"));
@@ -406,25 +345,23 @@ public class ListsTest
     }
 
     @Test
-    public void newListWithArray()
-    {
+    public void newListWithArray() {
         ImmutableList<String> list = Lists.immutable.of();
-        Assert.assertEquals(list = list.newWith("1"), Lists.immutable.of(new String[]{"1"}));
-        Assert.assertEquals(list = list.newWith("2"), Lists.immutable.of(new String[]{"1", "2"}));
-        Assert.assertEquals(list = list.newWith("3"), Lists.immutable.of(new String[]{"1", "2", "3"}));
-        Assert.assertEquals(list = list.newWith("4"), Lists.immutable.of(new String[]{"1", "2", "3", "4"}));
-        Assert.assertEquals(list = list.newWith("5"), Lists.immutable.of(new String[]{"1", "2", "3", "4", "5"}));
-        Assert.assertEquals(list = list.newWith("6"), Lists.immutable.of(new String[]{"1", "2", "3", "4", "5", "6"}));
-        Assert.assertEquals(list = list.newWith("7"), Lists.immutable.of(new String[]{"1", "2", "3", "4", "5", "6", "7"}));
-        Assert.assertEquals(list = list.newWith("8"), Lists.immutable.of(new String[]{"1", "2", "3", "4", "5", "6", "7", "8"}));
-        Assert.assertEquals(list = list.newWith("9"), Lists.immutable.of(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"}));
-        Assert.assertEquals(list = list.newWith("10"), Lists.immutable.of(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
+        Assert.assertEquals(list = list.newWith("1"), Lists.immutable.of(new String[] { "1" }));
+        Assert.assertEquals(list = list.newWith("2"), Lists.immutable.of(new String[] { "1", "2" }));
+        Assert.assertEquals(list = list.newWith("3"), Lists.immutable.of(new String[] { "1", "2", "3" }));
+        Assert.assertEquals(list = list.newWith("4"), Lists.immutable.of(new String[] { "1", "2", "3", "4" }));
+        Assert.assertEquals(list = list.newWith("5"), Lists.immutable.of(new String[] { "1", "2", "3", "4", "5" }));
+        Assert.assertEquals(list = list.newWith("6"), Lists.immutable.of(new String[] { "1", "2", "3", "4", "5", "6" }));
+        Assert.assertEquals(list = list.newWith("7"), Lists.immutable.of(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        Assert.assertEquals(list = list.newWith("8"), Lists.immutable.of(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        Assert.assertEquals(list = list.newWith("9"), Lists.immutable.of(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        Assert.assertEquals(list = list.newWith("10"), Lists.immutable.of(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         Assert.assertEquals(list = list.newWith("11"), Lists.immutable.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"));
     }
 
     @Test
-    public void newListWithList()
-    {
+    public void newListWithList() {
         ImmutableList<String> list = Lists.immutable.of();
         FastList<String> fastList = FastList.newListWith("1");
         Assert.assertEquals(list = list.newWith("1"), fastList.toImmutable());
@@ -441,19 +378,164 @@ public class ListsTest
     }
 
     @Test
-    public void newListWithWithList()
-    {
+    public void newListWithWithList() {
         Assert.assertEquals(FastList.newList(), Lists.immutable.ofAll(FastList.newList()));
-        for (int i = 0; i < 12; i++)
-        {
+        for (int i = 0; i < 12; i++) {
             List<Integer> list = Interval.fromTo(0, i);
             Assert.assertEquals(list, Lists.immutable.ofAll(list));
         }
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(Lists.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutables, this.description("immutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_mutables() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::mutables, this.description("mutables"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_wrapCopy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::wrapCopy, this.description("wrapCopy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_immutableWithListTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::immutableWithListTest, this.description("immutableWithListTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fixedSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fixedSize, this.description("fixedSize"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_multiReader() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::multiReader, this.description("multiReader"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_castToList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::castToList, this.description("castToList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllImmutableList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllImmutableList, this.description("ofAllImmutableList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllMutableList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllMutableList, this.description("ofAllMutableList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllFixedSizedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllFixedSizedList, this.description("ofAllFixedSizedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_copyList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::copyList, this.description("copyList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_emptyList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::emptyList, this.description("emptyList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofInitialCapacity, this.description("ofInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withInitialCapacity, this.description("withInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_multiReaderOfInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::multiReaderOfInitialCapacity, this.description("multiReaderOfInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_multiReaderWithInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::multiReaderWithInitialCapacity, this.description("multiReaderWithInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withNValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withNValues, this.description("withNValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWith, this.description("newListWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithArray, this.description("newListWithArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithList, this.description("newListWithList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithWithList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithWithList, this.description("newListWithWithList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private ListsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ListsTest();
+        }
+
+        @java.lang.Override
+        public ListsTest implementation() {
+            return this.implementation;
+        }
     }
 }

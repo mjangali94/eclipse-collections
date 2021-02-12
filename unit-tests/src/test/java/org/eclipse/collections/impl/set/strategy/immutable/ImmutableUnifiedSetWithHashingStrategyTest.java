@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.strategy.immutable;
 
 import org.eclipse.collections.api.block.HashingStrategy;
@@ -27,46 +26,39 @@ import org.junit.Test;
 /**
  * JUnit test for {@link ImmutableUnifiedSetWithHashingStrategy}.
  */
-public class ImmutableUnifiedSetWithHashingStrategyTest extends AbstractImmutableUnifiedSetTestCase
-{
-    //Not using the static factor method in order to have concrete types for test cases
-    private static final HashingStrategy<Integer> HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<Integer>()
-    {
-        public int computeHashCode(Integer object)
-        {
+public class ImmutableUnifiedSetWithHashingStrategyTest extends AbstractImmutableUnifiedSetTestCase {
+
+    // Not using the static factor method in order to have concrete types for test cases
+    private static final HashingStrategy<Integer> HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<Integer>() {
+
+        public int computeHashCode(Integer object) {
             return object.hashCode();
         }
 
-        public boolean equals(Integer object1, Integer object2)
-        {
+        public boolean equals(Integer object1, Integer object2) {
             return object1.equals(object2);
         }
     });
 
     @Override
-    public ImmutableSet<Integer> newSet(Integer... elements)
-    {
+    public ImmutableSet<Integer> newSet(Integer... elements) {
         return ImmutableUnifiedSetWithHashingStrategy.newSetWith(HASHING_STRATEGY, elements);
     }
 
     @Override
-    public ImmutableSet<Integer> newSetWith(int one, int two)
-    {
+    public ImmutableSet<Integer> newSetWith(int one, int two) {
         return ImmutableUnifiedSetWithHashingStrategy.newSetWith(HASHING_STRATEGY, one, two);
     }
 
     @Override
-    public ImmutableSet<Integer> newSetWith(int one, int two, int three)
-    {
+    public ImmutableSet<Integer> newSetWith(int one, int two, int three) {
         return ImmutableUnifiedSetWithHashingStrategy.newSetWith(HASHING_STRATEGY, one, two, three);
     }
 
     @Override
-    public ImmutableSet<Integer> newSetWith(int... littleElements)
-    {
+    public ImmutableSet<Integer> newSetWith(int... littleElements) {
         Integer[] bigElements = new Integer[littleElements.length];
-        for (int i = 0; i < littleElements.length; i++)
-        {
+        for (int i = 0; i < littleElements.length; i++) {
             bigElements[i] = littleElements[i];
         }
         return ImmutableUnifiedSetWithHashingStrategy.newSetWith(HASHING_STRATEGY, bigElements);
@@ -74,8 +66,7 @@ public class ImmutableUnifiedSetWithHashingStrategyTest extends AbstractImmutabl
 
     @Override
     @Test
-    public void newCollection()
-    {
+    public void newCollection() {
         super.newCollection();
         ImmutableSet<Integer> set = ImmutableUnifiedSetWithHashingStrategy.newSet(HASHING_STRATEGY, UnifiedSet.newSet());
         Assert.assertTrue(set.isEmpty());
@@ -83,15 +74,13 @@ public class ImmutableUnifiedSetWithHashingStrategyTest extends AbstractImmutabl
     }
 
     @Test
-    public void getBatchCount()
-    {
+    public void getBatchCount() {
         BatchIterable<Integer> integerBatchIterable = (BatchIterable<Integer>) this.newSet(1, 2, 3, 4, 5, 6);
         Assert.assertEquals(2, integerBatchIterable.getBatchCount(3));
     }
 
     @Test
-    public void batchForEach()
-    {
+    public void batchForEach() {
         Sum sum = new IntegerSum(0);
         BatchIterable<Integer> integerBatchIterable = (BatchIterable<Integer>) this.newSet(1, 2, 3, 4, 5);
         integerBatchIterable.batchForEach(new SumProcedure<>(sum), 0, 1);
@@ -100,10 +89,49 @@ public class ImmutableUnifiedSetWithHashingStrategyTest extends AbstractImmutabl
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         super.equalsAndHashCode();
         ImmutableSet<Integer> deserialized = SerializeTestHelper.serializeDeserialize(this.newSet(1, 2, 3, 4, 5));
         Verify.assertInstanceOf(ImmutableUnifiedSetWithHashingStrategy.class, deserialized);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newCollection, this.description("newCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getBatchCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getBatchCount, this.description("getBatchCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_batchForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::batchForEach, this.description("batchForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        private ImmutableUnifiedSetWithHashingStrategyTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableUnifiedSetWithHashingStrategyTest();
+        }
+
+        @java.lang.Override
+        public ImmutableUnifiedSetWithHashingStrategyTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import java.util.Collection;
@@ -15,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
-
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.block.factory.IntegerPredicates;
 import org.eclipse.collections.impl.block.factory.Predicates;
@@ -27,14 +25,12 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CompositeFastListTest extends AbstractListTestCase
-{
+public class CompositeFastListTest extends AbstractListTestCase {
+
     @Override
-    protected <T> MutableList<T> newWith(T... littleElements)
-    {
+    protected <T> MutableList<T> newWith(T... littleElements) {
         CompositeFastList<T> result = new CompositeFastList<>();
-        for (T element : littleElements)
-        {
+        for (T element : littleElements) {
             result.add(element);
         }
         return result;
@@ -42,14 +38,12 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void testClone()
-    {
+    public void testClone() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.newWith().clone());
     }
 
     @Test
-    public void size()
-    {
+    public void size() {
         CompositeFastList<String> list = new CompositeFastList<>();
         Verify.assertSize(0, list);
         list.add("1");
@@ -86,8 +80,7 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void testDefaultConstructor()
-    {
+    public void testDefaultConstructor() {
         MutableList<String> list = new CompositeFastList<>();
         list.add("1");
         list.add("2");
@@ -96,10 +89,8 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void parallelBatchForEach()
-    {
+    public void parallelBatchForEach() {
         MutableList<Integer> integers = Interval.oneTo(1_000_000).toList().shuffleThis();
-
         Collection<Integer> evens = ParallelIterate.select(integers, IntegerPredicates.isEven());
         Verify.assertInstanceOf(CompositeFastList.class, evens);
         Collection<Integer> evens2 = ParallelIterate.select(evens, e -> e <= 100_000);
@@ -109,7 +100,6 @@ public class CompositeFastListTest extends AbstractListTestCase
         Verify.assertInstanceOf(CompositeFastList.class, evenStrings);
         Verify.assertSize(50_000, evenStrings);
         Assert.assertEquals(integers.select(e -> e <= 100_000).select(IntegerPredicates.isEven()).collect(Object::toString).toList(), evenStrings);
-
         Collection<Integer> odds = ParallelIterate.select(integers, IntegerPredicates.isOdd());
         Verify.assertInstanceOf(CompositeFastList.class, odds);
         Collection<Integer> odds2 = ParallelIterate.select(odds, e -> e <= 100_000);
@@ -119,7 +109,6 @@ public class CompositeFastListTest extends AbstractListTestCase
         Verify.assertInstanceOf(CompositeFastList.class, oddStrings);
         Verify.assertSize(50_000, oddStrings);
         Assert.assertEquals(integers.select(e -> e <= 100_000).select(IntegerPredicates.isOdd()).collect(Object::toString).toList(), oddStrings);
-
         MutableList<Integer> range = Interval.fromTo(-1_234_567, 1_234_567).toList().shuffleThis();
         Collection<Integer> positives = ParallelIterate.select(range, IntegerPredicates.isPositive());
         Verify.assertInstanceOf(CompositeFastList.class, positives);
@@ -130,7 +119,6 @@ public class CompositeFastListTest extends AbstractListTestCase
         Collection<Integer> oddPositives = ParallelIterate.select(positives, IntegerPredicates.isOdd());
         Verify.assertSize(617_284, oddPositives);
         Assert.assertEquals(2000, ParallelIterate.count(oddPositives, e -> e <= 4000));
-
         Collection<Integer> negatives = ParallelIterate.select(range, IntegerPredicates.isNegative());
         Verify.assertInstanceOf(CompositeFastList.class, negatives);
         Verify.assertSize(1_234_567, negatives);
@@ -143,8 +131,7 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void testGet()
-    {
+    public void testGet() {
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("A", "B", "C", "B"));
@@ -159,8 +146,7 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void testAddWithIndex()
-    {
+    public void testAddWithIndex() {
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("A", "B", "C", "B"));
@@ -178,8 +164,7 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void reverseThis()
-    {
+    public void reverseThis() {
         super.reverseThis();
         CompositeFastList<Integer> composite = new CompositeFastList<>();
         composite.addAll(FastList.newListWith(9, 8, 7));
@@ -192,15 +177,13 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void addAllAtIndex()
-    {
+    public void addAllAtIndex() {
         Assert.assertThrows(UnsupportedOperationException.class, super::addAllAtIndex);
     }
 
     @Override
     @Test
-    public void set()
-    {
+    public void set() {
         super.set();
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
@@ -215,17 +198,14 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void set_bugFix_off_by_one_error()
-    {
+    public void set_bugFix_off_by_one_error() {
         CompositeFastList<Integer> compositeList = new CompositeFastList<>();
         MutableList<Integer> list1 = FastList.newListWith(1, 2, 3);
         MutableList<Integer> list2 = FastList.newListWith(4, 5);
         MutableList<Integer> list3 = FastList.newList();
-
         compositeList.addAll(list1);
         compositeList.addAll(list2);
         compositeList.addAll(list3);
-
         Assert.assertEquals(Integer.valueOf(4), compositeList.get(3));
         Assert.assertEquals(Integer.valueOf(4), compositeList.set(3, 99));
         Assert.assertEquals(Integer.valueOf(99), compositeList.get(3));
@@ -233,25 +213,21 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void indexOf()
-    {
+    public void indexOf() {
         super.indexOf();
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
         list.addAll(FastList.newListWith("3", "B", "3", "X"));
-
         Assert.assertEquals(2, list.indexOf("3"));
         Assert.assertEquals(5, list.indexOf("B"));
         Assert.assertEquals(11, list.indexOf("X"));
-
         Assert.assertEquals(-1, list.indexOf("missing"));
     }
 
     @Override
     @Test
-    public void lastIndexOf()
-    {
+    public void lastIndexOf() {
         super.lastIndexOf();
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
@@ -262,8 +238,7 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void testRemoveWithIndex()
-    {
+    public void testRemoveWithIndex() {
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
@@ -277,27 +252,24 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void toArray()
-    {
+    public void toArray() {
         super.toArray();
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(Lists.mutable.of());
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
         list.addAll(Lists.mutable.of());
-        Assert.assertArrayEquals(new String[]{"1", "2", "3", "4", "3", "B", "3", "B"}, list.toArray());
+        Assert.assertArrayEquals(new String[] { "1", "2", "3", "4", "3", "B", "3", "B" }, list.toArray());
     }
 
     @Test
-    public void testEmptyIterator()
-    {
+    public void testEmptyIterator() {
         Assert.assertFalse(new CompositeFastList<String>().iterator().hasNext());
     }
 
     @Override
     @Test
-    public void clear()
-    {
+    public void clear() {
         super.clear();
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
@@ -308,8 +280,7 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void testContainsAll()
-    {
+    public void testContainsAll() {
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
         list.addAll(FastList.newListWith("3", "B", "3", "B"));
@@ -318,8 +289,7 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void removeAll()
-    {
+    public void removeAll() {
         super.removeAll();
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
@@ -330,8 +300,7 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void retainAll()
-    {
+    public void retainAll() {
         super.retainAll();
         MutableList<String> list = new CompositeFastList<>();
         list.addAll(FastList.newListWith("1", "2", "3", "4"));
@@ -342,8 +311,7 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         super.forEach();
         MutableList<Integer> list = FastList.newList();
         CompositeFastList<Integer> iterables = new CompositeFastList<>();
@@ -356,10 +324,8 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         super.forEachWithIndex();
-
         MutableList<Integer> list = FastList.newList();
         CompositeFastList<Integer> iterables = new CompositeFastList<>();
         iterables.addComposited(Interval.fromTo(6, 10).toList());
@@ -372,8 +338,7 @@ public class CompositeFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         super.forEachWith();
         MutableList<Integer> list = FastList.newList();
         CompositeFastList<Integer> iterables = new CompositeFastList<>();
@@ -386,104 +351,77 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         CompositeFastList<String> composite = new CompositeFastList<>();
         MutableList<String> list = FastList.newList();
-
         Verify.assertEqualsAndHashCode(composite, list);
-
         MutableList<String> list2 = FastList.newListWith("one", "two", "three");
-
         CompositeFastList<String> composite2 = new CompositeFastList<>();
         MutableList<String> firstBit = FastList.newListWith("one", "two");
         MutableList<String> secondBit = FastList.newListWith("three");
         composite2.addAll(firstBit);
         composite2.addAll(secondBit);
-
         Verify.assertEqualsAndHashCode(list2, composite2);
-
         Assert.assertNotEquals(firstBit, composite2);
         Assert.assertNotEquals(composite2, firstBit);
-
         MutableList<String> list1 = FastList.newListWith("one", null, "three");
-
         CompositeFastList<String> composite1 = new CompositeFastList<>();
         MutableList<String> firstBit1 = FastList.newListWith("one", null);
         MutableList<String> secondBit1 = FastList.newListWith("three");
         composite1.addAll(firstBit1);
         composite1.addAll(secondBit1);
-
         Verify.assertEqualsAndHashCode(list1, composite1);
     }
 
     @Test
-    public void testHashCode()
-    {
+    public void testHashCode() {
         CompositeFastList<String> composite = new CompositeFastList<>();
         MutableList<String> list = FastList.newList();
         Verify.assertEqualsAndHashCode(composite, list);
-
         MutableList<String> list2 = FastList.newListWith("one", "two", "three");
-
         CompositeFastList<String> composite2 = new CompositeFastList<>();
         MutableList<String> firstBit = FastList.newListWith("one", "two");
         MutableList<String> secondBit = FastList.newListWith("three");
         composite2.addAll(firstBit);
         composite2.addAll(secondBit);
-
         Verify.assertEqualsAndHashCode(list2, composite2);
-
         MutableList<String> list1 = FastList.newListWith("one", null, "three");
-
         CompositeFastList<String> composite1 = new CompositeFastList<>();
         MutableList<String> firstBit1 = FastList.newListWith("one", null);
         MutableList<String> secondBit1 = FastList.newListWith("three");
         composite1.addAll(firstBit1);
         composite1.addAll(secondBit1);
-
         Verify.assertEqualsAndHashCode(list1, composite1);
     }
 
     @Override
     @Test
-    public void listIterator()
-    {
+    public void listIterator() {
         super.listIterator();
         CompositeFastList<String> composite = new CompositeFastList<>();
         FastList<String> firstBit = FastList.newListWith("one", "two");
         FastList<String> secondBit = FastList.newListWith("three");
         composite.addAll(firstBit);
         composite.addAll(secondBit);
-
         ListIterator<String> listIterator = composite.listIterator();
         listIterator.add("four");
         Verify.assertSize(4, composite);
         Assert.assertTrue(listIterator.hasNext());
         String element = listIterator.next();
-
         Assert.assertEquals("one", element);
-
         String element3 = listIterator.next();
-
         Assert.assertEquals("two", element3);
-
         String element2 = listIterator.previous();
         Assert.assertEquals("two", element2);
-
         String element1 = listIterator.next();
-
         Assert.assertEquals("two", element1);
-
         listIterator.remove();
-
         Verify.assertSize(3, composite);
     }
 
     @Override
     @Test
-    public void subList()
-    {
+    public void subList() {
         MutableList<String> list = this.newWith("A", "B", "C", "D");
         MutableList<String> sublist = list.subList(1, 3);
         Verify.assertPostSerializedEqualsAndHashCode(sublist);
@@ -506,18 +444,15 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void notRandomAccess()
-    {
+    public void notRandomAccess() {
         Assert.assertFalse(this.newWith() instanceof RandomAccess);
     }
 
     @Test
-    public void removingFromIteratorIsCool()
-    {
+    public void removingFromIteratorIsCool() {
         CompositeFastList<String> undertest = new CompositeFastList<>();
         undertest.addAll(FastList.newListWith("a"));
         undertest.addAll(FastList.newListWith("b", "c", "d"));
-
         Iterator<String> iterator1 = undertest.iterator();
         iterator1.next();
         iterator1.next();
@@ -525,13 +460,11 @@ public class CompositeFastListTest extends AbstractListTestCase
         iterator1.remove();
         Assert.assertEquals("d", iterator1.next());
         Assert.assertEquals(FastList.newListWith("a", "b", "d"), undertest);
-
         Iterator<String> iterator2 = undertest.iterator();
         iterator2.next();
         iterator2.next();
         iterator2.remove();
         Assert.assertEquals(FastList.newListWith("a", "d"), undertest);
-
         Iterator<String> iterator3 = undertest.iterator();
         iterator3.next();
         iterator3.remove();
@@ -542,17 +475,14 @@ public class CompositeFastListTest extends AbstractListTestCase
     }
 
     @Test(expected = IllegalStateException.class)
-    public void removingFromIteratorIsUncoolFromEmptyIterator()
-    {
+    public void removingFromIteratorIsUncoolFromEmptyIterator() {
         new CompositeFastList<String>().iterator().remove();
     }
 
     @Test
     @Override
-    public void reverseForEachWithIndex()
-    {
+    public void reverseForEachWithIndex() {
         super.reverseForEachWithIndex();
-
         MutableList<Integer> integers1 = Interval.oneTo(4).toList();
         MutableList<Integer> integers2 = Interval.fromTo(5, 8).toList();
         MutableList<Integer> integers3 = Interval.fromTo(9, 11).toList();
@@ -560,9 +490,204 @@ public class CompositeFastListTest extends AbstractListTestCase
         compositeFastList.addAll(integers1);
         compositeFastList.addAll(integers2);
         compositeFastList.addAll(integers3);
-
         List<Integer> result = Lists.mutable.empty();
         compositeFastList.reverseForEachWithIndex((each, index) -> result.add(each + index));
         Assert.assertEquals(Lists.mutable.with(21, 19, 17, 15, 13, 11, 9, 7, 5, 3, 1), result);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testDefaultConstructor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testDefaultConstructor, this.description("testDefaultConstructor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_parallelBatchForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::parallelBatchForEach, this.description("parallelBatchForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testGet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testGet, this.description("testGet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testAddWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testAddWithIndex, this.description("testAddWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseThis() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseThis, this.description("reverseThis"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllAtIndex, this.description("addAllAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_set() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::set, this.description("set"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_set_bugFix_off_by_one_error() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::set_bugFix_off_by_one_error, this.description("set_bugFix_off_by_one_error"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_indexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::indexOf, this.description("indexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lastIndexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::lastIndexOf, this.description("lastIndexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testRemoveWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testRemoveWithIndex, this.description("testRemoveWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEmptyIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEmptyIterator, this.description("testEmptyIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::clear, this.description("clear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testContainsAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testContainsAll, this.description("testContainsAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll, this.description("removeAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAll, this.description("retainAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEquals, this.description("testEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testHashCode, this.description("testHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_listIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::listIterator, this.description("listIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subList, this.description("subList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notRandomAccess() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::notRandomAccess, this.description("notRandomAccess"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removingFromIteratorIsCool() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removingFromIteratorIsCool, this.description("removingFromIteratorIsCool"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removingFromIteratorIsUncoolFromEmptyIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::removingFromIteratorIsUncoolFromEmptyIterator, this.description("removingFromIteratorIsUncoolFromEmptyIterator"), java.lang.IllegalStateException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEachWithIndex, this.description("reverseForEachWithIndex"));
+        }
+
+        private CompositeFastListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new CompositeFastListTest();
+        }
+
+        @java.lang.Override
+        public CompositeFastListTest implementation() {
+            return this.implementation;
+        }
     }
 }

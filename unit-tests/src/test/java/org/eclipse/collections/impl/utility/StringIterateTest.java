@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.utility;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -47,313 +46,145 @@ import org.junit.Test;
 /**
  * JUnit test for {@link StringIterate}.
  */
-public class StringIterateTest
-{
+public class StringIterateTest {
+
     public static final String THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG = "The quick brown fox jumps over the lazy dog.";
+
     public static final String ALPHABET_LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+
     public static final Twin<String> HALF_ABET = StringIterate.splitAtIndex(ALPHABET_LOWERCASE, 13);
+
     public static final String TQBFJOTLD_MINUS_HALF_ABET_1 = "t qu rown ox ups ovr t zy o.";
+
     public static final String TQBFJOTLD_MINUS_HALF_ABET_2 = "he ick b f jm e he la dg.";
 
     @Test
-    public void asCharAdapter()
-    {
-        CharAdapter answer =
-                StringIterate.asCharAdapter("HelloHellow")
-                        .collectChar(Character::toUpperCase)
-                        .select(c -> c != 'W')
-                        .distinct()
-                        .toReversed()
-                        .reject(CharAdapter.adapt("LE")::contains)
-                        .newWith('!');
-
+    public void asCharAdapter() {
+        CharAdapter answer = StringIterate.asCharAdapter("HelloHellow").collectChar(Character::toUpperCase).select(c -> c != 'W').distinct().toReversed().reject(CharAdapter.adapt("LE")::contains).newWith('!');
         Assert.assertEquals("OH!", answer.toString());
         Assert.assertEquals("OH!", answer.toStringBuilder().toString());
         Assert.assertEquals("OH!", answer.makeString(""));
-
-        CharList charList = StringIterate.asCharAdapter("HelloHellow")
-                .asLazy()
-                .collectChar(Character::toUpperCase)
-                .select(c -> c != 'W')
-                .toList()
-                .distinct()
-                .toReversed()
-                .reject(CharAdapter.adapt("LE")::contains)
-                .with('!');
-
+        CharList charList = StringIterate.asCharAdapter("HelloHellow").asLazy().collectChar(Character::toUpperCase).select(c -> c != 'W').toList().distinct().toReversed().reject(CharAdapter.adapt("LE")::contains).with('!');
         Assert.assertEquals("OH!", CharAdapter.from(charList).toString());
         Assert.assertEquals("OH!", CharAdapter.from(CharAdapter.from(charList)).toString());
-
-        String helloUppercase2 = StringIterate.asCharAdapter("Hello")
-                .asLazy()
-                .collectChar(Character::toUpperCase)
-                .makeString("");
+        String helloUppercase2 = StringIterate.asCharAdapter("Hello").asLazy().collectChar(Character::toUpperCase).makeString("");
         Assert.assertEquals("HELLO", helloUppercase2);
-
         CharArrayList arraylist = new CharArrayList();
-        StringIterate.asCharAdapter("Hello".toUpperCase())
-                .chars()
-                .sorted()
-                .forEach(e -> arraylist.add((char) e));
+        StringIterate.asCharAdapter("Hello".toUpperCase()).chars().sorted().forEach(e -> arraylist.add((char) e));
         Assert.assertEquals(StringIterate.asCharAdapter("EHLLO"), arraylist);
-
-        ImmutableCharList arrayList2 =
-                StringIterate.asCharAdapter("Hello".toUpperCase())
-                        .toSortedList()
-                        .toImmutable();
-
+        ImmutableCharList arrayList2 = StringIterate.asCharAdapter("Hello".toUpperCase()).toSortedList().toImmutable();
         Assert.assertEquals(StringIterate.asCharAdapter("EHLLO"), arrayList2);
-
         Assert.assertEquals(StringIterate.asCharAdapter("HELLO"), CharAdapter.adapt("hello").collectChar(Character::toUpperCase));
     }
 
     @Test
-    public void asCharAdapterExtra()
-    {
-        Assert.assertEquals(
-                9,
-                StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .count(c -> !Character.isLetter(c)));
-
-        Assert.assertTrue(
-                StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).anySatisfy(Character::isWhitespace));
-
-        Assert.assertEquals(
-                8,
-                StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .count(Character::isWhitespace));
-
-        Verify.assertSize(
-                26,
-                StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .asLazy()
-                        .select(Character::isLetter)
-                        .collectChar(Character::toLowerCase).toSet());
-
-        ImmutableCharSet alphaCharAdapter =
-                StringIterate.asCharAdapter(ALPHABET_LOWERCASE).toSet().toImmutable();
-        Assert.assertTrue(
-                StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).containsAll(alphaCharAdapter));
-        Assert.assertEquals(
-                CharSets.immutable.empty(),
-                alphaCharAdapter.newWithoutAll(StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())));
-        Assert.assertEquals(
-                TQBFJOTLD_MINUS_HALF_ABET_1,
-                StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())
-                        .newWithoutAll(StringIterate.asCharAdapter(HALF_ABET.getOne()))
-                        .toString());
-        Assert.assertEquals(
-                TQBFJOTLD_MINUS_HALF_ABET_2,
-                StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())
-                        .newWithoutAll(StringIterate.asCharAdapter(HALF_ABET.getTwo()))
-                        .toString());
+    public void asCharAdapterExtra() {
+        Assert.assertEquals(9, StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).count(c -> !Character.isLetter(c)));
+        Assert.assertTrue(StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).anySatisfy(Character::isWhitespace));
+        Assert.assertEquals(8, StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).count(Character::isWhitespace));
+        Verify.assertSize(26, StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).asLazy().select(Character::isLetter).collectChar(Character::toLowerCase).toSet());
+        ImmutableCharSet alphaCharAdapter = StringIterate.asCharAdapter(ALPHABET_LOWERCASE).toSet().toImmutable();
+        Assert.assertTrue(StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).containsAll(alphaCharAdapter));
+        Assert.assertEquals(CharSets.immutable.empty(), alphaCharAdapter.newWithoutAll(StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())));
+        Assert.assertEquals(TQBFJOTLD_MINUS_HALF_ABET_1, StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase()).newWithoutAll(StringIterate.asCharAdapter(HALF_ABET.getOne())).toString());
+        Assert.assertEquals(TQBFJOTLD_MINUS_HALF_ABET_2, StringIterate.asCharAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase()).newWithoutAll(StringIterate.asCharAdapter(HALF_ABET.getTwo())).toString());
     }
 
     @Test
-    public void buildTheAlphabetFromEmpty()
-    {
-        String alphabet = StringIterate.asCharAdapter("")
-                .newWith('a')
-                .newWithAll(StringIterate.asCharAdapter(HALF_ABET.getOne()))
-                .newWithAll(StringIterate.asCharAdapter(HALF_ABET.getTwo()))
-                .newWithout('a').toString();
+    public void buildTheAlphabetFromEmpty() {
+        String alphabet = StringIterate.asCharAdapter("").newWith('a').newWithAll(StringIterate.asCharAdapter(HALF_ABET.getOne())).newWithAll(StringIterate.asCharAdapter(HALF_ABET.getTwo())).newWithout('a').toString();
         Assert.assertEquals(ALPHABET_LOWERCASE, alphabet);
     }
 
     @Test
-    public void asCodePointAdapter()
-    {
-        CodePointAdapter answer =
-                StringIterate.asCodePointAdapter("HelloHellow")
-                        .collectInt(Character::toUpperCase)
-                        .select(i -> i != 'W')
-                        .distinct()
-                        .toReversed()
-                        .reject(CodePointAdapter.adapt("LE")::contains)
-                        .newWith('!');
-
+    public void asCodePointAdapter() {
+        CodePointAdapter answer = StringIterate.asCodePointAdapter("HelloHellow").collectInt(Character::toUpperCase).select(i -> i != 'W').distinct().toReversed().reject(CodePointAdapter.adapt("LE")::contains).newWith('!');
         Assert.assertEquals("OH!", answer.toString());
         Assert.assertEquals("OH!", answer.toStringBuilder().toString());
         Assert.assertEquals("OH!", answer.makeString(""));
-
-        IntList intList = StringIterate.asCodePointAdapter("HelloHellow")
-                .asLazy()
-                .collectInt(Character::toUpperCase)
-                .select(i -> i != 'W')
-                .toList()
-                .distinct()
-                .toReversed()
-                .reject(CodePointAdapter.adapt("LE")::contains)
-                .with('!');
-
+        IntList intList = StringIterate.asCodePointAdapter("HelloHellow").asLazy().collectInt(Character::toUpperCase).select(i -> i != 'W').toList().distinct().toReversed().reject(CodePointAdapter.adapt("LE")::contains).with('!');
         Assert.assertEquals("OH!", CodePointAdapter.from(intList).toString());
         Assert.assertEquals("OH!", CodePointAdapter.from(CodePointAdapter.from(intList)).toString());
     }
 
     @Test
-    public void asCodePointAdapterExtra()
-    {
-        Assert.assertEquals(
-                9,
-                StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .count(i -> !Character.isLetter(i)));
-
-        Assert.assertTrue(
-                StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).anySatisfy(Character::isWhitespace));
-
-        Assert.assertEquals(
-                8,
-                StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .count(Character::isWhitespace));
-
-        Verify.assertSize(
-                26,
-                StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .asLazy()
-                        .select(Character::isLetter)
-                        .collectInt(Character::toLowerCase).toSet());
-
-        ImmutableIntSet alphaints =
-                StringIterate.asCodePointAdapter(ALPHABET_LOWERCASE).toSet().toImmutable();
-        Assert.assertTrue(
-                StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).containsAll(alphaints));
-        Assert.assertEquals(
-                IntSets.immutable.empty(),
-                alphaints.newWithoutAll(StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())));
-        Assert.assertEquals(
-                TQBFJOTLD_MINUS_HALF_ABET_1,
-                StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())
-                        .newWithoutAll(StringIterate.asCodePointAdapter(HALF_ABET.getOne()))
-                        .toString());
-        Assert.assertEquals(
-                TQBFJOTLD_MINUS_HALF_ABET_2,
-                StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())
-                        .newWithoutAll(StringIterate.asCodePointAdapter(HALF_ABET.getTwo()))
-                        .toString());
+    public void asCodePointAdapterExtra() {
+        Assert.assertEquals(9, StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).count(i -> !Character.isLetter(i)));
+        Assert.assertTrue(StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).anySatisfy(Character::isWhitespace));
+        Assert.assertEquals(8, StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).count(Character::isWhitespace));
+        Verify.assertSize(26, StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).asLazy().select(Character::isLetter).collectInt(Character::toLowerCase).toSet());
+        ImmutableIntSet alphaints = StringIterate.asCodePointAdapter(ALPHABET_LOWERCASE).toSet().toImmutable();
+        Assert.assertTrue(StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).containsAll(alphaints));
+        Assert.assertEquals(IntSets.immutable.empty(), alphaints.newWithoutAll(StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())));
+        Assert.assertEquals(TQBFJOTLD_MINUS_HALF_ABET_1, StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase()).newWithoutAll(StringIterate.asCodePointAdapter(HALF_ABET.getOne())).toString());
+        Assert.assertEquals(TQBFJOTLD_MINUS_HALF_ABET_2, StringIterate.asCodePointAdapter(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase()).newWithoutAll(StringIterate.asCodePointAdapter(HALF_ABET.getTwo())).toString());
     }
 
     @Test
-    public void toCodePointList()
-    {
-        CodePointList answer =
-                StringIterate.toCodePointList("Hello")
-                        .collectInt(Character::toUpperCase)
-                        .select(i -> i != 'W')
-                        .distinct()
-                        .toReversed()
-                        .reject(CodePointList.from("LE")::contains)
-                        .newWith('!');
-
+    public void toCodePointList() {
+        CodePointList answer = StringIterate.toCodePointList("Hello").collectInt(Character::toUpperCase).select(i -> i != 'W').distinct().toReversed().reject(CodePointList.from("LE")::contains).newWith('!');
         Assert.assertEquals("OH!", answer.toString());
         Assert.assertEquals("OH!", answer.toStringBuilder().toString());
         Assert.assertEquals("OH!", answer.makeString(""));
-
-        IntList intList = StringIterate.toCodePointList("HelloHellow")
-                .asLazy()
-                .collectInt(Character::toUpperCase)
-                .select(i -> i != 'W')
-                .toList()
-                .distinct()
-                .toReversed()
-                .reject(CodePointList.from("LE")::contains)
-                .with('!');
-
+        IntList intList = StringIterate.toCodePointList("HelloHellow").asLazy().collectInt(Character::toUpperCase).select(i -> i != 'W').toList().distinct().toReversed().reject(CodePointList.from("LE")::contains).with('!');
         Assert.assertEquals("OH!", CodePointList.from(intList).toString());
         Assert.assertEquals("OH!", CodePointList.from(CodePointList.from(intList)).toString());
     }
 
     @Test
-    public void toCodePointListExtra()
-    {
-        Assert.assertEquals(
-                9,
-                StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .count(i -> !Character.isLetter(i)));
-
-        Assert.assertTrue(
-                StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).anySatisfy(Character::isWhitespace));
-
-        Assert.assertEquals(
-                8,
-                StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .count(Character::isWhitespace));
-
-        Verify.assertSize(
-                26,
-                StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .asLazy()
-                        .select(Character::isLetter)
-                        .collectInt(Character::toLowerCase).toSet());
-
-        ImmutableIntSet alphaints =
-                StringIterate.toCodePointList(ALPHABET_LOWERCASE).toSet().toImmutable();
-        Assert.assertTrue(
-                StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).containsAll(alphaints));
-        Assert.assertEquals(
-                IntSets.immutable.empty(),
-                alphaints.newWithoutAll(StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())));
-        Assert.assertTrue(
-                StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG)
-                        .containsAll(StringIterate.toCodePointList(HALF_ABET.getOne())));
-        Assert.assertEquals(
-                TQBFJOTLD_MINUS_HALF_ABET_1,
-                StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())
-                        .newWithoutAll(StringIterate.toCodePointList(HALF_ABET.getOne()))
-                        .toString());
-        Assert.assertEquals(
-                TQBFJOTLD_MINUS_HALF_ABET_2,
-                StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())
-                        .newWithoutAll(StringIterate.toCodePointList(HALF_ABET.getTwo()))
-                        .toString());
+    public void toCodePointListExtra() {
+        Assert.assertEquals(9, StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).count(i -> !Character.isLetter(i)));
+        Assert.assertTrue(StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).anySatisfy(Character::isWhitespace));
+        Assert.assertEquals(8, StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).count(Character::isWhitespace));
+        Verify.assertSize(26, StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).asLazy().select(Character::isLetter).collectInt(Character::toLowerCase).toSet());
+        ImmutableIntSet alphaints = StringIterate.toCodePointList(ALPHABET_LOWERCASE).toSet().toImmutable();
+        Assert.assertTrue(StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).containsAll(alphaints));
+        Assert.assertEquals(IntSets.immutable.empty(), alphaints.newWithoutAll(StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase())));
+        Assert.assertTrue(StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG).containsAll(StringIterate.toCodePointList(HALF_ABET.getOne())));
+        Assert.assertEquals(TQBFJOTLD_MINUS_HALF_ABET_1, StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase()).newWithoutAll(StringIterate.toCodePointList(HALF_ABET.getOne())).toString());
+        Assert.assertEquals(TQBFJOTLD_MINUS_HALF_ABET_2, StringIterate.toCodePointList(THE_QUICK_BROWN_FOX_JUMPS_OVER_THE_LAZY_DOG.toLowerCase()).newWithoutAll(StringIterate.toCodePointList(HALF_ABET.getTwo())).toString());
     }
 
     @Test
-    public void englishToUpperLowerCase()
-    {
+    public void englishToUpperLowerCase() {
         Assert.assertEquals("ABC", StringIterate.englishToUpperCase("abc"));
         Assert.assertEquals("abc", StringIterate.englishToLowerCase("ABC"));
     }
 
     @Test
-    public void collect()
-    {
+    public void collect() {
         Assert.assertEquals("ABC", StringIterate.collect("abc", CharToCharFunctions.toUpperCase()));
         Assert.assertEquals("abc", StringIterate.collect("abc", CharToCharFunctions.toLowerCase()));
     }
 
     @Test
-    public void collectCodePoint()
-    {
+    public void collectCodePoint() {
         Assert.assertEquals("ABC", StringIterate.collect("abc", CodePointFunction.TO_UPPERCASE));
         Assert.assertEquals("abc", StringIterate.collect("abc", CodePointFunction.TO_LOWERCASE));
     }
 
     @Test
-    public void collectCodePointUnicode()
-    {
+    public void collectCodePointUnicode() {
         Assert.assertEquals("\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09", StringIterate.collect("\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09", CodePointFunction.PASS_THRU));
         Assert.assertEquals("\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09", StringIterate.collect("\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09", CodePointFunction.PASS_THRU));
     }
 
     @Test
-    public void englishToUpperCase()
-    {
+    public void englishToUpperCase() {
         Assert.assertEquals("ABC", StringIterate.englishToUpperCase("abc"));
         Assert.assertEquals("A,B,C", StringIterate.englishToUpperCase("a,b,c"));
         Assert.assertSame("A,B,C", StringIterate.englishToUpperCase("A,B,C"));
     }
 
     @Test
-    public void englishToLowerCase()
-    {
+    public void englishToLowerCase() {
         Assert.assertEquals("abc", StringIterate.englishToLowerCase("ABC"));
         Assert.assertEquals("a,b,c", StringIterate.englishToLowerCase("A,B,C"));
         Assert.assertSame("a,b,c", StringIterate.englishToLowerCase("a,b,c"));
     }
 
     @Test
-    public void englishIsUpperLowerCase()
-    {
+    public void englishIsUpperLowerCase() {
         String allValues = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890~`!@#$%^&*()_-+=[]{};<>,.?/|";
         String jdkUpper = allValues.toUpperCase();
         String upper = StringIterate.englishToUpperCase(allValues);
@@ -366,121 +197,104 @@ public class StringIterateTest
     }
 
     @Test
-    public void select()
-    {
+    public void select() {
         String string = StringIterate.select("1a2a3", CharPredicates.isDigit());
         Assert.assertEquals("123", string);
     }
 
     @Test
-    public void selectCodePoint()
-    {
+    public void selectCodePoint() {
         String string = StringIterate.select("1a2a3", CodePointPredicate.IS_DIGIT);
         Assert.assertEquals("123", string);
     }
 
     @Test
-    public void selectCodePointUnicode()
-    {
+    public void selectCodePointUnicode() {
         String string = StringIterate.select("\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09", CodePointPredicate.IS_BMP);
         Assert.assertEquals("\u3042\u3044\u3046", string);
     }
 
     @Test
-    public void detect()
-    {
+    public void detect() {
         char character = StringIterate.detect("1a2a3", CharPredicates.isLetter());
         Assert.assertEquals('a', character);
     }
 
     @Test
-    public void detectIfNone()
-    {
+    public void detectIfNone() {
         char character = StringIterate.detectIfNone("123", CharPredicates.isLetter(), "b".charAt(0));
         Assert.assertEquals('b', character);
     }
 
     @Test
-    public void detectIfNoneWithString()
-    {
+    public void detectIfNoneWithString() {
         char character = StringIterate.detectIfNone("123", CharPredicates.isLetter(), "b");
         Assert.assertEquals('b', character);
     }
 
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         Assert.assertTrue(StringIterate.allSatisfy("MARY", CharPredicates.isUpperCase()));
         Assert.assertFalse(StringIterate.allSatisfy("Mary", CharPredicates.isUpperCase()));
     }
 
     @Test
-    public void allSatisfyCodePoint()
-    {
+    public void allSatisfyCodePoint() {
         Assert.assertTrue(StringIterate.allSatisfy("MARY", CodePointPredicate.IS_UPPERCASE));
         Assert.assertFalse(StringIterate.allSatisfy("Mary", CodePointPredicate.IS_UPPERCASE));
     }
 
     @Test
-    public void allSatisfyCodePointUnicode()
-    {
+    public void allSatisfyCodePointUnicode() {
         Assert.assertTrue(StringIterate.allSatisfy("\u3042\u3044\u3046", CodePointPredicate.IS_BMP));
         Assert.assertFalse(StringIterate.allSatisfy("\uD840\uDC00\uD840\uDC03\uD83D\uDE09", CodePointPredicate.IS_BMP));
     }
 
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         Assert.assertTrue(StringIterate.anySatisfy("MARY", CharPredicates.isUpperCase()));
         Assert.assertFalse(StringIterate.anySatisfy("mary", CharPredicates.isUpperCase()));
     }
 
     @Test
-    public void anySatisfyCodePoint()
-    {
+    public void anySatisfyCodePoint() {
         Assert.assertTrue(StringIterate.anySatisfy("MARY", CodePointPredicate.IS_UPPERCASE));
         Assert.assertFalse(StringIterate.anySatisfy("mary", CodePointPredicate.IS_UPPERCASE));
     }
 
     @Test
-    public void anySatisfyCodePointUnicode()
-    {
+    public void anySatisfyCodePointUnicode() {
         Assert.assertTrue(StringIterate.anySatisfy("\u3042\u3044\u3046", CodePointPredicate.IS_BMP));
         Assert.assertFalse(StringIterate.anySatisfy("\uD840\uDC00\uD840\uDC03\uD83D\uDE09", CodePointPredicate.IS_BMP));
     }
 
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         Assert.assertFalse(StringIterate.noneSatisfy("MaRy", CharPredicates.isUpperCase()));
         Assert.assertTrue(StringIterate.noneSatisfy("mary", CharPredicates.isUpperCase()));
     }
 
     @Test
-    public void noneSatisfyCodePoint()
-    {
+    public void noneSatisfyCodePoint() {
         Assert.assertFalse(StringIterate.noneSatisfy("MaRy", CodePointPredicate.IS_UPPERCASE));
         Assert.assertTrue(StringIterate.noneSatisfy("mary", CodePointPredicate.IS_UPPERCASE));
     }
 
     @Test
-    public void noneSatisfyCodePointUnicode()
-    {
+    public void noneSatisfyCodePointUnicode() {
         Assert.assertFalse(StringIterate.noneSatisfy("\u3042\u3044\u3046", CodePointPredicate.IS_BMP));
         Assert.assertTrue(StringIterate.noneSatisfy("\uD840\uDC00\uD840\uDC03\uD83D\uDE09", CodePointPredicate.IS_BMP));
     }
 
     @Test
-    public void isNumber()
-    {
+    public void isNumber() {
         Assert.assertTrue(StringIterate.isNumber("123"));
         Assert.assertFalse(StringIterate.isNumber("abc"));
         Assert.assertFalse(StringIterate.isNumber(""));
     }
 
     @Test
-    public void isAlphaNumeric()
-    {
+    public void isAlphaNumeric() {
         Assert.assertTrue(StringIterate.isAlphaNumeric("123"));
         Assert.assertTrue(StringIterate.isAlphaNumeric("abc"));
         Assert.assertTrue(StringIterate.isAlphaNumeric("123abc"));
@@ -489,8 +303,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void csvTokensToList()
-    {
+    public void csvTokensToList() {
         String tokens = "Ted,Mary  ";
         MutableList<String> results = StringIterate.csvTokensToList(tokens);
         Verify.assertSize(2, results);
@@ -498,8 +311,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void csvTokensToSortedList()
-    {
+    public void csvTokensToSortedList() {
         String tokens = " Ted, Mary ";
         MutableList<String> results = StringIterate.csvTokensToSortedList(tokens);
         Verify.assertSize(2, results);
@@ -507,8 +319,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void csvTrimmedTokensToSortedList()
-    {
+    public void csvTrimmedTokensToSortedList() {
         String tokens = " Ted,Mary ";
         MutableList<String> results = StringIterate.csvTrimmedTokensToSortedList(tokens);
         Verify.assertSize(2, results);
@@ -516,8 +327,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void csvTokensToSet()
-    {
+    public void csvTokensToSet() {
         String tokens = "Ted,Mary";
         MutableSet<String> results = StringIterate.csvTokensToSet(tokens);
         Verify.assertSize(2, results);
@@ -525,16 +335,14 @@ public class StringIterateTest
     }
 
     @Test
-    public void csvTokensToReverseSortedList()
-    {
+    public void csvTokensToReverseSortedList() {
         String tokens = "Ted,Mary";
         MutableList<String> results = StringIterate.csvTokensToReverseSortedList(tokens);
         Verify.assertSize(2, results);
     }
 
     @Test
-    public void tokensToMap()
-    {
+    public void tokensToMap() {
         String tokens = "1:Ted|2:Mary";
         MutableMap<String, String> results = StringIterate.tokensToMap(tokens);
         Verify.assertSize(2, results);
@@ -543,8 +351,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void tokensToMapWithFunctions()
-    {
+    public void tokensToMapWithFunctions() {
         String tokens = "1:Ted|2:Mary";
         Function<String, String> stringPassThruFunction = Functions.getPassThru();
         MutableMap<Integer, String> results = StringIterate.tokensToMap(tokens, "|", ":", Integer::valueOf, stringPassThruFunction);
@@ -554,121 +361,103 @@ public class StringIterateTest
     }
 
     @Test
-    public void reject()
-    {
+    public void reject() {
         String string = StringIterate.reject("1a2b3c", CharPredicates.isDigit());
         Assert.assertEquals("abc", string);
     }
 
     @Test
-    public void rejectCodePoint()
-    {
+    public void rejectCodePoint() {
         String string = StringIterate.reject("1a2b3c", CodePointPredicate.IS_DIGIT);
         Assert.assertEquals("abc", string);
     }
 
     @Test
-    public void count()
-    {
+    public void count() {
         int count = StringIterate.count("1a2a3", CharPredicates.isDigit());
         Assert.assertEquals(3, count);
     }
 
     @Test
-    public void countCodePoint()
-    {
+    public void countCodePoint() {
         int count = StringIterate.count("1a2a3", CodePointPredicate.IS_DIGIT);
         Assert.assertEquals(3, count);
     }
 
     @Test
-    public void occurrencesOf()
-    {
+    public void occurrencesOf() {
         int count = StringIterate.occurrencesOf("1a2a3", 'a');
         Assert.assertEquals(2, count);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void occurrencesOf_multiple_character_string_throws()
-    {
+    public void occurrencesOf_multiple_character_string_throws() {
         StringIterate.occurrencesOf("1a2a3", "abc");
     }
 
     @Test
-    public void occurrencesOfCodePoint()
-    {
+    public void occurrencesOfCodePoint() {
         int count = StringIterate.occurrencesOf("1a2a3", "a".codePointAt(0));
         Assert.assertEquals(2, count);
     }
 
     @Test
-    public void occurrencesOfString()
-    {
+    public void occurrencesOfString() {
         int count = StringIterate.occurrencesOf("1a2a3", "a");
         Assert.assertEquals(2, count);
     }
 
     @Test
-    public void count2()
-    {
+    public void count2() {
         int count = StringIterate.count("1a2a3", CharPredicates.isUndefined());
         Assert.assertEquals(0, count);
     }
 
     @Test
-    public void count2CodePoint()
-    {
+    public void count2CodePoint() {
         int count = StringIterate.count("1a2a3", CodePointPredicate.IS_UNDEFINED);
         Assert.assertEquals(0, count);
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         StringBuilder builder = new StringBuilder();
         StringIterate.forEach("1a2b3c", (CharProcedure) builder::append);
         Assert.assertEquals("1a2b3c", builder.toString());
     }
 
     @Test
-    public void forEachCodePoint()
-    {
+    public void forEachCodePoint() {
         StringBuilder builder = new StringBuilder();
         StringIterate.forEach("1a2b3c", (CodePointProcedure) builder::appendCodePoint);
         Assert.assertEquals("1a2b3c", builder.toString());
     }
 
     @Test
-    public void forEachCodePointUnicode()
-    {
+    public void forEachCodePointUnicode() {
         StringBuilder builder = new StringBuilder();
         StringIterate.forEach("\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09", (CodePointProcedure) builder::appendCodePoint);
         Assert.assertEquals("\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09", builder.toString());
     }
 
     @Test
-    public void reverseForEach()
-    {
+    public void reverseForEach() {
         StringBuilder builder = new StringBuilder();
         StringIterate.reverseForEach("1a2b3c", (CharProcedure) builder::append);
         Assert.assertEquals("c3b2a1", builder.toString());
-
         StringIterate.reverseForEach("", (char character) -> Assert.fail());
     }
 
     @Test
-    public void reverseForEachCodePoint()
-    {
+    public void reverseForEachCodePoint() {
         StringBuilder builder = new StringBuilder();
         StringIterate.reverseForEach("1a2b3c", (CodePointProcedure) builder::appendCodePoint);
         Assert.assertEquals("c3b2a1", builder.toString());
-
         StringIterate.reverseForEach("", (int codePoint) -> Assert.fail());
     }
 
     @Test
-    public void reverseForEachCodePointUnicode()
-    {
+    public void reverseForEachCodePointUnicode() {
         StringBuilder builder = new StringBuilder();
         StringIterate.reverseForEach("\u3042\uD840\uDC00\u3044\uD840\uDC03\u3046\uD83D\uDE09", (CodePointProcedure) builder::appendCodePoint);
         Assert.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
@@ -676,26 +465,21 @@ public class StringIterateTest
     }
 
     @Test
-    public void reverseForEachCodePointInvalidUnicode()
-    {
+    public void reverseForEachCodePointInvalidUnicode() {
         StringBuilder builder = new StringBuilder();
         StringIterate.reverseForEach("\u3042\uDC00\uD840\u3044\uDC03\uD840\u3046\uDE09\uD83D", (CodePointProcedure) builder::appendCodePoint);
         Assert.assertEquals("\uD83D\uDE09\u3046\uD840\uDC03\u3044\uD840\uDC00\u3042", builder.toString());
-
         StringBuilder builder2 = new StringBuilder();
         StringIterate.reverseForEach("\u3042\uD840\u3044\uD840\u3046\uD840", (CodePointProcedure) builder2::appendCodePoint);
         Assert.assertEquals("\uD840\u3046\uD840\u3044\uD840\u3042", builder2.toString());
-
         StringBuilder builder3 = new StringBuilder();
         StringIterate.reverseForEach("\u3042\uDC00\u3044\uDC03\u3046\uDC06", (CodePointProcedure) builder3::appendCodePoint);
         Assert.assertEquals("\uDC06\u3046\uDC03\u3044\uDC00\u3042", builder3.toString());
-
         StringIterate.reverseForEach("", (int codePoint) -> Assert.fail());
     }
 
     @Test
-    public void forEachToken()
-    {
+    public void forEachToken() {
         String tokens = "1,2";
         MutableList<Integer> list = Lists.mutable.of();
         StringIterate.forEachToken(tokens, ",", Procedures.throwing(string -> list.add(Integer.valueOf(string))));
@@ -705,8 +489,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void forEachTrimmedToken()
-    {
+    public void forEachTrimmedToken() {
         String tokens = " 1,2 ";
         MutableList<Integer> list = Lists.mutable.of();
         StringIterate.forEachTrimmedToken(tokens, ",", Procedures.throwing(string -> list.add(Integer.valueOf(string))));
@@ -716,21 +499,18 @@ public class StringIterateTest
     }
 
     @Test
-    public void csvTrimmedTokenToList()
-    {
+    public void csvTrimmedTokenToList() {
         String tokens = " 1,2 ";
         Assert.assertEquals(FastList.newListWith("1", "2"), StringIterate.csvTrimmedTokensToList(tokens));
     }
 
     @Test
-    public void injectIntoTokens()
-    {
+    public void injectIntoTokens() {
         Assert.assertEquals("123", StringIterate.injectIntoTokens("1,2,3", ",", null, AddFunction.STRING));
     }
 
     @Test
-    public void getLastToken()
-    {
+    public void getLastToken() {
         Assert.assertEquals("charlie", StringIterate.getLastToken("alpha~|~beta~|~charlie", "~|~"));
         Assert.assertEquals("123", StringIterate.getLastToken("123", "~|~"));
         Assert.assertEquals("", StringIterate.getLastToken("", "~|~"));
@@ -740,8 +520,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void getFirstToken()
-    {
+    public void getFirstToken() {
         Assert.assertEquals("alpha", StringIterate.getFirstToken("alpha~|~beta~|~charlie", "~|~"));
         Assert.assertEquals("123", StringIterate.getFirstToken("123", "~|~"));
         Assert.assertEquals("", StringIterate.getFirstToken("", "~|~"));
@@ -751,38 +530,33 @@ public class StringIterateTest
     }
 
     @Test
-    public void isEmptyOrWhitespace()
-    {
+    public void isEmptyOrWhitespace() {
         Assert.assertTrue(StringIterate.isEmptyOrWhitespace("   "));
         Assert.assertFalse(StringIterate.isEmptyOrWhitespace(" 1  "));
     }
 
     @Test
-    public void notEmptyOrWhitespace()
-    {
+    public void notEmptyOrWhitespace() {
         Assert.assertFalse(StringIterate.notEmptyOrWhitespace("   "));
         Assert.assertTrue(StringIterate.notEmptyOrWhitespace(" 1  "));
     }
 
     @Test
-    public void isEmpty()
-    {
+    public void isEmpty() {
         Assert.assertTrue(StringIterate.isEmpty(""));
         Assert.assertFalse(StringIterate.isEmpty("   "));
         Assert.assertFalse(StringIterate.isEmpty("1"));
     }
 
     @Test
-    public void notEmpty()
-    {
+    public void notEmpty() {
         Assert.assertFalse(StringIterate.notEmpty(""));
         Assert.assertTrue(StringIterate.notEmpty("   "));
         Assert.assertTrue(StringIterate.notEmpty("1"));
     }
 
     @Test
-    public void repeat()
-    {
+    public void repeat() {
         Assert.assertEquals("", StringIterate.repeat("", 42));
         Assert.assertEquals("    ", StringIterate.repeat(' ', 4));
         Assert.assertEquals("        ", StringIterate.repeat(" ", 8));
@@ -790,119 +564,86 @@ public class StringIterateTest
     }
 
     @Test
-    public void padOrTrim()
-    {
+    public void padOrTrim() {
         Assert.assertEquals("abcdefghijkl", StringIterate.padOrTrim("abcdefghijkl", 12));
         Assert.assertEquals("this n", StringIterate.padOrTrim("this needs to be trimmed", 6));
         Assert.assertEquals("pad this      ", StringIterate.padOrTrim("pad this", 14));
     }
 
     @Test
-    public void string()
-    {
+    public void string() {
         Assert.assertEquals("Token2", StringIterate.getLastToken("Token1DelimiterToken2", "Delimiter"));
     }
 
     @Test
-    public void toList()
-    {
+    public void toList() {
         Assert.assertEquals(FastList.newListWith('a', 'a', 'b', 'c', 'd', 'e'), StringIterate.toList("aabcde"));
     }
 
     @Test
-    public void toLowercaseList()
-    {
+    public void toLowercaseList() {
         MutableList<Character> set = StringIterate.toLowercaseList("America");
         Assert.assertEquals(FastList.newListWith('a', 'm', 'e', 'r', 'i', 'c', 'a'), set);
     }
 
     @Test
-    public void toUppercaseList()
-    {
+    public void toUppercaseList() {
         MutableList<Character> set = StringIterate.toUppercaseList("America");
         Assert.assertEquals(FastList.newListWith('A', 'M', 'E', 'R', 'I', 'C', 'A'), set);
     }
 
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         Verify.assertSetsEqual(UnifiedSet.newSetWith('a', 'b', 'c', 'd', 'e'), StringIterate.toSet("aabcde"));
     }
 
     @Test
-    public void chunk()
-    {
-        Assert.assertEquals(
-                Lists.immutable.with("ab", "cd", "ef"),
-                StringIterate.chunk("abcdef", 2));
-
-        Assert.assertEquals(
-                Lists.immutable.with("abc", "def"),
-                StringIterate.chunk("abcdef", 3));
-
-        Assert.assertEquals(
-                Lists.immutable.with("abc", "def", "g"),
-                StringIterate.chunk("abcdefg", 3));
-
-        Assert.assertEquals(
-                Lists.immutable.with("abcdef"),
-                StringIterate.chunk("abcdef", 6));
-
-        Assert.assertEquals(
-                Lists.immutable.with("abcdef"),
-                StringIterate.chunk("abcdef", 7));
-
-        Assert.assertEquals(
-                Lists.immutable.with(),
-                StringIterate.chunk("", 2));
+    public void chunk() {
+        Assert.assertEquals(Lists.immutable.with("ab", "cd", "ef"), StringIterate.chunk("abcdef", 2));
+        Assert.assertEquals(Lists.immutable.with("abc", "def"), StringIterate.chunk("abcdef", 3));
+        Assert.assertEquals(Lists.immutable.with("abc", "def", "g"), StringIterate.chunk("abcdefg", 3));
+        Assert.assertEquals(Lists.immutable.with("abcdef"), StringIterate.chunk("abcdef", 6));
+        Assert.assertEquals(Lists.immutable.with("abcdef"), StringIterate.chunk("abcdef", 7));
+        Assert.assertEquals(Lists.immutable.with(), StringIterate.chunk("", 2));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void chunkWithZeroSize()
-    {
+    public void chunkWithZeroSize() {
         StringIterate.chunk("abcdef", 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void chunkWithNegativeSize()
-    {
+    public void chunkWithNegativeSize() {
         StringIterate.chunk("abcdef", -42);
     }
 
     @Test
-    public void toLowercaseSet()
-    {
+    public void toLowercaseSet() {
         MutableSet<Character> set = StringIterate.toLowercaseSet("America");
         Assert.assertEquals(UnifiedSet.newSetWith('a', 'm', 'e', 'r', 'i', 'c'), set);
         Assert.assertEquals(StringIterate.asLowercaseSet("America"), set);
     }
 
     @Test
-    public void toUppercaseSet()
-    {
+    public void toUppercaseSet() {
         MutableSet<Character> set = StringIterate.toUppercaseSet("America");
         Assert.assertEquals(UnifiedSet.newSetWith('A', 'M', 'E', 'R', 'I', 'C'), set);
         Assert.assertEquals(StringIterate.asUppercaseSet("America"), set);
     }
 
     @Test
-    public void splitAtIndex()
-    {
+    public void splitAtIndex() {
         String oompaLoompa = "oompaloompa";
-
         Assert.assertEquals(Tuples.twin("oompa", "loompa"), StringIterate.splitAtIndex(oompaLoompa, 5));
         Assert.assertEquals(Tuples.twin("", oompaLoompa), StringIterate.splitAtIndex(oompaLoompa, 0));
         Assert.assertEquals(Tuples.twin(oompaLoompa, ""), StringIterate.splitAtIndex(oompaLoompa, oompaLoompa.length()));
-
         Assert.assertEquals(Tuples.twin("", ""), StringIterate.splitAtIndex("", 0));
-
         Assert.assertThrows(StringIndexOutOfBoundsException.class, () -> StringIterate.splitAtIndex(oompaLoompa, 17));
         Assert.assertThrows(StringIndexOutOfBoundsException.class, () -> StringIterate.splitAtIndex(oompaLoompa, -8));
     }
 
     @Test
-    public void toLowercaseBag()
-    {
+    public void toLowercaseBag() {
         MutableBag<Character> lowercaseBag = StringIterate.toLowercaseBag("America");
         Assert.assertEquals(2, lowercaseBag.occurrencesOf(Character.valueOf('a')));
         Assert.assertEquals(1, lowercaseBag.occurrencesOf(Character.valueOf('m')));
@@ -913,8 +654,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void toUppercaseBag()
-    {
+    public void toUppercaseBag() {
         MutableBag<Character> uppercaseBag = StringIterate.toUppercaseBag("America");
         Assert.assertEquals(2, uppercaseBag.occurrencesOf(Character.valueOf('A')));
         Assert.assertEquals(1, uppercaseBag.occurrencesOf(Character.valueOf('M')));
@@ -925,8 +665,7 @@ public class StringIterateTest
     }
 
     @Test
-    public void toBag()
-    {
+    public void toBag() {
         MutableBag<Character> bag = StringIterate.toBag("America");
         Assert.assertEquals(1, bag.occurrencesOf(Character.valueOf('A')));
         Assert.assertEquals(1, bag.occurrencesOf(Character.valueOf('m')));
@@ -938,8 +677,515 @@ public class StringIterateTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(StringIterate.class);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asCharAdapter() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asCharAdapter, this.description("asCharAdapter"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asCharAdapterExtra() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asCharAdapterExtra, this.description("asCharAdapterExtra"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_buildTheAlphabetFromEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::buildTheAlphabetFromEmpty, this.description("buildTheAlphabetFromEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asCodePointAdapter() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asCodePointAdapter, this.description("asCodePointAdapter"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asCodePointAdapterExtra() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asCodePointAdapterExtra, this.description("asCodePointAdapterExtra"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toCodePointList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toCodePointList, this.description("toCodePointList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toCodePointListExtra() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toCodePointListExtra, this.description("toCodePointListExtra"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_englishToUpperLowerCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::englishToUpperLowerCase, this.description("englishToUpperLowerCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectCodePoint, this.description("collectCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectCodePointUnicode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectCodePointUnicode, this.description("collectCodePointUnicode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_englishToUpperCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::englishToUpperCase, this.description("englishToUpperCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_englishToLowerCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::englishToLowerCase, this.description("englishToLowerCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_englishIsUpperLowerCase() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::englishIsUpperLowerCase, this.description("englishIsUpperLowerCase"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectCodePoint, this.description("selectCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectCodePointUnicode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectCodePointUnicode, this.description("selectCodePointUnicode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detect, this.description("detect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNone, this.description("detectIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNoneWithString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNoneWithString, this.description("detectIfNoneWithString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyCodePoint, this.description("allSatisfyCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyCodePointUnicode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyCodePointUnicode, this.description("allSatisfyCodePointUnicode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyCodePoint, this.description("anySatisfyCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyCodePointUnicode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyCodePointUnicode, this.description("anySatisfyCodePointUnicode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyCodePoint, this.description("noneSatisfyCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyCodePointUnicode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyCodePointUnicode, this.description("noneSatisfyCodePointUnicode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isNumber() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isNumber, this.description("isNumber"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isAlphaNumeric() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isAlphaNumeric, this.description("isAlphaNumeric"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_csvTokensToList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::csvTokensToList, this.description("csvTokensToList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_csvTokensToSortedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::csvTokensToSortedList, this.description("csvTokensToSortedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_csvTrimmedTokensToSortedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::csvTrimmedTokensToSortedList, this.description("csvTrimmedTokensToSortedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_csvTokensToSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::csvTokensToSet, this.description("csvTokensToSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_csvTokensToReverseSortedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::csvTokensToReverseSortedList, this.description("csvTokensToReverseSortedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tokensToMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tokensToMap, this.description("tokensToMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tokensToMapWithFunctions() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tokensToMapWithFunctions, this.description("tokensToMapWithFunctions"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectCodePoint, this.description("rejectCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countCodePoint, this.description("countCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_occurrencesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::occurrencesOf, this.description("occurrencesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_occurrencesOf_multiple_character_string_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::occurrencesOf_multiple_character_string_throws, this.description("occurrencesOf_multiple_character_string_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_occurrencesOfCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::occurrencesOfCodePoint, this.description("occurrencesOfCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_occurrencesOfString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::occurrencesOfString, this.description("occurrencesOfString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count2, this.description("count2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count2CodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count2CodePoint, this.description("count2CodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachCodePoint, this.description("forEachCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachCodePointUnicode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachCodePointUnicode, this.description("forEachCodePointUnicode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEach, this.description("reverseForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEachCodePoint() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEachCodePoint, this.description("reverseForEachCodePoint"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEachCodePointUnicode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEachCodePointUnicode, this.description("reverseForEachCodePointUnicode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEachCodePointInvalidUnicode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEachCodePointInvalidUnicode, this.description("reverseForEachCodePointInvalidUnicode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachToken() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachToken, this.description("forEachToken"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachTrimmedToken() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachTrimmedToken, this.description("forEachTrimmedToken"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_csvTrimmedTokenToList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::csvTrimmedTokenToList, this.description("csvTrimmedTokenToList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoTokens() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoTokens, this.description("injectIntoTokens"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLastToken() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLastToken, this.description("getLastToken"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstToken() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstToken, this.description("getFirstToken"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmptyOrWhitespace() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmptyOrWhitespace, this.description("isEmptyOrWhitespace"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notEmptyOrWhitespace() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::notEmptyOrWhitespace, this.description("notEmptyOrWhitespace"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmpty, this.description("isEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::notEmpty, this.description("notEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_repeat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::repeat, this.description("repeat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_padOrTrim() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::padOrTrim, this.description("padOrTrim"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_string() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::string, this.description("string"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toLowercaseList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toLowercaseList, this.description("toLowercaseList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toUppercaseList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toUppercaseList, this.description("toUppercaseList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk, this.description("chunk"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunkWithZeroSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::chunkWithZeroSize, this.description("chunkWithZeroSize"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunkWithNegativeSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::chunkWithNegativeSize, this.description("chunkWithNegativeSize"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toLowercaseSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toLowercaseSet, this.description("toLowercaseSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toUppercaseSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toUppercaseSet, this.description("toUppercaseSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_splitAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::splitAtIndex, this.description("splitAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toLowercaseBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toLowercaseBag, this.description("toLowercaseBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toUppercaseBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toUppercaseBag, this.description("toUppercaseBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toBag, this.description("toBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        private StringIterateTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new StringIterateTest();
+        }
+
+        @java.lang.Override
+        public StringIterateTest implementation() {
+            return this.implementation;
+        }
     }
 }

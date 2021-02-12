@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap.bag.strategy;
 
 import org.eclipse.collections.api.RichIterable;
@@ -32,25 +31,22 @@ import org.junit.Test;
 /**
  * Test of {@link HashBagMultimap}.
  */
-public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMultimapTestCase
-{
+public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMultimapTestCase {
+
     @Override
-    protected <K, V> MutableBagMultimap<K, V> newMultimap()
-    {
+    protected <K, V> MutableBagMultimap<K, V> newMultimap() {
         return HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.defaultStrategy());
     }
 
     @Override
-    protected <K, V> MutableBagMultimap<K, V> newMultimapWithKeyValue(K key, V value)
-    {
+    protected <K, V> MutableBagMultimap<K, V> newMultimapWithKeyValue(K key, V value) {
         MutableBagMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key, value);
         return mutableMultimap;
     }
 
     @Override
-    protected <K, V> MutableBagMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    protected <K, V> MutableBagMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2) {
         MutableBagMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -58,11 +54,7 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
     }
 
     @Override
-    protected <K, V> MutableBagMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3)
-    {
+    protected <K, V> MutableBagMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         MutableBagMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -71,12 +63,7 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
     }
 
     @Override
-    protected <K, V> MutableBagMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3,
-            K key4, V value4)
-    {
+    protected <K, V> MutableBagMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         MutableBagMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -86,31 +73,25 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
     }
 
     @Override
-    protected final <K, V> MutableBagMultimap<K, V> newMultimap(Pair<K, V>... pairs)
-    {
+    protected final <K, V> MutableBagMultimap<K, V> newMultimap(Pair<K, V>... pairs) {
         return HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.defaultStrategy(), pairs);
     }
 
     @Override
-    protected <K, V> MutableBagMultimap<K, V> newMultimapFromPairs(Iterable<Pair<K, V>> inputIterable)
-    {
+    protected <K, V> MutableBagMultimap<K, V> newMultimapFromPairs(Iterable<Pair<K, V>> inputIterable) {
         return HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.defaultStrategy(), inputIterable);
     }
 
     @Override
-    protected final <V> MutableBag<V> createCollection(V... args)
-    {
+    protected final <V> MutableBag<V> createCollection(V... args) {
         return Bags.mutable.of(args);
     }
 
     @Override
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         super.toImmutable();
-
-        MutableBagMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
+        MutableBagMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         ImmutableMultimap<String, Integer> actual = multimap.toImmutable();
         Assert.assertNotNull(actual);
         Assert.assertEquals(multimap, actual);
@@ -120,12 +101,9 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
 
     @Override
     @Test
-    public void toMutable()
-    {
+    public void toMutable() {
         super.toMutable();
-
-        MutableBagMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
+        MutableBagMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         MutableMultimap<String, Integer> mutableCopy = multimap.toMutable();
         Assert.assertNotSame(multimap, mutableCopy);
         Assert.assertEquals(multimap, mutableCopy);
@@ -134,12 +112,9 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
 
     @Override
     @Test
-    public void toMap()
-    {
+    public void toMap() {
         super.toMap();
-
-        MutableBagMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
+        MutableBagMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         UnifiedMapWithHashingStrategy<String, RichIterable<Integer>> expected = UnifiedMapWithHashingStrategy.newMap(HashingStrategies.defaultStrategy());
         expected.put("One", this.createCollection(1));
         expected.put("Two", this.createCollection(2, 2));
@@ -150,12 +125,9 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
 
     @Override
     @Test
-    public void toMapWithTarget()
-    {
+    public void toMapWithTarget() {
         super.toMapWithTarget();
-
-        MutableBagMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
+        MutableBagMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         UnifiedMapWithHashingStrategy<String, RichIterable<Integer>> expected = UnifiedMapWithHashingStrategy.newMap(HashingStrategies.defaultStrategy());
         expected.put("One", UnifiedSet.newSetWith(1));
         expected.put("Two", UnifiedSet.newSetWith(2, 2));
@@ -165,33 +137,76 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
     }
 
     @Test
-    public void testHashingStrategyConstructor()
-    {
+    public void testHashingStrategyConstructor() {
         HashBagMultimapWithHashingStrategy<Integer, Integer> multimapWithIdentity = HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.identityStrategy());
-
         multimapWithIdentity.put(new Integer(1), 1);
         multimapWithIdentity.putAll(new Integer(1), Lists.fixedSize.of(2, 20, 1));
         multimapWithIdentity.put(new Integer(1), 3);
-
         Assert.assertEquals(3, multimapWithIdentity.sizeDistinct());
         Verify.assertSize(5, multimapWithIdentity);
-
         HashBagMultimapWithHashingStrategy<Integer, Integer> multimapWithDefault = HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.defaultStrategy(), multimapWithIdentity);
-
         Assert.assertEquals(1, multimapWithDefault.sizeDistinct());
         Verify.assertSize(5, multimapWithDefault);
-
         Verify.assertIterablesEqual(multimapWithIdentity.valuesView().toBag(), multimapWithDefault.valuesView().toBag());
-
         HashBagMultimapWithHashingStrategy<Integer, Integer> copyOfMultimapWithDefault = HashBagMultimapWithHashingStrategy.newMultimap(multimapWithDefault);
-
         Verify.assertMapsEqual(multimapWithDefault.toMap(), copyOfMultimapWithDefault.toMap());
     }
 
     @Test
-    public void testKeyHashingStrategy()
-    {
+    public void testKeyHashingStrategy() {
         HashBagMultimapWithHashingStrategy<Integer, Integer> multimap = HashBagMultimapWithHashingStrategy.newMultimap(HashingStrategies.identityStrategy());
         Assert.assertEquals(HashingStrategies.identityStrategy(), multimap.getKeyHashingStrategy());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMutable, this.description("toMutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMap, this.description("toMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMapWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMapWithTarget, this.description("toMapWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testHashingStrategyConstructor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testHashingStrategyConstructor, this.description("testHashingStrategyConstructor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testKeyHashingStrategy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testKeyHashingStrategy, this.description("testKeyHashingStrategy"));
+        }
+
+        private HashBagMultimapWithHashingStrategyTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBagMultimapWithHashingStrategyTest();
+        }
+
+        @java.lang.Override
+        public HashBagMultimapWithHashingStrategyTest implementation() {
+            return this.implementation;
+        }
     }
 }

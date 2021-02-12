@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.strategy.immutable;
 
 import org.eclipse.collections.api.block.HashingStrategy;
@@ -23,48 +22,67 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableEmptySetWithHashingStrategyTest extends AbstractImmutableEmptySetTestCase
-{
-    //Not using the static factor method in order to have concrete types for test cases
-    private static final HashingStrategy<Integer> HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<Integer>()
-    {
-        public int computeHashCode(Integer object)
-        {
+public class ImmutableEmptySetWithHashingStrategyTest extends AbstractImmutableEmptySetTestCase {
+
+    // Not using the static factor method in order to have concrete types for test cases
+    private static final HashingStrategy<Integer> HASHING_STRATEGY = HashingStrategies.nullSafeHashingStrategy(new HashingStrategy<Integer>() {
+
+        public int computeHashCode(Integer object) {
             return object.hashCode();
         }
 
-        public boolean equals(Integer object1, Integer object2)
-        {
+        public boolean equals(Integer object1, Integer object2) {
             return object1.equals(object2);
         }
     });
 
     @Override
-    protected ImmutableSet<Integer> classUnderTest()
-    {
+    protected ImmutableSet<Integer> classUnderTest() {
         return new ImmutableEmptySetWithHashingStrategy<>(HASHING_STRATEGY);
     }
 
     @Override
     @Test
-    public void newWithout()
-    {
-        Assert.assertEquals(
-                HashingStrategySets.immutable.of(HASHING_STRATEGY),
-                HashingStrategySets.immutable.of(HASHING_STRATEGY).newWithout(1));
-        Assert.assertEquals(
-                HashingStrategySets.immutable.of(HASHING_STRATEGY),
-                HashingStrategySets.immutable.of(HASHING_STRATEGY).newWithoutAll(Interval.oneTo(3)));
+    public void newWithout() {
+        Assert.assertEquals(HashingStrategySets.immutable.of(HASHING_STRATEGY), HashingStrategySets.immutable.of(HASHING_STRATEGY).newWithout(1));
+        Assert.assertEquals(HashingStrategySets.immutable.of(HASHING_STRATEGY), HashingStrategySets.immutable.of(HASHING_STRATEGY).newWithoutAll(Interval.oneTo(3)));
     }
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         ImmutableSet<Integer> immutable = this.classUnderTest();
         MutableSet<Integer> mutable = UnifiedSet.newSet(immutable);
         Verify.assertEqualsAndHashCode(mutable, immutable);
         Verify.assertPostSerializedEqualsAndHashCode(immutable);
         Assert.assertNotEquals(FastList.newList(mutable), immutable);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithout() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithout, this.description("newWithout"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        private ImmutableEmptySetWithHashingStrategyTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableEmptySetWithHashingStrategyTest();
+        }
+
+        @java.lang.Override
+        public ImmutableEmptySetWithHashingStrategyTest implementation() {
+            return this.implementation;
+        }
     }
 }

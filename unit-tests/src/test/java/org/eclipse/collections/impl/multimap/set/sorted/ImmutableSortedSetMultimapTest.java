@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap.set.sorted;
 
 import java.util.Collections;
-
 import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.api.multimap.bag.ImmutableBagMultimap;
 import org.eclipse.collections.api.multimap.bag.MutableBagMultimap;
@@ -39,23 +37,20 @@ import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTestCase
-{
+public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTestCase {
+
     @Override
-    protected <K, V> ImmutableSortedSetMultimap<K, V> classUnderTest()
-    {
+    protected <K, V> ImmutableSortedSetMultimap<K, V> classUnderTest() {
         return TreeSortedSetMultimap.<K, V>newMultimap().toImmutable();
     }
 
     @Override
-    protected MutableCollection<String> mutableCollection()
-    {
+    protected MutableCollection<String> mutableCollection() {
         return TreeSortedSet.newSet();
     }
 
     @Test
-    public void testConstructor()
-    {
+    public void testConstructor() {
         UnifiedMap<Integer, ImmutableSortedSet<Integer>> map = UnifiedMap.newWithKeysValues(1, TreeSortedSet.newSetWith(1).toImmutable());
         ImmutableSortedSetMultimap<Integer, Integer> immutableMap = new ImmutableSortedSetMultimapImpl<>(map, null);
         Assert.assertEquals(FastList.newListWith(1), immutableMap.get(1).toList());
@@ -64,40 +59,31 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
     }
 
     @Test
-    public void testNewEmpty()
-    {
+    public void testNewEmpty() {
         ImmutableSortedSetMultimap<Integer, Integer> map = new ImmutableSortedSetMultimapImpl<>(UnifiedMap.newMap(), Collections.reverseOrder());
         Assert.assertEquals(Collections.<Integer>reverseOrder(), map.newEmpty().comparator());
         Verify.assertEmpty(map.newEmpty());
     }
 
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         TreeSortedSetMultimap<Integer, Integer> map = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         map.putAll(1, FastList.newListWith(1, 2, 3, 4));
         map.putAll(2, FastList.newListWith(2, 3, 4, 5));
         ImmutableSortedSetMultimap<Integer, Integer> immutableMap = map.toImmutable();
         Verify.assertPostSerializedEqualsAndHashCode(immutableMap);
-
         ImmutableSortedSetMultimap<Integer, Integer> deserialized = SerializeTestHelper.serializeDeserialize(immutableMap);
-        Verify.assertSortedSetsEqual(
-                TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), 1, 2, 3, 4),
-                deserialized.get(1).castToSortedSet());
-        Verify.assertListsEqual(
-                FastList.newListWith(10, 9, 8),
-                deserialized.newWithAll(3, FastList.newListWith(8, 9, 10)).get(3).toList());
+        Verify.assertSortedSetsEqual(TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), 1, 2, 3, 4), deserialized.get(1).castToSortedSet());
+        Verify.assertListsEqual(FastList.newListWith(10, 9, 8), deserialized.newWithAll(3, FastList.newListWith(8, 9, 10)).get(3).toList());
     }
 
     @Override
-    public void allowDuplicates()
-    {
-        // Sets do not allow duplicates
+    public void allowDuplicates() {
+    // Sets do not allow duplicates
     }
 
     @Test
-    public void forEachKeyMultiValue()
-    {
+    public void forEachKeyMultiValue() {
         MutableSet<Pair<String, Iterable<Integer>>> collection = UnifiedSet.newSet();
         TreeSortedSetMultimap<String, Integer> multimap = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         multimap.put("Two", 2);
@@ -110,13 +96,8 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
 
     @Override
     @Test
-    public void flip()
-    {
-        ImmutableSortedSetMultimap<String, Integer> multimap = this.<String, Integer>classUnderTest()
-                .newWith("Less than 2", 1)
-                .newWith("Less than 3", 1)
-                .newWith("Less than 3", 2)
-                .newWith("Less than 3", 2);
+    public void flip() {
+        ImmutableSortedSetMultimap<String, Integer> multimap = this.<String, Integer>classUnderTest().newWith("Less than 2", 1).newWith("Less than 3", 1).newWith("Less than 3", 2).newWith("Less than 3", 2);
         UnsortedSetMultimap<Integer, String> flipped = multimap.flip();
         Assert.assertEquals(Sets.immutable.with("Less than 3"), flipped.get(2));
         Assert.assertEquals(Sets.immutable.with("Less than 2", "Less than 3"), flipped.get(1));
@@ -124,8 +105,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
 
     @Override
     @Test
-    public void selectKeysValues()
-    {
+    public void selectKeysValues() {
         MutableSortedSetMultimap<String, Integer> mutableMultimap = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         mutableMultimap.putAll("One", FastList.newListWith(4, 3, 2, 1, 1));
         mutableMultimap.putAll("Two", FastList.newListWith(5, 4, 3, 2, 2));
@@ -140,8 +120,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
 
     @Override
     @Test
-    public void rejectKeysValues()
-    {
+    public void rejectKeysValues() {
         MutableSortedSetMultimap<String, Integer> mutableMultimap = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         mutableMultimap.putAll("One", FastList.newListWith(4, 3, 2, 1, 1));
         mutableMultimap.putAll("Two", FastList.newListWith(5, 4, 3, 2, 2));
@@ -156,8 +135,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
 
     @Override
     @Test
-    public void selectKeysMultiValues()
-    {
+    public void selectKeysMultiValues() {
         MutableSortedSetMultimap<Integer, Integer> mutableMultimap = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         mutableMultimap.putAll(1, FastList.newListWith(4, 3, 1));
         mutableMultimap.putAll(2, FastList.newListWith(5, 4, 3, 2, 2));
@@ -174,8 +152,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
 
     @Override
     @Test
-    public void rejectKeysMultiValues()
-    {
+    public void rejectKeysMultiValues() {
         MutableSortedSetMultimap<Integer, Integer> mutableMultimap = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         mutableMultimap.putAll(1, FastList.newListWith(5, 4, 3, 2, 1));
         mutableMultimap.putAll(2, FastList.newListWith(5, 4, 3, 2, 2));
@@ -192,8 +169,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
 
     @Override
     @Test
-    public void collectKeysValues()
-    {
+    public void collectKeysValues() {
         MutableSortedSetMultimap<String, Integer> mutableMultimap = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         mutableMultimap.putAll("1", FastList.newListWith(4, 3, 2, 1, 1));
         mutableMultimap.putAll("2", FastList.newListWith(5, 4, 3, 2, 2));
@@ -204,7 +180,6 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         expectedMultimap1.putAll(2, FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
         ImmutableBagMultimap<Integer, String> expectedImmutableMultimap1 = expectedMultimap1.toImmutable();
         Verify.assertBagMultimapsEqual(expectedImmutableMultimap1, collectedMultimap1);
-
         ImmutableBagMultimap<Integer, String> collectedMultimap2 = immutableMap.collectKeysValues((key, value) -> Tuples.pair(1, value + "Value"));
         MutableBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("4Value", "3Value", "2Value", "1Value"));
@@ -215,10 +190,8 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
 
     @Override
     @Test
-    public void collectKeyMultiValues()
-    {
+    public void collectKeyMultiValues() {
         super.collectKeyMultiValues();
-
         MutableSortedSetMultimap<String, Integer> mutableMultimap = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         mutableMultimap.putAll("1", FastList.newListWith(4, 3, 2, 1, 1));
         mutableMultimap.putAll("2", FastList.newListWith(5, 4, 3, 2, 2));
@@ -229,7 +202,6 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         expectedMultimap1.putAll(2, FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
         ImmutableBagMultimap<Integer, String> expectedImmutableMultimap1 = expectedMultimap1.toImmutable();
         Verify.assertBagMultimapsEqual(expectedImmutableMultimap1, collectedMultimap1);
-
         ImmutableBagMultimap<Integer, String> collectedMultimap2 = immutableMap.collectKeyMultiValues(key -> 1, value -> value + "Value");
         MutableBagMultimap<Integer, String> expectedMultimap2 = HashBagMultimap.newMultimap();
         expectedMultimap2.putAll(1, FastList.newListWith("4Value", "3Value", "2Value", "1Value"));
@@ -240,8 +212,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
 
     @Override
     @Test
-    public void collectValues()
-    {
+    public void collectValues() {
         MutableSortedSetMultimap<String, Integer> mutableMultimap = TreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
         mutableMultimap.putAll("1", FastList.newListWith(4, 3, 2, 1, 1));
         mutableMultimap.putAll("2", FastList.newListWith(5, 4, 3, 2, 2));
@@ -252,5 +223,93 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         expectedMultimap.putAll("2", FastList.newListWith("5Value", "4Value", "3Value", "2Value"));
         ImmutableListMultimap<String, String> expectedImmutableMultimap = expectedMultimap.toImmutable();
         Verify.assertListMultimapsEqual(expectedImmutableMultimap, collectedMultimap);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testConstructor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testConstructor, this.description("testConstructor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewEmpty, this.description("testNewEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKeyMultiValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachKeyMultiValue, this.description("forEachKeyMultiValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flip, this.description("flip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectKeysValues, this.description("selectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectKeysValues, this.description("rejectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectKeysMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectKeysMultiValues, this.description("selectKeysMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectKeysMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectKeysMultiValues, this.description("rejectKeysMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectKeysValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectKeysValues, this.description("collectKeysValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectKeyMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectKeyMultiValues, this.description("collectKeyMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectValues, this.description("collectValues"));
+        }
+
+        private ImmutableSortedSetMultimapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableSortedSetMultimapTest();
+        }
+
+        @java.lang.Override
+        public ImmutableSortedSetMultimapTest implementation() {
+            return this.implementation;
+        }
     }
 }

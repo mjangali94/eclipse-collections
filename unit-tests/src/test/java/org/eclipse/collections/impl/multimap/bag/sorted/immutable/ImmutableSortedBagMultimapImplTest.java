@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap.bag.sorted.immutable;
 
 import org.eclipse.collections.api.collection.MutableCollection;
@@ -31,24 +30,21 @@ import org.eclipse.collections.impl.utility.Iterate;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultimapTestCase
-{
+public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultimapTestCase {
+
     @Override
-    protected <K, V> ImmutableMultimap<K, V> classUnderTest()
-    {
+    protected <K, V> ImmutableMultimap<K, V> classUnderTest() {
         return new ImmutableSortedBagMultimapImpl<>(UnifiedMap.newMap());
     }
 
     @Override
-    protected MutableCollection<String> mutableCollection()
-    {
+    protected MutableCollection<String> mutableCollection() {
         return SortedBags.mutable.empty();
     }
 
     @Override
     @Test
-    public void flip()
-    {
+    public void flip() {
         MutableSortedBagMultimap<String, Integer> mutableMap = TreeBagMultimap.newMultimap();
         mutableMap.put("Less than 2", 1);
         mutableMap.put("Less than 3", 1);
@@ -62,15 +58,13 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
 
     @Override
     @Test
-    public void noDuplicates()
-    {
-        // Bags allow duplicates
+    public void noDuplicates() {
+    // Bags allow duplicates
     }
 
     @Override
     @Test
-    public void collectValues()
-    {
+    public void collectValues() {
         MutableSortedBagMultimap<String, Integer> mutableMultimap = TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder());
         mutableMultimap.putAll("1", FastList.newListWith(4, 3, 2, 1, 1));
         mutableMultimap.putAll("2", FastList.newListWith(5, 4, 3, 2, 2));
@@ -85,8 +79,7 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
 
     @Override
     @Test
-    public void rejectKeysMultiValues()
-    {
+    public void rejectKeysMultiValues() {
         MutableSortedBagMultimap<Integer, Integer> multimap = TreeBagMultimap.newMultimap(Comparators.reverseNaturalOrder());
         multimap.putAll(1, FastList.newListWith(4, 3, 2, 1, 1));
         multimap.putAll(2, FastList.newListWith(5, 4, 3, 2, 2));
@@ -101,8 +94,7 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
     }
 
     @Test
-    public void constructors()
-    {
+    public void constructors() {
         ImmutableSortedBagMultimap<Integer, Integer> map = new ImmutableSortedBagMultimapImpl<>(Maps.immutable.empty());
         ImmutableSortedBagMultimap<Integer, Integer> map2 = new ImmutableSortedBagMultimapImpl<>(Maps.immutable.empty(), Comparators.reverseNaturalOrder());
         Assert.assertEquals(this.classUnderTest(), map);
@@ -110,10 +102,61 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
     }
 
     @Test
-    public void empty()
-    {
+    public void empty() {
         ImmutableSortedBagMultimap<Object, Object> multimap = new ImmutableSortedBagMultimapImpl<>(Maps.mutable.empty()).newEmpty();
         Verify.assertEmpty(multimap);
         Verify.assertInstanceOf(ImmutableSortedBagMultimap.class, multimap);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flip, this.description("flip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noDuplicates() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noDuplicates, this.description("noDuplicates"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectValues, this.description("collectValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectKeysMultiValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectKeysMultiValues, this.description("rejectKeysMultiValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_constructors() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::constructors, this.description("constructors"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::empty, this.description("empty"));
+        }
+
+        private ImmutableSortedBagMultimapImplTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableSortedBagMultimapImplTest();
+        }
+
+        @java.lang.Override
+        public ImmutableSortedBagMultimapImplTest implementation() {
+            return this.implementation;
+        }
     }
 }

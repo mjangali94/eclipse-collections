@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set;
 
 import org.eclipse.collections.api.set.MutableSet;
@@ -15,26 +14,36 @@ import org.eclipse.collections.api.set.ParallelUnsortedSetIterable;
 import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 
-public class ParallelSelectUnsortedSetIterableTest extends ParallelUnsortedSetIterableTestCase
-{
+public class ParallelSelectUnsortedSetIterableTest extends ParallelUnsortedSetIterableTestCase {
+
     @Override
-    protected ParallelUnsortedSetIterable<Integer> classUnderTest()
-    {
+    protected ParallelUnsortedSetIterable<Integer> classUnderTest() {
         return this.newWith(-1, 1, -1, 2, -1, 2, -1, 3, -1, 3, -1, 3, 5, 4, 5, 4, 5, 4, 5, 4, 5);
     }
 
     @Override
-    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements)
-    {
-        return UnifiedSet.newSetWith(littleElements)
-                .asParallel(this.executorService, this.batchSize)
-                .select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements) {
+        return UnifiedSet.newSetWith(littleElements).asParallel(this.executorService, this.batchSize).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
     }
 
     @Override
-    protected MutableSet<Integer> getExpectedWith(Integer... littleElements)
-    {
-        return UnifiedSet.newSetWith(littleElements)
-                .select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    protected MutableSet<Integer> getExpectedWith(Integer... littleElements) {
+        return UnifiedSet.newSetWith(littleElements).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ParallelSelectUnsortedSetIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelSelectUnsortedSetIterableTest();
+        }
+
+        @java.lang.Override
+        public ParallelSelectUnsortedSetIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

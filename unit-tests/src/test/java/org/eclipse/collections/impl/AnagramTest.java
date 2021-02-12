@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl;
 
 import java.util.Arrays;
-
 import org.eclipse.collections.api.RichIterable;
 import org.eclipse.collections.api.block.procedure.Procedure;
 import org.eclipse.collections.api.list.MutableList;
@@ -30,137 +28,94 @@ import org.slf4j.LoggerFactory;
 /**
  * This class tests various algorithms for calculating anagrams from a list of words.
  */
-public class AnagramTest
-{
+public class AnagramTest {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(AnagramTest.class);
 
     private static final int SIZE_THRESHOLD = 10;
 
-    private MutableList<String> getWords()
-    {
-        return FastList.newListWith(
-                "alerts", "alters", "artels", "estral", "laster", "ratels", "salter", "slater", "staler", "stelar", "talers",
-                "least", "setal", "slate", "stale", "steal", "stela", "taels", "tales", "teals", "tesla");
+    private MutableList<String> getWords() {
+        return FastList.newListWith("alerts", "alters", "artels", "estral", "laster", "ratels", "salter", "slater", "staler", "stelar", "talers", "least", "setal", "slate", "stale", "steal", "stela", "taels", "tales", "teals", "tesla");
     }
 
     @Test
-    public void anagramsWithMultimapInlined()
-    {
-        MutableList<RichIterable<String>> results = this.getWords()
-                .groupBy(Alphagram::new)
-                .multiValuesView()
-                .select(iterable -> iterable.size() >= SIZE_THRESHOLD)
-                .toSortedList(Functions.toIntComparator(RichIterable::size));
-        results.asReversed()
-                .collect(iterable -> iterable.size() + ": " + iterable)
-                .each(LOGGER::info);
+    public void anagramsWithMultimapInlined() {
+        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new).multiValuesView().select(iterable -> iterable.size() >= SIZE_THRESHOLD).toSortedList(Functions.toIntComparator(RichIterable::size));
+        results.asReversed().collect(iterable -> iterable.size() + ": " + iterable).each(LOGGER::info);
         Verify.assertIterableSize(SIZE_THRESHOLD, results.getFirst());
     }
 
     @Test
-    public void anagramsWithMultimapEclipseCollections1()
-    {
-        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new)
-                .multiValuesView()
-                .select(iterable -> iterable.size() >= SIZE_THRESHOLD)
-                .toSortedList(Functions.toIntComparator(iterable -> -iterable.size()));
-        results.collect(iterable -> iterable.size() + ": " + iterable)
-                .each(LOGGER::info);
+    public void anagramsWithMultimapEclipseCollections1() {
+        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new).multiValuesView().select(iterable -> iterable.size() >= SIZE_THRESHOLD).toSortedList(Functions.toIntComparator(iterable -> -iterable.size()));
+        results.collect(iterable -> iterable.size() + ": " + iterable).each(LOGGER::info);
         Verify.assertIterableSize(SIZE_THRESHOLD, results.getLast());
     }
 
-    private boolean listContainsTestGroupAtElementsOneOrTwo(MutableList<MutableList<String>> list)
-    {
-        return list.get(1).containsAll(this.getTestAnagramGroup())
-                || list.get(2).containsAll(this.getTestAnagramGroup());
+    private boolean listContainsTestGroupAtElementsOneOrTwo(MutableList<MutableList<String>> list) {
+        return list.get(1).containsAll(this.getTestAnagramGroup()) || list.get(2).containsAll(this.getTestAnagramGroup());
     }
 
     @Test
-    public void anagramsWithMultimapEclipseCollections3()
-    {
-        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new)
-                .multiValuesView()
-                .toSortedList(Functions.toIntComparator(iterable -> -iterable.size()));
-        results.collectIf(iterable -> iterable.size() >= SIZE_THRESHOLD, iterable -> iterable.size() + ": " + iterable)
-                .each(LOGGER::info);
+    public void anagramsWithMultimapEclipseCollections3() {
+        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new).multiValuesView().toSortedList(Functions.toIntComparator(iterable -> -iterable.size()));
+        results.collectIf(iterable -> iterable.size() >= SIZE_THRESHOLD, iterable -> iterable.size() + ": " + iterable).each(LOGGER::info);
         Verify.assertIterableSize(SIZE_THRESHOLD, results.getLast());
     }
 
     @Test
-    public void anagramsWithMultimapEclipseCollections4()
-    {
-        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new)
-                .multiValuesView()
-                .toSortedList(Functions.toIntComparator(iterable -> -iterable.size()));
-        results.forEach(
-                Procedures.ifTrue(
-                        iterable -> iterable.size() >= SIZE_THRESHOLD,
-                        Functions.bind(Procedures.cast(LOGGER::info), iterable -> iterable.size() + ": " + iterable)));
+    public void anagramsWithMultimapEclipseCollections4() {
+        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new).multiValuesView().toSortedList(Functions.toIntComparator(iterable -> -iterable.size()));
+        results.forEach(Procedures.ifTrue(iterable -> iterable.size() >= SIZE_THRESHOLD, Functions.bind(Procedures.cast(LOGGER::info), iterable -> iterable.size() + ": " + iterable)));
         Verify.assertIterableSize(SIZE_THRESHOLD, results.getLast());
     }
 
     @Test
-    public void anagramsWithMultimapLazyIterable1()
-    {
-        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new)
-                .multiValuesView()
-                .toSortedList(Functions.toIntComparator(RichIterable::size));
-        results.asReversed()
-                .collectIf(iterable -> iterable.size() >= SIZE_THRESHOLD, iterable -> iterable.size() + ": " + iterable)
-                .forEach(Procedures.cast(LOGGER::info));
+    public void anagramsWithMultimapLazyIterable1() {
+        MutableList<RichIterable<String>> results = this.getWords().groupBy(Alphagram::new).multiValuesView().toSortedList(Functions.toIntComparator(RichIterable::size));
+        results.asReversed().collectIf(iterable -> iterable.size() >= SIZE_THRESHOLD, iterable -> iterable.size() + ": " + iterable).forEach(Procedures.cast(LOGGER::info));
         Verify.assertIterableSize(SIZE_THRESHOLD, results.getFirst());
     }
 
     @Test
-    public void anagramsWithMultimapForEachMultiValue()
-    {
+    public void anagramsWithMultimapForEachMultiValue() {
         MutableList<RichIterable<String>> results = Lists.mutable.of();
-        this.getWords().groupBy(Alphagram::new)
-                .multiValuesView().forEach(Procedures.ifTrue(iterable -> iterable.size() >= SIZE_THRESHOLD, results::add));
+        this.getWords().groupBy(Alphagram::new).multiValuesView().forEach(Procedures.ifTrue(iterable -> iterable.size() >= SIZE_THRESHOLD, results::add));
         Procedure<String> procedure = Procedures.cast(LOGGER::info);
-        results.sortThisByInt(iterable -> -iterable.size())
-                .forEach(Functions.bind(procedure, iterable -> iterable.size() + ": " + iterable));
+        results.sortThisByInt(iterable -> -iterable.size()).forEach(Functions.bind(procedure, iterable -> iterable.size() + ": " + iterable));
         Verify.assertIterableSize(SIZE_THRESHOLD, results.getLast());
     }
 
     @Test
-    public void anagramsUsingMapGetIfAbsentPutInsteadOfGroupBy()
-    {
+    public void anagramsUsingMapGetIfAbsentPutInsteadOfGroupBy() {
         MutableMap<Alphagram, MutableList<String>> map = UnifiedMap.newMap();
         this.getWords().each(word -> map.getIfAbsentPut(new Alphagram(word), FastList::new).add(word));
-        MutableList<MutableList<String>> results =
-                map.select(iterable -> iterable.size() >= SIZE_THRESHOLD, Lists.mutable.of())
-                        .sortThisByInt(iterable -> -iterable.size());
+        MutableList<MutableList<String>> results = map.select(iterable -> iterable.size() >= SIZE_THRESHOLD, Lists.mutable.of()).sortThisByInt(iterable -> -iterable.size());
         Procedure<String> procedure = Procedures.cast(LOGGER::info);
         results.forEach(Functions.bind(procedure, iterable -> iterable.size() + ": " + iterable));
         Assert.assertTrue(this.listContainsTestGroupAtElementsOneOrTwo(results));
         Verify.assertSize(SIZE_THRESHOLD, results.getLast());
     }
 
-    private MutableList<String> getTestAnagramGroup()
-    {
+    private MutableList<String> getTestAnagramGroup() {
         return FastList.newListWith("least", "setal", "slate", "stale", "steal", "stela", "taels", "tales", "teals", "tesla");
     }
 
-    private static final class Alphagram
-    {
+    private static final class Alphagram {
+
         private final char[] key;
 
-        private Alphagram(String string)
-        {
+        private Alphagram(String string) {
             this.key = string.toCharArray();
             Arrays.sort(this.key);
         }
 
         @Override
-        public boolean equals(Object o)
-        {
-            if (this == o)
-            {
+        public boolean equals(Object o) {
+            if (this == o) {
                 return true;
             }
-            if (o == null || this.getClass() != o.getClass())
-            {
+            if (o == null || this.getClass() != o.getClass()) {
                 return false;
             }
             Alphagram alphagram = (Alphagram) o;
@@ -168,15 +123,71 @@ public class AnagramTest
         }
 
         @Override
-        public int hashCode()
-        {
+        public int hashCode() {
             return Arrays.hashCode(this.key);
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return new String(this.key);
+        }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anagramsWithMultimapInlined() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anagramsWithMultimapInlined, this.description("anagramsWithMultimapInlined"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anagramsWithMultimapEclipseCollections1() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anagramsWithMultimapEclipseCollections1, this.description("anagramsWithMultimapEclipseCollections1"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anagramsWithMultimapEclipseCollections3() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anagramsWithMultimapEclipseCollections3, this.description("anagramsWithMultimapEclipseCollections3"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anagramsWithMultimapEclipseCollections4() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anagramsWithMultimapEclipseCollections4, this.description("anagramsWithMultimapEclipseCollections4"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anagramsWithMultimapLazyIterable1() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anagramsWithMultimapLazyIterable1, this.description("anagramsWithMultimapLazyIterable1"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anagramsWithMultimapForEachMultiValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anagramsWithMultimapForEachMultiValue, this.description("anagramsWithMultimapForEachMultiValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anagramsUsingMapGetIfAbsentPutInsteadOfGroupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anagramsUsingMapGetIfAbsentPutInsteadOfGroupBy, this.description("anagramsUsingMapGetIfAbsentPutInsteadOfGroupBy"));
+        }
+
+        private AnagramTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new AnagramTest();
+        }
+
+        @java.lang.Override
+        public AnagramTest implementation() {
+            return this.implementation;
         }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.utility;
 
 import org.eclipse.collections.api.LazyIterable;
@@ -32,19 +31,17 @@ import org.eclipse.collections.impl.tuple.Tuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LazyIterateTest
-{
+public class LazyIterateTest {
+
     @Test
-    public void selectForEach()
-    {
+    public void selectForEach() {
         LazyIterable<Integer> select = LazyIterate.select(Interval.oneTo(5), Predicates.lessThan(5));
         int sum = select.injectInto(0, AddFunction.INTEGER_TO_INT);
         Assert.assertEquals(10, sum);
     }
 
     @Test
-    public void selectForEachWithIndex()
-    {
+    public void selectForEachWithIndex() {
         LazyIterable<Integer> select = LazyIterate.select(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEachWithIndex((object, index) -> {
@@ -55,20 +52,17 @@ public class LazyIterateTest
     }
 
     @Test
-    public void selectIterator()
-    {
+    public void selectIterator() {
         LazyIterable<Integer> select = LazyIterate.select(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
-        for (Integer each : select)
-        {
+        for (Integer each : select) {
             sum.add(each);
         }
         Assert.assertEquals(10, sum.getValue().intValue());
     }
 
     @Test
-    public void selectForEachWith()
-    {
+    public void selectForEachWith() {
         LazyIterable<Integer> select = LazyIterate.select(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
@@ -76,16 +70,14 @@ public class LazyIterateTest
     }
 
     @Test
-    public void rejectForEach()
-    {
+    public void rejectForEach() {
         LazyIterable<Integer> select = LazyIterate.reject(Interval.oneTo(5), Predicates.lessThan(5));
         int sum = select.injectInto(0, AddFunction.INTEGER_TO_INT);
         Assert.assertEquals(5, sum);
     }
 
     @Test
-    public void rejectForEachWithIndex()
-    {
+    public void rejectForEachWithIndex() {
         LazyIterable<Integer> select = LazyIterate.reject(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEachWithIndex((object, index) -> {
@@ -96,20 +88,17 @@ public class LazyIterateTest
     }
 
     @Test
-    public void rejectIterator()
-    {
+    public void rejectIterator() {
         LazyIterable<Integer> select = LazyIterate.reject(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
-        for (Integer each : select)
-        {
+        for (Integer each : select) {
             sum.add(each);
         }
         Assert.assertEquals(5, sum.getValue().intValue());
     }
 
     @Test
-    public void rejectForEachWith()
-    {
+    public void rejectForEachWith() {
         LazyIterable<Integer> select = LazyIterate.reject(Interval.oneTo(5), Predicates.lessThan(5));
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
@@ -117,8 +106,7 @@ public class LazyIterateTest
     }
 
     @Test
-    public void collectForEach()
-    {
+    public void collectForEach() {
         LazyIterable<String> select = LazyIterate.collect(Interval.oneTo(5), String::valueOf);
         Appendable builder = new StringBuilder();
         Procedure<String> appendProcedure = Procedures.append(builder);
@@ -127,8 +115,7 @@ public class LazyIterateTest
     }
 
     @Test
-    public void collectForEachWithIndex()
-    {
+    public void collectForEachWithIndex() {
         LazyIterable<String> select = LazyIterate.collect(Interval.oneTo(5), String::valueOf);
         StringBuilder builder = new StringBuilder();
         select.forEachWithIndex((object, index) -> {
@@ -139,20 +126,17 @@ public class LazyIterateTest
     }
 
     @Test
-    public void collectIterator()
-    {
+    public void collectIterator() {
         LazyIterable<String> select = LazyIterate.collect(Interval.oneTo(5), String::valueOf);
         StringBuilder builder = new StringBuilder();
-        for (String each : select)
-        {
+        for (String each : select) {
             builder.append(each);
         }
         Assert.assertEquals("12345", builder.toString());
     }
 
     @Test
-    public void collectForEachWith()
-    {
+    public void collectForEachWith() {
         LazyIterable<String> select = LazyIterate.collect(Interval.oneTo(5), String::valueOf);
         StringBuilder builder = new StringBuilder();
         select.forEachWith((each, aBuilder) -> aBuilder.append(each), builder);
@@ -160,8 +144,7 @@ public class LazyIterateTest
     }
 
     @Test
-    public void asDeferred()
-    {
+    public void asDeferred() {
         MutableList<Integer> expected = FastList.newList(Interval.oneTo(5));
         MutableList<Integer> actual0 = LazyIterate.adapt(Interval.oneTo(5)).toList();
         MutableList<Integer> actual1 = Interval.oneTo(5).asLazy().toList();
@@ -182,89 +165,168 @@ public class LazyIterateTest
     }
 
     @Test
-    public void classIsNonInstantiable()
-    {
+    public void classIsNonInstantiable() {
         Verify.assertClassNonInstantiable(LazyIterate.class);
     }
 
     @Test
-    public void cartesianProduct()
-    {
+    public void cartesianProduct() {
         MutableList<Integer> iterable1 = Lists.mutable.with(1, 2);
         MutableList<Integer> iterable2 = Lists.mutable.with(2, 3, 4);
-        MutableBag<Pair<Integer, Integer>> expectedCartesianProduct1 = Bags.mutable.with(
-                Tuples.pair(1, 2),
-                Tuples.pair(2, 2),
-                Tuples.pair(1, 3),
-                Tuples.pair(2, 3),
-                Tuples.pair(1, 4),
-                Tuples.pair(2, 4));
+        MutableBag<Pair<Integer, Integer>> expectedCartesianProduct1 = Bags.mutable.with(Tuples.pair(1, 2), Tuples.pair(2, 2), Tuples.pair(1, 3), Tuples.pair(2, 3), Tuples.pair(1, 4), Tuples.pair(2, 4));
         Assert.assertEquals(expectedCartesianProduct1, LazyIterate.cartesianProduct(iterable1, iterable2).toBag());
-        MutableBag<Pair<Integer, Integer>> expectedCartesianProduct2 = Bags.mutable.with(
-                Tuples.pair(2, 1),
-                Tuples.pair(3, 1),
-                Tuples.pair(4, 1),
-                Tuples.pair(2, 2),
-                Tuples.pair(3, 2),
-                Tuples.pair(4, 2));
+        MutableBag<Pair<Integer, Integer>> expectedCartesianProduct2 = Bags.mutable.with(Tuples.pair(2, 1), Tuples.pair(3, 1), Tuples.pair(4, 1), Tuples.pair(2, 2), Tuples.pair(3, 2), Tuples.pair(4, 2));
         Assert.assertEquals(expectedCartesianProduct2, LazyIterate.cartesianProduct(iterable2, iterable1).toBag());
     }
 
     @Test
-    public void cartesianProductDuplicatesToConcreteCollections()
-    {
+    public void cartesianProductDuplicatesToConcreteCollections() {
         MutableList<Integer> iterable1 = Lists.mutable.with(1, 1);
         MutableList<Integer> iterable2 = Lists.mutable.with(2, 2);
-        MutableBag<Pair<Integer, Integer>> expectedBag = Bags.mutable.with(
-                Tuples.pair(1, 2),
-                Tuples.pair(1, 2),
-                Tuples.pair(1, 2),
-                Tuples.pair(1, 2));
+        MutableBag<Pair<Integer, Integer>> expectedBag = Bags.mutable.with(Tuples.pair(1, 2), Tuples.pair(1, 2), Tuples.pair(1, 2), Tuples.pair(1, 2));
         Assert.assertEquals(expectedBag, LazyIterate.cartesianProduct(iterable1, iterable2).toBag());
         MutableSet<Pair<Integer, Integer>> expectedSet = Sets.mutable.with(Tuples.pair(1, 2));
         Assert.assertEquals(expectedSet, LazyIterate.cartesianProduct(iterable1, iterable2).toSet());
-        MutableList<Pair<Integer, Integer>> expectedList = Lists.mutable.with(
-                Tuples.pair(1, 2),
-                Tuples.pair(1, 2),
-                Tuples.pair(1, 2),
-                Tuples.pair(1, 2));
+        MutableList<Pair<Integer, Integer>> expectedList = Lists.mutable.with(Tuples.pair(1, 2), Tuples.pair(1, 2), Tuples.pair(1, 2), Tuples.pair(1, 2));
         Assert.assertEquals(expectedList, LazyIterate.cartesianProduct(iterable1, iterable2).toList());
     }
 
     @Test
-    public void cartesianProductWithFunction()
-    {
+    public void cartesianProductWithFunction() {
         MutableList<Integer> iterable1 = Lists.mutable.with(1, 2);
         MutableList<Integer> iterable2 = Lists.mutable.with(2, 3, 4);
-        MutableBag<Pair<Integer, Integer>> expectedCartesianProduct = Bags.mutable.with(
-                Tuples.pair(1, 2),
-                Tuples.pair(2, 2),
-                Tuples.pair(1, 3),
-                Tuples.pair(2, 3),
-                Tuples.pair(1, 4),
-                Tuples.pair(2, 4));
-        Assert.assertEquals(
-                expectedCartesianProduct,
-                LazyIterate.cartesianProduct(iterable1, iterable2, Tuples::pair).toBag());
-        MutableBag<MutableList<Integer>> expectedCartesianProduct2 = Bags.mutable.with(
-                Lists.mutable.with(2, 1),
-                Lists.mutable.with(3, 1),
-                Lists.mutable.with(4, 1),
-                Lists.mutable.with(2, 2),
-                Lists.mutable.with(3, 2),
-                Lists.mutable.with(4, 2));
-        Assert.assertEquals(
-                expectedCartesianProduct2,
-                LazyIterate.cartesianProduct(iterable2, iterable1, Lists.mutable::with).toBag());
+        MutableBag<Pair<Integer, Integer>> expectedCartesianProduct = Bags.mutable.with(Tuples.pair(1, 2), Tuples.pair(2, 2), Tuples.pair(1, 3), Tuples.pair(2, 3), Tuples.pair(1, 4), Tuples.pair(2, 4));
+        Assert.assertEquals(expectedCartesianProduct, LazyIterate.cartesianProduct(iterable1, iterable2, Tuples::pair).toBag());
+        MutableBag<MutableList<Integer>> expectedCartesianProduct2 = Bags.mutable.with(Lists.mutable.with(2, 1), Lists.mutable.with(3, 1), Lists.mutable.with(4, 1), Lists.mutable.with(2, 2), Lists.mutable.with(3, 2), Lists.mutable.with(4, 2));
+        Assert.assertEquals(expectedCartesianProduct2, LazyIterate.cartesianProduct(iterable2, iterable1, Lists.mutable::with).toBag());
     }
 
     @Test
-    public void cartesianProduct_empty()
-    {
-        Assert.assertEquals(
-                Bags.mutable.empty(),
-                LazyIterate.cartesianProduct(
-                        Lists.mutable.with(1, 2),
-                        Lists.mutable.empty()).toBag());
+    public void cartesianProduct_empty() {
+        Assert.assertEquals(Bags.mutable.empty(), LazyIterate.cartesianProduct(Lists.mutable.with(1, 2), Lists.mutable.empty()).toBag());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectForEach, this.description("selectForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectForEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectForEachWithIndex, this.description("selectForEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectIterator, this.description("selectIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectForEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectForEachWith, this.description("selectForEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectForEach, this.description("rejectForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectForEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectForEachWithIndex, this.description("rejectForEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectIterator, this.description("rejectIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectForEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectForEachWith, this.description("rejectForEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectForEach, this.description("collectForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectForEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectForEachWithIndex, this.description("collectForEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIterator, this.description("collectIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectForEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectForEachWith, this.description("collectForEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asDeferred() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asDeferred, this.description("asDeferred"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::classIsNonInstantiable, this.description("classIsNonInstantiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_cartesianProduct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::cartesianProduct, this.description("cartesianProduct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_cartesianProductDuplicatesToConcreteCollections() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::cartesianProductDuplicatesToConcreteCollections, this.description("cartesianProductDuplicatesToConcreteCollections"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_cartesianProductWithFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::cartesianProductWithFunction, this.description("cartesianProductWithFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_cartesianProduct_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::cartesianProduct_empty, this.description("cartesianProduct_empty"));
+        }
+
+        private LazyIterateTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new LazyIterateTest();
+        }
+
+        @java.lang.Override
+        public LazyIterateTest implementation() {
+            return this.implementation;
+        }
     }
 }

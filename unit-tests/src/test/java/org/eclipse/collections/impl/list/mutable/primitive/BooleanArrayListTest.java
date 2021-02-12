@@ -7,12 +7,10 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable.primitive;
 
 import java.lang.reflect.Field;
 import java.util.BitSet;
-
 import org.eclipse.collections.api.block.predicate.primitive.BooleanPredicate;
 import org.eclipse.collections.api.list.primitive.MutableBooleanList;
 import org.eclipse.collections.impl.test.Verify;
@@ -22,25 +20,22 @@ import org.junit.Test;
 /**
  * JUnit test for {@link BooleanArrayList}.
  */
-public class BooleanArrayListTest extends AbstractBooleanListTestCase
-{
+public class BooleanArrayListTest extends AbstractBooleanListTestCase {
+
     private final BooleanArrayList list = this.classUnderTest();
 
     @Override
-    protected final BooleanArrayList classUnderTest()
-    {
+    protected final BooleanArrayList classUnderTest() {
         return BooleanArrayList.newListWith(true, false, true);
     }
 
     @Override
-    protected BooleanArrayList newWith(boolean... elements)
-    {
+    protected BooleanArrayList newWith(boolean... elements) {
         return BooleanArrayList.newListWith(elements);
     }
 
     @Test
-    public void testBooleanArrayListWithInitialCapacity() throws Exception
-    {
+    public void testBooleanArrayListWithInitialCapacity() throws Exception {
         BooleanArrayList arrayList = new BooleanArrayList(7);
         Verify.assertEmpty(arrayList);
         Field items = BooleanArrayList.class.getDeclaredField("items");
@@ -53,11 +48,9 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
     }
 
     @Test
-    public void addAtIndexAtCapacity() throws Exception
-    {
+    public void addAtIndexAtCapacity() throws Exception {
         BooleanArrayList listWithCapacity = new BooleanArrayList(64);
-        for (int i = 0; i < 64; i++)
-        {
+        for (int i = 0; i < 64; i++) {
             listWithCapacity.add((i & 1) == 0);
         }
         listWithCapacity.addAtIndex(64, true);
@@ -68,8 +61,7 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
 
     @Override
     @Test
-    public void size()
-    {
+    public void size() {
         super.size();
         Verify.assertSize(0, new BooleanArrayList());
         Verify.assertSize(0, new BooleanArrayList(1));
@@ -80,8 +72,7 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
 
     @Override
     @Test
-    public void with()
-    {
+    public void with() {
         super.with();
         BooleanArrayList emptyList = new BooleanArrayList();
         BooleanArrayList arrayList = emptyList.with(true);
@@ -97,15 +88,14 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
         Assert.assertEquals(BooleanArrayList.newListWith(true, true, false, true, false), arrayList3);
     }
 
-    private static class LastValueBeforeFalseWasFalse
-            implements BooleanPredicate
-    {
+    private static class LastValueBeforeFalseWasFalse implements BooleanPredicate {
+
         private static final long serialVersionUID = 1L;
+
         private boolean value = true;
 
         @Override
-        public boolean accept(boolean currentValue)
-        {
+        public boolean accept(boolean currentValue) {
             boolean oldValue = this.value;
             this.value = currentValue;
             return !currentValue && !oldValue;
@@ -113,11 +103,55 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
     }
 
     @Test
-    public void removeIfWithStatefulPredicate()
-    {
+    public void removeIfWithStatefulPredicate() {
         MutableBooleanList list = this.newWith(true, true, false, false, true, false, true, false, false, false);
-
         Assert.assertTrue(list.removeIf(new LastValueBeforeFalseWasFalse()));
         Assert.assertEquals(BooleanArrayList.newListWith(true, true, false, true, false, true, false), list);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testBooleanArrayListWithInitialCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testBooleanArrayListWithInitialCapacity, this.description("testBooleanArrayListWithInitialCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAtIndexAtCapacity() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAtIndexAtCapacity, this.description("addAtIndexAtCapacity"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::with, this.description("with"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWithStatefulPredicate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWithStatefulPredicate, this.description("removeIfWithStatefulPredicate"));
+        }
+
+        private BooleanArrayListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BooleanArrayListTest();
+        }
+
+        @java.lang.Override
+        public BooleanArrayListTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.immutable.primitive;
 
 import org.eclipse.collections.api.map.primitive.ImmutableObjectBooleanMap;
@@ -16,47 +15,57 @@ import org.eclipse.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class AbstractImmutableObjectBooleanMapTestCase extends AbstractObjectBooleanMapTestCase
-{
+public abstract class AbstractImmutableObjectBooleanMapTestCase extends AbstractObjectBooleanMapTestCase {
+
     @Override
     protected abstract ImmutableObjectBooleanMap<String> classUnderTest();
 
     @Override
-    protected <T> ImmutableObjectBooleanMap<T> newWithKeysValues(T key1, boolean value1)
-    {
+    protected <T> ImmutableObjectBooleanMap<T> newWithKeysValues(T key1, boolean value1) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1).toImmutable();
     }
 
     @Override
-    protected <T> ImmutableObjectBooleanMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2)
-    {
+    protected <T> ImmutableObjectBooleanMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2).toImmutable();
     }
 
     @Override
-    protected <T> ImmutableObjectBooleanMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2, T key3, boolean value3)
-    {
+    protected <T> ImmutableObjectBooleanMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2, T key3, boolean value3) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2, key3, value3).toImmutable();
     }
 
     @Override
-    protected <T> ImmutableObjectBooleanMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2, T key3, boolean value3, T key4, boolean value4)
-    {
+    protected <T> ImmutableObjectBooleanMap<T> newWithKeysValues(T key1, boolean value1, T key2, boolean value2, T key3, boolean value3, T key4, boolean value4) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4).toImmutable();
     }
 
     @Override
-    protected <T> ImmutableObjectBooleanMap<T> getEmptyMap()
-    {
+    protected <T> ImmutableObjectBooleanMap<T> getEmptyMap() {
         return new ObjectBooleanHashMap<T>().toImmutable();
     }
 
     @Override
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         super.toImmutable();
         ImmutableObjectBooleanMap<String> map = this.classUnderTest();
         Assert.assertSame(map, map.toImmutable());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractImmutableObjectBooleanMapTestCase implementation();
     }
 }

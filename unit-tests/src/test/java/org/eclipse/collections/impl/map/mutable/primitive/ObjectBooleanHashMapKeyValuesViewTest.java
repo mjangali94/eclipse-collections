@@ -7,35 +7,46 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.mutable.primitive;
 
 /**
  * Abstract JUnit test for {@link ObjectBooleanHashMap#keyValuesView()}.
  */
-public class ObjectBooleanHashMapKeyValuesViewTest extends AbstractObjectBooleanMapKeyValuesViewTestCase
-{
+public class ObjectBooleanHashMapKeyValuesViewTest extends AbstractObjectBooleanMapKeyValuesViewTestCase {
+
     @Override
-    public <K> ObjectBooleanHashMap<K> newWithKeysValues(K key1, boolean value1, K key2, boolean value2, K key3, boolean value3)
-    {
+    public <K> ObjectBooleanHashMap<K> newWithKeysValues(K key1, boolean value1, K key2, boolean value2, K key3, boolean value3) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    public <K> ObjectBooleanHashMap<K> newWithKeysValues(K key1, boolean value1, K key2, boolean value2)
-    {
+    public <K> ObjectBooleanHashMap<K> newWithKeysValues(K key1, boolean value1, K key2, boolean value2) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1, key2, value2);
     }
 
     @Override
-    public <K> ObjectBooleanHashMap<K> newWithKeysValues(K key1, boolean value1)
-    {
+    public <K> ObjectBooleanHashMap<K> newWithKeysValues(K key1, boolean value1) {
         return ObjectBooleanHashMap.newWithKeysValues(key1, value1);
     }
 
     @Override
-    public ObjectBooleanHashMap<Object> newEmpty()
-    {
+    public ObjectBooleanHashMap<Object> newEmpty() {
         return ObjectBooleanHashMap.newMap();
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ObjectBooleanHashMapKeyValuesViewTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ObjectBooleanHashMapKeyValuesViewTest();
+        }
+
+        @java.lang.Override
+        public ObjectBooleanHashMapKeyValuesViewTest implementation() {
+            return this.implementation;
+        }
     }
 }

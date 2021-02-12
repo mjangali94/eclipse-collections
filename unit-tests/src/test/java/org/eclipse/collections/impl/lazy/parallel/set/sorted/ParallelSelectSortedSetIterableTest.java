@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set.sorted;
 
 import org.eclipse.collections.api.set.sorted.ParallelSortedSetIterable;
@@ -16,26 +15,36 @@ import org.eclipse.collections.impl.block.factory.Comparators;
 import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.factory.SortedSets;
 
-public class ParallelSelectSortedSetIterableTest extends ParallelSortedSetIterableTestCase
-{
+public class ParallelSelectSortedSetIterableTest extends ParallelSortedSetIterableTestCase {
+
     @Override
-    protected ParallelSortedSetIterable<Integer> classUnderTest()
-    {
+    protected ParallelSortedSetIterable<Integer> classUnderTest() {
         return this.newWith(-1, 1, -1, 2, -1, 2, -1, 3, -1, 3, -1, 3, 5, 4, 5, 4, 5, 4, 5, 4, 5);
     }
 
     @Override
-    protected ParallelSortedSetIterable<Integer> newWith(Integer... littleElements)
-    {
-        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements)
-                .asParallel(this.executorService, this.batchSize)
-                .select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    protected ParallelSortedSetIterable<Integer> newWith(Integer... littleElements) {
+        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).asParallel(this.executorService, this.batchSize).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
     }
 
     @Override
-    protected SortedSetIterable<Integer> getExpectedWith(Integer... littleElements)
-    {
-        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements)
-                .select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    protected SortedSetIterable<Integer> getExpectedWith(Integer... littleElements) {
+        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ParallelSelectSortedSetIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelSelectSortedSetIterableTest();
+        }
+
+        @java.lang.Override
+        public ParallelSelectSortedSetIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

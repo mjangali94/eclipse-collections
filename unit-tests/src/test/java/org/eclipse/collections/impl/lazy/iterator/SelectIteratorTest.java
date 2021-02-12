@@ -7,42 +7,27 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.iterator;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class SelectIteratorTest
-{
+public class SelectIteratorTest {
+
     @Test
-    public void iterator()
-    {
-        MutableList<Boolean> list = FastList.newListWith(
-                Boolean.TRUE,
-                Boolean.FALSE,
-                Boolean.TRUE,
-                Boolean.TRUE,
-                Boolean.FALSE,
-                null,
-                null,
-                Boolean.FALSE,
-                Boolean.TRUE,
-                null);
+    public void iterator() {
+        MutableList<Boolean> list = FastList.newListWith(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.TRUE, Boolean.FALSE, null, null, Boolean.FALSE, Boolean.TRUE, null);
         this.assertElements(new SelectIterator<>(list.iterator(), Boolean.TRUE::equals));
         this.assertElements(new SelectIterator<>(list, Boolean.TRUE::equals));
     }
 
-    private void assertElements(Iterator<Boolean> newIterator)
-    {
-        for (int i = 0; i < 4; i++)
-        {
+    private void assertElements(Iterator<Boolean> newIterator) {
+        for (int i = 0; i < 4; i++) {
             Assert.assertTrue(newIterator.hasNext());
             Assert.assertEquals(Boolean.TRUE, newIterator.next());
         }
@@ -50,14 +35,46 @@ public class SelectIteratorTest
     }
 
     @Test
-    public void noSuchElementException()
-    {
+    public void noSuchElementException() {
         Assert.assertThrows(NoSuchElementException.class, () -> new SelectIterator<>(Lists.fixedSize.of(), ignored -> true).next());
     }
 
     @Test
-    public void remove()
-    {
+    public void remove() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> new SelectIterator<>(Lists.fixedSize.of(), ignored -> true).remove());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noSuchElementException() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noSuchElementException, this.description("noSuchElementException"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove, this.description("remove"));
+        }
+
+        private SelectIteratorTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SelectIteratorTest();
+        }
+
+        @java.lang.Override
+        public SelectIteratorTest implementation() {
+            return this.implementation;
+        }
     }
 }

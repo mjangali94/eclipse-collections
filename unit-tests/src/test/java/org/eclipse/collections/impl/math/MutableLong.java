@@ -7,140 +7,117 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.math;
 
-public final class MutableLong extends Number implements Comparable<MutableLong>
-{
+public final class MutableLong extends Number implements Comparable<MutableLong> {
+
     private static final long serialVersionUID = 1L;
+
     private long value = 0L;
 
-    public MutableLong(long value)
-    {
+    public MutableLong(long value) {
         this.value = value;
     }
 
-    public MutableLong()
-    {
+    public MutableLong() {
         this(0L);
     }
 
     @Override
-    public int compareTo(MutableLong other)
-    {
+    public int compareTo(MutableLong other) {
         return Long.compare(this.value, other.value);
     }
 
     @Override
-    public boolean equals(Object other)
-    {
-        if (this == other)
-        {
+    public boolean equals(Object other) {
+        if (this == other) {
             return true;
         }
-        if (other == null || this.getClass() != other.getClass())
-        {
+        if (other == null || this.getClass() != other.getClass()) {
             return false;
         }
         return this.value == ((MutableLong) other).value;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return (int) (this.value ^ (this.value >>> 32));
     }
 
-    public void setValue(long value)
-    {
+    public void setValue(long value) {
         this.value = value;
     }
 
-    public void clear()
-    {
+    public void clear() {
         this.value = 0L;
     }
 
-    public MutableLong add(double number)
-    {
+    public MutableLong add(double number) {
         this.value += number;
         return this;
     }
 
-    public MutableLong add(long number)
-    {
+    public MutableLong add(long number) {
         this.value += number;
         return this;
     }
 
-    public MutableLong subtract(double number)
-    {
+    public MutableLong subtract(double number) {
         this.value -= number;
         return this;
     }
 
-    public MutableLong multiply(double number)
-    {
+    public MutableLong multiply(double number) {
         this.value *= number;
         return this;
     }
 
-    public MutableLong divide(double number)
-    {
+    public MutableLong divide(double number) {
         this.value /= number;
         return this;
     }
 
-    public MutableLong min(long number)
-    {
+    public MutableLong min(long number) {
         this.value = Math.min(this.value, number);
         return this;
     }
 
-    public MutableLong max(long number)
-    {
+    public MutableLong max(long number) {
         this.value = Math.max(this.value, number);
         return this;
     }
 
-    public MutableLong abs()
-    {
+    public MutableLong abs() {
         this.value = Math.abs(this.value);
         return this;
     }
 
-    public Long toLong()
-    {
+    public Long toLong() {
         return Long.valueOf(this.value);
     }
 
     @Override
-    public int intValue()
-    {
+    public int intValue() {
         return (int) this.value;
     }
 
     @Override
-    public long longValue()
-    {
+    public long longValue() {
         return this.value;
     }
 
     @Override
-    public float floatValue()
-    {
+    public float floatValue() {
         return (float) this.value;
     }
 
     @Override
-    public double doubleValue()
-    {
+    public double doubleValue() {
         return (double) this.value;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "MutableLong{value=" + this.value + '}';
     }
 }

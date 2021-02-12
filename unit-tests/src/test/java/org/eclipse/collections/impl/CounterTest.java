@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl;
 
 import org.eclipse.collections.impl.block.factory.Procedures;
@@ -16,13 +15,11 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CounterTest
-{
-    @Test
-    public void basicLifecycle()
-    {
-        Counter counter = new Counter();
+public class CounterTest {
 
+    @Test
+    public void basicLifecycle() {
+        Counter counter = new Counter();
         Assert.assertEquals(0, counter.getCount());
         counter.increment();
         Assert.assertEquals(1, counter.getCount());
@@ -33,27 +30,57 @@ public class CounterTest
         Interval.oneTo(1000).forEach(Procedures.cast(each -> counter.increment()));
         Assert.assertEquals(1018, counter.getCount());
         Assert.assertEquals("1018", counter.toString());
-
         counter.reset();
         Assert.assertEquals(0, counter.getCount());
         counter.add(4);
         Assert.assertEquals(4, counter.getCount());
         counter.increment();
         Assert.assertEquals(5, counter.getCount());
-
         Assert.assertEquals("5", counter.toString());
     }
 
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         Verify.assertEqualsAndHashCode(new Counter(1), new Counter(1));
         Assert.assertNotEquals(new Counter(1), new Counter(2));
     }
 
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         Verify.assertPostSerializedEqualsAndHashCode(new Counter());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_basicLifecycle() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::basicLifecycle, this.description("basicLifecycle"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        private CounterTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new CounterTest();
+        }
+
+        @java.lang.Override
+        public CounterTest implementation() {
+            return this.implementation;
+        }
     }
 }

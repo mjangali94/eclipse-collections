@@ -7,17 +7,31 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.fixed;
 
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 
-public class SingletonListSubListTest extends UnmodifiableMemoryEfficientListTestCase<String>
-{
+public class SingletonListSubListTest extends UnmodifiableMemoryEfficientListTestCase<String> {
+
     @Override
-    protected MutableList<String> getCollection()
-    {
+    protected MutableList<String> getCollection() {
         return Lists.fixedSize.of("1").subList(0, 1);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private SingletonListSubListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SingletonListSubListTest();
+        }
+
+        @java.lang.Override
+        public SingletonListSubListTest implementation() {
+            return this.implementation;
+        }
     }
 }

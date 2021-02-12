@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.fixed;
 
 import java.util.ListIterator;
-
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.block.factory.Procedures2;
 import org.eclipse.collections.impl.block.procedure.CollectionAddProcedure;
@@ -25,31 +23,27 @@ import org.junit.Test;
 /**
  * JUnit test for {@link TripletonList}.
  */
-public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCase
-{
+public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCase {
+
     @Override
-    protected int getSize()
-    {
+    protected int getSize() {
         return 3;
     }
 
     @Override
-    protected Class<?> getListType()
-    {
+    protected Class<?> getListType() {
         return TripletonList.class;
     }
 
     @Test
-    public void testClone()
-    {
+    public void testClone() {
         MutableList<String> growableList = this.list.clone();
         Verify.assertEqualsAndHashCode(this.list, growableList);
         Verify.assertInstanceOf(TripletonList.class, growableList);
     }
 
     @Test
-    public void testContains()
-    {
+    public void testContains() {
         Assert.assertTrue(this.list.contains("1"));
         Assert.assertTrue(this.list.contains("2"));
         Assert.assertTrue(this.list.contains("3"));
@@ -57,44 +51,38 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testRemove()
-    {
+    public void testRemove() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.list.remove(0));
         this.assertUnchanged();
     }
 
     @Test
-    public void testAddAtIndex()
-    {
+    public void testAddAtIndex() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.list.add(0, "1"));
         this.assertUnchanged();
     }
 
     @Test
-    public void testAdd()
-    {
+    public void testAdd() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.list.add("1"));
         this.assertUnchanged();
     }
 
     @Test
-    public void testAddingAllToOtherList()
-    {
+    public void testAddingAllToOtherList() {
         MutableList<String> newList = FastList.newList(this.list);
         newList.add("4");
         Assert.assertEquals(FastList.newListWith("1", "2", "3", "4"), newList);
     }
 
     @Test
-    public void testGet()
-    {
+    public void testGet() {
         Verify.assertStartsWith(this.list, "1", "2", "3");
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> this.list.get(3));
     }
 
     @Test
-    public void testSet()
-    {
+    public void testSet() {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3");
         Assert.assertEquals("1", list.set(0, "3"));
         Assert.assertEquals("2", list.set(1, "2"));
@@ -103,8 +91,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> list.set(3, "0"));
     }
 
-    private void assertUnchanged()
-    {
+    private void assertUnchanged() {
         Verify.assertInstanceOf(TripletonList.class, this.list);
         Verify.assertSize(3, this.list);
         Verify.assertNotContains("4", this.list);
@@ -112,24 +99,21 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testSerializableEqualsAndHashCode()
-    {
+    public void testSerializableEqualsAndHashCode() {
         Verify.assertPostSerializedEqualsAndHashCode(this.list);
         MutableList<String> copyOfList = SerializeTestHelper.serializeDeserialize(this.list);
         Assert.assertNotSame(this.list, copyOfList);
     }
 
     @Test
-    public void testCreate1()
-    {
+    public void testCreate1() {
         MutableList<String> list = Lists.fixedSize.of("1");
         Verify.assertSize(1, list);
         Verify.assertItemAtIndex("1", 0, list);
     }
 
     @Test
-    public void testEqualsAndHashCode()
-    {
+    public void testEqualsAndHashCode() {
         MutableList<String> one = Lists.fixedSize.of("1", "2", "3");
         MutableList<String> oneA = FastList.newList(one);
         Verify.assertEqualsAndHashCode(one, oneA);
@@ -137,8 +121,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testForEach()
-    {
+    public void testForEach() {
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3");
         source.forEach(CollectionAddProcedure.on(result));
@@ -146,8 +129,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void forEachFromTo()
-    {
+    public void forEachFromTo() {
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3");
         source.forEach(0, 2, result::add);
@@ -155,13 +137,11 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         int[] indexSum = new int[1];
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3");
-        source.forEachWithIndex((each, index) ->
-        {
+        source.forEachWithIndex((each, index) -> {
             result.add(each);
             indexSum[0] += index;
         });
@@ -170,13 +150,11 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void forEachWithIndexFromTo()
-    {
+    public void forEachWithIndexFromTo() {
         int[] indexSum = new int[1];
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3");
-        source.forEachWithIndex(0, 2, (each, index) ->
-        {
+        source.forEachWithIndex(0, 2, (each, index) -> {
             result.add(each);
             indexSum[0] += index;
         });
@@ -185,8 +163,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testForEachWith()
-    {
+    public void testForEachWith() {
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3");
         source.forEachWith(Procedures2.fromProcedure(result::add), null);
@@ -194,32 +171,27 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testGetFirstGetLast()
-    {
+    public void testGetFirstGetLast() {
         MutableList<String> list3 = Lists.fixedSize.of("1", "2", "3");
         Assert.assertEquals("1", list3.getFirst());
         Assert.assertEquals("3", list3.getLast());
     }
 
     @Test
-    public void testForLoop()
-    {
+    public void testForLoop() {
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO", "THREE");
-        for (String each : list)
-        {
+        for (String each : list) {
             Verify.assertContains(each.toUpperCase(), upperList);
         }
     }
 
     @Test
-    public void testSubList()
-    {
+    public void testSubList() {
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         MutableList<String> subList = list.subList(0, 3);
         MutableList<String> upperList = Lists.fixedSize.of("ONE", "TWO", "THREE");
-        for (String each : subList)
-        {
+        for (String each : subList) {
             Verify.assertContains(each.toUpperCase(), upperList);
         }
         Assert.assertEquals("one", subList.getFirst());
@@ -236,8 +208,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testListIterator()
-    {
+    public void testListIterator() {
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         ListIterator<String> iterator = list.listIterator();
         Assert.assertTrue(iterator.hasNext());
@@ -256,8 +227,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testSubListListIterator()
-    {
+    public void testSubListListIterator() {
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         MutableList<String> subList = list.subList(1, 3);
         ListIterator<String> iterator = subList.listIterator();
@@ -275,8 +245,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testSubListSet()
-    {
+    public void testSubListSet() {
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         MutableList<String> subList = list.subList(1, 3);
         Assert.assertEquals("two", subList.set(0, "2"));
@@ -285,15 +254,13 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testNewEmpty()
-    {
+    public void testNewEmpty() {
         MutableList<String> list = Lists.fixedSize.of("one", "two", "three");
         Verify.assertEmpty(list.newEmpty());
     }
 
     @Test
-    public void subListForEach()
-    {
+    public void subListForEach() {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3");
         MutableList<String> source = list.subList(1, 3);
         MutableList<String> result = Lists.mutable.of();
@@ -302,14 +269,12 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testSubListForEachWithIndex()
-    {
+    public void testSubListForEachWithIndex() {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3");
         MutableList<String> source = list.subList(1, 3);
         int[] indexSum = new int[1];
         MutableList<String> result = Lists.mutable.of();
-        source.forEachWithIndex((each, index) ->
-        {
+        source.forEachWithIndex((each, index) -> {
             result.add(each);
             indexSum[0] += index;
         });
@@ -318,8 +283,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testSubListForEachWith()
-    {
+    public void testSubListForEachWith() {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3");
         MutableList<String> source = list.subList(1, 3);
         MutableList<String> result = Lists.mutable.of();
@@ -328,8 +292,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testIndexOf()
-    {
+    public void testIndexOf() {
         MutableList<String> list = Lists.fixedSize.of("1", null, "3");
         Assert.assertEquals(0, list.indexOf("1"));
         Assert.assertEquals(1, list.indexOf(null));
@@ -338,8 +301,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testLastIndexOf()
-    {
+    public void testLastIndexOf() {
         MutableList<String> list = Lists.fixedSize.of("1", null, "1");
         Assert.assertEquals(2, list.lastIndexOf("1"));
         Assert.assertEquals(1, list.lastIndexOf(null));
@@ -347,8 +309,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void without()
-    {
+    public void without() {
         MutableList<Integer> list = new TripletonList<>(2, 3, 2);
         Assert.assertSame(list, list.without(9));
         list = list.without(2);
@@ -357,8 +318,203 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
     }
 
     @Test
-    public void testGetOnly()
-    {
+    public void testGetOnly() {
         Assert.assertThrows(IllegalStateException.class, () -> this.list.getOnly());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testContains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testContains, this.description("testContains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testRemove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testRemove, this.description("testRemove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testAddAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testAddAtIndex, this.description("testAddAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testAdd() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testAdd, this.description("testAdd"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testAddingAllToOtherList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testAddingAllToOtherList, this.description("testAddingAllToOtherList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testGet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testGet, this.description("testGet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSet, this.description("testSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSerializableEqualsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSerializableEqualsAndHashCode, this.description("testSerializableEqualsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testCreate1() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testCreate1, this.description("testCreate1"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEqualsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEqualsAndHashCode, this.description("testEqualsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testForEach, this.description("testForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachFromTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachFromTo, this.description("forEachFromTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndexFromTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndexFromTo, this.description("forEachWithIndexFromTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testForEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testForEachWith, this.description("testForEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testGetFirstGetLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testGetFirstGetLast, this.description("testGetFirstGetLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testForLoop() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testForLoop, this.description("testForLoop"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSubList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSubList, this.description("testSubList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testListIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testListIterator, this.description("testListIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSubListListIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSubListListIterator, this.description("testSubListListIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSubListSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSubListSet, this.description("testSubListSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewEmpty, this.description("testNewEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subListForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subListForEach, this.description("subListForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSubListForEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSubListForEachWithIndex, this.description("testSubListForEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSubListForEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSubListForEachWith, this.description("testSubListForEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testIndexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testIndexOf, this.description("testIndexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testLastIndexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testLastIndexOf, this.description("testLastIndexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_without() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::without, this.description("without"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testGetOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testGetOnly, this.description("testGetOnly"));
+        }
+
+        private TripletonListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new TripletonListTest();
+        }
+
+        @java.lang.Override
+        public TripletonListTest implementation() {
+            return this.implementation;
+        }
     }
 }

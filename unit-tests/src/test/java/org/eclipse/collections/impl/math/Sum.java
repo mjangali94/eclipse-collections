@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.math;
 
 import java.io.Serializable;
@@ -18,9 +17,8 @@ import java.io.Serializable;
  * @deprecated Don't use in new tests
  */
 @Deprecated
-public interface Sum
-        extends Serializable
-{
+public interface Sum extends Serializable {
+
     Sum add(Object number);
 
     Sum add(Number number);

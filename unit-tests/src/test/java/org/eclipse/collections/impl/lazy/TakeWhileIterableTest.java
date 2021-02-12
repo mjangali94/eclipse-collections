@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy;
 
 import org.eclipse.collections.api.LazyIterable;
@@ -25,16 +24,18 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TakeWhileIterableTest extends AbstractLazyIterableTestCase
-{
+public class TakeWhileIterableTest extends AbstractLazyIterableTestCase {
+
     private TakeWhileIterable<Integer> takeWhileIterable;
+
     private TakeWhileIterable<Integer> emptyListTakeWhileIterable;
+
     private TakeWhileIterable<Integer> alwaysFalseTakeWhileIterable;
+
     private TakeWhileIterable<Integer> alwaysTrueTakeWhileIterable;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         this.takeWhileIterable = new TakeWhileIterable<>(Interval.oneTo(5), each -> each <= 2);
         this.emptyListTakeWhileIterable = new TakeWhileIterable<>(FastList.newList(), each -> each <= 2);
         this.alwaysFalseTakeWhileIterable = new TakeWhileIterable<>(Interval.oneTo(5), Predicates.alwaysFalse());
@@ -42,75 +43,59 @@ public class TakeWhileIterableTest extends AbstractLazyIterableTestCase
     }
 
     @Test
-    public void basic()
-    {
+    public void basic() {
         Assert.assertEquals(2, this.takeWhileIterable.size());
         Assert.assertEquals(FastList.newListWith(1, 2), this.takeWhileIterable.toList());
-
         Assert.assertEquals(0, this.emptyListTakeWhileIterable.size());
         Assert.assertEquals(0, this.alwaysFalseTakeWhileIterable.size());
         Assert.assertEquals(5, this.alwaysTrueTakeWhileIterable.size());
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         CountProcedure<Integer> cb1 = new CountProcedure<>();
         this.takeWhileIterable.forEach(cb1);
         Assert.assertEquals(2, cb1.getCount());
-
         CountProcedure<Integer> cb2 = new CountProcedure<>();
         this.emptyListTakeWhileIterable.forEach(cb2);
         Assert.assertEquals(0, cb2.getCount());
-
         CountProcedure<Integer> cb3 = new CountProcedure<>();
         this.alwaysFalseTakeWhileIterable.forEach(cb3);
         Assert.assertEquals(0, cb3.getCount());
-
         CountProcedure<Integer> cb5 = new CountProcedure<>();
         this.alwaysTrueTakeWhileIterable.forEach(cb5);
         Assert.assertEquals(5, cb5.getCount());
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         FastList<Integer> indices = FastList.newList(5);
         ObjectIntProcedure<Integer> indexRecordingProcedure = (each, index) -> indices.add(index);
-
         this.takeWhileIterable.forEachWithIndex(indexRecordingProcedure);
         Assert.assertEquals(FastList.newListWith(0, 1), indices);
-
         indices.clear();
         this.emptyListTakeWhileIterable.forEachWithIndex(indexRecordingProcedure);
         Verify.assertSize(0, indices);
-
         indices.clear();
         this.alwaysFalseTakeWhileIterable.forEachWithIndex(indexRecordingProcedure);
         Verify.assertSize(0, indices);
-
         indices.clear();
         this.alwaysTrueTakeWhileIterable.forEachWithIndex(indexRecordingProcedure);
         Assert.assertEquals(FastList.newListWith(0, 1, 2, 3, 4), indices);
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         Procedure2<Integer, Sum> sumAdditionProcedure = (each, sum) -> sum.add(each);
-
         Sum sum1 = new IntegerSum(0);
         this.takeWhileIterable.forEachWith(sumAdditionProcedure, sum1);
         Assert.assertEquals(3, sum1.getValue().intValue());
-
         Sum sum2 = new IntegerSum(0);
         this.emptyListTakeWhileIterable.forEachWith(sumAdditionProcedure, sum2);
         Assert.assertEquals(0, sum2.getValue().intValue());
-
         Sum sum3 = new IntegerSum(0);
         this.alwaysFalseTakeWhileIterable.forEachWith(sumAdditionProcedure, sum3);
         Assert.assertEquals(0, sum3.getValue().intValue());
-
         Sum sum5 = new IntegerSum(0);
         this.alwaysTrueTakeWhileIterable.forEachWith(sumAdditionProcedure, sum5);
         Assert.assertEquals(15, sum5.getValue().intValue());
@@ -118,50 +103,96 @@ public class TakeWhileIterableTest extends AbstractLazyIterableTestCase
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         Sum sum1 = new IntegerSum(0);
-        for (Integer each : this.takeWhileIterable)
-        {
+        for (Integer each : this.takeWhileIterable) {
             sum1.add(each);
         }
         Assert.assertEquals(3, sum1.getValue().intValue());
-
         Sum sum2 = new IntegerSum(0);
-        for (Integer each : this.emptyListTakeWhileIterable)
-        {
+        for (Integer each : this.emptyListTakeWhileIterable) {
             sum2.add(each);
         }
         Assert.assertEquals(0, sum2.getValue().intValue());
-
         Sum sum3 = new IntegerSum(0);
-        for (Integer each : this.alwaysFalseTakeWhileIterable)
-        {
+        for (Integer each : this.alwaysFalseTakeWhileIterable) {
             sum3.add(each);
         }
         Assert.assertEquals(0, sum3.getValue().intValue());
-
         Sum sum5 = new IntegerSum(0);
-        for (Integer each : this.alwaysTrueTakeWhileIterable)
-        {
+        for (Integer each : this.alwaysTrueTakeWhileIterable) {
             sum5.add(each);
         }
         Assert.assertEquals(15, sum5.getValue().intValue());
     }
 
     @Override
-    protected <T> LazyIterable<T> newWith(T... elements)
-    {
+    protected <T> LazyIterable<T> newWith(T... elements) {
         return LazyIterate.takeWhile(FastList.newListWith(elements), Predicates.alwaysTrue());
     }
 
     @Override
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         super.distinct();
-        Assert.assertEquals(
-                FastList.newListWith(3, 2, 4, 1),
-                new TakeWhileIterable<>(FastList.newListWith(3, 2, 2, 4, 1, 3, 1, 5), each -> each < 5).distinct().toList());
+        Assert.assertEquals(FastList.newListWith(3, 2, 4, 1), new TakeWhileIterable<>(FastList.newListWith(3, 2, 2, 4, 1, 3, 1, 5), each -> each < 5).distinct().toList());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_basic() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::basic, this.description("basic"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        @java.lang.Override
+        public void before() throws java.lang.Throwable {
+            super.before();
+            this.implementation().setUp();
+        }
+
+        private TakeWhileIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new TakeWhileIterableTest();
+        }
+
+        @java.lang.Override
+        public TakeWhileIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.immutable.primitive;
 
 import org.eclipse.collections.impl.factory.primitive.BooleanLists;
@@ -24,41 +23,55 @@ import org.junit.Test;
 /**
  * JUnit test for empty() methods of primitive classes
  */
-public class ImmutableEmptyPrimitiveTest
-{
+public class ImmutableEmptyPrimitiveTest {
+
     @Test
-    public void isEmptyImmutable()
-    {
+    public void isEmptyImmutable() {
         Verify.assertEmpty(BooleanLists.immutable.empty());
         Verify.assertEmpty(BooleanLists.immutable.of());
         Verify.assertEmpty(BooleanLists.immutable.with());
-
         Verify.assertEmpty(ByteLists.immutable.empty());
         Verify.assertEmpty(ByteLists.immutable.of());
         Verify.assertEmpty(ByteLists.immutable.with());
-
         Verify.assertEmpty(CharLists.immutable.empty());
         Verify.assertEmpty(CharLists.immutable.of());
         Verify.assertEmpty(CharLists.immutable.with());
-
         Verify.assertEmpty(DoubleLists.immutable.empty());
         Verify.assertEmpty(DoubleLists.immutable.of());
         Verify.assertEmpty(DoubleLists.immutable.with());
-
         Verify.assertEmpty(FloatLists.immutable.empty());
         Verify.assertEmpty(FloatLists.immutable.of());
         Verify.assertEmpty(FloatLists.immutable.with());
-
         Verify.assertEmpty(IntLists.immutable.empty());
         Verify.assertEmpty(IntLists.immutable.of());
         Verify.assertEmpty(IntLists.immutable.with());
-
         Verify.assertEmpty(LongLists.immutable.empty());
         Verify.assertEmpty(LongLists.immutable.of());
         Verify.assertEmpty(LongLists.immutable.with());
-
         Verify.assertEmpty(ShortLists.immutable.empty());
         Verify.assertEmpty(ShortLists.immutable.of());
         Verify.assertEmpty(ShortLists.immutable.with());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmptyImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmptyImmutable, this.description("isEmptyImmutable"));
+        }
+
+        private ImmutableEmptyPrimitiveTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableEmptyPrimitiveTest();
+        }
+
+        @java.lang.Override
+        public ImmutableEmptyPrimitiveTest implementation() {
+            return this.implementation;
+        }
     }
 }

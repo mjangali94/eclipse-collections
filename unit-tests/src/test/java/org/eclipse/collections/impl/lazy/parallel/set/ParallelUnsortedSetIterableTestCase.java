@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set;
 
 import org.eclipse.collections.api.RichIterable;
@@ -17,8 +16,8 @@ import org.eclipse.collections.impl.bag.mutable.HashBag;
 import org.eclipse.collections.impl.lazy.parallel.ParallelIterableTestCase;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 
-public abstract class ParallelUnsortedSetIterableTestCase extends ParallelIterableTestCase
-{
+public abstract class ParallelUnsortedSetIterableTestCase extends ParallelIterableTestCase {
+
     @Override
     protected abstract ParallelUnsortedSetIterable<Integer> classUnderTest();
 
@@ -26,32 +25,37 @@ public abstract class ParallelUnsortedSetIterableTestCase extends ParallelIterab
     protected abstract ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements);
 
     @Override
-    protected MutableSet<Integer> getExpected()
-    {
+    protected MutableSet<Integer> getExpected() {
         return UnifiedSet.newSetWith(1, 2, 3, 4);
     }
 
     @Override
-    protected MutableSet<Integer> getExpectedWith(Integer... littleElements)
-    {
+    protected MutableSet<Integer> getExpectedWith(Integer... littleElements) {
         return UnifiedSet.newSetWith(littleElements);
     }
 
     @Override
-    protected RichIterable<Integer> getExpectedCollect()
-    {
+    protected RichIterable<Integer> getExpectedCollect() {
         return HashBag.newBagWith(1, 2, 3, 4);
     }
 
     @Override
-    protected boolean isOrdered()
-    {
+    protected boolean isOrdered() {
         return false;
     }
 
     @Override
-    protected boolean isUnique()
-    {
+    protected boolean isUnique() {
         return true;
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract ParallelUnsortedSetIterableTestCase implementation();
     }
 }

@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.bag;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -15,26 +14,36 @@ import org.eclipse.collections.api.bag.ParallelBag;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
 import org.eclipse.collections.impl.block.factory.Predicates;
 
-public class ParallelSelectBagTest extends ParallelBagTestCase
-{
+public class ParallelSelectBagTest extends ParallelBagTestCase {
+
     @Override
-    protected ParallelBag<Integer> classUnderTest()
-    {
+    protected ParallelBag<Integer> classUnderTest() {
         return this.newWith(-1, 1, -1, 2, -1, 2, -1, 3, -1, 3, -1, 3, 5, 4, 5, 4, 5, 4, 5, 4, 5);
     }
 
     @Override
-    protected ParallelBag<Integer> newWith(Integer... littleElements)
-    {
-        return HashBag.newBagWith(littleElements)
-                .asParallel(this.executorService, this.batchSize)
-                .select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    protected ParallelBag<Integer> newWith(Integer... littleElements) {
+        return HashBag.newBagWith(littleElements).asParallel(this.executorService, this.batchSize).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
     }
 
     @Override
-    protected MutableBag<Integer> getExpectedWith(Integer... littleElements)
-    {
-        return HashBag.newBagWith(littleElements)
-                .select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    protected MutableBag<Integer> getExpectedWith(Integer... littleElements) {
+        return HashBag.newBagWith(littleElements).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private ParallelSelectBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelSelectBagTest();
+        }
+
+        @java.lang.Override
+        public ParallelSelectBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

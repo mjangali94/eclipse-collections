@@ -7,13 +7,11 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.fixed;
 
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.block.factory.Procedures2;
 import org.eclipse.collections.impl.block.procedure.CollectionAddProcedure;
@@ -26,11 +24,10 @@ import org.junit.Test;
 /**
  * JUnit test for {@link FixedSizeListFactoryImpl}.
  */
-public class FixedSizeListFactoryTest
-{
+public class FixedSizeListFactoryTest {
+
     @Test
-    public void createEmpty()
-    {
+    public void createEmpty() {
         MutableList<String> list = Lists.fixedSize.of();
         Assert.assertSame(list, Lists.fixedSize.of());
         Verify.assertInstanceOf(EmptyList.class, list);
@@ -44,132 +41,109 @@ public class FixedSizeListFactoryTest
     }
 
     @Test
-    public void withExtra()
-    {
+    public void withExtra() {
         MutableList<String> list0 = Lists.fixedSize.of();
         Verify.assertEmpty(list0);
-
         MutableList<String> list1 = list0.with("1");
         Assert.assertEquals(FastList.newListWith("1"), list1);
         Verify.assertInstanceOf(SingletonList.class, list1);
-
         MutableList<String> list2 = list1.with("2");
         Assert.assertEquals(FastList.newListWith("1", "2"), list2);
         Verify.assertInstanceOf(DoubletonList.class, list2);
-
         MutableList<String> list3 = list2.with("3");
         Assert.assertEquals(FastList.newListWith("1", "2", "3"), list3);
         Verify.assertInstanceOf(TripletonList.class, list3);
-
         MutableList<String> list4 = list3.with("4");
         Assert.assertEquals(FastList.newListWith("1", "2", "3", "4"), list4);
         Verify.assertInstanceOf(QuadrupletonList.class, list4);
-
         MutableList<String> list5 = list4.with("5");
         Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5"), list5);
         Verify.assertInstanceOf(QuintupletonList.class, list5);
-
         MutableList<String> list6 = list5.with("6");
         Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6"), list6);
         Verify.assertInstanceOf(SextupletonList.class, list6);
-
         MutableList<String> list7 = list6.with("7");
         Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6", "7"), list7);
         Verify.assertInstanceOf(ArrayAdapter.class, list7);
-
         MutableList<String> list8 = list7.with("8");
         Assert.assertEquals(FastList.newListWith("1", "2", "3", "4", "5", "6", "7", "8"), list8);
         Verify.assertInstanceOf(ArrayAdapter.class, list8);
     }
 
     @Test
-    public void create1()
-    {
+    public void create1() {
         MutableList<String> list = Lists.fixedSize.of("1");
         Verify.assertSize(1, list);
         Verify.assertItemAtIndex("1", 0, list);
     }
 
     @Test
-    public void create2()
-    {
+    public void create2() {
         MutableList<String> list = Lists.fixedSize.of("1", "2");
         Verify.assertSize(2, list);
         Verify.assertStartsWith(list, "1", "2");
     }
 
     @Test
-    public void create3()
-    {
+    public void create3() {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3");
         Verify.assertSize(3, list);
         Verify.assertStartsWith(list, "1", "2", "3");
     }
 
     @Test
-    public void create4()
-    {
+    public void create4() {
         MutableList<String> list = Lists.fixedSize.of("1", "2", "3", "4");
         Verify.assertSize(4, list);
         Verify.assertStartsWith(list, "1", "2", "3", "4");
     }
 
     @Test
-    public void createList_singleton()
-    {
+    public void createList_singleton() {
         Verify.assertEmpty(Lists.fixedSize.of());
         Assert.assertSame(Lists.fixedSize.of(), Lists.fixedSize.of());
     }
 
     @Test
-    public void varArgsListCreation()
-    {
-        String[] content = {"one", "two"};
-
-        //List<Object>   list1 = Lists.fixedSize.of(content);  // incompatible types: List<Object> vs List<String>
-        //List<String[]> list2 = Lists.fixedSize.of(content);  // incompatible types: List<String[]> vs List<String>
-        List<String[]> list3 = Lists.fixedSize.<String[]>of(content);  // correct!
+    public void varArgsListCreation() {
+        String[] content = { "one", "two" };
+        // List<Object>   list1 = Lists.fixedSize.of(content);  // incompatible types: List<Object> vs List<String>
+        // List<String[]> list2 = Lists.fixedSize.of(content);  // incompatible types: List<String[]> vs List<String>
+        // correct!
+        List<String[]> list3 = Lists.fixedSize.<String[]>of(content);
         Verify.assertSize(1, list3);
-
         MutableList<String> list4 = Lists.fixedSize.of(content);
         Verify.assertSize(2, list4);
     }
 
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         MutableList<String> empty = Lists.fixedSize.of();
         MutableList<String> emptyA = Lists.mutable.of();
         Verify.assertEqualsAndHashCode(empty, emptyA);
-
         MutableList<String> one = Lists.fixedSize.of("1");
         MutableList<String> oneA = Lists.mutable.of();
         oneA.add("1");
         Verify.assertEqualsAndHashCode(one, oneA);
-
         MutableList<String> two = Lists.fixedSize.of("1", "2");
         MutableList<String> twoA = Lists.mutable.of();
         twoA.add("1");
         twoA.add("2");
         Verify.assertEqualsAndHashCode(two, twoA);
-
         MutableList<String> three = Lists.fixedSize.of("1", "2", "3");
         MutableList<String> threeA = Lists.mutable.of();
         threeA.add("1");
         threeA.add("2");
         threeA.add("3");
         Verify.assertEqualsAndHashCode(three, threeA);
-
         Assert.assertNotEquals(three, twoA);
         Assert.assertNotEquals(twoA, three);
-
         MutableList<String> differentThree = Lists.mutable.of();
         differentThree.add("1");
         differentThree.add("Two");
         differentThree.add("3");
         Assert.assertNotEquals(three, differentThree);
         Assert.assertNotEquals(differentThree, three);
-
         Assert.assertEquals(new LinkedList<>(threeA), three);
         Assert.assertNotEquals(new LinkedList<>(differentThree), three);
         Assert.assertNotEquals(new LinkedList<>(FastList.newListWith("1", "2", "3", "4")), three);
@@ -177,8 +151,7 @@ public class FixedSizeListFactoryTest
     }
 
     @Test
-    public void serializationOfEmptyList()
-    {
+    public void serializationOfEmptyList() {
         Serializable list = (Serializable) Lists.fixedSize.of();
         Serializable list2 = (Serializable) Lists.fixedSize.of();
         Assert.assertSame(list, list2);
@@ -186,8 +159,7 @@ public class FixedSizeListFactoryTest
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3", "4", "5", "6");
         source.forEach(CollectionAddProcedure.on(result));
@@ -195,13 +167,11 @@ public class FixedSizeListFactoryTest
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         int[] indexSum = new int[1];
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3", "4", "5", "6");
-        source.forEachWithIndex((each, index) ->
-        {
+        source.forEachWithIndex((each, index) -> {
             result.add(each);
             indexSum[0] += index;
         });
@@ -210,8 +180,7 @@ public class FixedSizeListFactoryTest
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         MutableList<String> result = Lists.mutable.of();
         MutableList<String> source = Lists.fixedSize.of("1", "2", "3", "4", "5", "6");
         source.forEachWith(Procedures2.fromProcedure(result::add), null);
@@ -219,8 +188,7 @@ public class FixedSizeListFactoryTest
     }
 
     @Test
-    public void getFirstGetLast()
-    {
+    public void getFirstGetLast() {
         MutableList<String> list1 = Lists.fixedSize.of("1");
         Assert.assertEquals("1", list1.getFirst());
         Assert.assertEquals("1", list1.getLast());
@@ -239,5 +207,105 @@ public class FixedSizeListFactoryTest
         MutableList<String> list6 = Lists.fixedSize.of("1", "2", "3", "4", "5", "6");
         Assert.assertEquals("1", list6.getFirst());
         Assert.assertEquals("6", list6.getLast());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_createEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::createEmpty, this.description("createEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withExtra() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withExtra, this.description("withExtra"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create1() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create1, this.description("create1"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create2, this.description("create2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create3() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create3, this.description("create3"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create4() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create4, this.description("create4"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_createList_singleton() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::createList_singleton, this.description("createList_singleton"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_varArgsListCreation() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::varArgsListCreation, this.description("varArgsListCreation"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serializationOfEmptyList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serializationOfEmptyList, this.description("serializationOfEmptyList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirstGetLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirstGetLast, this.description("getFirstGetLast"));
+        }
+
+        private FixedSizeListFactoryTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new FixedSizeListFactoryTest();
+        }
+
+        @java.lang.Override
+        public FixedSizeListFactoryTest implementation() {
+            return this.implementation;
+        }
     }
 }

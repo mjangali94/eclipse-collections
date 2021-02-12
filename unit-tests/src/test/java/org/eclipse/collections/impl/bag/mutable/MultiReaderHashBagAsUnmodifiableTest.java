@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.mutable;
 
 import org.eclipse.collections.api.bag.MutableBag;
@@ -18,20 +17,40 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MultiReaderHashBagAsUnmodifiableTest extends UnmodifiableMutableCollectionTestCase<Integer>
-{
+public class MultiReaderHashBagAsUnmodifiableTest extends UnmodifiableMutableCollectionTestCase<Integer> {
+
     @Override
-    protected MutableCollection<Integer> getCollection()
-    {
+    protected MutableCollection<Integer> getCollection() {
         return MultiReaderHashBag.newBagWith(2, 2).asUnmodifiable();
     }
 
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         MutableBag<String> bag = MultiReaderHashBag.newBagWith("0", "1", "1", "1", "1", "2", "2", "2", "3", "3", "4", "5").asUnmodifiable();
         MutableSet<String> expected = Sets.mutable.with("0", "4", "5");
         MutableSet<String> actual = bag.selectUnique();
         Assert.assertEquals(expected, actual);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        private MultiReaderHashBagAsUnmodifiableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MultiReaderHashBagAsUnmodifiableTest();
+        }
+
+        @java.lang.Override
+        public MultiReaderHashBagAsUnmodifiableTest implementation() {
+            return this.implementation;
+        }
     }
 }

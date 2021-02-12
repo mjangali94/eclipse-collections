@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy.parallel.set.sorted;
 
 import org.eclipse.collections.api.block.function.Function;
@@ -21,41 +20,56 @@ import org.eclipse.collections.impl.list.mutable.FastList;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ParallelFlatCollectDistinctSortedSetIterableTest extends ParallelUnsortedSetIterableTestCase
-{
+public class ParallelFlatCollectDistinctSortedSetIterableTest extends ParallelUnsortedSetIterableTestCase {
+
     @Override
-    protected ParallelUnsortedSetIterable<Integer> classUnderTest()
-    {
+    protected ParallelUnsortedSetIterable<Integer> classUnderTest() {
         return this.newWith(4, 3, 2, 1);
     }
 
     @Override
-    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements)
-    {
-        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements)
-                .asParallel(this.executorService, 2)
-                .flatCollect(i -> FastList.newListWith(9, 8, 7, 6, 5, 4, 3, 2, 1).select(j -> j <= i).collect(j -> i * 10 + j))
-                .collect(i -> i / 10)
-                .asUnique();
+    protected ParallelUnsortedSetIterable<Integer> newWith(Integer... littleElements) {
+        return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).asParallel(this.executorService, 2).flatCollect(i -> FastList.newListWith(9, 8, 7, 6, 5, 4, 3, 2, 1).select(j -> j <= i).collect(j -> i * 10 + j)).collect(i -> i / 10).asUnique();
     }
 
     @Test
     @Override
-    public void groupBy()
-    {
+    public void groupBy() {
         Function<Integer, Boolean> isOddFunction = object -> IntegerPredicates.isOdd().accept(object);
-
-        Assert.assertEquals(
-                this.getExpected().toSet().groupBy(isOddFunction),
-                this.classUnderTest().groupBy(isOddFunction));
+        Assert.assertEquals(this.getExpected().toSet().groupBy(isOddFunction), this.classUnderTest().groupBy(isOddFunction));
     }
 
     @Test
     @Override
-    public void groupByEach()
-    {
-        Assert.assertEquals(
-                this.getExpected().toSet().groupByEach(new NegativeIntervalFunction()),
-                this.classUnderTest().groupByEach(new NegativeIntervalFunction()));
+    public void groupByEach() {
+        Assert.assertEquals(this.getExpected().toSet().groupByEach(new NegativeIntervalFunction()), this.classUnderTest().groupByEach(new NegativeIntervalFunction()));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEach, this.description("groupByEach"));
+        }
+
+        private ParallelFlatCollectDistinctSortedSetIterableTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ParallelFlatCollectDistinctSortedSetIterableTest();
+        }
+
+        @java.lang.Override
+        public ParallelFlatCollectDistinctSortedSetIterableTest implementation() {
+            return this.implementation;
+        }
     }
 }

@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap.set.sorted;
 
 import java.util.Comparator;
-
 import org.eclipse.collections.api.multimap.MutableMultimap;
 import org.eclipse.collections.api.multimap.sortedset.MutableSortedSetMultimap;
 import org.eclipse.collections.api.tuple.Pair;
@@ -23,31 +21,27 @@ import org.junit.Test;
 /**
  * Test of {@link SynchronizedPutTreeSortedSetMultimap}.
  */
-public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapTestCase
-{
+public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapTestCase {
+
     @Override
-    protected <K, V> MutableSortedSetMultimap<K, V> newMultimap()
-    {
+    protected <K, V> MutableSortedSetMultimap<K, V> newMultimap() {
         return SynchronizedPutTreeSortedSetMultimap.newMultimap(Comparators.reverseNaturalOrder());
     }
 
     @Override
-    protected <K, V> MutableSortedSetMultimap<K, V> newMultimap(Comparator<? super V> comparator)
-    {
+    protected <K, V> MutableSortedSetMultimap<K, V> newMultimap(Comparator<? super V> comparator) {
         return SynchronizedPutTreeSortedSetMultimap.newMultimap(comparator);
     }
 
     @Override
-    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeyValue(K key, V value)
-    {
+    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeyValue(K key, V value) {
         MutableSortedSetMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key, value);
         return mutableMultimap;
     }
 
     @Override
-    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2) {
         MutableSortedSetMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -55,11 +49,7 @@ public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSor
     }
 
     @Override
-    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3)
-    {
+    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         MutableSortedSetMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -68,12 +58,7 @@ public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSor
     }
 
     @Override
-    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3,
-            K key4, V value4)
-    {
+    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         MutableSortedSetMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -84,22 +69,18 @@ public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSor
 
     @SafeVarargs
     @Override
-    protected final <K, V> MutableSortedSetMultimap<K, V> newMultimap(Pair<K, V>... pairs)
-    {
+    protected final <K, V> MutableSortedSetMultimap<K, V> newMultimap(Pair<K, V>... pairs) {
         MutableSortedSetMultimap<K, V> result = this.newMultimap();
-        for (Pair<K, V> pair : pairs)
-        {
+        for (Pair<K, V> pair : pairs) {
             result.add(pair);
         }
         return result;
     }
 
     @Override
-    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapFromPairs(Iterable<Pair<K, V>> inputIterable)
-    {
+    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapFromPairs(Iterable<Pair<K, V>> inputIterable) {
         MutableSortedSetMultimap<K, V> result = this.newMultimap();
-        for (Pair<K, V> pair : inputIterable)
-        {
+        for (Pair<K, V> pair : inputIterable) {
             result.add(pair);
         }
         return result;
@@ -107,20 +88,38 @@ public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSor
 
     @SafeVarargs
     @Override
-    protected final <V> TreeSortedSet<V> createCollection(V... args)
-    {
+    protected final <V> TreeSortedSet<V> createCollection(V... args) {
         return TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), args);
     }
 
     @Test
     @Override
-    public void testToString()
-    {
+    public void testToString() {
         super.testToString();
-
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "One", 2);
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "One", 2);
         String toString = multimap.toString();
         Assert.assertTrue("{One=[1, 2]}".equals(toString) || "{One=[2, 1]}".equals(toString));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        private SynchronizedPutTreeSortedSetMultimapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedPutTreeSortedSetMultimapTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedPutTreeSortedSetMultimapTest implementation() {
+            return this.implementation;
+        }
     }
 }

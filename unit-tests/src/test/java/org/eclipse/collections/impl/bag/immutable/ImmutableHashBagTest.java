@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.immutable;
 
 import org.eclipse.collections.api.bag.ImmutableBag;
@@ -29,33 +28,28 @@ import org.eclipse.collections.impl.multimap.bag.HashBagMultimap;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iBag;
 
-public class ImmutableHashBagTest extends ImmutableBagTestCase
-{
+public class ImmutableHashBagTest extends ImmutableBagTestCase {
+
     @Override
-    protected ImmutableBag<String> newBag()
-    {
+    protected ImmutableBag<String> newBag() {
         return ImmutableHashBag.newBagWith("1", "2", "2", "3", "3", "3", "4", "4", "4", "4");
     }
 
     @Override
-    protected int numKeys()
-    {
+    protected int numKeys() {
         return 4;
     }
 
     @Override
     @Test
-    public void testSize()
-    {
+    public void testSize() {
         Verify.assertIterableSize(10, this.newBag());
     }
 
     @Override
-    public void toStringOfItemToCount()
-    {
+    public void toStringOfItemToCount() {
         Assert.assertEquals("{}", ImmutableHashBag.newBag().toStringOfItemToCount());
         Assert.assertEquals("{1=3}", ImmutableHashBag.newBagWith("1", "1", "1").toStringOfItemToCount());
         String actual = ImmutableHashBag.newBagWith("1", "2", "2").toStringOfItemToCount();
@@ -64,10 +58,8 @@ public class ImmutableHashBagTest extends ImmutableBagTestCase
 
     @Override
     @Test
-    public void selectInstancesOf()
-    {
+    public void selectInstancesOf() {
         super.selectInstancesOf();
-
         ImmutableBag<Number> numbers = ImmutableHashBag.newBagWith(1, 2.0, 2.0, 3, 3, 3, 4.0, 4.0, 4.0, 4.0);
         Assert.assertEquals(iBag(1, 3, 3, 3), numbers.selectInstancesOf(Integer.class));
         Assert.assertEquals(iBag(2.0, 2.0, 4.0, 4.0, 4.0, 4.0), numbers.selectInstancesOf(Double.class));
@@ -75,8 +67,7 @@ public class ImmutableHashBagTest extends ImmutableBagTestCase
 
     @Override
     @Test
-    public void collectBoolean()
-    {
+    public void collectBoolean() {
         ImmutableBooleanBag result = this.newBag().collectBoolean("4"::equals);
         Assert.assertEquals(2, result.sizeDistinct());
         Assert.assertEquals(4, result.occurrencesOf(true));
@@ -84,8 +75,7 @@ public class ImmutableHashBagTest extends ImmutableBagTestCase
     }
 
     @Test
-    public void testNewBag()
-    {
+    public void testNewBag() {
         ImmutableHashBag<Object> immutableHashBag = ImmutableHashBag.newBagWith(HashBag.newBag().with(1, 2, 3, 4));
         Verify.assertSize(4, immutableHashBag);
         Assert.assertEquals(FastList.newListWith(1, 2, 3, 4), immutableHashBag.toSortedList());
@@ -93,46 +83,37 @@ public class ImmutableHashBagTest extends ImmutableBagTestCase
 
     @Override
     @Test
-    public void groupByEach()
-    {
+    public void groupByEach() {
         ImmutableBag<Integer> immutableBag = ImmutableHashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
-
         MutableMultimap<Integer, Integer> expected = HashBagMultimap.newMultimap();
         int keys = this.numKeys();
-        immutableBag.forEachWithOccurrences((each, parameter) ->
-        {
+        immutableBag.forEachWithOccurrences((each, parameter) -> {
             HashBag<Integer> bag = HashBag.newBag();
             Interval.fromTo(each, keys).forEach((int eachInt) -> bag.addOccurrences(eachInt, eachInt));
             expected.putAll(-each, bag);
         });
-        Multimap<Integer, Integer> actual =
-                immutableBag.groupByEach(new NegativeIntervalFunction());
+        Multimap<Integer, Integer> actual = immutableBag.groupByEach(new NegativeIntervalFunction());
         Assert.assertEquals(expected, actual);
-
-        Multimap<Integer, Integer> actualWithTarget =
-                immutableBag.groupByEach(new NegativeIntervalFunction(), HashBagMultimap.newMultimap());
+        Multimap<Integer, Integer> actualWithTarget = immutableBag.groupByEach(new NegativeIntervalFunction(), HashBagMultimap.newMultimap());
         Assert.assertEquals(expected, actualWithTarget);
     }
 
     @Override
     @Test
-    public void groupByUniqueKey()
-    {
+    public void groupByUniqueKey() {
         ImmutableBag<Integer> immutableBag = ImmutableHashBag.newBagWith(1, 2, 3);
         Assert.assertEquals(Maps.immutable.of(1, 1, 2, 2, 3, 3), immutableBag.groupByUniqueKey(id -> id));
     }
 
     @Override
     @Test
-    public void groupByUniqueKey_target()
-    {
+    public void groupByUniqueKey_target() {
         ImmutableBag<Integer> immutableBag = ImmutableHashBag.newBagWith(1, 2, 3);
         Assert.assertEquals(Maps.immutable.of(0, 0, 1, 1, 2, 2, 3, 3), immutableBag.groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0)));
     }
 
     @Test
-    public void topOccurrences()
-    {
+    public void topOccurrences() {
         MutableBag<String> mutable = HashBag.newBag();
         mutable.addOccurrences("one", 1);
         mutable.addOccurrences("two", 2);
@@ -166,8 +147,7 @@ public class ImmutableHashBagTest extends ImmutableBagTestCase
     }
 
     @Test
-    public void bottomOccurrences()
-    {
+    public void bottomOccurrences() {
         MutableBag<String> mutable = HashBag.newBag();
         mutable.addOccurrences("one", 1);
         mutable.addOccurrences("two", 2);
@@ -202,13 +182,83 @@ public class ImmutableHashBagTest extends ImmutableBagTestCase
 
     @Override
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         super.selectUnique();
-
         ImmutableBag<String> bag = this.newBag();
         ImmutableSet<String> expected = Sets.immutable.of("1");
         ImmutableSet<String> actual = bag.selectUnique();
         Assert.assertEquals(expected, actual);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testSize() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testSize, this.description("testSize"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectInstancesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectInstancesOf, this.description("selectInstancesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectBoolean() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectBoolean, this.description("collectBoolean"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewBag, this.description("testNewBag"));
+        }
+
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey, this.description("groupByUniqueKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey_target, this.description("groupByUniqueKey_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_topOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::topOccurrences, this.description("topOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_bottomOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::bottomOccurrences, this.description("bottomOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        private ImmutableHashBagTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableHashBagTest();
+        }
+
+        @java.lang.Override
+        public ImmutableHashBagTest implementation() {
+            return this.implementation;
+        }
     }
 }

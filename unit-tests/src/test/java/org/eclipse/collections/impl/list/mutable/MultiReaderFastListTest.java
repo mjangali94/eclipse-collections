@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.mutable;
 
 import java.lang.ref.WeakReference;
@@ -17,7 +16,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
-
 import org.eclipse.collections.api.block.function.Function0;
 import org.eclipse.collections.api.block.function.Function2;
 import org.eclipse.collections.api.block.predicate.Predicate2;
@@ -46,47 +44,39 @@ import org.eclipse.collections.impl.tuple.Tuples;
 import org.eclipse.collections.impl.utility.ListIterate;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.eclipse.collections.impl.factory.Iterables.iList;
 
 /**
  * JUnit test for {@link MultiReaderFastList}.
  */
-public class MultiReaderFastListTest extends AbstractListTestCase
-{
+public class MultiReaderFastListTest extends AbstractListTestCase {
+
     @Override
-    protected <T> MultiReaderFastList<T> newWith(T... littleElements)
-    {
+    protected <T> MultiReaderFastList<T> newWith(T... littleElements) {
         return MultiReaderFastList.newListWith(littleElements);
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void largeCollectionStreamToBagMultimap()
-    {
+    public void largeCollectionStreamToBagMultimap() {
         super.largeCollectionStreamToBagMultimap();
     }
 
     @Override
     @Test
-    public void newEmpty()
-    {
+    public void newEmpty() {
         Verify.assertInstanceOf(MultiReaderFastList.class, MultiReaderFastList.newList().newEmpty());
         Verify.assertEmpty(MultiReaderFastList.<Integer>newListWith(null, null).newEmpty());
     }
 
     @Test
-    public void fastListNewWith()
-    {
-        Assert.assertEquals(
-                FastList.newListWith("Alice", "Bob", "Cooper", "Dio"),
-                MultiReaderFastList.newListWith("Alice", "Bob", "Cooper", "Dio"));
+    public void fastListNewWith() {
+        Assert.assertEquals(FastList.newListWith("Alice", "Bob", "Cooper", "Dio"), MultiReaderFastList.newListWith("Alice", "Bob", "Cooper", "Dio"));
     }
 
     @Override
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         MutableList<Integer> result = FastList.newList();
         MutableList<Integer> collection = MultiReaderFastList.newListWith(1, 2, 3, 4);
         collection.forEach(CollectionAddProcedure.on(result));
@@ -95,37 +85,32 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         MutableList<Integer> list = MultiReaderFastList.newListWith(1, 2, 3);
         Assert.assertEquals(Integer.valueOf(7), list.injectInto(1, AddFunction.INTEGER));
     }
 
     @Test
-    public void injectIntoDouble2()
-    {
+    public void injectIntoDouble2() {
         MutableList<Double> list = MultiReaderFastList.newListWith(1.0, 2.0, 3.0);
         Assert.assertEquals(7.0d, list.injectInto(1.0, AddFunction.DOUBLE_TO_DOUBLE), 0.001);
     }
 
     @Test
-    public void injectIntoString()
-    {
+    public void injectIntoString() {
         MutableList<String> list = MultiReaderFastList.newListWith("1", "2", "3");
         Assert.assertEquals("0123", list.injectInto("0", AddFunction.STRING));
     }
 
     @Test
-    public void injectIntoMaxString()
-    {
+    public void injectIntoMaxString() {
         MutableList<String> list = MultiReaderFastList.newListWith("1", "12", "123");
         Function2<Integer, String, Integer> function = MaxSizeFunction.STRING;
         Assert.assertEquals(Integer.valueOf(3), list.injectInto(Integer.MIN_VALUE, function));
     }
 
     @Test
-    public void injectIntoMinString()
-    {
+    public void injectIntoMinString() {
         MutableList<String> list = MultiReaderFastList.newListWith("1", "12", "123");
         Function2<Integer, String, Integer> function = MinSizeFunction.STRING;
         Assert.assertEquals(Integer.valueOf(1), list.injectInto(Integer.MAX_VALUE, function));
@@ -133,31 +118,26 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void collect()
-    {
+    public void collect() {
         MutableList<Boolean> list = MultiReaderFastList.newListWith(Boolean.TRUE, Boolean.FALSE, null);
         MutableList<String> newCollection = list.collect(String::valueOf);
         Assert.assertEquals(FastList.newListWith("true", "false", "null"), newCollection);
     }
 
-    private MutableList<Integer> getIntegerList()
-    {
+    private MutableList<Integer> getIntegerList() {
         return MultiReaderFastList.newList(Interval.toReverseList(1, 5));
     }
 
     @Override
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         super.forEachWithIndex();
-
         MutableList<Integer> list = MultiReaderFastList.newList(Interval.oneTo(5));
         list.forEachWithIndex((object, index) -> Assert.assertEquals(index, object - 1));
     }
 
     @Test
-    public void forEachInBothUsingListIterate()
-    {
+    public void forEachInBothUsingListIterate() {
         MutableList<Pair<String, String>> list = MultiReaderFastList.newList();
         MutableList<String> list1 = MultiReaderFastList.newListWith("1", "2");
         MutableList<String> list2 = MultiReaderFastList.newListWith("a", "b");
@@ -167,23 +147,17 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void forEachInBoth()
-    {
+    public void forEachInBoth() {
         MutableList<Pair<String, String>> list = MultiReaderFastList.newList();
         MutableList<String> list1 = Lists.multiReader.with("1", "2");
         MutableList<String> list2 = Lists.multiReader.with("a", "b");
-        list1.forEachInBoth(
-                list2,
-                (argument1, argument2) -> list.add(Tuples.pair(argument1, argument2)));
-        Assert.assertEquals(
-                Lists.mutable.with(Tuples.pair("1", "a"), Tuples.pair("2", "b")),
-                list);
+        list1.forEachInBoth(list2, (argument1, argument2) -> list.add(Tuples.pair(argument1, argument2)));
+        Assert.assertEquals(Lists.mutable.with(Tuples.pair("1", "a"), Tuples.pair("2", "b")), list);
     }
 
     @Override
     @Test
-    public void detect()
-    {
+    public void detect() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertEquals(Integer.valueOf(1), list.detect(Integer.valueOf(1)::equals));
         MutableList<Integer> list2 = MultiReaderFastList.newListWith(1, 2, 2);
@@ -192,8 +166,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void detectWith()
-    {
+    public void detectWith() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertEquals(Integer.valueOf(1), list.detectWith(Object::equals, 1));
         MutableList<Integer> list2 = MultiReaderFastList.newListWith(1, 2, 2);
@@ -201,8 +174,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void detectWithIfNone()
-    {
+    public void detectWithIfNone() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertNull(list.detectWithIfNone(Object::equals, 6, new PassThruFunction0<>(null)));
         Assert.assertEquals(Integer.valueOf(1), list.detectWithIfNone(Object::equals, Integer.valueOf(1), new PassThruFunction0<>(Integer.valueOf(10000))));
@@ -210,8 +182,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void select()
-    {
+    public void select() {
         MutableList<Integer> list = this.getIntegerList();
         MutableList<Integer> results = list.select(Integer.class::isInstance);
         Verify.assertSize(5, results);
@@ -219,8 +190,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void selectWith()
-    {
+    public void selectWith() {
         MutableList<Integer> list = this.getIntegerList();
         MutableList<Integer> results = list.selectWith(Predicates2.instanceOf(), Integer.class);
         Verify.assertSize(5, results);
@@ -228,8 +198,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void rejectWith()
-    {
+    public void rejectWith() {
         MutableList<Integer> list = this.getIntegerList();
         MutableList<Integer> results = list.rejectWith(Predicates2.instanceOf(), Integer.class);
         Verify.assertEmpty(results);
@@ -237,19 +206,16 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void selectAndRejectWith()
-    {
+    public void selectAndRejectWith() {
         MutableList<Integer> list = this.getIntegerList();
-        Twin<MutableList<Integer>> result =
-                list.selectAndRejectWith(Predicates2.in(), Lists.fixedSize.of(1));
+        Twin<MutableList<Integer>> result = list.selectAndRejectWith(Predicates2.in(), Lists.fixedSize.of(1));
         Verify.assertSize(1, result.getOne());
         Verify.assertSize(4, result.getTwo());
     }
 
     @Override
     @Test
-    public void anySatisfyWith()
-    {
+    public void anySatisfyWith() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertTrue(list.anySatisfyWith(Predicates2.instanceOf(), Integer.class));
         Assert.assertFalse(list.anySatisfyWith(Predicates2.instanceOf(), Double.class));
@@ -257,8 +223,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertTrue(Predicates.<Integer>anySatisfy(Integer.class::isInstance).accept(list));
         Assert.assertFalse(Predicates.<Integer>anySatisfy(Double.class::isInstance).accept(list));
@@ -266,8 +231,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void allSatisfyWith()
-    {
+    public void allSatisfyWith() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertTrue(list.allSatisfyWith(Predicates2.instanceOf(), Integer.class));
         Predicate2<Integer, Integer> greaterThanPredicate = Predicates2.greaterThan();
@@ -276,8 +240,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertTrue(Predicates.<Integer>allSatisfy(Integer.class::isInstance).accept(list));
         Assert.assertFalse(Predicates.allSatisfy(Predicates.greaterThan(2)).accept(list));
@@ -285,8 +248,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertTrue(Predicates.<Integer>noneSatisfy(String.class::isInstance).accept(list));
         Assert.assertFalse(Predicates.noneSatisfy(Predicates.greaterThan(0)).accept(list));
@@ -294,8 +256,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void noneSatisfyWith()
-    {
+    public void noneSatisfyWith() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertTrue(list.noneSatisfyWith(Predicates2.instanceOf(), String.class));
         Predicate2<Integer, Integer> greaterThanPredicate = Predicates2.greaterThan();
@@ -304,8 +265,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void count()
-    {
+    public void count() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertEquals(5, list.count(Integer.class::isInstance));
         Assert.assertEquals(0, list.count(Double.class::isInstance));
@@ -313,8 +273,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void countWith()
-    {
+    public void countWith() {
         MutableList<Integer> list = this.getIntegerList();
         Assert.assertEquals(5, list.countWith(Predicates2.instanceOf(), Integer.class));
         Assert.assertEquals(0, list.countWith(Predicates2.instanceOf(), Double.class));
@@ -322,21 +281,15 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void detectIfNone()
-    {
+    public void detectIfNone() {
         Function0<Integer> defaultResultFunction = new PassThruFunction0<>(6);
-        Assert.assertEquals(
-                Integer.valueOf(3),
-                MultiReaderFastList.newListWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(3)::equals, defaultResultFunction));
-        Assert.assertEquals(
-                Integer.valueOf(6),
-                MultiReaderFastList.newListWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(6)::equals, defaultResultFunction));
+        Assert.assertEquals(Integer.valueOf(3), MultiReaderFastList.newListWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(3)::equals, defaultResultFunction));
+        Assert.assertEquals(Integer.valueOf(6), MultiReaderFastList.newListWith(1, 2, 3, 4, 5).detectIfNone(Integer.valueOf(6)::equals, defaultResultFunction));
     }
 
     @Override
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         MutableList<Integer> result = FastList.newList();
         MutableList<Integer> collection = MultiReaderFastList.newListWith(1, 2, 3, 4);
         collection.forEachWith((argument1, argument2) -> result.add(argument1 + argument2), 0);
@@ -345,16 +298,14 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         Assert.assertNull(MultiReaderFastList.newList().getFirst());
         Assert.assertEquals(Integer.valueOf(1), MultiReaderFastList.newListWith(1, 2, 3).getFirst());
     }
 
     @Override
     @Test
-    public void getLast()
-    {
+    public void getLast() {
         Assert.assertNull(MultiReaderFastList.newList().getLast());
         Assert.assertNotEquals(Integer.valueOf(1), MultiReaderFastList.newListWith(1, 2, 3).getLast());
         Assert.assertEquals(Integer.valueOf(3), MultiReaderFastList.newListWith(1, 2, 3).getLast());
@@ -362,8 +313,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void isEmpty()
-    {
+    public void isEmpty() {
         Verify.assertEmpty(MultiReaderFastList.newList());
         Verify.assertNotEmpty(MultiReaderFastList.newListWith(1, 2));
         Assert.assertTrue(MultiReaderFastList.newListWith(1, 2).notEmpty());
@@ -371,46 +321,29 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void collectIf()
-    {
-        Assert.assertEquals(
-                FastList.newListWith("1", "2", "3"),
-                MultiReaderFastList.newListWith(1, 2, 3).collectIf(
-                        Integer.class::isInstance,
-                        String::valueOf));
-        Assert.assertEquals(
-                FastList.newListWith("1", "2", "3"),
-                MultiReaderFastList.newListWith(1, 2, 3).collectIf(
-                        Integer.class::isInstance,
-                        String::valueOf,
-                        FastList.newList()));
+    public void collectIf() {
+        Assert.assertEquals(FastList.newListWith("1", "2", "3"), MultiReaderFastList.newListWith(1, 2, 3).collectIf(Integer.class::isInstance, String::valueOf));
+        Assert.assertEquals(FastList.newListWith("1", "2", "3"), MultiReaderFastList.newListWith(1, 2, 3).collectIf(Integer.class::isInstance, String::valueOf, FastList.newList()));
     }
 
     @Override
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         Function2<Integer, Integer, Integer> addZeroFunction = (each, parameter) -> each + parameter;
         Verify.assertContainsAll(MultiReaderFastList.newListWith(1, 2, 3).collectWith(addZeroFunction, 0), 1, 2, 3);
-        Verify.assertContainsAll(
-                MultiReaderFastList.newListWith(1, 2, 3).collectWith(
-                        addZeroFunction,
-                        0,
-                        FastList.newList()), 1, 2, 3);
+        Verify.assertContainsAll(MultiReaderFastList.newListWith(1, 2, 3).collectWith(addZeroFunction, 0, FastList.newList()), 1, 2, 3);
     }
 
     @Override
     @Test
-    public void injectIntoWith()
-    {
+    public void injectIntoWith() {
         MutableList<Integer> objects = MultiReaderFastList.newListWith(1, 2, 3);
         Integer result = objects.injectIntoWith(1, (injectedValued, item, parameter) -> injectedValued + item + parameter, 0);
         Assert.assertEquals(Integer.valueOf(7), result);
     }
 
     @Test
-    public void removeUsingPredicate()
-    {
+    public void removeUsingPredicate() {
         MutableList<Integer> objects = MultiReaderFastList.newListWith(1, 2, 3, null);
         Assert.assertTrue(objects.removeIf(Predicates.isNull()));
         Verify.assertSize(3, objects);
@@ -419,8 +352,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void removeIf()
-    {
+    public void removeIf() {
         MutableList<Integer> objects = MultiReaderFastList.newListWith(1, 2, 3, null);
         Assert.assertTrue(objects.removeIf(Predicates.cast(Objects::isNull)));
         Verify.assertSize(3, objects);
@@ -429,8 +361,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void removeIfWith()
-    {
+    public void removeIfWith() {
         MutableList<Integer> objects = MultiReaderFastList.newListWith(1, 2, 3, null);
         Assert.assertTrue(objects.removeIfWith((each, ignored) -> each == null, null));
         Verify.assertSize(3, objects);
@@ -439,10 +370,8 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void removeAll()
-    {
+    public void removeAll() {
         super.removeAll();
-
         MutableList<Integer> objects = MultiReaderFastList.newListWith(1, 2, 3);
         objects.removeAll(Lists.fixedSize.of(1, 2));
         Verify.assertSize(1, objects);
@@ -470,10 +399,8 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void removeAllIterable()
-    {
+    public void removeAllIterable() {
         super.removeAllIterable();
-
         MutableList<Integer> objects = MultiReaderFastList.newListWith(1, 2, 3);
         objects.removeAllIterable(Lists.fixedSize.of(1, 2));
         Verify.assertSize(1, objects);
@@ -501,19 +428,22 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @SuppressWarnings("StringOperationCanBeSimplified")
     @Test
-    public void removeAllWithWeakReference()
-    {
-        String fred = new String("Fred");    // Deliberate String copy for unit test purpose
-        String wilma = new String("Wilma");  // Deliberate String copy for unit test purpose
+    public void removeAllWithWeakReference() {
+        // Deliberate String copy for unit test purpose
+        String fred = new String("Fred");
+        // Deliberate String copy for unit test purpose
+        String wilma = new String("Wilma");
         MutableList<String> objects = MultiReaderFastList.newListWith(fred, wilma);
         objects.removeAll(Lists.fixedSize.of("Fred"));
         objects.remove(0);
         Verify.assertEmpty(objects);
         WeakReference<String> ref = new WeakReference<>(wilma);
-        //noinspection ReuseOfLocalVariable
-        fred = null;   // Deliberate null of a local variable for unit test purpose
-        //noinspection ReuseOfLocalVariable
-        wilma = null;  // Deliberate null of a local variable for unit test purpose
+        // noinspection ReuseOfLocalVariable
+        // Deliberate null of a local variable for unit test purpose
+        fred = null;
+        // noinspection ReuseOfLocalVariable
+        // Deliberate null of a local variable for unit test purpose
+        wilma = null;
         System.gc();
         Thread.yield();
         System.gc();
@@ -523,10 +453,8 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void retainAll()
-    {
+    public void retainAll() {
         super.retainAll();
-
         MutableList<Integer> objects = this.newWith(1, 2, 3);
         objects.retainAll(Lists.fixedSize.of(1, 2));
         Verify.assertSize(2, objects);
@@ -554,10 +482,8 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void retainAllIterable()
-    {
+    public void retainAllIterable() {
         super.retainAllIterable();
-
         MutableList<Integer> objects = this.newWith(1, 2, 3);
         objects.retainAllIterable(Lists.fixedSize.of(1, 2));
         Verify.assertSize(2, objects);
@@ -585,18 +511,14 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void reject()
-    {
+    public void reject() {
         Verify.assertContainsAll(this.newWith(1, 2, 3, 4).reject(Predicates.lessThan(3)), 3, 4);
-        Verify.assertContainsAll(this.newWith(1, 2, 3, 4).reject(
-                Predicates.lessThan(3),
-                UnifiedSet.newSet()), 3, 4);
+        Verify.assertContainsAll(this.newWith(1, 2, 3, 4).reject(Predicates.lessThan(3), UnifiedSet.newSet()), 3, 4);
     }
 
     @Override
     @Test
-    public void serialization()
-    {
+    public void serialization() {
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4, 5);
         MutableList<Integer> deserializedCollection = SerializeTestHelper.serializeDeserialize(collection);
         Verify.assertSize(5, deserializedCollection);
@@ -605,15 +527,13 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void serializationOfEmpty()
-    {
+    public void serializationOfEmpty() {
         MutableList<Integer> collection = MultiReaderFastList.newList();
         Verify.assertPostSerializedEqualsAndHashCode(collection);
     }
 
     @Test
-    public void serializationOfSublist()
-    {
+    public void serializationOfSublist() {
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4, 5);
         MutableList<Integer> deserializedCollection = SerializeTestHelper.serializeDeserialize(collection.subList(0, 2));
         Verify.assertSize(2, deserializedCollection);
@@ -623,10 +543,8 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void addAll()
-    {
+    public void addAll() {
         super.addAll();
-
         MutableList<Integer> integers = MultiReaderFastList.newList();
         Assert.assertTrue(integers.addAll(Lists.fixedSize.of(1, 2, 3, 4)));
         Verify.assertContainsAll(integers, 1, 2, 3, 4);
@@ -638,10 +556,8 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void addAllIterable()
-    {
+    public void addAllIterable() {
         super.addAllIterable();
-
         MutableList<Integer> integers = MultiReaderFastList.newList();
         Assert.assertTrue(integers.addAllIterable(Lists.fixedSize.of(1, 2, 3, 4)));
         Verify.assertContainsAll(integers, 1, 2, 3, 4);
@@ -652,8 +568,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void addAllEmpty()
-    {
+    public void addAllEmpty() {
         MutableList<Integer> integers = MultiReaderFastList.newList();
         integers.addAll(Lists.fixedSize.of());
         Verify.assertEmpty(integers);
@@ -667,8 +582,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void replaceAll()
-    {
+    public void replaceAll() {
         MutableList<Integer> integers = this.getIntegerList();
         integers.replaceAll(i -> i * 2);
         Assert.assertEquals(Lists.mutable.with(10, 8, 6, 4, 2), integers);
@@ -676,8 +590,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void sort()
-    {
+    public void sort() {
         MutableList<Integer> integers = this.getIntegerList();
         integers.sort(Comparator.reverseOrder());
         Assert.assertEquals(Lists.mutable.with(5, 4, 3, 2, 1), integers);
@@ -685,8 +598,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void addAllAtIndex()
-    {
+    public void addAllAtIndex() {
         MutableList<Integer> integers = this.newWith(5);
         integers.addAll(0, Lists.fixedSize.of(1, 2, 3, 4));
         Verify.assertStartsWith(integers, 1, 2, 3, 4, 5);
@@ -695,8 +607,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void addAllAtIndexEmpty()
-    {
+    public void addAllAtIndexEmpty() {
         MutableList<Integer> integers = this.newWith(5);
         integers.addAll(0, Lists.fixedSize.of());
         Verify.assertSize(1, integers);
@@ -713,8 +624,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void addAtIndex()
-    {
+    public void addAtIndex() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 5);
         integers.add(3, 4);
         Verify.assertStartsWith(integers, 1, 2, 3, 4, 5);
@@ -737,8 +647,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void subList()
-    {
+    public void subList() {
         super.subList();
         MutableList<String> list = this.newWith("A", "B", "C", "D");
         MutableList<String> sublist = list.subList(1, 3);
@@ -765,15 +674,13 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void subListSort()
-    {
+    public void subListSort() {
         MutableList<Integer> list = Interval.from(0).to(20).addAllTo(MultiReaderFastList.newList()).subList(2, 18).sortThis();
         Assert.assertEquals(FastList.newList(list), Interval.from(2).to(17));
     }
 
     @Test
-    public void subListOfSubList()
-    {
+    public void subListOfSubList() {
         MutableList<String> list = this.newWith("A", "B", "C", "D");
         MutableList<String> sublist = list.subList(0, 3);
         MutableList<String> sublist2 = sublist.subList(0, 2);
@@ -790,8 +697,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void setAtIndex()
-    {
+    public void setAtIndex() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 5);
         Assert.assertEquals(Integer.valueOf(5), integers.set(3, 4));
         Verify.assertStartsWith(integers, 1, 2, 3, 4);
@@ -799,8 +705,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void indexOf()
-    {
+    public void indexOf() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
         Assert.assertEquals(2, integers.indexOf(3));
         Assert.assertEquals(-1, integers.indexOf(0));
@@ -811,8 +716,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void lastIndexOf()
-    {
+    public void lastIndexOf() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
         Assert.assertEquals(2, integers.lastIndexOf(3));
         Assert.assertEquals(-1, integers.lastIndexOf(0));
@@ -822,16 +726,14 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void outOfBoundsCondition()
-    {
+    public void outOfBoundsCondition() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> integers.get(4));
     }
 
     @Override
     @Test
-    public void clear()
-    {
+    public void clear() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
         Verify.assertNotEmpty(integers);
         integers.clear();
@@ -840,8 +742,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void testClone()
-    {
+    public void testClone() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
         MutableList<Integer> clone = integers.clone();
         Assert.assertEquals(integers, clone);
@@ -850,18 +751,16 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void toArray()
-    {
+    public void toArray() {
         Object[] typelessArray = this.newWith(1, 2, 3, 4).toArray();
-        Assert.assertArrayEquals(typelessArray, new Object[]{1, 2, 3, 4});
+        Assert.assertArrayEquals(typelessArray, new Object[] { 1, 2, 3, 4 });
         Integer[] typedArray = this.newWith(1, 2, 3, 4).toArray(new Integer[0]);
-        Assert.assertArrayEquals(typedArray, new Integer[]{1, 2, 3, 4});
+        Assert.assertArrayEquals(typedArray, new Integer[] { 1, 2, 3, 4 });
     }
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         MutableList<Integer> integers = this.newWith(1, 2, 3);
         MutableList<Integer> integers2 = this.newWith(1, 2, 3);
         MutableList<Integer> integers3 = this.newWith(1, null, 3, 4, 5);
@@ -885,10 +784,8 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void removeObject()
-    {
+    public void removeObject() {
         super.removeObject();
-
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
         Integer doesExist = 1;
         integers.remove(doesExist);
@@ -899,8 +796,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void toList()
-    {
+    public void toList() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
         MutableList<Integer> list = integers.toList();
         Verify.assertStartsWith(list, 1, 2, 3, 4);
@@ -908,8 +804,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
         MutableSet<Integer> set = integers.toSet();
         Verify.assertContainsAll(set, 1, 2, 3, 4);
@@ -917,17 +812,14 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void toMap()
-    {
+    public void toMap() {
         MutableList<Integer> integers = this.newWith(1, 2, 3, 4);
-        MutableMap<String, String> map =
-                integers.toMap(String::valueOf, String::valueOf);
+        MutableMap<String, String> map = integers.toMap(String::valueOf, String::valueOf);
         Assert.assertEquals(UnifiedMap.newWithKeysValues("1", "1", "2", "2", "3", "3", "4", "4"), map);
     }
 
     @Test
-    public void sortThisOnListWithLessThan10Elements()
-    {
+    public void sortThisOnListWithLessThan10Elements() {
         MutableList<Integer> integers = this.newWith(2, 3, 4, 1, 7, 9, 6, 8, 5);
         Verify.assertStartsWith(integers.sortThis(), 1, 2, 3, 4, 5, 6, 7, 8, 9);
         MutableList<Integer> integers2 = this.newWith(1, 2, 3, 4, 5, 6, 7, 8, 9);
@@ -938,8 +830,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void sortThisOnListWithMoreThan9Elements()
-    {
+    public void sortThisOnListWithMoreThan9Elements() {
         MutableList<Integer> integers = this.newWith(2, 3, 4, 1, 5, 7, 6, 8, 10, 9);
         Verify.assertStartsWith(integers.sortThis(), 1, 2, 3, 4);
         MutableList<Integer> integers2 = this.newWith(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -949,23 +840,19 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void newListWithCollection()
-    {
+    public void newListWithCollection() {
         Verify.assertEmpty(MultiReaderFastList.newList(Lists.fixedSize.of()));
         Verify.assertEmpty(MultiReaderFastList.newList(Sets.fixedSize.of()));
         Verify.assertEmpty(MultiReaderFastList.newList(FastList.newList()));
         Verify.assertEmpty(MultiReaderFastList.newList(FastList.newList(4)));
-
         MutableList<Integer> setToList = MultiReaderFastList.newList(UnifiedSet.newSetWith(1, 2, 3, 4, 5));
         Verify.assertNotEmpty(setToList);
         Verify.assertSize(5, setToList);
         Verify.assertContainsAll(setToList, 1, 2, 3, 4, 5);
-
         MutableList<Integer> arrayListToList = MultiReaderFastList.newList(Lists.fixedSize.of(1, 2, 3, 4, 5));
         Verify.assertNotEmpty(arrayListToList);
         Verify.assertSize(5, arrayListToList);
         Verify.assertStartsWith(arrayListToList, 1, 2, 3, 4, 5);
-
         MutableList<Integer> fastListToList = MultiReaderFastList.newList(FastList.<Integer>newList().with(1, 2, 3, 4, 5));
         Verify.assertNotEmpty(fastListToList);
         Verify.assertSize(5, fastListToList);
@@ -973,8 +860,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase
     }
 
     @Test
-    public void containsAll()
-    {
+    public void containsAll() {
         MutableList<Integer> list = this.newWith(1, 2, 3, 4, 5, null);
         Assert.assertTrue(list.containsAll(Lists.fixedSize.of(1, 3, 5, null)));
         Assert.assertFalse(list.containsAll(Lists.fixedSize.of(2, null, 6)));
@@ -984,52 +870,45 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         MultiReaderFastList<Integer> integers = this.newWith(1, 2, 3, 4);
         Assert.assertThrows(UnsupportedOperationException.class, integers::iterator);
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void listIterator()
-    {
+    public void listIterator() {
         MultiReaderFastList<Integer> integers = this.newWith(1, 2, 3, 4);
         integers.listIterator();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void listIteratorWithIndex()
-    {
+    public void listIteratorWithIndex() {
         MultiReaderFastList<Integer> integers = this.newWith(1, 2, 3, 4);
         integers.listIterator(2);
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void listIteratorIndexTooSmall()
-    {
+    public void listIteratorIndexTooSmall() {
         this.newWith(1).listIterator(-1);
     }
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void listIteratorIndexTooBig()
-    {
+    public void listIteratorIndexTooBig() {
         this.newWith(1).listIterator(2);
     }
 
     @Test
-    public void withWritelockAndDelegate()
-    {
+    public void withWritelockAndDelegate() {
         MultiReaderFastList<Integer> list = MultiReaderFastList.newList(2);
         AtomicReference<MutableList<?>> delegateList = new AtomicReference<>();
         AtomicReference<MutableList<?>> subLists = new AtomicReference<>();
         AtomicReference<Iterator<?>> iterator = new AtomicReference<>();
         AtomicReference<Iterator<?>> listIterator = new AtomicReference<>();
         AtomicReference<Iterator<?>> listIteratorWithPosition = new AtomicReference<>();
-        list.withWriteLockAndDelegate(delegate ->
-        {
+        list.withWriteLockAndDelegate(delegate -> {
             delegate.add(1);
             delegate.add(2);
             delegate.add(3);
@@ -1041,7 +920,6 @@ public class MultiReaderFastListTest extends AbstractListTestCase
             listIteratorWithPosition.set(delegate.listIterator(3));
         });
         Assert.assertEquals(FastList.newListWith(1, 2, 3, 4), list);
-
         this.assertIteratorThrows(delegateList.get());
         this.assertIteratorThrows(subLists.get());
         this.assertIteratorThrows(iterator.get());
@@ -1049,53 +927,45 @@ public class MultiReaderFastListTest extends AbstractListTestCase
         this.assertIteratorThrows(listIteratorWithPosition.get());
     }
 
-    private void assertIteratorThrows(Iterator<?> iterator)
-    {
+    private void assertIteratorThrows(Iterator<?> iterator) {
         Assert.assertThrows(NullPointerException.class, iterator::hasNext);
     }
 
-    private void assertIteratorThrows(MutableList<?> list)
-    {
+    private void assertIteratorThrows(MutableList<?> list) {
         Assert.assertThrows(NullPointerException.class, list::iterator);
     }
 
     @Test
-    public void withReadLockAndDelegate()
-    {
+    public void withReadLockAndDelegate() {
         MultiReaderFastList<Integer> list = this.newWith(1);
         Object[] result = new Object[1];
-        list.withReadLockAndDelegate(delegate ->
-        {
+        list.withReadLockAndDelegate(delegate -> {
             result[0] = delegate.getFirst();
             this.verifyDelegateIsUnmodifiable(delegate);
         });
         Assert.assertNotNull(result[0]);
     }
 
-    private void verifyDelegateIsUnmodifiable(MutableList<Integer> delegate)
-    {
+    private void verifyDelegateIsUnmodifiable(MutableList<Integer> delegate) {
         Assert.assertThrows(UnsupportedOperationException.class, () -> delegate.add(2));
         Assert.assertThrows(UnsupportedOperationException.class, () -> delegate.remove(0));
     }
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals("[1, 2, 3]", this.newWith(1, 2, 3).toString());
     }
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         Appendable builder = new StringBuilder();
         this.newWith(1, 2, 3).appendString(builder);
         Assert.assertEquals("1, 2, 3", builder.toString());
@@ -1103,23 +973,20 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test(expected = UnsupportedOperationException.class)
-    public void iterator_throws()
-    {
+    public void iterator_throws() {
         this.newWith(1, 2, 3).iterator();
     }
 
     @Override
     @Test
-    public void asReversed()
-    {
+    public void asReversed() {
         MultiReaderFastList<Integer> multiReaderFastList = this.newWith(1, 2, 3, 4);
         multiReaderFastList.withReadLockAndDelegate(delegate -> Verify.assertIterablesEqual(iList(4, 3, 2, 1), delegate.asReversed()));
     }
 
     @Override
     @Test
-    public void binarySearch()
-    {
+    public void binarySearch() {
         MutableList<Integer> sortedList = this.newWith(1, 2, 3, 4, 5, 7);
         Assert.assertEquals(1, sortedList.binarySearch(2));
         Assert.assertEquals(-6, sortedList.binarySearch(6));
@@ -1127,10 +994,559 @@ public class MultiReaderFastListTest extends AbstractListTestCase
 
     @Override
     @Test
-    public void binarySearchWithComparator()
-    {
+    public void binarySearchWithComparator() {
         MutableList<Integer> sortedList = this.newWith(7, 5, 4, 3, 2, 1);
         Assert.assertEquals(4, sortedList.binarySearch(2, Comparators.reverseNaturalOrder()));
         Assert.assertEquals(-2, sortedList.binarySearch(6, Comparators.reverseNaturalOrder()));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_largeCollectionStreamToBagMultimap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::largeCollectionStreamToBagMultimap, this.description("largeCollectionStreamToBagMultimap"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newEmpty, this.description("newEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_fastListNewWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::fastListNewWith, this.description("fastListNewWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoDouble2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoDouble2, this.description("injectIntoDouble2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoString, this.description("injectIntoString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoMaxString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoMaxString, this.description("injectIntoMaxString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoMinString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoMinString, this.description("injectIntoMinString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachInBothUsingListIterate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachInBothUsingListIterate, this.description("forEachInBothUsingListIterate"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachInBoth() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachInBoth, this.description("forEachInBoth"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detect, this.description("detect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWith, this.description("detectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithIfNone, this.description("detectWithIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith, this.description("selectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith, this.description("rejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectAndRejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectAndRejectWith, this.description("selectAndRejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyWith, this.description("anySatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyWith, this.description("allSatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyWith, this.description("noneSatisfyWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countWith, this.description("countWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNone, this.description("detectIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmpty, this.description("isEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIf, this.description("collectIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectIntoWith, this.description("injectIntoWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeUsingPredicate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeUsingPredicate, this.description("removeUsingPredicate"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIf, this.description("removeIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeIfWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeIfWith, this.description("removeIfWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll, this.description("removeAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllIterable, this.description("removeAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAllWithWeakReference() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAllWithWeakReference, this.description("removeAllWithWeakReference"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAll, this.description("retainAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAllIterable, this.description("retainAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serialization() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serialization, this.description("serialization"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serializationOfEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serializationOfEmpty, this.description("serializationOfEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_serializationOfSublist() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::serializationOfSublist, this.description("serializationOfSublist"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAll, this.description("addAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllIterable, this.description("addAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllEmpty, this.description("addAllEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_replaceAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::replaceAll, this.description("replaceAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sort() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sort, this.description("sort"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllAtIndex, this.description("addAllAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllAtIndexEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllAtIndexEmpty, this.description("addAllAtIndexEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAtIndex, this.description("addAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subList, this.description("subList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subListSort() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subListSort, this.description("subListSort"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subListOfSubList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subListOfSubList, this.description("subListOfSubList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_setAtIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::setAtIndex, this.description("setAtIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_indexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::indexOf, this.description("indexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lastIndexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::lastIndexOf, this.description("lastIndexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_outOfBoundsCondition() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::outOfBoundsCondition, this.description("outOfBoundsCondition"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::clear, this.description("clear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testClone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testClone, this.description("testClone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeObject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeObject, this.description("removeObject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMap, this.description("toMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisOnListWithLessThan10Elements() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisOnListWithLessThan10Elements, this.description("sortThisOnListWithLessThan10Elements"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sortThisOnListWithMoreThan9Elements() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::sortThisOnListWithMoreThan9Elements, this.description("sortThisOnListWithMoreThan9Elements"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newListWithCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newListWithCollection, this.description("newListWithCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAll, this.description("containsAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_listIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::listIterator, this.description("listIterator"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_listIteratorWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::listIteratorWithIndex, this.description("listIteratorWithIndex"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_listIteratorIndexTooSmall() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::listIteratorIndexTooSmall, this.description("listIteratorIndexTooSmall"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_listIteratorIndexTooBig() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::listIteratorIndexTooBig, this.description("listIteratorIndexTooBig"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withWritelockAndDelegate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withWritelockAndDelegate, this.description("withWritelockAndDelegate"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withReadLockAndDelegate() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withReadLockAndDelegate, this.description("withReadLockAndDelegate"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::iterator_throws, this.description("iterator_throws"), java.lang.UnsupportedOperationException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asReversed() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asReversed, this.description("asReversed"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_binarySearch() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::binarySearch, this.description("binarySearch"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_binarySearchWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::binarySearchWithComparator, this.description("binarySearchWithComparator"));
+        }
+
+        private MultiReaderFastListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new MultiReaderFastListTest();
+        }
+
+        @java.lang.Override
+        public MultiReaderFastListTest implementation() {
+            return this.implementation;
+        }
     }
 }

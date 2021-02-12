@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap;
 
 import org.eclipse.collections.api.RichIterable;
@@ -35,36 +34,25 @@ import org.junit.Test;
 /**
  * Helper class for testing {@link Multimap}s.
  */
-public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTestCase
-{
+public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTestCase {
+
     @Override
     protected abstract <K, V> MutableMultimap<K, V> newMultimap();
 
     @Override
-    protected abstract <K, V> MutableMultimap<K, V> newMultimapWithKeyValue(
-            K key, V value);
+    protected abstract <K, V> MutableMultimap<K, V> newMultimapWithKeyValue(K key, V value);
 
     @Override
-    protected abstract <K, V> MutableMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2);
+    protected abstract <K, V> MutableMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2);
 
     @Override
-    protected abstract <K, V> MutableMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3);
+    protected abstract <K, V> MutableMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3);
 
     @Override
-    protected abstract <K, V> MutableMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3,
-            K key4, V value4);
+    protected abstract <K, V> MutableMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4);
 
     @Test
-    public void putAndGrowMultimap()
-    {
+    public void putAndGrowMultimap() {
         MutableMultimap<Integer, Integer> multimap = this.newMultimap();
         multimap.put(1, 1);
         multimap.put(2, 2);
@@ -73,8 +61,7 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void addAndGrowMultimap()
-    {
+    public void addAndGrowMultimap() {
         MutableMultimap<Integer, String> multimap = this.newMultimap();
         Pair<Integer, String> pair1 = Tuples.pair(1, "One");
         Pair<Integer, String> pair2 = Tuples.pair(2, "Two");
@@ -92,28 +79,23 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void clear()
-    {
-        MutableMultimap<Integer, Object> multimap =
-                this.newMultimapWithKeysValues(1, "One", 2, "Two", 3, "Three");
+    public void clear() {
+        MutableMultimap<Integer, Object> multimap = this.newMultimapWithKeysValues(1, "One", 2, "Two", 3, "Three");
         Verify.assertNotEmpty(multimap);
         multimap.clear();
         Verify.assertEmpty(multimap);
     }
 
     @Test
-    public void removeObject()
-    {
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Three", 3);
+    public void removeObject() {
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Three", 3);
         multimap.removeAll("Two");
         Verify.assertContainsAllEntries(multimap, "One", 1, "Three", 3);
     }
 
     @Override
     @Test
-    public void forEachKey()
-    {
+    public void forEachKey() {
         MutableBag<Integer> collection = Bags.mutable.of();
         Multimap<Integer, String> multimap = this.newMultimapWithKeysValues(1, "1", 2, "2", 3, "3");
         multimap.forEachKey(CollectionAddProcedure.on(collection));
@@ -121,8 +103,7 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void putAll()
-    {
+    public void putAll() {
         MutableMultimap<Integer, String> multimap = this.newMultimapWithKeysValues(1, "One", 2, "2");
         Multimap<Integer, String> toAdd = this.newMultimapWithKeysValues(2, "Two", 3, "Three");
         Multimap<Integer, String> toAddImmutable = this.newMultimapWithKeysValues(4, "Four", 5, "Five");
@@ -135,8 +116,7 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void putAllPairs()
-    {
+    public void putAllPairs() {
         MutableMultimap<Integer, String> multimap1 = this.newMultimapWithKeysValues(1, "One", 2, "2");
         MutableList<Pair<Integer, String>> pairs1 = Lists.mutable.of(Tuples.pair(1, "One"), Tuples.pair(2, "Two"), Tuples.pair(3, "Three"));
         Assert.assertTrue(multimap1.putAllPairs(pairs1));
@@ -147,7 +127,6 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
         expected1.put(2, "Two");
         expected1.put(3, "Three");
         Assert.assertEquals(expected1, multimap1);
-
         MutableMultimap<Integer, String> multimap2 = this.newMultimapWithKeysValues(1, "One", 2, "2");
         ImmutableList<Pair<Integer, String>> pairs2 = Lists.immutable.of(Tuples.pair(1, "One"), Tuples.pair(2, "Two"), Tuples.pair(3, "Three"));
         Assert.assertTrue(multimap2.putAllPairs(pairs2));
@@ -158,7 +137,6 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
         expected2.put(2, "Two");
         expected2.put(3, "Three");
         Assert.assertEquals(expected2, multimap2);
-
         MutableMultimap<String, Integer> multimap3 = this.newMultimapWithKeysValues("One", 1, "Two", 2);
         MutableSet<Pair<String, Integer>> pairs3 = Sets.mutable.of(Tuples.pair("One", 1), Tuples.pair("Two", 2), Tuples.pair("Three", 3));
         Assert.assertTrue(multimap3.putAllPairs(pairs3));
@@ -169,7 +147,6 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
         expected3.put("Two", 2);
         expected3.put("Three", 3);
         Assert.assertEquals(expected3, multimap3);
-
         MutableMultimap<Number, String> multimap4 = this.newMultimap();
         MutableList<Pair<Integer, String>> intPairs4 = Lists.mutable.of(Tuples.pair(1, "Integer1"), Tuples.pair(2, "Integer2"));
         MutableList<Pair<Long, String>> longPairs4 = Lists.mutable.of(Tuples.pair(1L, "Long1"), Tuples.pair(2L, "Long2"));
@@ -180,8 +157,7 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void putAllFromCollection()
-    {
+    public void putAllFromCollection() {
         MutableMultimap<Integer, String> multimap = this.newMultimapWithKeysValues(1, "One", 2, "Two");
         Assert.assertTrue(multimap.putAll(1, Lists.fixedSize.of("Three", "Four")));
         Assert.assertEquals(this.newMultimapWithKeysValues(1, "One", 2, "Two", 1, "Three", 1, "Four"), multimap);
@@ -190,27 +166,22 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void putAllFromIterable()
-    {
+    public void putAllFromIterable() {
         MutableMultimap<Integer, String> multimap = this.newMultimapWithKeysValues(1, "One", 2, "Two");
         Assert.assertTrue(multimap.putAll(1, Lists.fixedSize.of("Three", "Four").asLazy()));
         Assert.assertEquals(this.newMultimapWithKeysValues(1, "One", 2, "Two", 1, "Three", 1, "Four"), multimap);
     }
 
     @Test
-    public void getIfAbsentPutAll()
-    {
+    public void getIfAbsentPutAll() {
         MutableMultimap<Integer, Integer> multimap = this.newMultimap();
         Assert.assertFalse(multimap.containsKey(1));
         Assert.assertEquals(0, multimap.size());
-
         Assert.assertEquals(this.createCollection(), multimap.getIfAbsentPutAll(1, Lists.mutable.with()));
         Assert.assertFalse(multimap.containsKey(1));
         Assert.assertEquals(0, multimap.size());
-
         Assert.assertEquals(this.createCollection(1), multimap.getIfAbsentPutAll(1, Lists.mutable.with(1)));
         Assert.assertThrows(UnsupportedOperationException.class, () -> multimap.getIfAbsentPutAll(1, Lists.mutable.with(1)).add(1));
-
         multimap.putAll(2, Lists.mutable.with(2, 2));
         multimap.putAll(3, Lists.mutable.with(3, 3, 3));
         Assert.assertEquals(this.createCollection(1), multimap.getIfAbsentPutAll(1, Lists.mutable.empty()));
@@ -220,37 +191,30 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
         Assert.assertEquals(4, multimap.sizeDistinct());
         int multimapSize = this.createCollection(1).size() + this.createCollection(2, 2).size() + this.createCollection(3, 3, 3).size() + this.createCollection(4, 4, 4, 4).size();
         Assert.assertEquals(multimapSize, multimap.size());
-
         Assert.assertThrows(UnsupportedOperationException.class, () -> multimap.getIfAbsentPutAll(5, Lists.mutable.with(5)).add(5));
     }
 
     @Test
-    public void removeKey()
-    {
+    public void removeKey() {
         MutableMultimap<Integer, String> multimap = this.newMultimapWithKeysValues(1, "1", 2, "Two");
-
         Verify.assertSetsEqual(UnifiedSet.newSetWith("1"), UnifiedSet.newSet(multimap.removeAll(1)));
         Verify.assertSize(1, multimap);
         Assert.assertFalse(multimap.containsKey(1));
-
         Verify.assertIterableEmpty(multimap.removeAll(42));
         Verify.assertSize(1, multimap);
-
         Verify.assertSetsEqual(UnifiedSet.newSetWith("Two"), UnifiedSet.newSet(multimap.removeAll(2)));
         Verify.assertEmpty(multimap);
     }
 
     @Test
-    public void containsValue()
-    {
+    public void containsValue() {
         MutableMultimap<Integer, String> multimap = this.newMultimapWithKeysValues(1, "One", 2, "Two");
         Assert.assertTrue(multimap.containsValue("Two"));
         Assert.assertFalse(multimap.containsValue("Three"));
     }
 
     @Test
-    public void put_createCollection()
-    {
+    public void put_createCollection() {
         MutableMultimap<Integer, String> multimap = this.newMultimapWithKeysValues(1, "1", 2, "2", 3, "3");
         Verify.assertIterableEmpty(multimap.get(4));
         Assert.assertTrue(multimap.put(4, "4"));
@@ -258,8 +222,7 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void remove()
-    {
+    public void remove() {
         MutableMultimap<Integer, Integer> map = this.newMultimapWithKeysValues(1, 1, 1, 2, 3, 3, 4, 5);
         Assert.assertFalse(map.remove(4, 4));
         Assert.assertEquals(this.newMultimapWithKeysValues(1, 1, 1, 2, 3, 3, 4, 5), map);
@@ -270,34 +233,27 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void replaceValues()
-    {
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Three", 3);
+    public void replaceValues() {
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Three", 3);
         RichIterable<Integer> oldValues2 = multimap.replaceValues("Two", UnifiedSet.newSetWith(4));
         Assert.assertEquals(Bags.mutable.of(2), oldValues2.toBag());
         Verify.assertEqualsAndHashCode(this.newMultimapWithKeysValues("One", 1, "Two", 4, "Three", 3), multimap);
-
         RichIterable<Integer> oldValues3 = multimap.replaceValues("Three", UnifiedSet.newSet());
         Assert.assertEquals(Bags.mutable.of(3), oldValues3.toBag());
         Verify.assertEqualsAndHashCode(this.newMultimapWithKeysValues("One", 1, "Two", 4), multimap);
     }
 
     @Test
-    public void replaceValues_absent_key()
-    {
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Three", 3);
+    public void replaceValues_absent_key() {
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Three", 3);
         RichIterable<Integer> oldValues = multimap.replaceValues("Four", UnifiedSet.newSetWith(4));
         Assert.assertEquals(HashBag.<Integer>newBag(), oldValues.toBag());
         Verify.assertEqualsAndHashCode(this.newMultimapWithKeysValues("One", 1, "Two", 2, "Three", 3, "Four", 4), multimap);
     }
 
     @Test
-    public void toMap()
-    {
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
+    public void toMap() {
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         UnifiedMap<String, RichIterable<Integer>> expected = UnifiedMap.newMap();
         expected.put("One", this.createCollection(1));
         expected.put("Two", this.createCollection(2, 2));
@@ -309,20 +265,16 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void toImmutable()
-    {
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
+    public void toImmutable() {
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         ImmutableMultimap<String, Integer> actual = multimap.toImmutable();
         Assert.assertNotNull(actual);
         Assert.assertEquals(multimap, actual);
     }
 
     @Test
-    public void toMapWithTarget()
-    {
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
+    public void toMapWithTarget() {
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         MutableMap<String, RichIterable<Integer>> expected = UnifiedMap.newMap();
         expected.put("One", UnifiedSet.newSetWith(1));
         expected.put("Two", UnifiedSet.newSetWith(2, 2));
@@ -331,22 +283,142 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
     }
 
     @Test
-    public void toMutable()
-    {
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
+    public void toMutable() {
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2, "Two", 2);
         MutableMultimap<String, Integer> mutableCopy = multimap.toMutable();
         Assert.assertNotSame(multimap, mutableCopy);
         Assert.assertEquals(multimap, mutableCopy);
     }
 
     @Test
-    public void testToString()
-    {
-        MutableMultimap<String, Integer> multimap =
-                this.newMultimapWithKeysValues("One", 1, "Two", 2);
-        Assert.assertTrue(
-                "{One=[1], Two=[2]}".equals(multimap.toString())
-                        || "{Two=[2], One=[1]}".equals(multimap.toString()));
+    public void testToString() {
+        MutableMultimap<String, Integer> multimap = this.newMultimapWithKeysValues("One", 1, "Two", 2);
+        Assert.assertTrue("{One=[1], Two=[2]}".equals(multimap.toString()) || "{Two=[2], One=[1]}".equals(multimap.toString()));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAndGrowMultimap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putAndGrowMultimap, this.description("putAndGrowMultimap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAndGrowMultimap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAndGrowMultimap, this.description("addAndGrowMultimap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::clear, this.description("clear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeObject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeObject, this.description("removeObject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachKey, this.description("forEachKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putAll, this.description("putAll"));
+        }
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAllFromCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putAllFromCollection, this.description("putAllFromCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putAllFromIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putAllFromIterable, this.description("putAllFromIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsentPutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getIfAbsentPutAll, this.description("getIfAbsentPutAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeKey, this.description("removeKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsValue() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsValue, this.description("containsValue"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_put_createCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::put_createCollection, this.description("put_createCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove, this.description("remove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_replaceValues() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::replaceValues, this.description("replaceValues"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_replaceValues_absent_key() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::replaceValues_absent_key, this.description("replaceValues_absent_key"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMap, this.description("toMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMapWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMapWithTarget, this.description("toMapWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMutable, this.description("toMutable"));
+        }
+
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractMutableMultimapTestCase implementation();
     }
 }

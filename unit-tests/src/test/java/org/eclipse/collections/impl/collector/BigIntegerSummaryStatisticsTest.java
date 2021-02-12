@@ -7,24 +7,21 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.collector;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
-
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.list.Interval;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BigIntegerSummaryStatisticsTest
-{
+public class BigIntegerSummaryStatisticsTest {
+
     @Test
-    public void jdkForEach()
-    {
+    public void jdkForEach() {
         BigIntegerSummaryStatistics statistics = new BigIntegerSummaryStatistics();
         List<BigInteger> integers = Interval.oneTo(5).collect(i -> BigInteger.valueOf((long) i)).toList();
         integers.forEach(statistics);
@@ -38,8 +35,7 @@ public class BigIntegerSummaryStatisticsTest
     }
 
     @Test
-    public void each()
-    {
+    public void each() {
         BigIntegerSummaryStatistics statistics = new BigIntegerSummaryStatistics();
         MutableList<BigInteger> integers = Interval.oneTo(5).collect(i -> BigInteger.valueOf((long) i)).toList();
         integers.each(statistics);
@@ -53,8 +49,7 @@ public class BigIntegerSummaryStatisticsTest
     }
 
     @Test
-    public void merge()
-    {
+    public void merge() {
         BigIntegerSummaryStatistics statistics1 = new BigIntegerSummaryStatistics();
         MutableList<BigInteger> integers1 = Interval.oneTo(2).collect(i -> BigInteger.valueOf((long) i)).toList();
         integers1.each(statistics1);
@@ -72,8 +67,7 @@ public class BigIntegerSummaryStatisticsTest
     }
 
     @Test
-    public void empty()
-    {
+    public void empty() {
         BigIntegerSummaryStatistics statistics = new BigIntegerSummaryStatistics();
         Assert.assertEquals(0L, statistics.getCount());
         Assert.assertEquals(BigInteger.ZERO, statistics.getSum());
@@ -83,14 +77,8 @@ public class BigIntegerSummaryStatisticsTest
     }
 
     @Test
-    public void summarizingBigInteger()
-    {
-        BigIntegerSummaryStatistics statistics =
-                Interval.oneTo(5)
-                        .collect(Long::valueOf)
-                        .toList()
-                        .stream()
-                        .collect(Collectors2.summarizingBigInteger(BigInteger::valueOf));
+    public void summarizingBigInteger() {
+        BigIntegerSummaryStatistics statistics = Interval.oneTo(5).collect(Long::valueOf).toList().stream().collect(Collectors2.summarizingBigInteger(BigInteger::valueOf));
         Assert.assertEquals(BigInteger.valueOf(15L), statistics.getSum());
         Assert.assertEquals(5L, statistics.getCount());
         Assert.assertEquals(BigInteger.valueOf(1L), statistics.getMin());
@@ -101,46 +89,63 @@ public class BigIntegerSummaryStatisticsTest
     }
 
     @Test
-    public void average()
-    {
-        Assert.assertEquals(
-                new BigDecimal("3.333333333333333333333333333333333"),
-                IntLists.mutable.with(2, 2, 6)
-                        .collect(Long::valueOf)
-                        .stream()
-                        .collect(Collectors2.summarizingBigInteger(BigInteger::valueOf))
-                        .getAverage());
+    public void average() {
+        Assert.assertEquals(new BigDecimal("3.333333333333333333333333333333333"), IntLists.mutable.with(2, 2, 6).collect(Long::valueOf).stream().collect(Collectors2.summarizingBigInteger(BigInteger::valueOf)).getAverage());
+        Assert.assertEquals(new BigDecimal("3.666666666666666666666666666666667"), IntLists.mutable.with(2, 3, 6).collect(Long::valueOf).stream().collect(Collectors2.summarizingBigInteger(BigInteger::valueOf)).getAverage());
+        Assert.assertEquals(new BigDecimal("1"), IntLists.mutable.with(1, 1, 1).collect(Long::valueOf).stream().collect(Collectors2.summarizingBigInteger(BigInteger::valueOf)).getAverage());
+        Assert.assertEquals(new BigDecimal("4"), IntLists.mutable.with(2, 3, 4, 5, 6).collect(Long::valueOf).stream().collect(Collectors2.summarizingBigInteger(BigInteger::valueOf)).getAverage());
+        Assert.assertEquals(new BigDecimal("3.8"), IntLists.mutable.with(2, 3, 4, 5, 5).collect(Long::valueOf).stream().collect(Collectors2.summarizingBigInteger(BigInteger::valueOf)).getAverage());
+    }
 
-        Assert.assertEquals(
-                new BigDecimal("3.666666666666666666666666666666667"),
-                IntLists.mutable.with(2, 3, 6)
-                        .collect(Long::valueOf)
-                        .stream()
-                        .collect(Collectors2.summarizingBigInteger(BigInteger::valueOf))
-                        .getAverage());
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
 
-        Assert.assertEquals(
-                new BigDecimal("1"),
-                IntLists.mutable.with(1, 1, 1)
-                        .collect(Long::valueOf)
-                        .stream()
-                        .collect(Collectors2.summarizingBigInteger(BigInteger::valueOf))
-                        .getAverage());
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_jdkForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::jdkForEach, this.description("jdkForEach"));
+        }
 
-        Assert.assertEquals(
-                new BigDecimal("4"),
-                IntLists.mutable.with(2, 3, 4, 5, 6)
-                        .collect(Long::valueOf)
-                        .stream()
-                        .collect(Collectors2.summarizingBigInteger(BigInteger::valueOf))
-                        .getAverage());
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_each() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::each, this.description("each"));
+        }
 
-        Assert.assertEquals(
-                new BigDecimal("3.8"),
-                IntLists.mutable.with(2, 3, 4, 5, 5)
-                        .collect(Long::valueOf)
-                        .stream()
-                        .collect(Collectors2.summarizingBigInteger(BigInteger::valueOf))
-                        .getAverage());
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_merge() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::merge, this.description("merge"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_empty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::empty, this.description("empty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_summarizingBigInteger() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::summarizingBigInteger, this.description("summarizingBigInteger"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_average() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::average, this.description("average"));
+        }
+
+        private BigIntegerSummaryStatisticsTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new BigIntegerSummaryStatisticsTest();
+        }
+
+        @java.lang.Override
+        public BigIntegerSummaryStatisticsTest implementation() {
+            return this.implementation;
+        }
     }
 }

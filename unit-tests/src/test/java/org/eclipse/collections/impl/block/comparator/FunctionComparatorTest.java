@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.comparator;
 
 import java.util.Comparator;
-
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.block.factory.Comparators;
@@ -19,80 +17,106 @@ import org.eclipse.collections.impl.list.mutable.FastList;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class FunctionComparatorTest
-{
+public class FunctionComparatorTest {
+
     private static final Band VAN_HALEN = new Band("Van Halen");
+
     private static final Band BON_JOVI = new Band("Bon Jovi");
+
     private static final Band METALLICA = new Band("Metallica");
+
     private static final Band SCORPIONS = new Band("Scorpions");
 
     private static final Band ACDC = new Band("AC/DC");
+
     private static final Band ZZTOP = new Band("ZZ Top");
 
     @Test
-    public void comparator()
-    {
-        FunctionComparator<Band, String> comparator = new FunctionComparator<>(
-                Band.TO_NAME,
-                String::compareTo);
-
+    public void comparator() {
+        FunctionComparator<Band, String> comparator = new FunctionComparator<>(Band.TO_NAME, String::compareTo);
         Assert.assertEquals(comparator.compare(ACDC, ZZTOP), ACDC.getName().compareTo(ZZTOP.getName()));
         Assert.assertEquals(comparator.compare(ZZTOP, ACDC), ZZTOP.getName().compareTo(ACDC.getName()));
     }
 
-    private MutableList<Band> createTestList()
-    {
+    private MutableList<Band> createTestList() {
         return FastList.newListWith(VAN_HALEN, SCORPIONS, BON_JOVI, METALLICA);
     }
 
     @Test
-    public void functionComparatorBuiltTheHardWay()
-    {
+    public void functionComparatorBuiltTheHardWay() {
         Comparator<Band> byName = (bandA, bandB) -> Band.TO_NAME.valueOf(bandA).compareTo(Band.TO_NAME.valueOf(bandB));
         MutableList<Band> sortedList = this.createTestList().sortThis(byName);
         Assert.assertEquals(FastList.newListWith(BON_JOVI, METALLICA, SCORPIONS, VAN_HALEN), sortedList);
     }
 
     @Test
-    public void functionComparatorBuiltTheEasyWay()
-    {
+    public void functionComparatorBuiltTheEasyWay() {
         Comparator<Band> byName = Comparators.byFunction(Band.TO_NAME, String::compareTo);
         MutableList<Band> sortedList = this.createTestList().sortThis(byName);
         Assert.assertEquals(FastList.newListWith(BON_JOVI, METALLICA, SCORPIONS, VAN_HALEN), sortedList);
     }
 
-    private static final class Band
-    {
+    private static final class Band {
+
         public static final Function<Band, String> TO_NAME = band -> band.name;
 
         private final String name;
 
-        private Band(String name)
-        {
+        private Band(String name) {
             this.name = name;
         }
 
-        public String getName()
-        {
+        public String getName() {
             return this.name;
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return this.name;
         }
 
         @Override
-        public boolean equals(Object other)
-        {
+        public boolean equals(Object other) {
             return this == other || other instanceof Band && this.name.equals(((Band) other).name);
         }
 
         @Override
-        public int hashCode()
-        {
+        public int hashCode() {
             return this.name.hashCode();
+        }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::comparator, this.description("comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_functionComparatorBuiltTheHardWay() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::functionComparatorBuiltTheHardWay, this.description("functionComparatorBuiltTheHardWay"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_functionComparatorBuiltTheEasyWay() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::functionComparatorBuiltTheEasyWay, this.description("functionComparatorBuiltTheEasyWay"));
+        }
+
+        private FunctionComparatorTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new FunctionComparatorTest();
+        }
+
+        @java.lang.Override
+        public FunctionComparatorTest implementation() {
+            return this.implementation;
         }
     }
 }

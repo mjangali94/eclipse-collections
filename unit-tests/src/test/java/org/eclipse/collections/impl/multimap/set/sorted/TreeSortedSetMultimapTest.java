@@ -7,12 +7,10 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap.set.sorted;
 
 import java.util.Collections;
 import java.util.Comparator;
-
 import org.eclipse.collections.api.multimap.set.MutableSetMultimap;
 import org.eclipse.collections.api.multimap.sortedset.MutableSortedSetMultimap;
 import org.eclipse.collections.api.set.sorted.MutableSortedSet;
@@ -29,30 +27,26 @@ import org.junit.Test;
 /**
  * Test of {@link TreeSortedSetMultimap}.
  */
-public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapTestCase
-{
-    public <K, V> MutableSortedSetMultimap<K, V> newMultimap(Comparator<? super V> comparator)
-    {
+public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapTestCase {
+
+    public <K, V> MutableSortedSetMultimap<K, V> newMultimap(Comparator<? super V> comparator) {
         return TreeSortedSetMultimap.newMultimap(comparator);
     }
 
     @Override
-    public <K, V> MutableSortedSetMultimap<K, V> newMultimap()
-    {
+    public <K, V> MutableSortedSetMultimap<K, V> newMultimap() {
         return TreeSortedSetMultimap.newMultimap();
     }
 
     @Override
-    public <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeyValue(K key, V value)
-    {
+    public <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeyValue(K key, V value) {
         MutableSortedSetMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key, value);
         return mutableMultimap;
     }
 
     @Override
-    public <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    public <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2) {
         MutableSortedSetMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -60,11 +54,7 @@ public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapT
     }
 
     @Override
-    public <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3)
-    {
+    public <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         MutableSortedSetMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -73,12 +63,7 @@ public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapT
     }
 
     @Override
-    public <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3,
-            K key4, V value4)
-    {
+    public <K, V> MutableSortedSetMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         MutableSortedSetMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -89,48 +74,39 @@ public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapT
 
     @SafeVarargs
     @Override
-    public final <K, V> MutableSortedSetMultimap<K, V> newMultimap(Pair<K, V>... pairs)
-    {
+    public final <K, V> MutableSortedSetMultimap<K, V> newMultimap(Pair<K, V>... pairs) {
         return TreeSortedSetMultimap.newMultimap(pairs);
     }
 
     @Override
-    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapFromPairs(Iterable<Pair<K, V>> inputIterable)
-    {
+    protected <K, V> MutableSortedSetMultimap<K, V> newMultimapFromPairs(Iterable<Pair<K, V>> inputIterable) {
         return TreeSortedSetMultimap.newMultimap(inputIterable);
     }
 
     @SafeVarargs
     @Override
-    protected final <V> TreeSortedSet<V> createCollection(V... args)
-    {
+    protected final <V> TreeSortedSet<V> createCollection(V... args) {
         return TreeSortedSet.newSetWith(args);
     }
 
     @Test
-    public void testEmptyConstructor()
-    {
+    public void testEmptyConstructor() {
         MutableSortedSetMultimap<Integer, Integer> map = TreeSortedSetMultimap.newMultimap();
-        for (int i = 1; i < 6; ++i)
-        {
-            for (int j = 1; j < i + 1; ++j)
-            {
+        for (int i = 1; i < 6; ++i) {
+            for (int j = 1; j < i + 1; ++j) {
                 map.put(i, j);
             }
         }
         Verify.assertSize(5, map.keysView().toList());
-        for (int i = 1; i < 6; ++i)
-        {
+        for (int i = 1; i < 6; ++i) {
             Verify.assertSortedSetsEqual(TreeSortedSet.newSet(Interval.oneTo(i)), map.get(i));
         }
     }
 
     @Test
-    public void testComparatorConstructors()
-    {
+    public void testComparatorConstructors() {
         MutableSortedSetMultimap<Boolean, Integer> revMap = TreeSortedSetMultimap.newMultimap(Collections.reverseOrder());
-        for (int i = 1; i < 10; ++i)
-        {
+        for (int i = 1; i < 10; ++i) {
             revMap.put(IntegerPredicates.isOdd().accept(i), i);
         }
         Verify.assertSize(2, revMap.keysView().toList());
@@ -142,27 +118,23 @@ public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapT
     }
 
     @Test
-    public void testMultimapConstructor()
-    {
+    public void testMultimapConstructor() {
         MutableSetMultimap<Integer, Integer> map = UnifiedSetMultimap.newMultimap();
         TreeSortedSetMultimap<Integer, Integer> map2 = TreeSortedSetMultimap.newMultimap();
-        for (int i = 1; i < 6; ++i)
-        {
+        for (int i = 1; i < 6; ++i) {
             map.putAll(i, Interval.oneTo(i));
             map2.putAll(i, Interval.oneTo(i));
         }
         TreeSortedSetMultimap<Integer, Integer> sortedMap = TreeSortedSetMultimap.newMultimap(map);
         TreeSortedSetMultimap<Integer, Integer> sortedMap2 = TreeSortedSetMultimap.newMultimap(map2);
-        for (int i = 1; i < 6; ++i)
-        {
+        for (int i = 1; i < 6; ++i) {
             Verify.assertSortedSetsEqual(map.get(i).toSortedSet(), sortedMap.get(i));
             Verify.assertSortedSetsEqual(map.get(i).toSortedSet(), sortedMap2.get(i));
         }
     }
 
     @Test
-    public void testCollection()
-    {
+    public void testCollection() {
         TreeSortedSetMultimap<Integer, Integer> setMultimap = TreeSortedSetMultimap.newMultimap(Collections.reverseOrder());
         MutableSortedSet<Integer> collection = setMultimap.createCollection();
         collection.addAll(FastList.newListWith(1, 4, 2, 3, 5));
@@ -176,8 +148,7 @@ public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapT
     }
 
     @Test
-    public void testNewEmpty()
-    {
+    public void testNewEmpty() {
         TreeSortedSetMultimap<Object, Integer> expected = TreeSortedSetMultimap.newMultimap(Collections.reverseOrder());
         TreeSortedSetMultimap<Object, Integer> actual = expected.newEmpty();
         expected.putAll(1, FastList.newListWith(4, 3, 1, 2));
@@ -187,5 +158,47 @@ public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapT
         Verify.assertMapsEqual(expected.toMap(), actual.toMap());
         Verify.assertSortedSetsEqual(expected.get(1), actual.get(1));
         Verify.assertSortedSetsEqual(expected.get(2), actual.get(2));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testComparatorConstructors() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testComparatorConstructors, this.description("testComparatorConstructors"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testMultimapConstructor() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testMultimapConstructor, this.description("testMultimapConstructor"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testCollection() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testCollection, this.description("testCollection"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testNewEmpty, this.description("testNewEmpty"));
+        }
+
+        private TreeSortedSetMultimapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new TreeSortedSetMultimapTest();
+        }
+
+        @java.lang.Override
+        public TreeSortedSetMultimapTest implementation() {
+            return this.implementation;
+        }
     }
 }

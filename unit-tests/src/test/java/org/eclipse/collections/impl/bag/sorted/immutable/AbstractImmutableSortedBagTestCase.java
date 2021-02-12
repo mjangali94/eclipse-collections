@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bag.sorted.immutable;
 
 import java.util.Collections;
@@ -15,7 +14,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.bag.sorted.ImmutableSortedBag;
 import org.eclipse.collections.api.bag.sorted.MutableSortedBag;
@@ -80,18 +78,16 @@ import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
 
-public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutableCollectionTestCase
-{
+public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutableCollectionTestCase {
+
     @Override
     protected abstract ImmutableSortedBag<Integer> classUnderTest();
 
     protected abstract ImmutableSortedBag<Integer> classUnderTest(Comparator<? super Integer> comparator);
 
-    protected <T> ImmutableSortedBag<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences)
-    {
+    protected <T> ImmutableSortedBag<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences) {
         TreeBag<T> bag = TreeBag.newBag();
-        for (int i = 0; i < elementsWithOccurrences.length; i++)
-        {
+        for (int i = 0; i < elementsWithOccurrences.length; i++) {
             ObjectIntPair<T> itemToAdd = elementsWithOccurrences[i];
             bag.addOccurrences(itemToAdd.getOne(), itemToAdd.getTwo());
         }
@@ -103,28 +99,24 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     protected abstract <T> ImmutableSortedBag<T> newWith(Comparator<? super T> comparator, T... elements);
 
     @Test(expected = NullPointerException.class)
-    public void noSupportForNull()
-    {
+    public void noSupportForNull() {
         this.classUnderTest().newWith(null);
     }
 
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         ImmutableSortedBag<Integer> immutable = this.classUnderTest();
         MutableSortedBag<Integer> mutable = TreeBag.newBag(immutable);
         Verify.assertEqualsAndHashCode(mutable, immutable);
         Verify.assertPostSerializedEqualsAndHashCode(immutable);
         Assert.assertNotEquals(FastList.newList(mutable), immutable);
-
         ImmutableSortedBag<Integer> bag1 = SortedBags.immutable.of(1, 1, 1, 4);
         ImmutableSortedBag<Integer> bag2 = SortedBags.immutable.of(1, 1, 1, 3);
         Assert.assertNotEquals(bag1, bag2);
     }
 
     @Test
-    public void anySatisfyWithOccurrences()
-    {
+    public void anySatisfyWithOccurrences() {
         ImmutableSortedBag<Integer> bag = this.newWith(1, 2, 2);
         Assert.assertTrue(bag.anySatisfyWithOccurrences((object, value) -> object.equals(1)));
         Assert.assertTrue(bag.anySatisfyWithOccurrences((object, value) -> object.equals(2) && value == 2));
@@ -133,24 +125,21 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void allSatisfyWithOccurrences()
-    {
+    public void allSatisfyWithOccurrences() {
         ImmutableSortedBag<Integer> bag = this.newWith(1, 2, 2);
         Assert.assertTrue(bag.allSatisfyWithOccurrences((object, value) -> object > 0));
         Assert.assertFalse(bag.allSatisfyWithOccurrences((object, value) -> object.equals(1) && value == 1));
     }
 
     @Test
-    public void noneSatisfyWithOccurrences()
-    {
+    public void noneSatisfyWithOccurrences() {
         ImmutableSortedBag<Integer> bag = this.newWith(1, 2, 2);
         Assert.assertTrue(bag.noneSatisfyWithOccurrences((object, value) -> object > 100));
         Assert.assertFalse(bag.noneSatisfyWithOccurrences((object, value) -> object.equals(1) && value == 1));
     }
 
     @Test
-    public void detectWithOccurrences()
-    {
+    public void detectWithOccurrences() {
         ImmutableSortedBag<Integer> bag = this.newWith(1, 2, 2);
         Assert.assertEquals((Integer) 1, bag.detectWithOccurrences((object, value) -> object.equals(1) && value == 1));
         Assert.assertNull(bag.detectWithOccurrences((object, value) -> object.equals(100)));
@@ -158,185 +147,141 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void compareTo()
-    {
+    public void compareTo() {
         Assert.assertEquals(-1, SortedBags.immutable.of(1, 1, 2, 2).compareTo(SortedBags.immutable.of(1, 1, 2, 2, 2)));
         Assert.assertEquals(0, SortedBags.immutable.of(1, 1, 2, 2).compareTo(SortedBags.immutable.of(1, 1, 2, 2)));
         Assert.assertEquals(1, SortedBags.immutable.of(1, 1, 2, 2, 2).compareTo(SortedBags.immutable.of(1, 1, 2, 2)));
-
         Assert.assertEquals(-1, SortedBags.immutable.of(1, 1, 2, 2).compareTo(SortedBags.immutable.of(1, 1, 3, 3)));
         Assert.assertEquals(1, SortedBags.immutable.of(1, 1, 3, 3).compareTo(SortedBags.immutable.of(1, 1, 2, 2)));
-
         Assert.assertEquals(1, SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 2, 2, 1, 1, 1).compareTo(SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 2, 2, 1, 1)));
         Assert.assertEquals(1, SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 2, 2).compareTo(SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 2)));
         Assert.assertEquals(0, SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 2, 2).compareTo(SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 2, 2)));
         Assert.assertEquals(-1, SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 2, 2, 2).compareTo(SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 2, 2)));
-
         Assert.assertEquals(1, SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 2, 2).compareTo(SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 3, 3)));
         Assert.assertEquals(-1, SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 3, 3).compareTo(SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 2, 2)));
     }
 
     @Test
-    public void selectByOccurrences()
-    {
+    public void selectByOccurrences() {
         ImmutableSortedBag<Integer> ints = this.classUnderTest().selectByOccurrences(IntPredicates.isEven());
         Verify.assertAllSatisfy(ints, IntegerPredicates.isEven());
-
         ImmutableSortedBag<Integer> ints2 = this.classUnderTest().selectByOccurrences(IntPredicates.isOdd());
         Assert.assertEquals(ints2, this.classUnderTest());
     }
 
     @Test
-    public void selectDuplicates()
-    {
-        Assert.assertEquals(
-                Bags.immutable.with(1, 1, 1),
-                this.classUnderTest().selectDuplicates());
+    public void selectDuplicates() {
+        Assert.assertEquals(Bags.immutable.with(1, 1, 1), this.classUnderTest().selectDuplicates());
     }
 
     @Test
-    public void newWithTest()
-    {
+    public void newWithTest() {
         ImmutableSortedBag<Integer> immutable = this.classUnderTest();
         immutable = immutable.newWith(4);
-
         // inserting at the beginning point (existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 1, 1, 2, 4), immutable.newWith(1));
-
         // inserting at the middle point (existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 1, 2, 2, 4), immutable.newWith(2));
-
         // inserting at the end point (existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 1, 2, 4, 4), immutable.newWith(4));
-
         // inserting at the beginning point (not existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(0, 1, 1, 1, 2, 4), immutable.newWith(0));
-
         // inserting at the middle point (not existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 1, 2, 3, 4), immutable.newWith(3));
-
         // inserting at the end point (not existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 1, 2, 4, 5), immutable.newWith(5));
     }
 
     @Test
-    public void newWithout()
-    {
+    public void newWithout() {
         ImmutableSortedBag<Integer> immutable = this.classUnderTest();
         immutable = immutable.newWith(4);
-
         // removing at the beginning point (existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 2, 4), immutable.newWithout(1));
-
         // removing at the middle point (existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 1, 4), immutable.newWithout(2));
-
         // removing at the end point (existing element)
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 1, 2), immutable.newWithout(4));
-
         // removing at the beginning point (not existing element)
         Assert.assertEquals(immutable, immutable.newWithout(0));
-
         // removing at the middle point (not existing element)
         Assert.assertEquals(immutable, immutable.newWithout(3));
-
         // removing at the end point (not existing element)
         Assert.assertEquals(immutable, immutable.newWithout(5));
     }
 
     @Test
-    public void newWithAll()
-    {
+    public void newWithAll() {
         ImmutableSortedBag<Integer> bag = this.classUnderTest(Comparators.reverseNaturalOrder());
         ImmutableSortedBag<Integer> actualBag = bag.newWithAll(HashBag.newBagWith(3, 4));
         Assert.assertNotEquals(bag, actualBag);
         TreeBag<Integer> expectedBag = TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1, 1, 1);
-        Verify.assertSortedBagsEqual(
-                expectedBag,
-                actualBag);
+        Verify.assertSortedBagsEqual(expectedBag, actualBag);
         Assert.assertSame(expectedBag.comparator(), actualBag.comparator());
     }
 
     @Test
-    public void toStringOfItemToCount()
-    {
+    public void toStringOfItemToCount() {
         Assert.assertEquals("{}", SortedBags.immutable.empty().toStringOfItemToCount());
         Assert.assertEquals("{1=3, 2=1}", this.classUnderTest().toStringOfItemToCount());
         Assert.assertEquals("{2=1, 1=3}", this.classUnderTest(Comparator.reverseOrder()).toStringOfItemToCount());
     }
 
     @Test
-    public void newWithoutAll()
-    {
+    public void newWithoutAll() {
         ImmutableSortedBag<Integer> bag = this.classUnderTest();
         ImmutableSortedBag<Integer> withoutAll = bag.newWithoutAll(bag);
-
         Assert.assertEquals(SortedBags.immutable.<Integer>empty(), withoutAll);
         Assert.assertEquals(Bags.immutable.<Integer>empty(), withoutAll);
-
         ImmutableSortedBag<Integer> largeWithoutAll = bag.newWithoutAll(Interval.fromTo(101, 150));
         Assert.assertEquals(bag, largeWithoutAll);
-
         ImmutableSortedBag<Integer> largeWithoutAll2 = bag.newWithoutAll(HashBag.newBag(Interval.fromTo(151, 199)));
         Assert.assertEquals(bag, largeWithoutAll2);
     }
 
     @Test
-    public void size()
-    {
+    public void size() {
         ImmutableSortedBag<Object> empty = SortedBags.immutable.empty();
         Assert.assertEquals(0, empty.size());
-
         ImmutableSortedBag<?> empty2 = SortedBags.immutable.empty(Comparators.reverseNaturalOrder());
         Assert.assertEquals(0, empty2.size());
-
         ImmutableSortedBag<Integer> integers = SortedBags.immutable.of(Comparator.reverseOrder(), 1, 2, 3, 4, 4, 4);
         Assert.assertEquals(6, integers.size());
-
         ImmutableSortedBag<Integer> integers2 = SortedBags.immutable.of(1, 2, 3, 4, 4, 4);
         Assert.assertEquals(6, integers2.size());
     }
 
     @Test
-    public void contains()
-    {
+    public void contains() {
         ImmutableSortedBag<Integer> bag1 = this.classUnderTest();
-
         Verify.assertContains(1, bag1);
         Verify.assertContains(2, bag1);
         Verify.assertNotContains(Integer.valueOf(bag1.size() + 1), bag1.toSortedBag());
     }
 
     @Test
-    public void containsAllArray()
-    {
+    public void containsAllArray() {
         ImmutableSortedBag<Integer> bag1 = this.classUnderTest();
-
         Assert.assertTrue(bag1.containsAllArguments(bag1.toArray()));
     }
 
     @Test
-    public void containsAllIterable()
-    {
+    public void containsAllIterable() {
         ImmutableSortedBag<Integer> bag1 = this.classUnderTest();
-
         Assert.assertTrue(bag1.containsAllIterable(FastList.newListWith(1, 1, 1, 2)));
         Assert.assertFalse(bag1.containsAllIterable(FastList.newListWith(50, 1, 1, 2)));
     }
 
     @Test
-    public void containsAll()
-    {
+    public void containsAll() {
         ImmutableSortedBag<Integer> bag1 = this.classUnderTest();
-
         Assert.assertTrue(bag1.containsAll(FastList.newListWith(1, 1, 1, 2)));
         Assert.assertFalse(bag1.containsAll(FastList.newListWith(50, 1, 1, 2)));
     }
 
     @Override
     @Test
-    public void tap()
-    {
+    public void tap() {
         MutableList<Integer> tapResult = Lists.mutable.empty();
         ImmutableSortedBag<Integer> collection = this.classUnderTest();
         Assert.assertSame(collection, collection.tap(tapResult::add));
@@ -344,8 +289,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         MutableBag<Integer> result = HashBag.newBag();
         ImmutableSortedBag<Integer> collection = this.classUnderTest();
         collection.forEach(CollectionAddProcedure.on(result));
@@ -353,8 +297,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         MutableList<Integer> result = Lists.mutable.empty();
         ImmutableSortedBag<Integer> bag = this.classUnderTest();
         bag.forEachWith((argument1, argument2) -> result.add(argument1 + argument2), 0);
@@ -362,8 +305,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         MutableList<Integer> result = Lists.mutable.empty();
         ImmutableSortedBag<Integer> bag = this.classUnderTest();
         bag.forEachWithIndex((object, index) -> result.add(object));
@@ -371,22 +313,19 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Override
-    public void toSortedSet()
-    {
+    public void toSortedSet() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         MutableSortedSet<Integer> set = integers.toSortedSet();
         Assert.assertEquals(SortedSets.immutable.of(1, 2), set);
     }
 
     @Override
-    public void toSortedSetWithComparator()
-    {
+    public void toSortedSetWithComparator() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Comparators.reverseNaturalOrder());
         MutableSortedSet<Integer> set = integers.toSortedSet();
         ImmutableSortedSet<Integer> expected = SortedSets.immutable.of(Comparators.reverseNaturalOrder(), 1, 2);
         Assert.assertEquals(expected, set);
         Assert.assertNotSame(expected.comparator(), set.comparator());
-
         ImmutableSortedBag<Integer> integers2 = this.classUnderTest(Comparators.reverseNaturalOrder());
         MutableSortedSet<Integer> set2 = integers2.toSortedSet(Comparators.reverseNaturalOrder());
         ImmutableSortedSet<Integer> expected2 = SortedSets.immutable.of(Comparators.reverseNaturalOrder(), 1, 2);
@@ -396,8 +335,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void select()
-    {
+    public void select() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Comparators.reverseNaturalOrder());
         Verify.assertIterableEmpty(integers.select(Predicates.greaterThan(integers.size())));
         TreeBag<Integer> expectedBag = TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 1, 1, 1, 2);
@@ -408,8 +346,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void selectWith()
-    {
+    public void selectWith() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Comparators.reverseNaturalOrder());
         Verify.assertIterableEmpty(integers.selectWith(Predicates2.greaterThan(), integers.size()));
         TreeBag<Integer> expectedBag = TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 1, 1, 1, 2);
@@ -419,62 +356,43 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void selectToTarget()
-    {
+    public void selectToTarget() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
-        Verify.assertListsEqual(
-                integers.toList(),
-                integers.select(Predicates.lessThan(integers.size() + 1), FastList.newList()));
-        Verify.assertEmpty(
-                integers.select(Predicates.greaterThan(integers.size()), FastList.newList()));
+        Verify.assertListsEqual(integers.toList(), integers.select(Predicates.lessThan(integers.size() + 1), FastList.newList()));
+        Verify.assertEmpty(integers.select(Predicates.greaterThan(integers.size()), FastList.newList()));
     }
 
     @Override
     @Test
-    public void reject()
-    {
+    public void reject() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
-        Verify.assertEmpty(
-                FastList.newList(integers.reject(Predicates.lessThan(integers.size() + 1))));
-        Verify.assertSortedBagsEqual(
-                integers,
-                integers.reject(Predicates.greaterThan(integers.size())));
+        Verify.assertEmpty(FastList.newList(integers.reject(Predicates.lessThan(integers.size() + 1))));
+        Verify.assertSortedBagsEqual(integers, integers.reject(Predicates.greaterThan(integers.size())));
     }
 
     @Override
     @Test
-    public void rejectWith()
-    {
+    public void rejectWith() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Comparators.reverseNaturalOrder());
         Verify.assertIterableEmpty(integers.rejectWith(Predicates2.lessThanOrEqualTo(), integers.size()));
         TreeBag<Integer> expectedBag = TreeBag.newBagWith(Comparators.reverseNaturalOrder(), 1, 1, 1, 2);
         ImmutableSortedBag<Integer> actualBag = integers.rejectWith(Predicates2.greaterThanOrEqualTo(), integers.size());
-        Verify.assertSortedBagsEqual(
-                expectedBag,
-                actualBag);
+        Verify.assertSortedBagsEqual(expectedBag, actualBag);
         Assert.assertSame(expectedBag.comparator(), actualBag.comparator());
     }
 
     @Test
-    public void rejectToTarget()
-    {
+    public void rejectToTarget() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
-        Verify.assertEmpty(
-                integers.reject(Predicates.lessThan(integers.size() + 1), FastList.newList()));
-        Verify.assertListsEqual(
-                integers.toList(),
-                integers.reject(Predicates.greaterThan(integers.size()), FastList.newList()));
-
+        Verify.assertEmpty(integers.reject(Predicates.lessThan(integers.size() + 1), FastList.newList()));
+        Verify.assertListsEqual(integers.toList(), integers.reject(Predicates.greaterThan(integers.size()), FastList.newList()));
         ImmutableSortedBag<Integer> integers2 = this.classUnderTest();
-        Assert.assertEquals(
-                HashBag.newBagWith(2),
-                integers2.reject(each -> each == 1, new HashBag<>()));
+        Assert.assertEquals(HashBag.newBagWith(2), integers2.reject(each -> each == 1, new HashBag<>()));
     }
 
     @Override
     @Test
-    public void selectInstancesOf()
-    {
+    public void selectInstancesOf() {
         ImmutableSortedBag<Integer> bag = this.classUnderTest(Collections.reverseOrder());
         Assert.assertEquals(bag, bag.selectInstancesOf(Integer.class));
         Verify.assertIterableEmpty(bag.selectInstancesOf(Double.class));
@@ -484,15 +402,13 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void partition()
-    {
+    public void partition() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         PartitionImmutableSortedBag<Integer> partition1 = integers.partition(Predicates.greaterThan(integers.size()));
         Verify.assertIterableEmpty(partition1.getSelected());
         Assert.assertEquals(integers, partition1.getRejected());
         Assert.assertSame(integers.comparator(), partition1.getSelected().comparator());
         Assert.assertSame(integers.comparator(), partition1.getRejected().comparator());
-
         PartitionImmutableSortedBag<Integer> partition2 = integers.partition(integer -> integer % 2 == 0);
         Verify.assertSortedBagsEqual(integers.select(integer -> integer % 2 == 0), partition2.getSelected());
         Verify.assertSortedBagsEqual(integers.reject(integer -> integer % 2 == 0), partition2.getRejected());
@@ -502,15 +418,13 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void partitionWith()
-    {
+    public void partitionWith() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         PartitionImmutableSortedBag<Integer> partition1 = integers.partitionWith(Predicates2.greaterThan(), integers.size());
         Verify.assertIterableEmpty(partition1.getSelected());
         Assert.assertEquals(integers, partition1.getRejected());
         Assert.assertSame(integers.comparator(), partition1.getSelected().comparator());
         Assert.assertSame(integers.comparator(), partition1.getRejected().comparator());
-
         PartitionImmutableSortedBag<Integer> partition2 = integers.partitionWith((integer, divisor) -> integer % divisor == 0, 2);
         Verify.assertSortedBagsEqual(integers.select(integer -> integer % 2 == 0), partition2.getSelected());
         Verify.assertSortedBagsEqual(integers.reject(integer -> integer % 2 == 0), partition2.getRejected());
@@ -519,15 +433,13 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void partitionWhile()
-    {
+    public void partitionWhile() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         PartitionSortedBag<Integer> partition1 = integers.partitionWhile(Predicates.greaterThan(integers.size()));
         Verify.assertIterableEmpty(partition1.getSelected());
         Assert.assertEquals(integers, partition1.getRejected());
         Assert.assertSame(integers.comparator(), partition1.getSelected().comparator());
         Assert.assertSame(integers.comparator(), partition1.getRejected().comparator());
-
         PartitionSortedBag<Integer> partition2 = integers.partitionWhile(Predicates.lessThanOrEqualTo(integers.size()));
         Assert.assertEquals(integers, partition2.getSelected());
         Verify.assertIterableEmpty(partition2.getRejected());
@@ -536,26 +448,22 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void takeWhile()
-    {
+    public void takeWhile() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         ImmutableSortedBag<Integer> take1 = integers.takeWhile(Predicates.greaterThan(integers.size()));
         Verify.assertIterableEmpty(take1);
         Assert.assertSame(integers.comparator(), take1.comparator());
-
         ImmutableSortedBag<Integer> take2 = integers.takeWhile(Predicates.lessThanOrEqualTo(integers.size()));
         Assert.assertEquals(integers, take2);
         Assert.assertSame(integers.comparator(), take2.comparator());
     }
 
     @Test
-    public void dropWhile()
-    {
+    public void dropWhile() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         ImmutableSortedBag<Integer> drop1 = integers.dropWhile(Predicates.greaterThan(integers.size()));
         Assert.assertEquals(integers, drop1);
         Assert.assertEquals(Collections.<Integer>reverseOrder(), drop1.comparator());
-
         ImmutableSortedBag<Integer> drop2 = integers.dropWhile(Predicates.lessThanOrEqualTo(integers.size()));
         Verify.assertIterableEmpty(drop2);
         Assert.assertEquals(Collections.<Integer>reverseOrder(), drop2.comparator());
@@ -563,8 +471,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void collect()
-    {
+    public void collect() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         Verify.assertListsEqual(integers.toList(), integers.collect(Functions.getIntegerPassThru()).castToList());
     }
@@ -573,14 +480,9 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
      * @since 9.1.
      */
     @Test
-    public void collectWithIndex()
-    {
+    public void collectWithIndex() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
-        MutableList<ObjectIntPair<Integer>> expected = Lists.mutable.with(
-                PrimitiveTuples.pair(Integer.valueOf(2), 0),
-                PrimitiveTuples.pair(Integer.valueOf(1), 1),
-                PrimitiveTuples.pair(Integer.valueOf(1), 2),
-                PrimitiveTuples.pair(Integer.valueOf(1), 3));
+        MutableList<ObjectIntPair<Integer>> expected = Lists.mutable.with(PrimitiveTuples.pair(Integer.valueOf(2), 0), PrimitiveTuples.pair(Integer.valueOf(1), 1), PrimitiveTuples.pair(Integer.valueOf(1), 2), PrimitiveTuples.pair(Integer.valueOf(1), 3));
         ImmutableList<ObjectIntPair<Integer>> actual = integers.collectWithIndex(PrimitiveTuples::pair);
         Assert.assertEquals(expected, actual);
     }
@@ -589,41 +491,30 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
      * @since 9.1.
      */
     @Test
-    public void collectWithIndexWithTarget()
-    {
+    public void collectWithIndexWithTarget() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
-        MutableList<ObjectIntPair<Integer>> expected = Lists.mutable.with(
-                PrimitiveTuples.pair(Integer.valueOf(2), 0),
-                PrimitiveTuples.pair(Integer.valueOf(1), 1),
-                PrimitiveTuples.pair(Integer.valueOf(1), 2),
-                PrimitiveTuples.pair(Integer.valueOf(1), 3));
-        MutableList<ObjectIntPair<Integer>> actual =
-                integers.collectWithIndex(PrimitiveTuples::pair, Lists.mutable.empty());
+        MutableList<ObjectIntPair<Integer>> expected = Lists.mutable.with(PrimitiveTuples.pair(Integer.valueOf(2), 0), PrimitiveTuples.pair(Integer.valueOf(1), 1), PrimitiveTuples.pair(Integer.valueOf(1), 2), PrimitiveTuples.pair(Integer.valueOf(1), 3));
+        MutableList<ObjectIntPair<Integer>> actual = integers.collectWithIndex(PrimitiveTuples::pair, Lists.mutable.empty());
         Assert.assertEquals(expected, actual);
     }
 
     @Override
     @Test
-    public void collectWith()
-    {
+    public void collectWith() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         Verify.assertListsEqual(integers.toList(), integers.collectWith((value, parameter) -> value / parameter, 1).castToList());
     }
 
     @Test
-    public void collectToTarget()
-    {
+    public void collectToTarget() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Assert.assertEquals(HashBag.newBag(integers), integers.collect(Functions.getIntegerPassThru(), HashBag.newBag()));
-        Verify.assertListsEqual(
-                integers.toList(),
-                integers.collect(Functions.getIntegerPassThru(), FastList.newList()));
+        Verify.assertListsEqual(integers.toList(), integers.collect(Functions.getIntegerPassThru(), FastList.newList()));
     }
 
     @Override
     @Test
-    public void flatCollect()
-    {
+    public void flatCollect() {
         ImmutableList<String> actual = this.classUnderTest(Collections.reverseOrder()).flatCollect(integer -> Lists.fixedSize.of(String.valueOf(integer)));
         ImmutableList<String> expected = this.classUnderTest(Collections.reverseOrder()).collect(String::valueOf);
         Assert.assertEquals(expected, actual);
@@ -631,41 +522,30 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void flatCollectWithTarget()
-    {
+    public void flatCollectWithTarget() {
         MutableBag<String> actual = this.classUnderTest().flatCollect(integer -> Lists.fixedSize.of(String.valueOf(integer)), HashBag.newBag());
-
         ImmutableList<String> expected = this.classUnderTest().collect(String::valueOf);
         Assert.assertEquals(expected.toBag(), actual);
     }
 
     @Test
-    public void zip()
-    {
+    public void zip() {
         ImmutableSortedBag<Integer> immutableBag = this.classUnderTest(Collections.reverseOrder());
         List<Object> nulls = Collections.nCopies(immutableBag.size(), null);
         List<Object> nullsPlusOne = Collections.nCopies(immutableBag.size() + 1, null);
         List<Object> nullsMinusOne = Collections.nCopies(immutableBag.size() - 1, null);
-
         ImmutableList<Pair<Integer, Object>> pairs = immutableBag.zip(nulls);
         Assert.assertEquals(immutableBag.toList(), pairs.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne));
         Verify.assertListsEqual(FastList.newListWith(2, 1, 1, 1), pairs.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne).toList());
         Assert.assertEquals(FastList.newList(nulls), pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo));
-
         ImmutableList<Pair<Integer, Object>> pairsPlusOne = immutableBag.zip(nullsPlusOne);
         Assert.assertEquals(immutableBag.toList(), pairsPlusOne.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne));
-        Verify.assertListsEqual(
-                FastList.newListWith(2, 1, 1, 1),
-                pairsPlusOne.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne).castToList());
+        Verify.assertListsEqual(FastList.newListWith(2, 1, 1, 1), pairsPlusOne.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne).castToList());
         Assert.assertEquals(FastList.newList(nulls), pairsPlusOne.collect((Function<Pair<?, Object>, Object>) Pair::getTwo));
-
         ImmutableList<Pair<Integer, Object>> pairsMinusOne = immutableBag.zip(nullsMinusOne);
-        Verify.assertListsEqual(
-                FastList.newListWith(2, 1, 1),
-                pairsMinusOne.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne).castToList());
+        Verify.assertListsEqual(FastList.newListWith(2, 1, 1), pairsMinusOne.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne).castToList());
         Assert.assertEquals(immutableBag.zip(nulls), immutableBag.zip(nulls, FastList.newList()));
         Assert.assertEquals(immutableBag.zip(nulls).toBag(), immutableBag.zip(nulls, new HashBag<>()));
-
         FastList<Holder> holders = FastList.newListWith(new Holder(1), new Holder(2), new Holder(3));
         ImmutableList<Pair<Integer, Holder>> zipped = immutableBag.zip(holders);
         Verify.assertSize(3, zipped.castToList());
@@ -676,51 +556,32 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void zipWithIndex()
-    {
+    public void zipWithIndex() {
         ImmutableSortedBag<Integer> integers = SortedBags.immutable.of(Collections.reverseOrder(), 1, 3, 5, 5, 5, 2, 4);
-        ImmutableSortedSet<Pair<Integer, Integer>> expected = TreeSortedSet.newSetWith(
-                Tuples.pair(5, 0),
-                Tuples.pair(5, 1),
-                Tuples.pair(5, 2),
-                Tuples.pair(4, 3),
-                Tuples.pair(3, 4),
-                Tuples.pair(2, 5),
-                Tuples.pair(1, 6)).toImmutable();
+        ImmutableSortedSet<Pair<Integer, Integer>> expected = TreeSortedSet.newSetWith(Tuples.pair(5, 0), Tuples.pair(5, 1), Tuples.pair(5, 2), Tuples.pair(4, 3), Tuples.pair(3, 4), Tuples.pair(2, 5), Tuples.pair(1, 6)).toImmutable();
         ImmutableSortedSet<Pair<Integer, Integer>> actual = integers.zipWithIndex();
         Assert.assertEquals(expected, actual);
-
         ImmutableSortedBag<Integer> integersNoComparator = SortedBags.immutable.of(1, 3, 5, 5, 5, 2, 4);
-        ImmutableSortedSet<Pair<Integer, Integer>> expected2 = TreeSortedSet.newSetWith(
-                Tuples.pair(1, 0),
-                Tuples.pair(2, 1),
-                Tuples.pair(3, 2),
-                Tuples.pair(4, 3),
-                Tuples.pair(5, 4),
-                Tuples.pair(5, 5),
-                Tuples.pair(5, 6)).toImmutable();
+        ImmutableSortedSet<Pair<Integer, Integer>> expected2 = TreeSortedSet.newSetWith(Tuples.pair(1, 0), Tuples.pair(2, 1), Tuples.pair(3, 2), Tuples.pair(4, 3), Tuples.pair(5, 4), Tuples.pair(5, 5), Tuples.pair(5, 6)).toImmutable();
         ImmutableSortedSet<Pair<Integer, Integer>> actual2 = integersNoComparator.zipWithIndex();
         Assert.assertEquals(expected2, actual2);
     }
 
     @Override
     @Test(expected = IllegalArgumentException.class)
-    public void chunk_zero_throws()
-    {
+    public void chunk_zero_throws() {
         this.classUnderTest().chunk(0);
     }
 
     @Test
-    public void chunk_large_size()
-    {
+    public void chunk_large_size() {
         Assert.assertEquals(this.classUnderTest(), this.classUnderTest().chunk(10).getFirst());
         Verify.assertInstanceOf(ImmutableSortedBag.class, this.classUnderTest().chunk(10).getFirst());
     }
 
     @Override
     @Test
-    public void detect()
-    {
+    public void detect() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Assert.assertEquals(Integer.valueOf(1), integers.detect(Predicates.equal(1)));
         Assert.assertNull(integers.detect(Predicates.equal(integers.size() + 1)));
@@ -728,8 +589,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void detectWith()
-    {
+    public void detectWith() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Assert.assertEquals(Integer.valueOf(1), integers.detectWith(Object::equals, Integer.valueOf(1)));
         Assert.assertNull(integers.detectWith(Object::equals, Integer.valueOf(integers.size() + 1)));
@@ -737,8 +597,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void detectWithIfNone()
-    {
+    public void detectWithIfNone() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Function0<Integer> function = new PassThruFunction0<>(integers.size() + 1);
         Integer sum = Integer.valueOf(integers.size() + 1);
@@ -748,8 +607,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void detectIfNone()
-    {
+    public void detectIfNone() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Function0<Integer> function = new PassThruFunction0<>(integers.size() + 1);
         Assert.assertEquals(Integer.valueOf(1), integers.detectIfNone(Predicates.equal(1), function));
@@ -758,8 +616,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Assert.assertTrue(integers.allSatisfy(Integer.class::isInstance));
         Assert.assertFalse(integers.allSatisfy(Integer.valueOf(0)::equals));
@@ -767,8 +624,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Assert.assertFalse(integers.anySatisfy(String.class::isInstance));
         Assert.assertTrue(integers.anySatisfy(Integer.class::isInstance));
@@ -776,8 +632,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void count()
-    {
+    public void count() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Assert.assertEquals(integers.size(), integers.count(Integer.class::isInstance));
         Assert.assertEquals(0, integers.count(String.class::isInstance));
@@ -785,16 +640,14 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void collectIf()
-    {
+    public void collectIf() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         ImmutableList<Integer> integers1 = integers.collectIf(Integer.class::isInstance, Functions.getIntegerPassThru());
         Verify.assertListsEqual(integers.toList(), integers1.toList());
     }
 
     @Test
-    public void collectIfToTarget()
-    {
+    public void collectIfToTarget() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         HashBag<Integer> actual = integers.collectIf(Integer.class::isInstance, Functions.getIntegerPassThru(), HashBag.newBag());
         Assert.assertEquals(integers.toBag(), actual);
@@ -802,8 +655,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Assert.assertEquals(Integer.valueOf(1), integers.getFirst());
         ImmutableSortedBag<Integer> revInt = this.classUnderTest(Collections.reverseOrder());
@@ -812,8 +664,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void getLast()
-    {
+    public void getLast() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Assert.assertEquals(Integer.valueOf(2), integers.getLast());
         ImmutableSortedBag<Integer> revInt = this.classUnderTest(Collections.reverseOrder());
@@ -822,8 +673,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void isEmpty()
-    {
+    public void isEmpty() {
         ImmutableSortedBag<Integer> bag = this.classUnderTest();
         Assert.assertFalse(bag.isEmpty());
         Assert.assertTrue(bag.notEmpty());
@@ -831,12 +681,10 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         ImmutableSortedBag<Integer> integers = SortedBags.immutable.of(1, 2, 3, 4);
         Iterator<Integer> iterator = integers.iterator();
-        for (int i = 0; iterator.hasNext(); i++)
-        {
+        for (int i = 0; iterator.hasNext(); i++) {
             Integer integer = iterator.next();
             Assert.assertEquals(i + 1, integer.intValue());
         }
@@ -848,8 +696,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         Integer result = integers.injectInto(0, AddFunction.INTEGER);
         Assert.assertEquals(FastList.newList(integers).injectInto(0, AddFunction.INTEGER_TO_INT), result.intValue());
@@ -857,8 +704,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void toArray()
-    {
+    public void toArray() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         MutableList<Integer> copy = FastList.newList(integers);
         Assert.assertArrayEquals(integers.toArray(), copy.toArray());
@@ -869,30 +715,26 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals(FastList.newList(this.classUnderTest()).toString(), this.classUnderTest().toString());
     }
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals(FastList.newList(this.classUnderTest()).makeString(), this.classUnderTest().makeString());
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         Appendable builder = new StringBuilder();
         this.classUnderTest().appendString(builder);
         Assert.assertEquals(FastList.newList(this.classUnderTest()).makeString(), builder.toString());
     }
 
     @Test
-    public void toList()
-    {
+    public void toList() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         MutableList<Integer> list = integers.toList();
         Verify.assertEqualsAndHashCode(FastList.newList(integers), list);
@@ -900,8 +742,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void toSortedList()
-    {
+    public void toSortedList() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         MutableList<Integer> copy = FastList.newList(integers);
         MutableList<Integer> list = integers.toSortedList(Collections.reverseOrder());
@@ -911,24 +752,21 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void toSortedListBy()
-    {
+    public void toSortedListBy() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         MutableList<Integer> list = integers.toSortedListBy(String::valueOf);
         Assert.assertEquals(integers.toList(), list);
     }
 
     @Test
-    public void toSortedBag()
-    {
+    public void toSortedBag() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Collections.reverseOrder());
         MutableSortedBag<Integer> bag = integers.toSortedBag();
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 1, 1, 2), bag);
     }
 
     @Test
-    public void toSortedBagWithComparator()
-    {
+    public void toSortedBagWithComparator() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         MutableSortedBag<Integer> bag = integers.toSortedBag(Collections.reverseOrder());
         Assert.assertEquals(integers.toBag(), bag);
@@ -936,16 +774,14 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void toSortedBagBy()
-    {
+    public void toSortedBagBy() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         MutableSortedBag<Integer> bag = integers.toSortedBagBy(String::valueOf);
         Verify.assertSortedBagsEqual(TreeBag.newBag(integers), bag);
     }
 
     @Test
-    public void toSortedMap()
-    {
+    public void toSortedMap() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
         MutableSortedMap<Integer, String> map = integers.toSortedMap(Functions.getIntegerPassThru(), String::valueOf);
         Verify.assertMapsEqual(integers.toMap(Functions.getIntegerPassThru(), String::valueOf), map);
@@ -953,39 +789,32 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void toSortedMap_with_comparator()
-    {
+    public void toSortedMap_with_comparator() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
-        MutableSortedMap<Integer, String> map = integers.toSortedMap(Comparators.reverseNaturalOrder(),
-                Functions.getIntegerPassThru(), String::valueOf);
+        MutableSortedMap<Integer, String> map = integers.toSortedMap(Comparators.reverseNaturalOrder(), Functions.getIntegerPassThru(), String::valueOf);
         Verify.assertMapsEqual(integers.toMap(Functions.getIntegerPassThru(), String::valueOf), map);
         Verify.assertListsEqual(FastList.newListWith(2, 1), map.keySet().toList());
     }
 
     @Test
-    public void toSortedMapBy()
-    {
+    public void toSortedMapBy() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest();
-        MutableSortedMap<Integer, String> map = integers.toSortedMapBy(key -> -key,
-                Functions.getIntegerPassThru(), String::valueOf);
+        MutableSortedMap<Integer, String> map = integers.toSortedMapBy(key -> -key, Functions.getIntegerPassThru(), String::valueOf);
         Verify.assertMapsEqual(integers.toMap(Functions.getIntegerPassThru(), String::valueOf), map);
         Verify.assertListsEqual(FastList.newListWith(2, 1), map.keySet().toList());
     }
 
     @Override
     @Test
-    public void forLoop()
-    {
+    public void forLoop() {
         ImmutableSortedBag<Integer> bag = this.classUnderTest();
-        for (Integer each : bag)
-        {
+        for (Integer each : bag) {
             Assert.assertNotNull(each);
         }
     }
 
     @Test
-    public void toMapOfItemToCount()
-    {
+    public void toMapOfItemToCount() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Collections.reverseOrder(), 1, 2, 2, 3, 3, 3);
         MutableSortedMap<Integer, Integer> expected = TreeSortedMap.newMapWith(Collections.reverseOrder(), 1, 1, 2, 2, 3, 3);
         MutableSortedMap<Integer, Integer> actual = bag.toMapOfItemToCount();
@@ -995,50 +824,43 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
 
     @Override
     @Test
-    public void min()
-    {
+    public void min() {
         Assert.assertEquals(Integer.valueOf(2), this.classUnderTest().min(Comparators.reverseNaturalOrder()));
     }
 
     @Override
     @Test
-    public void max()
-    {
+    public void max() {
         Assert.assertEquals(Integer.valueOf(1), this.classUnderTest().max(Comparators.reverseNaturalOrder()));
     }
 
     @Override
     @Test
-    public void min_without_comparator()
-    {
+    public void min_without_comparator() {
         Assert.assertEquals(Integer.valueOf(1), this.classUnderTest().min());
     }
 
     @Override
     @Test
-    public void max_without_comparator()
-    {
+    public void max_without_comparator() {
         Assert.assertEquals(Integer.valueOf(2), this.classUnderTest().max());
     }
 
     @Override
     @Test
-    public void minBy()
-    {
+    public void minBy() {
         Assert.assertEquals(Integer.valueOf(1), this.classUnderTest().minBy(String::valueOf));
         Assert.assertEquals(Integer.valueOf(1), this.classUnderTest(Comparator.reverseOrder()).minBy(String::valueOf));
     }
 
     @Override
     @Test
-    public void maxBy()
-    {
+    public void maxBy() {
         Assert.assertEquals(Integer.valueOf(2), this.classUnderTest().maxBy(String::valueOf));
     }
 
     @Test
-    public void groupBy()
-    {
+    public void groupBy() {
         ImmutableSortedBag<Integer> undertest = this.classUnderTest(Comparators.reverseNaturalOrder());
         ImmutableSortedBagMultimap<Integer, Integer> actual = undertest.groupBy(Functions.getPassThru());
         ImmutableSortedBagMultimap<Integer, Integer> expected = TreeBag.newBag(undertest).groupBy(Functions.getPassThru()).toImmutable();
@@ -1047,8 +869,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void groupByEach()
-    {
+    public void groupByEach() {
         ImmutableSortedBag<Integer> undertest = this.classUnderTest(Collections.reverseOrder());
         NegativeIntervalFunction function = new NegativeIntervalFunction();
         ImmutableSortedBagMultimap<Integer, Integer> actual = undertest.groupByEach(function);
@@ -1058,8 +879,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void groupByWithTarget()
-    {
+    public void groupByWithTarget() {
         ImmutableSortedBag<Integer> undertest = this.classUnderTest(Comparators.reverseNaturalOrder());
         TreeBagMultimap<Integer, Integer> actual = undertest.groupBy(Functions.getPassThru(), TreeBagMultimap.newMultimap());
         TreeBagMultimap<Integer, Integer> expected = TreeBag.newBag(undertest).groupBy(Functions.getPassThru());
@@ -1067,8 +887,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void groupByEachWithTarget()
-    {
+    public void groupByEachWithTarget() {
         ImmutableSortedBag<Integer> undertest = this.classUnderTest();
         NegativeIntervalFunction function = new NegativeIntervalFunction();
         TreeBagMultimap<Integer, Integer> actual = undertest.groupByEach(function, TreeBagMultimap.newMultimap());
@@ -1077,30 +896,23 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void groupByUniqueKey()
-    {
+    public void groupByUniqueKey() {
         ImmutableSortedBag<Integer> bag1 = this.newWith(1, 2, 3);
         Assert.assertEquals(UnifiedMap.newWithKeysValues(1, 1, 2, 2, 3, 3), bag1.groupByUniqueKey(id -> id));
-
         ImmutableSortedBag<Integer> bag2 = this.classUnderTest(Comparators.reverseNaturalOrder());
         Assert.assertThrows(IllegalStateException.class, () -> bag2.groupByUniqueKey(id -> id));
     }
 
     @Test
-    public void groupByUniqueKey_target()
-    {
+    public void groupByUniqueKey_target() {
         ImmutableSortedBag<Integer> bag1 = this.newWith(1, 2, 3);
-        Assert.assertEquals(
-                UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3),
-                bag1.groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0)));
-
+        Assert.assertEquals(UnifiedMap.newWithKeysValues(0, 0, 1, 1, 2, 2, 3, 3), bag1.groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(0, 0)));
         ImmutableSortedBag<Integer> bag2 = this.newWith(1, 2, 3);
         Assert.assertThrows(IllegalStateException.class, () -> bag2.groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(2, 2)));
     }
 
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         ImmutableSortedBag<Integer> bag1 = this.classUnderTest();
         Assert.assertEquals(SortedSets.immutable.of(1, 2), bag1.distinct());
         ImmutableSortedBag<Integer> bag2 = this.classUnderTest(Comparators.reverseNaturalOrder());
@@ -1111,207 +923,133 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void toStack()
-    {
+    public void toStack() {
         ImmutableSortedBag<Integer> bag = this.classUnderTest(Comparators.reverseNaturalOrder());
         Assert.assertEquals(ArrayStack.newStackWith(2, 1, 1, 1), bag.toStack());
     }
 
     @Override
     @Test
-    public void collectBoolean()
-    {
+    public void collectBoolean() {
         ImmutableSortedBag<String> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), "true", "nah", "TrUe");
-        Assert.assertEquals(
-                BooleanArrayList.newListWith(true, false, true),
-                bag.collectBoolean(Boolean::parseBoolean));
+        Assert.assertEquals(BooleanArrayList.newListWith(true, false, true), bag.collectBoolean(Boolean::parseBoolean));
     }
 
     @Override
     @Test
-    public void collectByte()
-    {
+    public void collectByte() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                ByteArrayList.newListWith((byte) 3, (byte) 2, (byte) 1, (byte) 1, (byte) 1),
-                bag.collectByte(PrimitiveFunctions.unboxIntegerToByte()));
+        Assert.assertEquals(ByteArrayList.newListWith((byte) 3, (byte) 2, (byte) 1, (byte) 1, (byte) 1), bag.collectByte(PrimitiveFunctions.unboxIntegerToByte()));
     }
 
     @Override
     @Test
-    public void collectChar()
-    {
+    public void collectChar() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                CharArrayList.newListWith((char) 3, (char) 2, (char) 1, (char) 1, (char) 1),
-                bag.collectChar(PrimitiveFunctions.unboxIntegerToChar()));
+        Assert.assertEquals(CharArrayList.newListWith((char) 3, (char) 2, (char) 1, (char) 1, (char) 1), bag.collectChar(PrimitiveFunctions.unboxIntegerToChar()));
     }
 
     @Override
     @Test
-    public void collectDouble()
-    {
+    public void collectDouble() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                DoubleArrayList.newListWith(3, 2, 1, 1, 1),
-                bag.collectDouble(PrimitiveFunctions.unboxIntegerToDouble()));
+        Assert.assertEquals(DoubleArrayList.newListWith(3, 2, 1, 1, 1), bag.collectDouble(PrimitiveFunctions.unboxIntegerToDouble()));
     }
 
     @Override
     @Test
-    public void collectFloat()
-    {
+    public void collectFloat() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                FloatArrayList.newListWith(3, 2, 1, 1, 1),
-                bag.collectFloat(PrimitiveFunctions.unboxIntegerToFloat()));
+        Assert.assertEquals(FloatArrayList.newListWith(3, 2, 1, 1, 1), bag.collectFloat(PrimitiveFunctions.unboxIntegerToFloat()));
     }
 
     @Override
     @Test
-    public void collectInt()
-    {
+    public void collectInt() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                IntArrayList.newListWith(3, 2, 1, 1, 1),
-                bag.collectInt(PrimitiveFunctions.unboxIntegerToInt()));
+        Assert.assertEquals(IntArrayList.newListWith(3, 2, 1, 1, 1), bag.collectInt(PrimitiveFunctions.unboxIntegerToInt()));
     }
 
     @Override
     @Test
-    public void collectLong()
-    {
+    public void collectLong() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                LongArrayList.newListWith(3, 2, 1, 1, 1),
-                bag.collectLong(PrimitiveFunctions.unboxIntegerToLong()));
+        Assert.assertEquals(LongArrayList.newListWith(3, 2, 1, 1, 1), bag.collectLong(PrimitiveFunctions.unboxIntegerToLong()));
     }
 
     @Override
     @Test
-    public void collectShort()
-    {
+    public void collectShort() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                ShortArrayList.newListWith((short) 3, (short) 2, (short) 1, (short) 1, (short) 1),
-                bag.collectShort(PrimitiveFunctions.unboxIntegerToShort()));
+        Assert.assertEquals(ShortArrayList.newListWith((short) 3, (short) 2, (short) 1, (short) 1, (short) 1), bag.collectShort(PrimitiveFunctions.unboxIntegerToShort()));
     }
 
     @Test
-    public void collectBoolean_target()
-    {
+    public void collectBoolean_target() {
         ImmutableSortedBag<String> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), "true", "nah", "TrUe");
-        Assert.assertEquals(
-                BooleanArrayList.newListWith(true, false, true),
-                bag.collectBoolean(Boolean::parseBoolean, new BooleanArrayList()));
-
+        Assert.assertEquals(BooleanArrayList.newListWith(true, false, true), bag.collectBoolean(Boolean::parseBoolean, new BooleanArrayList()));
         ImmutableSortedBag<String> bag2 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), "true", "nah", "TrUe");
-        Assert.assertEquals(
-                BooleanHashBag.newBagWith(true, false, true),
-                bag2.collectBoolean(Boolean::parseBoolean, new BooleanHashBag()));
+        Assert.assertEquals(BooleanHashBag.newBagWith(true, false, true), bag2.collectBoolean(Boolean::parseBoolean, new BooleanHashBag()));
     }
 
     @Test
-    public void collectByte_target()
-    {
+    public void collectByte_target() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                ByteArrayList.newListWith((byte) 3, (byte) 2, (byte) 1, (byte) 1, (byte) 1),
-                bag.collectByte(PrimitiveFunctions.unboxIntegerToByte(), new ByteArrayList()));
-
+        Assert.assertEquals(ByteArrayList.newListWith((byte) 3, (byte) 2, (byte) 1, (byte) 1, (byte) 1), bag.collectByte(PrimitiveFunctions.unboxIntegerToByte(), new ByteArrayList()));
         ImmutableSortedBag<Integer> bag2 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                ByteHashBag.newBagWith((byte) 3, (byte) 2, (byte) 1, (byte) 1, (byte) 1),
-                bag2.collectByte(PrimitiveFunctions.unboxIntegerToByte(), new ByteHashBag()));
+        Assert.assertEquals(ByteHashBag.newBagWith((byte) 3, (byte) 2, (byte) 1, (byte) 1, (byte) 1), bag2.collectByte(PrimitiveFunctions.unboxIntegerToByte(), new ByteHashBag()));
     }
 
     @Test
-    public void collectChar_target()
-    {
+    public void collectChar_target() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                CharArrayList.newListWith((char) 3, (char) 2, (char) 1, (char) 1, (char) 1),
-                bag.collectChar(PrimitiveFunctions.unboxIntegerToChar(), new CharArrayList()));
-
+        Assert.assertEquals(CharArrayList.newListWith((char) 3, (char) 2, (char) 1, (char) 1, (char) 1), bag.collectChar(PrimitiveFunctions.unboxIntegerToChar(), new CharArrayList()));
         ImmutableSortedBag<Integer> bag2 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                CharHashBag.newBagWith((char) 3, (char) 2, (char) 1, (char) 1, (char) 1),
-                bag2.collectChar(PrimitiveFunctions.unboxIntegerToChar(), new CharHashBag()));
+        Assert.assertEquals(CharHashBag.newBagWith((char) 3, (char) 2, (char) 1, (char) 1, (char) 1), bag2.collectChar(PrimitiveFunctions.unboxIntegerToChar(), new CharHashBag()));
     }
 
     @Test
-    public void collectDouble_target()
-    {
+    public void collectDouble_target() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                DoubleArrayList.newListWith(3, 2, 1, 1, 1),
-                bag.collectDouble(PrimitiveFunctions.unboxIntegerToDouble(), new DoubleArrayList()));
-
+        Assert.assertEquals(DoubleArrayList.newListWith(3, 2, 1, 1, 1), bag.collectDouble(PrimitiveFunctions.unboxIntegerToDouble(), new DoubleArrayList()));
         ImmutableSortedBag<Integer> bag2 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                DoubleHashBag.newBagWith(3, 2, 1, 1, 1),
-                bag2.collectDouble(PrimitiveFunctions.unboxIntegerToDouble(), new DoubleHashBag()));
+        Assert.assertEquals(DoubleHashBag.newBagWith(3, 2, 1, 1, 1), bag2.collectDouble(PrimitiveFunctions.unboxIntegerToDouble(), new DoubleHashBag()));
     }
 
     @Test
-    public void collectFloat_target()
-    {
+    public void collectFloat_target() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                FloatArrayList.newListWith(3, 2, 1, 1, 1),
-                bag.collectFloat(PrimitiveFunctions.unboxIntegerToFloat(), new FloatArrayList()));
-
+        Assert.assertEquals(FloatArrayList.newListWith(3, 2, 1, 1, 1), bag.collectFloat(PrimitiveFunctions.unboxIntegerToFloat(), new FloatArrayList()));
         ImmutableSortedBag<Integer> bag2 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                FloatHashBag.newBagWith(3, 2, 1, 1, 1),
-                bag2.collectFloat(PrimitiveFunctions.unboxIntegerToFloat(), new FloatHashBag()));
+        Assert.assertEquals(FloatHashBag.newBagWith(3, 2, 1, 1, 1), bag2.collectFloat(PrimitiveFunctions.unboxIntegerToFloat(), new FloatHashBag()));
     }
 
     @Test
-    public void collectInt_target()
-    {
+    public void collectInt_target() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                IntArrayList.newListWith(3, 2, 1, 1, 1),
-                bag.collectInt(PrimitiveFunctions.unboxIntegerToInt(), new IntArrayList()));
-
+        Assert.assertEquals(IntArrayList.newListWith(3, 2, 1, 1, 1), bag.collectInt(PrimitiveFunctions.unboxIntegerToInt(), new IntArrayList()));
         ImmutableSortedBag<Integer> bag2 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                IntHashBag.newBagWith(3, 2, 1, 1, 1),
-                bag2.collectInt(PrimitiveFunctions.unboxIntegerToInt(), new IntHashBag()));
+        Assert.assertEquals(IntHashBag.newBagWith(3, 2, 1, 1, 1), bag2.collectInt(PrimitiveFunctions.unboxIntegerToInt(), new IntHashBag()));
     }
 
     @Test
-    public void collectLong_target()
-    {
+    public void collectLong_target() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                LongArrayList.newListWith(3, 2, 1, 1, 1),
-                bag.collectLong(PrimitiveFunctions.unboxIntegerToLong(), new LongArrayList()));
-
+        Assert.assertEquals(LongArrayList.newListWith(3, 2, 1, 1, 1), bag.collectLong(PrimitiveFunctions.unboxIntegerToLong(), new LongArrayList()));
         ImmutableSortedBag<Integer> bag2 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                LongHashBag.newBagWith(3, 2, 1, 1, 1),
-                bag2.collectLong(PrimitiveFunctions.unboxIntegerToLong(), new LongHashBag()));
+        Assert.assertEquals(LongHashBag.newBagWith(3, 2, 1, 1, 1), bag2.collectLong(PrimitiveFunctions.unboxIntegerToLong(), new LongHashBag()));
     }
 
     @Test
-    public void collectShort_target()
-    {
+    public void collectShort_target() {
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                ShortArrayList.newListWith((short) 3, (short) 2, (short) 1, (short) 1, (short) 1),
-                bag.collectShort(PrimitiveFunctions.unboxIntegerToShort(), new ShortArrayList()));
-
+        Assert.assertEquals(ShortArrayList.newListWith((short) 3, (short) 2, (short) 1, (short) 1, (short) 1), bag.collectShort(PrimitiveFunctions.unboxIntegerToShort(), new ShortArrayList()));
         ImmutableSortedBag<Integer> bag2 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 1, 1, 1, 2, 3);
-        Assert.assertEquals(
-                ShortHashBag.newBagWith((short) 3, (short) 2, (short) 1, (short) 1, (short) 1),
-                bag2.collectShort(PrimitiveFunctions.unboxIntegerToShort(), new ShortHashBag()));
+        Assert.assertEquals(ShortHashBag.newBagWith((short) 3, (short) 2, (short) 1, (short) 1, (short) 1), bag2.collectShort(PrimitiveFunctions.unboxIntegerToShort(), new ShortHashBag()));
     }
 
     @Test
-    public void occurrencesOf()
-    {
+    public void occurrencesOf() {
         ImmutableSortedBag<Integer> bag = this.classUnderTest();
         Assert.assertEquals(0, bag.occurrencesOf(5));
         Assert.assertEquals(3, bag.occurrencesOf(1));
@@ -1319,8 +1057,7 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         ImmutableSortedBag<Integer> bag = this.classUnderTest();
         ImmutableSortedBag<Integer> actual = bag.toImmutable();
         Assert.assertEquals(bag, actual);
@@ -1328,27 +1065,21 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void forEachFromTo()
-    {
+    public void forEachFromTo() {
         MutableSortedBag<Integer> integersMutable = SortedBags.mutable.of(Comparators.reverseNaturalOrder(), 4, 4, 4, 4, 3, 3, 3, 2, 2, 1);
         ImmutableSortedBag<Integer> integers1 = integersMutable.toImmutable();
-
         MutableList<Integer> result = Lists.mutable.empty();
         integers1.forEach(5, 7, result::add);
         Assert.assertEquals(Lists.immutable.with(3, 3, 2), result);
-
         MutableList<Integer> result2 = Lists.mutable.empty();
         integers1.forEach(5, 5, result2::add);
         Assert.assertEquals(Lists.immutable.with(3), result2);
-
         MutableList<Integer> result3 = Lists.mutable.empty();
         integers1.forEach(0, 9, result3::add);
         Assert.assertEquals(Lists.immutable.with(4, 4, 4, 4, 3, 3, 3, 2, 2, 1), result3);
-
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> integers1.forEach(-1, 0, result::add));
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> integers1.forEach(0, -1, result::add));
         Assert.assertThrows(IllegalArgumentException.class, () -> integers1.forEach(7, 5, result::add));
-
         ImmutableSortedBag<Integer> integers2 = this.classUnderTest();
         MutableList<Integer> mutableList = Lists.mutable.of();
         integers2.forEach(0, integers2.size() - 1, mutableList::add);
@@ -1356,25 +1087,20 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void forEachWithIndexWithFromTo()
-    {
+    public void forEachWithIndexWithFromTo() {
         ImmutableSortedBag<Integer> integers1 = SortedBags.immutable.of(Comparators.reverseNaturalOrder(), 4, 4, 4, 4, 3, 3, 3, 2, 2, 1);
         StringBuilder builder = new StringBuilder();
         integers1.forEachWithIndex(5, 7, (each, index) -> builder.append(each).append(index));
         Assert.assertEquals("353627", builder.toString());
-
         StringBuilder builder2 = new StringBuilder();
         integers1.forEachWithIndex(5, 5, (each, index) -> builder2.append(each).append(index));
         Assert.assertEquals("35", builder2.toString());
-
         StringBuilder builder3 = new StringBuilder();
         integers1.forEachWithIndex(0, 9, (each, index) -> builder3.append(each).append(index));
         Assert.assertEquals("40414243343536272819", builder3.toString());
-
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> integers1.forEachWithIndex(-1, 0, new AddToList(Lists.mutable.empty())));
         Assert.assertThrows(IndexOutOfBoundsException.class, () -> integers1.forEachWithIndex(0, -1, new AddToList(Lists.mutable.empty())));
         Assert.assertThrows(IllegalArgumentException.class, () -> integers1.forEachWithIndex(7, 5, new AddToList(Lists.mutable.empty())));
-
         ImmutableSortedBag<Integer> integers2 = this.classUnderTest();
         MutableList<Integer> mutableList1 = Lists.mutable.of();
         integers2.forEachWithIndex(0, integers2.size() - 1, (each, index) -> mutableList1.add(each + index));
@@ -1384,19 +1110,8 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void topOccurrences()
-    {
-        ImmutableSortedBag<String> strings = this.newWithOccurrences(
-                PrimitiveTuples.pair("one", 1),
-                PrimitiveTuples.pair("two", 2),
-                PrimitiveTuples.pair("three", 3),
-                PrimitiveTuples.pair("four", 4),
-                PrimitiveTuples.pair("five", 5),
-                PrimitiveTuples.pair("six", 6),
-                PrimitiveTuples.pair("seven", 7),
-                PrimitiveTuples.pair("eight", 8),
-                PrimitiveTuples.pair("nine", 9),
-                PrimitiveTuples.pair("ten", 10));
+    public void topOccurrences() {
+        ImmutableSortedBag<String> strings = this.newWithOccurrences(PrimitiveTuples.pair("one", 1), PrimitiveTuples.pair("two", 2), PrimitiveTuples.pair("three", 3), PrimitiveTuples.pair("four", 4), PrimitiveTuples.pair("five", 5), PrimitiveTuples.pair("six", 6), PrimitiveTuples.pair("seven", 7), PrimitiveTuples.pair("eight", 8), PrimitiveTuples.pair("nine", 9), PrimitiveTuples.pair("ten", 10));
         ListIterable<ObjectIntPair<String>> top5 = strings.topOccurrences(5);
         Assert.assertEquals(5, top5.size());
         Assert.assertEquals("ten", top5.getFirst().getOne());
@@ -1416,19 +1131,8 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void bottomOccurrences()
-    {
-        ImmutableSortedBag<String> strings = this.newWithOccurrences(
-                PrimitiveTuples.pair("one", 1),
-                PrimitiveTuples.pair("two", 2),
-                PrimitiveTuples.pair("three", 3),
-                PrimitiveTuples.pair("four", 4),
-                PrimitiveTuples.pair("five", 5),
-                PrimitiveTuples.pair("six", 6),
-                PrimitiveTuples.pair("seven", 7),
-                PrimitiveTuples.pair("eight", 8),
-                PrimitiveTuples.pair("nine", 9),
-                PrimitiveTuples.pair("ten", 10));
+    public void bottomOccurrences() {
+        ImmutableSortedBag<String> strings = this.newWithOccurrences(PrimitiveTuples.pair("one", 1), PrimitiveTuples.pair("two", 2), PrimitiveTuples.pair("three", 3), PrimitiveTuples.pair("four", 4), PrimitiveTuples.pair("five", 5), PrimitiveTuples.pair("six", 6), PrimitiveTuples.pair("seven", 7), PrimitiveTuples.pair("eight", 8), PrimitiveTuples.pair("nine", 9), PrimitiveTuples.pair("ten", 10));
         ListIterable<ObjectIntPair<String>> bottom5 = strings.bottomOccurrences(5);
         Assert.assertEquals(5, bottom5.size());
         Assert.assertEquals("one", bottom5.getFirst().getOne());
@@ -1448,15 +1152,12 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void corresponds()
-    {
+    public void corresponds() {
         Assert.assertFalse(this.newWith(1, 2, 3, 4, 5).corresponds(this.newWith(1, 2, 3, 4), Predicates2.alwaysTrue()));
-
         ImmutableSortedBag<Integer> integers1 = this.newWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4);
         MutableList<Integer> integers2 = FastList.newListWith(2, 3, 3, 4, 4, 4, 5, 5, 5, 5);
         Assert.assertTrue(integers1.corresponds(integers2, Predicates2.lessThan()));
         Assert.assertFalse(integers1.corresponds(integers2, Predicates2.greaterThan()));
-
         ImmutableSortedBag<Integer> integers3 = this.newWith(1, 2, 3, 4);
         MutableSortedSet<Integer> integers4 = SortedSets.mutable.of(2, 3, 4, 5);
         Assert.assertTrue(integers1.corresponds(integers2, Predicates2.lessThan()));
@@ -1465,18 +1166,15 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void detectIndex()
-    {
+    public void detectIndex() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Comparators.reverseNaturalOrder());
         Assert.assertEquals(0, integers.detectIndex(each -> each == 2));
-
         ImmutableSortedBag<Integer> integers2 = this.classUnderTest();
         Assert.assertEquals(-1, integers2.detectIndex(each -> each == 100));
     }
 
     @Test
-    public void indexOf()
-    {
+    public void indexOf() {
         ImmutableSortedBag<Integer> integers = this.classUnderTest(Comparators.reverseNaturalOrder());
         Assert.assertEquals(1, integers.indexOf(1));
         Assert.assertEquals(1, integers.indexOf(1));
@@ -1486,15 +1184,13 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test
-    public void take()
-    {
+    public void take() {
         ImmutableSortedBag<Integer> integers1 = this.classUnderTest();
         Assert.assertEquals(SortedBags.immutable.empty(integers1.comparator()), integers1.take(0));
         Assert.assertSame(integers1.comparator(), integers1.take(0).comparator());
         Assert.assertEquals(this.newWith(integers1.comparator(), 1, 1, 1), integers1.take(3));
         Assert.assertSame(integers1.comparator(), integers1.take(3).comparator());
         Assert.assertEquals(this.newWith(integers1.comparator(), 1, 1, 1), integers1.take(integers1.size() - 1));
-
         ImmutableSortedBag<Integer> integers2 = this.newWith(Comparators.reverseNaturalOrder(), 3, 3, 3, 2, 2, 1);
         Assert.assertSame(integers2, integers2.take(integers2.size()));
         Assert.assertSame(integers2, integers2.take(10));
@@ -1502,14 +1198,12 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void take_throws()
-    {
+    public void take_throws() {
         this.classUnderTest().take(-1);
     }
 
     @Test
-    public void drop()
-    {
+    public void drop() {
         ImmutableSortedBag<Integer> integers1 = this.classUnderTest();
         Assert.assertSame(integers1, integers1.drop(0));
         Assert.assertEquals(this.newWith(integers1.comparator(), 2), integers1.drop(3));
@@ -1520,14 +1214,12 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void drop_throws()
-    {
+    public void drop_throws() {
         this.classUnderTest().drop(-1);
     }
 
     @Test
-    public void selectUnique()
-    {
+    public void selectUnique() {
         Comparator<Integer> comparator = Collections.reverseOrder();
         ImmutableSortedBag<Integer> bag = SortedBags.immutable.with(comparator, 5, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1, 0);
         ImmutableSortedSet<Integer> expected = SortedSets.immutable.with(comparator, 5, 4, 0);
@@ -1536,42 +1228,758 @@ public abstract class AbstractImmutableSortedBagTestCase extends AbstractImmutab
         Assert.assertEquals(expected.comparator(), actual.comparator());
     }
 
-    private static final class Holder
-    {
+    private static final class Holder {
+
         private final int number;
 
-        private Holder(int i)
-        {
+        private Holder(int i) {
             this.number = i;
         }
 
         @Override
-        public boolean equals(Object o)
-        {
-            if (this == o)
-            {
+        public boolean equals(Object o) {
+            if (this == o) {
                 return true;
             }
-            if (o == null || this.getClass() != o.getClass())
-            {
+            if (o == null || this.getClass() != o.getClass()) {
                 return false;
             }
-
             Holder holder = (Holder) o;
-
             return this.number == holder.number;
         }
 
         @Override
-        public int hashCode()
-        {
+        public int hashCode() {
             return this.number;
         }
 
         @Override
-        public String toString()
-        {
+        public String toString() {
             return String.valueOf(this.number);
         }
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noSupportForNull() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::noSupportForNull, this.description("noSupportForNull"), java.lang.NullPointerException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfyWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfyWithOccurrences, this.description("anySatisfyWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfyWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfyWithOccurrences, this.description("allSatisfyWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfyWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfyWithOccurrences, this.description("noneSatisfyWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithOccurrences, this.description("detectWithOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_compareTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::compareTo, this.description("compareTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectByOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectByOccurrences, this.description("selectByOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectDuplicates() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectDuplicates, this.description("selectDuplicates"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithTest() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithTest, this.description("newWithTest"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithout() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithout, this.description("newWithout"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithAll, this.description("newWithAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toStringOfItemToCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toStringOfItemToCount, this.description("toStringOfItemToCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithoutAll, this.description("newWithoutAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllArray, this.description("containsAllArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllIterable, this.description("containsAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAll, this.description("containsAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_tap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::tap, this.description("tap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectWith, this.description("selectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectToTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectToTarget, this.description("selectToTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectWith, this.description("rejectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_rejectToTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::rejectToTarget, this.description("rejectToTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectInstancesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectInstancesOf, this.description("selectInstancesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partition() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partition, this.description("partition"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWith, this.description("partitionWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWhile, this.description("partitionWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_takeWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::takeWhile, this.description("takeWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_dropWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::dropWhile, this.description("dropWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithIndex, this.description("collectWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithIndexWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithIndexWithTarget, this.description("collectWithIndexWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith, this.description("collectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectToTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectToTarget, this.description("collectToTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollect, this.description("flatCollect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flatCollectWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::flatCollectWithTarget, this.description("flatCollectWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipWithIndex, this.description("zipWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk_zero_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::chunk_zero_throws, this.description("chunk_zero_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk_large_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk_large_size, this.description("chunk_large_size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detect, this.description("detect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWith, this.description("detectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWithIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWithIfNone, this.description("detectWithIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNone, this.description("detectIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIf, this.description("collectIf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectIfToTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectIfToTarget, this.description("collectIfToTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmpty, this.description("isEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedList, this.description("toSortedList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedListBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedListBy, this.description("toSortedListBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedBag, this.description("toSortedBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBagWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedBagWithComparator, this.description("toSortedBagWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedBagBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedBagBy, this.description("toSortedBagBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedMap, this.description("toSortedMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedMap_with_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedMap_with_comparator, this.description("toSortedMap_with_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedMapBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSortedMapBy, this.description("toSortedMapBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forLoop() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forLoop, this.description("forLoop"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toMapOfItemToCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toMapOfItemToCount, this.description("toMapOfItemToCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min, this.description("min"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max, this.description("max"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min_without_comparator, this.description("min_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max_without_comparator, this.description("max_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::minBy, this.description("minBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::maxBy, this.description("maxBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupBy, this.description("groupBy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEach, this.description("groupByEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByWithTarget, this.description("groupByWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByEachWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByEachWithTarget, this.description("groupByEachWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey, this.description("groupByUniqueKey"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_groupByUniqueKey_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::groupByUniqueKey_target, this.description("groupByUniqueKey_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toStack() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toStack, this.description("toStack"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectBoolean() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectBoolean, this.description("collectBoolean"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectByte() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectByte, this.description("collectByte"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectChar() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectChar, this.description("collectChar"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectDouble() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectDouble, this.description("collectDouble"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectFloat() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectFloat, this.description("collectFloat"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectInt() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectInt, this.description("collectInt"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectLong() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectLong, this.description("collectLong"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectShort() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectShort, this.description("collectShort"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectBoolean_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectBoolean_target, this.description("collectBoolean_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectByte_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectByte_target, this.description("collectByte_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectChar_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectChar_target, this.description("collectChar_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectDouble_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectDouble_target, this.description("collectDouble_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectFloat_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectFloat_target, this.description("collectFloat_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectInt_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectInt_target, this.description("collectInt_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectLong_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectLong_target, this.description("collectLong_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectShort_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectShort_target, this.description("collectShort_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_occurrencesOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::occurrencesOf, this.description("occurrencesOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachFromTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachFromTo, this.description("forEachFromTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndexWithFromTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndexWithFromTo, this.description("forEachWithIndexWithFromTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_topOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::topOccurrences, this.description("topOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_bottomOccurrences() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::bottomOccurrences, this.description("bottomOccurrences"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_corresponds() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::corresponds, this.description("corresponds"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIndex, this.description("detectIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_indexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::indexOf, this.description("indexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::take, this.description("take"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::take_throws, this.description("take_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::drop, this.description("drop"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::drop_throws, this.description("drop_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_selectUnique() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::selectUnique, this.description("selectUnique"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractImmutableSortedBagTestCase implementation();
     }
 }

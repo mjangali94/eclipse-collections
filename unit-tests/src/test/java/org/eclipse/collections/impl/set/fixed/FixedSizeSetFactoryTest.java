@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.fixed;
 
 import org.eclipse.collections.api.factory.set.FixedSizeSetFactory;
@@ -26,19 +25,17 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FixedSizeSetFactoryTest
-{
+public class FixedSizeSetFactoryTest {
+
     private FixedSizeSetFactory setFactory;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         this.setFactory = FixedSizeSetFactoryImpl.INSTANCE;
     }
 
     @Test
-    public void testCreateWith3Args()
-    {
+    public void testCreateWith3Args() {
         this.assertCreateSet(this.setFactory.of("a", "a"), "a");
         this.assertCreateSet(this.setFactory.of("a", "a", "c"), "a", "c");
         this.assertCreateSet(this.setFactory.of("a", "b", "a"), "a", "b");
@@ -46,8 +43,7 @@ public class FixedSizeSetFactoryTest
     }
 
     @Test
-    public void testCreateWith4Args()
-    {
+    public void testCreateWith4Args() {
         this.assertCreateSet(this.setFactory.of("a", "a", "c", "d"), "a", "c", "d");
         this.assertCreateSet(this.setFactory.of("a", "b", "a", "d"), "a", "b", "d");
         this.assertCreateSet(this.setFactory.of("a", "b", "c", "a"), "a", "b", "c");
@@ -56,46 +52,38 @@ public class FixedSizeSetFactoryTest
         this.assertCreateSet(this.setFactory.of("a", "b", "c", "c"), "a", "b", "c");
     }
 
-    private void assertCreateSet(FixedSizeSet<String> undertest, String... expected)
-    {
+    private void assertCreateSet(FixedSizeSet<String> undertest, String... expected) {
         Assert.assertEquals(UnifiedSet.newSetWith(expected), undertest);
         Verify.assertInstanceOf(FixedSizeSet.class, undertest);
     }
 
     @Test
-    public void keyPreservation()
-    {
+    public void keyPreservation() {
         Key key = new Key("key");
-
         Key duplicateKey1 = new Key("key");
         MutableSet<Key> set1 = this.setFactory.of(key, duplicateKey1);
         Verify.assertSize(1, set1);
         Verify.assertContains(key, set1);
         Assert.assertSame(key, set1.getFirst());
-
         Key duplicateKey2 = new Key("key");
         MutableSet<Key> set2 = this.setFactory.of(key, duplicateKey1, duplicateKey2);
         Verify.assertSize(1, set2);
         Verify.assertContains(key, set2);
         Assert.assertSame(key, set1.getFirst());
-
         Key duplicateKey3 = new Key("key");
         MutableSet<Key> set3 = this.setFactory.of(key, new Key("not a dupe"), duplicateKey3);
         Verify.assertSize(2, set3);
         Verify.assertContainsAll(set3, key, new Key("not a dupe"));
         Assert.assertSame(key, set3.detect(key::equals));
-
         Key duplicateKey4 = new Key("key");
         MutableSet<Key> set4 = this.setFactory.of(key, new Key("not a dupe"), duplicateKey3, duplicateKey4);
         Verify.assertSize(2, set4);
         Verify.assertContainsAll(set4, key, new Key("not a dupe"));
         Assert.assertSame(key, set4.detect(key::equals));
-
         MutableSet<Key> set5 = this.setFactory.of(key, new Key("not a dupe"), new Key("me neither"), duplicateKey4);
         Verify.assertSize(3, set5);
         Verify.assertContainsAll(set5, key, new Key("not a dupe"), new Key("me neither"));
         Assert.assertSame(key, set5.detect(key::equals));
-
         MutableSet<Key> set6 = this.setFactory.of(key, duplicateKey2, duplicateKey3, duplicateKey4);
         Verify.assertSize(1, set6);
         Verify.assertContains(key, set6);
@@ -103,89 +91,69 @@ public class FixedSizeSetFactoryTest
     }
 
     @Test
-    public void create1()
-    {
+    public void create1() {
         FixedSizeSet<String> set = Sets.fixedSize.of("1");
         Verify.assertSize(1, set);
         Verify.assertContains("1", set);
     }
 
     @Test
-    public void create2()
-    {
+    public void create2() {
         FixedSizeSet<String> set = Sets.fixedSize.of("1", "2");
         Assert.assertEquals(UnifiedSet.newSetWith("1", "2"), set);
     }
 
     @Test
-    public void create3()
-    {
+    public void create3() {
         FixedSizeSet<String> set = Sets.fixedSize.of("1", "2", "3");
         Assert.assertEquals(UnifiedSet.newSetWith("1", "2", "3"), set);
     }
 
     @Test
-    public void create4()
-    {
+    public void create4() {
         FixedSizeSet<String> set = Sets.fixedSize.of("1", "2", "3", "4");
         Assert.assertEquals(UnifiedSet.newSetWith("1", "2", "3", "4"), set);
     }
 
     @Test
-    public void createWithDuplicates()
-    {
+    public void createWithDuplicates() {
         FixedSizeSet<String> set1 = Sets.fixedSize.of("1", "1");
         Assert.assertEquals(UnifiedSet.newSetWith("1"), set1);
-
         FixedSizeSet<String> set2 = Sets.fixedSize.of("1", "1", "1");
         Assert.assertEquals(UnifiedSet.newSetWith("1"), set2);
-
         FixedSizeSet<String> set3 = Sets.fixedSize.of("2", "3", "2");
         Assert.assertEquals(UnifiedSet.newSetWith("2", "3"), set3);
-
         FixedSizeSet<String> set4 = Sets.fixedSize.of("3", "4", "4");
         Assert.assertEquals(UnifiedSet.newSetWith("3", "4"), set4);
-
         FixedSizeSet<String> set5 = Sets.fixedSize.of("4", "4", "4", "4");
         Assert.assertEquals(UnifiedSet.newSetWith("4"), set5);
-
         FixedSizeSet<String> set6 = Sets.fixedSize.of("4", "3", "4", "4");
         Assert.assertEquals(UnifiedSet.newSetWith("4", "3"), set6);
-
         FixedSizeSet<String> set7 = Sets.fixedSize.of("4", "2", "3", "4");
         Assert.assertEquals(UnifiedSet.newSetWith("4", "3", "2"), set7);
-
         FixedSizeSet<String> set8 = Sets.fixedSize.of("2", "3", "4", "4");
         Assert.assertEquals(UnifiedSet.newSetWith("4", "3", "2"), set8);
-
         FixedSizeSet<String> set9 = Sets.fixedSize.of("2", "4", "3", "4");
         Assert.assertEquals(UnifiedSet.newSetWith("4", "3", "2"), set9);
-
         FixedSizeSet<String> set10 = Sets.fixedSize.of("2", "4", "3", "4");
         Assert.assertEquals(UnifiedSet.newSetWith("4", "3", "2"), set10);
-
         FixedSizeSet<String> set11 = Sets.fixedSize.of("4", "3", "4", "2");
         Assert.assertEquals(UnifiedSet.newSetWith("4", "3", "2"), set11);
-
         FixedSizeSet<String> set12 = Sets.fixedSize.of("3", "4", "4", "2");
         Assert.assertEquals(UnifiedSet.newSetWith("4", "3", "2"), set12);
     }
 
     @Test
-    public void createSet()
-    {
+    public void createSet() {
         MutableSet<String> set1 = Sets.fixedSize.of();
         Verify.assertEmpty(set1);
-
         MutableSet<String> set2 = Sets.fixedSize.of();
         Verify.assertEmpty(set2);
-
         Assert.assertSame(Sets.fixedSize.of(), Sets.fixedSize.of());
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         MutableList<String> result = Lists.mutable.of();
         MutableSet<String> source = Sets.fixedSize.of("1", "2", "3", "4");
         source.forEach(CollectionAddProcedure.on(result));
@@ -193,8 +161,7 @@ public class FixedSizeSetFactoryTest
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         int[] indexSum = new int[1];
         MutableList<String> result = Lists.mutable.of();
         MutableSet<String> source = Sets.fixedSize.of("1", "2", "3", "4");
@@ -207,8 +174,7 @@ public class FixedSizeSetFactoryTest
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         MutableList<String> result = Lists.mutable.of();
         MutableSet<String> source = Sets.fixedSize.of("1", "2", "3", "4");
         source.forEachWith(Procedures2.fromProcedure(CollectionAddProcedure.on(result)), null);
@@ -216,50 +182,174 @@ public class FixedSizeSetFactoryTest
     }
 
     @Test
-    public void ofAllSizeZero()
-    {
+    public void ofAllSizeZero() {
         MutableSet<Integer> set = Sets.fixedSize.ofAll(FastList.newList());
         Assert.assertEquals(UnifiedSet.<Integer>newSetWith(), set);
         Verify.assertInstanceOf(FixedSizeSet.class, set);
     }
 
     @Test
-    public void ofAllSizeOne()
-    {
+    public void ofAllSizeOne() {
         MutableSet<Integer> set = Sets.fixedSize.ofAll(FastList.newListWith(1));
         Assert.assertEquals(UnifiedSet.newSetWith(1), set);
         Verify.assertInstanceOf(FixedSizeSet.class, set);
     }
 
     @Test
-    public void ofAllSizeTwo()
-    {
+    public void ofAllSizeTwo() {
         MutableSet<Integer> set = Sets.fixedSize.ofAll(FastList.newListWith(1, 2));
         Assert.assertEquals(UnifiedSet.newSetWith(1, 2), set);
         Verify.assertInstanceOf(FixedSizeSet.class, set);
     }
 
     @Test
-    public void ofAllSizeThree()
-    {
+    public void ofAllSizeThree() {
         MutableSet<Integer> set = Sets.fixedSize.ofAll(FastList.newListWith(1, 2, 3));
         Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3), set);
         Verify.assertInstanceOf(FixedSizeSet.class, set);
     }
 
     @Test
-    public void ofAllSizeFour()
-    {
+    public void ofAllSizeFour() {
         MutableSet<Integer> set = Sets.fixedSize.ofAll(FastList.newListWith(1, 2, 3, 4));
         Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4), set);
         Verify.assertInstanceOf(FixedSizeSet.class, set);
     }
 
     @Test
-    public void ofAllSizeFive()
-    {
+    public void ofAllSizeFive() {
         MutableSet<Integer> set = Sets.fixedSize.ofAll(FastList.newListWith(1, 2, 3, 4, 5));
         Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 3, 4, 5), set);
         Verify.assertInstanceOf(UnifiedSet.class, set);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testCreateWith3Args() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testCreateWith3Args, this.description("testCreateWith3Args"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testCreateWith4Args() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testCreateWith4Args, this.description("testCreateWith4Args"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keyPreservation() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::keyPreservation, this.description("keyPreservation"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create1() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create1, this.description("create1"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create2() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create2, this.description("create2"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create3() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create3, this.description("create3"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_create4() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::create4, this.description("create4"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_createWithDuplicates() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::createWithDuplicates, this.description("createWithDuplicates"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_createSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::createSet, this.description("createSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllSizeZero() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllSizeZero, this.description("ofAllSizeZero"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllSizeOne() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllSizeOne, this.description("ofAllSizeOne"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllSizeTwo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllSizeTwo, this.description("ofAllSizeTwo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllSizeThree() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllSizeThree, this.description("ofAllSizeThree"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllSizeFour() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllSizeFour, this.description("ofAllSizeFour"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAllSizeFive() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAllSizeFive, this.description("ofAllSizeFive"));
+        }
+
+        @java.lang.Override
+        public void before() throws java.lang.Throwable {
+            super.before();
+            this.implementation().setUp();
+        }
+
+        private FixedSizeSetFactoryTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new FixedSizeSetFactoryTest();
+        }
+
+        @java.lang.Override
+        public FixedSizeSetFactoryTest implementation() {
+            return this.implementation;
+        }
     }
 }

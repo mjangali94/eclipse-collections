@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.lazy;
 
 import org.eclipse.collections.api.LazyIterable;
@@ -22,19 +21,17 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
-{
+public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(LazyIterableAdapterTest.class);
 
     @Override
-    protected <T> LazyIterable<T> newWith(T... elements)
-    {
+    protected <T> LazyIterable<T> newWith(T... elements) {
         return new LazyIterableAdapter<>(FastList.newListWith(elements));
     }
 
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         LazyIterable<Integer> select = new LazyIterableAdapter<>(Interval.oneTo(5));
         Sum sum = new IntegerSum(0);
         select.forEach(new SumProcedure<>(sum));
@@ -42,21 +39,18 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
     }
 
     @Test
-    public void into()
-    {
+    public void into() {
         int sum = new LazyIterableAdapter<>(Interval.oneTo(5)).into(FastList.newList()).injectInto(0, AddFunction.INTEGER_TO_INT);
         Assert.assertEquals(15, sum);
     }
 
     @Test
-    public void forEachWithIndex()
-    {
+    public void forEachWithIndex() {
         LazyIterable<Integer> select = new LazyIterableAdapter<>(Interval.oneTo(5));
         Sum sum = new IntegerSum(0);
         select.forEachWithIndex((object, index) -> {
             sum.add(object);
             sum.add(index);
-
             LOGGER.info("value={} index={}", object, index);
         });
         Assert.assertEquals(25, sum.getValue().intValue());
@@ -64,20 +58,17 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
 
     @Override
     @Test
-    public void iterator()
-    {
+    public void iterator() {
         LazyIterable<Integer> select = new LazyIterableAdapter<>(Interval.oneTo(5));
         Sum sum = new IntegerSum(0);
-        for (Integer each : select)
-        {
+        for (Integer each : select) {
             sum.add(each);
         }
         Assert.assertEquals(15, sum.getValue().intValue());
     }
 
     @Test
-    public void forEachWith()
-    {
+    public void forEachWith() {
         LazyIterable<Integer> select = new LazyIterableAdapter<>(Interval.oneTo(5));
         Sum sum = new IntegerSum(0);
         select.forEachWith((each, aSum) -> aSum.add(each), sum);
@@ -86,12 +77,61 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
 
     @Override
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         super.distinct();
         LazyIterable<Integer> iterable = new LazyIterableAdapter<>(FastList.newListWith(3, 2, 2, 4, 1, 3, 1, 5));
-        Assert.assertEquals(
-                FastList.newListWith(3, 2, 4, 1, 5),
-                iterable.distinct().toList());
+        Assert.assertEquals(FastList.newListWith(3, 2, 4, 1, 5), iterable.distinct().toList());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_into() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::into, this.description("into"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndex, this.description("forEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::iterator, this.description("iterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWith, this.description("forEachWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        private LazyIterableAdapterTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new LazyIterableAdapterTest();
+        }
+
+        @java.lang.Override
+        public LazyIterableAdapterTest implementation() {
+            return this.implementation;
+        }
     }
 }

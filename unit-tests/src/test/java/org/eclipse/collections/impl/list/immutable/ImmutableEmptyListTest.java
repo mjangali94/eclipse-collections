@@ -7,14 +7,12 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.list.immutable;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.ImmutableList;
@@ -36,21 +34,18 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.junit.Assert;
 import org.junit.Test;
-
 import static org.junit.Assert.fail;
 
-public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
-{
+public class ImmutableEmptyListTest extends AbstractImmutableListTestCase {
+
     @Override
-    protected ImmutableList<Integer> classUnderTest()
-    {
+    protected ImmutableList<Integer> classUnderTest() {
         return Lists.immutable.empty();
     }
 
     @Override
     @Test
-    public void indexOf()
-    {
+    public void indexOf() {
         Assert.assertEquals(-1, this.classUnderTest().indexOf(1));
         Assert.assertEquals(-1, this.classUnderTest().indexOf(null));
         ImmutableList<Integer> immutableList = this.classUnderTest().newWith(null);
@@ -60,8 +55,7 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void lastIndexOf()
-    {
+    public void lastIndexOf() {
         Assert.assertEquals(-1, this.classUnderTest().lastIndexOf(1));
         Assert.assertEquals(-1, this.classUnderTest().lastIndexOf(null));
         Assert.assertEquals(-1, this.classUnderTest().lastIndexOf(null));
@@ -71,16 +65,14 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
     }
 
     @Test
-    public void newWithout()
-    {
+    public void newWithout() {
         Assert.assertSame(Lists.immutable.empty(), Lists.immutable.empty().newWithout(1));
         Assert.assertSame(Lists.immutable.empty(), Lists.immutable.empty().newWithoutAll(Interval.oneTo(3)));
     }
 
     @Override
     @Test
-    public void reverseForEach()
-    {
+    public void reverseForEach() {
         ImmutableList<Integer> list = Lists.immutable.empty();
         MutableList<Integer> result = Lists.mutable.empty();
         list.reverseForEach(CollectionAddProcedure.on(result));
@@ -89,16 +81,14 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void reverseForEachWithIndex()
-    {
+    public void reverseForEachWithIndex() {
         ImmutableList<Object> list = Lists.immutable.empty();
         list.reverseForEachWithIndex((each, index) -> fail());
     }
 
     @Override
     @Test
-    public void forEachFromTo()
-    {
+    public void forEachFromTo() {
         MutableList<Integer> result = Lists.mutable.empty();
         MutableList<Integer> reverseResult = Lists.mutable.empty();
         ImmutableList<Integer> list = this.classUnderTest();
@@ -108,8 +98,7 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void forEachWithIndexFromTo()
-    {
+    public void forEachWithIndexFromTo() {
         MutableList<Integer> result = Lists.mutable.empty();
         MutableList<Integer> reverseResult = Lists.mutable.empty();
         ImmutableList<Integer> list = this.classUnderTest();
@@ -119,24 +108,21 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void detect()
-    {
+    public void detect() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertNull(integers.detect(Integer.valueOf(1)::equals));
     }
 
     @Override
     @Test
-    public void detectWith()
-    {
+    public void detectWith() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertNull(integers.detectWith(Object::equals, Integer.valueOf(1)));
     }
 
     @Override
     @Test
-    public void distinct()
-    {
+    public void distinct() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertNotNull(integers.distinct());
         Assert.assertTrue(integers.isEmpty());
@@ -144,95 +130,81 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void countWith()
-    {
+    public void countWith() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertEquals(0, integers.countWith(ERROR_THROWING_PREDICATE_2, Integer.class));
     }
 
     @Override
     @Test
-    public void corresponds()
-    {
-        //Evaluates true for all empty lists and false for all non-empty lists
-
+    public void corresponds() {
+        // Evaluates true for all empty lists and false for all non-empty lists
         Assert.assertTrue(this.classUnderTest().corresponds(Lists.mutable.empty(), Predicates2.alwaysFalse()));
-
         ImmutableList<Integer> integers = this.classUnderTest().newWith(Integer.valueOf(1));
         Assert.assertFalse(this.classUnderTest().corresponds(integers, Predicates2.alwaysTrue()));
     }
 
     @Override
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertTrue(integers.allSatisfy(ERROR_THROWING_PREDICATE));
     }
 
     @Override
-    public void allSatisfyWith()
-    {
+    public void allSatisfyWith() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertTrue(integers.allSatisfyWith(ERROR_THROWING_PREDICATE_2, Integer.class));
     }
 
     @Override
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertTrue(integers.noneSatisfy(ERROR_THROWING_PREDICATE));
     }
 
     @Override
-    public void noneSatisfyWith()
-    {
+    public void noneSatisfyWith() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertTrue(integers.noneSatisfyWith(ERROR_THROWING_PREDICATE_2, Integer.class));
     }
 
     @Override
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertFalse(integers.anySatisfy(ERROR_THROWING_PREDICATE));
     }
 
     @Override
-    public void anySatisfyWith()
-    {
+    public void anySatisfyWith() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertFalse(integers.anySatisfyWith(ERROR_THROWING_PREDICATE_2, Integer.class));
     }
 
     @Override
     @Test
-    public void getFirst()
-    {
+    public void getFirst() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertNull(integers.getFirst());
     }
 
     @Override
     @Test
-    public void getLast()
-    {
+    public void getLast() {
         ImmutableList<Integer> integers = this.classUnderTest();
         Assert.assertNull(integers.getLast());
     }
 
     @Test(expected = IllegalStateException.class)
-    public void getOnly()
-    {
+    public void getOnly() {
         ImmutableList<Integer> list = this.classUnderTest();
         list.getOnly();
     }
 
     @Override
     @Test
-    public void isEmpty()
-    {
+    public void isEmpty() {
         ImmutableList<Integer> list = this.classUnderTest();
         Assert.assertTrue(list.isEmpty());
         Assert.assertFalse(list.notEmpty());
@@ -240,142 +212,120 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test(expected = NoSuchElementException.class)
-    public void min()
-    {
+    public void min() {
         this.classUnderTest().min(Integer::compareTo);
     }
 
     @Override
     @Test(expected = NoSuchElementException.class)
-    public void max()
-    {
+    public void max() {
         this.classUnderTest().max(Integer::compareTo);
     }
 
     @Test
     @Override
-    public void min_null_throws()
-    {
+    public void min_null_throws() {
         // Not applicable for empty collections
         super.min_null_throws();
     }
 
     @Test
     @Override
-    public void max_null_throws()
-    {
+    public void max_null_throws() {
         // Not applicable for empty collections
         super.max_null_throws();
     }
 
     @Override
     @Test(expected = NoSuchElementException.class)
-    public void min_without_comparator()
-    {
+    public void min_without_comparator() {
         this.classUnderTest().min();
     }
 
     @Override
     @Test(expected = NoSuchElementException.class)
-    public void max_without_comparator()
-    {
+    public void max_without_comparator() {
         this.classUnderTest().max();
     }
 
     @Test
     @Override
-    public void min_null_throws_without_comparator()
-    {
+    public void min_null_throws_without_comparator() {
         // Not applicable for empty collections
         super.min_null_throws_without_comparator();
     }
 
     @Test
     @Override
-    public void max_null_throws_without_comparator()
-    {
+    public void max_null_throws_without_comparator() {
         // Not applicable for empty collections
         super.max_null_throws_without_comparator();
     }
 
     @Override
     @Test(expected = NoSuchElementException.class)
-    public void minBy()
-    {
+    public void minBy() {
         this.classUnderTest().minBy(String::valueOf);
     }
 
     @Override
     @Test(expected = NoSuchElementException.class)
-    public void maxBy()
-    {
+    public void maxBy() {
         this.classUnderTest().maxBy(String::valueOf);
     }
 
     @Override
     @Test(expected = IndexOutOfBoundsException.class)
-    public void subList()
-    {
+    public void subList() {
         this.classUnderTest().subList(0, 1);
     }
 
     @Override
     @Test
-    public void zip()
-    {
+    public void zip() {
         ImmutableList<Integer> immutableList = this.classUnderTest();
         List<Object> nulls = Collections.nCopies(immutableList.size(), null);
         List<Object> nullsPlusOne = Collections.nCopies(immutableList.size() + 1, null);
-
         ImmutableList<Pair<Integer, Object>> pairs = immutableList.zip(nulls);
         Assert.assertEquals(immutableList, pairs.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne));
         Assert.assertEquals(nulls, pairs.collect((Function<Pair<?, Object>, Object>) Pair::getTwo));
-
         ImmutableList<Pair<Integer, Object>> pairsPlusOne = immutableList.zip(nullsPlusOne);
         Assert.assertEquals(immutableList, pairsPlusOne.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne));
         Assert.assertEquals(nulls, pairsPlusOne.collect((Function<Pair<?, Object>, Object>) Pair::getTwo));
-
         Assert.assertEquals(immutableList.zip(nulls), immutableList.zip(nulls, FastList.newList()));
     }
 
     @Override
     @Test
-    public void zipWithIndex()
-    {
+    public void zipWithIndex() {
         ImmutableList<Integer> immutableList = this.classUnderTest();
         ImmutableList<Pair<Integer, Integer>> pairs = immutableList.zipWithIndex();
-
         Assert.assertEquals(immutableList, pairs.collect((Function<Pair<Integer, ?>, Integer>) Pair::getOne));
         Assert.assertEquals(FastList.<Integer>newList(), pairs.collect((Function<Pair<?, Integer>, Integer>) Pair::getTwo));
-
         Assert.assertEquals(immutableList.zipWithIndex(), immutableList.zipWithIndex(FastList.newList()));
     }
 
     @Test
-    public void chunk()
-    {
+    public void chunk() {
         Assert.assertEquals(Lists.mutable.empty(), this.classUnderTest().chunk(2));
     }
 
     @Override
     @Test(expected = IllegalArgumentException.class)
-    public void chunk_zero_throws()
-    {
+    public void chunk_zero_throws() {
         this.classUnderTest().chunk(0);
     }
 
     @Override
     @Test
-    public void chunk_large_size()
-    {
+    public void chunk_large_size() {
         Assert.assertEquals(this.classUnderTest(), this.classUnderTest().chunk(10));
         Verify.assertInstanceOf(ImmutableList.class, this.classUnderTest().chunk(10));
     }
 
     @Override
     @Test
-    public void equalsAndHashCode()
-    {
+    public void equalsAndHashCode() {
         ImmutableList<Integer> immutable = this.classUnderTest();
         MutableList<Integer> mutable = FastList.newList(immutable);
         Verify.assertEqualsAndHashCode(immutable, mutable);
@@ -385,8 +335,7 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void take()
-    {
+    public void take() {
         ImmutableList<Integer> immutableList = this.classUnderTest();
         Assert.assertSame(immutableList, immutableList.take(0));
         Assert.assertSame(immutableList, immutableList.take(10));
@@ -395,18 +344,15 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void takeWhile()
-    {
+    public void takeWhile() {
         Assert.assertEquals(Lists.immutable.empty(), this.classUnderTest().takeWhile(ignored -> true));
         Assert.assertEquals(Lists.immutable.empty(), this.classUnderTest().takeWhile(ignored -> false));
     }
 
     @Override
     @Test
-    public void drop()
-    {
+    public void drop() {
         super.drop();
-
         ImmutableList<Integer> immutableList = this.classUnderTest();
         Assert.assertSame(immutableList, immutableList.drop(10));
         Assert.assertSame(immutableList, immutableList.drop(0));
@@ -415,24 +361,19 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void dropWhile()
-    {
+    public void dropWhile() {
         super.dropWhile();
-
         Assert.assertEquals(Lists.immutable.empty(), this.classUnderTest().dropWhile(ignored -> true));
         Assert.assertEquals(Lists.immutable.empty(), this.classUnderTest().dropWhile(ignored -> false));
     }
 
     @Override
     @Test
-    public void partitionWhile()
-    {
+    public void partitionWhile() {
         super.partitionWhile();
-
         PartitionImmutableList<Integer> partition1 = this.classUnderTest().partitionWhile(ignored -> true);
         Assert.assertEquals(Lists.immutable.empty(), partition1.getSelected());
         Assert.assertEquals(Lists.immutable.empty(), partition1.getRejected());
-
         PartitionImmutableList<Integer> partiton2 = this.classUnderTest().partitionWhile(ignored -> false);
         Assert.assertEquals(Lists.immutable.empty(), partiton2.getSelected());
         Assert.assertEquals(Lists.immutable.empty(), partiton2.getRejected());
@@ -440,27 +381,21 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void listIterator()
-    {
+    public void listIterator() {
         ListIterator<Integer> it = this.classUnderTest().listIterator();
         Assert.assertFalse(it.hasPrevious());
         Assert.assertEquals(-1, it.previousIndex());
         Assert.assertEquals(0, it.nextIndex());
-
         Assert.assertThrows(NoSuchElementException.class, it::next);
-
         Assert.assertThrows(UnsupportedOperationException.class, it::remove);
-
         Assert.assertThrows(UnsupportedOperationException.class, () -> it.add(null));
     }
 
     @Override
     @Test
-    public void collect_target()
-    {
+    public void collect_target() {
         MutableList<Integer> targetCollection = FastList.newList();
-        MutableList<Integer> actual = this.classUnderTest().collect(object ->
-        {
+        MutableList<Integer> actual = this.classUnderTest().collect(object -> {
             throw new AssertionError();
         }, targetCollection);
         Assert.assertEquals(targetCollection, actual);
@@ -469,11 +404,9 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
 
     @Override
     @Test
-    public void collectWith_target()
-    {
+    public void collectWith_target() {
         MutableList<Integer> targetCollection = FastList.newList();
-        MutableList<Integer> actual = this.classUnderTest().collectWith((argument1, argument2) ->
-        {
+        MutableList<Integer> actual = this.classUnderTest().collectWith((argument1, argument2) -> {
             throw new AssertionError();
         }, 1, targetCollection);
         Assert.assertEquals(targetCollection, actual);
@@ -481,31 +414,27 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
     }
 
     @Test
-    public void binarySearch()
-    {
+    public void binarySearch() {
         ListIterable<Integer> sortedList = this.classUnderTest();
         Assert.assertEquals(-1, sortedList.binarySearch(1));
     }
 
     @Test
-    public void binarySearchWithComparator()
-    {
+    public void binarySearchWithComparator() {
         ListIterable<Integer> sortedList = this.classUnderTest();
         Assert.assertEquals(-1, sortedList.binarySearch(1, Integer::compareTo));
     }
 
     @Override
     @Test
-    public void detectIndex()
-    {
+    public void detectIndex() {
         // any predicate will result in -1
         Assert.assertEquals(-1, this.classUnderTest().detectIndex(Predicates.alwaysTrue()));
     }
 
     @Override
     @Test
-    public void detectLastIndex()
-    {
+    public void detectLastIndex() {
         // any predicate will result in -1
         Assert.assertEquals(-1, this.classUnderTest().detectLastIndex(Predicates.alwaysTrue()));
     }
@@ -515,8 +444,7 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
      */
     @Override
     @Test
-    public void collectWithIndex()
-    {
+    public void collectWithIndex() {
         Verify.assertEmpty(this.classUnderTest().collectWithIndex(PrimitiveTuples::pair));
     }
 
@@ -525,21 +453,340 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase
      */
     @Override
     @Test
-    public void collectWithIndexWithTarget()
-    {
+    public void collectWithIndexWithTarget() {
         Verify.assertEmpty(this.classUnderTest().collectWithIndex(PrimitiveTuples::pair, Lists.mutable.empty()));
     }
 
     @Test
-    public void countByEach()
-    {
+    public void countByEach() {
         Assert.assertEquals(Bags.immutable.empty(), this.classUnderTest().countByEach(each -> IntInterval.oneTo(5).collect(i -> each + i)));
     }
 
     @Test
-    public void countByEach_target()
-    {
+    public void countByEach_target() {
         MutableBag<Integer> target = Bags.mutable.empty();
         Assert.assertEquals(target, this.classUnderTest().countByEach(each -> IntInterval.oneTo(5).collect(i -> each + i), target));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_indexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::indexOf, this.description("indexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_lastIndexOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::lastIndexOf, this.description("lastIndexOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithout() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newWithout, this.description("newWithout"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEach, this.description("reverseForEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverseForEachWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverseForEachWithIndex, this.description("reverseForEachWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachFromTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachFromTo, this.description("forEachFromTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachWithIndexFromTo() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEachWithIndexFromTo, this.description("forEachWithIndexFromTo"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detect, this.description("detect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectWith, this.description("detectWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_distinct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::distinct, this.description("distinct"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countWith, this.description("countWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_corresponds() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::corresponds, this.description("corresponds"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getFirst() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getFirst, this.description("getFirst"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getLast() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::getLast, this.description("getLast"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOnly() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::getOnly, this.description("getOnly"), java.lang.IllegalStateException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmpty, this.description("isEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::min, this.description("min"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::max, this.description("max"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min_null_throws, this.description("min_null_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max_null_throws, this.description("max_null_throws"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::min_without_comparator, this.description("min_without_comparator"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::max_without_comparator, this.description("max_without_comparator"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_null_throws_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::min_null_throws_without_comparator, this.description("min_null_throws_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_null_throws_without_comparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::max_null_throws_without_comparator, this.description("max_null_throws_without_comparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::minBy, this.description("minBy"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxBy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::maxBy, this.description("maxBy"), java.util.NoSuchElementException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::subList, this.description("subList"), java.lang.IndexOutOfBoundsException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zip() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zip, this.description("zip"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_zipWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::zipWithIndex, this.description("zipWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk, this.description("chunk"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk_zero_throws() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::chunk_zero_throws, this.description("chunk_zero_throws"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk_large_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::chunk_large_size, this.description("chunk_large_size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsAndHashCode, this.description("equalsAndHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_take() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::take, this.description("take"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_takeWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::takeWhile, this.description("takeWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_drop() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::drop, this.description("drop"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_dropWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::dropWhile, this.description("dropWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_partitionWhile() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::partitionWhile, this.description("partitionWhile"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_listIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::listIterator, this.description("listIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect_target, this.description("collect_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWith_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWith_target, this.description("collectWith_target"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_binarySearch() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::binarySearch, this.description("binarySearch"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_binarySearchWithComparator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::binarySearchWithComparator, this.description("binarySearchWithComparator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIndex, this.description("detectIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectLastIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectLastIndex, this.description("detectLastIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithIndex() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithIndex, this.description("collectWithIndex"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collectWithIndexWithTarget() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collectWithIndexWithTarget, this.description("collectWithIndexWithTarget"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countByEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countByEach, this.description("countByEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_countByEach_target() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::countByEach_target, this.description("countByEach_target"));
+        }
+
+        private ImmutableEmptyListTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ImmutableEmptyListTest();
+        }
+
+        @java.lang.Override
+        public ImmutableEmptyListTest implementation() {
+            return this.implementation;
+        }
     }
 }

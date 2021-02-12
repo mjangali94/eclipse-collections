@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.block.function;
 
 import org.junit.Assert;
@@ -16,29 +15,60 @@ import org.junit.Test;
 /**
  * Junit test for {@link SubtractFunction}.
  */
-public class SubtractFunctionTest
-{
+public class SubtractFunctionTest {
+
     @Test
-    public void subtractIntegerFunction()
-    {
+    public void subtractIntegerFunction() {
         Assert.assertEquals(Integer.valueOf(1), SubtractFunction.INTEGER.value(2, 1));
         Assert.assertEquals(Integer.valueOf(0), SubtractFunction.INTEGER.value(1, 1));
         Assert.assertEquals(Integer.valueOf(-1), SubtractFunction.INTEGER.value(1, 2));
     }
 
     @Test
-    public void subtractDoubleFunction()
-    {
+    public void subtractDoubleFunction() {
         Assert.assertEquals(Double.valueOf(0.5), SubtractFunction.DOUBLE.value(2.0, 1.5));
         Assert.assertEquals(Double.valueOf(0), SubtractFunction.DOUBLE.value(2.0, 2.0));
         Assert.assertEquals(Double.valueOf(-0.5), SubtractFunction.DOUBLE.value(1.5, 2.0));
     }
 
     @Test
-    public void subtractLongFunction()
-    {
+    public void subtractLongFunction() {
         Assert.assertEquals(Long.valueOf(1L), SubtractFunction.LONG.value(2L, 1L));
         Assert.assertEquals(Long.valueOf(0L), SubtractFunction.LONG.value(1L, 1L));
         Assert.assertEquals(Long.valueOf(-1L), SubtractFunction.LONG.value(1L, 2L));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subtractIntegerFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subtractIntegerFunction, this.description("subtractIntegerFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subtractDoubleFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subtractDoubleFunction, this.description("subtractDoubleFunction"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_subtractLongFunction() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::subtractLongFunction, this.description("subtractLongFunction"));
+        }
+
+        private SubtractFunctionTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SubtractFunctionTest();
+        }
+
+        @java.lang.Override
+        public SubtractFunctionTest implementation() {
+            return this.implementation;
+        }
     }
 }

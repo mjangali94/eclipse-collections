@@ -156,29 +156,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.2</version>
-                <executions>
-                    <execution>
-                        <id>analyze</id>
-                        <goals>
-                            <goal>analyze-only</goal>
-                        </goals>
-                        <configuration>
-                            <failOnWarning>true</failOnWarning>
-                            <ignoredUnusedDeclaredDependencies>
-                                <ignoredUnusedDeclaredDependency>
-                                    com.google.code.findbugs:jsr305:jar
-                                </ignoredUnusedDeclaredDependency>
-                                <ignoredUnusedDeclaredDependency>
-                                    net.openhft:koloboke-impl-jdk8:jar
-                                </ignoredUnusedDeclaredDependency>
-                            </ignoredUnusedDeclaredDependencies>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
 
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>

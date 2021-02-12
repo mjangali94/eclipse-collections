@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.map.immutable.primitive;
 
 import org.eclipse.collections.api.map.primitive.ImmutableObjectBooleanMap;
@@ -18,11 +17,10 @@ import org.eclipse.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ObjectBooleanMapFactoryTest
-{
+public class ObjectBooleanMapFactoryTest {
+
     @Test
-    public void of()
-    {
+    public void of() {
         Assert.assertEquals(new ObjectBooleanHashMap<>(), ObjectBooleanMaps.mutable.of());
         Assert.assertEquals(ObjectBooleanMaps.mutable.of(), ObjectBooleanMaps.mutable.empty());
         Assert.assertEquals(ObjectBooleanMaps.mutable.empty().toImmutable(), ObjectBooleanMaps.immutable.empty());
@@ -33,8 +31,7 @@ public class ObjectBooleanMapFactoryTest
     }
 
     @Test
-    public void ofAll()
-    {
+    public void ofAll() {
         Assert.assertEquals(ObjectBooleanMaps.mutable.empty(), ObjectBooleanMaps.mutable.ofAll(ObjectBooleanMaps.mutable.empty()));
         Assert.assertEquals(ObjectBooleanMaps.mutable.empty().toImmutable(), ObjectBooleanMaps.immutable.ofAll(ObjectBooleanMaps.mutable.empty()));
         Assert.assertSame(ObjectBooleanMaps.immutable.empty(), ObjectBooleanMaps.immutable.ofAll(ObjectBooleanMaps.immutable.empty()));
@@ -44,16 +41,45 @@ public class ObjectBooleanMapFactoryTest
     }
 
     @Test
-    public void from()
-    {
+    public void from() {
         Iterable<String> iterable = Lists.mutable.with("1", "2", "3");
-        Assert.assertEquals(
-                ObjectBooleanHashMap.newWithKeysValues("1", false, "2", true, "3", false),
-                ObjectBooleanMaps.mutable.from(iterable, each -> each, each -> Integer.valueOf(each) % 2 == 0));
+        Assert.assertEquals(ObjectBooleanHashMap.newWithKeysValues("1", false, "2", true, "3", false), ObjectBooleanMaps.mutable.from(iterable, each -> each, each -> Integer.valueOf(each) % 2 == 0));
         Assert.assertTrue(ObjectBooleanMaps.mutable.from(iterable, each -> each, each -> Integer.valueOf(each) % 2 == 0) instanceof MutableObjectBooleanMap);
-        Assert.assertEquals(
-                ObjectBooleanHashMap.newWithKeysValues("1", false, "2", true, "3", false),
-                ObjectBooleanMaps.immutable.from(iterable, each -> each, each -> Integer.valueOf(each) % 2 == 0));
+        Assert.assertEquals(ObjectBooleanHashMap.newWithKeysValues("1", false, "2", true, "3", false), ObjectBooleanMaps.immutable.from(iterable, each -> each, each -> Integer.valueOf(each) % 2 == 0));
         Assert.assertTrue(ObjectBooleanMaps.immutable.from(iterable, each -> each, each -> Integer.valueOf(each) % 2 == 0) instanceof ImmutableObjectBooleanMap);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_of() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::of, this.description("of"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_ofAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::ofAll, this.description("ofAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_from() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::from, this.description("from"));
+        }
+
+        private ObjectBooleanMapFactoryTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new ObjectBooleanMapFactoryTest();
+        }
+
+        @java.lang.Override
+        public ObjectBooleanMapFactoryTest implementation() {
+            return this.implementation;
+        }
     }
 }

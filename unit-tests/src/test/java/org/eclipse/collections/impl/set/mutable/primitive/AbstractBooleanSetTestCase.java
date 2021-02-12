@@ -7,12 +7,10 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.set.mutable.primitive;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
-
 import org.eclipse.collections.api.LazyBooleanIterable;
 import org.eclipse.collections.api.block.function.primitive.BooleanToObjectFunction;
 import org.eclipse.collections.api.block.function.primitive.ObjectBooleanToObjectFunction;
@@ -34,11 +32,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanCollectionTestCase
-{
+public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanCollectionTestCase {
+
     private MutableBooleanSet emptySet;
+
     private MutableBooleanSet setWithFalse;
+
     private MutableBooleanSet setWithTrue;
+
     private MutableBooleanSet setWithTrueFalse;
 
     @Override
@@ -48,20 +49,17 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     protected abstract MutableBooleanSet newWith(boolean... elements);
 
     @Override
-    protected MutableBooleanSet newMutableCollectionWith(boolean... elements)
-    {
+    protected MutableBooleanSet newMutableCollectionWith(boolean... elements) {
         return BooleanHashSet.newSetWith(elements);
     }
 
     @Override
-    protected MutableSet<Object> newObjectCollectionWith(Object... elements)
-    {
+    protected MutableSet<Object> newObjectCollectionWith(Object... elements) {
         return UnifiedSet.newSetWith(elements);
     }
 
     @Before
-    public void setup()
-    {
+    public void setup() {
         this.emptySet = this.newWith();
         this.setWithFalse = this.newWith(false);
         this.setWithTrue = this.newWith(true);
@@ -70,8 +68,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void newCollectionWith()
-    {
+    public void newCollectionWith() {
         MutableBooleanSet set = this.classUnderTest();
         Verify.assertSize(2, set);
         Assert.assertTrue(set.containsAll(true, false, true));
@@ -79,8 +76,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void isEmpty()
-    {
+    public void isEmpty() {
         super.isEmpty();
         Verify.assertEmpty(this.emptySet);
         Verify.assertNotEmpty(this.setWithFalse);
@@ -90,8 +86,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void notEmpty()
-    {
+    public void notEmpty() {
         super.notEmpty();
         Assert.assertFalse(this.emptySet.notEmpty());
         Assert.assertTrue(this.setWithFalse.notEmpty());
@@ -101,8 +96,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void clear()
-    {
+    public void clear() {
         super.clear();
         this.emptySet.clear();
         this.setWithFalse.clear();
@@ -120,8 +114,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void contains()
-    {
+    public void contains() {
         super.contains();
         Assert.assertFalse(this.emptySet.contains(true));
         Assert.assertFalse(this.emptySet.contains(false));
@@ -135,8 +128,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void containsAllArray()
-    {
+    public void containsAllArray() {
         super.containsAllArray();
         Assert.assertFalse(this.emptySet.containsAll(true));
         Assert.assertFalse(this.emptySet.containsAll(true, false));
@@ -153,8 +145,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void containsAllIterable()
-    {
+    public void containsAllIterable() {
         super.containsAllIterable();
         Assert.assertFalse(this.emptySet.containsAll(BooleanArrayList.newListWith(true)));
         Assert.assertFalse(this.emptySet.containsAll(BooleanArrayList.newListWith(true, false)));
@@ -171,8 +162,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void add()
-    {
+    public void add() {
         Assert.assertTrue(this.emptySet.add(true));
         Assert.assertEquals(BooleanHashSet.newSetWith(true), this.emptySet);
         MutableBooleanSet set = this.newWith();
@@ -191,8 +181,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void addAllArray()
-    {
+    public void addAllArray() {
         Assert.assertTrue(this.emptySet.addAll(true, false, true));
         Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.emptySet);
         Assert.assertFalse(this.setWithFalse.addAll(false, false));
@@ -207,8 +196,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void addAllIterable()
-    {
+    public void addAllIterable() {
         Assert.assertTrue(this.emptySet.addAll(BooleanHashSet.newSetWith(true, false, true)));
         Assert.assertEquals(BooleanHashSet.newSetWith(true, false), this.emptySet);
         Assert.assertFalse(this.setWithFalse.addAll(BooleanHashSet.newSetWith(false, false)));
@@ -223,8 +211,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void remove()
-    {
+    public void remove() {
         Assert.assertTrue(this.setWithTrueFalse.remove(true));
         Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
         MutableBooleanSet set = this.newWith(true, false);
@@ -243,14 +230,12 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void removeAll()
-    {
+    public void removeAll() {
         super.removeAll();
         Assert.assertFalse(this.emptySet.removeAll());
         Assert.assertFalse(this.setWithFalse.removeAll());
         Assert.assertFalse(this.setWithTrue.removeAll());
         Assert.assertFalse(this.setWithTrueFalse.removeAll());
-
         Assert.assertTrue(this.setWithTrueFalse.removeAll(true, true));
         Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
         MutableBooleanSet set = this.newWith(true, false);
@@ -259,21 +244,18 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         MutableBooleanSet sett = this.newWith(true, false);
         Assert.assertTrue(sett.removeAll(false, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(true), sett);
-
         Assert.assertFalse(this.setWithTrue.removeAll(false, false));
         MutableBooleanSet sett2 = this.newWith(true);
         Assert.assertTrue(sett2.removeAll(true, true));
         Assert.assertEquals(BooleanHashSet.newSetWith(), sett2);
         Assert.assertTrue(this.setWithTrue.removeAll(true, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
-
         Assert.assertFalse(this.setWithFalse.removeAll(true, true));
         MutableBooleanSet sett3 = this.newWith(false);
         Assert.assertTrue(sett3.removeAll(false, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(), sett3);
         Assert.assertTrue(this.setWithFalse.removeAll(true, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
-
         Assert.assertFalse(this.emptySet.removeAll(true, true));
         Assert.assertFalse(this.emptySet.removeAll(true, false));
         Assert.assertFalse(this.emptySet.removeAll(false, false));
@@ -282,14 +264,12 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void removeAll_iterable()
-    {
+    public void removeAll_iterable() {
         super.removeAll_iterable();
         Assert.assertFalse(this.emptySet.removeAll(new BooleanArrayList()));
         Assert.assertFalse(this.setWithFalse.removeAll(new BooleanArrayList()));
         Assert.assertFalse(this.setWithTrue.removeAll(new BooleanArrayList()));
         Assert.assertFalse(this.setWithTrueFalse.removeAll(new BooleanArrayList()));
-
         Assert.assertTrue(this.setWithTrueFalse.removeAll(BooleanArrayList.newListWith(true, true)));
         Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithTrueFalse);
         MutableBooleanSet set = this.newWith(true, false);
@@ -298,21 +278,18 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         MutableBooleanSet sett = this.newWith(true, false);
         Assert.assertTrue(sett.removeAll(BooleanArrayList.newListWith(false, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(true), sett);
-
         Assert.assertFalse(this.setWithTrue.removeAll(BooleanArrayList.newListWith(false, false)));
         MutableBooleanSet sett2 = this.newWith(true);
         Assert.assertTrue(sett2.removeAll(BooleanArrayList.newListWith(true, true)));
         Assert.assertEquals(BooleanHashSet.newSetWith(), sett2);
         Assert.assertTrue(this.setWithTrue.removeAll(BooleanArrayList.newListWith(true, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
-
         Assert.assertFalse(this.setWithFalse.removeAll(true, true));
         MutableBooleanSet sett3 = this.newWith(false);
         Assert.assertTrue(sett3.removeAll(BooleanArrayList.newListWith(false, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(), sett3);
         Assert.assertTrue(this.setWithFalse.removeAll(BooleanArrayList.newListWith(true, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
-
         Assert.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(true, true)));
         Assert.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(true, false)));
         Assert.assertFalse(this.emptySet.removeAll(BooleanArrayList.newListWith(false, false)));
@@ -321,8 +298,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void retainAll()
-    {
+    public void retainAll() {
         super.retainAll();
         Assert.assertFalse(this.emptySet.retainAll());
         Assert.assertTrue(this.setWithTrueFalse.retainAll(true, true));
@@ -333,21 +309,18 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         MutableBooleanSet sett = this.newWith(true, false);
         Assert.assertTrue(sett.retainAll(false, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(false), sett);
-
         MutableBooleanSet sett2 = this.newWith(true);
         Assert.assertTrue(sett2.retainAll(false, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(), sett2);
         Assert.assertTrue(this.setWithTrue.retainAll(false, false));
         Assert.assertFalse(this.setWithTrue.retainAll(true, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
-
         MutableBooleanSet sett3 = this.newWith(false);
         Assert.assertFalse(sett3.retainAll(false, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(false), sett3);
         Assert.assertTrue(this.setWithFalse.retainAll(true, true));
         Assert.assertFalse(this.setWithFalse.retainAll(true, false));
         Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
-
         Assert.assertFalse(this.emptySet.retainAll(true, true));
         Assert.assertFalse(this.emptySet.retainAll(true, false));
         Assert.assertFalse(this.emptySet.retainAll(false, false));
@@ -356,8 +329,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void retainAll_iterable()
-    {
+    public void retainAll_iterable() {
         super.retainAll_iterable();
         Assert.assertFalse(this.emptySet.retainAll(new BooleanArrayList()));
         Assert.assertTrue(this.setWithTrueFalse.retainAll(BooleanArrayList.newListWith(true, true)));
@@ -368,21 +340,18 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         MutableBooleanSet sett = this.newWith(true, false);
         Assert.assertTrue(sett.retainAll(BooleanArrayList.newListWith(false, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(false), sett);
-
         MutableBooleanSet sett2 = this.newWith(true);
         Assert.assertTrue(sett2.retainAll(BooleanArrayList.newListWith(false, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(), sett2);
         Assert.assertTrue(this.setWithTrue.retainAll(BooleanArrayList.newListWith(false, false)));
         Assert.assertFalse(this.setWithTrue.retainAll(BooleanArrayList.newListWith(true, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithTrue);
-
         MutableBooleanSet sett3 = this.newWith(false);
         Assert.assertFalse(sett3.retainAll(BooleanArrayList.newListWith(false, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(false), sett3);
         Assert.assertTrue(this.setWithFalse.retainAll(BooleanArrayList.newListWith(true, true)));
         Assert.assertFalse(this.setWithFalse.retainAll(BooleanArrayList.newListWith(true, false)));
         Assert.assertEquals(BooleanHashSet.newSetWith(), this.setWithFalse);
-
         Assert.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(true, true)));
         Assert.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(true, false)));
         Assert.assertFalse(this.emptySet.retainAll(BooleanArrayList.newListWith(false, false)));
@@ -391,8 +360,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void with()
-    {
+    public void with() {
         super.with();
         MutableBooleanCollection emptySet = this.newWith();
         MutableBooleanCollection set = emptySet.with(false);
@@ -409,8 +377,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void withAll()
-    {
+    public void withAll() {
         super.withAll();
         MutableBooleanCollection emptySet = this.newWith();
         MutableBooleanCollection set = emptySet.withAll(BooleanArrayList.newListWith(false));
@@ -427,8 +394,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void without()
-    {
+    public void without() {
         Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse.without(false));
         Assert.assertSame(this.setWithTrueFalse, this.setWithTrueFalse.without(false));
         Assert.assertEquals(BooleanHashSet.newSetWith(false), this.newWith(true, false).without(true));
@@ -443,8 +409,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void withoutAll()
-    {
+    public void withoutAll() {
         super.withoutAll();
         Assert.assertEquals(BooleanHashSet.newSetWith(true), this.setWithTrueFalse.withoutAll(BooleanArrayList.newListWith(false, false)));
         Assert.assertSame(this.setWithTrueFalse, this.setWithTrueFalse.withoutAll(BooleanArrayList.newListWith(false, false)));
@@ -464,38 +429,30 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void toArray()
-    {
+    public void toArray() {
         super.toArray();
         Assert.assertEquals(0L, this.emptySet.toArray().length);
-
         Assert.assertEquals(1L, this.setWithFalse.toArray().length);
         Assert.assertFalse(this.setWithFalse.toArray()[0]);
-
         Assert.assertEquals(1L, this.setWithTrue.toArray().length);
         Assert.assertTrue(this.setWithTrue.toArray()[0]);
-
         Assert.assertEquals(2L, this.setWithTrueFalse.toArray().length);
-        Assert.assertTrue(Arrays.equals(new boolean[]{false, true}, this.setWithTrueFalse.toArray())
-                || Arrays.equals(new boolean[]{true, false}, this.setWithTrueFalse.toArray()));
+        Assert.assertTrue(Arrays.equals(new boolean[] { false, true }, this.setWithTrueFalse.toArray()) || Arrays.equals(new boolean[] { true, false }, this.setWithTrueFalse.toArray()));
     }
 
     @Override
     @Test
-    public void toList()
-    {
+    public void toList() {
         super.toList();
         Assert.assertEquals(new BooleanArrayList(), this.emptySet.toList());
         Assert.assertEquals(BooleanArrayList.newListWith(false), this.setWithFalse.toList());
         Assert.assertEquals(BooleanArrayList.newListWith(true), this.setWithTrue.toList());
-        Assert.assertTrue(BooleanArrayList.newListWith(false, true).equals(this.setWithTrueFalse.toList())
-                || BooleanArrayList.newListWith(true, false).equals(this.setWithTrueFalse.toList()));
+        Assert.assertTrue(BooleanArrayList.newListWith(false, true).equals(this.setWithTrueFalse.toList()) || BooleanArrayList.newListWith(true, false).equals(this.setWithTrueFalse.toList()));
     }
 
     @Override
     @Test
-    public void toSet()
-    {
+    public void toSet() {
         super.toSet();
         Assert.assertEquals(new BooleanHashSet(), this.emptySet.toSet());
         Assert.assertEquals(BooleanHashSet.newSetWith(false), this.setWithFalse.toSet());
@@ -505,8 +462,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void toBag()
-    {
+    public void toBag() {
         Assert.assertEquals(new BooleanHashBag(), this.emptySet.toBag());
         Assert.assertEquals(BooleanHashBag.newBagWith(false), this.setWithFalse.toBag());
         Assert.assertEquals(BooleanHashBag.newBagWith(true), this.setWithTrue.toBag());
@@ -515,8 +471,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         Assert.assertNotEquals(this.setWithFalse, this.emptySet);
         Assert.assertNotEquals(this.setWithFalse, this.setWithTrue);
         Assert.assertNotEquals(this.setWithFalse, this.setWithTrueFalse);
@@ -525,7 +480,6 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         Assert.assertNotEquals(this.setWithTrueFalse, this.emptySet);
         Verify.assertEqualsAndHashCode(this.newWith(false, true), this.setWithTrueFalse);
         Verify.assertEqualsAndHashCode(this.newWith(true, false), this.setWithTrueFalse);
-
         Verify.assertPostSerializedEqualsAndHashCode(this.emptySet);
         Verify.assertPostSerializedEqualsAndHashCode(this.setWithFalse);
         Verify.assertPostSerializedEqualsAndHashCode(this.setWithTrue);
@@ -534,8 +488,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void testHashCode()
-    {
+    public void testHashCode() {
         super.testHashCode();
         Assert.assertEquals(UnifiedSet.newSet().hashCode(), this.emptySet.hashCode());
         Assert.assertEquals(UnifiedSet.newSetWith(false).hashCode(), this.setWithFalse.hashCode());
@@ -547,24 +500,20 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void booleanIterator()
-    {
+    public void booleanIterator() {
         BooleanIterator booleanIterator0 = this.emptySet.booleanIterator();
         Assert.assertFalse(booleanIterator0.hasNext());
         Assert.assertThrows(NoSuchElementException.class, booleanIterator0::next);
-
         BooleanIterator booleanIterator1 = this.setWithFalse.booleanIterator();
         Assert.assertTrue(booleanIterator1.hasNext());
         Assert.assertFalse(booleanIterator1.next());
         Assert.assertFalse(booleanIterator1.hasNext());
         Assert.assertThrows(NoSuchElementException.class, booleanIterator1::next);
-
         BooleanIterator booleanIterator2 = this.setWithTrue.booleanIterator();
         Assert.assertTrue(booleanIterator2.hasNext());
         Assert.assertTrue(booleanIterator2.next());
         Assert.assertFalse(booleanIterator2.hasNext());
         Assert.assertThrows(NoSuchElementException.class, booleanIterator2::next);
-
         BooleanIterator booleanIterator3 = this.setWithTrueFalse.booleanIterator();
         BooleanHashSet actual = new BooleanHashSet();
         Assert.assertTrue(booleanIterator3.hasNext());
@@ -578,18 +527,15 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void forEach()
-    {
+    public void forEach() {
         String[] sum = new String[4];
-        for (int i = 0; i < sum.length; i++)
-        {
+        for (int i = 0; i < sum.length; i++) {
             sum[i] = "";
         }
         this.emptySet.forEach(each -> sum[0] += each);
         this.setWithFalse.forEach(each -> sum[1] += each);
         this.setWithTrue.forEach(each -> sum[2] += each);
         this.setWithTrueFalse.forEach(each -> sum[3] += each);
-
         Assert.assertEquals("", sum[0]);
         Assert.assertEquals("false", sum[1]);
         Assert.assertEquals("true", sum[2]);
@@ -598,8 +544,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void injectInto()
-    {
+    public void injectInto() {
         ObjectBooleanToObjectFunction<MutableInteger, MutableInteger> function = (object, value) -> object.add(value ? 1 : 0);
         Assert.assertEquals(new MutableInteger(1), BooleanHashSet.newSetWith(true, false, true).injectInto(new MutableInteger(0), function));
         Assert.assertEquals(new MutableInteger(1), BooleanHashSet.newSetWith(true).injectInto(new MutableInteger(0), function));
@@ -609,16 +554,14 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void size()
-    {
+    public void size() {
         super.size();
         Verify.assertSize(2, this.classUnderTest());
     }
 
     @Override
     @Test
-    public void count()
-    {
+    public void count() {
         Assert.assertEquals(0L, this.emptySet.count(BooleanPredicates.isTrue()));
         Assert.assertEquals(0L, this.setWithFalse.count(BooleanPredicates.isTrue()));
         Assert.assertEquals(1L, this.setWithFalse.count(BooleanPredicates.isFalse()));
@@ -632,8 +575,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void anySatisfy()
-    {
+    public void anySatisfy() {
         super.anySatisfy();
         Assert.assertFalse(this.emptySet.anySatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
         Assert.assertFalse(this.setWithFalse.anySatisfy(BooleanPredicates.isTrue()));
@@ -647,8 +589,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void allSatisfy()
-    {
+    public void allSatisfy() {
         super.allSatisfy();
         Assert.assertTrue(this.emptySet.allSatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
         Assert.assertFalse(this.setWithFalse.allSatisfy(BooleanPredicates.isTrue()));
@@ -663,8 +604,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void noneSatisfy()
-    {
+    public void noneSatisfy() {
         Assert.assertTrue(this.emptySet.noneSatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
         Assert.assertFalse(this.setWithFalse.noneSatisfy(BooleanPredicates.isFalse()));
         Assert.assertTrue(this.setWithFalse.noneSatisfy(BooleanPredicates.isTrue()));
@@ -678,8 +618,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void select()
-    {
+    public void select() {
         Verify.assertEmpty(this.emptySet.select(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
         Verify.assertEmpty(this.setWithFalse.select(BooleanPredicates.isTrue()));
         Verify.assertSize(1, this.setWithFalse.select(BooleanPredicates.isFalse()));
@@ -693,8 +632,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void reject()
-    {
+    public void reject() {
         Verify.assertEmpty(this.emptySet.reject(BooleanPredicates.and(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
         Verify.assertEmpty(this.setWithTrue.reject(BooleanPredicates.isTrue()));
         Verify.assertSize(1, this.setWithTrue.reject(BooleanPredicates.isFalse()));
@@ -708,8 +646,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void detectIfNone()
-    {
+    public void detectIfNone() {
         super.detectIfNone();
         Assert.assertTrue(this.emptySet.detectIfNone(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse()), true));
         Assert.assertFalse(this.emptySet.detectIfNone(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse()), false));
@@ -729,8 +666,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void collect()
-    {
+    public void collect() {
         super.collect();
         BooleanToObjectFunction<Boolean> function = parameter -> !parameter;
         Assert.assertEquals(UnifiedSet.newSetWith(true, false), this.setWithTrueFalse.collect(function));
@@ -741,72 +677,56 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         super.testToString();
         Assert.assertEquals("[]", this.emptySet.toString());
         Assert.assertEquals("[false]", this.setWithFalse.toString());
         Assert.assertEquals("[true]", this.setWithTrue.toString());
-        Assert.assertTrue("[true, false]".equals(this.setWithTrueFalse.toString())
-                || "[false, true]".equals(this.setWithTrueFalse.toString()));
+        Assert.assertTrue("[true, false]".equals(this.setWithTrueFalse.toString()) || "[false, true]".equals(this.setWithTrueFalse.toString()));
     }
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         super.makeString();
         Assert.assertEquals("", this.emptySet.makeString());
         Assert.assertEquals("false", this.setWithFalse.makeString());
         Assert.assertEquals("true", this.setWithTrue.makeString());
-        Assert.assertTrue("true, false".equals(this.setWithTrueFalse.makeString())
-                || "false, true".equals(this.setWithTrueFalse.makeString()));
-
+        Assert.assertTrue("true, false".equals(this.setWithTrueFalse.makeString()) || "false, true".equals(this.setWithTrueFalse.makeString()));
         Assert.assertEquals("", this.emptySet.makeString("/"));
         Assert.assertEquals("false", this.setWithFalse.makeString("/"));
         Assert.assertEquals("true", this.setWithTrue.makeString("/"));
-        Assert.assertTrue(this.setWithTrueFalse.makeString("/"), "true/false".equals(this.setWithTrueFalse.makeString("/"))
-                || "false/true".equals(this.setWithTrueFalse.makeString("/")));
-
+        Assert.assertTrue(this.setWithTrueFalse.makeString("/"), "true/false".equals(this.setWithTrueFalse.makeString("/")) || "false/true".equals(this.setWithTrueFalse.makeString("/")));
         Assert.assertEquals("[]", this.emptySet.makeString("[", "/", "]"));
         Assert.assertEquals("[false]", this.setWithFalse.makeString("[", "/", "]"));
         Assert.assertEquals("[true]", this.setWithTrue.makeString("[", "/", "]"));
-        Assert.assertTrue(this.setWithTrueFalse.makeString("[", "/", "]"), "[true/false]".equals(this.setWithTrueFalse.makeString("[", "/", "]"))
-                || "[false/true]".equals(this.setWithTrueFalse.makeString("[", "/", "]")));
+        Assert.assertTrue(this.setWithTrueFalse.makeString("[", "/", "]"), "[true/false]".equals(this.setWithTrueFalse.makeString("[", "/", "]")) || "[false/true]".equals(this.setWithTrueFalse.makeString("[", "/", "]")));
     }
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         super.appendString();
         StringBuilder appendable = new StringBuilder();
         this.emptySet.appendString(appendable);
         Assert.assertEquals("", appendable.toString());
-
         StringBuilder appendable1 = new StringBuilder();
         this.setWithFalse.appendString(appendable1);
         Assert.assertEquals("false", appendable1.toString());
-
         StringBuilder appendable2 = new StringBuilder();
         this.setWithTrue.appendString(appendable2);
         Assert.assertEquals("true", appendable2.toString());
-
         StringBuilder appendable3 = new StringBuilder();
         this.setWithTrueFalse.appendString(appendable3);
-        Assert.assertTrue("true, false".equals(appendable3.toString())
-                || "false, true".equals(appendable3.toString()));
-
+        Assert.assertTrue("true, false".equals(appendable3.toString()) || "false, true".equals(appendable3.toString()));
         StringBuilder appendable4 = new StringBuilder();
         this.setWithTrueFalse.appendString(appendable4, "[", ", ", "]");
-        Assert.assertTrue("[true, false]".equals(appendable4.toString())
-                || "[false, true]".equals(appendable4.toString()));
+        Assert.assertTrue("[true, false]".equals(appendable4.toString()) || "[false, true]".equals(appendable4.toString()));
     }
 
     @Override
     @Test
-    public void asLazy()
-    {
+    public void asLazy() {
         super.asLazy();
         Verify.assertInstanceOf(LazyBooleanIterable.class, this.emptySet.asLazy());
         Assert.assertEquals(this.emptySet, this.emptySet.asLazy().toSet());
@@ -817,8 +737,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void asSynchronized()
-    {
+    public void asSynchronized() {
         super.asSynchronized();
         Verify.assertInstanceOf(SynchronizedBooleanSet.class, this.emptySet.asSynchronized());
         Assert.assertEquals(new SynchronizedBooleanSet(this.emptySet), this.emptySet.asSynchronized());
@@ -829,8 +748,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
 
     @Override
     @Test
-    public void asUnmodifiable()
-    {
+    public void asUnmodifiable() {
         super.asUnmodifiable();
         Verify.assertInstanceOf(UnmodifiableBooleanSet.class, this.emptySet.asUnmodifiable());
         Assert.assertEquals(new UnmodifiableBooleanSet(this.emptySet), this.emptySet.asUnmodifiable());
@@ -840,28 +758,23 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     }
 
     @Test
-    public void union()
-    {
+    public void union() {
         MutableBooleanSet set11 = this.newWith(true);
         MutableBooleanSet set21 = this.newWith(false);
         MutableBooleanSet actual = set11.union(set21);
         Assert.assertEquals(this.setWithTrueFalse, actual);
-
         MutableBooleanSet set12 = this.newWith(false);
         MutableBooleanSet set22 = this.newWith(false);
         MutableBooleanSet actual2 = set12.union(set22);
         Assert.assertEquals(this.setWithFalse, actual2);
-
         MutableBooleanSet set13 = this.newWith(true);
         MutableBooleanSet set23 = this.newWith(true);
         MutableBooleanSet actual3 = set13.union(set23);
         Assert.assertEquals(this.setWithTrue, actual3);
-
         MutableBooleanSet set14 = this.setWithTrueFalse;
         MutableBooleanSet set24 = this.newWith();
         MutableBooleanSet actual4 = set14.union(set24);
         Assert.assertEquals(this.setWithTrueFalse, actual4);
-
         MutableBooleanSet set15 = this.newWith();
         MutableBooleanSet set25 = this.newWith();
         MutableBooleanSet actual5 = set15.union(set25);
@@ -869,28 +782,23 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     }
 
     @Test
-    public void intersect()
-    {
+    public void intersect() {
         MutableBooleanSet set11 = this.newWith(true);
         MutableBooleanSet set21 = this.newWith(false);
         MutableBooleanSet actual = set11.intersect(set21);
         Assert.assertEquals(this.emptySet, actual);
-
         MutableBooleanSet set12 = this.newWith(false);
         MutableBooleanSet set22 = this.newWith(false);
         MutableBooleanSet actual2 = set12.intersect(set22);
         Assert.assertEquals(this.setWithFalse, actual2);
-
         MutableBooleanSet set13 = this.newWith(true);
         MutableBooleanSet set23 = this.newWith(true);
         MutableBooleanSet actual3 = set13.intersect(set23);
         Assert.assertEquals(this.setWithTrue, actual3);
-
         MutableBooleanSet set14 = this.setWithTrueFalse;
         MutableBooleanSet set24 = this.newWith();
         MutableBooleanSet actual4 = set14.intersect(set24);
         Assert.assertEquals(this.emptySet, actual4);
-
         MutableBooleanSet set15 = this.newWith();
         MutableBooleanSet set25 = this.newWith();
         MutableBooleanSet actual5 = set15.intersect(set25);
@@ -898,33 +806,27 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     }
 
     @Test
-    public void difference()
-    {
+    public void difference() {
         MutableBooleanSet set11 = this.newWith(true);
         MutableBooleanSet set21 = this.newWith(false);
         MutableBooleanSet actual = set11.difference(set21);
         Assert.assertEquals(this.setWithTrue, actual);
-
         MutableBooleanSet set12 = this.newWith(false);
         MutableBooleanSet set22 = this.newWith(false);
         MutableBooleanSet actual2 = set12.difference(set22);
         Assert.assertEquals(this.emptySet, actual2);
-
         MutableBooleanSet set13 = this.setWithTrueFalse;
         MutableBooleanSet set23 = this.setWithTrueFalse;
         MutableBooleanSet actual3 = set13.difference(set23);
         Assert.assertEquals(this.emptySet, actual3);
-
         MutableBooleanSet set14 = this.setWithTrueFalse;
         MutableBooleanSet set24 = this.newWith();
         MutableBooleanSet actual4 = set14.difference(set24);
         Assert.assertEquals(this.setWithTrueFalse, actual4);
-
         MutableBooleanSet set15 = this.newWith();
         MutableBooleanSet set25 = this.setWithTrueFalse;
         MutableBooleanSet actual5 = set15.difference(set25);
         Assert.assertEquals(this.emptySet, actual5);
-
         MutableBooleanSet set16 = this.newWith();
         MutableBooleanSet set26 = this.newWith();
         MutableBooleanSet actual6 = set16.difference(set26);
@@ -932,33 +834,27 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     }
 
     @Test
-    public void symmetricDifference()
-    {
+    public void symmetricDifference() {
         MutableBooleanSet set11 = this.newWith(true);
         MutableBooleanSet set21 = this.newWith(false);
         MutableBooleanSet actual = set11.symmetricDifference(set21);
         Assert.assertEquals(this.setWithTrueFalse, actual);
-
         MutableBooleanSet set12 = this.newWith(false);
         MutableBooleanSet set22 = this.newWith(false);
         MutableBooleanSet actual2 = set12.symmetricDifference(set22);
         Assert.assertEquals(this.emptySet, actual2);
-
         MutableBooleanSet set13 = this.setWithTrueFalse;
         MutableBooleanSet set23 = this.setWithTrueFalse;
         MutableBooleanSet actual3 = set13.symmetricDifference(set23);
         Assert.assertEquals(this.emptySet, actual3);
-
         MutableBooleanSet set14 = this.setWithTrueFalse;
         MutableBooleanSet set24 = this.newWith();
         MutableBooleanSet actual4 = set14.symmetricDifference(set24);
         Assert.assertEquals(this.setWithTrueFalse, actual4);
-
         MutableBooleanSet set15 = this.newWith();
         MutableBooleanSet set25 = this.setWithTrueFalse;
         MutableBooleanSet actual5 = set15.symmetricDifference(set25);
         Assert.assertEquals(this.setWithTrueFalse, actual5);
-
         MutableBooleanSet set16 = this.newWith();
         MutableBooleanSet set26 = this.newWith();
         MutableBooleanSet actual6 = set16.symmetricDifference(set26);
@@ -966,104 +862,394 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
     }
 
     @Test
-    public void isSubsetOf()
-    {
+    public void isSubsetOf() {
         MutableBooleanSet set11 = this.newWith(true);
         MutableBooleanSet set21 = this.newWith(false);
         Assert.assertFalse(set11.isSubsetOf(set21));
-
         MutableBooleanSet set12 = this.newWith(false);
         MutableBooleanSet set22 = this.newWith(false);
         Assert.assertTrue(set12.isSubsetOf(set22));
-
         MutableBooleanSet set13 = this.setWithTrueFalse;
         MutableBooleanSet set23 = this.setWithTrueFalse;
         Assert.assertTrue(set13.isSubsetOf(set23));
-
         MutableBooleanSet set14 = this.setWithTrueFalse;
         MutableBooleanSet set24 = this.newWith();
         Assert.assertFalse(set14.isSubsetOf(set24));
-
         MutableBooleanSet set15 = this.newWith();
         MutableBooleanSet set25 = this.setWithTrueFalse;
         Assert.assertTrue(set15.isSubsetOf(set25));
-
         MutableBooleanSet set16 = this.newWith();
         MutableBooleanSet set26 = this.newWith();
         Assert.assertTrue(set16.isSubsetOf(set26));
     }
 
     @Test
-    public void isProperSubsetOf()
-    {
+    public void isProperSubsetOf() {
         MutableBooleanSet set11 = this.newWith(true);
         MutableBooleanSet set21 = this.newWith(false);
         Assert.assertFalse(set11.isProperSubsetOf(set21));
-
         MutableBooleanSet set12 = this.newWith(false);
         MutableBooleanSet set22 = this.newWith(false);
         Assert.assertFalse(set12.isProperSubsetOf(set22));
-
         MutableBooleanSet set13 = this.setWithTrue;
         MutableBooleanSet set23 = this.setWithTrueFalse;
         Assert.assertTrue(set13.isProperSubsetOf(set23));
-
         MutableBooleanSet set14 = this.setWithFalse;
         MutableBooleanSet set24 = this.setWithTrueFalse;
         Assert.assertTrue(set14.isProperSubsetOf(set24));
-
         MutableBooleanSet set15 = this.setWithTrueFalse;
         MutableBooleanSet set25 = this.newWith();
         Assert.assertFalse(set15.isProperSubsetOf(set25));
-
         MutableBooleanSet set16 = this.newWith();
         MutableBooleanSet set26 = this.setWithTrueFalse;
         Assert.assertTrue(set16.isProperSubsetOf(set26));
-
         MutableBooleanSet set17 = this.newWith();
         MutableBooleanSet set27 = this.newWith();
         Assert.assertFalse(set17.isProperSubsetOf(set27));
     }
 
     @Test
-    public void cartesianProduct()
-    {
+    public void cartesianProduct() {
         MutableBooleanSet set11 = this.setWithTrue;
         MutableBooleanSet set21 = this.setWithFalse;
-        MutableSet<BooleanBooleanPair> expected1 = Sets.mutable.with(
-                PrimitiveTuples.pair(true, false));
+        MutableSet<BooleanBooleanPair> expected1 = Sets.mutable.with(PrimitiveTuples.pair(true, false));
         Assert.assertEquals(expected1, set11.cartesianProduct(set21).toSet());
-
         MutableBooleanSet set12 = this.newWith(false);
         MutableBooleanSet set22 = this.newWith(false);
-        MutableSet<BooleanBooleanPair> expected2 = Sets.mutable.with(
-                PrimitiveTuples.pair(false, false));
+        MutableSet<BooleanBooleanPair> expected2 = Sets.mutable.with(PrimitiveTuples.pair(false, false));
         Assert.assertEquals(expected2, set12.cartesianProduct(set22).toSet());
-
         MutableBooleanSet set13 = this.setWithTrue;
         MutableBooleanSet set23 = this.setWithTrueFalse;
-        MutableSet<BooleanBooleanPair> expected3 = Sets.mutable.with(
-                PrimitiveTuples.pair(true, true),
-                PrimitiveTuples.pair(true, false));
+        MutableSet<BooleanBooleanPair> expected3 = Sets.mutable.with(PrimitiveTuples.pair(true, true), PrimitiveTuples.pair(true, false));
         Assert.assertEquals(expected3, set13.cartesianProduct(set23).toSet());
-
         MutableBooleanSet set14 = this.setWithFalse;
         MutableBooleanSet set24 = this.setWithTrueFalse;
-        MutableSet<BooleanBooleanPair> expected4 = Sets.mutable.with(
-                PrimitiveTuples.pair(false, true),
-                PrimitiveTuples.pair(false, false));
+        MutableSet<BooleanBooleanPair> expected4 = Sets.mutable.with(PrimitiveTuples.pair(false, true), PrimitiveTuples.pair(false, false));
         Assert.assertEquals(expected4, set14.cartesianProduct(set24).toSet());
-
         MutableBooleanSet set15 = this.setWithTrueFalse;
         MutableBooleanSet set25 = this.newWith();
         Assert.assertEquals(Sets.mutable.empty(), set15.cartesianProduct(set25).toSet());
-
         MutableBooleanSet set16 = this.newWith();
         MutableBooleanSet set26 = this.setWithTrueFalse;
         Assert.assertEquals(Sets.mutable.empty(), set16.cartesianProduct(set26).toSet());
-
         MutableBooleanSet set17 = this.newWith();
         MutableBooleanSet set27 = this.newWith();
         Assert.assertEquals(Sets.mutable.empty(), set17.cartesianProduct(set27).toSet());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollectionWith() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::newCollectionWith, this.description("newCollectionWith"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isEmpty, this.description("isEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notEmpty() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::notEmpty, this.description("notEmpty"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_clear() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::clear, this.description("clear"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::contains, this.description("contains"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllArray, this.description("containsAllArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::containsAllIterable, this.description("containsAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_add() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::add, this.description("add"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllArray, this.description("addAllArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_addAllIterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::addAllIterable, this.description("addAllIterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_remove() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::remove, this.description("remove"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll, this.description("removeAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_removeAll_iterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::removeAll_iterable, this.description("removeAll_iterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAll, this.description("retainAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_retainAll_iterable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::retainAll_iterable, this.description("retainAll_iterable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_with() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::with, this.description("with"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withAll, this.description("withAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_without() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::without, this.description("without"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_withoutAll() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::withoutAll, this.description("withoutAll"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toArray, this.description("toArray"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toSet, this.description("toSet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toBag() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toBag, this.description("toBag"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testEquals, this.description("testEquals"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testHashCode, this.description("testHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_booleanIterator() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::booleanIterator, this.description("booleanIterator"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::forEach, this.description("forEach"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::injectInto, this.description("injectInto"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::size, this.description("size"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::count, this.description("count"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::anySatisfy, this.description("anySatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::allSatisfy, this.description("allSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::noneSatisfy, this.description("noneSatisfy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::select, this.description("select"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reject, this.description("reject"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::detectIfNone, this.description("detectIfNone"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::collect, this.description("collect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazy() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asLazy, this.description("asLazy"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asSynchronized() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asSynchronized, this.description("asSynchronized"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asUnmodifiable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::asUnmodifiable, this.description("asUnmodifiable"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_union() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::union, this.description("union"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intersect() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::intersect, this.description("intersect"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_difference() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::difference, this.description("difference"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_symmetricDifference() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::symmetricDifference, this.description("symmetricDifference"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isSubsetOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isSubsetOf, this.description("isSubsetOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isProperSubsetOf() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::isProperSubsetOf, this.description("isProperSubsetOf"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_cartesianProduct() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::cartesianProduct, this.description("cartesianProduct"));
+        }
+
+        @java.lang.Override
+        public void before() throws java.lang.Throwable {
+            super.before();
+            this.implementation().setup();
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractBooleanSetTestCase implementation();
     }
 }

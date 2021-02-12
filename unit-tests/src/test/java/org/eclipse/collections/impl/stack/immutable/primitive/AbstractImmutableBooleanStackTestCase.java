@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.stack.immutable.primitive;
 
 import org.eclipse.collections.api.BooleanIterable;
@@ -26,48 +25,41 @@ import org.junit.Test;
 /**
  * Abstract JUnit test for {@link ImmutableBooleanStack}.
  */
-public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBooleanStackTestCase
-{
+public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBooleanStackTestCase {
+
     @Override
     protected abstract ImmutableBooleanStack classUnderTest();
 
     @Override
-    protected ImmutableBooleanStack newWith(boolean... elements)
-    {
+    protected ImmutableBooleanStack newWith(boolean... elements) {
         return BooleanStacks.immutable.of(elements);
     }
 
     @Override
-    protected MutableBooleanStack newMutableCollectionWith(boolean... elements)
-    {
+    protected MutableBooleanStack newMutableCollectionWith(boolean... elements) {
         return BooleanArrayStack.newStackWith(elements);
     }
 
     @Override
-    protected RichIterable<Object> newObjectCollectionWith(Object... elements)
-    {
+    protected RichIterable<Object> newObjectCollectionWith(Object... elements) {
         return ArrayStack.newStackWith(elements);
     }
 
     @Override
-    protected ImmutableBooleanStack newWithTopToBottom(boolean... elements)
-    {
+    protected ImmutableBooleanStack newWithTopToBottom(boolean... elements) {
         return ImmutableBooleanArrayStack.newStackFromTopToBottom(elements);
     }
 
-    protected ImmutableBooleanStack newWithIterableTopToBottom(BooleanIterable iterable)
-    {
+    protected ImmutableBooleanStack newWithIterableTopToBottom(BooleanIterable iterable) {
         return ImmutableBooleanArrayStack.newStackFromTopToBottom(iterable);
     }
 
-    protected ImmutableBooleanStack newWithIterable(BooleanIterable iterable)
-    {
+    protected ImmutableBooleanStack newWithIterable(BooleanIterable iterable) {
         return ImmutableBooleanArrayStack.newStack(iterable);
     }
 
     @Test
-    public void push()
-    {
+    public void push() {
         ImmutableBooleanStack stack = this.classUnderTest();
         int size = stack.size();
         ImmutableBooleanStack modified = stack.push(true);
@@ -79,8 +71,7 @@ public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBool
     }
 
     @Test
-    public void pop()
-    {
+    public void pop() {
         ImmutableBooleanStack stack = this.classUnderTest();
         int size = stack.size();
         ImmutableBooleanStack modified = stack.pop();
@@ -92,8 +83,7 @@ public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBool
     }
 
     @Test
-    public void popWithCount()
-    {
+    public void popWithCount() {
         ImmutableBooleanStack stack = this.classUnderTest();
         ImmutableBooleanStack stack1 = stack.pop(0);
         Assert.assertSame(stack1, stack);
@@ -108,28 +98,24 @@ public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBool
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void pop_with_negative_count_throws_exception()
-    {
+    public void pop_with_negative_count_throws_exception() {
         this.classUnderTest().pop(-1);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void pop_with_count_greater_than_stack_size_throws_exception()
-    {
+    public void pop_with_count_greater_than_stack_size_throws_exception() {
         this.classUnderTest().pop(this.classUnderTest().size() + 1);
     }
 
     @Override
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Assert.assertEquals(this.createExpectedString("[", ", ", "]"), this.classUnderTest().toString());
     }
 
     @Override
     @Test
-    public void makeString()
-    {
+    public void makeString() {
         Assert.assertEquals(this.createExpectedString("", ", ", ""), this.classUnderTest().makeString());
         Assert.assertEquals(this.createExpectedString("", "|", ""), this.classUnderTest().makeString("|"));
         Assert.assertEquals(this.createExpectedString("{", "|", "}"), this.classUnderTest().makeString("{", "|", "}"));
@@ -137,16 +123,13 @@ public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBool
 
     @Override
     @Test
-    public void appendString()
-    {
+    public void appendString() {
         StringBuilder appendable1 = new StringBuilder();
         this.classUnderTest().appendString(appendable1);
         Assert.assertEquals(this.createExpectedString("", ", ", ""), appendable1.toString());
-
         StringBuilder appendable2 = new StringBuilder();
         this.classUnderTest().appendString(appendable2, "|");
         Assert.assertEquals(this.createExpectedString("", "|", ""), appendable2.toString());
-
         StringBuilder appendable3 = new StringBuilder();
         this.classUnderTest().appendString(appendable3, "{", "|", "}");
         Assert.assertEquals(this.createExpectedString("{", "|", "}"), appendable3.toString());
@@ -154,8 +137,7 @@ public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBool
 
     @Override
     @Test
-    public void toList()
-    {
+    public void toList() {
         BooleanArrayList expected = BooleanArrayList.newListWith();
         this.classUnderTest().forEach(expected::add);
         Assert.assertEquals(expected, this.classUnderTest().toList());
@@ -163,10 +145,74 @@ public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBool
 
     @Override
     @Test
-    public void toImmutable()
-    {
+    public void toImmutable() {
         super.toImmutable();
         ImmutableBooleanStack expected = this.classUnderTest();
         Assert.assertSame(expected, expected.toImmutable());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static abstract class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_push() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::push, this.description("push"));
+        }
+
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_popWithCount() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::popWithCount, this.description("popWithCount"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_pop_with_negative_count_throws_exception() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::pop_with_negative_count_throws_exception, this.description("pop_with_negative_count_throws_exception"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_pop_with_count_greater_than_stack_size_throws_exception() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runExceptionBenchmark(this.implementation()::pop_with_count_greater_than_stack_size_throws_exception, this.description("pop_with_count_greater_than_stack_size_throws_exception"), java.lang.IllegalArgumentException.class);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::makeString, this.description("makeString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::appendString, this.description("appendString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toList, this.description("toList"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::toImmutable, this.description("toImmutable"));
+        }
+
+        @java.lang.Override
+        public abstract void createImplementation() throws java.lang.Throwable;
+
+        @java.lang.Override
+        public abstract AbstractImmutableBooleanStackTestCase implementation();
     }
 }

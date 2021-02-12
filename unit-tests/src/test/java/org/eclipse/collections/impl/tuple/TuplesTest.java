@@ -7,11 +7,9 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.tuple;
 
 import java.util.Map;
-
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.tuple.Pair;
@@ -23,11 +21,10 @@ import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TuplesTest
-{
+public class TuplesTest {
+
     @Test
-    public void pairFrom()
-    {
+    public void pairFrom() {
         Pair<String, String> pair = Tuples.pair("1", "2");
         Map.Entry<String, String> entry = pair.toEntry();
         Pair<String, String> pair2 = Tuples.pairFrom(entry);
@@ -35,24 +32,21 @@ public class TuplesTest
     }
 
     @Test
-    public void pair()
-    {
+    public void pair() {
         Pair<String, String> pair = Tuples.pair("1", "2");
         Assert.assertEquals("1", pair.getOne());
         Assert.assertEquals("2", pair.getTwo());
     }
 
     @Test
-    public void twin()
-    {
+    public void twin() {
         Twin<String> twin = Tuples.twin("1", "2");
         Assert.assertEquals("1", twin.getOne());
         Assert.assertEquals("2", twin.getTwo());
     }
 
     @Test
-    public void identicalTwin()
-    {
+    public void identicalTwin() {
         Twin<String> twin = Tuples.identicalTwin("1");
         Assert.assertEquals("1", twin.getOne());
         Assert.assertEquals("1", twin.getTwo());
@@ -60,8 +54,7 @@ public class TuplesTest
     }
 
     @Test
-    public void triple()
-    {
+    public void triple() {
         Triple<String, String, String> triple = Tuples.triple("1", "2", "3");
         Assert.assertEquals("1", triple.getOne());
         Assert.assertEquals("2", triple.getTwo());
@@ -69,8 +62,7 @@ public class TuplesTest
     }
 
     @Test
-    public void triplet()
-    {
+    public void triplet() {
         Triplet<String> triplet = Tuples.triplet("1", "2", "3");
         Assert.assertEquals("1", triplet.getOne());
         Assert.assertEquals("2", triplet.getTwo());
@@ -78,8 +70,7 @@ public class TuplesTest
     }
 
     @Test
-    public void identicalTriplet()
-    {
+    public void identicalTriplet() {
         Triplet<String> triplet = Tuples.identicalTriplet("1");
         Assert.assertEquals("1", triplet.getOne());
         Assert.assertEquals("1", triplet.getTwo());
@@ -90,13 +81,11 @@ public class TuplesTest
     }
 
     @Test
-    public void equalsHashCode()
-    {
+    public void equalsHashCode() {
         Twin<String> pair1 = Tuples.twin("1", "1");
         Pair<String, String> pair1a = Tuples.pair("1", "1");
         Pair<String, String> pair2 = Tuples.pair("2", "2");
         Twin<String> pair3 = Tuples.identicalTwin("1");
-
         Verify.assertEqualsAndHashCode(pair1, pair1);
         Verify.assertEqualsAndHashCode(pair1, pair1a);
         Verify.assertEqualsAndHashCode(pair3, pair3);
@@ -106,13 +95,11 @@ public class TuplesTest
     }
 
     @Test
-    public void equalsHashCodeTriple()
-    {
+    public void equalsHashCodeTriple() {
         Triplet<String> triple1 = Tuples.triplet("1", "1", "1");
         Triple<String, String, String> triple1a = Tuples.triple("1", "1", "1");
         Triple<String, String, String> triple2 = Tuples.triple("2", "2", "2");
         Triplet<String> triple3 = Tuples.identicalTriplet("1");
-
         Verify.assertEqualsAndHashCode(triple1, triple1);
         Verify.assertEqualsAndHashCode(triple1, triple1a);
         Verify.assertEqualsAndHashCode(triple3, triple3);
@@ -122,8 +109,7 @@ public class TuplesTest
     }
 
     @Test
-    public void putToMap()
-    {
+    public void putToMap() {
         Pair<String, Integer> pair = Tuples.pair("1", 2);
         MutableMap<String, Integer> map = UnifiedMap.newMap();
         pair.put(map);
@@ -132,24 +118,19 @@ public class TuplesTest
     }
 
     @Test
-    public void testToString()
-    {
+    public void testToString() {
         Pair<String, String> pair1 = Tuples.pair("1", "1");
         Assert.assertEquals("1:1", pair1.toString());
-
-        Triple<String, String, String> triple = Tuples.triple("1", "2",  "3");
+        Triple<String, String, String> triple = Tuples.triple("1", "2", "3");
         Assert.assertEquals("1:2:3", triple.toString());
-
         Twin<String> identicalTwin = Tuples.identicalTwin("1");
         Assert.assertEquals("1:1", identicalTwin.toString());
-
         Triplet<String> identicalTriplet = Tuples.identicalTriplet("1");
         Assert.assertEquals("1:1:1", identicalTriplet.toString());
     }
 
     @Test
-    public void pairFunctions()
-    {
+    public void pairFunctions() {
         Integer two = 2;
         Pair<String, Integer> pair = Tuples.pair("One", two);
         Assert.assertEquals("One", ((Function<Pair<String, ?>, String>) Pair::getOne).valueOf(pair));
@@ -157,22 +138,19 @@ public class TuplesTest
     }
 
     @Test
-    public void swap()
-    {
+    public void swap() {
         Pair<String, Integer> pair = Tuples.pair("One", 1);
         Pair<Integer, String> swappedPair = pair.swap();
         Pair<Integer, String> expectedPair = Tuples.pair(1, "One");
         Assert.assertEquals(Integer.valueOf(1), swappedPair.getOne());
         Assert.assertEquals("One", swappedPair.getTwo());
         Assert.assertEquals(expectedPair, swappedPair);
-
         Twin<String> twin = Tuples.twin("One", "1");
         Twin<String> swappedTwin = twin.swap();
         Twin<String> expectedTwin = Tuples.twin("1", "One");
         Assert.assertEquals("1", swappedTwin.getOne());
         Assert.assertEquals("One", swappedTwin.getTwo());
         Assert.assertEquals(expectedTwin, swappedTwin);
-
         Twin<String> identicalTwin = Tuples.identicalTwin("1");
         Twin<String> swappedIdenticalTwin = identicalTwin.swap();
         Twin<String> expectedIdenticalTwin = Tuples.identicalTwin("1");
@@ -182,16 +160,14 @@ public class TuplesTest
     }
 
     @Test
-    public void reverse()
-    {
-        Triple<String, Integer, Boolean> triple = Tuples.triple("One",  2,  true);
+    public void reverse() {
+        Triple<String, Integer, Boolean> triple = Tuples.triple("One", 2, true);
         Triple<Boolean, Integer, String> reversedTriple = triple.reverse();
         Triple<Boolean, Integer, String> expectedTriple = Tuples.triple(true, 2, "One");
         Assert.assertEquals(true, reversedTriple.getOne());
         Assert.assertEquals(Integer.valueOf(2), reversedTriple.getTwo());
         Assert.assertEquals("One", reversedTriple.getThree());
         Assert.assertEquals(expectedTriple, reversedTriple);
-
         Triplet<String> triplet = Tuples.triplet("One", "2", "true");
         Triplet<String> reversedTriplet = triplet.reverse();
         Triplet<String> expectedTriplet = Tuples.triplet("true", "2", "One");
@@ -199,7 +175,6 @@ public class TuplesTest
         Assert.assertEquals("2", reversedTriplet.getTwo());
         Assert.assertEquals("One", reversedTriplet.getThree());
         Assert.assertEquals(expectedTriplet, reversedTriplet);
-
         Triplet<String> identicalTriplet = Tuples.identicalTriplet("One");
         Triplet<String> reversedIdenticalTriplet = identicalTriplet.reverse();
         Triplet<String> expectedIdenticalTriplet = Tuples.identicalTriplet("One");
@@ -207,5 +182,105 @@ public class TuplesTest
         Assert.assertEquals("One", reversedIdenticalTriplet.getTwo());
         Assert.assertEquals("One", reversedIdenticalTriplet.getThree());
         Assert.assertEquals(expectedIdenticalTriplet, reversedIdenticalTriplet);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_pairFrom() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::pairFrom, this.description("pairFrom"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_pair() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::pair, this.description("pair"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_twin() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::twin, this.description("twin"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_identicalTwin() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::identicalTwin, this.description("identicalTwin"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_triple() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::triple, this.description("triple"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_triplet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::triplet, this.description("triplet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_identicalTriplet() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::identicalTriplet, this.description("identicalTriplet"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsHashCode() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsHashCode, this.description("equalsHashCode"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_equalsHashCodeTriple() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::equalsHashCodeTriple, this.description("equalsHashCodeTriple"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_putToMap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::putToMap, this.description("putToMap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::testToString, this.description("testToString"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_pairFunctions() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::pairFunctions, this.description("pairFunctions"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_swap() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::swap, this.description("swap"));
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reverse() throws java.lang.Throwable {
+            this.createImplementation();
+            this.runBenchmark(this.implementation()::reverse, this.description("reverse"));
+        }
+
+        private TuplesTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new TuplesTest();
+        }
+
+        @java.lang.Override
+        public TuplesTest implementation() {
+            return this.implementation;
+        }
     }
 }

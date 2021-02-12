@@ -7,40 +7,50 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.bimap.mutable;
 
 import org.eclipse.collections.api.bimap.MutableBiMap;
 
-public class HashBiMapEntrySetTest extends AbstractMutableBiMapEntrySetTest
-{
+public class HashBiMapEntrySetTest extends AbstractMutableBiMapEntrySetTest {
+
     @Override
-    protected <K, V> MutableBiMap<K, V> newMap()
-    {
+    protected <K, V> MutableBiMap<K, V> newMap() {
         return HashBiMap.newMap();
     }
 
     @Override
-    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2);
     }
 
     @Override
-    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3)
-    {
+    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3);
     }
 
     @Override
-    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4)
-    {
+    protected <K, V> MutableBiMap<K, V> newMapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
     @Override
-    protected <K, V> MutableBiMap<K, V> newMapWithKeyValue(K key, V value)
-    {
+    protected <K, V> MutableBiMap<K, V> newMapWithKeyValue(K key, V value) {
         return HashBiMap.newWithKeysValues(key, value);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private HashBiMapEntrySetTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new HashBiMapEntrySetTest();
+        }
+
+        @java.lang.Override
+        public HashBiMapEntrySetTest implementation() {
+            return this.implementation;
+        }
     }
 }

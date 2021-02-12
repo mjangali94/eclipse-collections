@@ -7,7 +7,6 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.multimap.list;
 
 import org.eclipse.collections.api.tuple.Pair;
@@ -16,25 +15,22 @@ import org.eclipse.collections.impl.list.mutable.FastList;
 /**
  * Test of {@link SynchronizedPutFastListMultimap}.
  */
-public class SynchronizedPutFastListMultimapTest extends AbstractMutableListMultimapTestCase
-{
+public class SynchronizedPutFastListMultimapTest extends AbstractMutableListMultimapTestCase {
+
     @Override
-    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimap()
-    {
+    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimap() {
         return SynchronizedPutFastListMultimap.newMultimap();
     }
 
     @Override
-    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapWithKeyValue(K key, V value)
-    {
+    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapWithKeyValue(K key, V value) {
         SynchronizedPutFastListMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key, value);
         return mutableMultimap;
     }
 
     @Override
-    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2)
-    {
+    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2) {
         SynchronizedPutFastListMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -42,11 +38,7 @@ public class SynchronizedPutFastListMultimapTest extends AbstractMutableListMult
     }
 
     @Override
-    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3)
-    {
+    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3) {
         SynchronizedPutFastListMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -55,12 +47,7 @@ public class SynchronizedPutFastListMultimapTest extends AbstractMutableListMult
     }
 
     @Override
-    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapWithKeysValues(
-            K key1, V value1,
-            K key2, V value2,
-            K key3, V value3,
-            K key4, V value4)
-    {
+    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapWithKeysValues(K key1, V value1, K key2, V value2, K key3, V value3, K key4, V value4) {
         SynchronizedPutFastListMultimap<K, V> mutableMultimap = this.newMultimap();
         mutableMultimap.put(key1, value1);
         mutableMultimap.put(key2, value2);
@@ -71,21 +58,34 @@ public class SynchronizedPutFastListMultimapTest extends AbstractMutableListMult
 
     @SafeVarargs
     @Override
-    public final <K, V> SynchronizedPutFastListMultimap<K, V> newMultimap(Pair<K, V>... pairs)
-    {
+    public final <K, V> SynchronizedPutFastListMultimap<K, V> newMultimap(Pair<K, V>... pairs) {
         return SynchronizedPutFastListMultimap.newMultimap(pairs);
     }
 
     @Override
-    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapFromPairs(Iterable<Pair<K, V>> inputIterable)
-    {
+    public <K, V> SynchronizedPutFastListMultimap<K, V> newMultimapFromPairs(Iterable<Pair<K, V>> inputIterable) {
         return SynchronizedPutFastListMultimap.newMultimap(inputIterable);
     }
 
     @SafeVarargs
     @Override
-    protected final <V> FastList<V> createCollection(V... args)
-    {
+    protected final <V> FastList<V> createCollection(V... args) {
         return FastList.newListWith(args);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
+
+        private SynchronizedPutFastListMultimapTest implementation;
+
+        @java.lang.Override
+        public void createImplementation() throws java.lang.Throwable {
+            this.implementation = new SynchronizedPutFastListMultimapTest();
+        }
+
+        @java.lang.Override
+        public SynchronizedPutFastListMultimapTest implementation() {
+            return this.implementation;
+        }
     }
 }

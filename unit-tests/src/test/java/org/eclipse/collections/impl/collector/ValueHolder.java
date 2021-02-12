@@ -7,49 +7,45 @@
  * and the Eclipse Distribution License is available at
  * http://www.eclipse.org/org/documents/edl-v10.php.
  */
-
 package org.eclipse.collections.impl.collector;
 
-public class ValueHolder
-{
+public class ValueHolder {
+
     private final String groupBy;
+
     private final int intValue;
+
     private final long longValue;
+
     private final double doubleValue;
 
-    public ValueHolder(int intValue, long longValue, double doubleValue)
-    {
+    public ValueHolder(int intValue, long longValue, double doubleValue) {
         this.groupBy = "A";
         this.intValue = intValue;
         this.longValue = longValue;
         this.doubleValue = doubleValue;
     }
 
-    public ValueHolder(String groupBy, int intValue, long longValue, double doubleValue)
-    {
+    public ValueHolder(String groupBy, int intValue, long longValue, double doubleValue) {
         this.groupBy = groupBy;
         this.intValue = intValue;
         this.longValue = longValue;
         this.doubleValue = doubleValue;
     }
 
-    public String getGroupBy()
-    {
+    public String getGroupBy() {
         return this.groupBy;
     }
 
-    public int getIntValue()
-    {
+    public int getIntValue() {
         return this.intValue;
     }
 
-    public long getLongValue()
-    {
+    public long getLongValue() {
         return this.longValue;
     }
 
-    public double getDoubleValue()
-    {
+    public double getDoubleValue() {
         return this.doubleValue;
     }
 }
