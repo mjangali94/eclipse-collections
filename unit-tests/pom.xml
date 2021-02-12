@@ -83,7 +83,23 @@
 
         <plugins>
 
-
+            <plugin>
+                <groupId>org.eclipse.collections</groupId>
+                <artifactId>eclipse-collections-code-generator-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <id>list</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <templateDirectory>test</templateDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>org.jacoco</groupId>
