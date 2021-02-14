@@ -160,11 +160,11 @@
 								<argument>-classpath</argument>
 								<classpath />
 								<argument>org.openjdk.jmh.Main</argument>
-								<argument>org.eclipse.collections.impl.map.*</argument>
-								<argument>org.eclipse.collections.impl.math.*</argument>
-								<argument>org.eclipse.collections.impl.multimap.*</argument>
-								<argument>org.eclipse.collections.impl.parallel.*</argument>
-								<argument>org.eclipse.collections.impl.set.*</argument>
+								<argument>org.eclipse.collections.impl.stack.*</argument>
+								<argument>org.eclipse.collections.impl.stream.*</argument>
+								<argument>org.eclipse.collections.impl.string.*</argument>
+								<argument>org.eclipse.collections.impl.tuple.*</argument>
+								<argument>org.eclipse.collections.impl.utility.*</argument>
 							</arguments>
 						</configuration>
 					</execution>
