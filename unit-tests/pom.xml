@@ -160,9 +160,11 @@
 								<argument>-classpath</argument>
 								<classpath />
 								<argument>org.openjdk.jmh.Main</argument>
-								<argument>org.eclipse.collections.impl.bag.*</argument>
-								<argument>org.eclipse.collections.impl.bimap.*</argument>
-								<argument>org.eclipse.collections.impl.block.*</argument>
+								<argument>org.eclipse.collections.impl.collection.*</argument>
+								<argument>org.eclipse.collections.impl.collector.*</argument>
+								<argument>org.eclipse.collections.impl.factory.*</argument>
+								<argument>org.eclipse.collections.impl.lazy.*</argument>
+								<argument>org.eclipse.collections.impl.list.*</argument>
 							</arguments>
 						</configuration>
 					</execution>
