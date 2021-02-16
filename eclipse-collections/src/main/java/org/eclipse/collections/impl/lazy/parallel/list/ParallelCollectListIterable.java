@@ -67,7 +67,7 @@ public class ParallelCollectListIterable<T, V> extends AbstractParallelListItera
     @Override
     public boolean allSatisfy(Predicate<? super V> predicate)
     {
-        return this.parallelIterable.allSatisfy(Predicates.attributePredicate(this.function, predicate));
+        return (new Boolean(this.parallelIterable.allSatisfy(Predicates.attributePredicate(this.function, predicate)))).booleanValue();
     }
 
     @Override

@@ -44,7 +44,7 @@ public class BigDecimalSummaryStatistics implements Procedure<BigDecimal>
 
     public long getCount()
     {
-        return this.count;
+        return (new Long(this.count)).longValue();
     }
 
     public BigDecimal getSum()

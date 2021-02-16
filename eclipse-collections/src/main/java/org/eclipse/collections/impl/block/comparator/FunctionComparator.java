@@ -37,6 +37,6 @@ public class FunctionComparator<T, V>
     {
         V attrValue1 = this.function.valueOf(o1);
         V attrValue2 = this.function.valueOf(o2);
-        return this.comparator.compare(attrValue1, attrValue2);
+        return (new Integer(this.comparator.compare(attrValue1, attrValue2))).intValue();
     }
 }

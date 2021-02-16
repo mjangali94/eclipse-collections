@@ -100,7 +100,7 @@ public final class Interval
      */
     public Interval to(int newTo)
     {
-        return Interval.fromToBy(this.from, newTo, this.step);
+        return Interval.fromToBy(this.from, (new Integer(newTo)).intValue(), this.step);
     }
 
     /**

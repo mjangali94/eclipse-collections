@@ -67,7 +67,7 @@ final class ImmutableSingletonBag<T>
     @Override
     public boolean allSatisfy(Predicate<? super T> predicate)
     {
-        return predicate.accept(this.value);
+        return (new Boolean(predicate.accept(this.value))).booleanValue();
     }
 
     @Override

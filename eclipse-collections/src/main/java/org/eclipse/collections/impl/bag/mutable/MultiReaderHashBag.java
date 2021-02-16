@@ -208,7 +208,7 @@ public final class MultiReaderHashBag<T>
     {
         try (LockWrapper wrapper = this.lockWrapper.acquireWriteLock())
         {
-            return this.delegate.addOccurrences(item, occurrences);
+            return this.delegate.addOccurrences(item, (new Integer(occurrences)).intValue());
         }
     }
 

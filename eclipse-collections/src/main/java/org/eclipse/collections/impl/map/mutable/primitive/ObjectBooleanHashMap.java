@@ -230,7 +230,7 @@ public class ObjectBooleanHashMap<K> implements MutableObjectBooleanMap<K>, Exte
                 return false;
             }
         }
-        return true;
+        return (new Boolean(true)).booleanValue();
     }
 
     @Override

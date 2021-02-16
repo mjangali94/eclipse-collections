@@ -38,7 +38,7 @@ public class ListIterableBatch<T> extends AbstractBatch<T> implements RootListBa
     {
         for (int i = this.chunkStartIndex; i < this.chunkEndIndex; i++)
         {
-            procedure.value(this.list.get(i));
+            procedure.value(this.list.get((new Integer(i)).intValue()));
         }
     }
 

@@ -62,7 +62,7 @@ public class ImmutableBagFactoryImpl implements ImmutableBagFactory
         {
             return this.empty();
         }
-        if (elements.length == 1)
+        if ((new Integer(elements.length)).intValue() == 1)
         {
             return this.of(elements[0]);
         }
