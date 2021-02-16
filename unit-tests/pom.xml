@@ -160,11 +160,36 @@
 								<argument>-classpath</argument>
 								<classpath />
 								<argument>org.openjdk.jmh.Main</argument>
-								<argument>org.eclipse.collections.impl.stack.*</argument>
-								<argument>org.eclipse.collections.impl.stream.*</argument>
-								<argument>org.eclipse.collections.impl.string.*</argument>
-								<argument>org.eclipse.collections.impl.tuple.*</argument>
-								<argument>org.eclipse.collections.impl.utility.*</argument>
+								<argument>org.eclipse.collections.impl.CounterTest.*</argument>
+								<argument>org.eclipse.collections.impl.EmptyIteratorTest.*</argument>
+								<argument>org.eclipse.collections.impl.bag.immutable.ImmutableArrayBagTest.*</argument>
+								<argument>org.eclipse.collections.impl.bag.immutable.ImmutableBagFactoryTest.*</argument>
+								<argument>org.eclipse.collections.impl.bag.immutable.ImmutableSingletonBagTest.*</argument>
+								<argument>org.eclipse.collections.impl.bag.mutable.MultiReaderHashBagTest.*</argument>
+								<argument>org.eclipse.collections.impl.bag.mutable.SynchronizedBagTest.*</argument>
+								<argument>org.eclipse.collections.impl.bag.sorted.immutable.ImmutableSortedBagFactoryTest.*</argument>
+								<argument>org.eclipse.collections.impl.bag.sorted.immutable.ImmutableSortedBagImplTest.*</argument>
+								<argument>org.eclipse.collections.impl.bag.sorted.mutable.SynchronizedSortedBagTest.*</argument>
+								<argument>org.eclipse.collections.impl.block.comparator.FunctionComparatorTest.*</argument>
+								<argument>org.eclipse.collections.impl.block.factory.IntegerPredicatesTest.*</argument>
+								<argument>org.eclipse.collections.impl.block.procedure.ChainedProcedureTest.*</argument>
+								<argument>org.eclipse.collections.impl.block.procedure.checked.CheckedProcedureTest.*</argument>
+								<argument>org.eclipse.collections.impl.collector.BigDecimalSummaryStatisticsTest.*</argument>
+								<argument>org.eclipse.collections.impl.lazy.iterator.TakeIteratorTest.*</argument>
+								<argument>org.eclipse.collections.impl.lazy.parallel.bag.ParallelBagTest.*</argument>
+								<argument>org.eclipse.collections.impl.lazy.primitive.CollectBooleanIterableTest.*</argument>
+								<argument>org.eclipse.collections.impl.list.IntervalTest.*</argument>
+								<argument>org.eclipse.collections.impl.list.fixed.FixedSizeListFactoryTest.*</argument>
+								<argument>org.eclipse.collections.impl.list.fixed.SingletonListSubListTest.*</argument>
+								<argument>org.eclipse.collections.impl.list.immutable.ImmutableEmptyListTest.*</argument>
+								<argument>org.eclipse.collections.impl.list.immutable.ImmutableOctupletonListTest.*</argument>
+								<argument>org.eclipse.collections.impl.list.immutable.ImmutableQuadrupletonListTest.*</argument>
+								<argument>org.eclipse.collections.impl.map.fixed.SingletonMapTest.*</argument>
+								<argument>org.eclipse.collections.impl.map.immutable.ImmutableTripletonMapTest.*</argument>
+								<argument>org.eclipse.collections.impl.map.mutable.MapAdapterTest.*</argument>
+								<argument>org.eclipse.collections.impl.map.mutable.UnifiedMapTest.*</argument>
+								<argument>org.eclipse.collections.impl.map.mutable.primitive.ObjectBooleanHashMapTest.*</argument>
+								<argument>org.eclipse.collections.impl.set.fixed.EmptySetTest.*</argument>
 							</arguments>
 						</configuration>
 					</execution>
