@@ -1008,24 +1008,7 @@ public class IntervalTest {
             this.runBenchmark(this.implementation()::forEachOnFromToInterval, this.description("forEachOnFromToInterval"));
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
-        public void benchmark_forEachWithExecutor() throws java.lang.Throwable {
-            this.createImplementation();
-            this.runBenchmark(this.implementation()::forEachWithExecutor, this.description("forEachWithExecutor"));
-        }
-
-
-        @org.openjdk.jmh.annotations.Benchmark
-        public void benchmark_runWithExecutor() throws java.lang.Throwable {
-            this.createImplementation();
-            this.runBenchmark(this.implementation()::runWithExecutor, this.description("runWithExecutor"));
-        }
-
-        @org.openjdk.jmh.annotations.Benchmark
-        public void benchmark_runWithExecutorInReverse() throws java.lang.Throwable {
-            this.createImplementation();
-            this.runBenchmark(this.implementation()::runWithExecutorInReverse, this.description("runWithExecutorInReverse"));
-        }
+    
 
         @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_reverseForEachOnFromToInterval() throws java.lang.Throwable {
