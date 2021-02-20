@@ -1014,11 +1014,6 @@ public class IntervalTest {
             this.runBenchmark(this.implementation()::forEachWithExecutor, this.description("forEachWithExecutor"));
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
-        public void benchmark_forEachWithExecutorInReverse() throws java.lang.Throwable {
-            this.createImplementation();
-            this.runBenchmark(this.implementation()::forEachWithExecutorInReverse, this.description("forEachWithExecutorInReverse"));
-        }
 
         @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_runWithExecutor() throws java.lang.Throwable {

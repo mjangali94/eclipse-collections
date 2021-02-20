@@ -44,11 +44,6 @@ public class ParallelBagTest extends ParallelBagTestCase {
     @org.openjdk.jmh.annotations.Fork(value = 1 )
     public static class _Benchmark extends se.chalmers.ju2jmh.api.JU2JmhBenchmark {
 
-        @org.openjdk.jmh.annotations.Benchmark
-        public void benchmark_asParallel_small_batch() throws java.lang.Throwable {
-            this.createImplementation();
-            this.runExceptionBenchmark(this.implementation()::asParallel_small_batch, this.description("asParallel_small_batch"), java.lang.IllegalArgumentException.class);
-        }
 
         @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_asParallel_null_executorService() throws java.lang.Throwable {
