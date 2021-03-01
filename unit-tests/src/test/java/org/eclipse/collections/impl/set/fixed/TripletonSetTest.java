@@ -22,6 +22,10 @@ import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +55,14 @@ public class TripletonSetTest extends AbstractMemoryEfficientMutableSetTestCase
         return new TripletonSet<>(null, "2", "3");
     }
 
-    @Test
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test
     public void nonUniqueWith()
     {
         Twin<String> twin1 = Tuples.twin("1", "1");

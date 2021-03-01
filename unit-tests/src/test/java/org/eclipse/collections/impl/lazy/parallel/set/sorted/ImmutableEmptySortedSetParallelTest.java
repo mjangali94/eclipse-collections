@@ -21,6 +21,10 @@ import org.eclipse.collections.impl.block.factory.Predicates2;
 import org.eclipse.collections.impl.block.function.PassThruFunction0;
 import org.eclipse.collections.impl.factory.SortedSets;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -50,7 +54,14 @@ public class ImmutableEmptySortedSetParallelTest extends NonParallelSortedSetIte
         return SortedSets.immutable.with(Comparators.<Integer>reverseNaturalOrder()).asParallel(this.executorService, this.batchSize);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         SortedSets.immutable.with(Comparators.reverseNaturalOrder()).asParallel(this.executorService, 0);

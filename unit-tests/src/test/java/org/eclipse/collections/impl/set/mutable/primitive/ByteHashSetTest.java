@@ -17,6 +17,10 @@ import org.eclipse.collections.impl.block.factory.primitive.BytePredicates;
 import org.eclipse.collections.impl.list.mutable.primitive.ByteArrayList;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,7 +41,14 @@ public class ByteHashSetTest extends AbstractByteSetTestCase
         return ByteHashSet.newSetWith(elements);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test(expected = IllegalArgumentException.class)
     public void newWithInitialCapacity_negative_throws()
     {
         new ByteHashSet(-1);

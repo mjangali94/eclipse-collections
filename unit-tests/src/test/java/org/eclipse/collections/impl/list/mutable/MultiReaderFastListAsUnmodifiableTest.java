@@ -13,6 +13,10 @@ package org.eclipse.collections.impl.list.mutable;
 import java.util.ListIterator;
 
 import org.eclipse.collections.api.list.MutableList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Test;
 
 public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableListTestCase
@@ -23,8 +27,16 @@ public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableLi
         return MultiReaderFastList.newListWith(1).asUnmodifiable();
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+    
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Override
+@Test(expected = UnsupportedOperationException.class)
     public void listIterator()
     {
         ListIterator<Integer> it = this.getCollection().listIterator();

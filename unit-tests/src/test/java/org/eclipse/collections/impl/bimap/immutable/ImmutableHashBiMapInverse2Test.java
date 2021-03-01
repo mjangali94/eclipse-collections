@@ -19,6 +19,10 @@ import org.eclipse.collections.impl.factory.Maps;
 import org.eclipse.collections.impl.map.MapIterableTestCase;
 import org.eclipse.collections.impl.multimap.set.UnifiedSetMultimap;
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,8 +58,16 @@ public class ImmutableHashBiMapInverse2Test extends MapIterableTestCase
         return BiMaps.immutable.withAll(Maps.immutable.with(value1, key1, value2, key2, value3, key3, value4, key4)).inverse();
     }
 
-    @Override
-    @Test
+    
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Override
+@Test
     public void flipUniqueValues()
     {
         ImmutableBiMap<Integer, String> map = this.newMapWithKeysValues(1, "1", 2, "2", 3, "3");

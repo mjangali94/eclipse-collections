@@ -11,6 +11,10 @@
 package org.eclipse.collections.impl.block.procedure;
 
 import org.eclipse.collections.impl.list.Interval;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +24,14 @@ public class AtomicCountProcedureTest
     private static final int STRING_LENGTH = 5;
     private static final int ZERO = 0;
 
-    @Test
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test
     public void getCount()
     {
         AtomicCountProcedure<String> atomicCountProcedure = new AtomicCountProcedure<>(each -> STRING_LENGTH < each.length());

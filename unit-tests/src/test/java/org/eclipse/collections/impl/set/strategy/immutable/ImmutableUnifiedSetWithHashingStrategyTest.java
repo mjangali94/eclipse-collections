@@ -21,6 +21,10 @@ import org.eclipse.collections.impl.set.immutable.AbstractImmutableUnifiedSetTes
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -72,8 +76,16 @@ public class ImmutableUnifiedSetWithHashingStrategyTest extends AbstractImmutabl
         return ImmutableUnifiedSetWithHashingStrategy.newSetWith(HASHING_STRATEGY, bigElements);
     }
 
-    @Override
-    @Test
+    
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Override
+@Test
     public void newCollection()
     {
         super.newCollection();

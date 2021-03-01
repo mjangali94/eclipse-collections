@@ -25,6 +25,10 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,8 +43,16 @@ public class SetAdapterTest extends AbstractMutableSetTestCase
         return new SetAdapter<>(new HashSet<>(UnifiedSet.newSetWith(littleElements)));
     }
 
-    @Override
-    @Test
+    
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Override
+@Test
     public void testToString()
     {
         MutableCollection<Object> collection = this.newWith(1);

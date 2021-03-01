@@ -19,6 +19,10 @@ import org.eclipse.collections.impl.collection.mutable.primitive.AbstractBoolean
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.primitive.SynchronizedBooleanIterable;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -51,7 +55,14 @@ public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTest
         return FastList.newListWith(elements);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test(expected = IllegalArgumentException.class)
     public void null_iterable_throws()
     {
         SynchronizedBooleanIterable iterable = SynchronizedBooleanIterable.of(null);

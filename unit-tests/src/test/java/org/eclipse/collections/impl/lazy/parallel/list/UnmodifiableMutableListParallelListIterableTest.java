@@ -16,6 +16,10 @@ import org.eclipse.collections.api.list.ListIterable;
 import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.mutable.ArrayListAdapter;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Test;
 
 public class UnmodifiableMutableListParallelListIterableTest extends ParallelListIterableTestCase
@@ -38,7 +42,14 @@ public class UnmodifiableMutableListParallelListIterableTest extends ParallelLis
         return ArrayListAdapter.adapt(new ArrayList<>(Lists.mutable.of(littleElements))).asUnmodifiable();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         ArrayListAdapter.adapt(new ArrayList<>(Lists.mutable.of(1, 2, 2, 3, 3, 3, 4, 4, 4, 4))).asUnmodifiable().asParallel(this.executorService, 0);

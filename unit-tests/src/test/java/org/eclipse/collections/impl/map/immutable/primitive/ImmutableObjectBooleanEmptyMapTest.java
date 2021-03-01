@@ -21,6 +21,10 @@ import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
 import org.eclipse.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
 import org.eclipse.collections.impl.set.mutable.primitive.BooleanHashSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -35,7 +39,14 @@ public class ImmutableObjectBooleanEmptyMapTest extends AbstractImmutableObjectB
         return (ImmutableObjectBooleanMap<String>) ImmutableObjectBooleanEmptyMap.INSTANCE;
     }
 
-    @Test
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test
     public void newWithKeyValue()
     {
         ImmutableObjectBooleanMap<String> map1 = this.classUnderTest();

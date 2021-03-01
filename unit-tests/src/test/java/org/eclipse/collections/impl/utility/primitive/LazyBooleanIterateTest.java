@@ -12,6 +12,10 @@ package org.eclipse.collections.impl.utility.primitive;
 
 import org.eclipse.collections.api.BooleanIterable;
 import org.eclipse.collections.impl.factory.primitive.BooleanLists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +23,14 @@ public class LazyBooleanIterateTest
 {
     private final BooleanIterable iterable = BooleanLists.mutable.with(true, false);
 
-    @Test
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test
     public void adapt()
     {
         Assert.assertEquals(this.iterable, LazyBooleanIterate.adapt(this.iterable).toList());

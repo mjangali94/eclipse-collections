@@ -11,6 +11,10 @@
 package org.eclipse.collections.impl.list.immutable;
 
 import org.eclipse.collections.api.list.ImmutableList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Test;
 
 public class ImmutableDoubletonListTest extends AbstractImmutableListTestCase
@@ -21,7 +25,14 @@ public class ImmutableDoubletonListTest extends AbstractImmutableListTestCase
         return new ImmutableDoubletonList<>(1, 2);
     }
 
-    @Test(expected = IllegalStateException.class)
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test(expected = IllegalStateException.class)
     public void getOnly()
     {
         ImmutableList<Integer> list = this.classUnderTest();

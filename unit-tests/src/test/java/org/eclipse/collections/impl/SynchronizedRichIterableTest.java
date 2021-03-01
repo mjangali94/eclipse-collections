@@ -21,6 +21,10 @@ import org.eclipse.collections.impl.lazy.LazyIterableAdapter;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,8 +38,16 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase
         return SynchronizedRichIterable.of(Lists.mutable.of(littleElements));
     }
 
-    @Override
-    @Test
+    
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Override
+@Test
     public void chunk_large_size()
     {
         RichIterable<String> collection = this.newWith("1", "2", "3", "4", "5", "6", "7");

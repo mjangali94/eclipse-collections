@@ -12,6 +12,10 @@ package org.eclipse.collections.impl.lazy.parallel.bag;
 
 import org.eclipse.collections.api.bag.ParallelBag;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Test;
 
 public class ParallelBagTest extends ParallelBagTestCase
@@ -28,7 +32,14 @@ public class ParallelBagTest extends ParallelBagTestCase
         return HashBag.newBagWith(littleElements).asParallel(this.executorService, this.batchSize);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         HashBag.newBagWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4).asParallel(this.executorService, 0);

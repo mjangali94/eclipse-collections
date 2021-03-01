@@ -42,6 +42,10 @@ import org.eclipse.collections.impl.utility.internal.SortedSetIterables;
 import org.eclipse.collections.impl.utility.internal.primitive.BooleanIterableIterate;
 import org.eclipse.collections.impl.utility.internal.primitive.BooleanIteratorIterate;
 import org.eclipse.collections.impl.utility.primitive.LazyBooleanIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Test;
 
 public class NonInstantiableTest
@@ -91,7 +95,14 @@ public class NonInstantiableTest
             SortedSetIterables.class
     };
 
-    @Test
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test
     public void generatedNonInstantiableClassesThrow()
     {
         for (Class<?> aClass : GENERATED_NON_INSTANTIABLE_CLASSES)

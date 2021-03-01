@@ -18,6 +18,10 @@ import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.bag.sorted.mutable.TreeBag;
 import org.eclipse.collections.impl.collection.mutable.AbstractCollectionTestCase;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,8 +40,16 @@ public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollect
         Assert.assertNull(this.newWith().getLast());
     }
 
-    @Override
-    @Test
+    
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Override
+@Test
     public void makeString()
     {
         Assert.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());

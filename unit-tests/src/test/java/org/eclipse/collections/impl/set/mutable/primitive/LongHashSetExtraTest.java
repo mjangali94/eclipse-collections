@@ -14,13 +14,24 @@ import java.lang.reflect.Field;
 import java.util.Random;
 
 import org.eclipse.collections.api.block.predicate.primitive.LongPredicate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
 // extra tests not covered in the generated portion
 public class LongHashSetExtraTest
 {
-    @Test
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test
     public void testManyRemoves()
     {
         Random random = new Random(-6819587229044058720L);

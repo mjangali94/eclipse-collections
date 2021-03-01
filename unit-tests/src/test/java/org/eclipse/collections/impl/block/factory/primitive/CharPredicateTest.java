@@ -13,6 +13,10 @@ package org.eclipse.collections.impl.block.factory.primitive;
 import org.eclipse.collections.api.list.primitive.CharList;
 import org.eclipse.collections.impl.block.predicate.primitive.CharPredicate;
 import org.eclipse.collections.impl.factory.primitive.CharLists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.junit.rules.TestName;
+import org.eclipse.collections.impl.myBlackhole;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -24,7 +28,14 @@ import org.junit.Test;
 @Deprecated
 public class CharPredicateTest
 {
-    @Test
+        public @org.junit.Rule TestName name = new TestName();
+        @org.junit.Before
+    public void myBefore() throws IOException {
+    	FileWriter fw = new FileWriter("/Users/massi/Desktop/tmp.csv", true);
+     try{    	fw.write(this.getClass().getName()+"."+name.getMethodName() +","+org.eclipse.collections.impl.myBlackhole.hitting_count()+"\n");
+     }catch(Exception e){}    	fw.close();
+    }
+@Test
     public void isUpperCase()
     {
         assertTrue(CharLists.mutable.of('A', 'B', 'C'), CharPredicate.IS_UPPERCASE);
