@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.list.mutable;
 import java.util.ListIterator;
 
 import org.eclipse.collections.api.list.MutableList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableListTestCase
@@ -23,8 +26,9 @@ public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableLi
         return MultiReaderFastList.newListWith(1).asUnmodifiable();
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = UnsupportedOperationException.class)
     public void listIterator()
     {
         ListIterator<Integer> it = this.getCollection().listIterator();

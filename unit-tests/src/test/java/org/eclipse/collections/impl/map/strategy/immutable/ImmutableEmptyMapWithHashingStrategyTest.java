@@ -19,6 +19,9 @@ import org.eclipse.collections.impl.block.factory.HashingStrategies;
 import org.eclipse.collections.impl.block.function.PassThruFunction0;
 import org.eclipse.collections.impl.map.immutable.ImmutableMemoryEfficientMapTestCase;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -53,8 +56,9 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
         return 0;
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void testToString()
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();

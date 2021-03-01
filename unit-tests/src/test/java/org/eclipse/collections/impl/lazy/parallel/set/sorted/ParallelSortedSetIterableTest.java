@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.lazy.parallel.set.sorted;
 import org.eclipse.collections.api.set.sorted.ParallelSortedSetIterable;
 import org.eclipse.collections.impl.block.factory.Comparators;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ParallelSortedSetIterableTest extends NonParallelSortedSetIterableTestCase
@@ -29,7 +32,8 @@ public class ParallelSortedSetIterableTest extends NonParallelSortedSetIterableT
         return TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), littleElements).asParallel(this.executorService, this.batchSize);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(this.executorService, 0);

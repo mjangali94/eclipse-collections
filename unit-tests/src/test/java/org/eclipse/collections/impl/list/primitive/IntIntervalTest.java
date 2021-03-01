@@ -44,6 +44,9 @@ import org.eclipse.collections.impl.math.MutableLong;
 import org.eclipse.collections.impl.set.mutable.primitive.IntHashSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -51,7 +54,8 @@ public class IntIntervalTest
 {
     private final IntInterval intInterval = IntInterval.oneTo(3);
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void fromAndToAndBy()
     {
         IntInterval interval = IntInterval.from(1);

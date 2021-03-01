@@ -49,6 +49,9 @@ import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.Tuples;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -66,7 +69,8 @@ public class ImmutableEmptySortedSetTest extends AbstractImmutableSortedSetTestC
         return SortedSets.immutable.of(comparator);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testContainsAll()
     {
         Assert.assertTrue(this.classUnderTest().containsAllIterable(UnifiedSet.<Integer>newSet()));

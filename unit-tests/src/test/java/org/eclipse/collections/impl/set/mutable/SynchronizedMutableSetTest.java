@@ -23,6 +23,9 @@ import org.eclipse.collections.impl.block.factory.Predicates2;
 import org.eclipse.collections.impl.collection.mutable.AbstractSynchronizedCollectionTestCase;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,8 +40,9 @@ public class SynchronizedMutableSetTest extends AbstractSynchronizedCollectionTe
         return new SynchronizedMutableSet<>(SetAdapter.adapt(new TreeSet<>(FastList.newListWith(littleElements))));
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void newEmpty()
     {
         super.newEmpty();

@@ -11,6 +11,9 @@
 package org.eclipse.collections.impl.utility;
 
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 /**
@@ -18,7 +21,8 @@ import org.junit.Test;
  */
 public class OrderedIterateTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void classIsNonInstantiable()
     {
         Verify.assertClassNonInstantiable(OrderedIterate.class);

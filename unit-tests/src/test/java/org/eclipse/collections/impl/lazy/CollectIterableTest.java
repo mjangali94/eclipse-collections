@@ -22,6 +22,9 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.utility.LazyIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,7 +36,8 @@ public class CollectIterableTest extends AbstractLazyIterableTestCase
         return LazyIterate.collect(FastList.newListWith(elements), Functions.identity());
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void forEach()
     {
         InternalIterable<String> select = new CollectIterable<>(Interval.oneTo(5), String::valueOf);

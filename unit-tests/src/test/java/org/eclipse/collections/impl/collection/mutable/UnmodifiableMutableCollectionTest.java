@@ -54,6 +54,9 @@ import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,7 +80,8 @@ public class UnmodifiableMutableCollectionTest
         this.unmodifiableCollection = new UnmodifiableMutableCollection<>(this.mutableCollection);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void delegatingMethods()
     {
         Assert.assertEquals(this.mutableCollection.notEmpty(), this.unmodifiableCollection.notEmpty());

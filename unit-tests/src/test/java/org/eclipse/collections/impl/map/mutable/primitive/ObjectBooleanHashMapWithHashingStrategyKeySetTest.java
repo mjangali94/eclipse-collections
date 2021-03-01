@@ -17,6 +17,9 @@ import org.eclipse.collections.api.map.primitive.MutableObjectBooleanMap;
 import org.eclipse.collections.impl.block.factory.HashingStrategies;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.test.domain.Person;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -75,8 +78,9 @@ public class ObjectBooleanHashMapWithHashingStrategyKeySetTest extends ObjectBoo
         return ObjectBooleanHashMapWithHashingStrategy.newMap(STRING_HASHING_STRATEGY);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void contains()
     {
         super.contains();

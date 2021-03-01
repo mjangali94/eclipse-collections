@@ -63,6 +63,9 @@ import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.map.sorted.mutable.TreeSortedMap;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -98,8 +101,9 @@ public class ImmutableEmptySortedBagTest extends AbstractImmutableSortedBagTestC
         return SortedBags.immutable.empty(comparator);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void corresponds()
     {
         //Evaluates true for all empty lists and false for all non-empty lists

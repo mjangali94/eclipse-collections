@@ -20,6 +20,9 @@ import org.eclipse.collections.impl.factory.Bags;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.test.domain.Person;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,7 +57,8 @@ public class HashBagWithHashingStrategyTest extends MutableBagTestCase
         return bag;
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void newBag_throws()
     {
         Assert.assertThrows(IllegalArgumentException.class, () -> HashBagWithHashingStrategy.newBag(null));

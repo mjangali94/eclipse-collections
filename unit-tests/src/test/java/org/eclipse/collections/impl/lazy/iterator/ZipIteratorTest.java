@@ -12,13 +12,17 @@ package org.eclipse.collections.impl.lazy.iterator;
 
 import org.eclipse.collections.api.list.ImmutableList;
 import org.eclipse.collections.impl.factory.Lists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ZipIteratorTest
 {
     private static final ImmutableList<Integer> EMPTY = Lists.immutable.of();
 
-    @Test(expected = UnsupportedOperationException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = UnsupportedOperationException.class)
     public void testRemove()
     {
         new ZipIterator<>(EMPTY, EMPTY).remove();

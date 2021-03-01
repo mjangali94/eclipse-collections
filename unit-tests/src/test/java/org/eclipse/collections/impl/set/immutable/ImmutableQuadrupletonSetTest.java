@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.set.immutable;
 
 import org.eclipse.collections.api.set.ImmutableSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,8 +29,9 @@ public class ImmutableQuadrupletonSetTest
         return new ImmutableQuadrupletonSet<>(1, 2, 3, 4);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void newWithout()
     {
         ImmutableSet<Integer> immutable = this.classUnderTest();

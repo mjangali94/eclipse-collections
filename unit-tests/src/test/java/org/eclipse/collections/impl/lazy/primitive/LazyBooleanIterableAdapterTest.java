@@ -27,6 +27,9 @@ import org.eclipse.collections.impl.factory.primitive.ShortLists;
 import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
 import org.eclipse.collections.impl.set.mutable.primitive.BooleanHashSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +41,8 @@ public class LazyBooleanIterableAdapterTest
     private final LazyBooleanIterableAdapter iterable =
             new LazyBooleanIterableAdapter(BooleanArrayList.newListWith(true, false, true));
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void booleanIterator()
     {
         int sum = 0;

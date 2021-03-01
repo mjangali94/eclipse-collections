@@ -22,6 +22,9 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.ImmutableEntry;
 import org.eclipse.collections.impl.tuple.Tuples;
 import org.eclipse.collections.impl.utility.Iterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -107,8 +110,9 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
                 key4, value4));
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = UnsupportedOperationException.class)
     public void removeObject()
     {
         MutableSortedMap<String, Integer> map = this.newMapWithKeysValues("One", 1, "Two", 2, "Three", 3);

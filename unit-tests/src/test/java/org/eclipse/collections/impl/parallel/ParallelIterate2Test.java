@@ -17,6 +17,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.eclipse.collections.impl.list.Interval;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,7 +31,8 @@ public class ParallelIterate2Test
     /**
      * crude test to check that creation works and that all tasks are executed
      */
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void creationAndExecution() throws InterruptedException
     {
         int howManyTimes = 200;

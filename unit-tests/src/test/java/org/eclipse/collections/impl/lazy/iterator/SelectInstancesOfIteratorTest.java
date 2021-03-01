@@ -16,12 +16,16 @@ import java.util.NoSuchElementException;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.mutable.FastList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class SelectInstancesOfIteratorTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void iterator()
     {
         MutableList<Number> list = FastList.newListWith(null, 1, 2.0, null, 3, 4.0, 5, null);

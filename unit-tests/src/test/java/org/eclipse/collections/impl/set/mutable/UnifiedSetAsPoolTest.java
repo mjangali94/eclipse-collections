@@ -11,6 +11,9 @@
 package org.eclipse.collections.impl.set.mutable;
 
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +21,8 @@ public class UnifiedSetAsPoolTest
 {
     private final UnifiedSet<Integer> staticPool = UnifiedSet.newSet();
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void getReturnsNullIfObjectIsNotPooled()
     {
         Assert.assertNull(this.staticPool.get(1));

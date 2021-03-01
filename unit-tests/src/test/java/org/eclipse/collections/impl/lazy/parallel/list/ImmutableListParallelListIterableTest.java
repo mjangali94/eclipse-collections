@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.lazy.parallel.list;
 
 import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.factory.Lists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ImmutableListParallelListIterableTest extends ParallelListIterableTestCase
@@ -28,7 +31,8 @@ public class ImmutableListParallelListIterableTest extends ParallelListIterableT
         return Lists.immutable.with(littleElements).asParallel(this.executorService, this.batchSize);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         Lists.immutable.with(1, 2, 2, 3, 3, 3, 4, 4, 4, 4).asParallel(this.executorService, 0);

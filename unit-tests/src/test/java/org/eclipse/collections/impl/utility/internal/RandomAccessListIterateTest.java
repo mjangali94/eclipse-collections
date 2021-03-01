@@ -39,6 +39,9 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.Tuples;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.eclipse.collections.impl.utility.Iterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -47,7 +50,8 @@ import static org.eclipse.collections.impl.factory.Iterables.mList;
 
 public class RandomAccessListIterateTest
 {
-    @Test(expected = IndexOutOfBoundsException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IndexOutOfBoundsException.class)
     public void forEachWithNegativeFroms()
     {
         RandomAccessListIterate.forEach(FastList.newList(), -1, 1, DoNothingProcedure.DO_NOTHING);

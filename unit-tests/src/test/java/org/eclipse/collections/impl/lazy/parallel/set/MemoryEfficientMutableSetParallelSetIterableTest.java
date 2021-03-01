@@ -14,6 +14,9 @@ import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.api.set.ParallelUnsortedSetIterable;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class MemoryEfficientMutableSetParallelSetIterableTest extends ParallelUnsortedSetIterableTestCase
@@ -36,7 +39,8 @@ public class MemoryEfficientMutableSetParallelSetIterableTest extends ParallelUn
         return Sets.fixedSize.withAll(ArrayAdapter.adapt(littleElements));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         Sets.fixedSize.with(1, 2, 3, 4).asParallel(this.executorService, 0);

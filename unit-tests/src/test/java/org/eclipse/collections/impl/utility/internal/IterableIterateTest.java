@@ -41,6 +41,9 @@ import org.eclipse.collections.impl.math.Sum;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.Iterate;
 import org.eclipse.collections.impl.utility.ListIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -52,7 +55,8 @@ import static org.eclipse.collections.impl.factory.Iterables.mList;
  */
 public class IterableIterateTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void injectInto()
     {
         Iterable<Integer> iterable = new IterableAdapter<>(iList(1, 2, 3));

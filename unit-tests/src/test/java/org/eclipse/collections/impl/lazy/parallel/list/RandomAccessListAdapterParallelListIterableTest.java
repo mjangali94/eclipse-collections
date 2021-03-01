@@ -15,6 +15,9 @@ import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.mutable.ListAdapter;
 import org.eclipse.collections.impl.list.mutable.RandomAccessListAdapter;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class RandomAccessListAdapterParallelListIterableTest extends ParallelListIterableTestCase
@@ -37,7 +40,8 @@ public class RandomAccessListAdapterParallelListIterableTest extends ParallelLis
         return RandomAccessListAdapter.adapt(Lists.mutable.of(littleElements));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         ListAdapter.adapt(Lists.mutable.of(1, 2, 2, 3, 3, 3, 4, 4, 4, 4)).asParallel(this.executorService, 0);

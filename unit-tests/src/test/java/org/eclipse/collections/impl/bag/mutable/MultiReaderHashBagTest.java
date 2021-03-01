@@ -39,6 +39,9 @@ import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -53,8 +56,9 @@ public class MultiReaderHashBagTest extends MultiReaderMutableCollectionTestCase
         return MultiReaderHashBag.newBagWith(littleElements);
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = UnsupportedOperationException.class)
     public void largeCollectionStreamToBagMultimap()
     {
         super.largeCollectionStreamToBagMultimap();

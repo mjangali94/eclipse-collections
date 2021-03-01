@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.list.mutable.primitive;
 
 import org.eclipse.collections.api.iterator.MutableBooleanIterator;
 import org.eclipse.collections.api.list.primitive.MutableBooleanList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,8 +37,9 @@ public class UnmodifiableBooleanListTest extends AbstractBooleanListTestCase
         return new UnmodifiableBooleanList(BooleanArrayList.newListWith(elements));
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = UnsupportedOperationException.class)
     public void addAtIndex()
     {
         new UnmodifiableBooleanList(new BooleanArrayList()).addAtIndex(0, true);

@@ -15,6 +15,9 @@ import org.eclipse.collections.api.iterator.MutableBooleanIterator;
 import org.eclipse.collections.api.set.primitive.MutableBooleanSet;
 import org.eclipse.collections.impl.factory.primitive.BooleanSets;
 import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,8 +40,9 @@ public class UnmodifiableBooleanBagTest extends AbstractMutableBooleanBagTestCas
         return new UnmodifiableBooleanBag(BooleanHashBag.newBagWith(elements));
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = UnsupportedOperationException.class)
     public void addOccurrences()
     {
         this.bag.addOccurrences(false, 3);

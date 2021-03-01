@@ -17,6 +17,9 @@ import java.util.TreeMap;
 import org.eclipse.collections.api.map.sorted.MutableSortedMap;
 import org.eclipse.collections.impl.factory.SortedMaps;
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -85,7 +88,8 @@ public class SortedMapAdapterTest extends MutableSortedMapTestCase
         return SortedMapAdapter.adapt(new TreeMap<K, V>()).with(Tuples.pair(key1, value1), Tuples.pair(key2, value2), Tuples.pair(key3, value3), Tuples.pair(key4, value4));
     }
 
-    @Test(expected = NullPointerException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = NullPointerException.class)
     public void testNewNull()
     {
         SortedMapAdapter.adapt(null);

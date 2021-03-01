@@ -19,6 +19,9 @@ import org.eclipse.collections.impl.math.IntegerSum;
 import org.eclipse.collections.impl.math.Sum;
 import org.eclipse.collections.impl.math.SumProcedure;
 import org.eclipse.collections.impl.utility.LazyIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,7 +46,8 @@ public class DropIterableTest extends AbstractLazyIterableTestCase
         this.higherCountDropIterable = new DropIterable<>(Interval.oneTo(5), 6);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void negative_throws()
     {
         new DropIterable<>(Interval.oneTo(5), -1);

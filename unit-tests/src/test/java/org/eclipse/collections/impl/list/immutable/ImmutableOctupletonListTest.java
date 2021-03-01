@@ -11,6 +11,9 @@
 package org.eclipse.collections.impl.list.immutable;
 
 import org.eclipse.collections.api.list.ImmutableList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ImmutableOctupletonListTest extends AbstractImmutableListTestCase
@@ -21,7 +24,8 @@ public class ImmutableOctupletonListTest extends AbstractImmutableListTestCase
         return new ImmutableOctupletonList<>(1, 2, 3, 4, 5, 6, 7, 8);
     }
 
-    @Test(expected = IllegalStateException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalStateException.class)
     public void getOnly()
     {
         ImmutableList<Integer> list = this.classUnderTest();

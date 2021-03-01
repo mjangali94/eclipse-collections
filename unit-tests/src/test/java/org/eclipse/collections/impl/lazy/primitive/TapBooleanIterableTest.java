@@ -15,6 +15,9 @@ import org.eclipse.collections.api.list.primitive.BooleanList;
 import org.eclipse.collections.impl.block.factory.primitive.BooleanPredicates;
 import org.eclipse.collections.impl.factory.primitive.BooleanLists;
 import org.eclipse.collections.impl.math.MutableInteger;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,7 +25,8 @@ public class TapBooleanIterableTest
 {
     private final BooleanList list = BooleanLists.immutable.with(true, false, false, true);
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void booleanIterator()
     {
         StringBuilder concat = new StringBuilder();

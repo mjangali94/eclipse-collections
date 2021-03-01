@@ -10,6 +10,9 @@
 
 package org.eclipse.collections.impl.block.function.primitive;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,7 +24,8 @@ import org.junit.Test;
 @Deprecated
 public class CharFunctionTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void toUppercase()
     {
         Assert.assertEquals('A', CharFunction.TO_UPPERCASE.valueOf('a'));

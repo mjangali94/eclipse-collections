@@ -21,6 +21,9 @@ import org.eclipse.collections.impl.set.immutable.AbstractImmutableUnifiedSetTes
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -72,8 +75,9 @@ public class ImmutableUnifiedSetWithHashingStrategyTest extends AbstractImmutabl
         return ImmutableUnifiedSetWithHashingStrategy.newSetWith(HASHING_STRATEGY, bigElements);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void newCollection()
     {
         super.newCollection();

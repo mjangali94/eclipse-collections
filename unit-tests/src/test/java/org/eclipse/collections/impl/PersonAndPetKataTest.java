@@ -52,6 +52,9 @@ import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.eclipse.collections.impl.utility.StringIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,7 +80,8 @@ public class PersonAndPetKataTest
                         .addPet(PetType.HAMSTER, "Wuzzy", 1));
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void doAnyPeopleHaveCats()
     {
         boolean resultEager = this.people.anySatisfy(person -> person.hasPet(PetType.CAT));

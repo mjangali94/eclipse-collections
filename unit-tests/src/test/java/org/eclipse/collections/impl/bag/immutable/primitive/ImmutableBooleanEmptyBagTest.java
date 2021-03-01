@@ -15,6 +15,9 @@ import org.eclipse.collections.api.set.primitive.ImmutableBooleanSet;
 import org.eclipse.collections.impl.factory.primitive.BooleanBags;
 import org.eclipse.collections.impl.factory.primitive.BooleanSets;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,8 +32,9 @@ public class ImmutableBooleanEmptyBagTest extends AbstractImmutableBooleanBagTes
         return BooleanBags.immutable.of();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void notEmpty()
     {
         Assert.assertFalse(this.classUnderTest().notEmpty());

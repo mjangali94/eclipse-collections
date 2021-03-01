@@ -38,6 +38,9 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.test.domain.Key;
 import org.eclipse.collections.impl.test.domain.Person;
 import org.eclipse.collections.impl.utility.ArrayIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -87,7 +90,8 @@ public class UnifiedSetWithHashingStrategyTest extends AbstractUnifiedSetTestCas
         return UnifiedSetWithHashingStrategy.newSetWith(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), littleElements);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void newSet_throws()
     {
         Assert.assertThrows(IllegalArgumentException.class, () -> new UnifiedSetWithHashingStrategy<>(INTEGER_HASHING_STRATEGY, -1, 0.5f));

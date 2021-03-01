@@ -31,6 +31,9 @@ import org.eclipse.collections.impl.math.MutableInteger;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -75,8 +78,9 @@ public class ImmutableBooleanHashSetTest extends AbstractImmutableBooleanCollect
         this.trueFalseSet = this.newWith(true, false);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void newCollectionWith()
     {
         ImmutableBooleanSet set = this.classUnderTest();

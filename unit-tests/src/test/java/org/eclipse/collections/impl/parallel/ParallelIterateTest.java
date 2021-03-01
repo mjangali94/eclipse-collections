@@ -62,6 +62,9 @@ import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import org.eclipse.collections.impl.utility.Iterate;
 import org.eclipse.collections.impl.utility.LazyIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -135,7 +138,8 @@ public class ParallelIterateTest
         this.executor.shutdown();
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testForEachUsingSet()
     {
         //Tests the default batch size calculations

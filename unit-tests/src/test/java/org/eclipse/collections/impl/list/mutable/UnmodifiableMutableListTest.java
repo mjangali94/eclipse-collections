@@ -28,6 +28,9 @@ import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,7 +55,8 @@ public class UnmodifiableMutableListTest
         this.unmodifiableList = UnmodifiableMutableList.of(this.mutableList);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void equalsAndHashCode()
     {
         Verify.assertEqualsAndHashCode(this.mutableList, this.unmodifiableList);

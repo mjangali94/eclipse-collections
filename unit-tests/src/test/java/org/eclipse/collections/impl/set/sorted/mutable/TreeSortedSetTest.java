@@ -19,6 +19,9 @@ import org.eclipse.collections.api.LazyIterable;
 import org.eclipse.collections.api.set.sorted.MutableSortedSet;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,8 +39,9 @@ public class TreeSortedSetTest extends AbstractSortedSetTestCase
         return TreeSortedSet.newSetWith(comparator, elements);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void asSynchronized()
     {
         Verify.assertInstanceOf(SynchronizedSortedSet.class, this.newWith().asSynchronized());

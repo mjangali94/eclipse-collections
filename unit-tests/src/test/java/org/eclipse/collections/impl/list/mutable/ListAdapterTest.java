@@ -16,6 +16,9 @@ import java.util.LinkedList;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,7 +33,8 @@ public class ListAdapterTest extends AbstractListTestCase
         return new ListAdapter<>(new LinkedList<>(FastList.newListWith(littleElements)));
     }
 
-    @Test(expected = NullPointerException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = NullPointerException.class)
     public void null_throws()
     {
         new ListAdapter<>(null);

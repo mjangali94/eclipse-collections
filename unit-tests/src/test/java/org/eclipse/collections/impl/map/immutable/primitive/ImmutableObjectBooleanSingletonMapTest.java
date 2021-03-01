@@ -22,6 +22,9 @@ import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
 import org.eclipse.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
 import org.eclipse.collections.impl.set.mutable.primitive.BooleanHashSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,7 +39,8 @@ public class ImmutableObjectBooleanSingletonMapTest extends AbstractImmutableObj
         return ObjectBooleanHashMap.newWithKeysValues("1", true).toImmutable();
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void newWithKeyValue()
     {
         ImmutableObjectBooleanMap<String> map1 = this.classUnderTest();

@@ -10,12 +10,16 @@
 
 package org.eclipse.collections.impl.tuple;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class AbstractImmutableEntryTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void getKeyFunction()
     {
         ImmutableEntry<String, Integer> entry = new ImmutableEntry<>("foo", 2);

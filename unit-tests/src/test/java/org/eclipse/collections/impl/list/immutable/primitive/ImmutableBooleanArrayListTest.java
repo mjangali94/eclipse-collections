@@ -14,6 +14,9 @@ import org.eclipse.collections.api.list.primitive.ImmutableBooleanList;
 import org.eclipse.collections.impl.factory.primitive.BooleanLists;
 import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,7 +31,8 @@ public class ImmutableBooleanArrayListTest extends AbstractImmutableBooleanListT
         return ImmutableBooleanArrayList.newListWith(true, false, true);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void newCollection_throws_empty()
     {
         ImmutableBooleanArrayList.newListWith();

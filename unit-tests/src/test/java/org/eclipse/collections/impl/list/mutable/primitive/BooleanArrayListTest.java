@@ -16,6 +16,9 @@ import java.util.BitSet;
 import org.eclipse.collections.api.block.predicate.primitive.BooleanPredicate;
 import org.eclipse.collections.api.list.primitive.MutableBooleanList;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +41,8 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
         return BooleanArrayList.newListWith(elements);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testBooleanArrayListWithInitialCapacity() throws Exception
     {
         BooleanArrayList arrayList = new BooleanArrayList(7);

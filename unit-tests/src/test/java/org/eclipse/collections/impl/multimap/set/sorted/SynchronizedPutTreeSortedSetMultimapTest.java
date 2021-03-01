@@ -17,6 +17,9 @@ import org.eclipse.collections.api.multimap.sortedset.MutableSortedSetMultimap;
 import org.eclipse.collections.api.tuple.Pair;
 import org.eclipse.collections.impl.block.factory.Comparators;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -112,7 +115,8 @@ public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSor
         return TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), args);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     @Override
     public void testToString()
     {

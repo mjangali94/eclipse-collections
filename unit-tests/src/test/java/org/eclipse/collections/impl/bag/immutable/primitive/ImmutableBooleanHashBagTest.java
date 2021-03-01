@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.bag.immutable.primitive;
 import org.eclipse.collections.api.bag.primitive.ImmutableBooleanBag;
 import org.eclipse.collections.api.set.primitive.ImmutableBooleanSet;
 import org.eclipse.collections.impl.factory.primitive.BooleanSets;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -24,8 +27,9 @@ public class ImmutableBooleanHashBagTest extends AbstractImmutableBooleanBagTest
         return ImmutableBooleanHashBag.newBagWith(true, false, true);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void selectUnique()
     {
         super.selectUnique();

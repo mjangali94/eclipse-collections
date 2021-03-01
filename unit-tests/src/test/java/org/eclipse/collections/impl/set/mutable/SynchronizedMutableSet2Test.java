@@ -20,6 +20,9 @@ import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.factory.Bags;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,7 +37,8 @@ public class SynchronizedMutableSet2Test extends AbstractMutableSetTestCase
         return new SynchronizedMutableSet<>(SetAdapter.adapt(new HashSet<>(UnifiedSet.newSetWith(littleElements))));
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = NoSuchElementException.class)
     public void min_empty_throws_without_comparator()
     {
         this.newWith().min();

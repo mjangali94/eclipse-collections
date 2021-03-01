@@ -14,6 +14,9 @@ import org.eclipse.collections.api.iterator.MutableBooleanIterator;
 import org.eclipse.collections.api.stack.primitive.MutableBooleanStack;
 import org.eclipse.collections.impl.stack.primitive.AbstractBooleanStackTestCase;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -46,7 +49,8 @@ public class UnmodifiableBooleanStackTest extends AbstractBooleanStackTestCase
         return new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(elements));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = UnsupportedOperationException.class)
     public void push()
     {
         MutableBooleanStack stack = new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(true, true, false, true, false));

@@ -27,6 +27,9 @@ import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.Tuples;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -89,8 +92,9 @@ public class ImmutableEmptySortedMapTest extends ImmutableSortedMapTestCase
         Verify.assertEmpty(this.classUnderTest().flipUniqueValues());
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void testToString()
     {
         ImmutableSortedMap<Integer, String> map = this.classUnderTest();

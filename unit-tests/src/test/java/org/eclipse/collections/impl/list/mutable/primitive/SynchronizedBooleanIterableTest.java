@@ -19,6 +19,9 @@ import org.eclipse.collections.impl.collection.mutable.primitive.AbstractBoolean
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.primitive.SynchronizedBooleanIterable;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -51,7 +54,8 @@ public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTest
         return FastList.newListWith(elements);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void null_iterable_throws()
     {
         SynchronizedBooleanIterable iterable = SynchronizedBooleanIterable.of(null);

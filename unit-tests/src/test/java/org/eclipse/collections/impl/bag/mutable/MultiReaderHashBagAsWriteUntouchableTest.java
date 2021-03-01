@@ -14,6 +14,9 @@ import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.collection.mutable.AbstractCollectionTestCase;
 import org.eclipse.collections.impl.factory.Sets;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,7 +40,8 @@ public class MultiReaderHashBagAsWriteUntouchableTest extends AbstractCollection
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.newWith().asUnmodifiable());
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void addOccurrences()
     {
         MutableBag<Integer> bag = this.newWith(1, 1);

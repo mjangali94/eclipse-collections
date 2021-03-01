@@ -11,6 +11,9 @@
 package org.eclipse.collections.impl.block.procedure;
 
 import org.eclipse.collections.impl.list.Interval;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +23,8 @@ public class AtomicCountProcedureTest
     private static final int STRING_LENGTH = 5;
     private static final int ZERO = 0;
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void getCount()
     {
         AtomicCountProcedure<String> atomicCountProcedure = new AtomicCountProcedure<>(each -> STRING_LENGTH < each.length());

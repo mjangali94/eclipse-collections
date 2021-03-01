@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.lazy;
 
 import org.eclipse.collections.impl.block.factory.Procedures;
 import org.eclipse.collections.impl.factory.Lists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +35,8 @@ public class ZipWithIndexIterableTest
         Assert.assertEquals(expected, this.buffer.toString());
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void forEach()
     {
         this.iterableUnderTest.forEach(Procedures.cast(argument1 -> {

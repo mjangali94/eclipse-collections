@@ -25,6 +25,9 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,8 +42,9 @@ public class SetAdapterTest extends AbstractMutableSetTestCase
         return new SetAdapter<>(new HashSet<>(UnifiedSet.newSetWith(littleElements)));
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void testToString()
     {
         MutableCollection<Object> collection = this.newWith(1);

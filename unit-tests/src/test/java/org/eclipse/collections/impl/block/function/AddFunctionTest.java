@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.block.function;
 
 import org.eclipse.collections.api.block.function.Function2;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,7 +23,8 @@ import org.junit.Test;
 // BlocksTest class erroneously. The BlocksTest class has since been removed.
 public class AddFunctionTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void addStringBlockHandlesNulls()
     {
         Function2<String, String, String> undertest = AddFunction.STRING;

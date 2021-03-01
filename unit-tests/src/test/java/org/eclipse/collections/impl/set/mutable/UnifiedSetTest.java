@@ -30,6 +30,9 @@ import org.eclipse.collections.impl.math.SumProcedure;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.test.domain.Key;
 import org.eclipse.collections.impl.utility.ArrayIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -44,8 +47,9 @@ public class UnifiedSetTest extends AbstractMutableSetTestCase
         return UnifiedSet.newSetWith(littleElements);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void with()
     {
         Verify.assertEqualsAndHashCode(

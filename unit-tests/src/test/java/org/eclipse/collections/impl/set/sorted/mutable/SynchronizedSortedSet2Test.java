@@ -15,6 +15,9 @@ import java.util.NoSuchElementException;
 
 import org.eclipse.collections.api.set.sorted.MutableSortedSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,7 +51,8 @@ public class SynchronizedSortedSet2Test extends AbstractSortedSetTestCase
         Verify.assertInstanceOf(UnmodifiableSortedSet.class, this.newWith().asUnmodifiable());
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = NoSuchElementException.class)
     public void min_empty_throws_without_comparator()
     {
         this.newWith().min();

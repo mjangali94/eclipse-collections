@@ -15,6 +15,9 @@ import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.collection.mutable.UnmodifiableMutableCollectionTestCase;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.map.mutable.UnifiedMap;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,7 +29,8 @@ public class MultiReaderHashBagAsReadUntouchableTest extends UnmodifiableMutable
         return MultiReaderHashBag.newBagWith(1, 1).asReadUntouchable();
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = UnsupportedOperationException.class)
     public void addOccurrences()
     {
         this.getCollection().addOccurrences(1, 1);

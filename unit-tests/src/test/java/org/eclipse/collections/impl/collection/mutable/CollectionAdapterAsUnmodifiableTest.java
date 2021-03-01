@@ -17,6 +17,9 @@ import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.api.partition.PartitionMutableCollection;
 import org.eclipse.collections.impl.block.factory.Functions;
 import org.eclipse.collections.impl.block.factory.Functions2;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,8 +33,9 @@ public class CollectionAdapterAsUnmodifiableTest extends UnmodifiableMutableColl
         return new CollectionAdapter<>(list).asUnmodifiable();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void select()
     {
         Assert.assertEquals(this.getCollection().toList(), this.getCollection().select(ignored -> true));

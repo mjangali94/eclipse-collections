@@ -22,6 +22,9 @@ import org.eclipse.collections.impl.collection.mutable.AbstractCollectionTestCas
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,8 +53,9 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
         return UnifiedSet.newSetWith(elements).asUnmodifiable();
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = UnsupportedOperationException.class)
     public void removeObject()
     {
         super.removeObject();

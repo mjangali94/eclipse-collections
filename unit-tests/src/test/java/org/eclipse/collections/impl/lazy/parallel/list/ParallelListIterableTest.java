@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.lazy.parallel.list;
 import org.eclipse.collections.api.list.ListIterable;
 import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.list.mutable.FastList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ParallelListIterableTest extends ParallelListIterableTestCase
@@ -35,7 +38,8 @@ public class ParallelListIterableTest extends ParallelListIterableTestCase
         return FastList.newListWith(littleElements);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         FastList.newListWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4).asParallel(this.executorService, 0);

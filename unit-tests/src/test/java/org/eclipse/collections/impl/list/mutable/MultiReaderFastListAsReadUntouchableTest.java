@@ -14,6 +14,9 @@ import java.io.Serializable;
 
 import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.api.list.MutableList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,8 +28,9 @@ public class MultiReaderFastListAsReadUntouchableTest extends UnmodifiableMutabl
         return MultiReaderFastList.newListWith(1).asReadUntouchable();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void serialization()
     {
         MutableCollection<Integer> collection = this.getCollection();

@@ -58,6 +58,9 @@ import org.eclipse.collections.impl.list.mutable.primitive.ShortArrayList;
 import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -67,7 +70,8 @@ public class ArrayIterateTest
 {
     private static final Integer[] INTEGER_ARRAY = {5, 4, 3, 2, 1};
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void injectInto()
     {
         Integer[] objectArray = this.threeIntegerArray2();

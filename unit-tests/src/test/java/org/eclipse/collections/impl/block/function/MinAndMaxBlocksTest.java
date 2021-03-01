@@ -10,6 +10,9 @@
 
 package org.eclipse.collections.impl.block.function;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +22,8 @@ public class MinAndMaxBlocksTest
     private static final Integer FORTY_TWO_INTEGER = 42;
     private static final Long FORTY_TWO_LONG = 42L;
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void minBlocks()
     {
         Assert.assertEquals(new Double(1.0), MinFunction.DOUBLE.value(1.0, 2.0));

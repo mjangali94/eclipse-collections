@@ -10,6 +10,9 @@
 
 package org.eclipse.collections.impl.block.procedure;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,7 +20,8 @@ public class CollectIfProcedureTest
 {
     private static final int THE_ANSWER = 42;
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void constructorWithSize()
     {
         CollectIfProcedure<Integer, String> underTestTrue = new CollectIfProcedure<>(10, String::valueOf, ignored -> true);

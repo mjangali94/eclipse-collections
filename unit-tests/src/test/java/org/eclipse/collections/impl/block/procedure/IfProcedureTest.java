@@ -16,6 +16,9 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.Iterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -25,7 +28,8 @@ public class IfProcedureTest
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(IfProcedureTest.class);
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void procedure()
     {
         MutableList<String> list1 = Lists.mutable.of();

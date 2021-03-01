@@ -23,6 +23,9 @@ import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.ImmutableEntry;
 import org.eclipse.collections.impl.utility.Iterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -38,7 +41,8 @@ public abstract class AbstractMutableBiMapEntrySetTest
 
     protected abstract <K, V> MutableBiMap<K, V> newMapWithKeyValue(K key, V value);
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void entry_clear()
     {
         MutableBiMap<Integer, String> biMap = this.newMapWithKeysValues(1, "1", 2, "2", 3, "3");

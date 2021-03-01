@@ -12,12 +12,16 @@ package org.eclipse.collections.impl.block.procedure;
 
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.factory.Bags;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class BagAddOccurrencesProcedureTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void basicCase()
     {
         MutableBag<String> targetCollection = Bags.mutable.empty();

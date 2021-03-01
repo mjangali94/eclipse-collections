@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.map.immutable.primitive;
 import org.eclipse.collections.api.map.primitive.ImmutableObjectBooleanMap;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.map.mutable.primitive.ObjectBooleanHashMap;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,7 +30,8 @@ public class ImmutableObjectBooleanHashMapTest extends AbstractImmutableObjectBo
         return ObjectBooleanHashMap.newWithKeysValues("0", true, "1", true, "2", false).toImmutable();
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void newWithKeyValue()
     {
         ImmutableObjectBooleanMap<String> map1 = this.classUnderTest();

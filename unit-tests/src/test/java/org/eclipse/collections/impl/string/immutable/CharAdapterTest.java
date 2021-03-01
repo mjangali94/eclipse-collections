@@ -16,6 +16,9 @@ import org.eclipse.collections.api.list.primitive.ImmutableCharList;
 import org.eclipse.collections.impl.factory.Strings;
 import org.eclipse.collections.impl.factory.primitive.CharBags;
 import org.eclipse.collections.impl.list.immutable.primitive.AbstractImmutableCharListTestCase;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,7 +39,8 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
     }
 
     @SuppressWarnings("StringBufferReplaceableByString")
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void stringBuilder()
     {
         CharAdapter adapt = CharAdapter.adapt(UNICODE_STRING);

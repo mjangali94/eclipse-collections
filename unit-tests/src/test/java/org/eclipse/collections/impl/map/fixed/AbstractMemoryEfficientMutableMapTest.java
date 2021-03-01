@@ -52,6 +52,9 @@ import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -69,7 +72,8 @@ public abstract class AbstractMemoryEfficientMutableMapTest
 
     public abstract void containsValue();
 
-    @Test(expected = UnsupportedOperationException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = UnsupportedOperationException.class)
     public void put_throws()
     {
         this.classUnderTest().put(null, null);

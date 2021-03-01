@@ -14,12 +14,16 @@ import org.eclipse.collections.api.block.function.primitive.BooleanFunction;
 import org.eclipse.collections.api.list.primitive.ImmutableBooleanList;
 import org.eclipse.collections.api.list.primitive.MutableBooleanList;
 import org.eclipse.collections.impl.factory.primitive.BooleanLists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class CollectBooleanProcedureTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void basicCase()
     {
         BooleanFunction<String> stringIsEmptyFunction = String::isEmpty;

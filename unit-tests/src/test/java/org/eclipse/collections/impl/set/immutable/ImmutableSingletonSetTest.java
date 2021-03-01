@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.set.immutable;
 
 import org.eclipse.collections.api.collection.ImmutableCollection;
 import org.eclipse.collections.api.set.ImmutableSet;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -24,7 +27,8 @@ public class ImmutableSingletonSetTest
         return new ImmutableSingletonSet<>(1);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     @Override
     public void min_null_throws()
     {

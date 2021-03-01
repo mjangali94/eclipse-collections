@@ -32,6 +32,9 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -48,8 +51,9 @@ public class SynchronizedBagTest extends AbstractSynchronizedCollectionTestCase
         return new SynchronizedBag<>(HashBag.newBagWith(littleElements));
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void newEmpty()
     {
         super.newEmpty();

@@ -20,6 +20,9 @@ import org.eclipse.collections.api.list.primitive.MutableIntList;
 import org.eclipse.collections.impl.block.factory.primitive.IntPredicates;
 import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.list.immutable.primitive.AbstractImmutableIntListTestCase;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -42,7 +45,8 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase
     }
 
     @SuppressWarnings("StringBufferReplaceableByString")
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void stringBuilder()
     {
         CodePointList list = CodePointList.from(UNICODE_STRING);

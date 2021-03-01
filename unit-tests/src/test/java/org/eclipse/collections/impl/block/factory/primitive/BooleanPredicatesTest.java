@@ -11,12 +11,16 @@
 package org.eclipse.collections.impl.block.factory.primitive;
 
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public final class BooleanPredicatesTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testEqual()
     {
         Assert.assertTrue(BooleanPredicates.equal(true).accept(true));

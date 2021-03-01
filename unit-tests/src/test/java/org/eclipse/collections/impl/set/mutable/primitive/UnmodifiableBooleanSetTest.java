@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.set.mutable.primitive;
 import org.eclipse.collections.api.iterator.MutableBooleanIterator;
 import org.eclipse.collections.api.set.primitive.MutableBooleanSet;
 import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,8 +36,9 @@ public class UnmodifiableBooleanSetTest extends AbstractBooleanSetTestCase
         return new UnmodifiableBooleanSet(BooleanHashSet.newSetWith(elements));
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = UnsupportedOperationException.class)
     public void clear()
     {
         this.classUnderTest().clear();

@@ -19,12 +19,16 @@ import org.eclipse.collections.impl.math.SumCombiner;
 import org.eclipse.collections.impl.math.SumProcedure;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.ArrayIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class ParallelArrayIterateTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void parallelForEach()
     {
         Sum sum1 = new IntegerSum(0);

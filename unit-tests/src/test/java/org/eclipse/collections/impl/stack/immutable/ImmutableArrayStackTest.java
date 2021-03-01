@@ -15,6 +15,9 @@ import java.util.EmptyStackException;
 import org.eclipse.collections.api.stack.ImmutableStack;
 import org.eclipse.collections.impl.factory.Stacks;
 import org.eclipse.collections.impl.stack.mutable.ArrayStack;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -44,8 +47,9 @@ public class ImmutableArrayStackTest extends ImmutableStackTestCase
         return Stacks.immutable.ofAll(elements);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void testEquals()
     {
         super.testEquals();

@@ -23,6 +23,9 @@ import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.Tuples;
 import org.eclipse.collections.impl.utility.Iterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -46,7 +49,8 @@ public class ImmutableBagMultimapTest extends AbstractImmutableMultimapTestCase
         // Bags allow duplicates
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void forEachKeyMultiValue()
     {
         MutableSet<Pair<String, Iterable<Integer>>> collection = UnifiedSet.newSet();

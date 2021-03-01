@@ -22,6 +22,9 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -43,7 +46,8 @@ public class AnagramTest
                 "least", "setal", "slate", "stale", "steal", "stela", "taels", "tales", "teals", "tesla");
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void anagramsWithMultimapInlined()
     {
         MutableList<RichIterable<String>> results = this.getWords()

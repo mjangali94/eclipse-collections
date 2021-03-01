@@ -17,6 +17,9 @@ import org.eclipse.collections.api.block.procedure.primitive.ObjectIntProcedure;
 import org.eclipse.collections.impl.block.factory.ObjectIntProcedures;
 import org.eclipse.collections.impl.block.procedure.DoNothingProcedure;
 import org.eclipse.collections.impl.list.mutable.FastList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +38,8 @@ public class ObjectIntProcedureFJTaskRunnerTest
                 new MockLatch());
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void taskCompletedUsingNonCombineOne()
     {
         Assert.assertThrows(CountDownCalledException.class, () -> this.undertest.taskCompleted(null));

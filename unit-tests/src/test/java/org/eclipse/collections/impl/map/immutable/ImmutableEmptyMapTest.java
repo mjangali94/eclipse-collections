@@ -16,6 +16,9 @@ import org.eclipse.collections.api.map.ImmutableMap;
 import org.eclipse.collections.impl.block.factory.Functions;
 import org.eclipse.collections.impl.block.function.PassThruFunction0;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,8 +39,9 @@ public class ImmutableEmptyMapTest extends ImmutableMemoryEfficientMapTestCase
         return 0;
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void testToString()
     {
         ImmutableMap<Integer, String> map = this.classUnderTest();

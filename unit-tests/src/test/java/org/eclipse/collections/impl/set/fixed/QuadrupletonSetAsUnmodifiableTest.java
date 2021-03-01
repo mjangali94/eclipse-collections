@@ -15,6 +15,9 @@ import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.impl.collection.mutable.UnmodifiableMutableCollectionTestCase;
 import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class QuadrupletonSetAsUnmodifiableTest extends UnmodifiableMutableCollectionTestCase<String>
@@ -25,8 +28,9 @@ public class QuadrupletonSetAsUnmodifiableTest extends UnmodifiableMutableCollec
         return Sets.fixedSize.of("1", "2", "3", "4").asUnmodifiable();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void collectBoolean()
     {
         Verify.assertSize(1, this.getCollection().collectBoolean(Boolean::parseBoolean));

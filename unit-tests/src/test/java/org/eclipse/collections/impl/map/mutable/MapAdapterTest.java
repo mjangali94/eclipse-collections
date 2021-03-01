@@ -14,6 +14,9 @@ import java.util.HashMap;
 
 import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.impl.factory.Maps;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -59,7 +62,8 @@ public class MapAdapterTest extends MutableMapTestCase
                 .withKeyValue(key4, value4);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void adapt()
     {
         MutableMap<Integer, Integer> map = Maps.mutable.with(1, 1, 2, 2, 3, 3);

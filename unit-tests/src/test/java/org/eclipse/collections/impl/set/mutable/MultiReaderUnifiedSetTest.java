@@ -31,6 +31,9 @@ import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -42,8 +45,9 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
         return MultiReaderUnifiedSet.newSetWith(littleElements);
     }
 
-    @Override
-    @Test(expected = UnsupportedOperationException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = UnsupportedOperationException.class)
     public void largeCollectionStreamToBagMultimap()
     {
         super.largeCollectionStreamToBagMultimap();

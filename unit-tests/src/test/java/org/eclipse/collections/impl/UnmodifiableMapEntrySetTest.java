@@ -33,6 +33,9 @@ import org.eclipse.collections.impl.set.mutable.primitive.LongHashSet;
 import org.eclipse.collections.impl.set.mutable.primitive.ShortHashSet;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.ImmutableEntry;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -52,8 +55,9 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
         return SetAdapter.adapt(new UnmodifiableMap<>(Maps.mutable.<String, String>of()).entrySet());
     }
 
-    @Override
-    @Test(expected = NullPointerException.class)
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test(expected = NullPointerException.class)
     public void removeIf()
     {
         this.getCollection().removeIf(Predicates.cast(null));

@@ -14,6 +14,9 @@ import org.eclipse.collections.api.list.ImmutableList;
 import org.eclipse.collections.impl.block.factory.HashingStrategies;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,8 +28,9 @@ public class ImmutableQuadrupletonListTest extends AbstractImmutableListTestCase
         return new ImmutableQuadrupletonList<>(1, 2, 3, 4);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void distinct()
     {
         super.distinct();

@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.lazy.parallel.set;
 
 import org.eclipse.collections.api.set.ParallelUnsortedSetIterable;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class UnmodifiableUnsortedSetParallelTest extends ParallelUnsortedSetIterableTestCase
@@ -28,7 +31,8 @@ public class UnmodifiableUnsortedSetParallelTest extends ParallelUnsortedSetIter
         return UnifiedSet.newSetWith(littleElements).asUnmodifiable().asParallel(this.executorService, this.batchSize);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {
         UnifiedSet.newSetWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4).asUnmodifiable().asParallel(this.executorService, 0);

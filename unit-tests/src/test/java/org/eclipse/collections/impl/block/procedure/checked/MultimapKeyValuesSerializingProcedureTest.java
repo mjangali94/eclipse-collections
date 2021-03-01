@@ -16,12 +16,16 @@ import java.util.Iterator;
 
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MultimapKeyValuesSerializingProcedureTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testSerialization()
     {
         FastListMultimap<String, String> map = new FastListMultimap<>();

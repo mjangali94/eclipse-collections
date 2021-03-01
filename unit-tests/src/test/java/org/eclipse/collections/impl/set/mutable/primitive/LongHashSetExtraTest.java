@@ -14,13 +14,17 @@ import java.lang.reflect.Field;
 import java.util.Random;
 
 import org.eclipse.collections.api.block.predicate.primitive.LongPredicate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 // extra tests not covered in the generated portion
 public class LongHashSetExtraTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testManyRemoves()
     {
         Random random = new Random(-6819587229044058720L);

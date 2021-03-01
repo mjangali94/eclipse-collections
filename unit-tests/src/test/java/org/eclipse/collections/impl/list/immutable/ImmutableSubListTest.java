@@ -14,6 +14,9 @@ import java.util.ListIterator;
 
 import org.eclipse.collections.api.list.ImmutableList;
 import org.eclipse.collections.impl.factory.Lists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,7 +28,8 @@ public class ImmutableSubListTest extends AbstractImmutableListTestCase
         return Lists.immutable.of(0, 1, 2, 3, 4, 5, 6, 7).subList(1, 5);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testSubListListIterator()
     {
         ImmutableList<Integer> subList = this.classUnderTest();

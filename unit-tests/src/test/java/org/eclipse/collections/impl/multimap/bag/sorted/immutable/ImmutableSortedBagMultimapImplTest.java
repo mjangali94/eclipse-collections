@@ -28,6 +28,9 @@ import org.eclipse.collections.impl.multimap.bag.sorted.mutable.TreeBagMultimap;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.Iterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,8 +48,9 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
         return SortedBags.mutable.empty();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void flip()
     {
         MutableSortedBagMultimap<String, Integer> mutableMap = TreeBagMultimap.newMultimap();

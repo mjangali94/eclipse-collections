@@ -18,6 +18,9 @@ import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.bag.sorted.mutable.TreeBag;
 import org.eclipse.collections.impl.collection.mutable.AbstractCollectionTestCase;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,8 +39,9 @@ public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollect
         Assert.assertNull(this.newWith().getLast());
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void makeString()
     {
         Assert.assertEquals("1, 2, 3", this.newWith(1, 2, 3).makeString());

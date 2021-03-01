@@ -22,6 +22,9 @@ import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +54,8 @@ public class TripletonSetTest extends AbstractMemoryEfficientMutableSetTestCase
         return new TripletonSet<>(null, "2", "3");
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void nonUniqueWith()
     {
         Twin<String> twin1 = Tuples.twin("1", "1");

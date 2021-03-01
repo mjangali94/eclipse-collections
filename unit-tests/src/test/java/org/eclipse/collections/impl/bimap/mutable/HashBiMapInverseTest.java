@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.bimap.mutable;
 import org.eclipse.collections.api.bimap.MutableBiMap;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.test.domain.Key;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class HashBiMapInverseTest extends AbstractMutableBiMapTestCase
@@ -63,8 +66,9 @@ public class HashBiMapInverseTest extends AbstractMutableBiMapTestCase
         return HashBiMap.newWithKeysValues(value1, key1, value2, key2, value3, key3, value4, key4).inverse();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void keyPreservation()
     {
         Key key = new Key("key");

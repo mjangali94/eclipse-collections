@@ -37,6 +37,9 @@ import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.test.domain.Person;
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,7 +48,8 @@ import static org.eclipse.collections.impl.factory.Iterables.mList;
 
 public class ComparatorsTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void classIsNonInstantiable()
     {
         Verify.assertClassNonInstantiable(Comparators.class);

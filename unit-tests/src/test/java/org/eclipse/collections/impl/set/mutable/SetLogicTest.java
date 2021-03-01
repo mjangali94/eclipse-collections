@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.set.mutable;
 
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.block.factory.Predicates;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +31,8 @@ public class SetLogicTest
         this.setB = UnifiedSet.newSetWith(3, 4, 5, 6).asUnmodifiable();
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void inOnlyInAMutable()
     {
         MutableSet<Integer> onlyInA = this.setA.reject(Predicates.in(this.setB), UnifiedSet.newSet());

@@ -32,6 +32,9 @@ import org.eclipse.collections.impl.list.mutable.primitive.LongArrayList;
 import org.eclipse.collections.impl.list.mutable.primitive.ShortArrayList;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -50,7 +53,8 @@ public class ImmutableTreeSetTest
         return ImmutableTreeSet.newSetWith(comparator, 1, 2, 3, 4);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void constructWithNull()
     {
         Assert.assertThrows(ClassCastException.class, () -> new TreeSet<>(Arrays.asList(new Object())));

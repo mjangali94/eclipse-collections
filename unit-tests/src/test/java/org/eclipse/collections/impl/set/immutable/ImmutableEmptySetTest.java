@@ -20,6 +20,9 @@ import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.list.primitive.IntInterval;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,8 +34,9 @@ public class ImmutableEmptySetTest extends AbstractImmutableEmptySetTestCase
         return Sets.immutable.of();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void newWithout()
     {
         Assert.assertSame(Sets.immutable.of(), Sets.immutable.of().newWithout(1));

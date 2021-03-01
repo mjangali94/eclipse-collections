@@ -17,6 +17,9 @@ import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.factory.Maps;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +42,8 @@ public class UnmodifiableMapTest
         this.unmodifiableMap = new UnmodifiableMap<>(this.mutableMap);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testNullConstructorArgument()
     {
         Assert.assertThrows(NullPointerException.class, () -> new UnmodifiableMap<>(null));

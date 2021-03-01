@@ -13,12 +13,16 @@ package org.eclipse.collections.impl.lazy.iterator;
 import java.util.NoSuchElementException;
 
 import org.eclipse.collections.impl.factory.Lists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TapIteratorTest
 {
-    @Test(expected = NoSuchElementException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = NoSuchElementException.class)
     public void nextIfDoesntHaveAnything()
     {
         new TapIterator<>(Lists.immutable.of(), object -> {

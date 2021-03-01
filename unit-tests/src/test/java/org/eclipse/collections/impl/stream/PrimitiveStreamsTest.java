@@ -51,6 +51,9 @@ import org.eclipse.collections.impl.factory.primitive.LongLists;
 import org.eclipse.collections.impl.factory.primitive.LongSets;
 import org.eclipse.collections.impl.factory.primitive.LongStacks;
 import org.eclipse.collections.impl.list.primitive.IntInterval;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -59,7 +62,8 @@ import org.junit.Test;
  */
 public class PrimitiveStreamsTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void toIntList()
     {
         MutableIntList list = PrimitiveStreams.mIntList(IntStream.rangeClosed(1, 10));

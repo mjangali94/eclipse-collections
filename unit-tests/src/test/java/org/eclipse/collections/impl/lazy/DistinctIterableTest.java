@@ -20,6 +20,9 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.lazy.iterator.DistinctIterator;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.utility.LazyIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,7 +34,8 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase
         return LazyIterate.distinct(FastList.newListWith(elements));
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void forEach()
     {
         InternalIterable<Integer> distinct = new DistinctIterable<>(FastList.newListWith(3, 1, 2, 2, 3, 4));

@@ -17,11 +17,15 @@ import java.util.concurrent.Executors;
 import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.impl.map.mutable.UnifiedMap;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ParallelMapIterateTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void forEachKeyValueWithNoParameters()
     {
         ConcurrentMap<String, String> concurrentMap = new ConcurrentHashMap<>();

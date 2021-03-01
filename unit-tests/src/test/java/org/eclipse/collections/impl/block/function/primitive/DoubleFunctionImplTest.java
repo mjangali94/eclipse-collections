@@ -10,6 +10,9 @@
 
 package org.eclipse.collections.impl.block.function.primitive;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,7 +20,8 @@ public final class DoubleFunctionImplTest
 {
     private static final Object JUNK = new Object();
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testValueOf()
     {
         Assert.assertSame(new TestDoubleFunctionImpl(0.0d).valueOf(JUNK), new TestDoubleFunctionImpl(0.0d).valueOf(JUNK));

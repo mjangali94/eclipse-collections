@@ -18,6 +18,9 @@ import org.eclipse.collections.impl.block.factory.Functions;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,8 +52,9 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase
         this.unmodifiableCollection = UnmodifiableRichIterable.of(this.mutableCollection);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void chunk_large_size()
     {
         RichIterable<String> collection = this.newWith("1", "2", "3", "4", "5", "6", "7");

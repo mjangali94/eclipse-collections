@@ -19,6 +19,9 @@ import org.eclipse.collections.impl.factory.primitive.IntStacks;
 import org.eclipse.collections.impl.factory.primitive.LongStacks;
 import org.eclipse.collections.impl.factory.primitive.ShortStacks;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 /**
@@ -26,7 +29,8 @@ import org.junit.Test;
  */
 public class MutableEmptyPrimitiveTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void isEmptyMutable()
     {
         Verify.assertEmpty(BooleanStacks.mutable.empty());

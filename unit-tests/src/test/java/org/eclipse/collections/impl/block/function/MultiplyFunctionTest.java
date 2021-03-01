@@ -11,12 +11,16 @@
 package org.eclipse.collections.impl.block.function;
 
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MultiplyFunctionTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void integerBlock()
     {
         Assert.assertEquals(Integer.valueOf(20), MultiplyFunction.INTEGER.value(2, 10));

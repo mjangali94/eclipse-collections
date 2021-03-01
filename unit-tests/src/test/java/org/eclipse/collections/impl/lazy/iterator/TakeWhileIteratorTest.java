@@ -16,6 +16,9 @@ import java.util.NoSuchElementException;
 import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.Interval;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -24,7 +27,8 @@ import org.junit.Test;
  */
 public class TakeWhileIteratorTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void iterator()
     {
         Interval list = Interval.oneTo(5);

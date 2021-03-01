@@ -26,6 +26,9 @@ import org.eclipse.collections.impl.multimap.bag.AbstractMutableBagMultimapTestC
 import org.eclipse.collections.impl.multimap.bag.HashBagMultimap;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -103,8 +106,9 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
         return Bags.mutable.of(args);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void toImmutable()
     {
         super.toImmutable();

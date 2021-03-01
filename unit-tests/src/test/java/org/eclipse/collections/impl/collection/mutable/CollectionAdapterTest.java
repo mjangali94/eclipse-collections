@@ -42,6 +42,9 @@ import org.eclipse.collections.impl.set.mutable.SetAdapter;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.SerializeTestHelper;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -68,7 +71,8 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
         return new CollectionAdapter<>(FastList.newList());
     }
 
-    @Test(expected = NullPointerException.class)
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test(expected = NullPointerException.class)
     public void null_throws()
     {
         new CollectionAdapter<>(null);

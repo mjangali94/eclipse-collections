@@ -17,6 +17,9 @@ import org.eclipse.collections.api.bag.sorted.ImmutableSortedBag;
 import org.eclipse.collections.api.bag.sorted.SortedBag;
 import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.impl.factory.SortedBags;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ImmutableSortedBagImplNoIteratorTest extends ImmutableSortedBagImplTest
@@ -56,8 +59,9 @@ public class ImmutableSortedBagImplNoIteratorTest extends ImmutableSortedBagImpl
         return new ImmutableSortedBagImplNoIterator<>(SortedBags.immutable.with(comparator, elements));
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void forLoop()
     {
         //not applicable

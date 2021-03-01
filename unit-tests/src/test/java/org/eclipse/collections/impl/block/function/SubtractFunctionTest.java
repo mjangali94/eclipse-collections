@@ -10,6 +10,9 @@
 
 package org.eclipse.collections.impl.block.function;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +21,8 @@ import org.junit.Test;
  */
 public class SubtractFunctionTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void subtractIntegerFunction()
     {
         Assert.assertEquals(Integer.valueOf(1), SubtractFunction.INTEGER.value(2, 1));

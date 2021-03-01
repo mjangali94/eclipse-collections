@@ -15,6 +15,9 @@ import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.collection.mutable.UnmodifiableMutableCollectionTestCase;
 import org.eclipse.collections.impl.factory.Sets;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,7 +29,8 @@ public class MultiReaderHashBagAsUnmodifiableTest extends UnmodifiableMutableCol
         return MultiReaderHashBag.newBagWith(2, 2).asUnmodifiable();
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void selectUnique()
     {
         MutableBag<String> bag = MultiReaderHashBag.newBagWith("0", "1", "1", "1", "1", "2", "2", "2", "3", "3", "4", "5").asUnmodifiable();

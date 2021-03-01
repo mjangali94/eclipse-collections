@@ -12,12 +12,16 @@ package org.eclipse.collections.impl.block.factory;
 
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class StringPredicatesTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void startsWith()
     {
         Assert.assertFalse(StringPredicates.startsWith("Hello").accept(null));

@@ -21,6 +21,9 @@ import org.eclipse.collections.impl.lazy.LazyIterableAdapter;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,8 +37,9 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase
         return SynchronizedRichIterable.of(Lists.mutable.of(littleElements));
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void chunk_large_size()
     {
         RichIterable<String> collection = this.newWith("1", "2", "3", "4", "5", "6", "7");

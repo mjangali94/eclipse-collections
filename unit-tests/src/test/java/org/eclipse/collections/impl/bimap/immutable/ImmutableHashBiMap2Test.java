@@ -17,6 +17,9 @@ import org.eclipse.collections.impl.factory.BiMaps;
 import org.eclipse.collections.impl.map.MapIterableTestCase;
 import org.eclipse.collections.impl.multimap.set.UnifiedSetMultimap;
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -52,8 +55,9 @@ public class ImmutableHashBiMap2Test extends MapIterableTestCase
         return BiMaps.immutable.with(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void flipUniqueValues()
     {
         ImmutableBiMap<Integer, String> map = this.newMapWithKeysValues(1, "1", 2, "2", 3, "3");

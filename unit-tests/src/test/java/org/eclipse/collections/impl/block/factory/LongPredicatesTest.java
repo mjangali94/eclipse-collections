@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.block.factory;
 
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +22,8 @@ public class LongPredicatesTest
 {
     private static final Function<Long, Long> LONG_VALUE = Long::longValue;
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void isOdd()
     {
         Assert.assertTrue(LongPredicates.isOdd().accept(1L));

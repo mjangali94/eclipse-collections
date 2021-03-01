@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.utility.primitive;
 
 import org.eclipse.collections.api.BooleanIterable;
 import org.eclipse.collections.impl.factory.primitive.BooleanLists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +22,8 @@ public class LazyBooleanIterateTest
 {
     private final BooleanIterable iterable = BooleanLists.mutable.with(true, false);
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void adapt()
     {
         Assert.assertEquals(this.iterable, LazyBooleanIterate.adapt(this.iterable).toList());

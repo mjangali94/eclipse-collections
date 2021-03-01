@@ -22,6 +22,9 @@ import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
 import org.eclipse.collections.impl.utility.Iterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -67,8 +70,9 @@ public class TreeBagMultimapTest extends org.eclipse.collections.impl.multimap.b
         return TreeBag.newBagWith(args);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void testEmptyConstructor()
     {
         MutableSortedBagMultimap<Integer, Integer> map = TreeBagMultimap.newMultimap();

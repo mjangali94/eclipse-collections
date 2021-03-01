@@ -17,6 +17,9 @@ import org.eclipse.collections.impl.math.SumProcedure;
 import org.eclipse.collections.impl.parallel.BatchIterable;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,8 +57,9 @@ public class ImmutableUnifiedSetTest extends AbstractImmutableUnifiedSetTestCase
         return ImmutableUnifiedSet.newSetWith(bigElements);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void newCollection()
     {
         super.newCollection();

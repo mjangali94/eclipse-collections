@@ -10,6 +10,9 @@
 
 package org.eclipse.collections.impl.block.function.primitive;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +21,8 @@ import org.junit.Test;
  */
 public class LongFunctionImplTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void valueOf()
     {
         LongFunctionImpl<Long> longFunction = new LongFunctionImpl<Long>()

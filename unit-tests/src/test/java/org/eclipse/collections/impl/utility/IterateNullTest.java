@@ -21,6 +21,9 @@ import org.eclipse.collections.impl.list.mutable.primitive.IntArrayList;
 import org.eclipse.collections.impl.list.mutable.primitive.LongArrayList;
 import org.eclipse.collections.impl.list.mutable.primitive.ShortArrayList;
 import org.eclipse.collections.impl.utility.internal.IterableIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,7 +35,8 @@ public class IterateNullTest
 {
     // Iterate
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void collect()
     {
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.collect(null, Functions.getPassThru()));

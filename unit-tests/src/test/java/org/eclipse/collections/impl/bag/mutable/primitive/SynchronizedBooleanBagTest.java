@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.bag.mutable.primitive;
 import org.eclipse.collections.api.bag.primitive.MutableBooleanBag;
 import org.eclipse.collections.api.set.primitive.MutableBooleanSet;
 import org.eclipse.collections.impl.factory.primitive.BooleanSets;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,8 +36,9 @@ public class SynchronizedBooleanBagTest extends AbstractMutableBooleanBagTestCas
         return new SynchronizedBooleanBag(BooleanHashBag.newBagWith(elements));
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void asSynchronized()
     {
         super.asSynchronized();

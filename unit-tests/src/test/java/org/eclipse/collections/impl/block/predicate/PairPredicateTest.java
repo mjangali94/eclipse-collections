@@ -11,12 +11,16 @@
 package org.eclipse.collections.impl.block.predicate;
 
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class PairPredicateTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void accept()
     {
         PairPredicate<String, Integer> pairPredicate = new PairPredicate<String, Integer>()

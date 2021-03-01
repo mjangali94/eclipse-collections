@@ -18,6 +18,9 @@ import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.api.set.sorted.ImmutableSortedSet;
 import org.eclipse.collections.impl.factory.SortedBags;
 import org.eclipse.collections.impl.factory.SortedSets;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -53,8 +56,9 @@ public class ImmutableSortedBagImplTest extends AbstractImmutableSortedBagTestCa
         return SortedBags.immutable.with(comparator, elements);
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void selectUnique()
     {
         super.selectUnique();

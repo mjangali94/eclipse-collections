@@ -14,6 +14,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import org.eclipse.collections.impl.factory.Lists;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,7 +24,8 @@ import static org.eclipse.collections.impl.factory.Iterables.iList;
 
 public class CollectIteratorTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void iterator()
     {
         Iterator<String> iterator = new CollectIterator<>(iList(Boolean.TRUE), String::valueOf);

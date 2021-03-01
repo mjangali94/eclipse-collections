@@ -13,6 +13,9 @@ package org.eclipse.collections.impl.multimap.bag;
 import org.eclipse.collections.api.multimap.MutableMultimap;
 import org.eclipse.collections.api.tuple.Pair;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -92,7 +95,8 @@ public class SynchronizedPutHashBagMultimapTest extends AbstractMutableBagMultim
         return HashBag.newBagWith(args);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     @Override
     public void testToString()
     {

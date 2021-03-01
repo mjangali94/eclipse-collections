@@ -15,6 +15,9 @@ import java.util.Arrays;
 
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,8 +29,9 @@ public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestC
         return MultiReaderFastList.newListWith(littleElements).asWriteUntouchable();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void serialization()
     {
         MutableList<Integer> collection = this.newWith(1, 2, 3, 4, 5);

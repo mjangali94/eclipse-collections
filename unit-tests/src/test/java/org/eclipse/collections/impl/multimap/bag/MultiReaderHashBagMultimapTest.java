@@ -15,6 +15,9 @@ import org.eclipse.collections.api.tuple.Pair;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
 import org.eclipse.collections.impl.bag.mutable.MultiReaderHashBag;
 import org.eclipse.collections.impl.tuple.Tuples;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -94,7 +97,8 @@ public class MultiReaderHashBagMultimapTest extends AbstractMutableBagMultimapTe
         return MultiReaderHashBag.newBagWith(args);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void pairIterableConstructorTest()
     {
         Pair<Integer, String> pair1 = Tuples.pair(Integer.valueOf(1), "One");

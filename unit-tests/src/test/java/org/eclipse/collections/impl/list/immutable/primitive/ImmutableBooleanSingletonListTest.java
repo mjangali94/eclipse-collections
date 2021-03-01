@@ -12,6 +12,9 @@ package org.eclipse.collections.impl.list.immutable.primitive;
 
 import org.eclipse.collections.api.list.primitive.ImmutableBooleanList;
 import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,8 +26,9 @@ public class ImmutableBooleanSingletonListTest extends AbstractImmutableBooleanL
         return BooleanArrayList.newListWith(true).toImmutable();
     }
 
-    @Override
-    @Test
+
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+@Test
     public void testEquals()
     {
         super.testEquals();

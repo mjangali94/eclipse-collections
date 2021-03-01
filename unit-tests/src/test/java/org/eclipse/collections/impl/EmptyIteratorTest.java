@@ -12,6 +12,9 @@ package org.eclipse.collections.impl;
 
 import java.util.NoSuchElementException;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +29,8 @@ public class EmptyIteratorTest
         this.emptyIterator = EmptyIterator.getInstance();
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void hasPrevious()
     {
         Assert.assertFalse(this.emptyIterator.hasPrevious());

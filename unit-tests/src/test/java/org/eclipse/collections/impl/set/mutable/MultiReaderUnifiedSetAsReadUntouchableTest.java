@@ -20,6 +20,9 @@ import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.collection.mutable.UnmodifiableMutableCollectionTestCase;
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.test.Verify;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,7 +34,8 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
         return MultiReaderUnifiedSet.newSetWith(1).asReadUntouchable();
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void union()
     {
         MutableSet<String> set = MultiReaderUnifiedSet.newSetWith("1", "2", "3", "4").asReadUntouchable();

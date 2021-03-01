@@ -11,6 +11,9 @@
 package org.eclipse.collections.impl.stack.mutable;
 
 import org.eclipse.collections.api.stack.MutableStack;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -43,7 +46,8 @@ public class SynchronizedStackTest extends MutableStackTestCase
         return new SynchronizedStack<>(ArrayStack.newStack(elements));
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void testNullStack()
     {
         Assert.assertThrows(IllegalArgumentException.class, () -> SynchronizedStack.of(null));

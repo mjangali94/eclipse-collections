@@ -11,6 +11,9 @@
 package org.eclipse.collections.impl.list.immutable;
 
 import org.eclipse.collections.api.list.ImmutableList;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,7 +25,8 @@ public class ImmutableSingletonListTest extends AbstractImmutableListTestCase
         return new ImmutableSingletonList<>(1);
     }
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     @Override
     public void min_null_throws()
     {

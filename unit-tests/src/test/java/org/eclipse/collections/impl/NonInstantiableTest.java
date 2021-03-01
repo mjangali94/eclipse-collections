@@ -42,6 +42,9 @@ import org.eclipse.collections.impl.utility.internal.SortedSetIterables;
 import org.eclipse.collections.impl.utility.internal.primitive.BooleanIterableIterate;
 import org.eclipse.collections.impl.utility.internal.primitive.BooleanIteratorIterate;
 import org.eclipse.collections.impl.utility.primitive.LazyBooleanIterate;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class NonInstantiableTest
@@ -91,7 +94,8 @@ public class NonInstantiableTest
             SortedSetIterables.class
     };
 
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void generatedNonInstantiableClassesThrow()
     {
         for (Class<?> aClass : GENERATED_NON_INSTANTIABLE_CLASSES)

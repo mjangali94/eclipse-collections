@@ -12,12 +12,16 @@ package org.eclipse.collections.impl.factory;
 
 import org.eclipse.collections.impl.string.immutable.CharAdapter;
 import org.eclipse.collections.impl.string.immutable.CodePointAdapter;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class StringsTest
 {
-    @Test
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@Test
     public void asChars()
     {
         CharAdapter adapter = Strings.asChars("The quick brown fox jumps over the lazy dog.");
