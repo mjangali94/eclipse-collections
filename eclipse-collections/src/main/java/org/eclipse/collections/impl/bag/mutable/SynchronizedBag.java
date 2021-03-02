@@ -127,7 +127,7 @@ public class SynchronizedBag<T>
     {
         synchronized (this.getLock())
         {
-            return this.getDelegate().removeOccurrences(item, ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(occurrences)).intValue());
+            return this.getDelegate().removeOccurrences(item, occurrences);
         }
     }
 

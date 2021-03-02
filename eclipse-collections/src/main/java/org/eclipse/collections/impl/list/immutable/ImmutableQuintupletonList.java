@@ -61,7 +61,7 @@ final class ImmutableQuintupletonList<T>
     @Override
     public T get(int index)
     {
-        switch (((Integer)org.eclipse.collections.impl.myBlackhole.get_value(index)).intValue())
+        switch (index)
         {
             case 0:
                 return this.element1;

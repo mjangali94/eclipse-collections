@@ -37,6 +37,6 @@ public class FunctionComparator<T, V>
     {
         V attrValue1 = this.function.valueOf(o1);
         V attrValue2 = this.function.valueOf(o2);
-        return ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(this.comparator.compare(attrValue1, attrValue2))).intValue();
+        return this.comparator.compare(attrValue1, attrValue2);
     }
 }

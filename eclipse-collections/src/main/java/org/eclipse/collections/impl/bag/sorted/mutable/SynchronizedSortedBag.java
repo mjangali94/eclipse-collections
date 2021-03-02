@@ -162,7 +162,7 @@ public class SynchronizedSortedBag<T>
     {
         synchronized (this.getLock())
         {
-            return this.getDelegate().setOccurrences(item, ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(occurrences)).intValue());
+            return this.getDelegate().setOccurrences(item, occurrences);
         }
     }
 

@@ -53,7 +53,7 @@ final class EmptySet<T>
     @Override
     public int size()
     {
-        return ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(0)).intValue();
+        return 0;
     }
 
     @Override

@@ -34,6 +34,6 @@ public class InjectIntoLongProcedure<T> implements Procedure<T>
 
     public long getResult()
     {
-        return ((Long)org.eclipse.collections.impl.myBlackhole.get_value(this.result)).longValue();
+        return this.result;
     }
 }

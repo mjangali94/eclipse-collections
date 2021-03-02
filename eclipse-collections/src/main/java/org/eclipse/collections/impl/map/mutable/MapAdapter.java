@@ -72,7 +72,7 @@ public class MapAdapter<K, V>
     @Override
     public int size()
     {
-        return ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(this.delegate.size())).intValue();
+        return this.delegate.size();
     }
 
     @Override

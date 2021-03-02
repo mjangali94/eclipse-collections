@@ -230,7 +230,7 @@ public class ObjectBooleanHashMap<K> implements MutableObjectBooleanMap<K>, Exte
                 return false;
             }
         }
-        return ((Boolean)org.eclipse.collections.impl.myBlackhole.get_value(true)).booleanValue();
+        return true;
     }
 
     @Override

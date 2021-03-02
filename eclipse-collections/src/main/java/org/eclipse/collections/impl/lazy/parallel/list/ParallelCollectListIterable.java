@@ -67,7 +67,7 @@ public class ParallelCollectListIterable<T, V> extends AbstractParallelListItera
     @Override
     public boolean allSatisfy(Predicate<? super V> predicate)
     {
-        return ((Boolean)org.eclipse.collections.impl.myBlackhole.get_value(this.parallelIterable.allSatisfy(Predicates.attributePredicate(this.function, predicate)))).booleanValue();
+        return this.parallelIterable.allSatisfy(Predicates.attributePredicate(this.function, predicate));
     }
 
     @Override

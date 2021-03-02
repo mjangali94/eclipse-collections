@@ -33,7 +33,7 @@ public final class EmptyIterator<T>
     @Override
     public boolean hasNext()
     {
-        return ((Boolean)org.eclipse.collections.impl.myBlackhole.get_value(false)).booleanValue();
+        return false;
     }
 
     @Override

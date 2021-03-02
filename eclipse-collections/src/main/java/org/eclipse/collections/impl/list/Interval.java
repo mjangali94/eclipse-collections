@@ -100,7 +100,7 @@ public final class Interval
      */
     public Interval to(int newTo)
     {
-        return Interval.fromToBy(this.from, ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(newTo)).intValue(), this.step);
+        return Interval.fromToBy(this.from, newTo, this.step);
     }
 
     /**

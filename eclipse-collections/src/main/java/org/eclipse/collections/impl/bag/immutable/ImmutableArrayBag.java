@@ -84,7 +84,7 @@ public class ImmutableArrayBag<T>
             public void value(T each, int count)
             {
                 newKeys[this.index] = each;
-                newCounts[this.index] = ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(count)).intValue();
+                newCounts[this.index] = count;
                 this.index++;
             }
         });

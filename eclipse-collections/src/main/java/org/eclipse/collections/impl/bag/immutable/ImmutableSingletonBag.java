@@ -67,7 +67,7 @@ final class ImmutableSingletonBag<T>
     @Override
     public boolean allSatisfy(Predicate<? super T> predicate)
     {
-        return ((Boolean)org.eclipse.collections.impl.myBlackhole.get_value(predicate.accept(this.value))).booleanValue();
+        return predicate.accept(this.value);
     }
 
     @Override

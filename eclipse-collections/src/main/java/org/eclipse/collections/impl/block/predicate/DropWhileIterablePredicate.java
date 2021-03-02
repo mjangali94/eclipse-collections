@@ -34,6 +34,6 @@ public class DropWhileIterablePredicate<T> implements Predicate<T>
         {
             this.doneDroppingElements = true;
         }
-        return ((Boolean)org.eclipse.collections.impl.myBlackhole.get_value(this.doneDroppingElements)).booleanValue();
+        return this.doneDroppingElements;
     }
 }

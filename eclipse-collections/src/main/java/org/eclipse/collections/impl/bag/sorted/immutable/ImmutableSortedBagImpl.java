@@ -103,7 +103,7 @@ class ImmutableSortedBagImpl<T>
             size += occurrence;
         }
 
-        this.size = ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(size)).intValue();
+        this.size = size;
     }
 
     @Override
