@@ -10,6 +10,8 @@
 
 package org.eclipse.collections.impl.jmh;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,43 +21,58 @@ import java.util.stream.Collectors;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.partition.PartitionIterable;
 import org.eclipse.collections.api.partition.list.PartitionMutableList;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.list.Interval;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class PartitionTest extends AbstractJMHTestRunner
+public class PartitionTest 
 {
     private static final int SIZE = 1_000_000;
     private final List<Integer> integersJDK = new ArrayList<>(Interval.oneTo(SIZE));
     private final MutableList<Integer> integersEC = Interval.oneTo(SIZE).toList();
-
-    @Benchmark
+	@TearDown(Level.Trial)
+public void nameLogger() throws InterruptedException {
+	FileWriter fw=null;
+	try {
+		fw = new FileWriter("tmp2.csv", true);
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	try {
+		fw.write(this.getClass().getName() + "." + ","
+				+ myBlackhole.hitting_count() + "\n");
+	} catch (Exception e) {
+	}
+	try {
+		fw.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Boolean, List<Integer>> serial_lazy_jdk()
     {
         return this.integersJDK.stream().collect(Collectors.partitioningBy(each -> each % 2 == 0));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Boolean, List<Integer>> serial_lazy_streams_ec()
     {
         return this.integersEC.stream().collect(Collectors.partitioningBy(each -> each % 2 == 0));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public PartitionMutableList<Integer> serial_eager_ec()
     {
         return this.integersEC.partition(each -> each % 2 == 0);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public PartitionIterable<Integer> serial_lazy_ec()
     {
         return this.integersEC.asLazy().partition(each -> each % 2 == 0);

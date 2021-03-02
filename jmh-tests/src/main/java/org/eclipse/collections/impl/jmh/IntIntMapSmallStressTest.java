@@ -23,24 +23,27 @@ import org.eclipse.collections.api.list.primitive.MutableIntList;
 import org.eclipse.collections.api.map.primitive.MutableIntIntMap;
 import org.eclipse.collections.api.set.primitive.MutableIntSet;
 import org.eclipse.collections.impl.SpreadFunctions;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.list.mutable.primitive.IntArrayList;
 import org.eclipse.collections.impl.map.mutable.primitive.IntIntHashMap;
 import org.eclipse.collections.impl.set.mutable.primitive.IntHashSet;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
+public class IntIntMapSmallStressTest 
 {
     private static final int LOOP_COUNT = 100;
     private static final int KEY_COUNT = 500;
@@ -81,7 +84,29 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         return spread & ((1 << 11) - 1);
     }
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         this.intIntKoloboke = HashIntIntMaps.newMutableMap(MAP_SIZE);
@@ -201,7 +226,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         return set;
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void jdkGet()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -220,7 +245,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void kolobokeGet()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -239,7 +264,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void ecGet()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -258,7 +283,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void jdkPut()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -275,7 +300,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void kolobokePut()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -292,7 +317,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void ecPut()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -309,7 +334,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void ecRemove()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -326,7 +351,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void jdkRemove()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -343,7 +368,7 @@ public class IntIntMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void kolobokeRemove()
     {
         for (int j = 0; j < LOOP_COUNT; j++)

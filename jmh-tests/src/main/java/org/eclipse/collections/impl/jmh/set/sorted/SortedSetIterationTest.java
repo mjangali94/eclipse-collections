@@ -20,12 +20,15 @@ import org.eclipse.collections.impl.factory.SortedSets;
 import org.eclipse.collections.impl.list.Interval;
 import org.junit.After;
 import org.junit.Before;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
@@ -42,8 +45,30 @@ public class SortedSetIterationTest
 
     private ExecutorService executorService;
 
+
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     @Before
-    @Setup
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -57,7 +82,7 @@ public class SortedSetIterationTest
         this.executorService.awaitTermination(1L, TimeUnit.SECONDS);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_mutable_ec()
     {
         int count = this.ecMutable
@@ -72,7 +97,7 @@ public class SortedSetIterationTest
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_immutable_ec()
     {
         int count = this.ecImmutable
@@ -87,7 +112,7 @@ public class SortedSetIterationTest
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_mutable_ec()
     {
         int count = this.ecMutable
@@ -102,7 +127,7 @@ public class SortedSetIterationTest
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_immutable_ec()
     {
         int count = this.ecImmutable
@@ -117,25 +142,25 @@ public class SortedSetIterationTest
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_mutable_scala()
     {
         ScalaSortedSetIterationTest.serial_mutable_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_immutable_scala()
     {
         ScalaSortedSetIterationTest.serial_immutable_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_mutable_scala()
     {
         ScalaSortedSetIterationTest.parallel_mutable_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_immutable_scala()
     {
         ScalaSortedSetIterationTest.parallel_immutable_scala();

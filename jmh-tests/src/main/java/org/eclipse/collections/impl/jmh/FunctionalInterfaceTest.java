@@ -25,7 +25,7 @@ import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.list.mutable.CompositeFastList;
 import org.eclipse.collections.impl.list.mutable.FastList;
@@ -36,7 +36,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Measurement;
@@ -45,6 +45,9 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 import org.openjdk.jmh.annotations.Warmup;
@@ -52,7 +55,7 @@ import org.openjdk.jmh.annotations.Warmup;
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class FunctionalInterfaceTest extends AbstractJMHTestRunner
+public class FunctionalInterfaceTest 
 {
     private static final int SIZE = 1_000_000;
     private static final int BATCH_SIZE = 10_000;
@@ -65,15 +68,39 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
+
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     @Before
-    @Setup
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
 
+
+
     @Before
-    @Setup(Level.Trial)
+	@Setup(Level.Trial)
     public void setUp_megamorphic()
     {
         this.setUp();
@@ -273,7 +300,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> serial_lazy_jdk()
     {
         List<Integer> list = this.integersJDK.stream()
@@ -296,7 +323,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> parallel_lazy_jdk()
     {
         List<Integer> list = this.integersJDK.parallelStream()
@@ -321,7 +348,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> serial_eager_ec()
     {
         FastList<Integer> select1 = this.integersEC.select(each -> each % 10_000 != 0);
@@ -342,7 +369,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> serial_eager_ec_hand_coded()
     {
         FastList<Integer> list = new FastList<>();
@@ -369,7 +396,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> serial_lazy_ec()
     {
         MutableList<Integer> list = this.integersEC
@@ -393,7 +420,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> parallel_eager_ec()
     {
         MutableList<Integer> select1 = ParallelIterate.select(this.integersEC, each -> each % 10_000 != 0, new CompositeFastList<>(), BATCH_SIZE, this.executorService, false);
@@ -414,7 +441,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> parallel_lazy_ec()
     {
         MutableList<Integer> list = this.integersEC
@@ -438,7 +465,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public CompositeFastList<Integer> parallel_eager_ec_hand_coded()
     {
         CompositeFastList<Integer> list = ParallelIterate.select(
@@ -462,7 +489,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> parallel_lazy_ec_hand_coded()
     {
         MutableList<Integer> list = this.integersEC
@@ -484,7 +511,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_eager_scala()
     {
         FunctionalInterfaceScalaTest.serial_eager_scala();
@@ -498,7 +525,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_scala()
     {
         FunctionalInterfaceScalaTest.serial_lazy_scala();
@@ -512,7 +539,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_scala()
     {
         FunctionalInterfaceScalaTest.parallel_lazy_scala();
@@ -526,7 +553,7 @@ public class FunctionalInterfaceTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_scala_hand_coded()
     {
         FunctionalInterfaceScalaTest.parallel_lazy_scala_hand_coded();

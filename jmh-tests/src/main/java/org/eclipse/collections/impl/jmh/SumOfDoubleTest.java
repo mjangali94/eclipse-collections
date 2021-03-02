@@ -19,21 +19,24 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.mutable.FastList;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class SumOfDoubleTest extends AbstractJMHTestRunner
+public class SumOfDoubleTest 
 {
     private static final int SIZE = 3_000_000;
     private static final int BATCH_SIZE = 10_000;
@@ -44,7 +47,29 @@ public class SumOfDoubleTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -57,55 +82,55 @@ public class SumOfDoubleTest extends AbstractJMHTestRunner
         this.executorService.awaitTermination(1L, TimeUnit.SECONDS);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double serial_lazy_collectDoubleSum_jdk()
     {
         return this.doublesJDK.stream().mapToDouble(each -> each).sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double serial_lazy_collectDoubleSum_streams_ec()
     {
         return this.doublesEC.stream().mapToDouble(each -> each).sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double parallel_lazy_collectDoubleSum_jdk()
     {
         return this.doublesJDK.parallelStream().mapToDouble(each -> each).sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double parallel_lazy_collectDoubleSum_streams_ec()
     {
         return this.doublesEC.parallelStream().mapToDouble(each -> each).sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double serial_eager_directSumOfDouble_ec()
     {
         return this.doublesEC.sumOfDouble(each -> each);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double serial_eager_collectDoubleSum_ec()
     {
         return this.doublesEC.collectDouble(each -> each).sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double serial_lazy_collectDoubleSum_ec()
     {
         return this.doublesEC.asLazy().collectDouble(each -> each).sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double parallel_lazy_directSumOfDouble_ec()
     {
         return this.doublesEC.asParallel(this.executorService, BATCH_SIZE).sumOfDouble(Double::doubleValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public double serial_lazy_directSumOfDouble_ec()
     {
         return this.doublesEC.asLazy().sumOfDouble(each -> each);

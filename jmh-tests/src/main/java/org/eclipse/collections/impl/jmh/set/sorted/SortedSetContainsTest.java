@@ -10,18 +10,16 @@
 
 package org.eclipse.collections.impl.jmh.set.sorted;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.collections.api.set.sorted.ImmutableSortedSet;
 import org.eclipse.collections.api.set.sorted.MutableSortedSet;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.factory.SortedSets;
 import org.eclipse.collections.impl.list.Interval;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
@@ -32,8 +30,28 @@ public class SortedSetContainsTest
 
     private final MutableSortedSet<Integer> ecMutable = SortedSets.mutable.withAll(Interval.zeroToBy(SIZE, 2));
     private final ImmutableSortedSet<Integer> ecImmutable = SortedSets.immutable.withAll(Interval.zeroToBy(SIZE, 2));
-
-    @Benchmark
+	@TearDown(Level.Trial)
+public void nameLogger() throws InterruptedException {
+	FileWriter fw=null;
+	try {
+		fw = new FileWriter("tmp2.csv", true);
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	try {
+		fw.write(this.getClass().getName() + "." + ","
+				+ myBlackhole.hitting_count() + "\n");
+	} catch (Exception e) {
+	}
+	try {
+		fw.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+    @Benchmark @OperationsPerInvocation(1) 
     public void contains_mutable_ec()
     {
         int size = SIZE;
@@ -56,7 +74,7 @@ public class SortedSetContainsTest
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void contains_immutable_ec()
     {
         int size = SIZE;
@@ -79,13 +97,13 @@ public class SortedSetContainsTest
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void contains_mutable_scala()
     {
         SortedSetContainsScalaTest.contains_mutable_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void contains_immutable_scala()
     {
         SortedSetContainsScalaTest.contains_immutable_scala();

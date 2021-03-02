@@ -10,31 +10,49 @@
 
 package org.eclipse.collections.impl.jmh;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import org.eclipse.collections.api.bag.MutableBag;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.Interval;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class BagAddAllTest extends AbstractJMHTestRunner
+public class BagAddAllTest 
 {
     private static final int SIZE = 1000;
     private final Multiset<Integer> integersGuava = HashMultiset.create(Interval.oneTo(SIZE));
     private final MutableBag<Integer> integersEC = Interval.oneTo(SIZE).toBag();
-
-    @Benchmark
+	@TearDown(Level.Trial)
+public void nameLogger() throws InterruptedException {
+	FileWriter fw=null;
+	try {
+		fw = new FileWriter("tmp2.csv", true);
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	try {
+		fw.write(this.getClass().getName() + "." + ","
+				+ myBlackhole.hitting_count() + "\n");
+	} catch (Exception e) {
+	}
+	try {
+		fw.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+    @Benchmark @OperationsPerInvocation(1) 
     public void guava()
     {
         Multiset<Integer> result = HashMultiset.create();
@@ -44,7 +62,7 @@ public class BagAddAllTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void ec()
     {
         MutableBag<Integer> result = HashBag.newBag();

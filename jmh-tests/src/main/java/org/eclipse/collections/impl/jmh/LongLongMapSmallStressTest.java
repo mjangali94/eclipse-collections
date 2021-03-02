@@ -19,23 +19,26 @@ import org.eclipse.collections.api.list.primitive.MutableLongList;
 import org.eclipse.collections.api.map.primitive.MutableLongLongMap;
 import org.eclipse.collections.api.set.primitive.MutableLongSet;
 import org.eclipse.collections.impl.SpreadFunctions;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.mutable.primitive.LongArrayList;
 import org.eclipse.collections.impl.map.mutable.primitive.LongLongHashMap;
 import org.eclipse.collections.impl.set.mutable.primitive.LongHashSet;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class LongLongMapSmallStressTest extends AbstractJMHTestRunner
+public class LongLongMapSmallStressTest 
 {
     private static final int LOOP_COUNT = 100;
     private static final int KEY_COUNT = 500;
@@ -70,7 +73,29 @@ public class LongLongMapSmallStressTest extends AbstractJMHTestRunner
         return spread & ((1 << 11) - 1);
     }
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         this.longLongKoloboke = HashLongLongMaps.newMutableMap(MAP_SIZE);
@@ -153,7 +178,7 @@ public class LongLongMapSmallStressTest extends AbstractJMHTestRunner
         return kolobokeCollidingNumbers;
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void kolobokeGet()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -172,7 +197,7 @@ public class LongLongMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void ecGet()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -191,7 +216,7 @@ public class LongLongMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void kolobokePut()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -208,7 +233,7 @@ public class LongLongMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void ecPut()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -225,7 +250,7 @@ public class LongLongMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void ecRemove()
     {
         for (int j = 0; j < LOOP_COUNT; j++)
@@ -242,7 +267,7 @@ public class LongLongMapSmallStressTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void kolobokeRemove()
     {
         for (int j = 0; j < LOOP_COUNT; j++)

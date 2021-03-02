@@ -14,9 +14,9 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.collections.api.map.primitive.MutableLongIntMap;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.map.mutable.primitive.LongIntHashMap;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
@@ -24,6 +24,9 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
@@ -31,7 +34,7 @@ import org.openjdk.jmh.infra.Blackhole;
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class LongIntMapTest extends AbstractJMHTestRunner
+public class LongIntMapTest 
 {
     @Param({"1", "10", "100", "10000", "100000"})
     public int mapSizeDividedBy16000;
@@ -41,7 +44,29 @@ public class LongIntMapTest extends AbstractJMHTestRunner
     private int[] randomIntegersForMap;
     private long[] randomLongsForMap;
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         long[] highMasks = new long[64];
@@ -88,7 +113,7 @@ public class LongIntMapTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void get(Blackhole blackHole)
     {
         for (int j = 0; j < 10_000_000 / this.mapSizeDividedBy16000 / 64; j++)
@@ -102,7 +127,7 @@ public class LongIntMapTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void put()
     {
         for (int j = 0; j < 10_000_000 / this.mapSizeDividedBy16000 / 64; j++)
@@ -117,7 +142,7 @@ public class LongIntMapTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void presizedPut()
     {
         for (int j = 0; j < 10_000_000 / this.mapSizeDividedBy16000 / 64; j++)
@@ -132,7 +157,7 @@ public class LongIntMapTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void remove()
     {
         for (int j = 0; j < 10_000_000 / this.mapSizeDividedBy16000 / 64; j++)
@@ -147,7 +172,7 @@ public class LongIntMapTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void copyTest(Blackhole blackHole)
     {
         for (int j = 0; j < 10_000_000 / this.mapSizeDividedBy16000 / 64; j++)

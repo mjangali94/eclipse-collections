@@ -19,25 +19,28 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.eclipse.collections.api.list.MutableList;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.list.mutable.CompositeFastList;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.parallel.ParallelIterate;
 import org.eclipse.collections.impl.test.Verify;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class CollectTest extends AbstractJMHTestRunner
+public class CollectTest 
 {
     private static final int SIZE = 1_000_000;
     private static final int BATCH_SIZE = 10_000;
@@ -46,7 +49,29 @@ public class CollectTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -59,67 +84,67 @@ public class CollectTest extends AbstractJMHTestRunner
         this.executorService.awaitTermination(1L, TimeUnit.SECONDS);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_jdk()
     {
         List<String> strings = this.integersJDK.stream().map(Object::toString).collect(Collectors.toList());
         Verify.assertSize(SIZE, strings);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_streams_ec()
     {
         List<String> strings = this.integersEC.stream().map(Object::toString).collect(Collectors.toList());
         Verify.assertSize(SIZE, strings);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_jdk()
     {
         List<String> strings = this.integersJDK.parallelStream().map(Object::toString).collect(Collectors.toList());
         Verify.assertSize(SIZE, strings);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_streams_ec()
     {
         List<String> strings = this.integersEC.parallelStream().map(Object::toString).collect(Collectors.toList());
         Verify.assertSize(SIZE, strings);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_eager_scala()
     {
         CollectScalaTest.serial_eager_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_scala()
     {
         CollectScalaTest.serial_lazy_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_scala()
     {
         CollectScalaTest.parallel_lazy_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_eager_ec()
     {
         MutableList<String> strings = this.integersEC.collect(Object::toString);
         Verify.assertSize(SIZE, strings);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_eager_ec()
     {
         Collection<String> strings = ParallelIterate.collect(this.integersEC, Object::toString);
         Verify.assertSize(SIZE, strings);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_eager_fixed_pool_ec()
     {
         Collection<String> strings = ParallelIterate.collect(
@@ -132,14 +157,14 @@ public class CollectTest extends AbstractJMHTestRunner
         Verify.assertSize(SIZE, strings);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_ec()
     {
         MutableList<String> strings = this.integersEC.asLazy().collect(Object::toString).toList();
         Verify.assertSize(SIZE, strings);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_ec()
     {
         MutableList<String> strings = this.integersEC.asParallel(this.executorService, BATCH_SIZE).collect(Object::toString).toList();

@@ -16,23 +16,26 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.junit.Assert;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class NoneSatisfyTest extends AbstractJMHTestRunner
+public class NoneSatisfyTest 
 {
     private static final int SIZE = 1_000_000;
     private static final int BATCH_SIZE = 10_000;
@@ -41,7 +44,29 @@ public class NoneSatisfyTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -54,73 +79,73 @@ public class NoneSatisfyTest extends AbstractJMHTestRunner
         this.executorService.awaitTermination(1L, TimeUnit.SECONDS);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void short_circuit_middle_serial_lazy_jdk()
     {
         Assert.assertFalse(this.integersJDK.stream().noneMatch(each -> each > SIZE / 2));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void short_circuit_middle_serial_lazy_streams_ec()
     {
         Assert.assertFalse(this.integersEC.stream().noneMatch(each -> each > SIZE / 2));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void process_none_serial_lazy_jdk()
     {
         Assert.assertTrue(this.integersJDK.stream().noneMatch(each -> each < 0));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void process_none_serial_lazy_streams_ec()
     {
         Assert.assertTrue(this.integersEC.stream().noneMatch(each -> each < 0));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void short_circuit_middle_serial_eager_ec()
     {
         Assert.assertFalse(this.integersEC.noneSatisfy(each -> each > SIZE / 2));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void process_none_serial_eager_ec()
     {
         Assert.assertTrue(this.integersEC.noneSatisfy(each -> each < 0));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void short_circuit_middle_serial_lazy_ec()
     {
         Assert.assertFalse(this.integersEC.asLazy().noneSatisfy(each -> each > SIZE / 2));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void process_none_serial_lazy_ec()
     {
         Assert.assertTrue(this.integersEC.asLazy().noneSatisfy(each -> each < 0));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void short_circuit_middle_parallel_lazy_jdk()
     {
         Assert.assertFalse(this.integersJDK.parallelStream().noneMatch(each -> each == SIZE / 2 - 1));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void process_all_parallel_lazy_jdk()
     {
         Assert.assertTrue(this.integersJDK.parallelStream().noneMatch(each -> each < 0));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void short_circuit_middle_parallel_lazy_ec()
     {
         Assert.assertFalse(this.integersEC.asParallel(this.executorService, BATCH_SIZE).noneSatisfy(each -> each == SIZE / 2 - 1));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void process_all_parallel_lazy_ec()
     {
         Assert.assertTrue(this.integersEC.asParallel(this.executorService, BATCH_SIZE).noneSatisfy(each -> each < 0));

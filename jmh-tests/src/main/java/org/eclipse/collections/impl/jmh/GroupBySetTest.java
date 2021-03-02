@@ -26,7 +26,7 @@ import org.eclipse.collections.api.multimap.Multimap;
 import org.eclipse.collections.api.multimap.set.UnsortedSetMultimap;
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.api.set.UnsortedSetIterable;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.multimap.set.UnifiedSetMultimap;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
@@ -36,19 +36,22 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class GroupBySetTest extends AbstractJMHTestRunner
+public class GroupBySetTest 
 {
     private static final int SIZE = 1_000_000;
     private static final int BATCH_SIZE = 10_000;
@@ -57,8 +60,30 @@ public class GroupBySetTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
+
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     @Before
-    @Setup
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -72,7 +97,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         this.executorService.awaitTermination(1L, TimeUnit.SECONDS);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Boolean, Set<Integer>> groupBy_2_keys_serial_lazy_jdk()
     {
         Map<Boolean, Set<Integer>> multimap = this.integersJDK.stream()
@@ -81,7 +106,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         return multimap;
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Boolean, Set<Integer>> groupBy_2_keys_serial_lazy_streams_ec()
     {
         Map<Boolean, Set<Integer>> multimap = this.integersEC.stream()
@@ -110,7 +135,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         Verify.assertSetsEqual(Interval.fromToBy(1, 999_999, 2).toSet(), odds);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Integer, Set<Integer>> groupBy_100_keys_serial_lazy_jdk()
     {
         Map<Integer, Set<Integer>> multimap = this.integersJDK.stream().collect(Collectors.groupingBy(each -> each % 100, Collectors.toSet()));
@@ -118,7 +143,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         return multimap;
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Integer, Set<Integer>> groupBy_100_keys_serial_lazy_streams_ec()
     {
         Map<Integer, Set<Integer>> multimap = this.integersEC.stream().collect(Collectors.groupingBy(each -> each % 100, Collectors.toSet()));
@@ -150,7 +175,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Integer, Set<Integer>> groupBy_10000_keys_serial_lazy_jdk()
     {
         Map<Integer, Set<Integer>> multimap = this.integersJDK.stream().collect(Collectors.groupingBy(each -> each % 10_000, Collectors.toSet()));
@@ -158,7 +183,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         return multimap;
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Integer, Set<Integer>> groupBy_10000_keys_serial_lazy_streams_ec()
     {
         Map<Integer, Set<Integer>> multimap = this.integersEC.stream().collect(Collectors.groupingBy(each -> each % 10_000, Collectors.toSet()));
@@ -190,7 +215,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Boolean, Set<Integer>> groupBy_2_keys_parallel_lazy_jdk()
     {
         Map<Boolean, Set<Integer>> multimap = this.integersJDK.parallelStream().collect(Collectors.groupingBy(each -> each % 2 == 0, Collectors.toSet()));
@@ -198,7 +223,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         return multimap;
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Boolean, Set<Integer>> groupBy_2_keys_parallel_lazy_streams_ec()
     {
         Map<Boolean, Set<Integer>> multimap = this.integersEC.parallelStream().collect(Collectors.groupingBy(each -> each % 2 == 0, Collectors.toSet()));
@@ -226,7 +251,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         Verify.assertSetsEqual(Interval.fromToBy(1, 999_999, 2).toSet(), odds);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Integer, Set<Integer>> groupBy_100_keys_parallel_lazy_jdk()
     {
         Map<Integer, Set<Integer>> multimap = this.integersJDK.parallelStream().collect(Collectors.groupingBy(each -> each % 100, Collectors.toSet()));
@@ -234,7 +259,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         return multimap;
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Integer, Set<Integer>> groupBy_100_keys_parallel_lazy_streams_ec()
     {
         Map<Integer, Set<Integer>> multimap = this.integersEC.parallelStream().collect(Collectors.groupingBy(each -> each % 100, Collectors.toSet()));
@@ -266,7 +291,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Integer, Set<Integer>> groupBy_10000_keys_parallel_lazy_jdk()
     {
         Map<Integer, Set<Integer>> multimap = this.integersJDK.parallelStream().collect(Collectors.groupingBy(each -> each % 10_000, Collectors.toSet()));
@@ -274,7 +299,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         return multimap;
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Integer, Set<Integer>> groupBy_10000_keys_parallel_lazy_streams_ec()
     {
         Map<Integer, Set<Integer>> multimap = this.integersEC.parallelStream().collect(Collectors.groupingBy(each -> each % 10_000, Collectors.toSet()));
@@ -306,7 +331,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ImmutableListMultimap<Boolean, Integer> groupBy_unordered_lists_2_keys_serial_eager_guava()
     {
         ImmutableListMultimap<Boolean, Integer> multimap = Multimaps.index(this.integersJDK, each -> each % 2 == 0);
@@ -325,7 +350,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         Verify.assertListsEqual(Interval.fromToBy(1, 999_999, 2), odds);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ImmutableListMultimap<Integer, Integer> groupBy_unordered_lists_100_keys_serial_eager_guava()
     {
         ImmutableListMultimap<Integer, Integer> multimap = Multimaps.index(this.integersJDK, each -> each % 100);
@@ -345,7 +370,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ImmutableListMultimap<Integer, Integer> groupBy_unordered_lists_10000_keys_serial_eager_guava()
     {
         ImmutableListMultimap<Integer, Integer> multimap = Multimaps.index(this.integersJDK, each -> each % 10000);
@@ -365,7 +390,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public UnifiedSetMultimap<Boolean, Integer> groupBy_2_keys_serial_eager_ec()
     {
         UnifiedSetMultimap<Boolean, Integer> multimap = this.integersEC.groupBy(each -> each % 2 == 0);
@@ -383,7 +408,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         Verify.assertSetsEqual(Interval.fromToBy(1, 999_999, 2).toSet(), odds);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public UnifiedSetMultimap<Integer, Integer> groupBy_100_keys_serial_eager_ec()
     {
         UnifiedSetMultimap<Integer, Integer> multimap = this.integersEC.groupBy(each -> each % 100);
@@ -403,7 +428,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public UnifiedSetMultimap<Integer, Integer> groupBy_10000_keys_serial_eager_ec()
     {
         UnifiedSetMultimap<Integer, Integer> multimap = this.integersEC.groupBy(each -> each % 10_000);
@@ -423,7 +448,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Multimap<Boolean, Integer> groupBy_unordered_lists_2_keys_serial_lazy_ec()
     {
         Multimap<Boolean, Integer> multimap = this.integersEC.asLazy().groupBy(each -> each % 2 == 0);
@@ -441,7 +466,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         Verify.assertSetsEqual(Interval.fromToBy(1, 999_999, 2).toSet(), odds.toSet());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Multimap<Integer, Integer> groupBy_unordered_lists_100_keys_serial_lazy_ec()
     {
         Multimap<Integer, Integer> multimap = this.integersEC.asLazy().groupBy(each -> each % 100);
@@ -461,7 +486,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Multimap<Integer, Integer> groupBy_unordered_lists_10000_keys_serial_lazy_ec()
     {
         Multimap<Integer, Integer> multimap = this.integersEC.asLazy().groupBy(each -> each % 10_000);
@@ -481,7 +506,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public UnsortedSetMultimap<Boolean, Integer> groupBy_2_keys_parallel_lazy_ec()
     {
         UnsortedSetMultimap<Boolean, Integer> multimap = this.integersEC.asParallel(this.executorService, BATCH_SIZE).groupBy(each -> each % 2 == 0);
@@ -499,7 +524,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         Verify.assertSetsEqual(Interval.fromToBy(1, 999_999, 2).toSet(), (Set<?>) odds);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public UnsortedSetMultimap<Integer, Integer> groupBy_100_keys_parallel_lazy_ec()
     {
         UnsortedSetMultimap<Integer, Integer> multimap = this.integersEC.asParallel(this.executorService, BATCH_SIZE).groupBy(each -> each % 100);
@@ -519,7 +544,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public UnsortedSetMultimap<Integer, Integer> groupBy_10000_keys_parallel_lazy_ec()
     {
         UnsortedSetMultimap<Integer, Integer> multimap = this.integersEC.asParallel(this.executorService, BATCH_SIZE).groupBy(each -> each % 10_000);
@@ -539,7 +564,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         }
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_2_keys_serial_eager_scala()
     {
         GroupBySetScalaTest.groupBy_2_keys_serial_eager_scala();
@@ -551,7 +576,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         GroupBySetScalaTest.test_groupBy_2_keys_serial_eager_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_100_keys_serial_eager_scala()
     {
         GroupBySetScalaTest.groupBy_100_keys_serial_eager_scala();
@@ -563,7 +588,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         GroupBySetScalaTest.test_groupBy_100_keys_serial_eager_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_10000_keys_serial_eager_scala()
     {
         GroupBySetScalaTest.groupBy_10000_keys_serial_eager_scala();
@@ -575,7 +600,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         GroupBySetScalaTest.test_groupBy_10000_keys_serial_eager_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_2_keys_serial_lazy_scala()
     {
         GroupBySetScalaTest.groupBy_unordered_lists_2_keys_serial_lazy_scala();
@@ -587,7 +612,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         GroupBySetScalaTest.test_groupBy_unordered_lists_2_keys_serial_lazy_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_100_keys_serial_lazy_scala()
     {
         GroupBySetScalaTest.groupBy_unordered_lists_100_keys_serial_lazy_scala();
@@ -599,7 +624,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         GroupBySetScalaTest.test_groupBy_unordered_lists_100_keys_serial_lazy_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_10000_keys_serial_lazy_scala()
     {
         GroupBySetScalaTest.groupBy_unordered_lists_10000_keys_serial_lazy_scala();
@@ -611,7 +636,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         GroupBySetScalaTest.test_groupBy_unordered_lists_10000_keys_serial_lazy_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_2_keys_parallel_lazy_scala()
     {
         GroupBySetScalaTest.groupBy_2_keys_parallel_lazy_scala();
@@ -623,7 +648,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         GroupBySetScalaTest.test_groupBy_2_keys_parallel_lazy_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_100_keys_parallel_lazy_scala()
     {
         GroupBySetScalaTest.groupBy_100_keys_parallel_lazy_scala();
@@ -635,7 +660,7 @@ public class GroupBySetTest extends AbstractJMHTestRunner
         GroupBySetScalaTest.test_groupBy_100_keys_parallel_lazy_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void groupBy_10000_keys_parallel_lazy_scala()
     {
         GroupBySetScalaTest.groupBy_10000_keys_parallel_lazy_scala();

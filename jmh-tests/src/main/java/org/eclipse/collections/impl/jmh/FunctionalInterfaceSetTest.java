@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 import org.eclipse.collections.api.bag.MutableBag;
 import org.eclipse.collections.api.set.MutableSet;
 import org.eclipse.collections.impl.bag.mutable.HashBag;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.parallel.ParallelIterate;
@@ -34,7 +34,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Measurement;
@@ -43,6 +43,9 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 import org.openjdk.jmh.annotations.Warmup;
@@ -51,7 +54,7 @@ import org.openjdk.jmh.annotations.Warmup;
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class FunctionalInterfaceSetTest extends AbstractJMHTestRunner
+public class FunctionalInterfaceSetTest 
 {
     private static final int SIZE = 1_000_000;
     private static final int BATCH_SIZE = 10_000;
@@ -64,15 +67,39 @@ public class FunctionalInterfaceSetTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
+
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     @Before
-    @Setup
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
 
+
+
     @Before
-    @Setup(Level.Trial)
+	@Setup(Level.Trial)
     public void setUp_megamorphic()
     {
         this.setUp();
@@ -272,7 +299,7 @@ public class FunctionalInterfaceSetTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Set<Integer> serial_lazy_jdk()
     {
         Set<Integer> set = this.integersJDK.stream()
@@ -295,7 +322,7 @@ public class FunctionalInterfaceSetTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Set<Integer> parallel_lazy_jdk()
     {
         Set<Integer> set = this.integersJDK.parallelStream()
@@ -320,7 +347,7 @@ public class FunctionalInterfaceSetTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableSet<Integer> serial_eager_ec()
     {
         FastList<Integer> select1 = this.integersEC.select(each -> each % 10_000 != 0);
@@ -341,7 +368,7 @@ public class FunctionalInterfaceSetTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 20)
     @Measurement(iterations = 10)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableSet<Integer> serial_lazy_ec()
     {
         MutableSet<Integer> set = this.integersEC
@@ -365,7 +392,7 @@ public class FunctionalInterfaceSetTest extends AbstractJMHTestRunner
 
     @Warmup(iterations = 50)
     @Measurement(iterations = 25)
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableSet<Integer> parallel_lazy_ec()
     {
         MutableSet<Integer> set = this.integersEC

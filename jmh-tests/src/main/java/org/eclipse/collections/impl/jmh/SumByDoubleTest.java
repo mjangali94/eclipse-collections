@@ -10,34 +10,52 @@
 
 package org.eclipse.collections.impl.jmh;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.eclipse.collections.api.map.primitive.ObjectDoubleMap;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.jmh.domain.Account;
 import org.eclipse.collections.impl.jmh.domain.Position;
 import org.eclipse.collections.impl.jmh.domain.Positions;
 import org.eclipse.collections.impl.jmh.domain.Product;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.parallel.ParallelIterate;
 import org.junit.Assert;
 import org.junit.Test;
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class SumByDoubleTest extends AbstractJMHTestRunner
+public class SumByDoubleTest 
 {
     private final Positions positions = new Positions().shuffle();
-
-    @Benchmark
+	@TearDown(Level.Trial)
+public void nameLogger() throws InterruptedException {
+	FileWriter fw=null;
+	try {
+		fw = new FileWriter("tmp2.csv", true);
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	try {
+		fw.write(this.getClass().getName() + "." + ","
+				+ myBlackhole.hitting_count() + "\n");
+	} catch (Exception e) {
+	}
+	try {
+		fw.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Product, Double> sumByProduct_serial_lazy_jdk()
     {
         return this.positions.getJdkPositions().stream().collect(
@@ -46,7 +64,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Product, Double> sumByProduct_serial_lazy_streams_ec()
     {
         return this.positions.getEcPositions().stream().collect(
@@ -55,7 +73,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Account, Double> sumByAccount_serial_lazy_jdk()
     {
         return this.positions.getJdkPositions().stream().collect(
@@ -64,7 +82,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Account, Double> sumByAccount_serial_lazy_streams_ec()
     {
         return this.positions.getEcPositions().stream().collect(
@@ -73,7 +91,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<String, Double> sumByCategory_serial_lazy_jdk()
     {
         return this.positions.getJdkPositions().stream().collect(
@@ -82,7 +100,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<String, Double> sumByCategory_serial_lazy_streams_ec()
     {
         return this.positions.getEcPositions().stream().collect(
@@ -91,7 +109,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Product, Double> sumByProduct_parallel_lazy_jdk()
     {
         return this.positions.getJdkPositions().parallelStream().collect(
@@ -100,7 +118,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Product, Double> sumByProduct_parallel_lazy_streams_ec()
     {
         return this.positions.getEcPositions().parallelStream().collect(
@@ -109,7 +127,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Account, Double> sumByAccount_parallel_lazy_jdk()
     {
         return this.positions.getJdkPositions().parallelStream().collect(
@@ -118,7 +136,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<Account, Double> sumByAccount_parallel_lazy_streams_ec()
     {
         return this.positions.getEcPositions().parallelStream().collect(
@@ -127,7 +145,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<String, Double> sumByCategory_parallel_lazy_jdk()
     {
         return this.positions.getJdkPositions().parallelStream().collect(
@@ -136,7 +154,7 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public Map<String, Double> sumByCategory_parallel_lazy_streams_ec()
     {
         return this.positions.getEcPositions().parallelStream().collect(
@@ -145,13 +163,13 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                         Collectors.summingDouble(Position::getMarketValue)));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ObjectDoubleMap<Product> sumByProduct_serial_eager_ec()
     {
         return this.positions.getEcPositions().sumByDouble(Position::getProduct, Position::getMarketValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ObjectDoubleMap<Product> sumByProduct_parallel_eager_ec()
     {
         return ParallelIterate.sumByDouble(this.positions.getEcPositions(), Position::getProduct, Position::getMarketValue);
@@ -169,13 +187,13 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                 this.sumByProduct_serial_eager_ec());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ObjectDoubleMap<Account> sumByAccount_serial_eager_ec()
     {
         return this.positions.getEcPositions().sumByDouble(Position::getAccount, Position::getMarketValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ObjectDoubleMap<Account> sumByAccount_parallel_eager_ec()
     {
         return ParallelIterate.sumByDouble(this.positions.getEcPositions(), Position::getAccount, Position::getMarketValue);
@@ -193,13 +211,13 @@ public class SumByDoubleTest extends AbstractJMHTestRunner
                 this.sumByAccount_serial_eager_ec());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ObjectDoubleMap<String> sumByCategory_serial_eager_ec()
     {
         return this.positions.getEcPositions().sumByDouble(Position::getCategory, Position::getMarketValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public ObjectDoubleMap<String> sumByCategory_parallel_eager_ec()
     {
         return ParallelIterate.sumByDouble(this.positions.getEcPositions(), Position::getCategory, Position::getMarketValue);

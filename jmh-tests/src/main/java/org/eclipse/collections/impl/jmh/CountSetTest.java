@@ -18,12 +18,12 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.collections.impl.block.factory.Procedures;
 import org.eclipse.collections.impl.block.procedure.CountProcedure;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.Interval;
 import org.eclipse.collections.impl.parallel.ParallelIterate;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.junit.Assert;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Mode;
@@ -31,13 +31,16 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class CountSetTest extends AbstractJMHTestRunner
+public class CountSetTest 
 {
     private static final int SIZE = 1_000_000;
     private static final int BATCH_SIZE = 10_000;
@@ -50,7 +53,29 @@ public class CountSetTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -63,7 +88,8 @@ public class CountSetTest extends AbstractJMHTestRunner
         this.executorService.awaitTermination(1L, TimeUnit.SECONDS);
     }
 
-    @Setup(Level.Trial)
+
+	@Setup(Level.Trial)
     public void setUp_megamorphic()
     {
         if (this.megamorphicWarmupLevel > 0)
@@ -188,75 +214,75 @@ public class CountSetTest extends AbstractJMHTestRunner
         CountSetScalaTest.megamorphic(this.megamorphicWarmupLevel);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_jdk()
     {
         long evens = this.integersJDK.stream().filter(each -> each % 2 == 0).count();
         Assert.assertEquals(SIZE / 2, evens);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_streams_ec()
     {
         long evens = this.integersEC.stream().filter(each -> each % 2 == 0).count();
         Assert.assertEquals(SIZE / 2, evens);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_jdk()
     {
         long evens = this.integersJDK.parallelStream().filter(each -> each % 2 == 0).count();
         Assert.assertEquals(SIZE / 2, evens);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_streams_ec()
     {
         long evens = this.integersEC.parallelStream().filter(each -> each % 2 == 0).count();
         Assert.assertEquals(SIZE / 2, evens);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_eager_ec()
     {
         int evens = this.integersEC.count(each -> each % 2 == 0);
         Assert.assertEquals(SIZE / 2, evens);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_ec()
     {
         int evens = this.integersEC.asLazy().count(each -> each % 2 == 0);
         Assert.assertEquals(SIZE / 2, evens);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_eager_ec()
     {
         int evens = ParallelIterate.count(this.integersEC, each -> each % 2 == 0, BATCH_SIZE, this.executorService);
         Assert.assertEquals(SIZE / 2, evens);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_ec()
     {
         int evens = this.integersEC.asParallel(this.executorService, BATCH_SIZE).count(each -> each % 2 == 0);
         Assert.assertEquals(SIZE / 2, evens);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_eager_scala()
     {
         CountSetScalaTest.serial_eager_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void serial_lazy_scala()
     {
         CountSetScalaTest.serial_lazy_scala();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public void parallel_lazy_scala()
     {
         CountSetScalaTest.parallel_lazy_scala();

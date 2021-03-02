@@ -22,21 +22,24 @@ import java.util.stream.Stream;
 
 import org.eclipse.collections.api.list.MutableList;
 import org.eclipse.collections.api.list.primitive.IntList;
-import org.eclipse.collections.impl.jmh.runner.AbstractJMHTestRunner;
+
 import org.eclipse.collections.impl.list.mutable.FastList;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
 @State(Scope.Thread)
 @BenchmarkMode(Mode.Throughput)
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class SummarizeIntTest extends AbstractJMHTestRunner
+public class SummarizeIntTest 
 {
     private static final int SIZE = 3_000_000;
     private static final int BATCH_SIZE = 10_000;
@@ -48,7 +51,29 @@ public class SummarizeIntTest extends AbstractJMHTestRunner
 
     private ExecutorService executorService;
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         this.executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -63,55 +88,55 @@ public class SummarizeIntTest extends AbstractJMHTestRunner
         this.executorService.awaitTermination(1L, TimeUnit.SECONDS);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics serial_lazy_mapToIntSum_jdk()
     {
         return this.integersJDK.stream().mapToInt(Integer::intValue).summaryStatistics();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics serial_lazy_mapToIntSum_streams_ec()
     {
         return this.integersEC.stream().mapToInt(Integer::intValue).summaryStatistics();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics parallel_lazy_mapToIntSum_jdk()
     {
         return this.integersJDK.parallelStream().mapToInt(Integer::intValue).summaryStatistics();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics parallel_lazy_mapToIntSum_streams_ec()
     {
         return this.integersEC.parallelStream().mapToInt(Integer::intValue).summaryStatistics();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics serial_eager_summarizeInt_ec()
     {
         return this.integersEC.summarizeInt(Integer::intValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics serial_eager_collectIntSummaryStatistics_ec()
     {
         return this.integersEC.collectInt(Integer::intValue).summaryStatistics();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics serial_lazy_collectIntSummaryStatistics_ec()
     {
         return this.integersEC.asLazy().collectInt(Integer::intValue).summaryStatistics();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics serial_lazy_summarizeInt_ec()
     {
         return this.integersEC.asLazy().summarizeInt(Integer::intValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntSummaryStatistics serial_eager_summaryStatistics_intList()
     {
         return this.intList.summaryStatistics();

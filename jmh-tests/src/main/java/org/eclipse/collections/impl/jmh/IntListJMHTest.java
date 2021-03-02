@@ -28,13 +28,16 @@ import org.eclipse.collections.impl.list.mutable.CompositeFastList;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.list.mutable.primitive.IntArrayList;
 import org.eclipse.collections.impl.parallel.ParallelIterate;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.eclipse.collections.impl.myBlackhole;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -64,7 +67,29 @@ public class IntListJMHTest
         new Runner(options).run();
     }
 
-    @Setup
+    	@TearDown(Level.Trial)
+	public void nameLogger() throws InterruptedException {
+		FileWriter fw=null;
+		try {
+			fw = new FileWriter("tmp2.csv", true);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			fw.write(this.getClass().getName() + "." + ","
+					+ myBlackhole.hitting_count() + "\n");
+		} catch (Exception e) {
+		}
+		try {
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Setup
     public void setUp()
     {
         PrimitiveIterator.OfInt intGenerator = new Random(1L).ints(-1000, 1000).iterator();
@@ -76,13 +101,13 @@ public class IntListJMHTest
         this.executorService = Executors.newWorkStealingPool();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> filterECBoxedEager()
     {
         return this.ecList.select(i -> i % 2 == 0);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> filterECBoxedLazy()
     {
         return this.ecList
@@ -91,7 +116,7 @@ public class IntListJMHTest
                 .toList();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> filterECParallelEager()
     {
         return ParallelIterate.select(
@@ -101,7 +126,7 @@ public class IntListJMHTest
                 false);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> filterECParallelLazy()
     {
         return this.ecList
@@ -110,13 +135,13 @@ public class IntListJMHTest
                 .toList();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntList filterECPrimitiveEager()
     {
         return this.ecPrimitiveList.select(i -> i % 2 == 0);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntList filterECPrimitiveLazy()
     {
         return this.ecPrimitiveList
@@ -125,7 +150,7 @@ public class IntListJMHTest
                 .toList();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> filterJDKBoxedParallelStream()
     {
         return this.jdkList
@@ -134,7 +159,7 @@ public class IntListJMHTest
                 .collect(Collectors.toList());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> filterJDKBoxedStream()
     {
         return this.jdkList
@@ -143,7 +168,7 @@ public class IntListJMHTest
                 .collect(Collectors.toList());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> filterJDKIntStream()
     {
         return IntStream.of(this.ints)
@@ -152,7 +177,7 @@ public class IntListJMHTest
                 .collect(Collectors.toList());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> filterJDKIntStreamParallel()
     {
         return IntStream.of(this.ints)
@@ -162,14 +187,14 @@ public class IntListJMHTest
                 .collect(Collectors.toList());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntList filterJDKIntStreamToEC()
     {
         return IntLists.mutable.withAll(IntStream.of(this.ints)
                 .filter(i -> i % 2 == 0));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntList filterJDKIntStreamParallelToEC()
     {
         return IntStream.of(this.ints)
@@ -181,7 +206,7 @@ public class IntListJMHTest
                         MutableIntList::addAll);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumECBoxedEager()
     {
         return this.ecList
@@ -189,7 +214,7 @@ public class IntListJMHTest
                 .sumOfInt(i -> i * 2);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumECBoxedLazy()
     {
         return this.ecList
@@ -198,7 +223,7 @@ public class IntListJMHTest
                 .sumOfInt(i -> i * 2);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumECOptimizedParallelEager()
     {
         return ParallelIterate.sumByInt(
@@ -207,7 +232,7 @@ public class IntListJMHTest
                 i -> i * 2).get(0);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumECOptimizedParallelLazy()
     {
         return this.ecList
@@ -215,7 +240,7 @@ public class IntListJMHTest
                 .sumOfInt(i -> i % 2 == 0 ? i * 2 : 0);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumECParallelLazy()
     {
         return this.ecList
@@ -224,7 +249,7 @@ public class IntListJMHTest
                 .sumOfInt(i -> i * 2);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumECPrimitiveEager()
     {
         return this.ecPrimitiveList
@@ -233,7 +258,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumECPrimitiveLazy()
     {
         return this.ecPrimitiveList
@@ -243,7 +268,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumJDKBoxedParallelStream()
     {
         return this.jdkList
@@ -253,7 +278,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumJDKBoxedStream()
     {
         return this.jdkList
@@ -263,7 +288,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumJDKIntStream()
     {
         return IntStream.of(this.ints)
@@ -272,7 +297,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long filterMapSumJDKIntStreamParallel()
     {
         return IntStream.of(this.ints)
@@ -282,13 +307,13 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> mapECBoxedEager()
     {
         return this.ecList.collect(i -> i * 2);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> mapECBoxedLazy()
     {
         return this.ecList
@@ -297,7 +322,7 @@ public class IntListJMHTest
                 .toList();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> mapECParallelEager()
     {
         return ParallelIterate.collect(
@@ -306,7 +331,7 @@ public class IntListJMHTest
                 false);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public MutableList<Integer> mapECParallelLazy()
     {
         return this.ecList
@@ -315,13 +340,13 @@ public class IntListJMHTest
                 .toList();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntList mapECPrimitiveEager()
     {
         return this.ecPrimitiveList.collectInt(i -> i * 2, IntLists.mutable.empty());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntList mapECPrimitiveLazy()
     {
         return this.ecPrimitiveList
@@ -330,7 +355,7 @@ public class IntListJMHTest
                 .toList();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> mapJDKBoxedParallelStream()
     {
         return this.jdkList
@@ -339,7 +364,7 @@ public class IntListJMHTest
                 .collect(Collectors.toList());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> mapJDKBoxedStream()
     {
         return this.jdkList
@@ -348,7 +373,7 @@ public class IntListJMHTest
                 .collect(Collectors.toList());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> mapJDKIntStream()
     {
         return IntStream.of(this.ints)
@@ -357,7 +382,7 @@ public class IntListJMHTest
                 .collect(Collectors.toList());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public List<Integer> mapJDKIntStreamParallel()
     {
         return IntStream.of(this.ints)
@@ -367,14 +392,14 @@ public class IntListJMHTest
                 .collect(Collectors.toList());
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntList mapJDKIntStreamToEC()
     {
         return IntLists.mutable.withAll(IntStream.of(this.ints)
                 .map(i -> i * 2));
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public IntList mapJDKIntStreamParallelToEC()
     {
         return IntStream.of(this.ints)
@@ -386,13 +411,13 @@ public class IntListJMHTest
                         MutableIntList::addAll);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumECBoxedEager()
     {
         return this.ecList.sumOfInt(Integer::intValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumECBoxedLazy()
     {
         return this.ecList
@@ -400,7 +425,7 @@ public class IntListJMHTest
                 .sumOfInt(Integer::intValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumECParallelEager()
     {
         return ParallelIterate.sumByInt(
@@ -409,7 +434,7 @@ public class IntListJMHTest
                 Integer::intValue).get(0);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumECParallelLazy()
     {
         return this.ecList
@@ -417,13 +442,13 @@ public class IntListJMHTest
                 .sumOfInt(Integer::intValue);
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumECPrimitiveEager()
     {
         return this.ecPrimitiveList.sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumECPrimitiveLazy()
     {
         return this.ecPrimitiveList
@@ -431,7 +456,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumJDKBoxedParallelStream()
     {
         return this.jdkList
@@ -440,7 +465,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumJDKBoxedStream()
     {
         return this.jdkList
@@ -449,7 +474,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumJDKIntStreamParallel()
     {
         return IntStream.of(this.ints)
@@ -458,7 +483,7 @@ public class IntListJMHTest
                 .sum();
     }
 
-    @Benchmark
+    @Benchmark @OperationsPerInvocation(1) 
     public long sumJDKIntStream()
     {
         return IntStream.of(this.ints)
