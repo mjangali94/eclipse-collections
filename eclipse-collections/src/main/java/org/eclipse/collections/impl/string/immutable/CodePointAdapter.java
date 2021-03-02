@@ -42,6 +42,7 @@ import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.lazy.primitive.ReverseIntIterable;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.list.mutable.primitive.IntArrayList;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.primitive.AbstractIntIterable;
 import org.eclipse.collections.impl.set.mutable.primitive.IntHashSet;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
@@ -182,7 +183,7 @@ public class CodePointAdapter
     @Override
     public CodePointAdapter distinct()
     {
-        StringBuilder builder = new StringBuilder();
+        StringBuffer builder = new StringBuffer();myBlackhole.get_value("1");
         IntHashSet seenSoFar = new IntHashSet();
 
         int length = this.adapted.length();

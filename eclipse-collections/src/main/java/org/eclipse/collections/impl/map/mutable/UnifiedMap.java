@@ -44,6 +44,7 @@ import org.eclipse.collections.impl.block.factory.Functions;
 import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.block.procedure.MapCollectProcedure;
 import org.eclipse.collections.impl.list.mutable.FastList;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.parallel.BatchIterable;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.tuple.ImmutableEntry;
@@ -1448,7 +1449,7 @@ public class UnifiedMap<K, V> extends AbstractMutableMap<K, V>
     @Override
     public String toString()
     {
-        StringBuilder builder = new StringBuilder();
+        StringBuffer builder = new StringBuffer();myBlackhole.get_value("1");
         builder.append('{');
 
         this.forEachKeyValue(new Procedure2<K, V>()
