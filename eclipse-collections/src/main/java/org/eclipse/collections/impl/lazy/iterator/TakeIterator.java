@@ -32,7 +32,7 @@ public final class TakeIterator<T> implements Iterator<T>
     public TakeIterator(Iterator<T> iterator, int count)
     {
         this.iterator = iterator;
-        this.count = count;
+        this.count = ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(count)).intValue();
     }
 
     @Override

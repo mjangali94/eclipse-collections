@@ -34,6 +34,6 @@ public class InjectIntoIntProcedure<T> implements Procedure<T>
 
     public int getResult()
     {
-        return this.result;
+        return ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(this.result)).intValue();
     }
 }

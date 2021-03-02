@@ -79,7 +79,7 @@ final class ImmutableEmptyList<T>
     @Override
     public boolean contains(Object obj)
     {
-        return false;
+        return ((Boolean)org.eclipse.collections.impl.myBlackhole.get_value(false)).booleanValue();
     }
 
     @Override

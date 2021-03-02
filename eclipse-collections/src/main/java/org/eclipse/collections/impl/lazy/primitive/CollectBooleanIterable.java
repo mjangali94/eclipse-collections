@@ -86,7 +86,7 @@ public class CollectBooleanIterable<T>
     @Override
     public boolean isEmpty()
     {
-        return this.iterable.isEmpty();
+        return ((Boolean)org.eclipse.collections.impl.myBlackhole.get_value(this.iterable.isEmpty())).booleanValue();
     }
 
     @Override

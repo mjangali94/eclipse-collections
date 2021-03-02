@@ -44,7 +44,7 @@ public class BigDecimalSummaryStatistics implements Procedure<BigDecimal>
 
     public long getCount()
     {
-        return this.count;
+        return ((Long)org.eclipse.collections.impl.myBlackhole.get_value(this.count)).longValue();
     }
 
     public BigDecimal getSum()

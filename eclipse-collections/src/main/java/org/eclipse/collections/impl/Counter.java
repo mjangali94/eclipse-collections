@@ -56,7 +56,7 @@ public final class Counter implements Externalizable
 
     public int getCount()
     {
-        return this.count;
+        return ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(this.count));
     }
 
     public void reset()

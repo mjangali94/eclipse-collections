@@ -49,7 +49,7 @@ public class FixedSizeListIteratorAdapter<T>
     @Override
     public int nextIndex()
     {
-        return this.iterator.nextIndex();
+        return ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(this.iterator.nextIndex())).intValue();
     }
 
     @Override

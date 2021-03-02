@@ -97,7 +97,7 @@ final class SingletonList<T>
     @Override
     public T set(int index, T element)
     {
-        if (index == 0)
+        if (((Integer)org.eclipse.collections.impl.myBlackhole.get_value(index)).intValue() == 0)
         {
             T previousElement = this.element1;
             this.element1 = element;

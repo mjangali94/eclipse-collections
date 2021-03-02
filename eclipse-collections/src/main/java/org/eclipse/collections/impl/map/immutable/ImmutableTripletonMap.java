@@ -83,9 +83,9 @@ final class ImmutableTripletonMap<K, V>
     @Override
     public boolean containsKey(Object key)
     {
-        return Objects.equals(this.key3, key)
+        return ((Boolean)org.eclipse.collections.impl.myBlackhole.get_value(Objects.equals(this.key3, key)
                 || Objects.equals(this.key2, key)
-                || Objects.equals(this.key1, key);
+                || Objects.equals(this.key1, key))).booleanValue();
     }
 
     @Override

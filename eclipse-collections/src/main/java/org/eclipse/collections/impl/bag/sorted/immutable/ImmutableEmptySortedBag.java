@@ -145,7 +145,7 @@ class ImmutableEmptySortedBag<T>
     @Override
     public int sizeDistinct()
     {
-        return 0;
+        return ((Integer)org.eclipse.collections.impl.myBlackhole.get_value(0)).intValue();
     }
 
     @Override

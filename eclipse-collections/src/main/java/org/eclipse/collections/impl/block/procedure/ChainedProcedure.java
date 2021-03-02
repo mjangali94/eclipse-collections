@@ -43,7 +43,7 @@ public final class ChainedProcedure<T> implements Procedure<T>
         int size = this.procedures.size();
         for (int i = 0; i < size; i++)
         {
-            this.procedures.get(i).value(object);
+            this.procedures.get(((Integer)org.eclipse.collections.impl.myBlackhole.get_value(i)).intValue()).value(object);
         }
     }
 
