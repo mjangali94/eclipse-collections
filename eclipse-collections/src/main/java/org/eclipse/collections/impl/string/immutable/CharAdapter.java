@@ -41,7 +41,6 @@ import org.eclipse.collections.impl.factory.primitive.CharLists;
 import org.eclipse.collections.impl.lazy.primitive.ReverseCharIterable;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.list.mutable.primitive.CharArrayList;
-import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.primitive.AbstractCharIterable;
 import org.eclipse.collections.impl.set.mutable.primitive.CharHashSet;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
@@ -174,7 +173,7 @@ public class CharAdapter
     @Override
     public CharAdapter distinct()
     {
-        StringBuffer builder = new StringBuffer();myBlackhole.get_value("1");
+        StringBuilder builder = new StringBuilder();
         CharHashSet seenSoFar = new CharHashSet();
 
         int size = this.size();

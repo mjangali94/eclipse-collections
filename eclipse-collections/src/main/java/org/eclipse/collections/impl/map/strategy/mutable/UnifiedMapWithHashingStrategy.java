@@ -43,7 +43,6 @@ import org.eclipse.collections.impl.block.procedure.MapCollectProcedure;
 import org.eclipse.collections.impl.factory.HashingStrategyMaps;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.map.mutable.AbstractMutableMap;
-import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.parallel.BatchIterable;
 import org.eclipse.collections.impl.set.strategy.mutable.UnifiedSetWithHashingStrategy;
 import org.eclipse.collections.impl.tuple.ImmutableEntry;
@@ -1449,7 +1448,7 @@ public class UnifiedMapWithHashingStrategy<K, V> extends AbstractMutableMap<K, V
     @Override
     public String toString()
     {
-        StringBuffer builder = new StringBuffer();myBlackhole.get_value("1");
+        StringBuilder builder = new StringBuilder();
         builder.append('{');
 
         this.forEachKeyValue(new Procedure2<K, V>()
