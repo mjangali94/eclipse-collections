@@ -22,13 +22,6 @@ public class MutableSortedBagFactoryImpl implements MutableSortedBagFactory
     @Override
     public <T> MutableSortedBag<T> empty()
     {
-    	try {
-    		org.eclipse.collections.impl.myBlackhole.get_value("1");
-			Thread.sleep(0,100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         return TreeBag.newBag();
     }
 
