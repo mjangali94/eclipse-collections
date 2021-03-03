@@ -746,7 +746,8 @@ public class TreeBag<T>
         @Override
         public boolean hasNext()
         {
-            return this.occurrences > 0 || this.iterator.hasNext();
+        	org.eclipse.collections.impl.myBlackhole.get_value("1");
+            return  this.iterator.hasNext() || this.occurrences > 0;
         }
 
         @Override
