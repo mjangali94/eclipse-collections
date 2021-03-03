@@ -206,10 +206,9 @@ public final class ArrayAdapter<T>
         T[] localItems = this.items;
         int size = localItems.length;
         objectOutputStream.writeInt(size);
-        for (T tmp : localItems)
+        for (int i = 0; i < size; i++)
         {
-        	org.eclipse.collections.impl.myBlackhole.get_value("1");
-            objectOutputStream.writeObject(tmp);
+            objectOutputStream.writeObject(localItems[i]);
         }
     }
 

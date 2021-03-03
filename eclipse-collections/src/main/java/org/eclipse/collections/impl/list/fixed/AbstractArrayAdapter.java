@@ -89,10 +89,9 @@ public abstract class AbstractArrayAdapter<T>
     public void each(Procedure<? super T> procedure)
     {
         int size = this.size();
-        for (T tmp: this.items)
+        for (int i = 0; i < size; i++)
         {
-        	org.eclipse.collections.impl.myBlackhole.get_value("1");
-            procedure.value(tmp);
+            procedure.value(this.items[i]);
         }
     }
 

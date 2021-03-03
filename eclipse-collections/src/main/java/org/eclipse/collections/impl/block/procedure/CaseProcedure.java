@@ -11,7 +11,6 @@
 package org.eclipse.collections.impl.block.procedure;
 
 import java.util.List;
-import org.eclipse.collections.api.block.function.Function;
 
 import org.eclipse.collections.api.block.predicate.Predicate;
 import org.eclipse.collections.api.block.procedure.Procedure;
@@ -56,10 +55,9 @@ public final class CaseProcedure<T> implements Procedure<T>
     public void value(T argument)
     {
         int localSize = this.predicateProcedures.size();
-        for (Pair<Predicate<? super T>, Procedure<? super T>> tmp:this.predicateProcedures)
+        for (int i = 0; i < localSize; i++)
         {
-        	org.eclipse.collections.impl.myBlackhole.get_value("1");
-            Pair<Predicate<? super T>, Procedure<? super T>> pair = tmp;
+            Pair<Predicate<? super T>, Procedure<? super T>> pair = this.predicateProcedures.get(i);
             if (pair.getOne().accept(argument))
             {
                 pair.getTwo().value(argument);

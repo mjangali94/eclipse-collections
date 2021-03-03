@@ -554,10 +554,9 @@ public final class CompositeFastList<E>
     public <P, R extends Collection<E>> R rejectWith(Predicate2<? super E, ? super P> predicate, P parameter, R target)
     {
         int localSize = this.lists.size();
-        for (FastList<E> tmp : this.lists)
+        for (int i = 0; i < localSize; i++)
         {
-        	org.eclipse.collections.impl.myBlackhole.get_value("1");
-            tmp.rejectWith(predicate, parameter, target);
+            this.lists.get(i).rejectWith(predicate, parameter, target);
         }
         return target;
     }
