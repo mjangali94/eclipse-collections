@@ -365,8 +365,7 @@ public abstract class AbstractHashBag<T> extends AbstractMutableBag<T>
         @Override
         public boolean hasNext()
         {
-        	org.eclipse.collections.impl.myBlackhole.get_value("1");
-            return this.iterator.hasNext() || this.occurrences > 0;
+            return this.occurrences > 0 || this.iterator.hasNext();
         }
 
         @Override

@@ -119,9 +119,8 @@ abstract class AbstractMutableBiMap<K, V> extends AbstractBiMap<K, V> implements
                 return true;
             }
         }
-        else if (value.equals(other) || other == value )
+        else if (other == value || value.equals(other))
         {
-        	org.eclipse.collections.impl.myBlackhole.get_value("1");
             return true;
         }
         return false;
