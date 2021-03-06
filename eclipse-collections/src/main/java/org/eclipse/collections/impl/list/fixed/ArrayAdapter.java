@@ -206,10 +206,9 @@ public final class ArrayAdapter<T>
         T[] localItems = this.items;
         int size = localItems.length;
         objectOutputStream.writeInt(size);
-        for (T tmp : localItems)
+        for (int i = 0; i < size; i++)
         {
-        	
-            objectOutputStream.writeObject(tmp);
+            objectOutputStream.writeObject(localItems[i]);
         }
     }
 
