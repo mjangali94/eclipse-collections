@@ -145,7 +145,7 @@ class ImmutableEmptySortedBag<T>
     @Override
     public int sizeDistinct()
     {
-        return ((Integer)(0)).intValue();
+        return 0;
     }
 
     @Override

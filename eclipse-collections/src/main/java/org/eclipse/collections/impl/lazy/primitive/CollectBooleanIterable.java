@@ -86,7 +86,7 @@ public class CollectBooleanIterable<T>
     @Override
     public boolean isEmpty()
     {
-        return ((Boolean)(this.iterable.isEmpty())).booleanValue();
+        return this.iterable.isEmpty();
     }
 
     @Override

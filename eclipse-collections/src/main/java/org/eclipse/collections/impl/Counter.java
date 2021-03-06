@@ -56,7 +56,7 @@ public final class Counter implements Externalizable
 
     public int getCount()
     {
-        return ((Integer)(this.count)).intValue();
+        return this.count;
     }
 
     public void reset()

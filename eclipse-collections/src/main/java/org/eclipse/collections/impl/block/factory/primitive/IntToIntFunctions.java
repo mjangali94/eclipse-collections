@@ -35,7 +35,7 @@ public final class IntToIntFunctions
 
     public static IntToIntFunction add(int intToAdd)
     {
-        return new AddIntToIntFunction(((Integer)(intToAdd)).intValue());
+        return new AddIntToIntFunction(intToAdd);
     }
 
     public static IntToIntFunction subtract(int intToSubtract)

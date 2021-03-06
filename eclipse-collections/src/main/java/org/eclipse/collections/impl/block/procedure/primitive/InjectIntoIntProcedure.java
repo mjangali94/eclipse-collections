@@ -34,6 +34,6 @@ public class InjectIntoIntProcedure<T> implements Procedure<T>
 
     public int getResult()
     {
-        return ((Integer)(this.result)).intValue();
+        return this.result;
     }
 }
