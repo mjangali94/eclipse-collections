@@ -38,6 +38,7 @@ import org.eclipse.collections.api.tuple.primitive.IntIntPair;
 import org.eclipse.collections.api.tuple.primitive.IntObjectPair;
 import org.eclipse.collections.impl.factory.primitive.IntLists;
 import org.eclipse.collections.impl.list.mutable.primitive.IntArrayList;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.primitive.AbstractIntIterable;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 import org.eclipse.collections.impl.utility.Iterate;
@@ -98,12 +99,12 @@ public class CodePointList extends AbstractIntIterable implements CharSequence, 
 
     public StringBuilder toStringBuilder()
     {
-        StringBuilder builder = new StringBuilder();
+        StringBuffer builder = new StringBuffer();
         for (int i = 0; i < this.size(); i++)
         {
             builder.appendCodePoint(this.get(i));
         }
-        return builder;
+        return (new StringBuilder(builder));
     }
 
     @Override
