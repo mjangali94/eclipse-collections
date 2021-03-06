@@ -34,6 +34,6 @@ public class DropWhileIterablePredicate<T> implements Predicate<T>
         {
             this.doneDroppingElements = true;
         }
-        return this.doneDroppingElements;
+        return ((Boolean)(this.doneDroppingElements)).booleanValue();
     }
 }

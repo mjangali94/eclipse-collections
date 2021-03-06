@@ -35,7 +35,7 @@ public final class SpreadFunctions
         code1 ^= code1 >>> 13;
         code1 *= 0x9B6296CB;
         code1 ^= code1 >>> 12;
-        return code1;
+        return ((Integer)(code1)).intValue();
     }
 
     private static long sixtyFourBitSpread1(long code)
