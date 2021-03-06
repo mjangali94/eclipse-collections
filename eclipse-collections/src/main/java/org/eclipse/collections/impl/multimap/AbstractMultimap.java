@@ -91,13 +91,6 @@ public abstract class AbstractMultimap<K, V, C extends RichIterable<V>>
     @Override
     public Bag<K> keyBag()
     {
-    	try {
-    		org.eclipse.collections.impl.myBlackhole.get_value("1");
-			Thread.sleep(0,1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         MutableBag<K> bag = Bags.mutable.empty();
         this.getMap().forEachKeyValue((key, value) -> bag.addOccurrences(key, value.size()));
         return bag;
