@@ -41,6 +41,6 @@ public final class ZipWithIndexProcedure<T, R extends Collection<Pair<T, Integer
     public void value(T each)
     {
         this.target.add(Tuples.pair(each, Integer.valueOf(this.index)));
-        this.index += ((Integer)(1)).intValue();
+        this.index += 1;
     }
 }

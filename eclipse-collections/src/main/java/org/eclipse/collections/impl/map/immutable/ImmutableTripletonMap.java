@@ -83,9 +83,9 @@ final class ImmutableTripletonMap<K, V>
     @Override
     public boolean containsKey(Object key)
     {
-        return ((Boolean)(Objects.equals(this.key3, key)
+        return Objects.equals(this.key3, key)
                 || Objects.equals(this.key2, key)
-                || Objects.equals(this.key1, key))).booleanValue();
+                || Objects.equals(this.key1, key);
     }
 
     @Override

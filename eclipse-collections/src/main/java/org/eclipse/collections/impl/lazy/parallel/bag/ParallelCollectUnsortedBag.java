@@ -72,7 +72,7 @@ public class ParallelCollectUnsortedBag<T, V> extends AbstractParallelUnsortedBa
     @Override
     public boolean allSatisfy(Predicate<? super V> predicate)
     {
-        return ((Boolean)(this.parallelIterable.allSatisfy(Predicates.attributePredicate(this.function, predicate)))).booleanValue();
+        return this.parallelIterable.allSatisfy(Predicates.attributePredicate(this.function, predicate));
     }
 
     @Override

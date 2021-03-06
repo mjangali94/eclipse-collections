@@ -103,7 +103,7 @@ class ImmutableSortedBagImpl<T>
             size += occurrence;
         }
 
-        this.size = ((Integer)(size)).intValue();
+        this.size = size;
     }
 
     @Override

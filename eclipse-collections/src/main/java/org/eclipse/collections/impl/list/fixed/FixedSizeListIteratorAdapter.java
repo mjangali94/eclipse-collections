@@ -49,7 +49,7 @@ public class FixedSizeListIteratorAdapter<T>
     @Override
     public int nextIndex()
     {
-        return ((Integer)(this.iterator.nextIndex())).intValue();
+        return this.iterator.nextIndex();
     }
 
     @Override

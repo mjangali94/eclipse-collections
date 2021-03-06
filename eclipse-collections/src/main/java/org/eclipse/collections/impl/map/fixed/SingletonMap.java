@@ -105,7 +105,7 @@ final class SingletonMap<K, V>
     @Override
     public boolean containsKey(Object key)
     {
-        return ((Boolean)(Objects.equals(this.key1, key))).booleanValue();
+        return Objects.equals(this.key1, key);
     }
 
     @Override
