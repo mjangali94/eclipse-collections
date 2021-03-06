@@ -61,7 +61,7 @@ final class ImmutableQuintupletonList<T>
     @Override
     public T get(int index)
     {
-        switch (index)
+        switch (((Integer)(index)).intValue())
         {
             case 0:
                 return this.element1;

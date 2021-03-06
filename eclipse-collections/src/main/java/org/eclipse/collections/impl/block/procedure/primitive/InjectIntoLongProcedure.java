@@ -34,6 +34,6 @@ public class InjectIntoLongProcedure<T> implements Procedure<T>
 
     public long getResult()
     {
-        return this.result;
+        return ((Long)(this.result)).longValue();
     }
 }

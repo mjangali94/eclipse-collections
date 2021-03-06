@@ -162,7 +162,7 @@ public class SynchronizedSortedBag<T>
     {
         synchronized (this.getLock())
         {
-            return this.getDelegate().setOccurrences(item, occurrences);
+            return this.getDelegate().setOccurrences(item, ((Integer)(occurrences)).intValue());
         }
     }
 
