@@ -64,7 +64,6 @@ import org.eclipse.collections.impl.lazy.AbstractLazyIterable;
 import org.eclipse.collections.impl.lazy.primitive.LazyBooleanIterableAdapter;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
-import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.set.mutable.primitive.BooleanHashSet;
 import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
 
@@ -252,7 +251,7 @@ public class ObjectBooleanHashMap<K> implements MutableObjectBooleanMap<K>, Exte
     @Override
     public String toString()
     {
-        StringBuffer appendable = new StringBuffer();
+        StringBuilder appendable = new StringBuilder();
 
         appendable.append("{");
 
