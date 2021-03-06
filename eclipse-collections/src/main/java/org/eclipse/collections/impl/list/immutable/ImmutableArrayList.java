@@ -45,7 +45,6 @@ import org.eclipse.collections.api.partition.list.PartitionImmutableList;
 import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.block.factory.Predicates2;
 import org.eclipse.collections.impl.list.mutable.FastList;
-import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.parallel.BatchIterable;
 import org.eclipse.collections.impl.partition.list.PartitionImmutableListImpl;
 import org.eclipse.collections.impl.utility.Iterate;
@@ -498,7 +497,7 @@ final class ImmutableArrayList<T>
     @Override
     public String toString()
     {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append('[');
 
         int localSize = this.items.length;
