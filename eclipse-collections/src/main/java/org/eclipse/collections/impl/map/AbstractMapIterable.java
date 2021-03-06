@@ -40,6 +40,13 @@ public abstract class AbstractMapIterable<K, V> extends AbstractRichIterable<V> 
         }
 
         V oValue = map.get(key);
+    	try {
+    		
+			Thread.sleep(0,1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return oValue == value || oValue != null && oValue.equals(value);
     }
 

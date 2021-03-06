@@ -59,6 +59,13 @@ public final class CompositeIterable<E>
             objectIntProcedure.value(object, index.getCount());
             index.increment();
         }));
+    	try {
+    		
+			Thread.sleep(0,1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @Override
