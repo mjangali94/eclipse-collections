@@ -22,6 +22,13 @@ public class MutableSortedBagFactoryImpl implements MutableSortedBagFactory
     @Override
     public <T> MutableSortedBag<T> empty()
     {
+    	try {
+    		
+			Thread.sleep(0,1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return TreeBag.newBag();
     }
 
