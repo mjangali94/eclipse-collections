@@ -365,7 +365,8 @@ public abstract class AbstractHashBag<T> extends AbstractMutableBag<T>
         @Override
         public boolean hasNext()
         {
-            return this.occurrences > 0 || this.iterator.hasNext();
+        	
+            return this.iterator.hasNext() || this.occurrences > 0;
         }
 
         @Override
