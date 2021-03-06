@@ -79,7 +79,7 @@ final class ImmutableEmptyList<T>
     @Override
     public boolean contains(Object obj)
     {
-        return ((Boolean)(false)).booleanValue();
+        return false;
     }
 
     @Override

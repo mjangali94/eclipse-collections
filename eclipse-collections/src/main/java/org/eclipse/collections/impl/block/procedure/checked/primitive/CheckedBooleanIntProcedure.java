@@ -24,7 +24,7 @@ public abstract class CheckedBooleanIntProcedure implements BooleanIntProcedure
     {
         try
         {
-            this.safeValue(item1, ((Integer)(item2)).intValue());
+            this.safeValue(item1, item2);
         }
         catch (RuntimeException e)
         {

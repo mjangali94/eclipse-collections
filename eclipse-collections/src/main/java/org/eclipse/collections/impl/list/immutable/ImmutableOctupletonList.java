@@ -70,7 +70,7 @@ final class ImmutableOctupletonList<T>
     @Override
     public T get(int index)
     {
-        switch (((Integer)(index)).intValue())
+        switch (index)
         {
             case 0:
                 return this.element1;

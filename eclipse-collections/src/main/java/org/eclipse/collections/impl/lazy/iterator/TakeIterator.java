@@ -32,7 +32,7 @@ public final class TakeIterator<T> implements Iterator<T>
     public TakeIterator(Iterator<T> iterator, int count)
     {
         this.iterator = iterator;
-        this.count = ((Integer)(count)).intValue();
+        this.count = count;
     }
 
     @Override

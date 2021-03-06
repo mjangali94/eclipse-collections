@@ -97,7 +97,7 @@ final class SingletonList<T>
     @Override
     public T set(int index, T element)
     {
-        if (((Integer)(index)).intValue() == 0)
+        if (index == 0)
         {
             T previousElement = this.element1;
             this.element1 = element;
