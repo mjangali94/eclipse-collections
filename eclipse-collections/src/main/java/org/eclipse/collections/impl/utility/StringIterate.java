@@ -37,6 +37,7 @@ import org.eclipse.collections.impl.block.predicate.CodePointPredicate;
 import org.eclipse.collections.impl.block.procedure.primitive.CodePointProcedure;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.map.mutable.UnifiedMap;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import org.eclipse.collections.impl.string.immutable.CharAdapter;
 import org.eclipse.collections.impl.string.immutable.CodePointAdapter;
@@ -590,7 +591,7 @@ public final class StringIterate
     public static String collectCodePoint(String string, CodePointFunction function)
     {
         int size = string.length();
-        StringBuilder builder = new StringBuilder(size);
+        StringBuffer builder = new StringBuffer(size);
         for (int i = 0; i < size; )
         {
             int codePoint = string.codePointAt(i);

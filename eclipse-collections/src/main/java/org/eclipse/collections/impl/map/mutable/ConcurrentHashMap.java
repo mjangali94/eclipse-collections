@@ -48,6 +48,7 @@ import org.eclipse.collections.api.map.MutableMap;
 import org.eclipse.collections.api.tuple.Pair;
 import org.eclipse.collections.impl.block.procedure.MapEntryToProcedure2;
 import org.eclipse.collections.impl.list.mutable.FastList;
+import org.eclipse.collections.impl.myBlackhole;
 import org.eclipse.collections.impl.utility.Iterate;
 import org.eclipse.collections.impl.utility.MapIterate;
 import org.eclipse.collections.impl.utility.internal.IterableIterate;
@@ -1384,7 +1385,7 @@ public final class ConcurrentHashMap<K, V>
         }
         Iterator<Map.Entry<K, V>> iterator = this.entrySet().iterator();
 
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         sb.append('{');
         while (true)
         {
