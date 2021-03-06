@@ -37,20 +37,12 @@ public class UnmodifiableMap<K, V> implements Map<K, V>, Serializable
     @Override
     public int size()
     {
-    	
         return this.delegate.size();
     }
 
     @Override
     public boolean isEmpty()
     {
-    	try {
-    		
-			Thread.sleep(0,1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         return this.delegate.isEmpty();
     }
 
