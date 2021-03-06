@@ -51,9 +51,10 @@ public class CaseFunction<T extends Comparable<? super T>, V> implements Functio
     public V valueOf(T argument)
     {
         int localSize = this.predicateFunctions.size();
-        for (int i = 0; i < localSize; i++)
+        for (Pair<Predicate<? super T>, Function<? super T, ? extends V>> tmp:this.predicateFunctions)
         {
-            Pair<Predicate<? super T>, Function<? super T, ? extends V>> pair = this.predicateFunctions.get(i);
+        	
+            Pair<Predicate<? super T>, Function<? super T, ? extends V>> pair = tmp;
             if (pair.getOne().accept(argument))
             {
                 return pair.getTwo().valueOf(argument);
