@@ -89,9 +89,10 @@ public abstract class AbstractArrayAdapter<T>
     public void each(Procedure<? super T> procedure)
     {
         int size = this.size();
-        for (int i = 0; i < size; i++)
+        for (T tmp: this.items)
         {
-            procedure.value(this.items[i]);
+        	
+            procedure.value(tmp);
         }
     }
 
