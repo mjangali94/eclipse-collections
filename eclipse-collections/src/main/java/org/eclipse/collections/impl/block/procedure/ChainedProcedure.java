@@ -41,10 +41,9 @@ public final class ChainedProcedure<T> implements Procedure<T>
     public void value(T object)
     {
         int size = this.procedures.size();
-        for (Procedure<? super T> tmp:this.procedures)
+        for (int i = 0; i < size; i++)
         {
-        	
-            tmp.value(object);
+            this.procedures.get(i).value(object);
         }
     }
 

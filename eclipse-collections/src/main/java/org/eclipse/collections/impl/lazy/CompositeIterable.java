@@ -88,9 +88,9 @@ public final class CompositeIterable<E>
     @Override
     public E detect(Predicate<? super E> predicate)
     {
-        for (Iterable<E> eachIterable:this.iterables)
+        for (int i = 0; i < this.iterables.size(); i++)
         {
-            
+            Iterable<E> eachIterable = this.iterables.get(i);
             E result = Iterate.detect(eachIterable, predicate);
             if (result != null)
             {

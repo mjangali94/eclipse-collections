@@ -879,12 +879,11 @@ public class ObjectBooleanHashMap<K> implements MutableObjectBooleanMap<K>, Exte
     @Override
     public void forEachKey(Procedure<? super K> procedure)
     {
-        for (Object tmp : this.keys)
+        for (int i = 0; i < this.keys.length; i++)
         {
-        	
-            if (ObjectBooleanHashMap.isNonSentinel(tmp))
+            if (ObjectBooleanHashMap.isNonSentinel(this.keys[i]))
             {
-                procedure.value(this.toNonSentinel(tmp));
+                procedure.value(this.toNonSentinel(this.keys[i]));
             }
         }
     }
