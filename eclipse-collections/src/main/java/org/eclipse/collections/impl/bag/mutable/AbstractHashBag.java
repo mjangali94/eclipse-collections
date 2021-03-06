@@ -53,13 +53,6 @@ public abstract class AbstractHashBag<T> extends AbstractMutableBag<T>
     @Override
     public boolean equals(Object other)
     {
-    	try {
-    		org.eclipse.collections.impl.myBlackhole.get_value("1");
-			Thread.sleep(0,100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         if (this == other)
         {
             return true;

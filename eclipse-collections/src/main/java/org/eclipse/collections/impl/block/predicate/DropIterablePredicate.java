@@ -28,13 +28,6 @@ public class DropIterablePredicate<T> implements Predicate<T>
     @Override
     public boolean accept(T each)
     {
-    	try {
-    		
-			Thread.sleep(0,1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         return this.index++ >= this.count;
     }
 }

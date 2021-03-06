@@ -40,13 +40,6 @@ public abstract class AbstractMapIterable<K, V> extends AbstractRichIterable<V> 
         }
 
         V oValue = map.get(key);
-    	try {
-    		org.eclipse.collections.impl.myBlackhole.get_value("1");
-			Thread.sleep(0,100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         return oValue == value || oValue != null && oValue.equals(value);
     }
 
