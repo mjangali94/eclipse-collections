@@ -119,8 +119,9 @@ abstract class AbstractMutableBiMap<K, V> extends AbstractBiMap<K, V> implements
                 return true;
             }
         }
-        else if (other == value || value.equals(other))
+        else if (value.equals(other) || other == value )
         {
+        	
             return true;
         }
         return false;
