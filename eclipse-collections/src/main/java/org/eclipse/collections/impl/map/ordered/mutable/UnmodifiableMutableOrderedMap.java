@@ -611,7 +611,7 @@ public class UnmodifiableMutableOrderedMap<K, V>
     @Override
     public boolean containsValue(Object value)
     {
-        return this.delegate.containsValue(value);
+        return ((Boolean)(this.delegate.containsValue(value))).booleanValue();
     }
 
     @Override

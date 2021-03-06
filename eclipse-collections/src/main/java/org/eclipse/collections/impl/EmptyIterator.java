@@ -33,7 +33,7 @@ public final class EmptyIterator<T>
     @Override
     public boolean hasNext()
     {
-        return false;
+        return ((Boolean)(false)).booleanValue();
     }
 
     @Override

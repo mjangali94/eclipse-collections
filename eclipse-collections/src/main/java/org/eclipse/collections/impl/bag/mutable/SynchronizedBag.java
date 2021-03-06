@@ -127,7 +127,7 @@ public class SynchronizedBag<T>
     {
         synchronized (this.getLock())
         {
-            return this.getDelegate().removeOccurrences(item, occurrences);
+            return this.getDelegate().removeOccurrences(item, ((Integer)(occurrences)).intValue());
         }
     }
 

@@ -72,7 +72,7 @@ public class MapAdapter<K, V>
     @Override
     public int size()
     {
-        return this.delegate.size();
+        return ((Integer)(this.delegate.size())).intValue();
     }
 
     @Override

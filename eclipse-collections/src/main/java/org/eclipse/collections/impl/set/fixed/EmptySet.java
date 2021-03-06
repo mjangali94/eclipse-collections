@@ -53,7 +53,7 @@ final class EmptySet<T>
     @Override
     public int size()
     {
-        return 0;
+        return ((Integer)(0)).intValue();
     }
 
     @Override
