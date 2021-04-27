@@ -33,11 +33,11 @@ public class PerformanceLogger implements TestRule {
 			@Override
 			public void evaluate() throws Throwable {
 				FileWriter mydata = new FileWriter("myData.csv",true);
-				for (int i = 0; i < 30; i++) {
+				
 					long start = System.nanoTime();
 					long throughput = 0;
 					long TIME = 0;
-					while (TIME < 1000000000L) {
+					while (TIME < 10000000000L) {
 						try {
 							base.evaluate();
 						} finally {
@@ -48,7 +48,7 @@ public class PerformanceLogger implements TestRule {
 							TIME = System.nanoTime() - start;
 					}
 
-				}
+				
 				String compeletName = description.getDisplayName();
 				String test = compeletName.substring(0, compeletName.indexOf("("));
 				String packageName = compeletName.substring(compeletName.indexOf("(") + 1,
@@ -58,16 +58,16 @@ public class PerformanceLogger implements TestRule {
 				}catch (Exception e) {
 					// TODO: handle exception
 				}
-				for (int i = 0; i < 30; i++) {
+				for (int i = 0; i < 10; i++) {
 					long start = System.nanoTime();
-					long throughput = 0;
+					double throughput = 0.0;
 					long TIME = 0;
 					while (TIME < 1000000000L) {
 						try {
 							base.evaluate();
 						} finally {
 
-							throughput += 1;
+							throughput += 1.0;
 						}
 
 						TIME = System.nanoTime() - start;
