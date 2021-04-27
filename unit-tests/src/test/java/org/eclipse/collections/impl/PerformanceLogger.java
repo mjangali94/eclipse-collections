@@ -25,7 +25,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 
-public class org.eclipse.collections.impl.PerformanceLogger implements TestRule {
+public class org.PerformanceLogger implements TestRule {
 
 	@Override
 	public Statement apply(Statement base, Description description) {
