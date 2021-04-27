@@ -42,7 +42,7 @@ public class UnmodifiableMapTest
         this.unmodifiableMap = new UnmodifiableMap<>(this.mutableMap);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testNullConstructorArgument()
     {

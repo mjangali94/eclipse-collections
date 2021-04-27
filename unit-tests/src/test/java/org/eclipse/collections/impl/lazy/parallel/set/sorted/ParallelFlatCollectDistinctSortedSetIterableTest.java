@@ -42,7 +42,7 @@ public class ParallelFlatCollectDistinctSortedSetIterableTest extends ParallelUn
                 .asUnique();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void groupBy()

@@ -32,7 +32,7 @@ public class UnifiedSetWithHashingStrategyDefaultParallelTest extends ParallelUn
         return UnifiedSetWithHashingStrategy.newSetWith(HashingStrategies.defaultStrategy(), littleElements).asParallel(this.executorService, this.batchSize);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {

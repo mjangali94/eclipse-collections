@@ -54,7 +54,7 @@ public class ArrayAdapterTest extends AbstractListTestCase
         return ArrayAdapter.newArrayWith(littleElements);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testNewList()
     {

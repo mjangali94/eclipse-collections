@@ -46,7 +46,7 @@ public class SynchronizedStackTest extends MutableStackTestCase
         return new SynchronizedStack<>(ArrayStack.newStack(elements));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testNullStack()
     {

@@ -138,7 +138,7 @@ public class ParallelIterateTest
         this.executor.shutdown();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testForEachUsingSet()
     {

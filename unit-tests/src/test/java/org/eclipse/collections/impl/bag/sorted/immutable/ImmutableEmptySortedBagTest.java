@@ -102,7 +102,7 @@ public class ImmutableEmptySortedBagTest extends AbstractImmutableSortedBagTestC
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void corresponds()
     {

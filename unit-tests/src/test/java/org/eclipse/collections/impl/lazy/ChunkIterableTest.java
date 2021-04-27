@@ -30,7 +30,7 @@ public class ChunkIterableTest
         this.undertest = new ChunkIterable<>(FastList.newListWith(1, 2, 3, 4, 5), 2);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

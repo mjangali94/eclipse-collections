@@ -43,7 +43,7 @@ public class BooleanHashBagTest extends AbstractMutableBooleanBagTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void newCollection()
     {

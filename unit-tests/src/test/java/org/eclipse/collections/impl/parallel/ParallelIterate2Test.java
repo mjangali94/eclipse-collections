@@ -31,7 +31,7 @@ public class ParallelIterate2Test
     /**
      * crude test to check that creation works and that all tasks are executed
      */
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void creationAndExecution() throws InterruptedException
     {

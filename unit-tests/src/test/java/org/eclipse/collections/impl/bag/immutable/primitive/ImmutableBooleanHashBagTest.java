@@ -28,7 +28,7 @@ public class ImmutableBooleanHashBagTest extends AbstractImmutableBooleanBagTest
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void selectUnique()
     {

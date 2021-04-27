@@ -23,7 +23,7 @@ import org.junit.Test;
 // BlocksTest class erroneously. The BlocksTest class has since been removed.
 public class AddFunctionTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void addStringBlockHandlesNulls()
     {

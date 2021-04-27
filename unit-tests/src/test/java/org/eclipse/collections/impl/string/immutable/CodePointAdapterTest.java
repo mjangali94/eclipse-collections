@@ -43,7 +43,7 @@ public class CodePointAdapterTest extends AbstractImmutableIntListTestCase
     }
 
     @SuppressWarnings("StringBufferReplaceableByString")
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void stringBuilder()
     {

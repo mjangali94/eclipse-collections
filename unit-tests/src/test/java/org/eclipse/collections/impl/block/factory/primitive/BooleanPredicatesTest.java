@@ -19,7 +19,7 @@ import org.junit.Test;
 
 public final class BooleanPredicatesTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testEqual()
     {

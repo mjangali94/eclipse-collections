@@ -69,7 +69,7 @@ public class ParallelFlatCollectMultiReaderSetIterableTest extends ParallelItera
         return false;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void groupBy()

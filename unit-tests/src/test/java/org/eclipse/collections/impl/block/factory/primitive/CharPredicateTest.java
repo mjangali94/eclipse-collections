@@ -27,7 +27,7 @@ import org.junit.Test;
 @Deprecated
 public class CharPredicateTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void isUpperCase()
     {

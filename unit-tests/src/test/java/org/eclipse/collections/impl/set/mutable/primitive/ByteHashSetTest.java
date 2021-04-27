@@ -40,7 +40,7 @@ public class ByteHashSetTest extends AbstractByteSetTestCase
         return ByteHashSet.newSetWith(elements);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void newWithInitialCapacity_negative_throws()
     {

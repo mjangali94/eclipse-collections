@@ -20,6 +20,7 @@ import org.junit.Test;
 
 public abstract class AbstractUnifiedSetTestCase extends AbstractMutableSetTestCase
 {
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Test
     public void addOnObjectWithCastInEquals()
     {

@@ -69,7 +69,7 @@ public abstract class AbstractMutableSetTestCase extends AbstractCollectionTestC
 
     @Override
     protected abstract <T> MutableSet<T> newWith(T... littleElements);
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Override
     @Test
     public void asSynchronized()

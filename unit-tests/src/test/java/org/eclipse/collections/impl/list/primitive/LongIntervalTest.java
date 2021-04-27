@@ -52,7 +52,7 @@ public class LongIntervalTest
 {
     private final LongInterval longInterval = LongInterval.oneTo(3);
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void fromAndToAndBy()
     {

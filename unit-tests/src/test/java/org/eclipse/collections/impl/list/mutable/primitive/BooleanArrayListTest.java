@@ -41,7 +41,7 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase
         return BooleanArrayList.newListWith(elements);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testBooleanArrayListWithInitialCapacity() throws Exception
     {

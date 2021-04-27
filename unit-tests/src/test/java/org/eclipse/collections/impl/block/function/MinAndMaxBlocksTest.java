@@ -22,7 +22,7 @@ public class MinAndMaxBlocksTest
     private static final Integer FORTY_TWO_INTEGER = 42;
     private static final Long FORTY_TWO_LONG = 42L;
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void minBlocks()
     {

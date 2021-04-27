@@ -35,7 +35,7 @@ public abstract class MutableStackTestCase extends StackIterableTestCase
 
     @Override
     protected abstract <T> MutableStack<T> newStack(Iterable<T> elements);
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Test
     public void testPushPopAndPeek()
     {

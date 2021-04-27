@@ -38,7 +38,7 @@ public abstract class AbstractImmutableBiMapTestCase extends ImmutableMapIterabl
     {
         return 4;
     }
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Override
     @Test
     public void testToString()

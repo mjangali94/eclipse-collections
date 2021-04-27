@@ -31,6 +31,7 @@ import org.junit.Test;
 
 public abstract class AbstractImmutableEmptySetTestCase extends AbstractImmutableSetTestCase
 {
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Test
     public void containsAll()
     {

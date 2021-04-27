@@ -51,7 +51,7 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase
         // Sets do not allow duplicates
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEachKeyMultiValue()
     {

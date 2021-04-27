@@ -58,7 +58,7 @@ public class ImmutableUnifiedMap2Test extends MapIterableTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void partition_value()
     {

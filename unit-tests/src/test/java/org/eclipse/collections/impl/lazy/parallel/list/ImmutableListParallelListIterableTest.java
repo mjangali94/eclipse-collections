@@ -31,7 +31,7 @@ public class ImmutableListParallelListIterableTest extends ParallelListIterableT
         return Lists.immutable.with(littleElements).asParallel(this.executorService, this.batchSize);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {

@@ -50,7 +50,7 @@ import static org.eclipse.collections.impl.factory.Iterables.mList;
 
 public class RandomAccessListIterateTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IndexOutOfBoundsException.class)
     public void forEachWithNegativeFroms()
     {

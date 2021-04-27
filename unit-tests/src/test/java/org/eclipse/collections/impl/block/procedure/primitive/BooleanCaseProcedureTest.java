@@ -22,7 +22,7 @@ import org.junit.Test;
 
 public class BooleanCaseProcedureTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void noopCaseAndThenDefault()
     {

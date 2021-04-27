@@ -110,7 +110,7 @@ public class TreeBagMultimapTest extends AbstractMutableSortedBagMultimapTestCas
         return TreeBag.newBagWith(args);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testEmptyConstructor()
     {

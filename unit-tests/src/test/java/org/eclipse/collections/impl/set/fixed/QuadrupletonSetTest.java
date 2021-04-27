@@ -51,7 +51,7 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
         return new QuadrupletonSet<>(null, "2", "3", "4");
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void nonUniqueWith()
     {

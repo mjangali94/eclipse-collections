@@ -43,7 +43,7 @@ public class QuadrupletonListTest extends AbstractMemoryEfficientMutableListTest
         return QuadrupletonList.class;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testClone()
     {

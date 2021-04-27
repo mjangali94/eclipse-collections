@@ -47,7 +47,7 @@ public class ArrayStackTest extends MutableStackTestCase
         return Stacks.mutable.ofAll(elements);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void takeWhile()
     {

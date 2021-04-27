@@ -30,7 +30,7 @@ public class SynchronizedMutableListTest extends AbstractListTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void newEmpty()
     {

@@ -64,7 +64,7 @@ public class UnmodifiableMutableMapTest extends MutableMapTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void removeObject()
     {

@@ -80,7 +80,7 @@ public class PersonAndPetKataTest
                         .addPet(PetType.HAMSTER, "Wuzzy", 1));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void doAnyPeopleHaveCats()
     {

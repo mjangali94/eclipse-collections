@@ -37,7 +37,7 @@ public class SelectIterableTest extends AbstractLazyIterableTestCase
         return LazyIterate.select(FastList.newListWith(elements), ignored -> true);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

@@ -23,7 +23,7 @@ import org.junit.Test;
 // extra tests not covered in the generated portion
 public class LongHashSetExtraTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testManyRemoves()
     {

@@ -94,7 +94,7 @@ public class NonInstantiableTest
             SortedSetIterables.class
     };
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void generatedNonInstantiableClassesThrow()
     {

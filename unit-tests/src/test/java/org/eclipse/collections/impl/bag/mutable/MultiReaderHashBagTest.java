@@ -57,7 +57,7 @@ public class MultiReaderHashBagTest extends MultiReaderMutableCollectionTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test(expected = UnsupportedOperationException.class)
     public void largeCollectionStreamToBagMultimap()
     {

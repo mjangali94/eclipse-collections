@@ -20,7 +20,7 @@ public final class DoubleFunctionImplTest
 {
     private static final Object JUNK = new Object();
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testValueOf()
     {

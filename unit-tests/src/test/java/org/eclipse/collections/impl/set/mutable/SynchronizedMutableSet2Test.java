@@ -37,7 +37,7 @@ public class SynchronizedMutableSet2Test extends AbstractMutableSetTestCase
         return new SynchronizedMutableSet<>(SetAdapter.adapt(new HashSet<>(UnifiedSet.newSetWith(littleElements))));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = NoSuchElementException.class)
     public void min_empty_throws_without_comparator()
     {

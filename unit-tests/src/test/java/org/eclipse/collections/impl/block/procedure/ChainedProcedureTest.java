@@ -23,7 +23,7 @@ import org.junit.Test;
 
 public class ChainedProcedureTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void procedure()
     {

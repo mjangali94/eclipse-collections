@@ -27,7 +27,7 @@ import org.junit.Test;
 
 public class ParallelArrayIterateTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void parallelForEach()
     {

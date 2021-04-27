@@ -30,7 +30,7 @@ public class CollectBooleanToObjectIterableTest
         return new CollectBooleanToObjectIterable<>(BooleanArrayList.newListWith(elements), Boolean::valueOf);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

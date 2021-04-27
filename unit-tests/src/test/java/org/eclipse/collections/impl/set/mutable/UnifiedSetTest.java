@@ -48,7 +48,7 @@ public class UnifiedSetTest extends AbstractMutableSetTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void with()
     {

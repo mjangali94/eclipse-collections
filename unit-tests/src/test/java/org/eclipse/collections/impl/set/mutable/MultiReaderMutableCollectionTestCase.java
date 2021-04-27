@@ -15,6 +15,7 @@ import org.junit.Test;
 
 public abstract class MultiReaderMutableCollectionTestCase extends AbstractCollectionTestCase
 {
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Override
     @Test(expected = UnsupportedOperationException.class)
     public void iterator_throws()

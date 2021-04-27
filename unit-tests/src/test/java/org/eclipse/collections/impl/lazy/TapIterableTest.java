@@ -33,7 +33,7 @@ public class TapIterableTest extends AbstractLazyIterableTestCase
         return LazyIterate.tap(FastList.newListWith(elements), appendProcedure);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

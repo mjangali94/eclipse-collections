@@ -69,7 +69,7 @@ public class ImmutableEmptySortedSetTest extends AbstractImmutableSortedSetTestC
         return SortedSets.immutable.of(comparator);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testContainsAll()
     {

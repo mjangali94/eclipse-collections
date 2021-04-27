@@ -24,7 +24,7 @@ import org.junit.Test;
 
 public class CaseFunctionTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void noopCase()
     {

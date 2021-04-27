@@ -35,7 +35,7 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase
         return (LazyIterable<T>) LazyIterate.selectInstancesOf(FastList.newListWith(elements), Object.class);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

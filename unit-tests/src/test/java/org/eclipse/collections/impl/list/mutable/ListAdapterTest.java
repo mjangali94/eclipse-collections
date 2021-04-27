@@ -33,7 +33,7 @@ public class ListAdapterTest extends AbstractListTestCase
         return new ListAdapter<>(new LinkedList<>(FastList.newListWith(littleElements)));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = NullPointerException.class)
     public void null_throws()
     {

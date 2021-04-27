@@ -41,7 +41,7 @@ public class LazyBooleanIterableAdapterTest
     private final LazyBooleanIterableAdapter iterable =
             new LazyBooleanIterableAdapter(BooleanArrayList.newListWith(true, false, true));
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void booleanIterator()
     {

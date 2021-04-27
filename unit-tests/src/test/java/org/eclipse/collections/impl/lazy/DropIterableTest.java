@@ -46,7 +46,7 @@ public class DropIterableTest extends AbstractLazyIterableTestCase
         this.higherCountDropIterable = new DropIterable<>(Interval.oneTo(5), 6);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void negative_throws()
     {

@@ -38,7 +38,7 @@ public class ImmutableUnifiedSetParallelSetIterableTest extends ParallelUnsorted
         return Sets.immutable.with(littleElements).toSet();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {

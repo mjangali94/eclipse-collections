@@ -65,7 +65,7 @@ import org.junit.Test;
 
 public class MapIterateTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void occurrencesOf()
     {

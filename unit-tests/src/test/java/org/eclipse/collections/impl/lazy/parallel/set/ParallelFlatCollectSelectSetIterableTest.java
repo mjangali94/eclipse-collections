@@ -73,7 +73,7 @@ public class ParallelFlatCollectSelectSetIterableTest extends ParallelIterableTe
         return false;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void groupBy()

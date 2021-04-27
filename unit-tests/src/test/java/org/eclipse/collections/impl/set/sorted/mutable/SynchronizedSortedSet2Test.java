@@ -51,7 +51,7 @@ public class SynchronizedSortedSet2Test extends AbstractSortedSetTestCase
         Verify.assertInstanceOf(UnmodifiableSortedSet.class, this.newWith().asUnmodifiable());
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = NoSuchElementException.class)
     public void min_empty_throws_without_comparator()
     {

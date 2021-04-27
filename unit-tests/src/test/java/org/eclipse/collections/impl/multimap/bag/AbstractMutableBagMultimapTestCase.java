@@ -56,7 +56,7 @@ public abstract class AbstractMutableBagMultimapTestCase extends AbstractMutable
 
     @Override
     protected abstract <V> MutableBag<V> createCollection(V... args);
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Override
     @Test
     public void flip()

@@ -30,7 +30,7 @@ import org.junit.Test;
 
 public class Functions0Test
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void getTrue()
     {

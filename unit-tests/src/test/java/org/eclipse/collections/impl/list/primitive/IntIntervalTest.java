@@ -54,7 +54,7 @@ public class IntIntervalTest
 {
     private final IntInterval intInterval = IntInterval.oneTo(3);
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void fromAndToAndBy()
     {

@@ -21,7 +21,7 @@ public class UnifiedSetAsPoolTest
 {
     private final UnifiedSet<Integer> staticPool = UnifiedSet.newSet();
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void getReturnsNullIfObjectIsNotPooled()
     {

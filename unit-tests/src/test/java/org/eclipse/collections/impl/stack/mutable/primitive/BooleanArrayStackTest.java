@@ -71,7 +71,7 @@ public class BooleanArrayStackTest extends AbstractMutableBooleanStackTestCase
         return BooleanStacks.mutable.ofAll(iterable);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testPushPopAndPeek()
     {

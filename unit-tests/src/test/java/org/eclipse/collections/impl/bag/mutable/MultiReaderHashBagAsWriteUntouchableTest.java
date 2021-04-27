@@ -40,7 +40,7 @@ public class MultiReaderHashBagAsWriteUntouchableTest extends AbstractCollection
         Assert.assertThrows(UnsupportedOperationException.class, () -> this.newWith().asUnmodifiable());
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void addOccurrences()
     {

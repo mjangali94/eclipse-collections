@@ -26,7 +26,7 @@ import org.junit.Test;
  */
 public class TakeIteratorTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void iterator()
     {

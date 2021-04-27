@@ -20,7 +20,7 @@ public class CollectIfProcedureTest
 {
     private static final int THE_ANSWER = 42;
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void constructorWithSize()
     {

@@ -39,7 +39,7 @@ import org.junit.Test;
 
 public class IterablesTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void immutableLists()
     {

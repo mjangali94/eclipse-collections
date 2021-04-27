@@ -54,7 +54,7 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test(expected = UnsupportedOperationException.class)
     public void removeObject()
     {

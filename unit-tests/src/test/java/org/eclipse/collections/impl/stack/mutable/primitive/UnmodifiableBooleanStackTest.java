@@ -49,7 +49,7 @@ public class UnmodifiableBooleanStackTest extends AbstractBooleanStackTestCase
         return new UnmodifiableBooleanStack(BooleanArrayStack.newStackFromTopToBottom(elements));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = UnsupportedOperationException.class)
     public void push()
     {

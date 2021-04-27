@@ -31,7 +31,7 @@ public class SetLogicTest
         this.setB = UnifiedSet.newSetWith(3, 4, 5, 6).asUnmodifiable();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void inOnlyInAMutable()
     {

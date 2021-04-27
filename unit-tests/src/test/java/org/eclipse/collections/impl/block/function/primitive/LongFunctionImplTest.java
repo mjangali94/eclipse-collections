@@ -21,7 +21,7 @@ import org.junit.Test;
  */
 public class LongFunctionImplTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void valueOf()
     {

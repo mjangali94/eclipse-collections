@@ -137,7 +137,7 @@ public class IterateTest
         this.iterables.add(new IterableAdapter<>(Interval.oneTo(5)));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void addAllTo()
     {

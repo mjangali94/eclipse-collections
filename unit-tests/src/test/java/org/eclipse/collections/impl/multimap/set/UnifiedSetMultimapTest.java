@@ -98,7 +98,7 @@ public class UnifiedSetMultimapTest extends AbstractMutableSetMultimapTestCase
         return UnifiedSet.newSetWith(args);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void pairIterableConstructorTest()
     {

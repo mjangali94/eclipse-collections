@@ -29,7 +29,7 @@ import org.junit.Test;
  */
 public class ImmutableEmptyPrimitiveTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void isEmptyImmutable()
     {

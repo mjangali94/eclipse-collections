@@ -97,7 +97,7 @@ public class MultiReaderUnifiedSetMultimapTest extends AbstractMutableSetMultima
         return MultiReaderUnifiedSet.newSetWith(args);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void pairIterableConstructorTest()
     {

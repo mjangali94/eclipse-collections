@@ -34,7 +34,7 @@ public abstract class AbstractImmutableMultimapTestCase
     protected abstract <K, V> ImmutableMultimap<K, V> classUnderTest();
 
     protected abstract MutableCollection<String> mutableCollection();
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Test
     public void size()
     {

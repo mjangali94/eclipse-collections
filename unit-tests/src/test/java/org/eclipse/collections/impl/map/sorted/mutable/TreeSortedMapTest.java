@@ -96,7 +96,7 @@ public class TreeSortedMapTest extends MutableSortedMapTestCase
         return TreeSortedMap.<K, V>newMap(comparator).with(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testConstructors()
     {

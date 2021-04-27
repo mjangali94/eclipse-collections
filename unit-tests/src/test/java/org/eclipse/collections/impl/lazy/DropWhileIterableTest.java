@@ -45,7 +45,7 @@ public class DropWhileIterableTest extends AbstractLazyIterableTestCase
         this.alwaysTrueDropWhileIterable = new DropWhileIterable<>(Interval.oneTo(5), Predicates.alwaysTrue());
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void basic()
     {

@@ -23,7 +23,7 @@ import org.junit.Test;
 
 public class IfFunctionTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void iterate()
     {

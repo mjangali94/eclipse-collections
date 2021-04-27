@@ -24,7 +24,7 @@ public class BooleanIteratorIterateTest
 {
     private final BooleanIterable iterable = BooleanArrayList.newListWith(true, false, true);
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void select_target()
     {

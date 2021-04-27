@@ -22,7 +22,7 @@ import org.junit.Test;
 
 public final class StringFunctionsTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void toUpperCase()
     {

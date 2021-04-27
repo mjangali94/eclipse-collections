@@ -27,7 +27,7 @@ public class ImmutableSingletonSetTest
         return new ImmutableSingletonSet<>(1);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void min_null_throws()

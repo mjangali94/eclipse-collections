@@ -53,7 +53,7 @@ import static org.eclipse.collections.impl.factory.Iterables.iSet;
 
 public class ListIterateTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void injectInto()
     {

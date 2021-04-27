@@ -56,7 +56,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test(expected = NullPointerException.class)
     public void removeIf()
     {

@@ -48,7 +48,7 @@ public class UnifiedSetWithHashingStrategyParallelTest extends ParallelUnsortedS
         return UnifiedSetWithHashingStrategy.newSetWith(INTEGER_TO_STRING_HASHING_STRATEGY, littleElements);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {

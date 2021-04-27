@@ -71,7 +71,7 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase
                 .withKeyValue(key4, value4);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void putIfAbsent()
     {

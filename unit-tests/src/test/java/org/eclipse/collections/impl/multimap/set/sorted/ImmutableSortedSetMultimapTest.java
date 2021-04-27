@@ -56,7 +56,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
         return TreeSortedSet.newSet();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testConstructor()
     {

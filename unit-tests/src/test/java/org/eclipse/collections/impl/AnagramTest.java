@@ -46,7 +46,7 @@ public class AnagramTest
                 "least", "setal", "slate", "stale", "steal", "stela", "taels", "tales", "teals", "tesla");
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void anagramsWithMultimapInlined()
     {

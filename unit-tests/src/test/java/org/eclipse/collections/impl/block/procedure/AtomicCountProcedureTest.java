@@ -23,7 +23,7 @@ public class AtomicCountProcedureTest
     private static final int STRING_LENGTH = 5;
     private static final int ZERO = 0;
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void getCount()
     {

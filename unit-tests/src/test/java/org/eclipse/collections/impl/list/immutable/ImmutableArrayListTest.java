@@ -41,7 +41,7 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase
         return this.newList(1, 2, 3);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void newWith()
     {

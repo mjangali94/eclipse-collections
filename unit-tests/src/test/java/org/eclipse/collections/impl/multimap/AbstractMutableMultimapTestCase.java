@@ -61,7 +61,7 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
             K key2, V value2,
             K key3, V value3,
             K key4, V value4);
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Test
     public void putAndGrowMultimap()
     {

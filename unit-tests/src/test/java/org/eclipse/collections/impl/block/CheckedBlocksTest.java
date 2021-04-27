@@ -43,7 +43,7 @@ import static org.eclipse.collections.impl.factory.Iterables.mList;
 
 public class CheckedBlocksTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void checkedFunction2CheckedException()
     {

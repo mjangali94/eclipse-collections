@@ -39,7 +39,7 @@ public class MultiReaderFastListParallelListIterableTest extends ParallelListIte
         return ListAdapter.adapt(MultiReaderFastList.newListWith(littleElements));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {

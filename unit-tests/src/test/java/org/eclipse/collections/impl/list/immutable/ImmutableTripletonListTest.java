@@ -24,7 +24,7 @@ public class ImmutableTripletonListTest extends AbstractImmutableListTestCase
         return new ImmutableTripletonList<>(1, 2, 3);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalStateException.class)
     public void getOnly()
     {

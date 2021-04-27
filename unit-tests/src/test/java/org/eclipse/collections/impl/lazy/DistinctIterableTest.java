@@ -34,7 +34,7 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase
         return LazyIterate.distinct(FastList.newListWith(elements));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

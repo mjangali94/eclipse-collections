@@ -51,7 +51,7 @@ public class FunctionsTest
 
     private static final Function<Boolean, String> BOOLEAN_STRING = String::valueOf;
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void throwing()
     {

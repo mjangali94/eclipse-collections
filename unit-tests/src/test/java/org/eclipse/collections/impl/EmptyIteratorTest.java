@@ -29,7 +29,7 @@ public class EmptyIteratorTest
         this.emptyIterator = EmptyIterator.getInstance();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void hasPrevious()
     {

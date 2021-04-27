@@ -48,7 +48,7 @@ import org.junit.Test;
 
 public class IntervalTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void into()
     {

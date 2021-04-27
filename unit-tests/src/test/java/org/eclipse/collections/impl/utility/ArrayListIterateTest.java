@@ -85,7 +85,7 @@ public class ArrayListIterateTest
         }
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testThisIsNotAnArrayList()
     {

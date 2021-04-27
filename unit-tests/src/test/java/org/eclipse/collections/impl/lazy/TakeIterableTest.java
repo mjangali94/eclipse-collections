@@ -45,7 +45,7 @@ public class TakeIterableTest extends AbstractLazyIterableTestCase
         this.higherCountTakeIterable = new TakeIterable<>(Interval.oneTo(5), 10);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void negative_throws()
     {

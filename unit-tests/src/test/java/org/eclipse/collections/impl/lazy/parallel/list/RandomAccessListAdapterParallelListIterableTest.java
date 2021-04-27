@@ -40,7 +40,7 @@ public class RandomAccessListAdapterParallelListIterableTest extends ParallelLis
         return RandomAccessListAdapter.adapt(Lists.mutable.of(littleElements));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void asParallel_small_batch()
     {

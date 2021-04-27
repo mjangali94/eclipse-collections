@@ -56,7 +56,7 @@ public class ImmutableByteByteMapKeySetTest extends AbstractImmutableByteHashSet
         return (ImmutableByteSet) byteByteHashMap.keySet().freeze();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void contains()

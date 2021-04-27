@@ -16,6 +16,7 @@ import org.junit.Test;
 
 public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCollectionTestCase
 {
+    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Override
     @Test
     public void testToString()

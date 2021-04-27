@@ -33,7 +33,7 @@ public class ImmutableBooleanEmptyBagTest extends AbstractImmutableBooleanBagTes
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void notEmpty()
     {

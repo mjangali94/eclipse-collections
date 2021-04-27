@@ -54,7 +54,7 @@ public class TripletonSetTest extends AbstractMemoryEfficientMutableSetTestCase
         return new TripletonSet<>(null, "2", "3");
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void nonUniqueWith()
     {

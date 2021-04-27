@@ -22,7 +22,7 @@ public class LongPredicatesTest
 {
     private static final Function<Long, Long> LONG_VALUE = Long::longValue;
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void isOdd()
     {

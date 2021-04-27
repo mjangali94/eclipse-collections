@@ -76,7 +76,7 @@ public class ImmutableSingletonBagTest extends ImmutableBagTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void selectDuplicates()
     {

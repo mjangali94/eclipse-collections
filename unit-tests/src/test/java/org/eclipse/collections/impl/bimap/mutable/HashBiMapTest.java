@@ -68,7 +68,7 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase
         return HashBiMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void newMap_throws()
     {

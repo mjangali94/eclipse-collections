@@ -72,7 +72,7 @@ public class PredicatesTest
         this.employees = FastList.newListWith(this.alice, this.bob, this.charlie, this.diane);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void throwing()
     {

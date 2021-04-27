@@ -72,7 +72,7 @@ public class UnmodifiableSortedBagTest extends AbstractMutableSortedBagTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test(expected = UnsupportedOperationException.class)
     public void toString_with_collection_containing_self()
     {

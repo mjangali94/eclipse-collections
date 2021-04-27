@@ -45,7 +45,7 @@ import org.junit.Test;
 public abstract class UnmodifiableMutableCollectionTestCase<T>
 {
     protected abstract MutableCollection<T> getCollection();
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Test(expected = UnsupportedOperationException.class)
     public void removeIfWith()
     {

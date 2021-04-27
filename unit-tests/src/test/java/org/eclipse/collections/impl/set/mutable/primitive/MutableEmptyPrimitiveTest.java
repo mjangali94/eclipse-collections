@@ -29,7 +29,7 @@ import org.junit.Test;
  */
 public class MutableEmptyPrimitiveTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void isEmptyMutable()
     {

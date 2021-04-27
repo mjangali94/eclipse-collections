@@ -81,7 +81,7 @@ public class ImmutableEmptyBagTest extends ImmutableBagTestCase
         return 0;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testFactory()
     {

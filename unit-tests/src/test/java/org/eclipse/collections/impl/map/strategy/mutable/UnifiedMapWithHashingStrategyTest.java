@@ -123,7 +123,7 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase
                 HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void constructorOfPairs()
     {

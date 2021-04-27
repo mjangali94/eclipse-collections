@@ -33,7 +33,7 @@ public class RejectIterableTest extends AbstractLazyIterableTestCase
         return LazyIterate.reject(FastList.newListWith(elements), ignored -> false);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

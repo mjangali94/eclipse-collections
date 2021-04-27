@@ -53,7 +53,7 @@ public class ImmutableTreeSetTest
         return ImmutableTreeSet.newSetWith(comparator, 1, 2, 3, 4);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void constructWithNull()
     {

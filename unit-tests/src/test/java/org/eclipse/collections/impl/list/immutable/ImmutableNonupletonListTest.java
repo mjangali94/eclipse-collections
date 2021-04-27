@@ -24,7 +24,7 @@ public class ImmutableNonupletonListTest extends AbstractImmutableListTestCase
         return new ImmutableNonupletonList<>(1, 2, 3, 4, 5, 6, 7, 8, 9);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalStateException.class)
     public void getOnly()
     {

@@ -31,7 +31,7 @@ public class ImmutableBooleanArrayListTest extends AbstractImmutableBooleanListT
         return ImmutableBooleanArrayList.newListWith(true, false, true);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void newCollection_throws_empty()
     {

@@ -56,7 +56,7 @@ public class ImmutableHashBiMap2Test extends MapIterableTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void flipUniqueValues()
     {

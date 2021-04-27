@@ -111,7 +111,7 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test(expected = UnsupportedOperationException.class)
     public void removeObject()
     {

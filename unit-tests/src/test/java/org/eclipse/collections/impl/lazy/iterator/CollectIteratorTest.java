@@ -24,7 +24,7 @@ import static org.eclipse.collections.impl.factory.Iterables.iList;
 
 public class CollectIteratorTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void iterator()
     {

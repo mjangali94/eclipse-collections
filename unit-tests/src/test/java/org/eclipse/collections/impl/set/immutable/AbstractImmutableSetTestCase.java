@@ -42,7 +42,7 @@ public abstract class AbstractImmutableSetTestCase extends AbstractImmutableColl
 {
     @Override
     protected abstract ImmutableSet<Integer> classUnderTest();
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Override
     protected <T> MutableSet<T> newMutable()
     {

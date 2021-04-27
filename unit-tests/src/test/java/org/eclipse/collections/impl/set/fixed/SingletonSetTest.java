@@ -70,7 +70,7 @@ public class SingletonSetTest extends AbstractMemoryEfficientMutableSetTestCase
         return new SingletonSet<>(null);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void nonUniqueWith()
     {

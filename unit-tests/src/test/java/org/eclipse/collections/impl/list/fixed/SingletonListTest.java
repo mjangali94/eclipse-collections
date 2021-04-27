@@ -54,7 +54,7 @@ public class SingletonListTest extends AbstractMemoryEfficientMutableListTestCas
         return SingletonList.class;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void equalsAndHashCode()
     {

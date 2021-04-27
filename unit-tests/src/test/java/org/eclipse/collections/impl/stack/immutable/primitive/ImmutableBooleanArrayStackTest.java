@@ -30,7 +30,7 @@ public class ImmutableBooleanArrayStackTest extends AbstractImmutableBooleanStac
         return ImmutableBooleanArrayStack.newStackWith(true, false, true, false);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void newWithIterable()
     {

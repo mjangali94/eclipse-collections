@@ -23,7 +23,7 @@ import org.junit.Test;
 
 public class ImmutableBooleanSetFactoryImplTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void of()
     {

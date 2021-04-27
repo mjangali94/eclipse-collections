@@ -77,7 +77,7 @@ public abstract class AbstractImmutableSortedSetTestCase
         Verify.assertPostSerializedEqualsAndHashCode(immutable);
         Assert.assertNotEquals(FastList.newList(mutable), immutable);
     }
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Test
     public void newWith()
     {

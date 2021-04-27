@@ -25,7 +25,7 @@ public class BooleanIterableIterateTest
 {
     private final BooleanIterable iterable = BooleanArrayList.newListWith(true, false, true);
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

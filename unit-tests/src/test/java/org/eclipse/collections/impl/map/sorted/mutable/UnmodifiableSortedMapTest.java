@@ -30,7 +30,7 @@ public class UnmodifiableSortedMapTest
             new TreeMap<>(SortedMaps.mutable.of(Comparators.reverseNaturalOrder(),
                     1, "1", 2, "2", 3, "3", 4, "4")));
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void comparator()
     {

@@ -35,7 +35,7 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase
         return new LazyIterableAdapter<>(FastList.newListWith(elements));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

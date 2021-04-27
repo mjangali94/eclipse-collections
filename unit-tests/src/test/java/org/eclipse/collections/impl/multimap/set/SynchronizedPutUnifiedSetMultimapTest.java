@@ -95,7 +95,7 @@ public class SynchronizedPutUnifiedSetMultimapTest extends AbstractMutableSetMul
         return UnifiedSet.newSetWith(args);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void testToString()

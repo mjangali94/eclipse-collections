@@ -30,7 +30,7 @@ public class ZipIterableTest
                 Lists.immutable.of(0, 1, 2));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEachWithIndex()
     {

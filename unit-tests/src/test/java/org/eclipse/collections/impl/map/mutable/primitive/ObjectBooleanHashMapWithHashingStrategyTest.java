@@ -125,7 +125,7 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void select()
     {

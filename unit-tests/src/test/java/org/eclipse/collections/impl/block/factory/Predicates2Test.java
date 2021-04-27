@@ -30,7 +30,7 @@ public class Predicates2Test
     private static final Predicates2<Object, Object> FALSE = Predicates2.alwaysFalse();
     private static final Object OBJECT = new Object();
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void throwing()
     {

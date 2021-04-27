@@ -36,7 +36,7 @@ public class CollectIterableTest extends AbstractLazyIterableTestCase
         return LazyIterate.collect(FastList.newListWith(elements), Functions.identity());
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

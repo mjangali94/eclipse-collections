@@ -38,7 +38,7 @@ public class ImmutableObjectBooleanEmptyMapTest extends AbstractImmutableObjectB
         return (ImmutableObjectBooleanMap<String>) ImmutableObjectBooleanEmptyMap.INSTANCE;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void newWithKeyValue()
     {

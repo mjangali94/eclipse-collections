@@ -53,7 +53,7 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase
         throw new AssertionError();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testEmpty()
     {

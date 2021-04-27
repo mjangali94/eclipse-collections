@@ -71,7 +71,7 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase
         return new CollectionAdapter<>(FastList.newList());
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = NullPointerException.class)
     public void null_throws()
     {

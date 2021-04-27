@@ -27,7 +27,7 @@ public abstract class AbstractMutableBiMapKeySetTestCase
     protected abstract MutableBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3);
 
     protected abstract MutableBiMap<String, Integer> newMapWithKeysValues(String key1, int value1, String key2, int value2, String key3, int value3, String key4, int value4);
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Test(expected = UnsupportedOperationException.class)
     public void add()
     {

@@ -27,7 +27,7 @@ public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableLi
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test(expected = UnsupportedOperationException.class)
     public void listIterator()
     {

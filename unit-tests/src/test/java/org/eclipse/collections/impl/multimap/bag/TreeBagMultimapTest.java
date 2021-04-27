@@ -71,7 +71,7 @@ public class TreeBagMultimapTest extends org.eclipse.collections.impl.multimap.b
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void testEmptyConstructor()
     {

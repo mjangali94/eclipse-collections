@@ -36,7 +36,7 @@ public class CompositeIterableTest extends AbstractLazyIterableTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void iterator()
     {

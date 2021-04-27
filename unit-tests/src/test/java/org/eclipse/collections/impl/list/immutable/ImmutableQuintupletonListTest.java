@@ -24,7 +24,7 @@ public class ImmutableQuintupletonListTest extends AbstractImmutableListTestCase
         return new ImmutableQuintupletonList<>(1, 2, 3, 4, 5);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalStateException.class)
     public void getOnly()
     {

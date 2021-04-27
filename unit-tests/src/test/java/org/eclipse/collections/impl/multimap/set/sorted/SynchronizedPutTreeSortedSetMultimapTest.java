@@ -115,7 +115,7 @@ public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSor
         return TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), args);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void testToString()

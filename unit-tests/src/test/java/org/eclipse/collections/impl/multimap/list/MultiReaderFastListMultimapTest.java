@@ -97,7 +97,7 @@ public class MultiReaderFastListMultimapTest extends AbstractMutableListMultimap
         return MultiReaderFastList.newListWith(args);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void pairIterableConstructorTest()
     {

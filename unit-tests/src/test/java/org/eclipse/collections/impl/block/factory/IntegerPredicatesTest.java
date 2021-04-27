@@ -22,7 +22,7 @@ public class IntegerPredicatesTest
 {
     private static final Function<Integer, Integer> INT_VALUE = integer -> integer;
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void isOdd()
     {

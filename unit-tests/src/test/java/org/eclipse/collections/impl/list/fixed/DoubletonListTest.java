@@ -44,7 +44,7 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
         return DoubletonList.class;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testClone()
     {

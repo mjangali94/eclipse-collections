@@ -42,7 +42,7 @@ public abstract class AbstractBooleanStackTestCase extends AbstractBooleanIterab
     }
 
     protected abstract BooleanStack newWithTopToBottom(boolean... elements);
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Override
     @Test
     public void booleanIterator()

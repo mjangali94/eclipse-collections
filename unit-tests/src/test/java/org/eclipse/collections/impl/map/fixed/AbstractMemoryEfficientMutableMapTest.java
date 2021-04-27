@@ -72,7 +72,7 @@ public abstract class AbstractMemoryEfficientMutableMapTest
 
     public abstract void containsValue();
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = UnsupportedOperationException.class)
     public void put_throws()
     {

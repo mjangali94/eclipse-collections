@@ -28,7 +28,7 @@ public class ImmutableTripletonSetTest
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void newWithout()
     {

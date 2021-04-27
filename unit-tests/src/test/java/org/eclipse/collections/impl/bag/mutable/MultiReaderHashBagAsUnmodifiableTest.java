@@ -29,7 +29,7 @@ public class MultiReaderHashBagAsUnmodifiableTest extends UnmodifiableMutableCol
         return MultiReaderHashBag.newBagWith(2, 2).asUnmodifiable();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void selectUnique()
     {

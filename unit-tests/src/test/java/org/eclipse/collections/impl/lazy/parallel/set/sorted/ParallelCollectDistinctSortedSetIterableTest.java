@@ -48,7 +48,7 @@ public class ParallelCollectDistinctSortedSetIterableTest extends ParallelUnsort
                 .collect(i -> i / 10, SortedSets.mutable.of()).toSet();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void groupBy()

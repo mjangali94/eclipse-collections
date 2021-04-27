@@ -51,7 +51,7 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
         stack.pop(2);
         Assert.assertEquals((this.classUnderTest().size() & 1) != 0, stack.peekAt(0));
     }
-
+@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
     @Override
     @Test
     public void peek()

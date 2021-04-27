@@ -31,7 +31,7 @@ public class FlatCollectIterableTest extends AbstractLazyIterableTestCase
         return LazyIterate.flatCollect(FastList.newListWith(elements), FastList::newListWith);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEach()
     {

@@ -22,7 +22,7 @@ import org.junit.Test;
 
 public class ImmutableMapFactoryTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void create0()
     {

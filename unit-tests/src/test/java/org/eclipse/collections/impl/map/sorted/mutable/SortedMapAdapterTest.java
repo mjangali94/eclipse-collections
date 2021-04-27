@@ -88,7 +88,7 @@ public class SortedMapAdapterTest extends MutableSortedMapTestCase
         return SortedMapAdapter.adapt(new TreeMap<K, V>()).with(Tuples.pair(key1, value1), Tuples.pair(key2, value2), Tuples.pair(key3, value3), Tuples.pair(key4, value4));
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = NullPointerException.class)
     public void testNewNull()
     {

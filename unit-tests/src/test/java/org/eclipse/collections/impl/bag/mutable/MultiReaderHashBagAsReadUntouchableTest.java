@@ -29,7 +29,7 @@ public class MultiReaderHashBagAsReadUntouchableTest extends UnmodifiableMutable
         return MultiReaderHashBag.newBagWith(1, 1).asReadUntouchable();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = UnsupportedOperationException.class)
     public void addOccurrences()
     {

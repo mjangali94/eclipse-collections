@@ -39,7 +39,7 @@ public class FixedSizeSetFactoryTest
         this.setFactory = FixedSizeSetFactoryImpl.INSTANCE;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testCreateWith3Args()
     {

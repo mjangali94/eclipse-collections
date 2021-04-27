@@ -121,7 +121,7 @@ public class SetsTest
         return set;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void unionUnique()
     {

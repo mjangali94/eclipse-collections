@@ -20,7 +20,7 @@ import org.junit.Test;
 
 public class StringPredicatesTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void startsWith()
     {

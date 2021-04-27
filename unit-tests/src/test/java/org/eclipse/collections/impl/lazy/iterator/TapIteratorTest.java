@@ -21,7 +21,7 @@ import org.junit.Test;
 
 public class TapIteratorTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = NoSuchElementException.class)
     public void nextIfDoesntHaveAnything()
     {

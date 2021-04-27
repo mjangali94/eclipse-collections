@@ -24,7 +24,7 @@ public class ImmutableDoubletonListTest extends AbstractImmutableListTestCase
         return new ImmutableDoubletonList<>(1, 2);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalStateException.class)
     public void getOnly()
     {

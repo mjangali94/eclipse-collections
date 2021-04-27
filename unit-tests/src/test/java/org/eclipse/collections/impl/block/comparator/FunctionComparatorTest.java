@@ -32,7 +32,7 @@ public class FunctionComparatorTest
     private static final Band ACDC = new Band("AC/DC");
     private static final Band ZZTOP = new Band("ZZ Top");
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void comparator()
     {

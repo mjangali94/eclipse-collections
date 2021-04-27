@@ -95,7 +95,7 @@ public class SynchronizedPutHashBagMultimapTest extends AbstractMutableBagMultim
         return HashBag.newBagWith(args);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void testToString()

@@ -25,7 +25,7 @@ public class TapBooleanIterableTest
 {
     private final BooleanList list = BooleanLists.immutable.with(true, false, false, true);
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void booleanIterator()
     {

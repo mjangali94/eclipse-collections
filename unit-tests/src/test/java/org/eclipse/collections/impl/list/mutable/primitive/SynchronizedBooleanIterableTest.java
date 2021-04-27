@@ -54,7 +54,7 @@ public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTest
         return FastList.newListWith(elements);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalArgumentException.class)
     public void null_iterable_throws()
     {

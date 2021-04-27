@@ -60,7 +60,7 @@ public class UnmodifiableBagTest
         return Bags.mutable.of("").asUnmodifiable();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = UnsupportedOperationException.class)
     public void addOccurrences()
     {

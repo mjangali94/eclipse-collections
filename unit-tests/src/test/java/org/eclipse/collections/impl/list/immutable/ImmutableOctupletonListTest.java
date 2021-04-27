@@ -24,7 +24,7 @@ public class ImmutableOctupletonListTest extends AbstractImmutableListTestCase
         return new ImmutableOctupletonList<>(1, 2, 3, 4, 5, 6, 7, 8);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = IllegalStateException.class)
     public void getOnly()
     {

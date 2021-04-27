@@ -57,7 +57,7 @@ public class HashBagWithHashingStrategyTest extends MutableBagTestCase
         return bag;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void newBag_throws()
     {

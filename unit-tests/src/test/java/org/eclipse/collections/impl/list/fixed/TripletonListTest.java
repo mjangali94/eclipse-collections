@@ -42,7 +42,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         return TripletonList.class;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testClone()
     {

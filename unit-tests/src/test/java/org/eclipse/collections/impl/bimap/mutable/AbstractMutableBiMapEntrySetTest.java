@@ -41,7 +41,7 @@ public abstract class AbstractMutableBiMapEntrySetTest
 
     protected abstract <K, V> MutableBiMap<K, V> newMapWithKeyValue(K key, V value);
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void entry_clear()
     {

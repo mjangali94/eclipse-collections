@@ -47,7 +47,7 @@ public class ImmutableSingletonMapTest extends ImmutableMemoryEfficientMapTestCa
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void equalsAndHashCode()
     {

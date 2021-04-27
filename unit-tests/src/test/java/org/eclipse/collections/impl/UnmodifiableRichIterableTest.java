@@ -53,7 +53,7 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void chunk_large_size()
     {

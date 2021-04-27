@@ -47,7 +47,7 @@ public class UnifiedSetWithHashingStrategyParallelCollectDistinctTest extends Pa
                 .collect(i -> i / 10);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void groupBy()

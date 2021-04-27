@@ -62,7 +62,7 @@ public class MapAdapterTest extends MutableMapTestCase
                 .withKeyValue(key4, value4);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void adapt()
     {

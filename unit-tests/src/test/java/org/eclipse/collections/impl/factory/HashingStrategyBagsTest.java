@@ -24,7 +24,7 @@ import org.junit.Test;
 
 public class HashingStrategyBagsTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void mutable()
     {

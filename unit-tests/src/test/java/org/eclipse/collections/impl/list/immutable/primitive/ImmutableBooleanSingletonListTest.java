@@ -27,7 +27,7 @@ public class ImmutableBooleanSingletonListTest extends AbstractImmutableBooleanL
     }
 
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();@Override
+    @Override
 @Test
     public void testEquals()
     {

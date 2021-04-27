@@ -61,7 +61,7 @@ public class DoubletonSetTest extends AbstractMemoryEfficientMutableSetTestCase
         return new DoubletonSet<>(null, "2");
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void nonUniqueWith()
     {

@@ -35,7 +35,7 @@ public class IterateNullTest
 {
     // Iterate
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void collect()
     {

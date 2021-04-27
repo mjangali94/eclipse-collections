@@ -27,7 +27,7 @@ import org.junit.Test;
 
 public class NullSafeSortingTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void emptyFastList()
     {

@@ -70,7 +70,7 @@ public class ArrayIterateTest
 {
     private static final Integer[] INTEGER_ARRAY = {5, 4, 3, 2, 1};
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void injectInto()
     {

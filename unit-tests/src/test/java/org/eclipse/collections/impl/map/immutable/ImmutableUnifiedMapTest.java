@@ -35,7 +35,7 @@ public class ImmutableUnifiedMapTest extends ImmutableMapTestCase
         return 4;
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     @Override
     public void testToString()

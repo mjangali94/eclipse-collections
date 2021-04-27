@@ -70,7 +70,7 @@ public class Collectors2AdditionalTest
     private final List<Integer> smallData = new ArrayList<>(SMALL_INTERVAL);
     private final List<Integer> bigData = new ArrayList<>(LARGE_INTERVAL);
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void chunk()
     {

@@ -34,7 +34,7 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
         return MultiReaderUnifiedSet.newSetWith(1).asReadUntouchable();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void union()
     {

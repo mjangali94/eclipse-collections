@@ -55,7 +55,7 @@ public class UnmodifiableMutableListTest
         this.unmodifiableList = UnmodifiableMutableList.of(this.mutableList);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void equalsAndHashCode()
     {

@@ -21,7 +21,7 @@ public class ZipIteratorTest
 {
     private static final ImmutableList<Integer> EMPTY = Lists.immutable.of();
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test(expected = UnsupportedOperationException.class)
     public void testRemove()
     {

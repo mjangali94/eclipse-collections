@@ -36,7 +36,7 @@ public class BooleanHashSetTest extends AbstractBooleanSetTestCase
         return BooleanHashSet.newSetWith(elements);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void construction() throws Exception
     {

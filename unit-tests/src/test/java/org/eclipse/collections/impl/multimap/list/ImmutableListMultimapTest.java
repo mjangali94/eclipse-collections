@@ -52,7 +52,7 @@ public class ImmutableListMultimapTest extends AbstractImmutableMultimapTestCase
         // Lists allow duplicates
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void forEachKeyMultiValue()
     {

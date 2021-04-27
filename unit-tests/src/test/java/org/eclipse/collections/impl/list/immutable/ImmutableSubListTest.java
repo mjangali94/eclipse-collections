@@ -28,7 +28,7 @@ public class ImmutableSubListTest extends AbstractImmutableListTestCase
         return Lists.immutable.of(0, 1, 2, 3, 4, 5, 6, 7).subList(1, 5);
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void testSubListListIterator()
     {

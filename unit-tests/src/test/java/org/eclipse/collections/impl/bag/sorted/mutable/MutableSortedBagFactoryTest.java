@@ -24,7 +24,7 @@ import org.junit.Test;
 
 public class MutableSortedBagFactoryTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void ofEmpty()
     {

@@ -39,7 +39,7 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase
     }
 
     @SuppressWarnings("StringBufferReplaceableByString")
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void stringBuilder()
     {

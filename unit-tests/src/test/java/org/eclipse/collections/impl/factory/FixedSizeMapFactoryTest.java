@@ -21,7 +21,7 @@ import org.junit.Test;
 
 public class FixedSizeMapFactoryTest
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void create0()
     {

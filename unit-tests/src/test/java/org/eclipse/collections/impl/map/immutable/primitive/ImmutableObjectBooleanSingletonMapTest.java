@@ -39,7 +39,7 @@ public class ImmutableObjectBooleanSingletonMapTest extends AbstractImmutableObj
         return ObjectBooleanHashMap.newWithKeysValues("1", true).toImmutable();
     }
 
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    
 @Test
     public void newWithKeyValue()
     {
