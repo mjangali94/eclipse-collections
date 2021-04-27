@@ -48,7 +48,7 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
         Assert.assertEquals(expectedTrueCount, trueCount);
         Assert.assertEquals(expectedFalseCount, falseCount);
     }
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     public void testNewWith()
     {

@@ -44,7 +44,6 @@ import org.eclipse.collections.impl.utility.internal.primitive.BooleanIteratorIt
 import org.eclipse.collections.impl.utility.primitive.LazyBooleanIterate;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class NonInstantiableTest

@@ -14,7 +14,6 @@ import org.eclipse.collections.api.set.ParallelUnsortedSetIterable;
 import org.eclipse.collections.impl.set.mutable.UnifiedSet;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class UnmodifiableUnsortedSetParallelTest extends ParallelUnsortedSetIterableTestCase

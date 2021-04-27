@@ -23,7 +23,6 @@ import org.eclipse.collections.impl.factory.SortedSets;
 import org.eclipse.collections.impl.set.sorted.mutable.TreeSortedSet;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 

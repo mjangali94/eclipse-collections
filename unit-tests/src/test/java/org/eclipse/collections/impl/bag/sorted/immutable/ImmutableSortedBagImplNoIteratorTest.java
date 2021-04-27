@@ -19,7 +19,6 @@ import org.eclipse.collections.api.collection.MutableCollection;
 import org.eclipse.collections.impl.factory.SortedBags;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ImmutableSortedBagImplNoIteratorTest extends ImmutableSortedBagImplTest

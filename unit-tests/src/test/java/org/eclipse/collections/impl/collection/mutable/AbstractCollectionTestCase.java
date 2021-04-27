@@ -39,7 +39,7 @@ import static org.eclipse.collections.impl.factory.Iterables.mSet;
  */
 public abstract class AbstractCollectionTestCase extends AbstractRichIterableTestCase
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    @org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     public void newEmpty()
     {

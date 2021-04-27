@@ -16,7 +16,6 @@ import org.eclipse.collections.impl.factory.Sets;
 import org.eclipse.collections.impl.list.fixed.ArrayAdapter;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class MemoryEfficientMutableSetParallelSetIterableTest extends ParallelUnsortedSetIterableTestCase

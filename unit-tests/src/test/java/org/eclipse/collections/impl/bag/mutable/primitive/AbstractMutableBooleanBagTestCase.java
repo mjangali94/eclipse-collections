@@ -50,7 +50,7 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
     {
         return HashBag.newBagWith(elements);
     }
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    @org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
 
     @Test
     public void sizeDistinct()

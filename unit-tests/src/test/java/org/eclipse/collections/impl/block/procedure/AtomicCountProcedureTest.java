@@ -13,7 +13,6 @@ package org.eclipse.collections.impl.block.procedure;
 import org.eclipse.collections.impl.list.Interval;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

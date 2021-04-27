@@ -13,7 +13,6 @@ package org.eclipse.collections.impl.set.mutable.primitive;
 import org.eclipse.collections.api.set.primitive.MutableBooleanSet;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 

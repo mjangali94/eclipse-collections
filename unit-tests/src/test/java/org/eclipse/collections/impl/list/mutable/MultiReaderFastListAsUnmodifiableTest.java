@@ -15,7 +15,6 @@ import java.util.ListIterator;
 import org.eclipse.collections.api.list.MutableList;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableListTestCase

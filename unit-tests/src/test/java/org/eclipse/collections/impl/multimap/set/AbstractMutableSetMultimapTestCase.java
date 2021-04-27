@@ -63,7 +63,7 @@ public abstract class AbstractMutableSetMultimapTestCase extends AbstractMutable
 
     @Override
     protected abstract <V> MutableSet<V> createCollection(V... args);
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     @Override
     public void putAllPairs()

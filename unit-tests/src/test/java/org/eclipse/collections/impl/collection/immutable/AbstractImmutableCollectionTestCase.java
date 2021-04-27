@@ -81,7 +81,7 @@ public abstract class AbstractImmutableCollectionTestCase
     protected abstract ImmutableCollection<Integer> classUnderTest();
 
     protected abstract <T> MutableCollection<T> newMutable();
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     /**
      * @since 9.0
      */

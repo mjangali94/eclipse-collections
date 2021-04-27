@@ -61,7 +61,7 @@ public abstract class AbstractSortedSetTestCase extends AbstractCollectionTestCa
     protected abstract <T> MutableSortedSet<T> newWith(T... littleElements);
 
     protected abstract <T> MutableSortedSet<T> newWith(Comparator<? super T> comparator, T... elements);
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Override
     @Test
     public void toImmutable()

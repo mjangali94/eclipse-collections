@@ -17,7 +17,6 @@ import org.eclipse.collections.impl.factory.primitive.BooleanLists;
 import org.eclipse.collections.impl.math.MutableInteger;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 

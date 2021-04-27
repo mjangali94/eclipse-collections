@@ -55,7 +55,7 @@ import static org.eclipse.collections.impl.factory.Iterables.mList;
 public abstract class AbstractMemoryEfficientMutableSetTestCase
 {
     protected abstract MutableSet<String> classUnderTest();
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     public void asSynchronized()
     {

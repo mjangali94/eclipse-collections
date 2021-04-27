@@ -20,7 +20,7 @@ import org.junit.Test;
 
 public abstract class AbstractUnifiedSetTestCase extends AbstractMutableSetTestCase
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    @org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     public void addOnObjectWithCastInEquals()
     {

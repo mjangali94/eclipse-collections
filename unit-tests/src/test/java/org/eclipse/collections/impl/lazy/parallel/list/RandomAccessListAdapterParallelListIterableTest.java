@@ -17,7 +17,6 @@ import org.eclipse.collections.impl.list.mutable.ListAdapter;
 import org.eclipse.collections.impl.list.mutable.RandomAccessListAdapter;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class RandomAccessListAdapterParallelListIterableTest extends ParallelListIterableTestCase

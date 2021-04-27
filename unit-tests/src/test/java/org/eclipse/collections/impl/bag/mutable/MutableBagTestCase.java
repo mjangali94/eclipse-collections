@@ -51,7 +51,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase
     protected abstract <T> MutableBagIterable<T> newWith(T... littleElements);
 
     protected abstract <T> MutableBagIterable<T> newWithOccurrences(ObjectIntPair<T>... elementsWithOccurrences);
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     @Override
     public void equalsAndHashCode()

@@ -16,7 +16,7 @@ import org.junit.Test;
 
 public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCollectionTestCase
 {
-    @org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+    @org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Override
     @Test
     public void testToString()

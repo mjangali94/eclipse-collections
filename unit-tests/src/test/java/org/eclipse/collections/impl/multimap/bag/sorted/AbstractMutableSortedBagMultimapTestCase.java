@@ -74,7 +74,7 @@ public abstract class AbstractMutableSortedBagMultimapTestCase extends AbstractM
 
     @Override
     protected abstract <V> MutableSortedBag<V> createCollection(V... args);
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Override
     @Test
     public void flip()

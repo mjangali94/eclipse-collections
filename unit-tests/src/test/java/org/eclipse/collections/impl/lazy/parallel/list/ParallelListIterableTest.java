@@ -15,7 +15,6 @@ import org.eclipse.collections.api.list.ParallelListIterable;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ParallelListIterableTest extends ParallelListIterableTestCase

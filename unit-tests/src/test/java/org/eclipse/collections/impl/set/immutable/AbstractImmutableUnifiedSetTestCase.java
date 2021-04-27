@@ -47,7 +47,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase
     public abstract ImmutableSet<Integer> newSetWith(int one, int two, int three);
 
     public abstract ImmutableSet<Integer> newSetWith(int... littleElements);
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     public void newCollection()
     {

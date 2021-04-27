@@ -18,7 +18,6 @@ import org.eclipse.collections.impl.lazy.parallel.set.ParallelUnsortedSetIterabl
 import org.eclipse.collections.impl.set.strategy.mutable.UnifiedSetWithHashingStrategy;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class ImmutableUnifiedSetWithHashingStrategyParallelSetIterableTest extends ParallelUnsortedSetIterableTestCase

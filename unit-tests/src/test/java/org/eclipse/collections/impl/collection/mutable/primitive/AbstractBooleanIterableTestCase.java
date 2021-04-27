@@ -41,7 +41,7 @@ public abstract class AbstractBooleanIterableTestCase
     protected abstract BooleanIterable newMutableCollectionWith(boolean... elements);
 
     protected abstract RichIterable<Object> newObjectCollectionWith(Object... elements);
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     public void newCollectionWith()
     {

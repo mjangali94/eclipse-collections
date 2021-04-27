@@ -15,7 +15,6 @@ import org.eclipse.collections.impl.block.predicate.primitive.CharPredicate;
 import org.eclipse.collections.impl.factory.primitive.CharLists;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 

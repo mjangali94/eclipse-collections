@@ -40,7 +40,6 @@ import org.eclipse.collections.impl.test.domain.Person;
 import org.eclipse.collections.impl.utility.ArrayIterate;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Assert;
 import org.junit.Test;
 

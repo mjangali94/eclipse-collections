@@ -18,7 +18,6 @@ import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.collections.impl.list.mutable.ArrayListAdapter;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.collections.impl.PerformanceLogger;
 import org.junit.Test;
 
 public class UnmodifiableMutableListParallelListIterableTest extends ParallelListIterableTestCase

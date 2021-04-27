@@ -103,7 +103,7 @@ public abstract class ImmutableBagTestCase extends AbstractRichIterableTestCase
      * @return The number of unique keys.
      */
     protected abstract int numKeys();
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
 
     @Test
     public abstract void testSize();

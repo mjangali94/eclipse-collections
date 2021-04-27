@@ -35,7 +35,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
 
     @Override
     protected abstract MutableBooleanCollection newMutableCollectionWith(boolean... elements);
-@org.junit.Rule public PerformanceLogger name = new PerformanceLogger();
+@org.junit.Rule public org.eclipse.collections.impl.PerformanceLogger name = new org.eclipse.collections.impl.PerformanceLogger();
     @Test
     public void clear()
     {
