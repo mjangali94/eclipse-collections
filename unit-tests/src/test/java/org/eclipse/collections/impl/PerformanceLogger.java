@@ -34,18 +34,18 @@ public class PerformanceLogger implements TestRule {
 			public void evaluate() throws Throwable {
 				FileWriter mydata = new FileWriter("myData.csv",true);
 				
-					long start = System.nanoTime();
-					long throughput = 0;
-					long TIME = 0;
-					while (TIME < 10000000000L) {
+					long start2 = System.nanoTime();
+					long throughput2 = 0;
+					long TIME2 = 0;
+					while (TIME2 < 10000000000L) {
 						try {
 							base.evaluate();
 						} finally {
 
-							throughput += 1;
+							throughput2 += 1;
 						}
 						
-							TIME = System.nanoTime() - start;
+							TIME2 = System.nanoTime() - start2;
 					}
 
 				
