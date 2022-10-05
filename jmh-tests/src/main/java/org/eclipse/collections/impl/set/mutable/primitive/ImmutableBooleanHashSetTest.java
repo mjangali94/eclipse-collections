@@ -1,0 +1,1112 @@
+/*
+ * Copyright (c) 2022 Goldman Sachs and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * and Eclipse Distribution License v. 1.0 which accompany this distribution.
+ * The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html
+ * and the Eclipse Distribution License is available at
+ * http://www.eclipse.org/org/documents/edl-v10.php.
+ */
+package org.eclipse.collections.impl.set.mutable.primitive;
+
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+import org.eclipse.collections.api.LazyBooleanIterable;
+import org.eclipse.collections.api.block.function.primitive.BooleanToObjectFunction;
+import org.eclipse.collections.api.block.function.primitive.ObjectBooleanToObjectFunction;
+import org.eclipse.collections.api.collection.primitive.ImmutableBooleanCollection;
+import org.eclipse.collections.api.iterator.BooleanIterator;
+import org.eclipse.collections.api.set.MutableSet;
+import org.eclipse.collections.api.set.primitive.ImmutableBooleanSet;
+import org.eclipse.collections.api.set.primitive.MutableBooleanSet;
+import org.eclipse.collections.api.tuple.primitive.BooleanBooleanPair;
+import org.eclipse.collections.impl.bag.mutable.primitive.BooleanHashBag;
+import org.eclipse.collections.impl.block.factory.primitive.BooleanPredicates;
+import org.eclipse.collections.impl.collection.immutable.primitive.AbstractImmutableBooleanCollectionTestCase;
+import org.eclipse.collections.impl.factory.Sets;
+import org.eclipse.collections.impl.list.mutable.primitive.BooleanArrayList;
+import org.eclipse.collections.impl.math.MutableInteger;
+import org.eclipse.collections.impl.set.mutable.UnifiedSet;
+import org.eclipse.collections.impl.test.Verify;
+import org.eclipse.collections.impl.tuple.primitive.PrimitiveTuples;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+public class ImmutableBooleanHashSetTest extends AbstractImmutableBooleanCollectionTestCase {
+
+    private ImmutableBooleanSet emptySet;
+
+    private ImmutableBooleanSet falseSet;
+
+    private ImmutableBooleanSet trueSet;
+
+    private ImmutableBooleanSet trueFalseSet;
+
+    @Override
+    protected ImmutableBooleanSet classUnderTest() {
+        return BooleanHashSet.newSetWith(true, false).toImmutable();
+    }
+
+    @Override
+    protected ImmutableBooleanSet newWith(boolean... elements) {
+        return BooleanHashSet.newSetWith(elements).toImmutable();
+    }
+
+    @Override
+    protected MutableBooleanSet newMutableCollectionWith(boolean... elements) {
+        return BooleanHashSet.newSetWith(elements);
+    }
+
+    @Override
+    protected MutableSet<Object> newObjectCollectionWith(Object... elements) {
+        return UnifiedSet.newSetWith(elements);
+    }
+
+    @Before
+    public void setup() {
+        this.emptySet = this.newWith();
+        this.falseSet = this.newWith(false);
+        this.trueSet = this.newWith(true);
+        this.trueFalseSet = this.newWith(true, false);
+    }
+
+    @Override
+    @Test
+    public void newCollectionWith() {
+        ImmutableBooleanSet set = this.classUnderTest();
+        Verify.assertSize(2, set);
+        Assert.assertTrue(set.containsAll(true, false, true));
+    }
+
+    @Override
+    @Test
+    public void isEmpty() {
+        super.isEmpty();
+        Verify.assertEmpty(this.emptySet);
+        Verify.assertNotEmpty(this.falseSet);
+        Verify.assertNotEmpty(this.trueSet);
+        Verify.assertNotEmpty(this.trueFalseSet);
+    }
+
+    @Override
+    @Test
+    public void notEmpty() {
+        super.notEmpty();
+        Assert.assertFalse(this.emptySet.notEmpty());
+        Assert.assertTrue(this.falseSet.notEmpty());
+        Assert.assertTrue(this.trueSet.notEmpty());
+        Assert.assertTrue(this.trueFalseSet.notEmpty());
+    }
+
+    @Override
+    @Test
+    public void contains() {
+        super.contains();
+        Assert.assertFalse(this.emptySet.contains(true));
+        Assert.assertFalse(this.emptySet.contains(false));
+        Assert.assertTrue(this.falseSet.contains(false));
+        Assert.assertFalse(this.falseSet.contains(true));
+        Assert.assertTrue(this.trueSet.contains(true));
+        Assert.assertFalse(this.trueSet.contains(false));
+        Assert.assertTrue(this.trueFalseSet.contains(true));
+        Assert.assertTrue(this.trueFalseSet.contains(false));
+    }
+
+    @Override
+    @Test
+    public void containsAllArray() {
+        super.containsAllArray();
+        Assert.assertFalse(this.emptySet.containsAll(true));
+        Assert.assertFalse(this.emptySet.containsAll(true, false));
+        Assert.assertTrue(this.falseSet.containsAll(false, false));
+        Assert.assertFalse(this.falseSet.containsAll(true, true));
+        Assert.assertFalse(this.falseSet.containsAll(true, false, true));
+        Assert.assertTrue(this.trueSet.containsAll(true, true));
+        Assert.assertFalse(this.trueSet.containsAll(false, false));
+        Assert.assertFalse(this.trueSet.containsAll(true, false, false));
+        Assert.assertTrue(this.trueFalseSet.containsAll(true, true));
+        Assert.assertTrue(this.trueFalseSet.containsAll(false, false));
+        Assert.assertTrue(this.trueFalseSet.containsAll(false, true, true));
+    }
+
+    @Override
+    @Test
+    public void containsAllIterable() {
+        super.containsAllIterable();
+        Assert.assertFalse(this.emptySet.containsAll(BooleanArrayList.newListWith(true)));
+        Assert.assertFalse(this.emptySet.containsAll(BooleanArrayList.newListWith(true, false)));
+        Assert.assertTrue(this.falseSet.containsAll(BooleanArrayList.newListWith(false, false)));
+        Assert.assertFalse(this.falseSet.containsAll(BooleanArrayList.newListWith(true, true)));
+        Assert.assertFalse(this.falseSet.containsAll(BooleanArrayList.newListWith(true, false, true)));
+        Assert.assertTrue(this.trueSet.containsAll(BooleanArrayList.newListWith(true, true)));
+        Assert.assertFalse(this.trueSet.containsAll(BooleanArrayList.newListWith(false, false)));
+        Assert.assertFalse(this.trueSet.containsAll(BooleanArrayList.newListWith(true, false, false)));
+        Assert.assertTrue(this.trueFalseSet.containsAll(BooleanArrayList.newListWith(true, true)));
+        Assert.assertTrue(this.trueFalseSet.containsAll(BooleanArrayList.newListWith(false, false)));
+        Assert.assertTrue(this.trueFalseSet.containsAll(BooleanArrayList.newListWith(false, true, true)));
+    }
+
+    @Override
+    @Test
+    public void toArray() {
+        super.toArray();
+        Assert.assertEquals(0L, this.emptySet.toArray().length);
+        Assert.assertEquals(1L, this.falseSet.toArray().length);
+        Assert.assertFalse(this.falseSet.toArray()[0]);
+        Assert.assertEquals(1L, this.trueSet.toArray().length);
+        Assert.assertTrue(this.trueSet.toArray()[0]);
+        Assert.assertEquals(2L, this.trueFalseSet.toArray().length);
+        Assert.assertTrue(Arrays.equals(new boolean[] { false, true }, this.trueFalseSet.toArray()) || Arrays.equals(new boolean[] { true, false }, this.trueFalseSet.toArray()));
+    }
+
+    @Override
+    @Test
+    public void toList() {
+        super.toList();
+        Assert.assertEquals(new BooleanArrayList(), this.emptySet.toList());
+        Assert.assertEquals(BooleanArrayList.newListWith(false), this.falseSet.toList());
+        Assert.assertEquals(BooleanArrayList.newListWith(true), this.trueSet.toList());
+        Assert.assertTrue(BooleanArrayList.newListWith(false, true).equals(this.trueFalseSet.toList()) || BooleanArrayList.newListWith(true, false).equals(this.trueFalseSet.toList()));
+    }
+
+    @Override
+    @Test
+    public void toSet() {
+        super.toSet();
+        Assert.assertEquals(new BooleanHashSet(), this.emptySet.toSet());
+        Assert.assertEquals(BooleanHashSet.newSetWith(false), this.falseSet.toSet());
+        Assert.assertEquals(BooleanHashSet.newSetWith(true), this.trueSet.toSet());
+        Assert.assertEquals(BooleanHashSet.newSetWith(false, true), this.trueFalseSet.toSet());
+    }
+
+    @Override
+    @Test
+    public void toBag() {
+        Assert.assertEquals(new BooleanHashBag(), this.emptySet.toBag());
+        Assert.assertEquals(BooleanHashBag.newBagWith(false), this.falseSet.toBag());
+        Assert.assertEquals(BooleanHashBag.newBagWith(true), this.trueSet.toBag());
+        Assert.assertEquals(BooleanHashBag.newBagWith(false, true), this.trueFalseSet.toBag());
+    }
+
+    @Override
+    @Test
+    public void testEquals() {
+        Assert.assertNotEquals(this.falseSet, this.emptySet);
+        Assert.assertNotEquals(this.falseSet, this.trueSet);
+        Assert.assertNotEquals(this.falseSet, this.trueFalseSet);
+        Assert.assertNotEquals(this.trueSet, this.emptySet);
+        Assert.assertNotEquals(this.trueSet, this.trueFalseSet);
+        Assert.assertNotEquals(this.trueFalseSet, this.emptySet);
+        Verify.assertEqualsAndHashCode(this.newWith(false, true), this.trueFalseSet);
+        Verify.assertEqualsAndHashCode(this.newWith(true, false), this.trueFalseSet);
+        Verify.assertPostSerializedIdentity(this.emptySet);
+        Verify.assertPostSerializedIdentity(this.falseSet);
+        Verify.assertPostSerializedIdentity(this.trueSet);
+        Verify.assertPostSerializedIdentity(this.trueFalseSet);
+    }
+
+    @Override
+    @Test
+    public void testHashCode() {
+        super.testHashCode();
+        Assert.assertEquals(UnifiedSet.newSet().hashCode(), this.emptySet.hashCode());
+        Assert.assertEquals(UnifiedSet.newSetWith(false).hashCode(), this.falseSet.hashCode());
+        Assert.assertEquals(UnifiedSet.newSetWith(true).hashCode(), this.trueSet.hashCode());
+        Assert.assertEquals(UnifiedSet.newSetWith(true, false).hashCode(), this.trueFalseSet.hashCode());
+        Assert.assertEquals(UnifiedSet.newSetWith(false, true).hashCode(), this.trueFalseSet.hashCode());
+        Assert.assertNotEquals(UnifiedSet.newSetWith(false).hashCode(), this.trueFalseSet.hashCode());
+    }
+
+    @Override
+    @Test
+    public void booleanIterator() {
+        BooleanIterator booleanIterator0 = this.emptySet.booleanIterator();
+        Assert.assertFalse(booleanIterator0.hasNext());
+        Assert.assertThrows(NoSuchElementException.class, booleanIterator0::next);
+        BooleanIterator booleanIterator1 = this.falseSet.booleanIterator();
+        Assert.assertTrue(booleanIterator1.hasNext());
+        Assert.assertFalse(booleanIterator1.next());
+        Assert.assertFalse(booleanIterator1.hasNext());
+        Assert.assertThrows(NoSuchElementException.class, booleanIterator1::next);
+        BooleanIterator booleanIterator2 = this.trueSet.booleanIterator();
+        Assert.assertTrue(booleanIterator2.hasNext());
+        Assert.assertTrue(booleanIterator2.next());
+        Assert.assertFalse(booleanIterator2.hasNext());
+        Assert.assertThrows(NoSuchElementException.class, booleanIterator2::next);
+        BooleanIterator booleanIterator3 = this.trueFalseSet.booleanIterator();
+        Assert.assertTrue(booleanIterator3.hasNext());
+        MutableBooleanSet actual = new BooleanHashSet();
+        actual.add(booleanIterator3.next());
+        Assert.assertTrue(booleanIterator3.hasNext());
+        actual.add(booleanIterator3.next());
+        Assert.assertEquals(BooleanHashSet.newSetWith(true, false), actual);
+        Assert.assertFalse(booleanIterator3.hasNext());
+        Assert.assertThrows(NoSuchElementException.class, booleanIterator3::next);
+    }
+
+    @Override
+    @Test
+    public void forEach() {
+        String[] sum = new String[4];
+        for (int i = 0; i < sum.length; i++) {
+            sum[i] = "";
+        }
+        this.emptySet.forEach(each -> sum[0] += each);
+        this.falseSet.forEach(each -> sum[1] += each);
+        this.trueSet.forEach(each -> sum[2] += each);
+        this.trueFalseSet.forEach(each -> sum[3] += each);
+        Assert.assertEquals("", sum[0]);
+        Assert.assertEquals("false", sum[1]);
+        Assert.assertEquals("true", sum[2]);
+        Assert.assertTrue("truefalse".equals(sum[3]) || "falsetrue".equals(sum[3]));
+    }
+
+    @Override
+    @Test
+    public void injectInto() {
+        ObjectBooleanToObjectFunction<MutableInteger, MutableInteger> function = (object, value) -> object.add(value ? 1 : 0);
+        Assert.assertEquals(new MutableInteger(1), BooleanHashSet.newSetWith(true, false, true).injectInto(new MutableInteger(0), function));
+        Assert.assertEquals(new MutableInteger(1), BooleanHashSet.newSetWith(true).injectInto(new MutableInteger(0), function));
+        Assert.assertEquals(new MutableInteger(0), BooleanHashSet.newSetWith(false).injectInto(new MutableInteger(0), function));
+        Assert.assertEquals(new MutableInteger(0), new BooleanHashSet().injectInto(new MutableInteger(0), function));
+    }
+
+    @Override
+    @Test
+    public void size() {
+        super.size();
+        Verify.assertSize(2, this.classUnderTest());
+    }
+
+    @Override
+    @Test
+    public void count() {
+        Assert.assertEquals(0L, this.emptySet.count(BooleanPredicates.isTrue()));
+        Assert.assertEquals(0L, this.falseSet.count(BooleanPredicates.isTrue()));
+        Assert.assertEquals(1L, this.falseSet.count(BooleanPredicates.isFalse()));
+        Assert.assertEquals(0L, this.trueSet.count(BooleanPredicates.isFalse()));
+        Assert.assertEquals(1L, this.trueFalseSet.count(BooleanPredicates.isTrue()));
+        Assert.assertEquals(0L, this.trueFalseSet.count(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assert.assertEquals(1L, this.trueFalseSet.count(BooleanPredicates.isFalse()));
+        Assert.assertEquals(1L, this.trueFalseSet.count(BooleanPredicates.isTrue()));
+        Assert.assertEquals(2L, this.trueFalseSet.count(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+    }
+
+    @Override
+    @Test
+    public void anySatisfy() {
+        super.anySatisfy();
+        Assert.assertFalse(this.emptySet.anySatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
+        Assert.assertFalse(this.falseSet.anySatisfy(BooleanPredicates.isTrue()));
+        Assert.assertTrue(this.falseSet.anySatisfy(BooleanPredicates.isFalse()));
+        Assert.assertFalse(this.trueSet.anySatisfy(BooleanPredicates.isFalse()));
+        Assert.assertTrue(this.trueSet.anySatisfy(BooleanPredicates.isTrue()));
+        Assert.assertTrue(this.trueFalseSet.anySatisfy(BooleanPredicates.isTrue()));
+        Assert.assertTrue(this.trueFalseSet.anySatisfy(BooleanPredicates.isFalse()));
+        Assert.assertFalse(this.trueFalseSet.anySatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+    }
+
+    @Override
+    @Test
+    public void allSatisfy() {
+        super.allSatisfy();
+        Assert.assertTrue(this.emptySet.allSatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
+        Assert.assertFalse(this.falseSet.allSatisfy(BooleanPredicates.isTrue()));
+        Assert.assertTrue(this.falseSet.allSatisfy(BooleanPredicates.isFalse()));
+        Assert.assertFalse(this.trueSet.allSatisfy(BooleanPredicates.isFalse()));
+        Assert.assertTrue(this.trueSet.allSatisfy(BooleanPredicates.isTrue()));
+        Assert.assertFalse(this.trueFalseSet.allSatisfy(BooleanPredicates.isTrue()));
+        Assert.assertFalse(this.trueFalseSet.allSatisfy(BooleanPredicates.isFalse()));
+        Assert.assertFalse(this.trueFalseSet.allSatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assert.assertTrue(this.trueFalseSet.allSatisfy(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+    }
+
+    @Override
+    @Test
+    public void noneSatisfy() {
+        Assert.assertTrue(this.emptySet.noneSatisfy(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
+        Assert.assertFalse(this.falseSet.noneSatisfy(BooleanPredicates.isFalse()));
+        Assert.assertTrue(this.falseSet.noneSatisfy(BooleanPredicates.isTrue()));
+        Assert.assertFalse(this.trueSet.noneSatisfy(BooleanPredicates.isTrue()));
+        Assert.assertTrue(this.trueSet.noneSatisfy(BooleanPredicates.isFalse()));
+        Assert.assertFalse(this.trueFalseSet.noneSatisfy(BooleanPredicates.isTrue()));
+        Assert.assertFalse(this.trueFalseSet.noneSatisfy(BooleanPredicates.isFalse()));
+        Assert.assertTrue(this.trueFalseSet.noneSatisfy(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Assert.assertFalse(this.trueFalseSet.noneSatisfy(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+    }
+
+    @Override
+    @Test
+    public void select() {
+        Verify.assertEmpty(this.emptySet.select(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
+        Verify.assertEmpty(this.falseSet.select(BooleanPredicates.isTrue()));
+        Verify.assertSize(1, this.falseSet.select(BooleanPredicates.isFalse()));
+        Verify.assertEmpty(this.trueSet.select(BooleanPredicates.isFalse()));
+        Verify.assertSize(1, this.trueSet.select(BooleanPredicates.isTrue()));
+        Verify.assertSize(1, this.trueFalseSet.select(BooleanPredicates.isFalse()));
+        Verify.assertSize(1, this.trueFalseSet.select(BooleanPredicates.isTrue()));
+        Verify.assertEmpty(this.trueFalseSet.select(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Verify.assertSize(2, this.trueFalseSet.select(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+    }
+
+    @Override
+    @Test
+    public void reject() {
+        Verify.assertEmpty(this.emptySet.reject(BooleanPredicates.and(BooleanPredicates.isTrue(), BooleanPredicates.isFalse())));
+        Verify.assertEmpty(this.trueSet.reject(BooleanPredicates.isTrue()));
+        Verify.assertSize(1, this.trueSet.reject(BooleanPredicates.isFalse()));
+        Verify.assertEmpty(this.falseSet.reject(BooleanPredicates.isFalse()));
+        Verify.assertSize(1, this.falseSet.reject(BooleanPredicates.isTrue()));
+        Verify.assertSize(1, this.trueFalseSet.reject(BooleanPredicates.isFalse()));
+        Verify.assertSize(1, this.trueFalseSet.reject(BooleanPredicates.isTrue()));
+        Verify.assertEmpty(this.trueFalseSet.reject(BooleanPredicates.or(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+        Verify.assertSize(2, this.trueFalseSet.reject(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue())));
+    }
+
+    @Override
+    @Test
+    public void detectIfNone() {
+        super.detectIfNone();
+        Assert.assertTrue(this.emptySet.detectIfNone(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse()), true));
+        Assert.assertFalse(this.emptySet.detectIfNone(BooleanPredicates.or(BooleanPredicates.isTrue(), BooleanPredicates.isFalse()), false));
+        Assert.assertTrue(this.falseSet.detectIfNone(BooleanPredicates.isTrue(), true));
+        Assert.assertFalse(this.falseSet.detectIfNone(BooleanPredicates.isTrue(), false));
+        Assert.assertFalse(this.falseSet.detectIfNone(BooleanPredicates.isFalse(), true));
+        Assert.assertFalse(this.falseSet.detectIfNone(BooleanPredicates.isFalse(), false));
+        Assert.assertTrue(this.trueSet.detectIfNone(BooleanPredicates.isFalse(), true));
+        Assert.assertFalse(this.trueSet.detectIfNone(BooleanPredicates.isFalse(), false));
+        Assert.assertTrue(this.trueSet.detectIfNone(BooleanPredicates.isTrue(), true));
+        Assert.assertTrue(this.trueSet.detectIfNone(BooleanPredicates.isTrue(), false));
+        Assert.assertTrue(this.trueFalseSet.detectIfNone(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue()), true));
+        Assert.assertFalse(this.trueFalseSet.detectIfNone(BooleanPredicates.and(BooleanPredicates.isFalse(), BooleanPredicates.isTrue()), false));
+        Assert.assertFalse(this.trueFalseSet.detectIfNone(BooleanPredicates.isFalse(), true));
+        Assert.assertTrue(this.trueFalseSet.detectIfNone(BooleanPredicates.isTrue(), false));
+    }
+
+    @Override
+    @Test
+    public void collect() {
+        super.collect();
+        BooleanToObjectFunction<Boolean> function = parameter -> !parameter;
+        Assert.assertEquals(UnifiedSet.newSetWith(true, false), this.trueFalseSet.collect(function));
+        Assert.assertEquals(UnifiedSet.newSetWith(false), this.trueSet.collect(function));
+        Assert.assertEquals(UnifiedSet.newSetWith(true), this.falseSet.collect(function));
+        Assert.assertEquals(UnifiedSet.newSetWith(), this.emptySet.collect(function));
+    }
+
+    @Override
+    @Test
+    public void testToString() {
+        super.testToString();
+        Assert.assertEquals("[]", this.emptySet.toString());
+        Assert.assertEquals("[false]", this.falseSet.toString());
+        Assert.assertEquals("[true]", this.trueSet.toString());
+        Assert.assertTrue("[true, false]".equals(this.trueFalseSet.toString()) || "[false, true]".equals(this.trueFalseSet.toString()));
+    }
+
+    @Override
+    @Test
+    public void makeString() {
+        super.makeString();
+        Assert.assertEquals("", this.emptySet.makeString());
+        Assert.assertEquals("false", this.falseSet.makeString());
+        Assert.assertEquals("true", this.trueSet.makeString());
+        Assert.assertTrue("true, false".equals(this.trueFalseSet.makeString()) || "false, true".equals(this.trueFalseSet.makeString()));
+        Assert.assertEquals("", this.emptySet.makeString("/"));
+        Assert.assertEquals("false", this.falseSet.makeString("/"));
+        Assert.assertEquals("true", this.trueSet.makeString("/"));
+        Assert.assertTrue(this.trueFalseSet.makeString("/"), "true/false".equals(this.trueFalseSet.makeString("/")) || "false/true".equals(this.trueFalseSet.makeString("/")));
+        Assert.assertEquals("[]", this.emptySet.makeString("[", "/", "]"));
+        Assert.assertEquals("[false]", this.falseSet.makeString("[", "/", "]"));
+        Assert.assertEquals("[true]", this.trueSet.makeString("[", "/", "]"));
+        Assert.assertTrue(this.trueFalseSet.makeString("[", "/", "]"), "[true/false]".equals(this.trueFalseSet.makeString("[", "/", "]")) || "[false/true]".equals(this.trueFalseSet.makeString("[", "/", "]")));
+    }
+
+    @Override
+    @Test
+    public void appendString() {
+        super.appendString();
+        StringBuilder appendable = new StringBuilder();
+        this.emptySet.appendString(appendable);
+        Assert.assertEquals("", appendable.toString());
+        StringBuilder appendable1 = new StringBuilder();
+        this.falseSet.appendString(appendable1);
+        Assert.assertEquals("false", appendable1.toString());
+        StringBuilder appendable2 = new StringBuilder();
+        this.trueSet.appendString(appendable2);
+        Assert.assertEquals("true", appendable2.toString());
+        StringBuilder appendable3 = new StringBuilder();
+        this.trueFalseSet.appendString(appendable3);
+        Assert.assertTrue("true, false".equals(appendable3.toString()) || "false, true".equals(appendable3.toString()));
+        StringBuilder appendable4 = new StringBuilder();
+        this.trueFalseSet.appendString(appendable4, "[", ", ", "]");
+        Assert.assertTrue("[true, false]".equals(appendable4.toString()) || "[false, true]".equals(appendable4.toString()));
+    }
+
+    @Override
+    @Test
+    public void asLazy() {
+        super.asLazy();
+        Verify.assertInstanceOf(LazyBooleanIterable.class, this.emptySet.asLazy());
+        Assert.assertEquals(this.emptySet, this.emptySet.asLazy().toSet());
+        Assert.assertEquals(this.falseSet, this.falseSet.asLazy().toSet());
+        Assert.assertEquals(this.trueSet, this.trueSet.asLazy().toSet());
+        Assert.assertEquals(this.trueFalseSet, this.trueFalseSet.asLazy().toSet());
+    }
+
+    private void assertSizeAndContains(ImmutableBooleanCollection collection, boolean... elements) {
+        Assert.assertEquals(elements.length, collection.size());
+        for (boolean i : elements) {
+            Assert.assertTrue(collection.contains(i));
+        }
+    }
+
+    @Override
+    @Test
+    public void testNewWith() {
+        ImmutableBooleanCollection immutableCollection = this.newWith();
+        ImmutableBooleanCollection collection = immutableCollection.newWith(true);
+        ImmutableBooleanCollection collection0 = immutableCollection.newWith(true).newWith(false);
+        this.assertSizeAndContains(immutableCollection);
+        this.assertSizeAndContains(collection, true);
+        this.assertSizeAndContains(collection0, true, false);
+    }
+
+    @Override
+    @Test
+    public void newWithAll() {
+        ImmutableBooleanCollection immutableCollection = this.newWith();
+        ImmutableBooleanCollection collection = immutableCollection.newWithAll(this.newMutableCollectionWith(true));
+        ImmutableBooleanCollection collection0 = immutableCollection.newWithAll(this.newMutableCollectionWith(false));
+        ImmutableBooleanCollection collection1 = immutableCollection.newWithAll(this.newMutableCollectionWith(true, false));
+        this.assertSizeAndContains(immutableCollection);
+        this.assertSizeAndContains(collection, true);
+        this.assertSizeAndContains(collection0, false);
+        this.assertSizeAndContains(collection1, true, false);
+    }
+
+    @Override
+    @Test
+    public void newWithout() {
+        ImmutableBooleanCollection collection3 = this.newWith(true, false);
+        ImmutableBooleanCollection collection2 = collection3.newWithout(true);
+        ImmutableBooleanCollection collection1 = collection3.newWithout(false);
+        this.assertSizeAndContains(collection1, true);
+        this.assertSizeAndContains(collection2, false);
+    }
+
+    @Override
+    @Test
+    public void newWithoutAll() {
+        ImmutableBooleanCollection collection3 = this.newWith(true, false);
+        ImmutableBooleanCollection collection2 = collection3.newWithoutAll(this.newMutableCollectionWith(true));
+        ImmutableBooleanCollection collection1 = collection3.newWithoutAll(this.newMutableCollectionWith(false));
+        ImmutableBooleanCollection collection0 = collection3.newWithoutAll(this.newMutableCollectionWith(true, false));
+        this.assertSizeAndContains(collection0);
+        this.assertSizeAndContains(collection1, true);
+        this.assertSizeAndContains(collection2, false);
+    }
+
+    @Test
+    public void union() {
+        ImmutableBooleanSet set11 = this.newWith(true);
+        ImmutableBooleanSet set21 = this.newWith(false);
+        ImmutableBooleanSet actual = set11.union(set21);
+        Assert.assertEquals(this.trueFalseSet, actual);
+        ImmutableBooleanSet set12 = this.newWith(false);
+        ImmutableBooleanSet set22 = this.newWith(false);
+        ImmutableBooleanSet actual2 = set12.union(set22);
+        Assert.assertEquals(this.falseSet, actual2);
+        ImmutableBooleanSet set13 = this.newWith(true);
+        ImmutableBooleanSet set23 = this.newWith(true);
+        ImmutableBooleanSet actual3 = set13.union(set23);
+        Assert.assertEquals(this.trueSet, actual3);
+        ImmutableBooleanSet set14 = this.trueFalseSet;
+        ImmutableBooleanSet set24 = this.newWith();
+        ImmutableBooleanSet actual4 = set14.union(set24);
+        Assert.assertEquals(this.trueFalseSet, actual4);
+        ImmutableBooleanSet set15 = this.newWith();
+        ImmutableBooleanSet set25 = this.newWith();
+        ImmutableBooleanSet actual5 = set15.union(set25);
+        Assert.assertEquals(this.emptySet, actual5);
+    }
+
+    @Test
+    public void intersect() {
+        ImmutableBooleanSet set11 = this.newWith(true);
+        ImmutableBooleanSet set21 = this.newWith(false);
+        ImmutableBooleanSet actual = set11.intersect(set21);
+        Assert.assertEquals(this.emptySet, actual);
+        ImmutableBooleanSet set12 = this.newWith(false);
+        ImmutableBooleanSet set22 = this.newWith(false);
+        ImmutableBooleanSet actual2 = set12.intersect(set22);
+        Assert.assertEquals(this.falseSet, actual2);
+        ImmutableBooleanSet set13 = this.newWith(true);
+        ImmutableBooleanSet set23 = this.newWith(true);
+        ImmutableBooleanSet actual3 = set13.intersect(set23);
+        Assert.assertEquals(this.trueSet, actual3);
+        ImmutableBooleanSet set14 = this.trueFalseSet;
+        ImmutableBooleanSet set24 = this.newWith();
+        ImmutableBooleanSet actual4 = set14.intersect(set24);
+        Assert.assertEquals(this.emptySet, actual4);
+        ImmutableBooleanSet set15 = this.newWith();
+        ImmutableBooleanSet set25 = this.newWith();
+        ImmutableBooleanSet actual5 = set15.intersect(set25);
+        Assert.assertEquals(this.emptySet, actual5);
+    }
+
+    @Test
+    public void difference() {
+        ImmutableBooleanSet set11 = this.newWith(true);
+        ImmutableBooleanSet set21 = this.newWith(false);
+        ImmutableBooleanSet actual = set11.difference(set21);
+        Assert.assertEquals(this.trueSet, actual);
+        ImmutableBooleanSet set12 = this.newWith(false);
+        ImmutableBooleanSet set22 = this.newWith(false);
+        ImmutableBooleanSet actual2 = set12.difference(set22);
+        Assert.assertEquals(this.emptySet, actual2);
+        ImmutableBooleanSet set13 = this.trueFalseSet;
+        ImmutableBooleanSet set23 = this.trueFalseSet;
+        ImmutableBooleanSet actual3 = set13.difference(set23);
+        Assert.assertEquals(this.emptySet, actual3);
+        ImmutableBooleanSet set14 = this.trueFalseSet;
+        ImmutableBooleanSet set24 = this.newWith();
+        ImmutableBooleanSet actual4 = set14.difference(set24);
+        Assert.assertEquals(this.trueFalseSet, actual4);
+        ImmutableBooleanSet set15 = this.newWith();
+        ImmutableBooleanSet set25 = this.trueFalseSet;
+        ImmutableBooleanSet actual5 = set15.difference(set25);
+        Assert.assertEquals(this.emptySet, actual5);
+        ImmutableBooleanSet set16 = this.newWith();
+        ImmutableBooleanSet set26 = this.newWith();
+        ImmutableBooleanSet actual6 = set16.difference(set26);
+        Assert.assertEquals(this.emptySet, actual6);
+    }
+
+    @Test
+    public void symmetricDifference() {
+        ImmutableBooleanSet set11 = this.newWith(true);
+        ImmutableBooleanSet set21 = this.newWith(false);
+        ImmutableBooleanSet actual = set11.symmetricDifference(set21);
+        Assert.assertEquals(this.trueFalseSet, actual);
+        ImmutableBooleanSet set12 = this.newWith(false);
+        ImmutableBooleanSet set22 = this.newWith(false);
+        ImmutableBooleanSet actual2 = set12.symmetricDifference(set22);
+        Assert.assertEquals(this.emptySet, actual2);
+        ImmutableBooleanSet set13 = this.trueFalseSet;
+        ImmutableBooleanSet set23 = this.trueFalseSet;
+        ImmutableBooleanSet actual3 = set13.symmetricDifference(set23);
+        Assert.assertEquals(this.emptySet, actual3);
+        ImmutableBooleanSet set14 = this.trueFalseSet;
+        ImmutableBooleanSet set24 = this.newWith();
+        ImmutableBooleanSet actual4 = set14.symmetricDifference(set24);
+        Assert.assertEquals(this.trueFalseSet, actual4);
+        ImmutableBooleanSet set15 = this.newWith();
+        ImmutableBooleanSet set25 = this.trueFalseSet;
+        ImmutableBooleanSet actual5 = set15.symmetricDifference(set25);
+        Assert.assertEquals(this.trueFalseSet, actual5);
+        ImmutableBooleanSet set16 = this.newWith();
+        ImmutableBooleanSet set26 = this.newWith();
+        ImmutableBooleanSet actual6 = set16.symmetricDifference(set26);
+        Assert.assertEquals(this.emptySet, actual6);
+    }
+
+    @Test
+    public void isSubsetOf() {
+        ImmutableBooleanSet set11 = this.newWith(true);
+        ImmutableBooleanSet set21 = this.newWith(false);
+        Assert.assertFalse(set11.isSubsetOf(set21));
+        ImmutableBooleanSet set12 = this.newWith(false);
+        ImmutableBooleanSet set22 = this.newWith(false);
+        Assert.assertTrue(set12.isSubsetOf(set22));
+        ImmutableBooleanSet set13 = this.trueFalseSet;
+        ImmutableBooleanSet set23 = this.trueFalseSet;
+        Assert.assertTrue(set13.isSubsetOf(set23));
+        ImmutableBooleanSet set14 = this.trueFalseSet;
+        ImmutableBooleanSet set24 = this.newWith();
+        Assert.assertFalse(set14.isSubsetOf(set24));
+        ImmutableBooleanSet set15 = this.newWith();
+        ImmutableBooleanSet set25 = this.trueFalseSet;
+        Assert.assertTrue(set15.isSubsetOf(set25));
+        ImmutableBooleanSet set16 = this.newWith();
+        ImmutableBooleanSet set26 = this.newWith();
+        Assert.assertTrue(set16.isSubsetOf(set26));
+    }
+
+    @Test
+    public void isProperSubsetOf() {
+        ImmutableBooleanSet set11 = this.newWith(true);
+        ImmutableBooleanSet set21 = this.newWith(false);
+        Assert.assertFalse(set11.isProperSubsetOf(set21));
+        ImmutableBooleanSet set12 = this.newWith(false);
+        ImmutableBooleanSet set22 = this.newWith(false);
+        Assert.assertFalse(set12.isProperSubsetOf(set22));
+        ImmutableBooleanSet set13 = this.trueSet;
+        ImmutableBooleanSet set23 = this.trueFalseSet;
+        Assert.assertTrue(set13.isProperSubsetOf(set23));
+        ImmutableBooleanSet set14 = this.falseSet;
+        ImmutableBooleanSet set24 = this.trueFalseSet;
+        Assert.assertTrue(set14.isProperSubsetOf(set24));
+        ImmutableBooleanSet set15 = this.trueFalseSet;
+        ImmutableBooleanSet set25 = this.newWith();
+        Assert.assertFalse(set15.isProperSubsetOf(set25));
+        ImmutableBooleanSet set16 = this.newWith();
+        ImmutableBooleanSet set26 = this.trueFalseSet;
+        Assert.assertTrue(set16.isProperSubsetOf(set26));
+        ImmutableBooleanSet set17 = this.newWith();
+        ImmutableBooleanSet set27 = this.newWith();
+        Assert.assertFalse(set17.isProperSubsetOf(set27));
+    }
+
+    @Test
+    public void cartesianProduct() {
+        ImmutableBooleanSet set11 = this.trueSet;
+        ImmutableBooleanSet set21 = this.falseSet;
+        MutableSet<BooleanBooleanPair> expected1 = Sets.mutable.with(PrimitiveTuples.pair(true, false));
+        Assert.assertEquals(expected1, set11.cartesianProduct(set21).toSet());
+        ImmutableBooleanSet set12 = this.falseSet;
+        ImmutableBooleanSet set22 = this.falseSet;
+        MutableSet<BooleanBooleanPair> expected2 = Sets.mutable.with(PrimitiveTuples.pair(false, false));
+        Assert.assertEquals(expected2, set12.cartesianProduct(set22).toSet());
+        ImmutableBooleanSet set13 = this.trueSet;
+        ImmutableBooleanSet set23 = this.trueFalseSet;
+        MutableSet<BooleanBooleanPair> expected3 = Sets.mutable.with(PrimitiveTuples.pair(true, true), PrimitiveTuples.pair(true, false));
+        Assert.assertEquals(expected3, set13.cartesianProduct(set23).toSet());
+        ImmutableBooleanSet set14 = this.falseSet;
+        ImmutableBooleanSet set24 = this.trueFalseSet;
+        MutableSet<BooleanBooleanPair> expected4 = Sets.mutable.with(PrimitiveTuples.pair(false, true), PrimitiveTuples.pair(false, false));
+        Assert.assertEquals(expected4, set14.cartesianProduct(set24).toSet());
+        ImmutableBooleanSet set15 = this.trueFalseSet;
+        ImmutableBooleanSet set25 = this.newWith();
+        Assert.assertEquals(Sets.mutable.empty(), set15.cartesianProduct(set25).toSet());
+        ImmutableBooleanSet set16 = this.newWith();
+        ImmutableBooleanSet set26 = this.trueFalseSet;
+        Assert.assertEquals(Sets.mutable.empty(), set16.cartesianProduct(set26).toSet());
+        ImmutableBooleanSet set17 = this.newWith();
+        ImmutableBooleanSet set27 = this.newWith();
+        Assert.assertEquals(Sets.mutable.empty(), set17.cartesianProduct(set27).toSet());
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark {
+
+        private _Payloads payloads;
+
+        private ImmutableBooleanHashSetTest instance;
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollection() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.newCollection);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAnyArray() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsAnyArray);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAnyIterable() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsAnyIterable);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsNoneArray() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsNoneArray);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsNoneIterable() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsNoneIterable);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator_throws() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.iterator_throws);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator_throws_non_empty_collection() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.iterator_throws_non_empty_collection);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_iterator_throws_emptyList() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.iterator_throws_emptyList);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reduceOnEmptyThrows() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.reduceOnEmptyThrows);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reduce() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.reduce);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reduceIfEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.reduceIfEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newCollectionWith() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.newCollectionWith);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.isEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.notEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.contains);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllArray() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsAllArray);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAllIterable() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsAllIterable);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toArray);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toList);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toSet);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toBag() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toBag);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.testEquals);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testHashCode() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.testHashCode);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_booleanIterator() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.booleanIterator);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.forEach);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.injectInto);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.size);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.count);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.anySatisfy);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.allSatisfy);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.noneSatisfy);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.select);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.reject);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.detectIfNone);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.collect);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.testToString);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.makeString);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.appendString);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazy() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.asLazy);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testNewWith() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.testNewWith);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithAll() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.newWithAll);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithout() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.newWithout);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithoutAll() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.newWithoutAll);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_union() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.union);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_intersect() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.intersect);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_difference() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.difference);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_symmetricDifference() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.symmetricDifference);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isSubsetOf() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.isSubsetOf);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isProperSubsetOf() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.isProperSubsetOf);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_cartesianProduct() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.cartesianProduct);
+        }
+
+        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> payload) throws java.lang.Throwable {
+            this.instance = new ImmutableBooleanHashSetTest();
+            this.instance.setup();
+            payload.accept(this.instance);
+        }
+
+        private static class _Payloads {
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> newCollection;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> containsAnyArray;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> containsAnyIterable;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> containsNoneArray;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> containsNoneIterable;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> iterator_throws;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> iterator_throws_non_empty_collection;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> iterator_throws_emptyList;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> reduceOnEmptyThrows;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> reduce;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> reduceIfEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> newCollectionWith;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> isEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> notEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> contains;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> containsAllArray;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> containsAllIterable;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> toArray;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> toList;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> toSet;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> toBag;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> testEquals;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> testHashCode;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> booleanIterator;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> forEach;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> injectInto;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> size;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> count;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> anySatisfy;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> allSatisfy;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> noneSatisfy;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> select;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> reject;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> detectIfNone;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> collect;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> testToString;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> makeString;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> appendString;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> asLazy;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> testNewWith;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> newWithAll;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> newWithout;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> newWithoutAll;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> union;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> intersect;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> difference;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> symmetricDifference;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> isSubsetOf;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> isProperSubsetOf;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashSetTest> cartesianProduct;
+        }
+
+        @org.openjdk.jmh.annotations.Setup(org.openjdk.jmh.annotations.Level.Trial)
+        public void makePayloads() {
+            this.payloads = new _Payloads();
+            this.payloads.newCollection = ImmutableBooleanHashSetTest::newCollection;
+            this.payloads.containsAnyArray = ImmutableBooleanHashSetTest::containsAnyArray;
+            this.payloads.containsAnyIterable = ImmutableBooleanHashSetTest::containsAnyIterable;
+            this.payloads.containsNoneArray = ImmutableBooleanHashSetTest::containsNoneArray;
+            this.payloads.containsNoneIterable = ImmutableBooleanHashSetTest::containsNoneIterable;
+            this.payloads.iterator_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableBooleanHashSetTest::iterator_throws, java.util.NoSuchElementException.class);
+            this.payloads.iterator_throws_non_empty_collection = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableBooleanHashSetTest::iterator_throws_non_empty_collection, java.util.NoSuchElementException.class);
+            this.payloads.iterator_throws_emptyList = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableBooleanHashSetTest::iterator_throws_emptyList, java.util.NoSuchElementException.class);
+            this.payloads.reduceOnEmptyThrows = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableBooleanHashSetTest::reduceOnEmptyThrows, java.util.NoSuchElementException.class);
+            this.payloads.reduce = ImmutableBooleanHashSetTest::reduce;
+            this.payloads.reduceIfEmpty = ImmutableBooleanHashSetTest::reduceIfEmpty;
+            this.payloads.newCollectionWith = ImmutableBooleanHashSetTest::newCollectionWith;
+            this.payloads.isEmpty = ImmutableBooleanHashSetTest::isEmpty;
+            this.payloads.notEmpty = ImmutableBooleanHashSetTest::notEmpty;
+            this.payloads.contains = ImmutableBooleanHashSetTest::contains;
+            this.payloads.containsAllArray = ImmutableBooleanHashSetTest::containsAllArray;
+            this.payloads.containsAllIterable = ImmutableBooleanHashSetTest::containsAllIterable;
+            this.payloads.toArray = ImmutableBooleanHashSetTest::toArray;
+            this.payloads.toList = ImmutableBooleanHashSetTest::toList;
+            this.payloads.toSet = ImmutableBooleanHashSetTest::toSet;
+            this.payloads.toBag = ImmutableBooleanHashSetTest::toBag;
+            this.payloads.testEquals = ImmutableBooleanHashSetTest::testEquals;
+            this.payloads.testHashCode = ImmutableBooleanHashSetTest::testHashCode;
+            this.payloads.booleanIterator = ImmutableBooleanHashSetTest::booleanIterator;
+            this.payloads.forEach = ImmutableBooleanHashSetTest::forEach;
+            this.payloads.injectInto = ImmutableBooleanHashSetTest::injectInto;
+            this.payloads.size = ImmutableBooleanHashSetTest::size;
+            this.payloads.count = ImmutableBooleanHashSetTest::count;
+            this.payloads.anySatisfy = ImmutableBooleanHashSetTest::anySatisfy;
+            this.payloads.allSatisfy = ImmutableBooleanHashSetTest::allSatisfy;
+            this.payloads.noneSatisfy = ImmutableBooleanHashSetTest::noneSatisfy;
+            this.payloads.select = ImmutableBooleanHashSetTest::select;
+            this.payloads.reject = ImmutableBooleanHashSetTest::reject;
+            this.payloads.detectIfNone = ImmutableBooleanHashSetTest::detectIfNone;
+            this.payloads.collect = ImmutableBooleanHashSetTest::collect;
+            this.payloads.testToString = ImmutableBooleanHashSetTest::testToString;
+            this.payloads.makeString = ImmutableBooleanHashSetTest::makeString;
+            this.payloads.appendString = ImmutableBooleanHashSetTest::appendString;
+            this.payloads.asLazy = ImmutableBooleanHashSetTest::asLazy;
+            this.payloads.testNewWith = ImmutableBooleanHashSetTest::testNewWith;
+            this.payloads.newWithAll = ImmutableBooleanHashSetTest::newWithAll;
+            this.payloads.newWithout = ImmutableBooleanHashSetTest::newWithout;
+            this.payloads.newWithoutAll = ImmutableBooleanHashSetTest::newWithoutAll;
+            this.payloads.union = ImmutableBooleanHashSetTest::union;
+            this.payloads.intersect = ImmutableBooleanHashSetTest::intersect;
+            this.payloads.difference = ImmutableBooleanHashSetTest::difference;
+            this.payloads.symmetricDifference = ImmutableBooleanHashSetTest::symmetricDifference;
+            this.payloads.isSubsetOf = ImmutableBooleanHashSetTest::isSubsetOf;
+            this.payloads.isProperSubsetOf = ImmutableBooleanHashSetTest::isProperSubsetOf;
+            this.payloads.cartesianProduct = ImmutableBooleanHashSetTest::cartesianProduct;
+        }
+    }
+}

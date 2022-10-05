@@ -1,0 +1,575 @@
+/*
+ * Copyright (c) 2022 Goldman Sachs.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * and Eclipse Distribution License v. 1.0 which accompany this distribution.
+ * The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html
+ * and the Eclipse Distribution License is available at
+ * http://www.eclipse.org/org/documents/edl-v10.php.
+ */
+package org.eclipse.collections.impl.map.immutable.primitive;
+
+import org.eclipse.collections.api.map.primitive.ImmutableIntFloatMap;
+import org.eclipse.collections.impl.list.mutable.primitive.IntArrayList;
+import org.eclipse.collections.impl.map.mutable.primitive.IntFloatHashMap;
+import org.eclipse.collections.impl.math.MutableFloat;
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ * JUnit test for {@link ImmutableIntFloatHashMap}.
+ * This file was automatically generated from template file immutablePrimitivePrimitiveHashMapTest.stg.
+ */
+public class ImmutableIntFloatHashMapTest extends AbstractImmutableIntFloatMapTestCase {
+
+    @Override
+    @Test
+    public void toImmutable() {
+        super.toImmutable();
+        ImmutableIntFloatMap map1 = this.classUnderTest();
+        Assert.assertSame(map1, map1.toImmutable());
+    }
+
+    @Test
+    public void newWithKeyValue() {
+        ImmutableIntFloatMap map1 = this.classUnderTest();
+        ImmutableIntFloatMap expected = this.newWithKeysValues(0, 0.0f, 31, 31.0f, 32, 32.0f, 33, 33.0f);
+        Assert.assertEquals(expected, map1.newWithKeyValue(33, 33.0f));
+        Assert.assertNotSame(map1, map1.newWithKeyValue(33, 33.0f));
+        Assert.assertEquals(this.classUnderTest(), map1);
+    }
+
+    @Test
+    public void newWithoutKeyValue() {
+        ImmutableIntFloatMap map1 = this.classUnderTest();
+        ImmutableIntFloatMap expected = this.newWithKeysValues(0, 0.0f, 31, 31.0f);
+        Assert.assertEquals(expected, map1.newWithoutKey(32));
+        Assert.assertNotSame(map1, map1.newWithoutKey(32));
+        Assert.assertEquals(this.classUnderTest(), map1);
+    }
+
+    @Test
+    public void newWithoutAllKeys() {
+        ImmutableIntFloatMap map1 = this.classUnderTest();
+        ImmutableIntFloatMap expected = this.newWithKeysValues(31, 31.0f);
+        Assert.assertEquals(expected, map1.newWithoutAllKeys(IntArrayList.newListWith(0, 32)));
+        Assert.assertNotSame(map1, map1.newWithoutAllKeys(IntArrayList.newListWith(0, 32)));
+        Assert.assertEquals(this.classUnderTest(), map1);
+    }
+
+    @Test
+    public void injectInto() {
+        ImmutableIntFloatHashMap iterable = new ImmutableIntFloatHashMap(IntFloatHashMap.newWithKeysValues(1, 1.0f, 2, 2.0f, 3, 3.0f));
+        MutableFloat result = iterable.injectInto(new MutableFloat(0.0f), MutableFloat::add);
+        Assert.assertEquals(new MutableFloat(6.0f), result);
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark {
+
+        private _Payloads payloads;
+
+        private ImmutableIntFloatHashMapTest instance;
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_values() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.values);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_get() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.get);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getIfAbsent() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.getIfAbsent);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getOrThrow() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.getOrThrow);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsKey() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsKey);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsValue() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsValue);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_contains() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.contains);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAll() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsAll);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_containsAll_Iterable() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.containsAll_Iterable);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_size() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.size);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_isEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.isEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_notEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.notEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testHashCode() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.testHashCode);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testToString() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.testToString);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEach() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.forEach);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachValue() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.forEachValue);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKey() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.forEachKey);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_forEachKeyValue() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.forEachKeyValue);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectIntoKeyValue() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.injectIntoKeyValue);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_makeString() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.makeString);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_appendString() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.appendString);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.select);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.reject);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_select_value() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.select_value);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_reject_value() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.reject_value);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_collect() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.collect);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_count() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.count);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_detectIfNone_value() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.detectIfNone_value);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_anySatisfy() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.anySatisfy);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_allSatisfy() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.allSatisfy);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_noneSatisfy() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.noneSatisfy);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.max);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.min);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_max_empty_throws() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.max_empty_throws);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_min_empty_throws() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.min_empty_throws);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_minIfEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.minIfEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_maxIfEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.maxIfEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_sum() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.sum);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_average() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.average);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_averageThrowsOnEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.averageThrowsOnEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_median() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.median);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_medianThrowsOnEmpty() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.medianThrowsOnEmpty);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toList() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toList);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedList() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toSortedList);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSet() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toSet);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toBag() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toBag);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_floatIterator() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.floatIterator);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_asLazy() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.asLazy);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keysView() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.keysView);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keyValuesView() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.keyValuesView);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toSortedArray() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toSortedArray);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toArray() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toArray);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_chunk() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.chunk);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_testEquals() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.testEquals);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_keySet() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.keySet);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_flipUniqueValues() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.flipUniqueValues);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_toImmutable() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.toImmutable);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithKeyValue() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.newWithKeyValue);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithoutKeyValue() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.newWithoutKeyValue);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_newWithoutAllKeys() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.newWithoutAllKeys);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_injectInto() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.injectInto);
+        }
+
+        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> payload) throws java.lang.Throwable {
+            this.instance = new ImmutableIntFloatHashMapTest();
+            payload.accept(this.instance);
+        }
+
+        private static class _Payloads {
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> values;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> get;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> getIfAbsent;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> getOrThrow;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> containsKey;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> containsValue;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> contains;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> containsAll;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> containsAll_Iterable;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> size;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> isEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> notEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> testHashCode;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> testToString;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> forEach;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> forEachValue;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> forEachKey;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> forEachKeyValue;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> injectIntoKeyValue;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> makeString;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> appendString;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> select;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> reject;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> select_value;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> reject_value;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> collect;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> count;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> detectIfNone_value;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> anySatisfy;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> allSatisfy;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> noneSatisfy;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> max;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> min;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> max_empty_throws;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> min_empty_throws;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> minIfEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> maxIfEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> sum;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> average;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> averageThrowsOnEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> median;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> medianThrowsOnEmpty;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> toList;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> toSortedList;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> toSet;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> toBag;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> floatIterator;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> asLazy;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> keysView;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> keyValuesView;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> toSortedArray;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> toArray;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> chunk;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> testEquals;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> keySet;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> flipUniqueValues;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> toImmutable;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> newWithKeyValue;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> newWithoutKeyValue;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> newWithoutAllKeys;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableIntFloatHashMapTest> injectInto;
+        }
+
+        @org.openjdk.jmh.annotations.Setup(org.openjdk.jmh.annotations.Level.Trial)
+        public void makePayloads() {
+            this.payloads = new _Payloads();
+            this.payloads.values = ImmutableIntFloatHashMapTest::values;
+            this.payloads.get = ImmutableIntFloatHashMapTest::get;
+            this.payloads.getIfAbsent = ImmutableIntFloatHashMapTest::getIfAbsent;
+            this.payloads.getOrThrow = ImmutableIntFloatHashMapTest::getOrThrow;
+            this.payloads.containsKey = ImmutableIntFloatHashMapTest::containsKey;
+            this.payloads.containsValue = ImmutableIntFloatHashMapTest::containsValue;
+            this.payloads.contains = ImmutableIntFloatHashMapTest::contains;
+            this.payloads.containsAll = ImmutableIntFloatHashMapTest::containsAll;
+            this.payloads.containsAll_Iterable = ImmutableIntFloatHashMapTest::containsAll_Iterable;
+            this.payloads.size = ImmutableIntFloatHashMapTest::size;
+            this.payloads.isEmpty = ImmutableIntFloatHashMapTest::isEmpty;
+            this.payloads.notEmpty = ImmutableIntFloatHashMapTest::notEmpty;
+            this.payloads.testHashCode = ImmutableIntFloatHashMapTest::testHashCode;
+            this.payloads.testToString = ImmutableIntFloatHashMapTest::testToString;
+            this.payloads.forEach = ImmutableIntFloatHashMapTest::forEach;
+            this.payloads.forEachValue = ImmutableIntFloatHashMapTest::forEachValue;
+            this.payloads.forEachKey = ImmutableIntFloatHashMapTest::forEachKey;
+            this.payloads.forEachKeyValue = ImmutableIntFloatHashMapTest::forEachKeyValue;
+            this.payloads.injectIntoKeyValue = ImmutableIntFloatHashMapTest::injectIntoKeyValue;
+            this.payloads.makeString = ImmutableIntFloatHashMapTest::makeString;
+            this.payloads.appendString = ImmutableIntFloatHashMapTest::appendString;
+            this.payloads.select = ImmutableIntFloatHashMapTest::select;
+            this.payloads.reject = ImmutableIntFloatHashMapTest::reject;
+            this.payloads.select_value = ImmutableIntFloatHashMapTest::select_value;
+            this.payloads.reject_value = ImmutableIntFloatHashMapTest::reject_value;
+            this.payloads.collect = ImmutableIntFloatHashMapTest::collect;
+            this.payloads.count = ImmutableIntFloatHashMapTest::count;
+            this.payloads.detectIfNone_value = ImmutableIntFloatHashMapTest::detectIfNone_value;
+            this.payloads.anySatisfy = ImmutableIntFloatHashMapTest::anySatisfy;
+            this.payloads.allSatisfy = ImmutableIntFloatHashMapTest::allSatisfy;
+            this.payloads.noneSatisfy = ImmutableIntFloatHashMapTest::noneSatisfy;
+            this.payloads.max = ImmutableIntFloatHashMapTest::max;
+            this.payloads.min = ImmutableIntFloatHashMapTest::min;
+            this.payloads.max_empty_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableIntFloatHashMapTest::max_empty_throws, java.util.NoSuchElementException.class);
+            this.payloads.min_empty_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableIntFloatHashMapTest::min_empty_throws, java.util.NoSuchElementException.class);
+            this.payloads.minIfEmpty = ImmutableIntFloatHashMapTest::minIfEmpty;
+            this.payloads.maxIfEmpty = ImmutableIntFloatHashMapTest::maxIfEmpty;
+            this.payloads.sum = ImmutableIntFloatHashMapTest::sum;
+            this.payloads.average = ImmutableIntFloatHashMapTest::average;
+            this.payloads.averageThrowsOnEmpty = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableIntFloatHashMapTest::averageThrowsOnEmpty, java.lang.ArithmeticException.class);
+            this.payloads.median = ImmutableIntFloatHashMapTest::median;
+            this.payloads.medianThrowsOnEmpty = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableIntFloatHashMapTest::medianThrowsOnEmpty, java.lang.ArithmeticException.class);
+            this.payloads.toList = ImmutableIntFloatHashMapTest::toList;
+            this.payloads.toSortedList = ImmutableIntFloatHashMapTest::toSortedList;
+            this.payloads.toSet = ImmutableIntFloatHashMapTest::toSet;
+            this.payloads.toBag = ImmutableIntFloatHashMapTest::toBag;
+            this.payloads.floatIterator = ImmutableIntFloatHashMapTest::floatIterator;
+            this.payloads.asLazy = ImmutableIntFloatHashMapTest::asLazy;
+            this.payloads.keysView = ImmutableIntFloatHashMapTest::keysView;
+            this.payloads.keyValuesView = ImmutableIntFloatHashMapTest::keyValuesView;
+            this.payloads.toSortedArray = ImmutableIntFloatHashMapTest::toSortedArray;
+            this.payloads.toArray = ImmutableIntFloatHashMapTest::toArray;
+            this.payloads.chunk = ImmutableIntFloatHashMapTest::chunk;
+            this.payloads.testEquals = ImmutableIntFloatHashMapTest::testEquals;
+            this.payloads.keySet = ImmutableIntFloatHashMapTest::keySet;
+            this.payloads.flipUniqueValues = ImmutableIntFloatHashMapTest::flipUniqueValues;
+            this.payloads.toImmutable = ImmutableIntFloatHashMapTest::toImmutable;
+            this.payloads.newWithKeyValue = ImmutableIntFloatHashMapTest::newWithKeyValue;
+            this.payloads.newWithoutKeyValue = ImmutableIntFloatHashMapTest::newWithoutKeyValue;
+            this.payloads.newWithoutAllKeys = ImmutableIntFloatHashMapTest::newWithoutAllKeys;
+            this.payloads.injectInto = ImmutableIntFloatHashMapTest::injectInto;
+        }
+    }
+}

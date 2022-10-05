@@ -1,0 +1,66 @@
+/*
+ * Copyright (c) 2022 Goldman Sachs and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * and Eclipse Distribution License v. 1.0 which accompany this distribution.
+ * The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html
+ * and the Eclipse Distribution License is available at
+ * http://www.eclipse.org/org/documents/edl-v10.php.
+ */
+package org.eclipse.collections.impl.tuple;
+
+import java.util.Map;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class AbstractImmutableEntryTest {
+
+    @Test
+    public void getKeyFunction() {
+        Map.Entry<String, Integer> entry = new ImmutableEntry<>("foo", 2);
+        Assert.assertEquals("foo", AbstractImmutableEntry.<String>getKeyFunction().valueOf(entry));
+    }
+
+    @Test
+    public void getValueFunction() {
+        Map.Entry<String, Integer> entry = new ImmutableEntry<>("foo", 2);
+        Assert.assertEquals(Integer.valueOf(2), AbstractImmutableEntry.<Integer>getValueFunction().valueOf(entry));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark {
+
+        private _Payloads payloads;
+
+        private AbstractImmutableEntryTest instance;
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getKeyFunction() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.getKeyFunction);
+        }
+
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_getValueFunction() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.getValueFunction);
+        }
+
+        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<AbstractImmutableEntryTest> payload) throws java.lang.Throwable {
+            this.instance = new AbstractImmutableEntryTest();
+            payload.accept(this.instance);
+        }
+
+        private static class _Payloads {
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<AbstractImmutableEntryTest> getKeyFunction;
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<AbstractImmutableEntryTest> getValueFunction;
+        }
+
+        @org.openjdk.jmh.annotations.Setup(org.openjdk.jmh.annotations.Level.Trial)
+        public void makePayloads() {
+            this.payloads = new _Payloads();
+            this.payloads.getKeyFunction = AbstractImmutableEntryTest::getKeyFunction;
+            this.payloads.getValueFunction = AbstractImmutableEntryTest::getValueFunction;
+        }
+    }
+}
