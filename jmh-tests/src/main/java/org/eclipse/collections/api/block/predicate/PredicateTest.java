@@ -1,0 +1,56 @@
+/*
+ * Copyright (c) 2021 The Bank of New York Mellon.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * and Eclipse Distribution License v. 1.0 which accompany this distribution.
+ * The Eclipse Public License is available at http://www.eclipse.org/legal/epl-v10.html
+ * and the Eclipse Distribution License is available at
+ * http://www.eclipse.org/org/documents/edl-v10.php.
+ */
+package org.eclipse.collections.api.block.predicate;
+
+import org.eclipse.collections.impl.block.factory.Predicates;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class PredicateTest {
+
+    @Test
+    public void test() {
+        Predicate<Object> alwaysTrue = Predicates.alwaysTrue();
+        Assert.assertTrue(alwaysTrue.test(Boolean.TRUE));
+        Assert.assertTrue(alwaysTrue.test(Boolean.FALSE));
+        Predicate<Object> alwaysFalse = Predicates.alwaysFalse();
+        Assert.assertFalse(alwaysFalse.test(Boolean.TRUE));
+        Assert.assertFalse(alwaysFalse.test(Boolean.FALSE));
+    }
+
+    @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark {
+
+        private _Payloads payloads;
+
+        private PredicateTest instance;
+
+        //  @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_test() throws java.lang.Throwable {
+            this.runBenchmark(this.payloads.test);
+        }
+
+        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<PredicateTest> payload) throws java.lang.Throwable {
+            this.instance = new PredicateTest();
+            payload.accept(this.instance);
+        }
+
+        private static class _Payloads {
+
+            public se.chalmers.ju2jmh.api.ThrowingConsumer<PredicateTest> test;
+        }
+
+        @org.openjdk.jmh.annotations.Setup(org.openjdk.jmh.annotations.Level.Trial)
+        public void makePayloads() {
+            this.payloads = new _Payloads();
+            this.payloads.test = PredicateTest::test;
+        }
+    }
+}
