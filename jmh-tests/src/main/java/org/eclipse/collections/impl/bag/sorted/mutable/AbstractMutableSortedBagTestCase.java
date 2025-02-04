@@ -1557,6 +1557,7 @@ public abstract class AbstractMutableSortedBagTestCase extends MutableBagTestCas
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -3729,4 +3730,5 @@ public abstract class AbstractMutableSortedBagTestCase extends MutableBagTestCas
             this.payloads.distinctView = AbstractMutableSortedBagTestCase::distinctView;
         }
     }
+*/
 }

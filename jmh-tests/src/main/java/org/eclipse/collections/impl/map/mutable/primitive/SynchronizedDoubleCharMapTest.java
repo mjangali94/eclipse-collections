@@ -57,6 +57,7 @@ public class SynchronizedDoubleCharMapTest extends AbstractMutableDoubleCharMapT
         Assert.assertSame(this.map, this.map.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public class SynchronizedDoubleCharMapTest extends AbstractMutableDoubleCharMapT
             this.payloads.asSynchronized = SynchronizedDoubleCharMapTest::asSynchronized;
         }
     }
+*/
 }

@@ -412,6 +412,7 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1424,4 +1425,5 @@ public class CodePointListTest extends AbstractImmutableIntListTestCase {
             this.payloads.binarySearch = CodePointListTest::binarySearch;
         }
     }
+*/
 }

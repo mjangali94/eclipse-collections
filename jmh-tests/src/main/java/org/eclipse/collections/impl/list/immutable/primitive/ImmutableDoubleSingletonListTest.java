@@ -85,6 +85,7 @@ public class ImmutableDoubleSingletonListTest extends AbstractImmutableDoubleLis
         Assert.assertEquals(-2, this.classUnderTest().binarySearch(5.0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -993,4 +994,5 @@ public class ImmutableDoubleSingletonListTest extends AbstractImmutableDoubleLis
             this.payloads.binarySearch = ImmutableDoubleSingletonListTest::binarySearch;
         }
     }
+*/
 }

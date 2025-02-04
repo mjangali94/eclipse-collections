@@ -531,6 +531,7 @@ public abstract class AbstractFloatSetTestCase extends AbstractMutableFloatColle
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1455,4 +1456,5 @@ public abstract class AbstractFloatSetTestCase extends AbstractMutableFloatColle
             this.payloads.cartesianProduct = AbstractFloatSetTestCase::cartesianProduct;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class UnmodifiableShortByteMapKeyValuesViewTest extends AbstractShortByte
         return new ShortByteHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableShortByteMapKeyValuesViewTest extends AbstractShortByte
             this.payloads.aggregateByNonMutating = UnmodifiableShortByteMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

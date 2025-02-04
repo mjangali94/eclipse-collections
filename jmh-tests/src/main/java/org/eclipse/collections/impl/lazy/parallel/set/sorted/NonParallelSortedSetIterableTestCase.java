@@ -73,6 +73,7 @@ public abstract class NonParallelSortedSetIterableTestCase extends ParallelSorte
         // Not applicable in serial
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -778,4 +779,5 @@ public abstract class NonParallelSortedSetIterableTestCase extends ParallelSorte
             this.payloads.toString_interruptedException = NonParallelSortedSetIterableTestCase::toString_interruptedException;
         }
     }
+*/
 }

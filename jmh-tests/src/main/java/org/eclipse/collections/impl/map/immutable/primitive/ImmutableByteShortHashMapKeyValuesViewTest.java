@@ -39,6 +39,7 @@ public class ImmutableByteShortHashMapKeyValuesViewTest extends AbstractByteShor
         return new ByteShortHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableByteShortHashMapKeyValuesViewTest extends AbstractByteShor
             this.payloads.aggregateByNonMutating = ImmutableByteShortHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

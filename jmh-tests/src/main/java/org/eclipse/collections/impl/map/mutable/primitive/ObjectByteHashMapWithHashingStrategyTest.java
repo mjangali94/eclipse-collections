@@ -211,6 +211,7 @@ public class ObjectByteHashMapWithHashingStrategyTest extends ObjectByteHashMapT
         Assert.assertEquals((byte) 2, map2.get(JOHNSMITH));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1047,4 +1048,5 @@ public class ObjectByteHashMapWithHashingStrategyTest extends ObjectByteHashMapT
             this.payloads.put_get_with_hashing_strategy = ObjectByteHashMapWithHashingStrategyTest::put_get_with_hashing_strategy;
         }
     }
+*/
 }

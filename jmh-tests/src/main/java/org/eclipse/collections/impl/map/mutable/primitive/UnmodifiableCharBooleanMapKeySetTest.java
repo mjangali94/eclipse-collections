@@ -212,6 +212,7 @@ public class UnmodifiableCharBooleanMapKeySetTest extends AbstractCharSetTestCas
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1064,4 +1065,5 @@ public class UnmodifiableCharBooleanMapKeySetTest extends AbstractCharSetTestCas
             this.payloads.chunk = UnmodifiableCharBooleanMapKeySetTest::chunk;
         }
     }
+*/
 }

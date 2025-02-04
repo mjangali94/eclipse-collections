@@ -31,6 +31,7 @@ public class ParallelSelectUnsortedSetIterableTest extends ParallelUnsortedSetIt
         return UnifiedSet.newSetWith(littleElements).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -736,4 +737,5 @@ public class ParallelSelectUnsortedSetIterableTest extends ParallelUnsortedSetIt
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelSelectUnsortedSetIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

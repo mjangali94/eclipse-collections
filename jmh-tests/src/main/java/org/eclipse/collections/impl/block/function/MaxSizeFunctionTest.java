@@ -31,6 +31,7 @@ public class MaxSizeFunctionTest {
         Assert.assertEquals(Integer.valueOf(3), MaxSizeFunction.MAP.value(3, Maps.mutable.of(1, 1, 2, 2)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -67,4 +68,5 @@ public class MaxSizeFunctionTest {
             this.payloads.maxSizeMap = MaxSizeFunctionTest::maxSizeMap;
         }
     }
+*/
 }

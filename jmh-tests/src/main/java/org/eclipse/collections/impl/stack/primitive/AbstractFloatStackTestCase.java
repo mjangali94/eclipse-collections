@@ -279,6 +279,7 @@ public abstract class AbstractFloatStackTestCase extends AbstractFloatIterableTe
         this.classUnderTest().forEachWithIndex(null);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1083,4 +1084,5 @@ public abstract class AbstractFloatStackTestCase extends AbstractFloatIterableTe
             this.payloads.forEachWithIndex = new se.chalmers.ju2jmh.api.ExceptionTest<>(AbstractFloatStackTestCase::forEachWithIndex, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

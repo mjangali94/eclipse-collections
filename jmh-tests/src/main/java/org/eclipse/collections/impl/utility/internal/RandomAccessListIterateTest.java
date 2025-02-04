@@ -432,6 +432,7 @@ public class RandomAccessListIterateTest {
         Verify.assertClassNonInstantiable(RandomAccessListIterate.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -804,4 +805,5 @@ public class RandomAccessListIterateTest {
             this.payloads.classIsNonInstantiable = RandomAccessListIterateTest::classIsNonInstantiable;
         }
     }
+*/
 }

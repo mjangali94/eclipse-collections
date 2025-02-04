@@ -39,6 +39,7 @@ public class ImmutableCharBooleanHashMapKeyValuesViewTest extends AbstractCharBo
         return new CharBooleanHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -843,4 +844,5 @@ public class ImmutableCharBooleanHashMapKeyValuesViewTest extends AbstractCharBo
             this.payloads.aggregateByNonMutating = ImmutableCharBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class SynchronizedByteByteMapKeyValuesViewTest extends AbstractByteByteMa
         return new ByteByteHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedByteByteMapKeyValuesViewTest extends AbstractByteByteMa
             this.payloads.aggregateByNonMutating = SynchronizedByteByteMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

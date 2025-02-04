@@ -183,6 +183,7 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
         Assert.assertThrows(IllegalStateException.class, () -> this.list.getOnly());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -628,4 +629,5 @@ public class QuintupletonListTest extends AbstractMemoryEfficientMutableListTest
             this.payloads.testGetOnly = QuintupletonListTest::testGetOnly;
         }
     }
+*/
 }

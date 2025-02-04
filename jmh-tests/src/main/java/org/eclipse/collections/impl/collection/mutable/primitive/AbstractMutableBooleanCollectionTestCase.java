@@ -441,6 +441,7 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
         Assert.assertThrows(IllegalArgumentException.class, () -> this.classUnderTest().chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -925,4 +926,5 @@ public abstract class AbstractMutableBooleanCollectionTestCase extends AbstractB
             this.payloads.chunk = AbstractMutableBooleanCollectionTestCase::chunk;
         }
     }
+*/
 }

@@ -209,6 +209,7 @@ public abstract class AbstractMutableBiMapKeySetTestCase {
         Verify.assertPostSerializedEqualsAndHashCode(biMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -349,4 +350,5 @@ public abstract class AbstractMutableBiMapKeySetTestCase {
             this.payloads.serialization = AbstractMutableBiMapKeySetTestCase::serialization;
         }
     }
+*/
 }

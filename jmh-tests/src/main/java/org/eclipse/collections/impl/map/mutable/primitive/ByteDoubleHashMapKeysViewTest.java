@@ -33,6 +33,7 @@ public class ByteDoubleHashMapKeysViewTest extends AbstractLazyByteIterableTestC
         return ByteDoubleHashMap.newWithKeysValues(element1, 1.0, element2, 2.0).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class ByteDoubleHashMapKeysViewTest extends AbstractLazyByteIterableTestC
             this.payloads.asLazy = ByteDoubleHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class MutableByteLongMapFactoryTest {
         Assert.assertEquals(ByteLongHashMap.newWithKeysValues((byte) 1, 2L, (byte) 3, 4L, (byte) 5, 6L, (byte) 7, 8L), ByteLongMaps.mutable.of((byte) 1, 2L, (byte) 3, 4L, (byte) 5, 6L, (byte) 7, 8L));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableByteLongMapFactoryTest {
             this.payloads.of = MutableByteLongMapFactoryTest::of;
         }
     }
+*/
 }

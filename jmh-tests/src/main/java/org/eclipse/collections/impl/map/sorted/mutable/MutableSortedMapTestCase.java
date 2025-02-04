@@ -740,6 +740,7 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
         this.newMapWithKeysValues(1, "1", 2, "2", 3, "3", 4, "4").drop(-1);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2680,4 +2681,5 @@ public abstract class MutableSortedMapTestCase extends MutableMapIterableTestCas
             this.payloads.drop_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(MutableSortedMapTestCase::drop_throws, java.lang.IllegalArgumentException.class);
         }
     }
+*/
 }

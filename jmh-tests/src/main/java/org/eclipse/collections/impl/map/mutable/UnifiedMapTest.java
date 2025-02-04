@@ -670,6 +670,7 @@ public class UnifiedMapTest extends UnifiedMapTestCase {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2978,4 +2979,5 @@ public class UnifiedMapTest extends UnifiedMapTestCase {
             this.payloads.trimToSize = UnifiedMapTest::trimToSize;
         }
     }
+*/
 }

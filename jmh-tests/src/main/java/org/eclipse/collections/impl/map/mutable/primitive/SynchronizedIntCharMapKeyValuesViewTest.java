@@ -38,6 +38,7 @@ public class SynchronizedIntCharMapKeyValuesViewTest extends AbstractIntCharMapK
         return new IntCharHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedIntCharMapKeyValuesViewTest extends AbstractIntCharMapK
             this.payloads.aggregateByNonMutating = SynchronizedIntCharMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

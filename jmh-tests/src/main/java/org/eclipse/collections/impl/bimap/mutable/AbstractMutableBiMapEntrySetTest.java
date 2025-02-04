@@ -204,6 +204,7 @@ public abstract class AbstractMutableBiMapEntrySetTest {
         Assert.assertEquals("1=a", entry.toString());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -352,4 +353,5 @@ public abstract class AbstractMutableBiMapEntrySetTest {
             this.payloads.entry_toString = AbstractMutableBiMapEntrySetTest::entry_toString;
         }
     }
+*/
 }

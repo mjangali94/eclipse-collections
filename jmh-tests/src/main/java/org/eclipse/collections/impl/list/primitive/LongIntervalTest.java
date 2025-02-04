@@ -1002,6 +1002,7 @@ public class LongIntervalTest {
         Assert.assertEquals(LongInterval.oneTo(2), list);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1702,4 +1703,5 @@ public class LongIntervalTest {
             this.payloads.newWithoutAll = LongIntervalTest::newWithoutAll;
         }
     }
+*/
 }

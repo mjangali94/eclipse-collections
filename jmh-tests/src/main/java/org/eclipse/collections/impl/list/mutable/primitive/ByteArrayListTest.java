@@ -146,6 +146,7 @@ public class ByteArrayListTest extends AbstractByteListTestCase {
         Assert.assertEquals(list, list.toImmutable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1382,4 +1383,5 @@ public class ByteArrayListTest extends AbstractByteListTestCase {
             this.payloads.toImmutable = ByteArrayListTest::toImmutable;
         }
     }
+*/
 }

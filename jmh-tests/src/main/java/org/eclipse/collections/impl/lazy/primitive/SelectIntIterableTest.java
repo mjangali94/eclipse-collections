@@ -232,6 +232,7 @@ public class SelectIntIterableTest {
         Assert.assertEquals(new MutableInteger(3), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -524,4 +525,5 @@ public class SelectIntIterableTest {
             this.payloads.injectInto = SelectIntIterableTest::injectInto;
         }
     }
+*/
 }

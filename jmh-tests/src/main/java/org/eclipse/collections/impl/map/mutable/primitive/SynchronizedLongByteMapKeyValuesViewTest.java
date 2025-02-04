@@ -38,6 +38,7 @@ public class SynchronizedLongByteMapKeyValuesViewTest extends AbstractLongByteMa
         return new LongByteHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedLongByteMapKeyValuesViewTest extends AbstractLongByteMa
             this.payloads.aggregateByNonMutating = SynchronizedLongByteMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -27,6 +27,7 @@ public final class AddToList implements ObjectIntProcedure<Integer> {
         this.result.add(each);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -47,4 +48,5 @@ public final class AddToList implements ObjectIntProcedure<Integer> {
             this.payloads = new _Payloads();
         }
     }
+*/
 }

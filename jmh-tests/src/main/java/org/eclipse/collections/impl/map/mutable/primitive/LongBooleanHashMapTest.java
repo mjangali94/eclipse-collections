@@ -234,6 +234,7 @@ public class LongBooleanHashMapTest extends AbstractMutableLongBooleanMapTestCas
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -830,4 +831,5 @@ public class LongBooleanHashMapTest extends AbstractMutableLongBooleanMapTestCas
             this.payloads.updateValue_every_slot = LongBooleanHashMapTest::updateValue_every_slot;
         }
     }
+*/
 }

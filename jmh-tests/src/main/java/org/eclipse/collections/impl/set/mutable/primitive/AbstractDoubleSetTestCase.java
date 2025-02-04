@@ -531,6 +531,7 @@ public abstract class AbstractDoubleSetTestCase extends AbstractMutableDoubleCol
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1455,4 +1456,5 @@ public abstract class AbstractDoubleSetTestCase extends AbstractMutableDoubleCol
             this.payloads.cartesianProduct = AbstractDoubleSetTestCase::cartesianProduct;
         }
     }
+*/
 }

@@ -53,6 +53,7 @@ public class ByteShortPairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair((byte) 1, (short) 2).compareTo(PrimitiveTuples.pair((byte) 1, (short) 3)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class ByteShortPairImplTest {
             this.payloads.compareTo = ByteShortPairImplTest::compareTo;
         }
     }
+*/
 }

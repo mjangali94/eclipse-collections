@@ -22,6 +22,7 @@ public class SortedMapsTest {
         Assert.assertEquals(SortedMaps.mutable.empty(Integer::compare), factory.empty(Integer::compare));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -50,4 +51,5 @@ public class SortedMapsTest {
             this.payloads.mutables = SortedMapsTest::mutables;
         }
     }
+*/
 }

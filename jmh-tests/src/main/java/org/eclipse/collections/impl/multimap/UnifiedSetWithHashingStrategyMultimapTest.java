@@ -341,6 +341,7 @@ public class UnifiedSetWithHashingStrategyMultimapTest extends AbstractMutableSe
         Assert.assertEquals(expectedMultimap, collectedMultimap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class UnifiedSetWithHashingStrategyMultimapTest extends AbstractMutableSe
             this.payloads.collectValues = UnifiedSetWithHashingStrategyMultimapTest::collectValues;
         }
     }
+*/
 }

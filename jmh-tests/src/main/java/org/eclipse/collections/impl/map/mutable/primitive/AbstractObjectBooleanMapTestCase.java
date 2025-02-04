@@ -449,6 +449,7 @@ public abstract class AbstractObjectBooleanMapTestCase {
         Verify.assertInstanceOf(ImmutableObjectBooleanMap.class, this.classUnderTest().toImmutable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public abstract class AbstractObjectBooleanMapTestCase {
             this.payloads.toImmutable = AbstractObjectBooleanMapTestCase::toImmutable;
         }
     }
+*/
 }

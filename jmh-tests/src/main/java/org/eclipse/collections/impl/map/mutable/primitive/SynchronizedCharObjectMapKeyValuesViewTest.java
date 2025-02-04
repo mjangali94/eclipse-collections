@@ -38,6 +38,7 @@ public class SynchronizedCharObjectMapKeyValuesViewTest extends AbstractCharObje
         return CharObjectHashMap.<Integer>newMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedCharObjectMapKeyValuesViewTest extends AbstractCharObje
             this.payloads.aggregateByNonMutating = SynchronizedCharObjectMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

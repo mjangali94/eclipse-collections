@@ -70,6 +70,7 @@ public class LongCaseProcedureTest {
         Assert.assertEquals(LongLists.mutable.with(3L, 4L), defaultList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class LongCaseProcedureTest {
             this.payloads.twoCasesWithDefault = LongCaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

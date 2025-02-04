@@ -31,6 +31,7 @@ public class MultiReaderUnifiedSetParallelSetIterableTest extends ParallelUnsort
         return SetAdapter.adapt(MultiReaderUnifiedSet.newSetWith(littleElements));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -736,4 +737,5 @@ public class MultiReaderUnifiedSetParallelSetIterableTest extends ParallelUnsort
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(MultiReaderUnifiedSetParallelSetIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

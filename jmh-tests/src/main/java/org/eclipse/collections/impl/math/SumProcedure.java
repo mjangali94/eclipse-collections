@@ -69,6 +69,7 @@ public class SumProcedure<T> implements Procedure<T>, Function2<Sum, T, Sum>, Pr
         return this.sum;
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -89,4 +90,5 @@ public class SumProcedure<T> implements Procedure<T>, Function2<Sum, T, Sum>, Pr
             this.payloads = new _Payloads();
         }
     }
+*/
 }

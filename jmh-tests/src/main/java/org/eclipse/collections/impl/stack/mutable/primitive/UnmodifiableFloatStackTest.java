@@ -91,6 +91,7 @@ public class UnmodifiableFloatStackTest extends AbstractFloatStackTestCase {
         Assert.assertThrows(UnsupportedOperationException.class, iterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -959,4 +960,5 @@ public class UnmodifiableFloatStackTest extends AbstractFloatStackTestCase {
             this.payloads.floatIterator_throws_for_remove_before_next = UnmodifiableFloatStackTest::floatIterator_throws_for_remove_before_next;
         }
     }
+*/
 }

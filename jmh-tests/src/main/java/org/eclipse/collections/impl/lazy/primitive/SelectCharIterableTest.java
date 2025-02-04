@@ -232,6 +232,7 @@ public class SelectCharIterableTest {
         Assert.assertEquals(new MutableCharacter((char) 3), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -524,4 +525,5 @@ public class SelectCharIterableTest {
             this.payloads.injectInto = SelectCharIterableTest::injectInto;
         }
     }
+*/
 }

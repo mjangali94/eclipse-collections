@@ -204,6 +204,7 @@ public class UnmodifiableDoubleObjectMapKeySetTest extends AbstractDoubleSetTest
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1128,4 +1129,5 @@ public class UnmodifiableDoubleObjectMapKeySetTest extends AbstractDoubleSetTest
             this.payloads.sum = UnmodifiableDoubleObjectMapKeySetTest::sum;
         }
     }
+*/
 }

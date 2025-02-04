@@ -56,6 +56,7 @@ public class SynchronizedLongBooleanMapTest extends AbstractMutableLongBooleanMa
         Assert.assertSame(map1, map1.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -548,4 +549,5 @@ public class SynchronizedLongBooleanMapTest extends AbstractMutableLongBooleanMa
             this.payloads.asSynchronized = SynchronizedLongBooleanMapTest::asSynchronized;
         }
     }
+*/
 }

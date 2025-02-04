@@ -165,6 +165,7 @@ public class StacksTest {
         Verify.assertClassNonInstantiable(Stacks.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -249,4 +250,5 @@ public class StacksTest {
             this.payloads.classIsNonInstantiable = StacksTest::classIsNonInstantiable;
         }
     }
+*/
 }

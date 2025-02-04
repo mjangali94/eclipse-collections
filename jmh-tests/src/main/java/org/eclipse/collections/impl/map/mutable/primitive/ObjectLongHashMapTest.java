@@ -57,6 +57,7 @@ public class ObjectLongHashMapTest extends ObjectLongHashMapTestCase {
         return ObjectLongHashMap.class;
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -861,4 +862,5 @@ public class ObjectLongHashMapTest extends ObjectLongHashMapTestCase {
             this.payloads.classIsNonInstantiable = ObjectLongHashMapTest::classIsNonInstantiable;
         }
     }
+*/
 }

@@ -211,6 +211,7 @@ public class ObjectFloatHashMapWithHashingStrategyTest extends ObjectFloatHashMa
         Assert.assertEquals(2.0f, map2.get(JOHNSMITH), 0.0);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1047,4 +1048,5 @@ public class ObjectFloatHashMapWithHashingStrategyTest extends ObjectFloatHashMa
             this.payloads.put_get_with_hashing_strategy = ObjectFloatHashMapWithHashingStrategyTest::put_get_with_hashing_strategy;
         }
     }
+*/
 }

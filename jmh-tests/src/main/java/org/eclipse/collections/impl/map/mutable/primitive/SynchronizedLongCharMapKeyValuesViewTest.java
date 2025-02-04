@@ -38,6 +38,7 @@ public class SynchronizedLongCharMapKeyValuesViewTest extends AbstractLongCharMa
         return new LongCharHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedLongCharMapKeyValuesViewTest extends AbstractLongCharMa
             this.payloads.aggregateByNonMutating = SynchronizedLongCharMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

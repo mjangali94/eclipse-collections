@@ -37,6 +37,7 @@ public class CollectionAddProcedureTest {
         Verify.assertContainsAll(procedure.getResult(), 1, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -73,4 +74,5 @@ public class CollectionAddProcedureTest {
             this.payloads.getResult = CollectionAddProcedureTest::getResult;
         }
     }
+*/
 }

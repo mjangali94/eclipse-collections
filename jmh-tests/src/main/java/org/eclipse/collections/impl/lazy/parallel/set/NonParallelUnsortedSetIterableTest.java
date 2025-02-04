@@ -25,6 +25,7 @@ public class NonParallelUnsortedSetIterableTest extends NonParallelUnsortedSetIt
         return new CompositeFastList<Integer>().withAll(Lists.mutable.of(littleElements)).asParallel(null, this.batchSize).asUnique();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -730,4 +731,5 @@ public class NonParallelUnsortedSetIterableTest extends NonParallelUnsortedSetIt
             this.payloads.toString_interruptedException = NonParallelUnsortedSetIterableTest::toString_interruptedException;
         }
     }
+*/
 }

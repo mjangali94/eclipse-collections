@@ -33,6 +33,7 @@ public class UnmodifiableObjectFloatMapKeysViewTest extends AbstractObjectFloatM
         return map.asUnmodifiable().keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -917,4 +918,5 @@ public class UnmodifiableObjectFloatMapKeysViewTest extends AbstractObjectFloatM
             this.payloads.iterator = UnmodifiableObjectFloatMapKeysViewTest::iterator;
         }
     }
+*/
 }

@@ -211,6 +211,7 @@ public class ObjectDoubleHashMapWithHashingStrategyTest extends ObjectDoubleHash
         Assert.assertEquals(2.0, map2.get(JOHNSMITH), 0.0);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1047,4 +1048,5 @@ public class ObjectDoubleHashMapWithHashingStrategyTest extends ObjectDoubleHash
             this.payloads.put_get_with_hashing_strategy = ObjectDoubleHashMapWithHashingStrategyTest::put_get_with_hashing_strategy;
         }
     }
+*/
 }

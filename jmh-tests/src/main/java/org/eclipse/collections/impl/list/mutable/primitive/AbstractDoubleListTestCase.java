@@ -606,6 +606,7 @@ public abstract class AbstractDoubleListTestCase extends AbstractMutableDoubleCo
         Assert.assertEquals(Arrays.asList(1.0, 2.0, 3.0), DoubleArrayList.newListWith(1.0, 2.0, 3.0).asUnmodifiable().primitiveParallelStream().boxed().collect(Collectors.toList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1858,4 +1859,5 @@ public abstract class AbstractDoubleListTestCase extends AbstractMutableDoubleCo
             this.payloads.parallelStream = AbstractDoubleListTestCase::parallelStream;
         }
     }
+*/
 }

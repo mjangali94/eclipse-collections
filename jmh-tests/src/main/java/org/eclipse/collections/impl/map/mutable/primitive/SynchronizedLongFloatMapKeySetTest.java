@@ -126,6 +126,7 @@ public class SynchronizedLongFloatMapKeySetTest extends AbstractLongSetTestCase 
         Assert.assertEquals(this.newObjectCollectionWith(0L, 1L, 31L, 32L).hashCode(), set1.hashCode());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -970,4 +971,5 @@ public class SynchronizedLongFloatMapKeySetTest extends AbstractLongSetTestCase 
             this.payloads.sum = SynchronizedLongFloatMapKeySetTest::sum;
         }
     }
+*/
 }

@@ -56,6 +56,7 @@ public final class CheckedLongCharProcedureTest {
         }.value(0L, '\0'));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -100,4 +101,5 @@ public final class CheckedLongCharProcedureTest {
             this.payloads.checkedException = CheckedLongCharProcedureTest::checkedException;
         }
     }
+*/
 }

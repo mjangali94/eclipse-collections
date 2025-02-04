@@ -263,6 +263,7 @@ public class CollectDoubleIterableTest {
         Verify.assertInstanceOf(LazyDoubleIterable.class, this.doubleIterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -579,4 +580,5 @@ public class CollectDoubleIterableTest {
             this.payloads.asLazy = CollectDoubleIterableTest::asLazy;
         }
     }
+*/
 }

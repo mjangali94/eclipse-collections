@@ -59,6 +59,7 @@ public class ImmutableByteMapKeySetTest extends AbstractImmutableByteHashSetTest
         Assert.assertFalse(byteSet.contains(collision2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -775,4 +776,5 @@ public class ImmutableByteMapKeySetTest extends AbstractImmutableByteHashSetTest
             this.payloads.contains = ImmutableByteMapKeySetTest::contains;
         }
     }
+*/
 }

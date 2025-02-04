@@ -26,6 +26,7 @@ public class ListAdapterParallelListIterableTest extends NonParallelListIterable
         return ListAdapter.adapt(new LinkedList<>(Lists.mutable.of(littleElements))).asParallel(null, this.batchSize);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -731,4 +732,5 @@ public class ListAdapterParallelListIterableTest extends NonParallelListIterable
             this.payloads.toString_interruptedException = ListAdapterParallelListIterableTest::toString_interruptedException;
         }
     }
+*/
 }

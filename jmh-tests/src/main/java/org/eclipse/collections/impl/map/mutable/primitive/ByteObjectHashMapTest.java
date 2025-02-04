@@ -491,6 +491,7 @@ public class ByteObjectHashMapTest extends AbstractMutableByteObjectMapTestCase 
         Assert.assertEquals(2.1646461495114355, result, 1.0e-15);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1975,4 +1976,5 @@ public class ByteObjectHashMapTest extends AbstractMutableByteObjectMapTestCase 
             this.payloads.sumOfDoubleConsistentRounding = ByteObjectHashMapTest::sumOfDoubleConsistentRounding;
         }
     }
+*/
 }

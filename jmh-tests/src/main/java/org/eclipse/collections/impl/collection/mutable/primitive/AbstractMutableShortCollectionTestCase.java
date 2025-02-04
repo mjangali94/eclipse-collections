@@ -395,6 +395,7 @@ public abstract class AbstractMutableShortCollectionTestCase extends AbstractSho
         Assert.assertNotSame(this.classUnderTest(), this.classUnderTest().newEmpty());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1175,4 +1176,5 @@ public abstract class AbstractMutableShortCollectionTestCase extends AbstractSho
             this.payloads.newEmpty = AbstractMutableShortCollectionTestCase::newEmpty;
         }
     }
+*/
 }

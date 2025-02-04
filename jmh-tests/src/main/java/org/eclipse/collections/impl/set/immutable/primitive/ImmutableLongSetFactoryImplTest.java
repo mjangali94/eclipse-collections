@@ -39,6 +39,7 @@ public class ImmutableLongSetFactoryImplTest {
         Assert.assertEquals(LongHashSet.newSet(set).toImmutable(), LongSets.immutable.ofAll(set));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -83,4 +84,5 @@ public class ImmutableLongSetFactoryImplTest {
             this.payloads.ofAll = ImmutableLongSetFactoryImplTest::ofAll;
         }
     }
+*/
 }

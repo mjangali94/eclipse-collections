@@ -91,6 +91,7 @@ public class IntegerPredicatesTest {
         Verify.assertClassNonInstantiable(IntegerPredicates.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -199,4 +200,5 @@ public class IntegerPredicatesTest {
             this.payloads.classIsNonInstantiable = IntegerPredicatesTest::classIsNonInstantiable;
         }
     }
+*/
 }

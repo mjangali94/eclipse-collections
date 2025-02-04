@@ -123,6 +123,7 @@ public class UnmodifiableDoubleObjectMapValuesTest {
         Assert.assertEquals(expected, HashBag.newBagWith(values.toArray(new Integer[values.size() + 1])));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -215,4 +216,5 @@ public class UnmodifiableDoubleObjectMapValuesTest {
             this.payloads.valuesToArray = UnmodifiableDoubleObjectMapValuesTest::valuesToArray;
         }
     }
+*/
 }

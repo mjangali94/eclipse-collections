@@ -38,6 +38,7 @@ public class MutableDoubleObjectMapFactoryTest {
         Assert.assertEquals(DoubleObjectHashMap.newWithKeysValues(1.0, "one", 2.0, "two", 3.0, "three", 4.0, "four"), DoubleObjectMaps.mutable.of(1.0, "one", 2.0, "two", 3.0, "three", 4.0, "four"));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableDoubleObjectMapFactoryTest {
             this.payloads.of = MutableDoubleObjectMapFactoryTest::of;
         }
     }
+*/
 }

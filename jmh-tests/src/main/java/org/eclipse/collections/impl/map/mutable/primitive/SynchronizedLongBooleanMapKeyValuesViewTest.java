@@ -38,6 +38,7 @@ public class SynchronizedLongBooleanMapKeyValuesViewTest extends AbstractLongBoo
         return new LongBooleanHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedLongBooleanMapKeyValuesViewTest extends AbstractLongBoo
             this.payloads.aggregateByNonMutating = SynchronizedLongBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

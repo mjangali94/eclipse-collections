@@ -653,6 +653,7 @@ public class PrimitiveTuplesTest {
         Assert.assertEquals(valueTwo, pair.getTwo(), DELTA);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1193,4 +1194,5 @@ public class PrimitiveTuplesTest {
             this.payloads.objectDoublePair = PrimitiveTuplesTest::objectDoublePair;
         }
     }
+*/
 }

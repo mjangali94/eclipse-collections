@@ -39,6 +39,7 @@ public class ImmutableCharDoubleHashMapKeyValuesViewTest extends AbstractCharDou
         return new CharDoubleHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableCharDoubleHashMapKeyValuesViewTest extends AbstractCharDou
             this.payloads.aggregateByNonMutating = ImmutableCharDoubleHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

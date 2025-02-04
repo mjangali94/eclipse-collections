@@ -1555,6 +1555,7 @@ public abstract class AbstractDoubleObjectMapTestCase {
         Assert.assertEquals(map.reduce((r, s) -> r + s), map.stream().reduce((r, s) -> r + s));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2663,4 +2664,5 @@ public abstract class AbstractDoubleObjectMapTestCase {
             this.payloads.parallelStream = AbstractDoubleObjectMapTestCase::parallelStream;
         }
     }
+*/
 }

@@ -377,6 +377,7 @@ public abstract class AbstractImmutableIntListTestCase extends AbstractImmutable
         Assert.assertEquals(Arrays.asList(1, 2, 3), ImmutableIntArrayList.newListWith(1, 2, 3).primitiveParallelStream().boxed().collect(Collectors.toList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1205,4 +1206,5 @@ public abstract class AbstractImmutableIntListTestCase extends AbstractImmutable
             this.payloads.parallelStream = AbstractImmutableIntListTestCase::parallelStream;
         }
     }
+*/
 }

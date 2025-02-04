@@ -112,6 +112,7 @@ public class MutableInteger extends Number implements Comparable<MutableInteger>
         return "MutableInteger{value=" + this.value + '}';
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -132,4 +133,5 @@ public class MutableInteger extends Number implements Comparable<MutableInteger>
             this.payloads = new _Payloads();
         }
     }
+*/
 }

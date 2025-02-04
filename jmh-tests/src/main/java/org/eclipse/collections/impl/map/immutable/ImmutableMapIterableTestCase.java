@@ -416,6 +416,7 @@ public abstract class ImmutableMapIterableTestCase {
         Assert.assertEquals(Maps.immutable.of(), immutable2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -748,4 +749,5 @@ public abstract class ImmutableMapIterableTestCase {
             this.payloads.newWithoutKeys = ImmutableMapIterableTestCase::newWithoutKeys;
         }
     }
+*/
 }

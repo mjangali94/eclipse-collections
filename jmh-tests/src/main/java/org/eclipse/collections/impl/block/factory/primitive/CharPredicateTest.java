@@ -87,6 +87,7 @@ public class CharPredicateTest {
         charList.forEach(element -> Assert.assertFalse(predicate.accept(element)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -171,4 +172,5 @@ public class CharPredicateTest {
             this.payloads.isUndefined = CharPredicateTest::isUndefined;
         }
     }
+*/
 }

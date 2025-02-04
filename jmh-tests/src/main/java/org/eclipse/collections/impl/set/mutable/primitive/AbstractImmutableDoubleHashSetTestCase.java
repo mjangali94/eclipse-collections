@@ -332,6 +332,7 @@ public abstract class AbstractImmutableDoubleHashSetTestCase extends AbstractImm
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1112,4 +1113,5 @@ public abstract class AbstractImmutableDoubleHashSetTestCase extends AbstractImm
             this.payloads.cartesianProduct = AbstractImmutableDoubleHashSetTestCase::cartesianProduct;
         }
     }
+*/
 }

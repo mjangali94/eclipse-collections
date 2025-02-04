@@ -147,6 +147,7 @@ public class ImmutableFloatEmptyStackTest extends AbstractImmutableFloatStackTes
         Assert.assertEquals(new MutableFloat(0.0f), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -999,4 +1000,5 @@ public class ImmutableFloatEmptyStackTest extends AbstractImmutableFloatStackTes
             this.payloads.injectInto = ImmutableFloatEmptyStackTest::injectInto;
         }
     }
+*/
 }

@@ -53,6 +53,7 @@ public class SynchronizedObjectBooleanMapTest extends AbstractMutableObjectBoole
         Assert.assertSame(this.map, this.map.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -497,4 +498,5 @@ public class SynchronizedObjectBooleanMapTest extends AbstractMutableObjectBoole
             this.payloads.asSynchronized = SynchronizedObjectBooleanMapTest::asSynchronized;
         }
     }
+*/
 }

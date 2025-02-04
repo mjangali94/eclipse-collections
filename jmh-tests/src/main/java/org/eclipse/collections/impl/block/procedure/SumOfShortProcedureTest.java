@@ -32,6 +32,7 @@ public class SumOfShortProcedureTest {
         Assert.assertTrue(actual == expected);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -60,4 +61,5 @@ public class SumOfShortProcedureTest {
             this.payloads.getResult = SumOfShortProcedureTest::getResult;
         }
     }
+*/
 }

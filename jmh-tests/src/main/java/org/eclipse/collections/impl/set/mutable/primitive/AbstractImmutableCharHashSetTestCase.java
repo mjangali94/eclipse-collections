@@ -332,6 +332,7 @@ public abstract class AbstractImmutableCharHashSetTestCase extends AbstractImmut
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1056,4 +1057,5 @@ public abstract class AbstractImmutableCharHashSetTestCase extends AbstractImmut
             this.payloads.cartesianProduct = AbstractImmutableCharHashSetTestCase::cartesianProduct;
         }
     }
+*/
 }

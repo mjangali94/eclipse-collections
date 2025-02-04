@@ -205,6 +205,7 @@ public abstract class MutableStackTestCase extends StackIterableTestCase {
         Assert.assertEquals(30.0d, result.get(0), 0.0);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2193,4 +2194,5 @@ public abstract class MutableStackTestCase extends StackIterableTestCase {
             this.payloads.asSynchronized = MutableStackTestCase::asSynchronized;
         }
     }
+*/
 }

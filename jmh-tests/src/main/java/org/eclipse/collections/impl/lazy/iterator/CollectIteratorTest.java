@@ -52,6 +52,7 @@ public class CollectIteratorTest {
         new CollectIterator<>(Lists.mutable.<Boolean>of(), String::valueOf).remove();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -112,4 +113,5 @@ public class CollectIteratorTest {
             this.payloads.remove = new se.chalmers.ju2jmh.api.ExceptionTest<>(CollectIteratorTest::remove, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

@@ -80,6 +80,7 @@ public class BiMapsTest {
         Verify.assertClassNonInstantiable(BiMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -132,4 +133,5 @@ public class BiMapsTest {
             this.payloads.classIsNonInstantiable = BiMapsTest::classIsNonInstantiable;
         }
     }
+*/
 }

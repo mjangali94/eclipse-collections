@@ -40,6 +40,7 @@ public class SingletonBooleanIteratorTest {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -76,4 +77,5 @@ public class SingletonBooleanIteratorTest {
             this.payloads.next = SingletonBooleanIteratorTest::next;
         }
     }
+*/
 }

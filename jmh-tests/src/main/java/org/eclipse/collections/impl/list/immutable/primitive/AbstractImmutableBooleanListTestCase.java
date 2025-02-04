@@ -337,6 +337,7 @@ public abstract class AbstractImmutableBooleanListTestCase extends AbstractImmut
         return trueCollection;
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -797,4 +798,5 @@ public abstract class AbstractImmutableBooleanListTestCase extends AbstractImmut
             this.payloads.newWithoutAll = AbstractImmutableBooleanListTestCase::newWithoutAll;
         }
     }
+*/
 }

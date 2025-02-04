@@ -297,6 +297,7 @@ public abstract class UnmodifiableMutableCollectionTestCase<T> {
         Assert.assertEquals(collection.toList(), tapResult);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -645,4 +646,5 @@ public abstract class UnmodifiableMutableCollectionTestCase<T> {
             this.payloads.tap = UnmodifiableMutableCollectionTestCase::tap;
         }
     }
+*/
 }

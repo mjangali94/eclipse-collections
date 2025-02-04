@@ -52,6 +52,7 @@ public class ChunkIterableTest {
         Assert.assertEquals("|[1, 2]A|[3, 4]A|[5]A", this.buffer.toString());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -97,4 +98,5 @@ public class ChunkIterableTest {
             this.payloads.forEachWith = ChunkIterableTest::forEachWith;
         }
     }
+*/
 }

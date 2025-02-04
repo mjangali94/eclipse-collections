@@ -46,6 +46,7 @@ public class ImmutableIntMapKeySetTest extends AbstractImmutableIntHashSetTestCa
         Assert.assertFalse(intSet.contains(collision2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -770,4 +771,5 @@ public class ImmutableIntMapKeySetTest extends AbstractImmutableIntHashSetTestCa
             this.payloads.cartesianProduct = ImmutableIntMapKeySetTest::cartesianProduct;
         }
     }
+*/
 }

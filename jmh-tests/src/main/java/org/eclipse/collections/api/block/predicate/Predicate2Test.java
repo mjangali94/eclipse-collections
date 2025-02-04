@@ -23,6 +23,7 @@ public class Predicate2Test {
         Assert.assertFalse(alwaysFalsePredicate.test("C", "D"));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -51,4 +52,5 @@ public class Predicate2Test {
             this.payloads.test = Predicate2Test::test;
         }
     }
+*/
 }

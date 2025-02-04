@@ -117,6 +117,7 @@ public class CharFloatHashMapKeySetTest extends AbstractCharSetTestCase {
         Assert.assertEquals(this.newObjectCollectionWith((char) 0, (char) 1, (char) 31, (char) 32).hashCode(), set1.hashCode());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -961,4 +962,5 @@ public class CharFloatHashMapKeySetTest extends AbstractCharSetTestCase {
             this.payloads.sum = CharFloatHashMapKeySetTest::sum;
         }
     }
+*/
 }

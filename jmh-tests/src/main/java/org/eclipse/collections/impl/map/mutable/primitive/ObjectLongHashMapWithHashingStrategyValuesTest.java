@@ -55,6 +55,7 @@ public class ObjectLongHashMapWithHashingStrategyValuesTest extends ObjectLongHa
         return ObjectLongHashMapWithHashingStrategy.newMap(STRING_HASHING_STRATEGY);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ObjectLongHashMapWithHashingStrategyValuesTest extends ObjectLongHa
             this.payloads.chunk = ObjectLongHashMapWithHashingStrategyValuesTest::chunk;
         }
     }
+*/
 }

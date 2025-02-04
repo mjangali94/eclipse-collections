@@ -44,6 +44,7 @@ public class SelectInstancesOfIteratorTest {
         Assert.assertThrows(UnsupportedOperationException.class, () -> new SelectInstancesOfIterator<>(Lists.fixedSize.of(), Object.class).remove());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -88,4 +89,5 @@ public class SelectInstancesOfIteratorTest {
             this.payloads.remove = SelectInstancesOfIteratorTest::remove;
         }
     }
+*/
 }

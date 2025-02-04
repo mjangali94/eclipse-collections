@@ -119,6 +119,7 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase {
         Assert.assertEquals(this.mutableCollection.groupBy(Functions.getStringPassThru(), FastListMultimap.newMultimap()), this.unmodifiableCollection.groupBy(Functions.getStringPassThru(), FastListMultimap.newMultimap()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1732,4 +1733,5 @@ public class UnmodifiableRichIterableTest extends AbstractRichIterableTestCase {
             this.payloads.groupBy = UnmodifiableRichIterableTest::groupBy;
         }
     }
+*/
 }

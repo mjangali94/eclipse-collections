@@ -989,6 +989,7 @@ public class IntIntervalTest {
         Assert.assertEquals(IntInterval.oneTo(2), list);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1673,4 +1674,5 @@ public class IntIntervalTest {
             this.payloads.newWithoutAll = IntIntervalTest::newWithoutAll;
         }
     }
+*/
 }

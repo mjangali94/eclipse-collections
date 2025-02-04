@@ -91,6 +91,7 @@ public class ObjectBooleanHashMapWithHashingStrategyKeySetTest extends ObjectBoo
         Assert.assertEquals(map, ObjectBooleanHashMapWithHashingStrategy.newWithKeysValues(LAST_NAME_HASHING_STRATEGY, JOHNSMITH, false));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -223,4 +224,5 @@ public class ObjectBooleanHashMapWithHashingStrategyKeySetTest extends ObjectBoo
             this.payloads.removeFromKeySet = ObjectBooleanHashMapWithHashingStrategyKeySetTest::removeFromKeySet;
         }
     }
+*/
 }

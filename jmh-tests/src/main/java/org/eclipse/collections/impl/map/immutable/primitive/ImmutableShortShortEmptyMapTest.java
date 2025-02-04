@@ -199,6 +199,7 @@ public class ImmutableShortShortEmptyMapTest extends AbstractImmutableShortShort
         Assert.assertEquals(new MutableShort((short) 0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -707,4 +708,5 @@ public class ImmutableShortShortEmptyMapTest extends AbstractImmutableShortShort
             this.payloads.injectInto = ImmutableShortShortEmptyMapTest::injectInto;
         }
     }
+*/
 }

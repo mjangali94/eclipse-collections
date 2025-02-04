@@ -333,6 +333,7 @@ public abstract class AbstractMutableFloatBagTestCase extends AbstractMutableFlo
         Assert.assertTrue(("{" + 100.0f + "=1, " + 101.0f + "=2}").equals(actual) || ("{" + 101.0f + "=2, " + 100.0f + "=1}").equals(actual));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1273,4 +1274,5 @@ public abstract class AbstractMutableFloatBagTestCase extends AbstractMutableFlo
             this.payloads.toStringOfItemToCount = AbstractMutableFloatBagTestCase::toStringOfItemToCount;
         }
     }
+*/
 }

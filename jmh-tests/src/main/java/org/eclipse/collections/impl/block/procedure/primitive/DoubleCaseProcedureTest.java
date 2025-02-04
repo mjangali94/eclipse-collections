@@ -70,6 +70,7 @@ public class DoubleCaseProcedureTest {
         Assert.assertEquals(DoubleLists.mutable.with(3.0, 4.0), defaultList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class DoubleCaseProcedureTest {
             this.payloads.twoCasesWithDefault = DoubleCaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

@@ -528,6 +528,7 @@ public class ShortFloatHashMapValuesTest extends AbstractMutableFloatCollectionT
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1364,4 +1365,5 @@ public class ShortFloatHashMapValuesTest extends AbstractMutableFloatCollectionT
             this.payloads.chunk = ShortFloatHashMapValuesTest::chunk;
         }
     }
+*/
 }

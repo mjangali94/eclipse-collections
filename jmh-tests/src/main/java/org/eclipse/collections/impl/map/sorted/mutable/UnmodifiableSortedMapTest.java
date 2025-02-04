@@ -65,6 +65,7 @@ public class UnmodifiableSortedMapTest {
         Assert.assertThrows(UnsupportedOperationException.class, map::clear);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -133,4 +134,5 @@ public class UnmodifiableSortedMapTest {
             this.payloads.lasKey = UnmodifiableSortedMapTest::lasKey;
         }
     }
+*/
 }

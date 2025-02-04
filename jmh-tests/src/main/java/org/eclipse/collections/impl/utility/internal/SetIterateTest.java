@@ -64,6 +64,7 @@ public class SetIterateTest {
         Assert.assertEquals(this.newSet(), set);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -132,4 +133,5 @@ public class SetIterateTest {
             this.payloads.removeAllIterableSix = SetIterateTest::removeAllIterableSix;
         }
     }
+*/
 }

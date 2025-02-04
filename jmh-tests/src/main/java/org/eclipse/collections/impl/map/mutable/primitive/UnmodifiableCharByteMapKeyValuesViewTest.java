@@ -38,6 +38,7 @@ public class UnmodifiableCharByteMapKeyValuesViewTest extends AbstractCharByteMa
         return new CharByteHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableCharByteMapKeyValuesViewTest extends AbstractCharByteMa
             this.payloads.aggregateByNonMutating = UnmodifiableCharByteMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

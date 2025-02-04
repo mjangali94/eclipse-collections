@@ -26,6 +26,7 @@ public class FlatCollectProcedureTest {
         Assert.assertEquals(Lists.mutable.of(0, 1, 0, 1, 2, 0, 1, 2, 3), procedure.getCollection());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -54,4 +55,5 @@ public class FlatCollectProcedureTest {
             this.payloads.value = FlatCollectProcedureTest::value;
         }
     }
+*/
 }

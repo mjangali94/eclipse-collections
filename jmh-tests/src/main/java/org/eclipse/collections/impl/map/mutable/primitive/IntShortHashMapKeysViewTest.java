@@ -33,6 +33,7 @@ public class IntShortHashMapKeysViewTest extends AbstractLazyIntIterableTestCase
         return IntShortHashMap.newWithKeysValues(element1, (short) 1, element2, (short) 2).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class IntShortHashMapKeysViewTest extends AbstractLazyIntIterableTestCase
             this.payloads.asLazy = IntShortHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

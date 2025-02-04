@@ -67,6 +67,7 @@ public class SynchronizedSortedMapTest extends MutableSortedMapTestCase {
         return new SynchronizedSortedMap<>(TreeSortedMap.newMapWith(key1, value1, key2, value2, key3, value3, key4, value4));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2007,4 +2008,5 @@ public class SynchronizedSortedMapTest extends MutableSortedMapTestCase {
             this.payloads.drop_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(SynchronizedSortedMapTest::drop_throws, java.lang.IllegalArgumentException.class);
         }
     }
+*/
 }

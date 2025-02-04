@@ -57,6 +57,7 @@ public abstract class ImmutableStackTestCase extends StackIterableTestCase {
         Assert.assertEquals(30, result.get(0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1901,4 +1902,5 @@ public abstract class ImmutableStackTestCase extends StackIterableTestCase {
             this.payloads.aggregateByNonMutating = ImmutableStackTestCase::aggregateByNonMutating;
         }
     }
+*/
 }

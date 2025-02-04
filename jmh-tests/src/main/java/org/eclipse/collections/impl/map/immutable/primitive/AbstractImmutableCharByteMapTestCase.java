@@ -101,6 +101,7 @@ public abstract class AbstractImmutableCharByteMapTestCase extends AbstractCharB
         Assert.assertThrows(IllegalStateException.class, () -> this.newWithKeysValues((char) 1, (byte) 1, (char) 2, (byte) 1).flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -577,4 +578,5 @@ public abstract class AbstractImmutableCharByteMapTestCase extends AbstractCharB
             this.payloads.flipUniqueValues = AbstractImmutableCharByteMapTestCase::flipUniqueValues;
         }
     }
+*/
 }

@@ -26,6 +26,7 @@ public class CollectIfProcedureTest {
         Assert.assertFalse(underTestFalse.getCollection().contains("42"));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -54,4 +55,5 @@ public class CollectIfProcedureTest {
             this.payloads.constructorWithSize = CollectIfProcedureTest::constructorWithSize;
         }
     }
+*/
 }

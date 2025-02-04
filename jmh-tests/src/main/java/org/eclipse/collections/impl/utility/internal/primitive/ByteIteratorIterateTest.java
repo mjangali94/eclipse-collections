@@ -62,6 +62,7 @@ public class ByteIteratorIterateTest {
         Assert.assertThrows(NoSuchElementException.class, () -> ByteIteratorIterate.max(new ByteArrayList().byteIterator()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -130,4 +131,5 @@ public class ByteIteratorIterateTest {
             this.payloads.max = ByteIteratorIterateTest::max;
         }
     }
+*/
 }

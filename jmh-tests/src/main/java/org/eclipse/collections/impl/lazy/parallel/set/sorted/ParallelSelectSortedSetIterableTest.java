@@ -32,6 +32,7 @@ public class ParallelSelectSortedSetIterableTest extends ParallelSortedSetIterab
         return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -737,4 +738,5 @@ public class ParallelSelectSortedSetIterableTest extends ParallelSortedSetIterab
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelSelectSortedSetIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

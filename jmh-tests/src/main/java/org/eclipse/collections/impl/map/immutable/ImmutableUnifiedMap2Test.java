@@ -65,6 +65,7 @@ public class ImmutableUnifiedMap2Test extends MapIterableTestCase {
         Assert.assertEquals(iSet(1, 3), partition.getRejected().toSet());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1277,4 +1278,5 @@ public class ImmutableUnifiedMap2Test extends MapIterableTestCase {
             this.payloads.partitionWith_value = ImmutableUnifiedMap2Test::partitionWith_value;
         }
     }
+*/
 }

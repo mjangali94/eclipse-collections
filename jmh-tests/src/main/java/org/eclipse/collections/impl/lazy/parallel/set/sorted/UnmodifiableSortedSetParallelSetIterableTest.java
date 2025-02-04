@@ -25,6 +25,7 @@ public class UnmodifiableSortedSetParallelSetIterableTest extends NonParallelSor
         return TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), littleElements).asUnmodifiable().asParallel(this.executorService, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -730,4 +731,5 @@ public class UnmodifiableSortedSetParallelSetIterableTest extends NonParallelSor
             this.payloads.toString_interruptedException = UnmodifiableSortedSetParallelSetIterableTest::toString_interruptedException;
         }
     }
+*/
 }

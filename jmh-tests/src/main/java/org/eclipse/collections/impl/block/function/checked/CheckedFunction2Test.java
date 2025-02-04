@@ -36,6 +36,7 @@ public class CheckedFunction2Test {
         }.value(10, 20));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -72,4 +73,5 @@ public class CheckedFunction2Test {
             this.payloads.exceptionHandling = CheckedFunction2Test::exceptionHandling;
         }
     }
+*/
 }

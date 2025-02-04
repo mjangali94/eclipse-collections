@@ -38,6 +38,7 @@ public final class DoubleFunctionImplTest {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -66,4 +67,5 @@ public final class DoubleFunctionImplTest {
             this.payloads.testValueOf = DoubleFunctionImplTest::testValueOf;
         }
     }
+*/
 }

@@ -236,6 +236,7 @@ public class TuplesTest {
         Assert.assertEquals(Lists.mutable.with(1, 2, 3), integers);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -416,4 +417,5 @@ public class TuplesTest {
             this.payloads.tripleToImmutableList = TuplesTest::tripleToImmutableList;
         }
     }
+*/
 }

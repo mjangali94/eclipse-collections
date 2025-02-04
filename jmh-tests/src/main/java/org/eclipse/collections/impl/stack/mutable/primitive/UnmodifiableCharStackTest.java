@@ -91,6 +91,7 @@ public class UnmodifiableCharStackTest extends AbstractCharStackTestCase {
         Assert.assertThrows(UnsupportedOperationException.class, iterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -903,4 +904,5 @@ public class UnmodifiableCharStackTest extends AbstractCharStackTestCase {
             this.payloads.charIterator_throws_for_remove_before_next = UnmodifiableCharStackTest::charIterator_throws_for_remove_before_next;
         }
     }
+*/
 }

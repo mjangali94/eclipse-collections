@@ -70,6 +70,7 @@ public class TapIterableTest extends AbstractLazyIterableTestCase {
         Assert.assertEquals("1021324354", builder.toString());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -978,4 +979,5 @@ public class TapIterableTest extends AbstractLazyIterableTestCase {
             this.payloads.forEachWith = TapIterableTest::forEachWith;
         }
     }
+*/
 }

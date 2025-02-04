@@ -434,6 +434,7 @@ public abstract class AbstractImmutableUnifiedSetTestCase {
         this.newSetWith(1, 2, 3).groupByUniqueKey(id -> id, UnifiedMap.newWithKeysValues(2, 2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -886,4 +887,5 @@ public abstract class AbstractImmutableUnifiedSetTestCase {
             this.payloads.groupByUniqueKey_target_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(AbstractImmutableUnifiedSetTestCase::groupByUniqueKey_target_throws, java.lang.IllegalStateException.class);
         }
     }
+*/
 }

@@ -44,6 +44,7 @@ public class IntLongMapFactoryTest {
         Assert.assertTrue(IntLongMaps.immutable.from(iterable, Integer::valueOf, Long::valueOf) instanceof ImmutableIntLongMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -88,4 +89,5 @@ public class IntLongMapFactoryTest {
             this.payloads.from = IntLongMapFactoryTest::from;
         }
     }
+*/
 }

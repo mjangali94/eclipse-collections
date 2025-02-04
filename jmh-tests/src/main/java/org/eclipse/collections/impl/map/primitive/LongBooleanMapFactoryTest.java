@@ -47,6 +47,7 @@ public class LongBooleanMapFactoryTest {
         Assert.assertTrue(LongBooleanMaps.immutable.from(iterable, Long::valueOf, each -> Integer.valueOf(each) % 2 == 0) instanceof ImmutableLongBooleanMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -99,4 +100,5 @@ public class LongBooleanMapFactoryTest {
             this.payloads.from = LongBooleanMapFactoryTest::from;
         }
     }
+*/
 }

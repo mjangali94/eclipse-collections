@@ -42,6 +42,7 @@ public class FrozenShortHashSetTest extends AbstractImmutableShortHashSetTestCas
         return UnifiedSet.newSetWith(elements);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -766,4 +767,5 @@ public class FrozenShortHashSetTest extends AbstractImmutableShortHashSetTestCas
             this.payloads.cartesianProduct = FrozenShortHashSetTest::cartesianProduct;
         }
     }
+*/
 }

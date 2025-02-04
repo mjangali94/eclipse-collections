@@ -206,6 +206,7 @@ public class ReverseBooleanIterableTest {
         Assert.assertEquals(BooleanArrayList.newListWith(false, true), BooleanArrayList.newListWith(true, false).asReversed().asLazy().toList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -418,4 +419,5 @@ public class ReverseBooleanIterableTest {
             this.payloads.asLazy = ReverseBooleanIterableTest::asLazy;
         }
     }
+*/
 }

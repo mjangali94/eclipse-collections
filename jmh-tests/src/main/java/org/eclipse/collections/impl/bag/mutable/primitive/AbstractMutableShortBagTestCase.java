@@ -333,6 +333,7 @@ public abstract class AbstractMutableShortBagTestCase extends AbstractMutableSho
         Assert.assertTrue(("{" + (short) 100 + "=1, " + (short) 101 + "=2}").equals(actual) || ("{" + (short) 101 + "=2, " + (short) 100 + "=1}").equals(actual));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1217,4 +1218,5 @@ public abstract class AbstractMutableShortBagTestCase extends AbstractMutableSho
             this.payloads.toStringOfItemToCount = AbstractMutableShortBagTestCase::toStringOfItemToCount;
         }
     }
+*/
 }

@@ -80,6 +80,7 @@ public final class DoublePredicatesTest {
         Verify.assertClassNonInstantiable(DoublePredicates.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -180,4 +181,5 @@ public final class DoublePredicatesTest {
             this.payloads.classIsNonInstantiable = DoublePredicatesTest::classIsNonInstantiable;
         }
     }
+*/
 }

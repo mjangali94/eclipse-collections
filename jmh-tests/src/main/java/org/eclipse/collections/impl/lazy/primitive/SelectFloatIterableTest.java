@@ -242,6 +242,7 @@ public class SelectFloatIterableTest {
         Assert.assertEquals(new MutableFloat(3.0f), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -542,4 +543,5 @@ public class SelectFloatIterableTest {
             this.payloads.injectInto = SelectFloatIterableTest::injectInto;
         }
     }
+*/
 }

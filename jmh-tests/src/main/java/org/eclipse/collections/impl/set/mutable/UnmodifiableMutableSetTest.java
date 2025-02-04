@@ -252,6 +252,7 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase {
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(1, 2, 3, 4), bag);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2089,4 +2090,5 @@ public class UnmodifiableMutableSetTest extends AbstractCollectionTestCase {
             this.payloads.toSortedBagBy = UnmodifiableMutableSetTest::toSortedBagBy;
         }
     }
+*/
 }

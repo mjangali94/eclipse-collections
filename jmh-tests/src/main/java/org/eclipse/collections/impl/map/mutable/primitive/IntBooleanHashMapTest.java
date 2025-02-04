@@ -234,6 +234,7 @@ public class IntBooleanHashMapTest extends AbstractMutableIntBooleanMapTestCase 
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -830,4 +831,5 @@ public class IntBooleanHashMapTest extends AbstractMutableIntBooleanMapTestCase 
             this.payloads.updateValue_every_slot = IntBooleanHashMapTest::updateValue_every_slot;
         }
     }
+*/
 }

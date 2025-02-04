@@ -828,6 +828,7 @@ public abstract class ParallelIterableTestCase {
         this.newWith(1, null, 2).maxBy(Integer::valueOf);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1533,4 +1534,5 @@ public abstract class ParallelIterableTestCase {
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelIterableTestCase::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

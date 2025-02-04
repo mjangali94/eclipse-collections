@@ -200,6 +200,7 @@ public class ImmutableFloatIntEmptyMapTest extends AbstractImmutableFloatIntMapT
         Assert.assertEquals(new MutableInteger(0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -708,4 +709,5 @@ public class ImmutableFloatIntEmptyMapTest extends AbstractImmutableFloatIntMapT
             this.payloads.injectInto = ImmutableFloatIntEmptyMapTest::injectInto;
         }
     }
+*/
 }

@@ -36,6 +36,7 @@ public class ParallelSortedSetIterableTest extends NonParallelSortedSetIterableT
         TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(null, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public class ParallelSortedSetIterableTest extends NonParallelSortedSetIterableT
             this.payloads.asParallel_null_executorService = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelSortedSetIterableTest::asParallel_null_executorService, java.lang.NullPointerException.class);
         }
     }
+*/
 }

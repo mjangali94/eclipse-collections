@@ -681,6 +681,7 @@ public abstract class AbstractMutableIntObjectMapTestCase extends AbstractIntObj
         Assert.assertThrows(IllegalStateException.class, () -> this.newWithKeysValues(1, "1", 2, "1").flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1957,4 +1958,5 @@ public abstract class AbstractMutableIntObjectMapTestCase extends AbstractIntObj
             this.payloads.flipUniqueValues = AbstractMutableIntObjectMapTestCase::flipUniqueValues;
         }
     }
+*/
 }

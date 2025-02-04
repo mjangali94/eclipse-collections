@@ -38,6 +38,7 @@ public class SynchronizedFloatFloatMapKeyValuesViewTest extends AbstractFloatFlo
         return new FloatFloatHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedFloatFloatMapKeyValuesViewTest extends AbstractFloatFlo
             this.payloads.aggregateByNonMutating = SynchronizedFloatFloatMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

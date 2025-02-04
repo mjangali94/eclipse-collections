@@ -30,6 +30,7 @@ public class PartitionHashBagTest {
         Assert.assertEquals(rejected, partitionImmutableBag.getRejected());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -58,4 +59,5 @@ public class PartitionHashBagTest {
             this.payloads.toImmutable = PartitionHashBagTest::toImmutable;
         }
     }
+*/
 }

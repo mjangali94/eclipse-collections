@@ -38,6 +38,7 @@ public class UnmodifiableFloatIntMapKeyValuesViewTest extends AbstractFloatIntMa
         return new FloatIntHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableFloatIntMapKeyValuesViewTest extends AbstractFloatIntMa
             this.payloads.aggregateByNonMutating = UnmodifiableFloatIntMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

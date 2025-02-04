@@ -72,6 +72,7 @@ public class FlatCollectIterableTest extends AbstractLazyIterableTestCase {
         Assert.assertEquals(FastList.newListWith(1, 2, 3, 4, 5), iterable.distinct().toList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -980,4 +981,5 @@ public class FlatCollectIterableTest extends AbstractLazyIterableTestCase {
             this.payloads.distinct = FlatCollectIterableTest::distinct;
         }
     }
+*/
 }

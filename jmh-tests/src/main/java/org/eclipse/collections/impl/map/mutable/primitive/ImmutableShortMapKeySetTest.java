@@ -46,6 +46,7 @@ public class ImmutableShortMapKeySetTest extends AbstractImmutableShortHashSetTe
         Assert.assertFalse(shortSet.contains(collision2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -770,4 +771,5 @@ public class ImmutableShortMapKeySetTest extends AbstractImmutableShortHashSetTe
             this.payloads.cartesianProduct = ImmutableShortMapKeySetTest::cartesianProduct;
         }
     }
+*/
 }

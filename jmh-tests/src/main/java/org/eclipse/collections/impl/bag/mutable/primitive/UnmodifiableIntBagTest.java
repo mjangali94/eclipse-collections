@@ -219,6 +219,7 @@ public class UnmodifiableIntBagTest extends AbstractMutableIntBagTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1103,4 +1104,5 @@ public class UnmodifiableIntBagTest extends AbstractMutableIntBagTestCase {
             this.payloads.intIterator_throws_for_consecutive_remove = UnmodifiableIntBagTest::intIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

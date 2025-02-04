@@ -31,6 +31,7 @@ public class PartitionArrayStackTest {
         Assert.assertEquals(ArrayStack.newStackFromTopToBottom(4, 5, 6), partitionImmutableStack.getRejected());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -67,4 +68,5 @@ public class PartitionArrayStackTest {
             this.payloads.toImmutable = PartitionArrayStackTest::toImmutable;
         }
     }
+*/
 }

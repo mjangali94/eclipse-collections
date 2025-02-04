@@ -41,6 +41,7 @@ public class SynchronizedDoubleListTest extends AbstractDoubleListTestCase {
         Assert.assertEquals(list, list.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1293,4 +1294,5 @@ public class SynchronizedDoubleListTest extends AbstractDoubleListTestCase {
             this.payloads.asSynchronized = SynchronizedDoubleListTest::asSynchronized;
         }
     }
+*/
 }

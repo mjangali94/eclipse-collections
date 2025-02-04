@@ -70,6 +70,7 @@ public class CharCaseProcedureTest {
         Assert.assertEquals(CharLists.mutable.with((char) 3, (char) 4), defaultList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class CharCaseProcedureTest {
             this.payloads.twoCasesWithDefault = CharCaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

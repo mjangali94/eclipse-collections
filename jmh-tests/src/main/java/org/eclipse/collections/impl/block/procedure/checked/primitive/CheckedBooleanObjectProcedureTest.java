@@ -56,6 +56,7 @@ public final class CheckedBooleanObjectProcedureTest {
         }.value(false, null));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -100,4 +101,5 @@ public final class CheckedBooleanObjectProcedureTest {
             this.payloads.checkedException = CheckedBooleanObjectProcedureTest::checkedException;
         }
     }
+*/
 }

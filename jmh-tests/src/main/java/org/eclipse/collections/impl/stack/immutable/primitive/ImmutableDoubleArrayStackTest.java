@@ -52,6 +52,7 @@ public class ImmutableDoubleArrayStackTest extends AbstractImmutableDoubleStackT
         Assert.assertEquals(new MutableDouble(6.0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -920,4 +921,5 @@ public class ImmutableDoubleArrayStackTest extends AbstractImmutableDoubleStackT
             this.payloads.injectInto = ImmutableDoubleArrayStackTest::injectInto;
         }
     }
+*/
 }

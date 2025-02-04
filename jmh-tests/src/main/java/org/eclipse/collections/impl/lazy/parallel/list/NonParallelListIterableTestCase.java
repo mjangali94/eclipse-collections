@@ -73,6 +73,7 @@ public abstract class NonParallelListIterableTestCase extends ParallelListIterab
         // Not applicable in serial
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -778,4 +779,5 @@ public abstract class NonParallelListIterableTestCase extends ParallelListIterab
             this.payloads.toString_interruptedException = NonParallelListIterableTestCase::toString_interruptedException;
         }
     }
+*/
 }

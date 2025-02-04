@@ -448,6 +448,7 @@ public abstract class ObjectIntHashMapTestCase extends AbstractMutableObjectIntM
         Verify.assertClassNonInstantiable(ObjectIntMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1252,4 +1253,5 @@ public abstract class ObjectIntHashMapTestCase extends AbstractMutableObjectIntM
             this.payloads.classIsNonInstantiable = ObjectIntHashMapTestCase::classIsNonInstantiable;
         }
     }
+*/
 }

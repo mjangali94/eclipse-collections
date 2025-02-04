@@ -718,6 +718,7 @@ public abstract class AbstractDoubleDoubleMapTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> this.newWithKeysValues(1.0, 1.0).chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1186,4 +1187,5 @@ public abstract class AbstractDoubleDoubleMapTestCase {
             this.payloads.chunk = AbstractDoubleDoubleMapTestCase::chunk;
         }
     }
+*/
 }

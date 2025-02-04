@@ -71,6 +71,7 @@ public class FloatIteratorIterateTest {
         Assert.assertThrows(NoSuchElementException.class, () -> FloatIteratorIterate.max(new FloatArrayList().floatIterator()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -147,4 +148,5 @@ public class FloatIteratorIterateTest {
             this.payloads.max = FloatIteratorIterateTest::max;
         }
     }
+*/
 }

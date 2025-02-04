@@ -316,6 +316,7 @@ public class UnmodifiableMutableCollectionTest {
         Assert.assertEquals(iList(1, 2.0, 3, 4.0, 5), numbers.selectInstancesOf(Number.class));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -569,4 +570,5 @@ public class UnmodifiableMutableCollectionTest {
             this.payloads.selectInstancesOf = UnmodifiableMutableCollectionTest::selectInstancesOf;
         }
     }
+*/
 }

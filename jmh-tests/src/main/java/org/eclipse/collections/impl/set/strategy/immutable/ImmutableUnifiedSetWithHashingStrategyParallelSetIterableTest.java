@@ -51,6 +51,7 @@ public class ImmutableUnifiedSetWithHashingStrategyParallelSetIterableTest exten
         ImmutableUnifiedSetWithHashingStrategy.newSetWith(INTEGER_TO_STRING_HASHING_STRATEGY, 1, 2, 2, 3, 3, 3, 4, 4, 4, 4).asParallel(null, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -772,4 +773,5 @@ public class ImmutableUnifiedSetWithHashingStrategyParallelSetIterableTest exten
             this.payloads.asParallel_null_executorService = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableUnifiedSetWithHashingStrategyParallelSetIterableTest::asParallel_null_executorService, java.lang.NullPointerException.class);
         }
     }
+*/
 }

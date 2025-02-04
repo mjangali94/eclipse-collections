@@ -38,6 +38,7 @@ public class MutableShortCharMapFactoryTest {
         Assert.assertEquals(ShortCharHashMap.newWithKeysValues((short) 1, (char) 2, (short) 3, (char) 4, (short) 5, (char) 6, (short) 7, (char) 8), ShortCharMaps.mutable.of((short) 1, (char) 2, (short) 3, (char) 4, (short) 5, (char) 6, (short) 7, (char) 8));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableShortCharMapFactoryTest {
             this.payloads.of = MutableShortCharMapFactoryTest::of;
         }
     }
+*/
 }

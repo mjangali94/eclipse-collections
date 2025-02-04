@@ -165,6 +165,7 @@ public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemory
         Assert.assertEquals(this.getCollection(), this.getCollection());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -729,4 +730,5 @@ public abstract class UnmodifiableMutableListTestCase extends UnmodifiableMemory
             this.payloads.testEquals = UnmodifiableMutableListTestCase::testEquals;
         }
     }
+*/
 }

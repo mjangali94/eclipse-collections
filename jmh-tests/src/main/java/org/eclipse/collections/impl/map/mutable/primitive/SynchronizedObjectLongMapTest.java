@@ -57,6 +57,7 @@ public class SynchronizedObjectLongMapTest extends AbstractMutableObjectLongMapT
         Assert.assertSame(this.map, this.map.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -661,4 +662,5 @@ public class SynchronizedObjectLongMapTest extends AbstractMutableObjectLongMapT
             this.payloads.asSynchronized = SynchronizedObjectLongMapTest::asSynchronized;
         }
     }
+*/
 }

@@ -176,6 +176,7 @@ public class UnmodifiableCharSetTest extends AbstractCharSetTestCase {
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1020,4 +1021,5 @@ public class UnmodifiableCharSetTest extends AbstractCharSetTestCase {
             this.payloads.asUnmodifiable = UnmodifiableCharSetTest::asUnmodifiable;
         }
     }
+*/
 }

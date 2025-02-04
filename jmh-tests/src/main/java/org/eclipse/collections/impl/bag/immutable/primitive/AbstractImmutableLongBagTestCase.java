@@ -245,6 +245,7 @@ public abstract class AbstractImmutableLongBagTestCase extends AbstractImmutable
         Assert.assertTrue(("{" + 100L + "=1, " + 101L + "=2}").equals(actual) || ("{" + 101L + "=2, " + 100L + "=1}").equals(actual));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -969,4 +970,5 @@ public abstract class AbstractImmutableLongBagTestCase extends AbstractImmutable
             this.payloads.toStringOfItemToCount = AbstractImmutableLongBagTestCase::toStringOfItemToCount;
         }
     }
+*/
 }

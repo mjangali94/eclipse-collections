@@ -64,6 +64,7 @@ public class ImmutableDoubleLongHashMapTest extends AbstractImmutableDoubleLongM
         Assert.assertEquals(new MutableLong(6L), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -572,4 +573,5 @@ public class ImmutableDoubleLongHashMapTest extends AbstractImmutableDoubleLongM
             this.payloads.injectInto = ImmutableDoubleLongHashMapTest::injectInto;
         }
     }
+*/
 }

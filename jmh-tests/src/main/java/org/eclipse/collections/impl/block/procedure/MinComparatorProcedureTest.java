@@ -32,6 +32,7 @@ public class MinComparatorProcedureTest {
         Assert.assertSame(fourth, procedure.getResult());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -60,4 +61,5 @@ public class MinComparatorProcedureTest {
             this.payloads.value = MinComparatorProcedureTest::value;
         }
     }
+*/
 }

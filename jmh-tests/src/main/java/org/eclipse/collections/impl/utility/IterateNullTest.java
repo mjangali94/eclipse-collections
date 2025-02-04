@@ -455,6 +455,7 @@ public class IterateNullTest {
         Assert.assertThrows(IllegalArgumentException.class, () -> Iterate.sumByDouble(null, null, null));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1083,4 +1084,5 @@ public class IterateNullTest {
             this.payloads.sumByDouble = IterateNullTest::sumByDouble;
         }
     }
+*/
 }

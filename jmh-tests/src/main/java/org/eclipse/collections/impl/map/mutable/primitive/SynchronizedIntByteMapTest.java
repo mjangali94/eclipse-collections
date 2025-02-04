@@ -57,6 +57,7 @@ public class SynchronizedIntByteMapTest extends AbstractMutableIntByteMapTestCas
         Assert.assertSame(this.map, this.map.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public class SynchronizedIntByteMapTest extends AbstractMutableIntByteMapTestCas
             this.payloads.asSynchronized = SynchronizedIntByteMapTest::asSynchronized;
         }
     }
+*/
 }

@@ -50,6 +50,7 @@ public class DoubleIterableIterateTest {
         Verify.assertIterableSize(3, DoubleIterableIterate.collect(this.iterable, String::valueOf, FastList.<String>newList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -102,4 +103,5 @@ public class DoubleIterableIterateTest {
             this.payloads.collect_target = DoubleIterableIterateTest::collect_target;
         }
     }
+*/
 }

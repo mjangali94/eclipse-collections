@@ -38,6 +38,7 @@ public class SynchronizedLongFloatMapKeyValuesViewTest extends AbstractLongFloat
         return new LongFloatHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedLongFloatMapKeyValuesViewTest extends AbstractLongFloat
             this.payloads.aggregateByNonMutating = SynchronizedLongFloatMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

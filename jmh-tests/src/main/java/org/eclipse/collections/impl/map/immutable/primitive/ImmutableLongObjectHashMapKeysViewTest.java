@@ -34,6 +34,7 @@ public class ImmutableLongObjectHashMapKeysViewTest extends AbstractLazyLongIter
         return LongObjectHashMap.newWithKeysValues(element1, 1, element2, 2).toImmutable().keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -398,4 +399,5 @@ public class ImmutableLongObjectHashMapKeysViewTest extends AbstractLazyLongIter
             this.payloads.asLazy = ImmutableLongObjectHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

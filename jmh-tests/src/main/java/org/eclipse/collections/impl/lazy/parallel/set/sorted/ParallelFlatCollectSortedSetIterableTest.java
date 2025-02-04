@@ -39,6 +39,7 @@ public class ParallelFlatCollectSortedSetIterableTest extends ParallelListIterab
         return FastList.newListWith(littleElements).flatCollect(i -> FastList.newListWith(9, 8, 7, 6, 5, 4, 3, 2, 1).select(j -> j <= i).collect(j -> i * 10 + j)).collect(i -> i / 10);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -744,4 +745,5 @@ public class ParallelFlatCollectSortedSetIterableTest extends ParallelListIterab
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelFlatCollectSortedSetIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

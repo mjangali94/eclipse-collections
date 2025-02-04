@@ -364,6 +364,7 @@ public class ImmutableEmptySortedMapTest extends ImmutableSortedMapTestCase {
         Assert.assertThrows(IllegalStateException.class, () -> this.classUnderTest().getOnly());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1808,4 +1809,5 @@ public class ImmutableEmptySortedMapTest extends ImmutableSortedMapTestCase {
             this.payloads.getOnly = ImmutableEmptySortedMapTest::getOnly;
         }
     }
+*/
 }

@@ -211,6 +211,7 @@ public class ObjectLongHashMapWithHashingStrategyTest extends ObjectLongHashMapT
         Assert.assertEquals(2L, map2.get(JOHNSMITH));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1047,4 +1048,5 @@ public class ObjectLongHashMapWithHashingStrategyTest extends ObjectLongHashMapT
             this.payloads.put_get_with_hashing_strategy = ObjectLongHashMapWithHashingStrategyTest::put_get_with_hashing_strategy;
         }
     }
+*/
 }

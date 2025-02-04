@@ -350,6 +350,7 @@ public class UnmodifiableDoubleByteMapValuesTest extends AbstractMutableByteColl
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1130,4 +1131,5 @@ public class UnmodifiableDoubleByteMapValuesTest extends AbstractMutableByteColl
             this.payloads.chunk = UnmodifiableDoubleByteMapValuesTest::chunk;
         }
     }
+*/
 }

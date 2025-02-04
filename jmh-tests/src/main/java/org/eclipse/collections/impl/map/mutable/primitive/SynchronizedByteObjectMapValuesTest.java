@@ -213,6 +213,7 @@ public class SynchronizedByteObjectMapValuesTest {
         Assert.assertEquals(expected, HashBag.newBagWith(values.toArray(new Integer[values.size() + 1])));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -345,4 +346,5 @@ public class SynchronizedByteObjectMapValuesTest {
             this.payloads.valuesToArray = SynchronizedByteObjectMapValuesTest::valuesToArray;
         }
     }
+*/
 }

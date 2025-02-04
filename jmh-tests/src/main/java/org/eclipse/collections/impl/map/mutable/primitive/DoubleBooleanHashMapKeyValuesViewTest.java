@@ -37,6 +37,7 @@ public class DoubleBooleanHashMapKeyValuesViewTest extends AbstractDoubleBoolean
         return new DoubleBooleanHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class DoubleBooleanHashMapKeyValuesViewTest extends AbstractDoubleBoolean
             this.payloads.aggregateByNonMutating = DoubleBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

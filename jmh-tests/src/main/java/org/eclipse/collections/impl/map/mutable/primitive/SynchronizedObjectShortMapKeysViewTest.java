@@ -33,6 +33,7 @@ public class SynchronizedObjectShortMapKeysViewTest extends AbstractObjectShortM
         return map.asSynchronized().keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -917,4 +918,5 @@ public class SynchronizedObjectShortMapKeysViewTest extends AbstractObjectShortM
             this.payloads.iterator = SynchronizedObjectShortMapKeysViewTest::iterator;
         }
     }
+*/
 }

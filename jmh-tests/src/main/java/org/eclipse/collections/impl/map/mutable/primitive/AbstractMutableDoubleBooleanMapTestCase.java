@@ -582,6 +582,7 @@ public abstract class AbstractMutableDoubleBooleanMapTestCase extends AbstractDo
         Assert.assertThrows(IllegalStateException.class, iterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1074,4 +1075,5 @@ public abstract class AbstractMutableDoubleBooleanMapTestCase extends AbstractDo
             this.payloads.iterator_throws_on_consecutive_invocation_of_remove = AbstractMutableDoubleBooleanMapTestCase::iterator_throws_on_consecutive_invocation_of_remove;
         }
     }
+*/
 }

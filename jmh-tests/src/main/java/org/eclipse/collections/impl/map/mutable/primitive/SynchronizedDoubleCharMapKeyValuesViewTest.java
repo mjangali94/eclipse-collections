@@ -38,6 +38,7 @@ public class SynchronizedDoubleCharMapKeyValuesViewTest extends AbstractDoubleCh
         return new DoubleCharHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedDoubleCharMapKeyValuesViewTest extends AbstractDoubleCh
             this.payloads.aggregateByNonMutating = SynchronizedDoubleCharMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

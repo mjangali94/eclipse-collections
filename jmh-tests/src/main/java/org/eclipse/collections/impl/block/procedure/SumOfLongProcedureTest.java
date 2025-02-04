@@ -25,6 +25,7 @@ public class SumOfLongProcedureTest {
         assertEquals(6L, procedure.getResult());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -53,4 +54,5 @@ public class SumOfLongProcedureTest {
             this.payloads.getResult = SumOfLongProcedureTest::getResult;
         }
     }
+*/
 }

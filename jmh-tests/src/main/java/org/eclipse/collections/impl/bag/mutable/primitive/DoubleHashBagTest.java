@@ -68,6 +68,7 @@ public class DoubleHashBagTest extends AbstractMutableDoubleBagTestCase {
         Assert.assertEquals(Double.valueOf(17.0), sum);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1008,4 +1009,5 @@ public class DoubleHashBagTest extends AbstractMutableDoubleBagTestCase {
             this.payloads.injectInto = DoubleHashBagTest::injectInto;
         }
     }
+*/
 }

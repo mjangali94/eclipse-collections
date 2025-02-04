@@ -273,6 +273,7 @@ public class ImmutableObjectFloatEmptyMapTest extends AbstractImmutableObjectFlo
         Assert.assertEquals(new MutableFloat(0.0f), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public class ImmutableObjectFloatEmptyMapTest extends AbstractImmutableObjectFlo
             this.payloads.injectInto = ImmutableObjectFloatEmptyMapTest::injectInto;
         }
     }
+*/
 }

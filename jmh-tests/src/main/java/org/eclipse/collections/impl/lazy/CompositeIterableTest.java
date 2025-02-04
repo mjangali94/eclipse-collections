@@ -136,6 +136,7 @@ public class CompositeIterableTest extends AbstractLazyIterableTestCase {
         Assert.assertEquals(Optional.empty(), composite.detectWithOptional(Object::equals, Integer.valueOf(8)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1076,4 +1077,5 @@ public class CompositeIterableTest extends AbstractLazyIterableTestCase {
             this.payloads.distinct = CompositeIterableTest::distinct;
         }
     }
+*/
 }

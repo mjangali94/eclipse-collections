@@ -203,6 +203,7 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
         Assert.assertEquals(false, map2.get(JOHNSMITH));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -807,4 +808,5 @@ public class ObjectBooleanHashMapWithHashingStrategyTest extends ObjectBooleanHa
             this.payloads.put_get_with_hashing_strategy = ObjectBooleanHashMapWithHashingStrategyTest::put_get_with_hashing_strategy;
         }
     }
+*/
 }

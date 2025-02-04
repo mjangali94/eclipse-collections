@@ -363,6 +363,7 @@ public abstract class AbstractImmutableFloatListTestCase extends AbstractImmutab
         Assert.assertTrue(zipEmpty2.isEmpty());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1231,4 +1232,5 @@ public abstract class AbstractImmutableFloatListTestCase extends AbstractImmutab
             this.payloads.zip = AbstractImmutableFloatListTestCase::zip;
         }
     }
+*/
 }

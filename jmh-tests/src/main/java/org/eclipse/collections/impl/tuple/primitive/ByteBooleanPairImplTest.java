@@ -54,6 +54,7 @@ public class ByteBooleanPairImplTest {
         Assert.assertEquals(1, PrimitiveTuples.pair((byte) 1, true).compareTo(PrimitiveTuples.pair((byte) 1, false)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -114,4 +115,5 @@ public class ByteBooleanPairImplTest {
             this.payloads.compareTo = ByteBooleanPairImplTest::compareTo;
         }
     }
+*/
 }

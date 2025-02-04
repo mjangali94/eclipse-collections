@@ -31,6 +31,7 @@ public class MinSizeFunctionTest {
         Assert.assertEquals(Integer.valueOf(2), MinSizeFunction.MAP.value(3, Maps.mutable.of(1, 1, 2, 2)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -67,4 +68,5 @@ public class MinSizeFunctionTest {
             this.payloads.minSizeMap = MinSizeFunctionTest::minSizeMap;
         }
     }
+*/
 }

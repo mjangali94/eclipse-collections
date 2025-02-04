@@ -41,6 +41,7 @@ public class ParallelIterate2Test {
         Assert.assertEquals(howManyTimes, counter.get());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -69,4 +70,5 @@ public class ParallelIterate2Test {
             this.payloads.creationAndExecution = ParallelIterate2Test::creationAndExecution;
         }
     }
+*/
 }

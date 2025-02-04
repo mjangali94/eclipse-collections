@@ -19,6 +19,7 @@ public class UnifiedSetAsUnmodifiableTest extends UnmodifiableMutableCollectionT
         return UnifiedSet.newSetWith(1).asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -367,4 +368,5 @@ public class UnifiedSetAsUnmodifiableTest extends UnmodifiableMutableCollectionT
             this.payloads.tap = UnifiedSetAsUnmodifiableTest::tap;
         }
     }
+*/
 }

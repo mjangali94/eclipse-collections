@@ -212,6 +212,7 @@ public class UnmodifiableLongBooleanMapKeySetTest extends AbstractLongSetTestCas
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1064,4 +1065,5 @@ public class UnmodifiableLongBooleanMapKeySetTest extends AbstractLongSetTestCas
             this.payloads.chunk = UnmodifiableLongBooleanMapKeySetTest::chunk;
         }
     }
+*/
 }

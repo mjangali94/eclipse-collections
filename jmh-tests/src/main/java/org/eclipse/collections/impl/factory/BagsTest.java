@@ -254,6 +254,7 @@ public class BagsTest {
         Assert.assertSame(Bags.immutable.empty(), empty2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -362,4 +363,5 @@ public class BagsTest {
             this.payloads.withAllEmptyImmutableSame = BagsTest::withAllEmptyImmutableSame;
         }
     }
+*/
 }

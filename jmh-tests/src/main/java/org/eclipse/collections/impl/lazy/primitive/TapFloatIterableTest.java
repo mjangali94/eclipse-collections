@@ -310,6 +310,7 @@ public class TapFloatIterableTest {
         Assert.assertEquals(new MutableFloat(15.0f), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -602,4 +603,5 @@ public class TapFloatIterableTest {
             this.payloads.injectInto = TapFloatIterableTest::injectInto;
         }
     }
+*/
 }

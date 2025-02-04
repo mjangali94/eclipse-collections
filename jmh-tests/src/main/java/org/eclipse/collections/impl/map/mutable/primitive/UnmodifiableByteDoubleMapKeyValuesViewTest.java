@@ -38,6 +38,7 @@ public class UnmodifiableByteDoubleMapKeyValuesViewTest extends AbstractByteDoub
         return new ByteDoubleHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableByteDoubleMapKeyValuesViewTest extends AbstractByteDoub
             this.payloads.aggregateByNonMutating = UnmodifiableByteDoubleMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

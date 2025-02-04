@@ -321,6 +321,7 @@ public class UnmodifiableDoubleListTest extends AbstractDoubleListTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1573,4 +1574,5 @@ public class UnmodifiableDoubleListTest extends AbstractDoubleListTestCase {
             this.payloads.doubleIterator_throws_for_consecutive_remove = UnmodifiableDoubleListTest::doubleIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

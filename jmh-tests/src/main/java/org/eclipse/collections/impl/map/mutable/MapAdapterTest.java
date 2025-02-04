@@ -57,6 +57,7 @@ public class MapAdapterTest extends MutableMapTestCase {
         Assert.assertThrows(NullPointerException.class, () -> MapAdapter.adapt(null));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1813,4 +1814,5 @@ public class MapAdapterTest extends MutableMapTestCase {
             this.payloads.adaptNull = MapAdapterTest::adaptNull;
         }
     }
+*/
 }

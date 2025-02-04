@@ -28,6 +28,7 @@ public class SelectProcedureTest {
         Verify.assertContainsAll(selectProcedure.getCollection(), 1, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -56,4 +57,5 @@ public class SelectProcedureTest {
             this.payloads.getCollection = SelectProcedureTest::getCollection;
         }
     }
+*/
 }

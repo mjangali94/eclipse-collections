@@ -39,6 +39,7 @@ public class ImmutableByteLongHashMapKeyValuesViewTest extends AbstractByteLongM
         return new ByteLongHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableByteLongHashMapKeyValuesViewTest extends AbstractByteLongM
             this.payloads.aggregateByNonMutating = ImmutableByteLongHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

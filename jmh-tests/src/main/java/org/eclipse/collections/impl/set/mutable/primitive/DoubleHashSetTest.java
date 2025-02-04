@@ -275,6 +275,7 @@ public class DoubleHashSetTest extends AbstractDoubleSetTestCase {
         Verify.assertClassNonInstantiable(DoubleSets.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1303,4 +1304,5 @@ public class DoubleHashSetTest extends AbstractDoubleSetTestCase {
             this.payloads.classIsNonInstantiable = DoubleHashSetTest::classIsNonInstantiable;
         }
     }
+*/
 }

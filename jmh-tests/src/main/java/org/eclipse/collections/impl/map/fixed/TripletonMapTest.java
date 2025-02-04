@@ -440,6 +440,7 @@ public class TripletonMapTest extends AbstractMemoryEfficientMutableMapTest {
         Assert.assertThrows(IllegalStateException.class, () -> this.classUnderTest().getOnly());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1212,4 +1213,5 @@ public class TripletonMapTest extends AbstractMemoryEfficientMutableMapTest {
             this.payloads.getOnly = TripletonMapTest::getOnly;
         }
     }
+*/
 }

@@ -218,6 +218,7 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
         return new ImmutableEmptyMapWithHashingStrategy<>(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -950,4 +951,5 @@ public class ImmutableEmptyMapWithHashingStrategyTest extends ImmutableMemoryEff
             this.payloads.getOnly = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableEmptyMapWithHashingStrategyTest::getOnly, java.lang.IllegalStateException.class);
         }
     }
+*/
 }

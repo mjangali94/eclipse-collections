@@ -195,6 +195,7 @@ public abstract class AbstractImmutableMultimapTestCase {
     @Test
     public abstract void flip();
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -367,4 +368,5 @@ public abstract class AbstractImmutableMultimapTestCase {
             this.payloads.flip = AbstractImmutableMultimapTestCase::flip;
         }
     }
+*/
 }

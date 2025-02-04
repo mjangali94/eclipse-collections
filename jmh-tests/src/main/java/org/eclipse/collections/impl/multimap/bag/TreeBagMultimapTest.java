@@ -119,6 +119,7 @@ public class TreeBagMultimapTest extends org.eclipse.collections.impl.multimap.b
         Verify.assertSortedBagsEqual(expected.get(2), actual.get(2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -611,4 +612,5 @@ public class TreeBagMultimapTest extends org.eclipse.collections.impl.multimap.b
             this.payloads.testNewEmpty = TreeBagMultimapTest::testNewEmpty;
         }
     }
+*/
 }

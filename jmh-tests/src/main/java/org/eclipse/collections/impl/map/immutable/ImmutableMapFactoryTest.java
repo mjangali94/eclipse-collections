@@ -89,6 +89,7 @@ public class ImmutableMapFactoryTest {
         Assert.assertSame(key, map4.keysView().detect(key::equals));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -157,4 +158,5 @@ public class ImmutableMapFactoryTest {
             this.payloads.keyPreservation = ImmutableMapFactoryTest::keyPreservation;
         }
     }
+*/
 }

@@ -32,6 +32,7 @@ public class ObjectIntProceduresTest {
         Verify.assertClassNonInstantiable(ObjectIntProcedures.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -68,4 +69,5 @@ public class ObjectIntProceduresTest {
             this.payloads.classIsNonInstantiable = ObjectIntProceduresTest::classIsNonInstantiable;
         }
     }
+*/
 }

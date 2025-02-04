@@ -39,6 +39,7 @@ public class ImmutableDoubleCharHashMapKeyValuesViewTest extends AbstractDoubleC
         return new DoubleCharHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableDoubleCharHashMapKeyValuesViewTest extends AbstractDoubleC
             this.payloads.aggregateByNonMutating = ImmutableDoubleCharHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

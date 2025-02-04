@@ -348,6 +348,7 @@ public class ConcurrentHashMapUnsafeTest extends ConcurrentHashMapTestCase {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2245,4 +2246,5 @@ public class ConcurrentHashMapUnsafeTest extends ConcurrentHashMapTestCase {
             this.payloads.emptyToString = ConcurrentHashMapUnsafeTest::emptyToString;
         }
     }
+*/
 }

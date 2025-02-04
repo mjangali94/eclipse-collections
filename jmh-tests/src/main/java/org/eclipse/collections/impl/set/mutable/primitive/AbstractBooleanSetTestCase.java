@@ -937,6 +937,7 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
         Assert.assertEquals(Sets.mutable.empty(), set17.cartesianProduct(set27).toSet());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1478,4 +1479,5 @@ public abstract class AbstractBooleanSetTestCase extends AbstractMutableBooleanC
             this.payloads.cartesianProduct = AbstractBooleanSetTestCase::cartesianProduct;
         }
     }
+*/
 }

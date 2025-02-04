@@ -54,6 +54,7 @@ public class PrimitiveFunctionsTest {
         Assert.assertEquals(FloatHashSet.newSetWith(1.0f, 2.0f, 3.0f), UnifiedSet.newSetWith(Float.valueOf(1.0f), Float.valueOf(2.0f), Float.valueOf(3.0f)).collectFloat(PrimitiveFunctions.unboxFloatToFloat()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class PrimitiveFunctionsTest {
             this.payloads.unboxFloatToFloat = PrimitiveFunctionsTest::unboxFloatToFloat;
         }
     }
+*/
 }

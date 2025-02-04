@@ -257,6 +257,7 @@ public class CollectByteIterableTest {
         Verify.assertInstanceOf(LazyByteIterable.class, this.byteIterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -565,4 +566,5 @@ public class CollectByteIterableTest {
             this.payloads.asLazy = CollectByteIterableTest::asLazy;
         }
     }
+*/
 }

@@ -39,6 +39,7 @@ public class ImmutableDoubleSetFactoryImplTest {
         Assert.assertEquals(DoubleHashSet.newSet(set).toImmutable(), DoubleSets.immutable.ofAll(set));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -83,4 +84,5 @@ public class ImmutableDoubleSetFactoryImplTest {
             this.payloads.ofAll = ImmutableDoubleSetFactoryImplTest::ofAll;
         }
     }
+*/
 }

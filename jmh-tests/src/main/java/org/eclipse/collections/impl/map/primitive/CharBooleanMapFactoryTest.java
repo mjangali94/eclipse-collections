@@ -47,6 +47,7 @@ public class CharBooleanMapFactoryTest {
         Assert.assertTrue(CharBooleanMaps.immutable.from(iterable, each -> each.charAt(0), each -> Integer.valueOf(each) % 2 == 0) instanceof ImmutableCharBooleanMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -99,4 +100,5 @@ public class CharBooleanMapFactoryTest {
             this.payloads.from = CharBooleanMapFactoryTest::from;
         }
     }
+*/
 }

@@ -190,6 +190,7 @@ public class CollectIterableTest extends AbstractLazyIterableTestCase {
         Assert.assertNull(collect.detectWithOptional((each, ignore) -> each.equals(100), null).orElse(null));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1146,4 +1147,5 @@ public class CollectIterableTest extends AbstractLazyIterableTestCase {
             this.payloads.detectWithOptional = CollectIterableTest::detectWithOptional;
         }
     }
+*/
 }

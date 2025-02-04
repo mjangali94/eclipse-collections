@@ -38,6 +38,7 @@ public class MutableCharObjectMapFactoryTest {
         Assert.assertEquals(CharObjectHashMap.newWithKeysValues((char) 1, "one", (char) 2, "two", (char) 3, "three", (char) 4, "four"), CharObjectMaps.mutable.of((char) 1, "one", (char) 2, "two", (char) 3, "three", (char) 4, "four"));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableCharObjectMapFactoryTest {
             this.payloads.of = MutableCharObjectMapFactoryTest::of;
         }
     }
+*/
 }

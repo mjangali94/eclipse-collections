@@ -52,6 +52,7 @@ public class SynchronizedFloatObjectMapTest extends AbstractMutableFloatObjectMa
         Assert.assertSame(this.map, this.map.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1360,4 +1361,5 @@ public class SynchronizedFloatObjectMapTest extends AbstractMutableFloatObjectMa
             this.payloads.asSynchronized = SynchronizedFloatObjectMapTest::asSynchronized;
         }
     }
+*/
 }

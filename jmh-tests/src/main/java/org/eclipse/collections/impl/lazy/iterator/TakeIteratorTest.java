@@ -55,6 +55,7 @@ public class TakeIteratorTest {
         Assert.assertThrows(NoSuchElementException.class, () -> new TakeIterator<>(Lists.fixedSize.of(1, 2, 3), 0).next());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -99,4 +100,5 @@ public class TakeIteratorTest {
             this.payloads.noSuchElementException = TakeIteratorTest::noSuchElementException;
         }
     }
+*/
 }

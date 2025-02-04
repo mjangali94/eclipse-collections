@@ -114,6 +114,7 @@ public class SynchronizedMutableSet2Test extends AbstractMutableSetTestCase {
         Assert.assertEquals(Bags.mutable.of(1, 2, 3), actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2078,4 +2079,5 @@ public class SynchronizedMutableSet2Test extends AbstractMutableSetTestCase {
             this.payloads.iterator = SynchronizedMutableSet2Test::iterator;
         }
     }
+*/
 }

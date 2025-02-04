@@ -42,6 +42,7 @@ public class FrozenIntHashSetTest extends AbstractImmutableIntHashSetTestCase {
         return UnifiedSet.newSetWith(elements);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -766,4 +767,5 @@ public class FrozenIntHashSetTest extends AbstractImmutableIntHashSetTestCase {
             this.payloads.cartesianProduct = FrozenIntHashSetTest::cartesianProduct;
         }
     }
+*/
 }

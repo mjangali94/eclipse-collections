@@ -146,6 +146,7 @@ public class LongArrayListTest extends AbstractLongListTestCase {
         Assert.assertEquals(list, list.toImmutable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1398,4 +1399,5 @@ public class LongArrayListTest extends AbstractLongListTestCase {
             this.payloads.toImmutable = LongArrayListTest::toImmutable;
         }
     }
+*/
 }

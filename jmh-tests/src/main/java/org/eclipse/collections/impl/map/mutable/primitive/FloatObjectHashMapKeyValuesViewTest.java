@@ -37,6 +37,7 @@ public class FloatObjectHashMapKeyValuesViewTest extends AbstractFloatObjectMapK
         return FloatObjectHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class FloatObjectHashMapKeyValuesViewTest extends AbstractFloatObjectMapK
             this.payloads.aggregateByNonMutating = FloatObjectHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

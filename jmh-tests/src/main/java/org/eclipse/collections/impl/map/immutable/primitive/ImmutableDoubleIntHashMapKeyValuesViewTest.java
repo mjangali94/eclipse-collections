@@ -39,6 +39,7 @@ public class ImmutableDoubleIntHashMapKeyValuesViewTest extends AbstractDoubleIn
         return new DoubleIntHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableDoubleIntHashMapKeyValuesViewTest extends AbstractDoubleIn
             this.payloads.aggregateByNonMutating = ImmutableDoubleIntHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

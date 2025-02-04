@@ -29,6 +29,7 @@ public class LongFunctionImplTest {
         Assert.assertEquals(1L, longFunction.valueOf(1L).longValue());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -57,4 +58,5 @@ public class LongFunctionImplTest {
             this.payloads.valueOf = LongFunctionImplTest::valueOf;
         }
     }
+*/
 }

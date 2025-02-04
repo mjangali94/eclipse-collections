@@ -311,6 +311,7 @@ public abstract class AbstractImmutableEmptySetTestCase extends AbstractImmutabl
         Assert.assertSame(targetCollection, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1379,4 +1380,5 @@ public abstract class AbstractImmutableEmptySetTestCase extends AbstractImmutabl
             this.payloads.collectWith_target = AbstractImmutableEmptySetTestCase::collectWith_target;
         }
     }
+*/
 }

@@ -113,6 +113,7 @@ public class ImmutableIntEmptyBagTest extends AbstractImmutableIntBagTestCase {
         Assert.assertEquals(new MutableInteger(0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -845,4 +846,5 @@ public class ImmutableIntEmptyBagTest extends AbstractImmutableIntBagTestCase {
             this.payloads.injectInto = ImmutableIntEmptyBagTest::injectInto;
         }
     }
+*/
 }

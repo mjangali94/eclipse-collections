@@ -35,6 +35,7 @@ public class ImmutableListParallelListIterableTest extends ParallelListIterableT
         Lists.immutable.with(1, 2, 2, 3, 3, 3, 4, 4, 4, 4).asParallel(null, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -756,4 +757,5 @@ public class ImmutableListParallelListIterableTest extends ParallelListIterableT
             this.payloads.asParallel_null_executorService = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableListParallelListIterableTest::asParallel_null_executorService, java.lang.NullPointerException.class);
         }
     }
+*/
 }

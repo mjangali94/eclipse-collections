@@ -53,6 +53,7 @@ public class EmptyIteratorTest {
         Assert.assertEquals(0, (long) this.emptyIterator.nextIndex());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class EmptyIteratorTest {
             this.payloads.nextIndex = EmptyIteratorTest::nextIndex;
         }
     }
+*/
 }

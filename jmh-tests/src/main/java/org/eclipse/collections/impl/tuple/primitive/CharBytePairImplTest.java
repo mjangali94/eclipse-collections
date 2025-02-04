@@ -53,6 +53,7 @@ public class CharBytePairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair((char) 1, (byte) 2).compareTo(PrimitiveTuples.pair((char) 1, (byte) 3)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class CharBytePairImplTest {
             this.payloads.compareTo = CharBytePairImplTest::compareTo;
         }
     }
+*/
 }

@@ -39,6 +39,7 @@ public class ImmutableFloatCharHashMapKeyValuesViewTest extends AbstractFloatCha
         return new FloatCharHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableFloatCharHashMapKeyValuesViewTest extends AbstractFloatCha
             this.payloads.aggregateByNonMutating = ImmutableFloatCharHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

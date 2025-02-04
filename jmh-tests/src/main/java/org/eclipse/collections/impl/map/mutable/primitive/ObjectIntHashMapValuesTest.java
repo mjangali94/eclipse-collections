@@ -42,6 +42,7 @@ public class ObjectIntHashMapValuesTest extends ObjectIntHashMapValuesTestCase {
         return ObjectIntHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -822,4 +823,5 @@ public class ObjectIntHashMapValuesTest extends ObjectIntHashMapValuesTestCase {
             this.payloads.chunk = ObjectIntHashMapValuesTest::chunk;
         }
     }
+*/
 }

@@ -195,6 +195,7 @@ public class BooleanSetsTest {
         Assert.assertEquals(expected, booleanBooleanPairs.toSet());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -303,4 +304,5 @@ public class BooleanSetsTest {
             this.payloads.cartesianProduct = BooleanSetsTest::cartesianProduct;
         }
     }
+*/
 }

@@ -321,6 +321,7 @@ public class UnmodifiableByteListTest extends AbstractByteListTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1501,4 +1502,5 @@ public class UnmodifiableByteListTest extends AbstractByteListTestCase {
             this.payloads.byteIterator_throws_for_consecutive_remove = UnmodifiableByteListTest::byteIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

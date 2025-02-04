@@ -89,6 +89,7 @@ public final class Person implements Comparable<Person>, Serializable {
         return "Person{first='" + this.firstName + "', last='" + this.lastName + "', age=" + this.age + '}';
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -109,4 +110,5 @@ public final class Person implements Comparable<Person>, Serializable {
             this.payloads = new _Payloads();
         }
     }
+*/
 }

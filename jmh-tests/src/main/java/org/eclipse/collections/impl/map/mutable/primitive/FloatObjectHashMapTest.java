@@ -491,6 +491,7 @@ public class FloatObjectHashMapTest extends AbstractMutableFloatObjectMapTestCas
         Assert.assertEquals(1.082323233711138, result, 1.0e-15);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2007,4 +2008,5 @@ public class FloatObjectHashMapTest extends AbstractMutableFloatObjectMapTestCas
             this.payloads.sumOfDoubleConsistentRounding = FloatObjectHashMapTest::sumOfDoubleConsistentRounding;
         }
     }
+*/
 }

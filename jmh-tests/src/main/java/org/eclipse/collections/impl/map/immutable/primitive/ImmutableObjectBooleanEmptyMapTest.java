@@ -214,6 +214,7 @@ public class ImmutableObjectBooleanEmptyMapTest extends AbstractImmutableObjectB
         Assert.assertTrue(this.classUnderTest().noneSatisfy(value -> true));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -546,4 +547,5 @@ public class ImmutableObjectBooleanEmptyMapTest extends AbstractImmutableObjectB
             this.payloads.noneSatisfy = ImmutableObjectBooleanEmptyMapTest::noneSatisfy;
         }
     }
+*/
 }

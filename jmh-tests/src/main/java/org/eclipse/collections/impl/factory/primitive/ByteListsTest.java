@@ -214,6 +214,7 @@ public class ByteListsTest {
         Assert.assertEquals(ByteArrayList.newListWith((byte) 1, (byte) 2, (byte) 3), ByteLists.mutable.ofAll(Lists.mutable.<Byte>with((byte) 1, (byte) 2, (byte) 3)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -322,4 +323,5 @@ public class ByteListsTest {
             this.payloads.ofAllIterable = ByteListsTest::ofAllIterable;
         }
     }
+*/
 }

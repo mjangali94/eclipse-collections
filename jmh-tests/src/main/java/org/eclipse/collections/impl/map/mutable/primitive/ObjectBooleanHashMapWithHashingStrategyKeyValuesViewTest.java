@@ -49,6 +49,7 @@ public class ObjectBooleanHashMapWithHashingStrategyKeyValuesViewTest extends Ab
         return ObjectBooleanHashMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -765,4 +766,5 @@ public class ObjectBooleanHashMapWithHashingStrategyKeyValuesViewTest extends Ab
             this.payloads.aggregateByNonMutating = ObjectBooleanHashMapWithHashingStrategyKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

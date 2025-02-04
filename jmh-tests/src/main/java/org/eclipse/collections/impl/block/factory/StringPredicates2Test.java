@@ -84,6 +84,7 @@ public class StringPredicates2Test {
         Verify.assertClassNonInstantiable(StringPredicates2.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -176,4 +177,5 @@ public class StringPredicates2Test {
             this.payloads.classIsNonInstantiable = StringPredicates2Test::classIsNonInstantiable;
         }
     }
+*/
 }

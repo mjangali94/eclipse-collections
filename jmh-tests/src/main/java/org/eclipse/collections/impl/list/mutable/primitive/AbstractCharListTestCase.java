@@ -590,6 +590,7 @@ public abstract class AbstractCharListTestCase extends AbstractMutableCharCollec
         Assert.assertTrue(zipEmpty.isEmpty());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1770,4 +1771,5 @@ public abstract class AbstractCharListTestCase extends AbstractMutableCharCollec
             this.payloads.zip = AbstractCharListTestCase::zip;
         }
     }
+*/
 }

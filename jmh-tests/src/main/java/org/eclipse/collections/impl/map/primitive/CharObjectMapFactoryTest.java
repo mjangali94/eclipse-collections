@@ -55,6 +55,7 @@ public class CharObjectMapFactoryTest {
         Assert.assertTrue(CharObjectMaps.immutable.from(iterable, each -> each.charAt(0), each -> each) instanceof ImmutableCharObjectMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -107,4 +108,5 @@ public class CharObjectMapFactoryTest {
             this.payloads.from = CharObjectMapFactoryTest::from;
         }
     }
+*/
 }

@@ -46,6 +46,7 @@ public class ZipIterableTest {
         Assert.assertEquals("|a0|b1|c2", sb.toString());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -83,4 +84,5 @@ public class ZipIterableTest {
             this.payloads.forEachWith = ZipIterableTest::forEachWith;
         }
     }
+*/
 }

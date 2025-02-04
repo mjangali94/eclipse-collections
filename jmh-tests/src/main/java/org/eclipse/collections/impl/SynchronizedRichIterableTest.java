@@ -93,6 +93,7 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase {
         SynchronizedRichIterable.of(null, null);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1705,4 +1706,5 @@ public class SynchronizedRichIterableTest extends AbstractRichIterableTestCase {
             this.payloads.nullCheck = new se.chalmers.ju2jmh.api.ExceptionTest<>(SynchronizedRichIterableTest::nullCheck, java.lang.IllegalArgumentException.class);
         }
     }
+*/
 }

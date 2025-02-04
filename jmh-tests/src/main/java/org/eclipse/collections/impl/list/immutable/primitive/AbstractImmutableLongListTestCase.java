@@ -380,6 +380,7 @@ public abstract class AbstractImmutableLongListTestCase extends AbstractImmutabl
         Assert.assertEquals(Arrays.asList(1L, 2L, 3L), ImmutableLongArrayList.newListWith(1L, 2L, 3L).primitiveParallelStream().boxed().collect(Collectors.toList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1208,4 +1209,5 @@ public abstract class AbstractImmutableLongListTestCase extends AbstractImmutabl
             this.payloads.parallelStream = AbstractImmutableLongListTestCase::parallelStream;
         }
     }
+*/
 }

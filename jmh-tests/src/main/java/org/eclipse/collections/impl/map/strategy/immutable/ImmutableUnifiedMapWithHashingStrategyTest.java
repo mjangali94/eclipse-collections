@@ -74,6 +74,7 @@ public class ImmutableUnifiedMapWithHashingStrategyTest extends ImmutableMapTest
         Assert.assertEquals(10, sum.getValue());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -446,4 +447,5 @@ public class ImmutableUnifiedMapWithHashingStrategyTest extends ImmutableMapTest
             this.payloads.batchForEach = ImmutableUnifiedMapWithHashingStrategyTest::batchForEach;
         }
     }
+*/
 }

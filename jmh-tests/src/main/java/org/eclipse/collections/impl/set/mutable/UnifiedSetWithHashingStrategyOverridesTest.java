@@ -46,6 +46,7 @@ public class UnifiedSetWithHashingStrategyOverridesTest extends UnifiedSetWithHa
         return set.with(littleElements);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2234,4 +2235,5 @@ public class UnifiedSetWithHashingStrategyOverridesTest extends UnifiedSetWithHa
             this.payloads.trimToSize = UnifiedSetWithHashingStrategyOverridesTest::trimToSize;
         }
     }
+*/
 }

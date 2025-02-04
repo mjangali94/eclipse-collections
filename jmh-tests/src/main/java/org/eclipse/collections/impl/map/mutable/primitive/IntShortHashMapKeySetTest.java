@@ -117,6 +117,7 @@ public class IntShortHashMapKeySetTest extends AbstractIntSetTestCase {
         Assert.assertEquals(this.newObjectCollectionWith(0, 1, 31, 32).hashCode(), set1.hashCode());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -961,4 +962,5 @@ public class IntShortHashMapKeySetTest extends AbstractIntSetTestCase {
             this.payloads.sum = IntShortHashMapKeySetTest::sum;
         }
     }
+*/
 }

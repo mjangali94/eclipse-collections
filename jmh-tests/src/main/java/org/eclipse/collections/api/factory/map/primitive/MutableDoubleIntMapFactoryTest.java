@@ -38,6 +38,7 @@ public class MutableDoubleIntMapFactoryTest {
         Assert.assertEquals(DoubleIntHashMap.newWithKeysValues(1.0, 2, 3.0, 4, 5.0, 6, 7.0, 8), DoubleIntMaps.mutable.of(1.0, 2, 3.0, 4, 5.0, 6, 7.0, 8));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableDoubleIntMapFactoryTest {
             this.payloads.of = MutableDoubleIntMapFactoryTest::of;
         }
     }
+*/
 }

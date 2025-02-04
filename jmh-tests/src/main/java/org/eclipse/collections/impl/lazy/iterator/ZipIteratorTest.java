@@ -22,6 +22,7 @@ public class ZipIteratorTest {
         new ZipIterator<>(EMPTY, EMPTY).remove();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -50,4 +51,5 @@ public class ZipIteratorTest {
             this.payloads.testRemove = new se.chalmers.ju2jmh.api.ExceptionTest<>(ZipIteratorTest::testRemove, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

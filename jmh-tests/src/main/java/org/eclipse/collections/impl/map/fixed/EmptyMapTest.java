@@ -424,6 +424,7 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest {
         Assert.assertThrows(IllegalStateException.class, () -> new EmptyMap<>().getOnly());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1236,4 +1237,5 @@ public class EmptyMapTest extends AbstractMemoryEfficientMutableMapTest {
             this.payloads.getOnly = EmptyMapTest::getOnly;
         }
     }
+*/
 }

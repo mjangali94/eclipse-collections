@@ -42,6 +42,7 @@ public class ObjectFloatHashMapValuesTest extends ObjectFloatHashMapValuesTestCa
         return ObjectFloatHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -878,4 +879,5 @@ public class ObjectFloatHashMapValuesTest extends ObjectFloatHashMapValuesTestCa
             this.payloads.chunk = ObjectFloatHashMapValuesTest::chunk;
         }
     }
+*/
 }

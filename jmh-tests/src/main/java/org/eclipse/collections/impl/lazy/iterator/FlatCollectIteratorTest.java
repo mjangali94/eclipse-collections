@@ -35,6 +35,7 @@ public class FlatCollectIteratorTest {
         Assert.assertSame(expected, flattenIterator.next());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -79,4 +80,5 @@ public class FlatCollectIteratorTest {
             this.payloads.nextAfterEmptyIterable = FlatCollectIteratorTest::nextAfterEmptyIterable;
         }
     }
+*/
 }

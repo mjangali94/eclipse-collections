@@ -55,6 +55,7 @@ public class ImmutableShortBooleanHashMapTest extends AbstractImmutableShortBool
         Assert.assertEquals(this.classUnderTest(), map1);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -411,4 +412,5 @@ public class ImmutableShortBooleanHashMapTest extends AbstractImmutableShortBool
             this.payloads.newWithoutAllKeys = ImmutableShortBooleanHashMapTest::newWithoutAllKeys;
         }
     }
+*/
 }

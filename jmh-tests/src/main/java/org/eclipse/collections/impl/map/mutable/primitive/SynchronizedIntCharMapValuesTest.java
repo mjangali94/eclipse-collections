@@ -454,6 +454,7 @@ public class SynchronizedIntCharMapValuesTest extends AbstractMutableCharCollect
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1234,4 +1235,5 @@ public class SynchronizedIntCharMapValuesTest extends AbstractMutableCharCollect
             this.payloads.chunk = SynchronizedIntCharMapValuesTest::chunk;
         }
     }
+*/
 }

@@ -36,6 +36,7 @@ public class ImmutableSortedSetParallelTest extends ParallelSortedSetIterableTes
         SortedSets.immutable.with(Comparators.reverseNaturalOrder(), 4, 3, 2, 1).asParallel(null, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public class ImmutableSortedSetParallelTest extends ParallelSortedSetIterableTes
             this.payloads.asParallel_null_executorService = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableSortedSetParallelTest::asParallel_null_executorService, java.lang.NullPointerException.class);
         }
     }
+*/
 }

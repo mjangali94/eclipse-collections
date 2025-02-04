@@ -48,6 +48,7 @@ public class LazyShortIterateTest {
         Assert.assertEquals(this.iterable, list);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -100,4 +101,5 @@ public class LazyShortIterateTest {
             this.payloads.tap = LazyShortIterateTest::tap;
         }
     }
+*/
 }

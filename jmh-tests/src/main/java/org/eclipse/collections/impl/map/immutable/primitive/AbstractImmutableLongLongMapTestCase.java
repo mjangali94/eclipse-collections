@@ -99,6 +99,7 @@ public abstract class AbstractImmutableLongLongMapTestCase extends AbstractLongL
         Assert.assertThrows(IllegalStateException.class, () -> this.newWithKeysValues(1L, 1L, 2L, 1L).flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -575,4 +576,5 @@ public abstract class AbstractImmutableLongLongMapTestCase extends AbstractLongL
             this.payloads.flipUniqueValues = AbstractImmutableLongLongMapTestCase::flipUniqueValues;
         }
     }
+*/
 }

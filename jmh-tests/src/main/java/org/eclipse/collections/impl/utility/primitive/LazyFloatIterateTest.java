@@ -48,6 +48,7 @@ public class LazyFloatIterateTest {
         Assert.assertEquals(this.iterable, list);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -100,4 +101,5 @@ public class LazyFloatIterateTest {
             this.payloads.tap = LazyFloatIterateTest::tap;
         }
     }
+*/
 }

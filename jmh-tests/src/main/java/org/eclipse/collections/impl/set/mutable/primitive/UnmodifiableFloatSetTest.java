@@ -194,6 +194,7 @@ public class UnmodifiableFloatSetTest extends AbstractFloatSetTestCase {
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1118,4 +1119,5 @@ public class UnmodifiableFloatSetTest extends AbstractFloatSetTestCase {
             this.payloads.asUnmodifiable = UnmodifiableFloatSetTest::asUnmodifiable;
         }
     }
+*/
 }

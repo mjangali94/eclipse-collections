@@ -37,6 +37,7 @@ public class DoubleLongHashMapKeyValuesViewTest extends AbstractDoubleLongMapKey
         return new DoubleLongHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class DoubleLongHashMapKeyValuesViewTest extends AbstractDoubleLongMapKey
             this.payloads.aggregateByNonMutating = DoubleLongHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -64,6 +64,7 @@ public class ImmutableDoubleCharHashMapTest extends AbstractImmutableDoubleCharM
         Assert.assertEquals(new MutableCharacter((char) 6), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -572,4 +573,5 @@ public class ImmutableDoubleCharHashMapTest extends AbstractImmutableDoubleCharM
             this.payloads.injectInto = ImmutableDoubleCharHashMapTest::injectInto;
         }
     }
+*/
 }

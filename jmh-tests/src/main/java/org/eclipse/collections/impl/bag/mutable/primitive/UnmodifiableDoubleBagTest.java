@@ -219,6 +219,7 @@ public class UnmodifiableDoubleBagTest extends AbstractMutableDoubleBagTestCase 
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1159,4 +1160,5 @@ public class UnmodifiableDoubleBagTest extends AbstractMutableDoubleBagTestCase 
             this.payloads.doubleIterator_throws_for_consecutive_remove = UnmodifiableDoubleBagTest::doubleIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

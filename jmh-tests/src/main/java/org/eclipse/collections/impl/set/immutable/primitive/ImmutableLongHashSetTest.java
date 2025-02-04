@@ -42,6 +42,7 @@ public class ImmutableLongHashSetTest extends AbstractImmutableLongHashSetTestCa
         return UnifiedSet.newSetWith(elements);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -766,4 +767,5 @@ public class ImmutableLongHashSetTest extends AbstractImmutableLongHashSetTestCa
             this.payloads.cartesianProduct = ImmutableLongHashSetTest::cartesianProduct;
         }
     }
+*/
 }

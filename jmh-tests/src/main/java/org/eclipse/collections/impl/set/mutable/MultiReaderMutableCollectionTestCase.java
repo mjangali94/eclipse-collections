@@ -35,6 +35,7 @@ public abstract class MultiReaderMutableCollectionTestCase extends AbstractColle
         this.newWith(1, 2, 3).parallelStream();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1855,4 +1856,5 @@ public abstract class MultiReaderMutableCollectionTestCase extends AbstractColle
             this.payloads.parallelStream_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(MultiReaderMutableCollectionTestCase::parallelStream_throws, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

@@ -251,6 +251,7 @@ public class ImmutableDoubletonMapTest extends ImmutableMemoryEfficientMapTestCa
         return new ImmutableDoubletonMap<>(key1, value1, key2, value2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1007,4 +1008,5 @@ public class ImmutableDoubletonMapTest extends ImmutableMemoryEfficientMapTestCa
             this.payloads.getOnly = ImmutableDoubletonMapTest::getOnly;
         }
     }
+*/
 }

@@ -62,6 +62,7 @@ public class ZipWithIndexIterableTest {
         this.assertBufferContains("|(1:0),A|(2:1),A|(3:2),A|(4:3),A");
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -107,4 +108,5 @@ public class ZipWithIndexIterableTest {
             this.payloads.forEachWith = ZipWithIndexIterableTest::forEachWith;
         }
     }
+*/
 }

@@ -140,6 +140,7 @@ public class ByteBooleanHashMapKeySetTest extends AbstractByteSetTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -992,4 +993,5 @@ public class ByteBooleanHashMapKeySetTest extends AbstractByteSetTestCase {
             this.payloads.chunk = ByteBooleanHashMapKeySetTest::chunk;
         }
     }
+*/
 }

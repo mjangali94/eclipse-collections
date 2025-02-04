@@ -556,6 +556,7 @@ public class CheckedBlocksTest {
         Assert.assertEquals(Integer.valueOf(5), checkedFunction2.safeValue(2, 3));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -880,4 +881,5 @@ public class CheckedBlocksTest {
             this.payloads.checkedFunction2SafeValue = CheckedBlocksTest::checkedFunction2SafeValue;
         }
     }
+*/
 }

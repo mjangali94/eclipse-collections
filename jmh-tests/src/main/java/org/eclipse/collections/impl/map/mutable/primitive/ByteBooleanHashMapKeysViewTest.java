@@ -336,6 +336,7 @@ public class ByteBooleanHashMapKeysViewTest {
         Verify.assertInstanceOf(LazyByteIterable.class, this.iterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -652,4 +653,5 @@ public class ByteBooleanHashMapKeysViewTest {
             this.payloads.asLazy = ByteBooleanHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

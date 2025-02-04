@@ -34,6 +34,7 @@ public class ImmutableCharObjectHashMapKeysViewTest extends AbstractLazyCharIter
         return CharObjectHashMap.newWithKeysValues(element1, 1, element2, 2).toImmutable().keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -398,4 +399,5 @@ public class ImmutableCharObjectHashMapKeysViewTest extends AbstractLazyCharIter
             this.payloads.asLazy = ImmutableCharObjectHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

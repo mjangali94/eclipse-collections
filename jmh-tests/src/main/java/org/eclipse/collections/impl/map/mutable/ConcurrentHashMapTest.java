@@ -347,6 +347,7 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2244,4 +2245,5 @@ public class ConcurrentHashMapTest extends ConcurrentHashMapTestCase {
             this.payloads.emptyToString = ConcurrentHashMapTest::emptyToString;
         }
     }
+*/
 }

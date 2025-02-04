@@ -271,6 +271,7 @@ public class ReverseByteIterableTest {
         Assert.assertEquals(ByteArrayList.newListWith((byte) 1, (byte) 2, (byte) 3), ByteArrayList.newListWith((byte) 2, (byte) 3, (byte) 1).asReversed().toSortedList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -579,4 +580,5 @@ public class ReverseByteIterableTest {
             this.payloads.toSortedList = ReverseByteIterableTest::toSortedList;
         }
     }
+*/
 }

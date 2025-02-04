@@ -33,6 +33,7 @@ public class DoubleCharHashMapKeysViewTest extends AbstractLazyDoubleIterableTes
         return DoubleCharHashMap.newWithKeysValues(element1, (char) 1, element2, (char) 2).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class DoubleCharHashMapKeysViewTest extends AbstractLazyDoubleIterableTes
             this.payloads.asLazy = DoubleCharHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

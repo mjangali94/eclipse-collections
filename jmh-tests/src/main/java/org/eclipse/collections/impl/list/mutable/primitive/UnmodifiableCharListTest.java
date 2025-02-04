@@ -321,6 +321,7 @@ public class UnmodifiableCharListTest extends AbstractCharListTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1501,4 +1502,5 @@ public class UnmodifiableCharListTest extends AbstractCharListTestCase {
             this.payloads.charIterator_throws_for_consecutive_remove = UnmodifiableCharListTest::charIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

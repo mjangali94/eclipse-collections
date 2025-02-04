@@ -95,6 +95,7 @@ public abstract class UnmodifiableMemoryEfficientListTestCase<T> extends Unmodif
         Assert.assertEquals(-1, mutableList.detectLastIndex(element -> Integer.valueOf(element.toString()) == 0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -507,4 +508,5 @@ public abstract class UnmodifiableMemoryEfficientListTestCase<T> extends Unmodif
             this.payloads.detectLastIndex = UnmodifiableMemoryEfficientListTestCase::detectLastIndex;
         }
     }
+*/
 }

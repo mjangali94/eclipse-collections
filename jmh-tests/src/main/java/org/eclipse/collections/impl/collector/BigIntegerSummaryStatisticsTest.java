@@ -97,6 +97,7 @@ public class BigIntegerSummaryStatisticsTest {
         Assert.assertEquals(new BigDecimal("3.8"), IntLists.mutable.with(2, 3, 4, 5, 5).collect(Long::valueOf).stream().collect(Collectors2.summarizingBigInteger(BigInteger::valueOf)).getAverage());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -165,4 +166,5 @@ public class BigIntegerSummaryStatisticsTest {
             this.payloads.average = BigIntegerSummaryStatisticsTest::average;
         }
     }
+*/
 }

@@ -44,6 +44,7 @@ public class DoubleFloatMapFactoryTest {
         Assert.assertTrue(DoubleFloatMaps.immutable.from(iterable, Double::valueOf, Float::valueOf) instanceof ImmutableDoubleFloatMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -88,4 +89,5 @@ public class DoubleFloatMapFactoryTest {
             this.payloads.from = DoubleFloatMapFactoryTest::from;
         }
     }
+*/
 }

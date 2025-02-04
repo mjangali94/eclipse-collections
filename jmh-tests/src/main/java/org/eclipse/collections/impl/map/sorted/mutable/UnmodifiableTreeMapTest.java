@@ -482,6 +482,7 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase {
         this.<Integer, Integer>newMap().updateValueWith(0, () -> 0, (integer, parameter) -> 0, "test");
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2446,4 +2447,5 @@ public class UnmodifiableTreeMapTest extends MutableSortedMapTestCase {
             this.payloads.updateValueWith_collisions = new se.chalmers.ju2jmh.api.ExceptionTest<>(UnmodifiableTreeMapTest::updateValueWith_collisions, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

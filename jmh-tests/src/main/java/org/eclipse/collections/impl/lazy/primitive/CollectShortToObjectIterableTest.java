@@ -85,6 +85,7 @@ public class CollectShortToObjectIterableTest {
         this.newPrimitiveWith().iterator().remove();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -161,4 +162,5 @@ public class CollectShortToObjectIterableTest {
             this.payloads.removeThrows = new se.chalmers.ju2jmh.api.ExceptionTest<>(CollectShortToObjectIterableTest::removeThrows, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

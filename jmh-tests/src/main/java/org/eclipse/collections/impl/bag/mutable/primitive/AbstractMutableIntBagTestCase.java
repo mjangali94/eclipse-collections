@@ -333,6 +333,7 @@ public abstract class AbstractMutableIntBagTestCase extends AbstractMutableIntCo
         Assert.assertTrue(("{" + 100 + "=1, " + 101 + "=2}").equals(actual) || ("{" + 101 + "=2, " + 100 + "=1}").equals(actual));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1217,4 +1218,5 @@ public abstract class AbstractMutableIntBagTestCase extends AbstractMutableIntCo
             this.payloads.toStringOfItemToCount = AbstractMutableIntBagTestCase::toStringOfItemToCount;
         }
     }
+*/
 }

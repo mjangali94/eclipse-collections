@@ -38,6 +38,7 @@ public class SynchronizedIntDoubleMapKeyValuesViewTest extends AbstractIntDouble
         return new IntDoubleHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedIntDoubleMapKeyValuesViewTest extends AbstractIntDouble
             this.payloads.aggregateByNonMutating = SynchronizedIntDoubleMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

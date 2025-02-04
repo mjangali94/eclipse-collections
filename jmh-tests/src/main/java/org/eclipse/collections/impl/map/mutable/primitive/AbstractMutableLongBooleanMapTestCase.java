@@ -582,6 +582,7 @@ public abstract class AbstractMutableLongBooleanMapTestCase extends AbstractLong
         Assert.assertThrows(IllegalStateException.class, iterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1074,4 +1075,5 @@ public abstract class AbstractMutableLongBooleanMapTestCase extends AbstractLong
             this.payloads.iterator_throws_on_consecutive_invocation_of_remove = AbstractMutableLongBooleanMapTestCase::iterator_throws_on_consecutive_invocation_of_remove;
         }
     }
+*/
 }

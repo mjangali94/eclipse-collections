@@ -1255,6 +1255,7 @@ public abstract class AbstractDoubleIterableTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> this.newMutableCollectionWith().chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1931,4 +1932,5 @@ public abstract class AbstractDoubleIterableTestCase {
             this.payloads.chunk = AbstractDoubleIterableTestCase::chunk;
         }
     }
+*/
 }

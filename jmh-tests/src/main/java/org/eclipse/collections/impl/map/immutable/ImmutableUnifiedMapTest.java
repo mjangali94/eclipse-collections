@@ -49,6 +49,7 @@ public class ImmutableUnifiedMapTest extends ImmutableMapTestCase {
         Assert.assertEquals(10, sum.getValue());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -421,4 +422,5 @@ public class ImmutableUnifiedMapTest extends ImmutableMapTestCase {
             this.payloads.batchForEach = ImmutableUnifiedMapTest::batchForEach;
         }
     }
+*/
 }

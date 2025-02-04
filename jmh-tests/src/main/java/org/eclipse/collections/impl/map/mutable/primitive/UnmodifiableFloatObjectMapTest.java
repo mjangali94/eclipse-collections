@@ -331,6 +331,7 @@ public class UnmodifiableFloatObjectMapTest extends AbstractMutableFloatObjectMa
         Verify.assertInstanceOf(UnmodifiableObjectFloatMap.class, this.classUnderTest().flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1671,4 +1672,5 @@ public class UnmodifiableFloatObjectMapTest extends AbstractMutableFloatObjectMa
             this.payloads.flipUniqueValues = UnmodifiableFloatObjectMapTest::flipUniqueValues;
         }
     }
+*/
 }

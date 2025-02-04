@@ -135,6 +135,7 @@ public class FlatCollectFloatToObjectIterableTest {
         Assert.assertTrue(this.newPrimitiveWith(1.0f, 2.0f, 3.0f).noneSatisfyWith(Predicates2.lessThan(), 0.0f));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -275,4 +276,5 @@ public class FlatCollectFloatToObjectIterableTest {
             this.payloads.noneSatisfyWith = FlatCollectFloatToObjectIterableTest::noneSatisfyWith;
         }
     }
+*/
 }

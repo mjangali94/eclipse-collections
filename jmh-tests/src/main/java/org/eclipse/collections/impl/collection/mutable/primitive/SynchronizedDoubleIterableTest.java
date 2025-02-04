@@ -88,6 +88,7 @@ public class SynchronizedDoubleIterableTest extends AbstractDoubleIterableTestCa
         // Testing newCollection() is not applicable.
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -772,4 +773,5 @@ public class SynchronizedDoubleIterableTest extends AbstractDoubleIterableTestCa
             this.payloads.testEquals_NaN = SynchronizedDoubleIterableTest::testEquals_NaN;
         }
     }
+*/
 }

@@ -332,6 +332,7 @@ public class UnmodifiableIntByteMapTest extends AbstractMutableIntByteMapTestCas
         Verify.assertInstanceOf(UnmodifiableByteIntMap.class, this.classUnderTest().flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1080,4 +1081,5 @@ public class UnmodifiableIntByteMapTest extends AbstractMutableIntByteMapTestCas
             this.payloads.flipUniqueValues = UnmodifiableIntByteMapTest::flipUniqueValues;
         }
     }
+*/
 }

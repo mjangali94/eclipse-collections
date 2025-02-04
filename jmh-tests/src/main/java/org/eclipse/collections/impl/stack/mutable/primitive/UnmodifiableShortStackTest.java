@@ -91,6 +91,7 @@ public class UnmodifiableShortStackTest extends AbstractShortStackTestCase {
         Assert.assertThrows(UnsupportedOperationException.class, iterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -903,4 +904,5 @@ public class UnmodifiableShortStackTest extends AbstractShortStackTestCase {
             this.payloads.shortIterator_throws_for_remove_before_next = UnmodifiableShortStackTest::shortIterator_throws_for_remove_before_next;
         }
     }
+*/
 }

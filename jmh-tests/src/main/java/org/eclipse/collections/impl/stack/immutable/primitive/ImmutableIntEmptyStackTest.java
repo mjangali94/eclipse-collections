@@ -147,6 +147,7 @@ public class ImmutableIntEmptyStackTest extends AbstractImmutableIntStackTestCas
         Assert.assertEquals(new MutableInteger(0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -943,4 +944,5 @@ public class ImmutableIntEmptyStackTest extends AbstractImmutableIntStackTestCas
             this.payloads.injectInto = ImmutableIntEmptyStackTest::injectInto;
         }
     }
+*/
 }

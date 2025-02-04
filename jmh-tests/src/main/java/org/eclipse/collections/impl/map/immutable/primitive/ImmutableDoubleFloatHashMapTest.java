@@ -64,6 +64,7 @@ public class ImmutableDoubleFloatHashMapTest extends AbstractImmutableDoubleFloa
         Assert.assertEquals(new MutableFloat(6.0f), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -572,4 +573,5 @@ public class ImmutableDoubleFloatHashMapTest extends AbstractImmutableDoubleFloa
             this.payloads.injectInto = ImmutableDoubleFloatHashMapTest::injectInto;
         }
     }
+*/
 }

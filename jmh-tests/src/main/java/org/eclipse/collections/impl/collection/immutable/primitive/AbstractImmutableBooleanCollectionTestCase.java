@@ -105,6 +105,7 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
         this.assertSizeAndOccurrences(collection4, 0, 0);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -469,4 +470,5 @@ public abstract class AbstractImmutableBooleanCollectionTestCase extends Abstrac
             this.payloads.newWithoutAll = AbstractImmutableBooleanCollectionTestCase::newWithoutAll;
         }
     }
+*/
 }

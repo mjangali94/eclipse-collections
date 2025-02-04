@@ -143,6 +143,7 @@ public class ImmutableArrayStackTest extends ImmutableStackTestCase {
         Assert.assertEquals(this.newStackWith(1), stack1);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2027,4 +2028,5 @@ public class ImmutableArrayStackTest extends ImmutableStackTestCase {
             this.payloads.peekAndPopCount = ImmutableArrayStackTest::peekAndPopCount;
         }
     }
+*/
 }

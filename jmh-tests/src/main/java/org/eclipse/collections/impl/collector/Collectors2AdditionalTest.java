@@ -541,6 +541,7 @@ public class Collectors2AdditionalTest {
         Assert.assertEquals(BigInteger.valueOf(2_500_000L), sum);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1041,4 +1042,5 @@ public class Collectors2AdditionalTest {
             this.payloads.summingBigIntegerParallel = Collectors2AdditionalTest::summingBigIntegerParallel;
         }
     }
+*/
 }

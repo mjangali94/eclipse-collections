@@ -167,6 +167,7 @@ public class SynchronizedDoubleBooleanMapKeySetTest extends AbstractDoubleSetTes
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1099,4 +1100,5 @@ public class SynchronizedDoubleBooleanMapKeySetTest extends AbstractDoubleSetTes
             this.payloads.chunk = SynchronizedDoubleBooleanMapKeySetTest::chunk;
         }
     }
+*/
 }

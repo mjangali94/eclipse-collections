@@ -551,6 +551,7 @@ public class UnifiedSetTest extends AbstractMutableSetTestCase {
         Assert.assertEquals(2, set.size());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2643,4 +2644,5 @@ public class UnifiedSetTest extends AbstractMutableSetTestCase {
             this.payloads.trimToSize = UnifiedSetTest::trimToSize;
         }
     }
+*/
 }

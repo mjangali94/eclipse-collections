@@ -77,6 +77,7 @@ public abstract class AbstractImmutableFloatBooleanMapTestCase extends AbstractF
         Assert.assertNotEquals(map7, map8);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -409,4 +410,5 @@ public abstract class AbstractImmutableFloatBooleanMapTestCase extends AbstractF
             this.payloads.testEquals = AbstractImmutableFloatBooleanMapTestCase::testEquals;
         }
     }
+*/
 }

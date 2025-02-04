@@ -37,6 +37,7 @@ public class ByteShortHashMapKeyValuesViewTest extends AbstractByteShortMapKeyVa
         return new ByteShortHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class ByteShortHashMapKeyValuesViewTest extends AbstractByteShortMapKeyVa
             this.payloads.aggregateByNonMutating = ByteShortHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -53,6 +53,7 @@ public class ImmutableEmptyPrimitiveTest {
         Verify.assertEmpty(ShortBags.immutable.with());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -81,4 +82,5 @@ public class ImmutableEmptyPrimitiveTest {
             this.payloads.isEmptyImmutable = ImmutableEmptyPrimitiveTest::isEmptyImmutable;
         }
     }
+*/
 }

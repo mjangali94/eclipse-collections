@@ -70,6 +70,7 @@ public class ByteCaseProcedureTest {
         Assert.assertEquals(ByteLists.mutable.with((byte) 3, (byte) 4), defaultList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class ByteCaseProcedureTest {
             this.payloads.twoCasesWithDefault = ByteCaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

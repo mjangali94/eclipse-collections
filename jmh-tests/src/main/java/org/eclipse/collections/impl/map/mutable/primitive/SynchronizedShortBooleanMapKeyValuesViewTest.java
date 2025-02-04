@@ -38,6 +38,7 @@ public class SynchronizedShortBooleanMapKeyValuesViewTest extends AbstractShortB
         return new ShortBooleanHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedShortBooleanMapKeyValuesViewTest extends AbstractShortB
             this.payloads.aggregateByNonMutating = SynchronizedShortBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -56,6 +56,7 @@ public final class CheckedFloatBooleanProcedureTest {
         }.value(0.0f, false));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -100,4 +101,5 @@ public final class CheckedFloatBooleanProcedureTest {
             this.payloads.checkedException = CheckedFloatBooleanProcedureTest::checkedException;
         }
     }
+*/
 }

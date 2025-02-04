@@ -245,6 +245,7 @@ public abstract class AbstractImmutableByteBagTestCase extends AbstractImmutable
         Assert.assertTrue(("{" + (byte) 100 + "=1, " + (byte) 101 + "=2}").equals(actual) || ("{" + (byte) 101 + "=2, " + (byte) 100 + "=1}").equals(actual));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -969,4 +970,5 @@ public abstract class AbstractImmutableByteBagTestCase extends AbstractImmutable
             this.payloads.toStringOfItemToCount = AbstractImmutableByteBagTestCase::toStringOfItemToCount;
         }
     }
+*/
 }

@@ -336,6 +336,7 @@ public class CharBooleanHashMapKeysViewTest {
         Verify.assertInstanceOf(LazyCharIterable.class, this.iterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -652,4 +653,5 @@ public class CharBooleanHashMapKeysViewTest {
             this.payloads.asLazy = CharBooleanHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

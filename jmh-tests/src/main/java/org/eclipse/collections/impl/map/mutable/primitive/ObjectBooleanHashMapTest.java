@@ -53,6 +53,7 @@ public class ObjectBooleanHashMapTest extends ObjectBooleanHashMapTestCase {
         return ObjectBooleanHashMap.class;
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -625,4 +626,5 @@ public class ObjectBooleanHashMapTest extends ObjectBooleanHashMapTestCase {
             this.payloads.updateValue_every_slot = ObjectBooleanHashMapTest::updateValue_every_slot;
         }
     }
+*/
 }

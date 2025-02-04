@@ -499,6 +499,7 @@ public abstract class AbstractLongSetTestCase extends AbstractMutableLongCollect
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1343,4 +1344,5 @@ public abstract class AbstractLongSetTestCase extends AbstractMutableLongCollect
             this.payloads.cartesianProduct = AbstractLongSetTestCase::cartesianProduct;
         }
     }
+*/
 }

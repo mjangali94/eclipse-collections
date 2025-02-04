@@ -151,6 +151,7 @@ public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBool
         Assert.assertSame(expected, expected.toImmutable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -571,4 +572,5 @@ public abstract class AbstractImmutableBooleanStackTestCase extends AbstractBool
             this.payloads.toImmutable = AbstractImmutableBooleanStackTestCase::toImmutable;
         }
     }
+*/
 }

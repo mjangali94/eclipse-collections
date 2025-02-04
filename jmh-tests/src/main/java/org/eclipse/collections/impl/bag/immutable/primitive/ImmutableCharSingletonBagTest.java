@@ -74,6 +74,7 @@ public class ImmutableCharSingletonBagTest extends AbstractImmutableCharBagTestC
         Assert.assertEquals(new MutableCharacter((char) 2), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -798,4 +799,5 @@ public class ImmutableCharSingletonBagTest extends AbstractImmutableCharBagTestC
             this.payloads.injectInto = ImmutableCharSingletonBagTest::injectInto;
         }
     }
+*/
 }

@@ -46,6 +46,7 @@ public class ImmutableDoubleMapKeySetTest extends AbstractImmutableDoubleHashSet
         Assert.assertFalse(doubleSet.contains(collision2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -826,4 +827,5 @@ public class ImmutableDoubleMapKeySetTest extends AbstractImmutableDoubleHashSet
             this.payloads.cartesianProduct = ImmutableDoubleMapKeySetTest::cartesianProduct;
         }
     }
+*/
 }

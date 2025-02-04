@@ -76,6 +76,7 @@ public class MapEntryPredicateTest {
         Assert.assertTrue(mapEntryPredicate.negate().accept("1", 2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -112,4 +113,5 @@ public class MapEntryPredicateTest {
             this.payloads.negate = MapEntryPredicateTest::negate;
         }
     }
+*/
 }

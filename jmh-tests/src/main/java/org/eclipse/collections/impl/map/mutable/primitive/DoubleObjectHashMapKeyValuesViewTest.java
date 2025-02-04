@@ -37,6 +37,7 @@ public class DoubleObjectHashMapKeyValuesViewTest extends AbstractDoubleObjectMa
         return DoubleObjectHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class DoubleObjectHashMapKeyValuesViewTest extends AbstractDoubleObjectMa
             this.payloads.aggregateByNonMutating = DoubleObjectHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -115,6 +115,7 @@ public class SelectBooleanIterableTest {
         Assert.assertFalse(this.iterable.containsAll(false, false));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -255,4 +256,5 @@ public class SelectBooleanIterableTest {
             this.payloads.containsAll = SelectBooleanIterableTest::containsAll;
         }
     }
+*/
 }

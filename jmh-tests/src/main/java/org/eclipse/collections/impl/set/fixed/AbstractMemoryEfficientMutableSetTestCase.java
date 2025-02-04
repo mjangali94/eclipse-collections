@@ -472,6 +472,7 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -924,4 +925,5 @@ public abstract class AbstractMemoryEfficientMutableSetTestCase {
             this.payloads.withoutAll = AbstractMemoryEfficientMutableSetTestCase::withoutAll;
         }
     }
+*/
 }

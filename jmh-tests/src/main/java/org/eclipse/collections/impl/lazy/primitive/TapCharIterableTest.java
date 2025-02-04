@@ -310,6 +310,7 @@ public class TapCharIterableTest {
         Assert.assertEquals(new MutableCharacter((char) 15), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -602,4 +603,5 @@ public class TapCharIterableTest {
             this.payloads.injectInto = TapCharIterableTest::injectInto;
         }
     }
+*/
 }

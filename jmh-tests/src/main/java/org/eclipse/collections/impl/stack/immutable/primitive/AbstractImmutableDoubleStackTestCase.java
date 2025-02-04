@@ -158,6 +158,7 @@ public abstract class AbstractImmutableDoubleStackTestCase extends AbstractDoubl
         Assert.assertSame(expected, expected.toImmutable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1002,4 +1003,5 @@ public abstract class AbstractImmutableDoubleStackTestCase extends AbstractDoubl
             this.payloads.toImmutable = AbstractImmutableDoubleStackTestCase::toImmutable;
         }
     }
+*/
 }

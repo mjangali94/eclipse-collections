@@ -33,6 +33,7 @@ public class FloatByteHashMapKeysViewTest extends AbstractLazyFloatIterableTestC
         return FloatByteHashMap.newWithKeysValues(element1, (byte) 1, element2, (byte) 2).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class FloatByteHashMapKeysViewTest extends AbstractLazyFloatIterableTestC
             this.payloads.asLazy = FloatByteHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

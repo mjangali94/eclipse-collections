@@ -281,6 +281,7 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
     @Test
     public abstract void asUnmodifiable();
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2077,4 +2078,5 @@ public abstract class AbstractCollectionTestCase extends AbstractRichIterableTes
             this.payloads.asUnmodifiable = AbstractCollectionTestCase::asUnmodifiable;
         }
     }
+*/
 }

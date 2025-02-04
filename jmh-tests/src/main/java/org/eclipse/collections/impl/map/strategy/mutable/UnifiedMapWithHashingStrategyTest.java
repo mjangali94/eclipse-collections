@@ -784,6 +784,7 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -3180,4 +3181,5 @@ public class UnifiedMapWithHashingStrategyTest extends UnifiedMapTestCase {
             this.payloads.trimToSize = UnifiedMapWithHashingStrategyTest::trimToSize;
         }
     }
+*/
 }

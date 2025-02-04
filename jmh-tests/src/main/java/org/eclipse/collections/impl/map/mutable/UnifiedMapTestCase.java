@@ -749,6 +749,7 @@ public abstract class UnifiedMapTestCase extends MutableMapTestCase {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2881,4 +2882,5 @@ public abstract class UnifiedMapTestCase extends MutableMapTestCase {
             this.payloads.frequentCollision = UnifiedMapTestCase::frequentCollision;
         }
     }
+*/
 }

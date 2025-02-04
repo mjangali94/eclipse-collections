@@ -195,6 +195,7 @@ public class ImmutableShortBooleanEmptyMapTest extends AbstractImmutableShortBoo
         Assert.assertEquals(0, this.classUnderTest().count(value -> true));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -551,4 +552,5 @@ public class ImmutableShortBooleanEmptyMapTest extends AbstractImmutableShortBoo
             this.payloads.isEmpty = ImmutableShortBooleanEmptyMapTest::isEmpty;
         }
     }
+*/
 }

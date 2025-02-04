@@ -321,6 +321,7 @@ public class UnmodifiableLongListTest extends AbstractLongListTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1517,4 +1518,5 @@ public class UnmodifiableLongListTest extends AbstractLongListTestCase {
             this.payloads.longIterator_throws_for_consecutive_remove = UnmodifiableLongListTest::longIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

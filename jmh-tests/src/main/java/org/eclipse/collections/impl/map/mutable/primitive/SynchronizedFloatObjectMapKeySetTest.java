@@ -144,6 +144,7 @@ public class SynchronizedFloatObjectMapKeySetTest extends AbstractFloatSetTestCa
         Assert.assertEquals(this.newObjectCollectionWith(0.0f, 1.0f, 31.0f, 32.0f).hashCode(), set1.hashCode());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1068,4 +1069,5 @@ public class SynchronizedFloatObjectMapKeySetTest extends AbstractFloatSetTestCa
             this.payloads.sum = SynchronizedFloatObjectMapKeySetTest::sum;
         }
     }
+*/
 }

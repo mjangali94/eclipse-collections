@@ -204,6 +204,7 @@ public class UnmodifiableFloatObjectMapKeySetTest extends AbstractFloatSetTestCa
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1128,4 +1129,5 @@ public class UnmodifiableFloatObjectMapKeySetTest extends AbstractFloatSetTestCa
             this.payloads.sum = UnmodifiableFloatObjectMapKeySetTest::sum;
         }
     }
+*/
 }

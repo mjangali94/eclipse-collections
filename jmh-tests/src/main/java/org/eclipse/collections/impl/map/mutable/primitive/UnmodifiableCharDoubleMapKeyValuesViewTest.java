@@ -38,6 +38,7 @@ public class UnmodifiableCharDoubleMapKeyValuesViewTest extends AbstractCharDoub
         return new CharDoubleHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableCharDoubleMapKeyValuesViewTest extends AbstractCharDoub
             this.payloads.aggregateByNonMutating = UnmodifiableCharDoubleMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

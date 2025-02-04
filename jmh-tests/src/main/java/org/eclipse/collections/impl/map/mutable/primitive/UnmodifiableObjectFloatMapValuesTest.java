@@ -349,6 +349,7 @@ public class UnmodifiableObjectFloatMapValuesTest extends AbstractMutableFloatCo
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1185,4 +1186,5 @@ public class UnmodifiableObjectFloatMapValuesTest extends AbstractMutableFloatCo
             this.payloads.chunk = UnmodifiableObjectFloatMapValuesTest::chunk;
         }
     }
+*/
 }

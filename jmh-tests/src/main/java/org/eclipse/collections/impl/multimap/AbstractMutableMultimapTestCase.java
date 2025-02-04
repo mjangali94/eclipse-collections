@@ -322,6 +322,7 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
         Assert.assertTrue("{One=[1], Two=[2]}".equals(multimap.toString()) || "{Two=[2], One=[1]}".equals(multimap.toString()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -782,4 +783,5 @@ public abstract class AbstractMutableMultimapTestCase extends AbstractMultimapTe
             this.payloads.testToString = AbstractMutableMultimapTestCase::testToString;
         }
     }
+*/
 }

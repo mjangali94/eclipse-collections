@@ -80,6 +80,7 @@ public class CollectBooleanToObjectIterableTest {
         this.newPrimitiveWith().iterator().remove();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -156,4 +157,5 @@ public class CollectBooleanToObjectIterableTest {
             this.payloads.removeThrows = new se.chalmers.ju2jmh.api.ExceptionTest<>(CollectBooleanToObjectIterableTest::removeThrows, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

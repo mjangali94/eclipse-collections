@@ -234,6 +234,7 @@ public class ShortBooleanHashMapTest extends AbstractMutableShortBooleanMapTestC
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -830,4 +831,5 @@ public class ShortBooleanHashMapTest extends AbstractMutableShortBooleanMapTestC
             this.payloads.updateValue_every_slot = ShortBooleanHashMapTest::updateValue_every_slot;
         }
     }
+*/
 }

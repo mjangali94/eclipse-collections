@@ -56,6 +56,7 @@ public class SynchronizedDoubleBooleanMapTest extends AbstractMutableDoubleBoole
         Assert.assertSame(map1, map1.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -548,4 +549,5 @@ public class SynchronizedDoubleBooleanMapTest extends AbstractMutableDoubleBoole
             this.payloads.asSynchronized = SynchronizedDoubleBooleanMapTest::asSynchronized;
         }
     }
+*/
 }

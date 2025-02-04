@@ -200,6 +200,7 @@ public class ImmutableByteCharEmptyMapTest extends AbstractImmutableByteCharMapT
         Assert.assertEquals(new MutableCharacter((char) 0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -708,4 +709,5 @@ public class ImmutableByteCharEmptyMapTest extends AbstractImmutableByteCharMapT
             this.payloads.injectInto = ImmutableByteCharEmptyMapTest::injectInto;
         }
     }
+*/
 }

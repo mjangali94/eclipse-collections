@@ -38,6 +38,7 @@ public class UnmodifiableByteFloatMapKeyValuesViewTest extends AbstractByteFloat
         return new ByteFloatHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableByteFloatMapKeyValuesViewTest extends AbstractByteFloat
             this.payloads.aggregateByNonMutating = UnmodifiableByteFloatMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

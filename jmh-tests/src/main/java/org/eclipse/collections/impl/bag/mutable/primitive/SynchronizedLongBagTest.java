@@ -41,6 +41,7 @@ public class SynchronizedLongBagTest extends AbstractMutableLongBagTestCase {
         Assert.assertEquals(bag, bag.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -925,4 +926,5 @@ public class SynchronizedLongBagTest extends AbstractMutableLongBagTestCase {
             this.payloads.asSynchronized = SynchronizedLongBagTest::asSynchronized;
         }
     }
+*/
 }

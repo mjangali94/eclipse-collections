@@ -56,6 +56,7 @@ public final class CheckedByteShortProcedureTest {
         }.value((byte) 0, (short) 0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -100,4 +101,5 @@ public final class CheckedByteShortProcedureTest {
             this.payloads.checkedException = CheckedByteShortProcedureTest::checkedException;
         }
     }
+*/
 }

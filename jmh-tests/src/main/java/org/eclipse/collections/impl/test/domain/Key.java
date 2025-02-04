@@ -44,6 +44,7 @@ public final class Key implements Comparable<Key> {
         return this.value.compareTo(o.value);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -64,4 +65,5 @@ public final class Key implements Comparable<Key> {
             this.payloads = new _Payloads();
         }
     }
+*/
 }

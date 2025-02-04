@@ -39,6 +39,7 @@ public class ImmutableObjectShortHashMapKeyValuesViewTest extends AbstractObject
         return ObjectShortHashMap.newMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -819,4 +820,5 @@ public class ImmutableObjectShortHashMapKeyValuesViewTest extends AbstractObject
             this.payloads.aggregateByNonMutating = ImmutableObjectShortHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

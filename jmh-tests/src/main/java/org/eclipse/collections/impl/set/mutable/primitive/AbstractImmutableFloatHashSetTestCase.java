@@ -332,6 +332,7 @@ public abstract class AbstractImmutableFloatHashSetTestCase extends AbstractImmu
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1112,4 +1113,5 @@ public abstract class AbstractImmutableFloatHashSetTestCase extends AbstractImmu
             this.payloads.cartesianProduct = AbstractImmutableFloatHashSetTestCase::cartesianProduct;
         }
     }
+*/
 }

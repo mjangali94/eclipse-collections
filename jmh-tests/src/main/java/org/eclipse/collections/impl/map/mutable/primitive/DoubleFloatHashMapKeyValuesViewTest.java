@@ -37,6 +37,7 @@ public class DoubleFloatHashMapKeyValuesViewTest extends AbstractDoubleFloatMapK
         return new DoubleFloatHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class DoubleFloatHashMapKeyValuesViewTest extends AbstractDoubleFloatMapK
             this.payloads.aggregateByNonMutating = DoubleFloatHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

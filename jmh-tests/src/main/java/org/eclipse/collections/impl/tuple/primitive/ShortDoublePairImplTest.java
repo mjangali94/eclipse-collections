@@ -53,6 +53,7 @@ public class ShortDoublePairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair((short) 1, 2.0).compareTo(PrimitiveTuples.pair((short) 1, 3.0)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class ShortDoublePairImplTest {
             this.payloads.compareTo = ShortDoublePairImplTest::compareTo;
         }
     }
+*/
 }

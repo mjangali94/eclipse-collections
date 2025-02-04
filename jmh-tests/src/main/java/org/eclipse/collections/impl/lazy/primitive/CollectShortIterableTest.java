@@ -257,6 +257,7 @@ public class CollectShortIterableTest {
         Verify.assertInstanceOf(LazyShortIterable.class, this.shortIterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -565,4 +566,5 @@ public class CollectShortIterableTest {
             this.payloads.asLazy = CollectShortIterableTest::asLazy;
         }
     }
+*/
 }

@@ -42,6 +42,7 @@ public class ObjectLongHashMapValuesTest extends ObjectLongHashMapValuesTestCase
         return ObjectLongHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -822,4 +823,5 @@ public class ObjectLongHashMapValuesTest extends ObjectLongHashMapValuesTestCase
             this.payloads.chunk = ObjectLongHashMapValuesTest::chunk;
         }
     }
+*/
 }

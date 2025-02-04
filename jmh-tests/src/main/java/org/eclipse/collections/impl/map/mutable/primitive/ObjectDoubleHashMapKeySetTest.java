@@ -42,6 +42,7 @@ public class ObjectDoubleHashMapKeySetTest extends ObjectDoubleHashMapKeySetTest
         return ObjectDoubleHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -174,4 +175,5 @@ public class ObjectDoubleHashMapKeySetTest extends ObjectDoubleHashMapKeySetTest
             this.payloads.keySetToArray = ObjectDoubleHashMapKeySetTest::keySetToArray;
         }
     }
+*/
 }

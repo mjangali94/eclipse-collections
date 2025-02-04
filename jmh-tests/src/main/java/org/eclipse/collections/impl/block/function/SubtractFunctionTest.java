@@ -38,6 +38,7 @@ public class SubtractFunctionTest {
         Assert.assertEquals(Long.valueOf(-1L), SubtractFunction.LONG.value(1L, 2L));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -82,4 +83,5 @@ public class SubtractFunctionTest {
             this.payloads.subtractLongFunction = SubtractFunctionTest::subtractLongFunction;
         }
     }
+*/
 }

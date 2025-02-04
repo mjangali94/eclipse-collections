@@ -39,6 +39,7 @@ public class ImmutableLongBooleanHashMapKeyValuesViewTest extends AbstractLongBo
         return new LongBooleanHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -843,4 +844,5 @@ public class ImmutableLongBooleanHashMapKeyValuesViewTest extends AbstractLongBo
             this.payloads.aggregateByNonMutating = ImmutableLongBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

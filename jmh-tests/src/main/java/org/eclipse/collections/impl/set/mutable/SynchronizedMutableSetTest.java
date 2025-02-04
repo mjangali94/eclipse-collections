@@ -133,6 +133,7 @@ public class SynchronizedMutableSetTest extends AbstractSynchronizedCollectionTe
         super.max_null_safe();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1929,4 +1930,5 @@ public class SynchronizedMutableSetTest extends AbstractSynchronizedCollectionTe
             this.payloads.max_null_safe = new se.chalmers.ju2jmh.api.ExceptionTest<>(SynchronizedMutableSetTest::max_null_safe, java.lang.NullPointerException.class);
         }
     }
+*/
 }

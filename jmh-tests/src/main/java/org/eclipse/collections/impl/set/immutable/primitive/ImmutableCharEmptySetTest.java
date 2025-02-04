@@ -88,6 +88,7 @@ public class ImmutableCharEmptySetTest extends AbstractImmutableCharHashSetTestC
         Assert.assertEquals(CharBags.immutable.empty(), this.classUnderTest().toBag());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -812,4 +813,5 @@ public class ImmutableCharEmptySetTest extends AbstractImmutableCharHashSetTestC
             this.payloads.toBag = ImmutableCharEmptySetTest::toBag;
         }
     }
+*/
 }

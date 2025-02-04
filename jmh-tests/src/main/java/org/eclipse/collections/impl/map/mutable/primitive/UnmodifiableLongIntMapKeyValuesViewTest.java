@@ -38,6 +38,7 @@ public class UnmodifiableLongIntMapKeyValuesViewTest extends AbstractLongIntMapK
         return new LongIntHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableLongIntMapKeyValuesViewTest extends AbstractLongIntMapK
             this.payloads.aggregateByNonMutating = UnmodifiableLongIntMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

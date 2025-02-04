@@ -271,6 +271,7 @@ public class ReverseLongIterableTest {
         Assert.assertEquals(LongArrayList.newListWith(1L, 2L, 3L), LongArrayList.newListWith(2L, 3L, 1L).asReversed().toSortedList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -579,4 +580,5 @@ public class ReverseLongIterableTest {
             this.payloads.toSortedList = ReverseLongIterableTest::toSortedList;
         }
     }
+*/
 }

@@ -271,6 +271,7 @@ public class ReverseIntIterableTest {
         Assert.assertEquals(IntArrayList.newListWith(1, 2, 3), IntArrayList.newListWith(2, 3, 1).asReversed().toSortedList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -579,4 +580,5 @@ public class ReverseIntIterableTest {
             this.payloads.toSortedList = ReverseIntIterableTest::toSortedList;
         }
     }
+*/
 }

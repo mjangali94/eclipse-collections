@@ -275,6 +275,7 @@ public class LongHashSetTest extends AbstractLongSetTestCase {
         Verify.assertClassNonInstantiable(LongSets.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1223,4 +1224,5 @@ public class LongHashSetTest extends AbstractLongSetTestCase {
             this.payloads.classIsNonInstantiable = LongHashSetTest::classIsNonInstantiable;
         }
     }
+*/
 }

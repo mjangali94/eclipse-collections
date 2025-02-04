@@ -331,6 +331,7 @@ public class UnmodifiableShortShortMapTest extends AbstractMutableShortShortMapT
         Verify.assertInstanceOf(UnmodifiableShortShortMap.class, this.classUnderTest().flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1079,4 +1080,5 @@ public class UnmodifiableShortShortMapTest extends AbstractMutableShortShortMapT
             this.payloads.flipUniqueValues = UnmodifiableShortShortMapTest::flipUniqueValues;
         }
     }
+*/
 }

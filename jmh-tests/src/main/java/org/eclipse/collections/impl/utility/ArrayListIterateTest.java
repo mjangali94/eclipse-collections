@@ -1433,6 +1433,7 @@ public class ArrayListIterateTest {
         Assert.assertEquals(expected, ArrayListIterate.zip(integers, integers::iterator));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2541,4 +2542,5 @@ public class ArrayListIterateTest {
             this.payloads.zip = ArrayListIterateTest::zip;
         }
     }
+*/
 }

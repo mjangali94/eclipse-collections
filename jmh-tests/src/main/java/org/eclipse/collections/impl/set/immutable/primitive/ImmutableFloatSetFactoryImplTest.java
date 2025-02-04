@@ -39,6 +39,7 @@ public class ImmutableFloatSetFactoryImplTest {
         Assert.assertEquals(FloatHashSet.newSet(set).toImmutable(), FloatSets.immutable.ofAll(set));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -83,4 +84,5 @@ public class ImmutableFloatSetFactoryImplTest {
             this.payloads.ofAll = ImmutableFloatSetFactoryImplTest::ofAll;
         }
     }
+*/
 }

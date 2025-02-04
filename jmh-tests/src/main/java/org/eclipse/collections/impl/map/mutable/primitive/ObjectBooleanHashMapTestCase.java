@@ -291,6 +291,7 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -863,4 +864,5 @@ public abstract class ObjectBooleanHashMapTestCase extends AbstractMutableObject
             this.payloads.updateValue_every_slot = ObjectBooleanHashMapTestCase::updateValue_every_slot;
         }
     }
+*/
 }

@@ -61,6 +61,7 @@ public class HashBagMultimapTest extends AbstractMutableBagMultimapTestCase {
         return Bags.mutable.of(args);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -537,4 +538,5 @@ public class HashBagMultimapTest extends AbstractMutableBagMultimapTestCase {
             this.payloads.putOccurrences = HashBagMultimapTest::putOccurrences;
         }
     }
+*/
 }

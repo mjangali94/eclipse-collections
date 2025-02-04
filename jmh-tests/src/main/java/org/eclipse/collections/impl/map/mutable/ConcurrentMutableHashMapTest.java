@@ -139,6 +139,7 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase {
         Assert.assertNotEquals(map, this.newMapWithKeysValues(1, "1", 2, "2", 4, "4"));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1916,4 +1917,5 @@ public class ConcurrentMutableHashMapTest extends ConcurrentHashMapTestCase {
             this.payloads.partitionWith_value = ConcurrentMutableHashMapTest::partitionWith_value;
         }
     }
+*/
 }

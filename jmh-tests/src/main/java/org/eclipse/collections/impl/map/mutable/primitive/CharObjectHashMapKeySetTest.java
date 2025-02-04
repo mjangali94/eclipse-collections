@@ -134,6 +134,7 @@ public class CharObjectHashMapKeySetTest extends AbstractCharSetTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -978,4 +979,5 @@ public class CharObjectHashMapKeySetTest extends AbstractCharSetTestCase {
             this.payloads.chunk = CharObjectHashMapKeySetTest::chunk;
         }
     }
+*/
 }

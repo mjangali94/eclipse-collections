@@ -68,6 +68,7 @@ public class CharHashBagTest extends AbstractMutableCharBagTestCase {
         Assert.assertEquals(Character.valueOf((char) 17), sum);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -952,4 +953,5 @@ public class CharHashBagTest extends AbstractMutableCharBagTestCase {
             this.payloads.injectInto = CharHashBagTest::injectInto;
         }
     }
+*/
 }

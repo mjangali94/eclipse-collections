@@ -64,6 +64,7 @@ public class ImmutableFloatByteHashMapTest extends AbstractImmutableFloatByteMap
         Assert.assertEquals(new MutableByte((byte) 6), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -572,4 +573,5 @@ public class ImmutableFloatByteHashMapTest extends AbstractImmutableFloatByteMap
             this.payloads.injectInto = ImmutableFloatByteHashMapTest::injectInto;
         }
     }
+*/
 }

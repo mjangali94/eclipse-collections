@@ -223,6 +223,7 @@ public class FixedSizeSetFactoryTest {
         Verify.assertInstanceOf(UnifiedSet.class, set);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -388,4 +389,5 @@ public class FixedSizeSetFactoryTest {
             this.payloads.ofAllSizeFive = FixedSizeSetFactoryTest::ofAllSizeFive;
         }
     }
+*/
 }

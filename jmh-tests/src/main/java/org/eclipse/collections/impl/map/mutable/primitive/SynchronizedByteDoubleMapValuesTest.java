@@ -468,6 +468,7 @@ public class SynchronizedByteDoubleMapValuesTest extends AbstractMutableDoubleCo
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1304,4 +1305,5 @@ public class SynchronizedByteDoubleMapValuesTest extends AbstractMutableDoubleCo
             this.payloads.chunk = SynchronizedByteDoubleMapValuesTest::chunk;
         }
     }
+*/
 }

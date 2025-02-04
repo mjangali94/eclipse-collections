@@ -295,6 +295,7 @@ public class UnmodifiableDoubleBooleanMapTest extends AbstractMutableDoubleBoole
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -827,4 +828,5 @@ public class UnmodifiableDoubleBooleanMapTest extends AbstractMutableDoubleBoole
             this.payloads.iterator_throws_on_consecutive_invocation_of_remove = UnmodifiableDoubleBooleanMapTest::iterator_throws_on_consecutive_invocation_of_remove;
         }
     }
+*/
 }

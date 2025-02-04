@@ -175,6 +175,7 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
         Assert.assertEquals(this.classUnderTest(), this.classUnderTest().asUnmodifiable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -675,4 +676,5 @@ public abstract class AbstractMutableBooleanStackTestCase extends AbstractBoolea
             this.payloads.asUnmodifiable = AbstractMutableBooleanStackTestCase::asUnmodifiable;
         }
     }
+*/
 }

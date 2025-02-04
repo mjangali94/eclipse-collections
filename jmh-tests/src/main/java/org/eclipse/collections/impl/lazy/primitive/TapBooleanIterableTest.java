@@ -151,6 +151,7 @@ public class TapBooleanIterableTest {
         Assert.assertTrue(iterable.containsAll(false, false));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -291,4 +292,5 @@ public class TapBooleanIterableTest {
             this.payloads.containsAll = TapBooleanIterableTest::containsAll;
         }
     }
+*/
 }

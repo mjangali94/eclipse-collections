@@ -38,6 +38,7 @@ public class SynchronizedCharBooleanMapKeyValuesViewTest extends AbstractCharBoo
         return new CharBooleanHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedCharBooleanMapKeyValuesViewTest extends AbstractCharBoo
             this.payloads.aggregateByNonMutating = SynchronizedCharBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

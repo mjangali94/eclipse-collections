@@ -62,6 +62,7 @@ public class LongIteratorIterateTest {
         Assert.assertThrows(NoSuchElementException.class, () -> LongIteratorIterate.max(new LongArrayList().longIterator()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -130,4 +131,5 @@ public class LongIteratorIterateTest {
             this.payloads.max = LongIteratorIterateTest::max;
         }
     }
+*/
 }

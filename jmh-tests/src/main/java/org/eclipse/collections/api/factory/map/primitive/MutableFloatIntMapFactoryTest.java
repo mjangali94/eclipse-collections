@@ -38,6 +38,7 @@ public class MutableFloatIntMapFactoryTest {
         Assert.assertEquals(FloatIntHashMap.newWithKeysValues(1.0f, 2, 3.0f, 4, 5.0f, 6, 7.0f, 8), FloatIntMaps.mutable.of(1.0f, 2, 3.0f, 4, 5.0f, 6, 7.0f, 8));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableFloatIntMapFactoryTest {
             this.payloads.of = MutableFloatIntMapFactoryTest::of;
         }
     }
+*/
 }

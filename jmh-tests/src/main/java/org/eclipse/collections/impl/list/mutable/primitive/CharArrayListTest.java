@@ -146,6 +146,7 @@ public class CharArrayListTest extends AbstractCharListTestCase {
         Assert.assertEquals(list, list.toImmutable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1382,4 +1383,5 @@ public class CharArrayListTest extends AbstractCharListTestCase {
             this.payloads.toImmutable = CharArrayListTest::toImmutable;
         }
     }
+*/
 }

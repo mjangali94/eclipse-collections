@@ -30,6 +30,7 @@ public class ParallelCollectListIterableTest extends ParallelListIterableTestCas
         return FastList.newListWith(littleElements).collect(String::valueOf).collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -735,4 +736,5 @@ public class ParallelCollectListIterableTest extends ParallelListIterableTestCas
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelCollectListIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

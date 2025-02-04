@@ -73,6 +73,7 @@ public class ImmutableHashBiMap2Test extends MapIterableTestCase {
         Assert.assertEquals("Test 1", map.get(null));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1285,4 +1286,5 @@ public class ImmutableHashBiMap2Test extends MapIterableTestCase {
             this.payloads.nullCollisionWithCastInEquals = ImmutableHashBiMap2Test::nullCollisionWithCastInEquals;
         }
     }
+*/
 }

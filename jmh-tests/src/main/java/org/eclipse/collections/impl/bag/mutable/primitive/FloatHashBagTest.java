@@ -68,6 +68,7 @@ public class FloatHashBagTest extends AbstractMutableFloatBagTestCase {
         Assert.assertEquals(Float.valueOf(17.0f), sum);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1008,4 +1009,5 @@ public class FloatHashBagTest extends AbstractMutableFloatBagTestCase {
             this.payloads.injectInto = FloatHashBagTest::injectInto;
         }
     }
+*/
 }

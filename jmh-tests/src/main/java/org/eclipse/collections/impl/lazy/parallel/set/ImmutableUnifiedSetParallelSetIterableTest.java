@@ -41,6 +41,7 @@ public class ImmutableUnifiedSetParallelSetIterableTest extends ParallelUnsorted
         Sets.immutable.with(1, 2, 3, 4).asParallel(null, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -762,4 +763,5 @@ public class ImmutableUnifiedSetParallelSetIterableTest extends ParallelUnsorted
             this.payloads.asParallel_null_executorService = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableUnifiedSetParallelSetIterableTest::asParallel_null_executorService, java.lang.NullPointerException.class);
         }
     }
+*/
 }

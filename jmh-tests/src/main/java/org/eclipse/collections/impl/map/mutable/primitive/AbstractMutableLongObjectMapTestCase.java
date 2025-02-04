@@ -681,6 +681,7 @@ public abstract class AbstractMutableLongObjectMapTestCase extends AbstractLongO
         Assert.assertThrows(IllegalStateException.class, () -> this.newWithKeysValues(1L, "1", 2L, "1").flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1957,4 +1958,5 @@ public abstract class AbstractMutableLongObjectMapTestCase extends AbstractLongO
             this.payloads.flipUniqueValues = AbstractMutableLongObjectMapTestCase::flipUniqueValues;
         }
     }
+*/
 }

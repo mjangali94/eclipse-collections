@@ -718,6 +718,7 @@ public abstract class AbstractShortShortMapTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> this.newWithKeysValues((short) 1, (short) 1).chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1186,4 +1187,5 @@ public abstract class AbstractShortShortMapTestCase {
             this.payloads.chunk = AbstractShortShortMapTestCase::chunk;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class MutableByteCharMapFactoryTest {
         Assert.assertEquals(ByteCharHashMap.newWithKeysValues((byte) 1, (char) 2, (byte) 3, (char) 4, (byte) 5, (char) 6, (byte) 7, (char) 8), ByteCharMaps.mutable.of((byte) 1, (char) 2, (byte) 3, (char) 4, (byte) 5, (char) 6, (byte) 7, (char) 8));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableByteCharMapFactoryTest {
             this.payloads.of = MutableByteCharMapFactoryTest::of;
         }
     }
+*/
 }

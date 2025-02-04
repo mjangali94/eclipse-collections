@@ -135,6 +135,7 @@ public class FlatCollectShortToObjectIterableTest {
         Assert.assertTrue(this.newPrimitiveWith((short) 1, (short) 2, (short) 3).noneSatisfyWith(Predicates2.lessThan(), (short) 0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -275,4 +276,5 @@ public class FlatCollectShortToObjectIterableTest {
             this.payloads.noneSatisfyWith = FlatCollectShortToObjectIterableTest::noneSatisfyWith;
         }
     }
+*/
 }

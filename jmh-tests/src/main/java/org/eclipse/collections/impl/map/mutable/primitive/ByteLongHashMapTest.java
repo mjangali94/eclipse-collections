@@ -443,6 +443,7 @@ public class ByteLongHashMapTest extends AbstractMutableByteLongMapTestCase {
         Verify.assertClassNonInstantiable(ByteLongMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1303,4 +1304,5 @@ public class ByteLongHashMapTest extends AbstractMutableByteLongMapTestCase {
             this.payloads.classIsNonInstantiable = ByteLongHashMapTest::classIsNonInstantiable;
         }
     }
+*/
 }

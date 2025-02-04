@@ -31,6 +31,7 @@ public class PartitionTreeSortedSetTest {
         Assert.assertEquals(rejected, immutableSortedSet.getRejected());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -59,4 +60,5 @@ public class PartitionTreeSortedSetTest {
             this.payloads.toImmutable = PartitionTreeSortedSetTest::toImmutable;
         }
     }
+*/
 }

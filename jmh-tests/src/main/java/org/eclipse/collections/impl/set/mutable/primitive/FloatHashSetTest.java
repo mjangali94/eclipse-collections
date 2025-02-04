@@ -275,6 +275,7 @@ public class FloatHashSetTest extends AbstractFloatSetTestCase {
         Verify.assertClassNonInstantiable(FloatSets.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1303,4 +1304,5 @@ public class FloatHashSetTest extends AbstractFloatSetTestCase {
             this.payloads.classIsNonInstantiable = FloatHashSetTest::classIsNonInstantiable;
         }
     }
+*/
 }

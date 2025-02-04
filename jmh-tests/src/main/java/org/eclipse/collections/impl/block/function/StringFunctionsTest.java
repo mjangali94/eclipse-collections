@@ -159,6 +159,7 @@ public final class StringFunctionsTest {
         Verify.assertClassNonInstantiable(StringFunctions.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -355,4 +356,5 @@ public final class StringFunctionsTest {
             this.payloads.classIsNonInstantiable = StringFunctionsTest::classIsNonInstantiable;
         }
     }
+*/
 }

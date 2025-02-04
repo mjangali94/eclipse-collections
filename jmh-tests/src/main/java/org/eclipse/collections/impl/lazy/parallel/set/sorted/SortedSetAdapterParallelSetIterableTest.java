@@ -27,6 +27,7 @@ public class SortedSetAdapterParallelSetIterableTest extends NonParallelSortedSe
         return SortedSetAdapter.adapt(new TreeSet<>(TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), littleElements))).asParallel(this.executorService, this.batchSize);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -732,4 +733,5 @@ public class SortedSetAdapterParallelSetIterableTest extends NonParallelSortedSe
             this.payloads.toString_interruptedException = SortedSetAdapterParallelSetIterableTest::toString_interruptedException;
         }
     }
+*/
 }

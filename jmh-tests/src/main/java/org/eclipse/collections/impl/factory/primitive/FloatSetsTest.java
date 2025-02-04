@@ -220,6 +220,7 @@ public class FloatSetsTest {
         Assert.assertEquals(expected, floatFloatPairs.toSet());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -328,4 +329,5 @@ public class FloatSetsTest {
             this.payloads.cartesianProductSameElements = FloatSetsTest::cartesianProductSameElements;
         }
     }
+*/
 }

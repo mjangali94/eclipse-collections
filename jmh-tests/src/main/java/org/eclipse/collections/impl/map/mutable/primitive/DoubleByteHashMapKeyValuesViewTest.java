@@ -37,6 +37,7 @@ public class DoubleByteHashMapKeyValuesViewTest extends AbstractDoubleByteMapKey
         return new DoubleByteHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class DoubleByteHashMapKeyValuesViewTest extends AbstractDoubleByteMapKey
             this.payloads.aggregateByNonMutating = DoubleByteHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

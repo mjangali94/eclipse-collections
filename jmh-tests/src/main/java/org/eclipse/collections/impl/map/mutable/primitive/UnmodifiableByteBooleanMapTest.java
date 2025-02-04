@@ -295,6 +295,7 @@ public class UnmodifiableByteBooleanMapTest extends AbstractMutableByteBooleanMa
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -827,4 +828,5 @@ public class UnmodifiableByteBooleanMapTest extends AbstractMutableByteBooleanMa
             this.payloads.iterator_throws_on_consecutive_invocation_of_remove = UnmodifiableByteBooleanMapTest::iterator_throws_on_consecutive_invocation_of_remove;
         }
     }
+*/
 }

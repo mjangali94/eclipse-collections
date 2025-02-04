@@ -103,6 +103,7 @@ public abstract class AbstractImmutableFloatCollectionTestCase extends AbstractF
         this.assertSizeAndContains(collection2, 1.0f, 2.0f, 3.0f, 4.0f);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -811,4 +812,5 @@ public abstract class AbstractImmutableFloatCollectionTestCase extends AbstractF
             this.payloads.newWithoutAll = AbstractImmutableFloatCollectionTestCase::newWithoutAll;
         }
     }
+*/
 }

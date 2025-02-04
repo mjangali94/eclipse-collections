@@ -88,6 +88,7 @@ public class ImmutableFloatEmptySetTest extends AbstractImmutableFloatHashSetTes
         Assert.assertEquals(FloatBags.immutable.empty(), this.classUnderTest().toBag());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -868,4 +869,5 @@ public class ImmutableFloatEmptySetTest extends AbstractImmutableFloatHashSetTes
             this.payloads.toBag = ImmutableFloatEmptySetTest::toBag;
         }
     }
+*/
 }

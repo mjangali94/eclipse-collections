@@ -42,6 +42,7 @@ public class MemoryEfficientMutableSetParallelSetIterableTest extends ParallelUn
         Sets.fixedSize.with(1, 2, 3, 4).asParallel(null, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -763,4 +764,5 @@ public class MemoryEfficientMutableSetParallelSetIterableTest extends ParallelUn
             this.payloads.asParallel_null_executorService = new se.chalmers.ju2jmh.api.ExceptionTest<>(MemoryEfficientMutableSetParallelSetIterableTest::asParallel_null_executorService, java.lang.NullPointerException.class);
         }
     }
+*/
 }

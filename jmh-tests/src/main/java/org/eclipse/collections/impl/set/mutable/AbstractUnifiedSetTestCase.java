@@ -45,6 +45,7 @@ public abstract class AbstractUnifiedSetTestCase extends AbstractMutableSetTestC
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2017,4 +2018,5 @@ public abstract class AbstractUnifiedSetTestCase extends AbstractMutableSetTestC
             this.payloads.rehash_null_collision = AbstractUnifiedSetTestCase::rehash_null_collision;
         }
     }
+*/
 }

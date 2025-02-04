@@ -610,6 +610,7 @@ public class MapIterateTest {
         Verify.assertClassNonInstantiable(MapIterate.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1166,4 +1167,5 @@ public class MapIterateTest {
             this.payloads.classIsNonInstantiable = MapIterateTest::classIsNonInstantiable;
         }
     }
+*/
 }

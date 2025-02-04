@@ -200,6 +200,7 @@ public class ImmutableByteFloatEmptyMapTest extends AbstractImmutableByteFloatMa
         Assert.assertEquals(new MutableFloat(0.0f), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -708,4 +709,5 @@ public class ImmutableByteFloatEmptyMapTest extends AbstractImmutableByteFloatMa
             this.payloads.injectInto = ImmutableByteFloatEmptyMapTest::injectInto;
         }
     }
+*/
 }

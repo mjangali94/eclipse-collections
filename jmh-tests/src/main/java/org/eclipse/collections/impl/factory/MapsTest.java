@@ -229,6 +229,7 @@ public class MapsTest {
         Assert.assertSame(Maps.immutable.empty(), empty2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -361,4 +362,5 @@ public class MapsTest {
             this.payloads.withAllEmptyImmutableSame = MapsTest::withAllEmptyImmutableSame;
         }
     }
+*/
 }

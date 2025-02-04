@@ -114,6 +114,7 @@ public class ObjectCharHashMapWithHashingStrategyKeySetTest extends ObjectCharHa
         Assert.assertArrayEquals(people.toArray(keys2), keys1);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -246,4 +247,5 @@ public class ObjectCharHashMapWithHashingStrategyKeySetTest extends ObjectCharHa
             this.payloads.keySetToArray = ObjectCharHashMapWithHashingStrategyKeySetTest::keySetToArray;
         }
     }
+*/
 }

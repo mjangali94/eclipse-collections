@@ -1154,6 +1154,7 @@ public abstract class AbstractCharIterableTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> this.newMutableCollectionWith().chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1774,4 +1775,5 @@ public abstract class AbstractCharIterableTestCase {
             this.payloads.chunk = AbstractCharIterableTestCase::chunk;
         }
     }
+*/
 }

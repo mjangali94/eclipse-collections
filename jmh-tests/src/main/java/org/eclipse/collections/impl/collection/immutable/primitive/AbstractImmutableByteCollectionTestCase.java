@@ -103,6 +103,7 @@ public abstract class AbstractImmutableByteCollectionTestCase extends AbstractBy
         this.assertSizeAndContains(collection2, (byte) 1, (byte) 2, (byte) 3, (byte) 4);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -755,4 +756,5 @@ public abstract class AbstractImmutableByteCollectionTestCase extends AbstractBy
             this.payloads.newWithoutAll = AbstractImmutableByteCollectionTestCase::newWithoutAll;
         }
     }
+*/
 }

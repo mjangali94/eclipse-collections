@@ -225,6 +225,7 @@ public class PrimitiveStreamsTest {
         Assert.assertEquals(DoubleStacks.mutable.ofAll(DoubleStream.of(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0)), stack);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -437,4 +438,5 @@ public class PrimitiveStreamsTest {
             this.payloads.toImmutableDoubleStack = PrimitiveStreamsTest::toImmutableDoubleStack;
         }
     }
+*/
 }

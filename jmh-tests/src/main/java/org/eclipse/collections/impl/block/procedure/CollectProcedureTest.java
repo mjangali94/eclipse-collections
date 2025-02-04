@@ -26,6 +26,7 @@ public class CollectProcedureTest {
         Verify.assertContainsAll(collectProcedure.getCollection(), 1, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -54,4 +55,5 @@ public class CollectProcedureTest {
             this.payloads.getCollection = CollectProcedureTest::getCollection;
         }
     }
+*/
 }

@@ -37,6 +37,7 @@ public class AddFunctionTest {
         Verify.assertClassNonInstantiable(AddFunction.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -81,4 +82,5 @@ public class AddFunctionTest {
             this.payloads.classIsNonInstantiable = AddFunctionTest::classIsNonInstantiable;
         }
     }
+*/
 }

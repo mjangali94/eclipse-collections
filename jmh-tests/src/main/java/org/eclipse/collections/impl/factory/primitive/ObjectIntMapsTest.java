@@ -131,6 +131,7 @@ public class ObjectIntMapsTest {
         Verify.assertClassNonInstantiable(ObjectIntMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -239,4 +240,5 @@ public class ObjectIntMapsTest {
             this.payloads.classIsNonInstantiable = ObjectIntMapsTest::classIsNonInstantiable;
         }
     }
+*/
 }

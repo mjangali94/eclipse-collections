@@ -41,6 +41,7 @@ public class SynchronizedCharListTest extends AbstractCharListTestCase {
         Assert.assertEquals(list, list.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1221,4 +1222,5 @@ public class SynchronizedCharListTest extends AbstractCharListTestCase {
             this.payloads.asSynchronized = SynchronizedCharListTest::asSynchronized;
         }
     }
+*/
 }

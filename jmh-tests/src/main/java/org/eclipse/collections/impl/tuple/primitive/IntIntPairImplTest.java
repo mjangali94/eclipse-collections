@@ -53,6 +53,7 @@ public class IntIntPairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair(1, 2).compareTo(PrimitiveTuples.pair(1, 3)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class IntIntPairImplTest {
             this.payloads.compareTo = IntIntPairImplTest::compareTo;
         }
     }
+*/
 }

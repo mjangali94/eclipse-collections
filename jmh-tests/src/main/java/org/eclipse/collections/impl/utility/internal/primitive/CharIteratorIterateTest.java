@@ -62,6 +62,7 @@ public class CharIteratorIterateTest {
         Assert.assertThrows(NoSuchElementException.class, () -> CharIteratorIterate.max(new CharArrayList().charIterator()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -130,4 +131,5 @@ public class CharIteratorIterateTest {
             this.payloads.max = CharIteratorIterateTest::max;
         }
     }
+*/
 }

@@ -91,6 +91,7 @@ public class UnmodifiableLongStackTest extends AbstractLongStackTestCase {
         Assert.assertThrows(UnsupportedOperationException.class, iterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -903,4 +904,5 @@ public class UnmodifiableLongStackTest extends AbstractLongStackTestCase {
             this.payloads.longIterator_throws_for_remove_before_next = UnmodifiableLongStackTest::longIterator_throws_for_remove_before_next;
         }
     }
+*/
 }

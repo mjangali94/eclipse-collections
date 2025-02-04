@@ -206,6 +206,7 @@ public class LazyIterateTest {
         Assert.assertEquals(Bags.mutable.empty(), LazyIterate.cartesianProduct(Lists.mutable.with(1, 2), Lists.mutable.empty()).toBag());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -370,4 +371,5 @@ public class LazyIterateTest {
             this.payloads.cartesianProduct_empty = LazyIterateTest::cartesianProduct_empty;
         }
     }
+*/
 }

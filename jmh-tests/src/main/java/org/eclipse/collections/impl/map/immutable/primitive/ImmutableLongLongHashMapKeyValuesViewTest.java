@@ -39,6 +39,7 @@ public class ImmutableLongLongHashMapKeyValuesViewTest extends AbstractLongLongM
         return new LongLongHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableLongLongHashMapKeyValuesViewTest extends AbstractLongLongM
             this.payloads.aggregateByNonMutating = ImmutableLongLongHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -380,6 +380,7 @@ public abstract class AbstractImmutableDoubleListTestCase extends AbstractImmuta
         Assert.assertEquals(Arrays.asList(1.0, 2.0, 3.0), ImmutableDoubleArrayList.newListWith(1.0, 2.0, 3.0).primitiveParallelStream().boxed().collect(Collectors.toList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1264,4 +1265,5 @@ public abstract class AbstractImmutableDoubleListTestCase extends AbstractImmuta
             this.payloads.parallelStream = AbstractImmutableDoubleListTestCase::parallelStream;
         }
     }
+*/
 }

@@ -28,6 +28,7 @@ public class FastListCollectProcedureTest {
         Assert.assertEquals(Lists.mutable.of(1, 2, 3), procedure.getFastList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -56,4 +57,5 @@ public class FastListCollectProcedureTest {
             this.payloads.value = FastListCollectProcedureTest::value;
         }
     }
+*/
 }

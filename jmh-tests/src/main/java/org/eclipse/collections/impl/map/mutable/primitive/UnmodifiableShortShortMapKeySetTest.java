@@ -186,6 +186,7 @@ public class UnmodifiableShortShortMapKeySetTest extends AbstractShortSetTestCas
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1030,4 +1031,5 @@ public class UnmodifiableShortShortMapKeySetTest extends AbstractShortSetTestCas
             this.payloads.sum = UnmodifiableShortShortMapKeySetTest::sum;
         }
     }
+*/
 }

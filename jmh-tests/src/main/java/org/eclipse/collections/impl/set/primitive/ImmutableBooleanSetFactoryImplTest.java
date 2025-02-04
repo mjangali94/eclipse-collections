@@ -38,6 +38,7 @@ public class ImmutableBooleanSetFactoryImplTest {
         Assert.assertEquals(BooleanHashSet.newSet(BooleanArrayList.newListWith(true, false, true)).toImmutable(), BooleanSets.immutable.ofAll(BooleanArrayList.newListWith(true, false)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -82,4 +83,5 @@ public class ImmutableBooleanSetFactoryImplTest {
             this.payloads.ofAll = ImmutableBooleanSetFactoryImplTest::ofAll;
         }
     }
+*/
 }

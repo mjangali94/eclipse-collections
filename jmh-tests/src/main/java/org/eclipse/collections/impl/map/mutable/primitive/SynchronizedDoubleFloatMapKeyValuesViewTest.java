@@ -38,6 +38,7 @@ public class SynchronizedDoubleFloatMapKeyValuesViewTest extends AbstractDoubleF
         return new DoubleFloatHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedDoubleFloatMapKeyValuesViewTest extends AbstractDoubleF
             this.payloads.aggregateByNonMutating = SynchronizedDoubleFloatMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

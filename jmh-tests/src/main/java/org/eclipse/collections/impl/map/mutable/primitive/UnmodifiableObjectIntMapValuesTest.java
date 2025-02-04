@@ -343,6 +343,7 @@ public class UnmodifiableObjectIntMapValuesTest extends AbstractMutableIntCollec
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1123,4 +1124,5 @@ public class UnmodifiableObjectIntMapValuesTest extends AbstractMutableIntCollec
             this.payloads.chunk = UnmodifiableObjectIntMapValuesTest::chunk;
         }
     }
+*/
 }

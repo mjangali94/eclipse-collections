@@ -103,6 +103,7 @@ public abstract class AbstractImmutableLongCollectionTestCase extends AbstractLo
         this.assertSizeAndContains(collection2, 1L, 2L, 3L, 4L);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -755,4 +756,5 @@ public abstract class AbstractImmutableLongCollectionTestCase extends AbstractLo
             this.payloads.newWithoutAll = AbstractImmutableLongCollectionTestCase::newWithoutAll;
         }
     }
+*/
 }

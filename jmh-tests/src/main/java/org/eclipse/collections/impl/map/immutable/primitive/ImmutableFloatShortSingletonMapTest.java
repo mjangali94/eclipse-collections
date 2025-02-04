@@ -211,6 +211,7 @@ public class ImmutableFloatShortSingletonMapTest extends AbstractImmutableFloatS
         Assert.assertEquals(new MutableShort((short) 1), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -719,4 +720,5 @@ public class ImmutableFloatShortSingletonMapTest extends AbstractImmutableFloatS
             this.payloads.injectInto = ImmutableFloatShortSingletonMapTest::injectInto;
         }
     }
+*/
 }

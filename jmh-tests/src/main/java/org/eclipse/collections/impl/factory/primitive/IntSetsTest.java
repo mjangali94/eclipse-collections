@@ -220,6 +220,7 @@ public class IntSetsTest {
         Assert.assertEquals(expected, intIntPairs.toSet());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -328,4 +329,5 @@ public class IntSetsTest {
             this.payloads.cartesianProductSameElements = IntSetsTest::cartesianProductSameElements;
         }
     }
+*/
 }

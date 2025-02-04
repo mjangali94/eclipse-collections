@@ -671,6 +671,7 @@ public abstract class MutableMapIterableTestCase extends MapIterableTestCase {
         Assert.assertEquals(HashBag.newBag(map.values()).toStringOfItemToCount(), FastList.newList(Collections.nCopies(1000, 2)), FastList.newList(map.values()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2395,4 +2396,5 @@ public abstract class MutableMapIterableTestCase extends MapIterableTestCase {
             this.payloads.updateValueWith_collisions = MutableMapIterableTestCase::updateValueWith_collisions;
         }
     }
+*/
 }

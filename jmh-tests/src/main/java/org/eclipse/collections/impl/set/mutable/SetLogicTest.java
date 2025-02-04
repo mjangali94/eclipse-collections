@@ -53,6 +53,7 @@ public class SetLogicTest {
         Assert.assertEquals(UnifiedSet.newSetWith(1, 2, 5, 6), nonOverlappingSet);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -106,4 +107,5 @@ public class SetLogicTest {
             this.payloads.inAOrBButNotInBoth = SetLogicTest::inAOrBButNotInBoth;
         }
     }
+*/
 }

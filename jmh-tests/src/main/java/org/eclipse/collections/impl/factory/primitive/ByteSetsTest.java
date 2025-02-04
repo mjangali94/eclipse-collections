@@ -220,6 +220,7 @@ public class ByteSetsTest {
         Assert.assertEquals(expected, byteBytePairs.toSet());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -328,4 +329,5 @@ public class ByteSetsTest {
             this.payloads.cartesianProductSameElements = ByteSetsTest::cartesianProductSameElements;
         }
     }
+*/
 }

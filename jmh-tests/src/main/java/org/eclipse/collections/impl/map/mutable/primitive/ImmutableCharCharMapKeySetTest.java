@@ -46,6 +46,7 @@ public class ImmutableCharCharMapKeySetTest extends AbstractImmutableCharHashSet
         Assert.assertFalse(charSet.contains(collision2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -770,4 +771,5 @@ public class ImmutableCharCharMapKeySetTest extends AbstractImmutableCharHashSet
             this.payloads.cartesianProduct = ImmutableCharCharMapKeySetTest::cartesianProduct;
         }
     }
+*/
 }

@@ -63,6 +63,7 @@ public class ObjectBooleanMapFactoryTest {
         Assert.assertTrue(ObjectBooleanMaps.immutable.from(iterable, each -> each, each -> Integer.valueOf(each) % 2 == 0) instanceof ImmutableObjectBooleanMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -115,4 +116,5 @@ public class ObjectBooleanMapFactoryTest {
             this.payloads.from = ObjectBooleanMapFactoryTest::from;
         }
     }
+*/
 }

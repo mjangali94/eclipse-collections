@@ -53,6 +53,7 @@ public class ImmutableCharObjectHashMapTest extends AbstractImmutableCharObjectM
         Assert.assertEquals(this.classUnderTest(), map1);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1193,4 +1194,5 @@ public class ImmutableCharObjectHashMapTest extends AbstractImmutableCharObjectM
             this.payloads.newWithoutAllKeys = ImmutableCharObjectHashMapTest::newWithoutAllKeys;
         }
     }
+*/
 }

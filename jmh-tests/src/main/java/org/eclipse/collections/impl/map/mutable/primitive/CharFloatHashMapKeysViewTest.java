@@ -33,6 +33,7 @@ public class CharFloatHashMapKeysViewTest extends AbstractLazyCharIterableTestCa
         return CharFloatHashMap.newWithKeysValues(element1, 1.0f, element2, 2.0f).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class CharFloatHashMapKeysViewTest extends AbstractLazyCharIterableTestCa
             this.payloads.asLazy = CharFloatHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

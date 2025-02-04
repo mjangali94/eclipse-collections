@@ -214,6 +214,7 @@ public class CharListsTest {
         Assert.assertEquals(CharArrayList.newListWith((char) 1, (char) 2, (char) 3), CharLists.mutable.ofAll(Lists.mutable.<Character>with((char) 1, (char) 2, (char) 3)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -322,4 +323,5 @@ public class CharListsTest {
             this.payloads.ofAllIterable = CharListsTest::ofAllIterable;
         }
     }
+*/
 }

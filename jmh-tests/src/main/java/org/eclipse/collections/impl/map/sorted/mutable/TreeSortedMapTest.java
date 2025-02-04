@@ -106,6 +106,7 @@ public class TreeSortedMapTest extends MutableSortedMapTestCase {
         Assert.assertTrue(clone.containsKey(1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2062,4 +2063,5 @@ public class TreeSortedMapTest extends MutableSortedMapTestCase {
             this.payloads.testClone = TreeSortedMapTest::testClone;
         }
     }
+*/
 }

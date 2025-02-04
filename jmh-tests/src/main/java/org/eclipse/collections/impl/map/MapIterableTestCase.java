@@ -1412,6 +1412,7 @@ public abstract class MapIterableTestCase {
         Verify.assertContains("3=Three", stringToSearch);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2624,4 +2625,5 @@ public abstract class MapIterableTestCase {
             this.payloads.test_toString = MapIterableTestCase::test_toString;
         }
     }
+*/
 }

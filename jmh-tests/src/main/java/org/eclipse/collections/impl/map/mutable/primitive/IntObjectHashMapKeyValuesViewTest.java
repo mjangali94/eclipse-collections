@@ -37,6 +37,7 @@ public class IntObjectHashMapKeyValuesViewTest extends AbstractIntObjectMapKeyVa
         return IntObjectHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class IntObjectHashMapKeyValuesViewTest extends AbstractIntObjectMapKeyVa
             this.payloads.aggregateByNonMutating = IntObjectHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

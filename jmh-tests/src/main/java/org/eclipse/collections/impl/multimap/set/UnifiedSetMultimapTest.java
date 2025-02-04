@@ -88,6 +88,7 @@ public class UnifiedSetMultimapTest extends AbstractMutableSetMultimapTestCase {
         Assert.assertEquals(FastList.newListWith("FourFour", "Four"), actual.get(Integer.valueOf(4)).toList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -564,4 +565,5 @@ public class UnifiedSetMultimapTest extends AbstractMutableSetMultimapTestCase {
             this.payloads.pairIterableConstructorTest = UnifiedSetMultimapTest::pairIterableConstructorTest;
         }
     }
+*/
 }

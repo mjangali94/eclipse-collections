@@ -245,6 +245,7 @@ public abstract class AbstractImmutableDoubleBagTestCase extends AbstractImmutab
         Assert.assertTrue(("{" + 100.0 + "=1, " + 101.0 + "=2}").equals(actual) || ("{" + 101.0 + "=2, " + 100.0 + "=1}").equals(actual));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1025,4 +1026,5 @@ public abstract class AbstractImmutableDoubleBagTestCase extends AbstractImmutab
             this.payloads.toStringOfItemToCount = AbstractImmutableDoubleBagTestCase::toStringOfItemToCount;
         }
     }
+*/
 }

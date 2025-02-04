@@ -709,6 +709,7 @@ public class ImmutableIntObjectEmptyMapTest extends AbstractImmutableIntObjectMa
         Assert.assertEquals(ObjectDoubleMaps.immutable.empty(), map.sumByDouble(Object::toString, Double::valueOf));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1857,4 +1858,5 @@ public class ImmutableIntObjectEmptyMapTest extends AbstractImmutableIntObjectMa
             this.payloads.sumByDouble = ImmutableIntObjectEmptyMapTest::sumByDouble;
         }
     }
+*/
 }

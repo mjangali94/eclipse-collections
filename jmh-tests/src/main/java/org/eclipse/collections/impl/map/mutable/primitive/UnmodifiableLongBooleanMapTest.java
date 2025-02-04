@@ -295,6 +295,7 @@ public class UnmodifiableLongBooleanMapTest extends AbstractMutableLongBooleanMa
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -827,4 +828,5 @@ public class UnmodifiableLongBooleanMapTest extends AbstractMutableLongBooleanMa
             this.payloads.iterator_throws_on_consecutive_invocation_of_remove = UnmodifiableLongBooleanMapTest::iterator_throws_on_consecutive_invocation_of_remove;
         }
     }
+*/
 }

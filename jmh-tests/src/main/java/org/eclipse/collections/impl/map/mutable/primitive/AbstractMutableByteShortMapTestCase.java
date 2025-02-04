@@ -722,6 +722,7 @@ public abstract class AbstractMutableByteShortMapTestCase extends AbstractByteSh
         Assert.assertEquals(map.keySet(), set);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1422,4 +1423,5 @@ public abstract class AbstractMutableByteShortMapTestCase extends AbstractByteSh
             this.payloads.serializeKeySet = AbstractMutableByteShortMapTestCase::serializeKeySet;
         }
     }
+*/
 }

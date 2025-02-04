@@ -718,6 +718,7 @@ public abstract class AbstractFloatFloatMapTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> this.newWithKeysValues(1.0f, 1.0f).chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1186,4 +1187,5 @@ public abstract class AbstractFloatFloatMapTestCase {
             this.payloads.chunk = AbstractFloatFloatMapTestCase::chunk;
         }
     }
+*/
 }

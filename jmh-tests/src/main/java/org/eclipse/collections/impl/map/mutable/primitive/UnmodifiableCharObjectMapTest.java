@@ -303,6 +303,7 @@ public class UnmodifiableCharObjectMapTest extends AbstractMutableCharObjectMapT
         Verify.assertInstanceOf(UnmodifiableObjectCharMap.class, this.classUnderTest().flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1611,4 +1612,5 @@ public class UnmodifiableCharObjectMapTest extends AbstractMutableCharObjectMapT
             this.payloads.flipUniqueValues = UnmodifiableCharObjectMapTest::flipUniqueValues;
         }
     }
+*/
 }

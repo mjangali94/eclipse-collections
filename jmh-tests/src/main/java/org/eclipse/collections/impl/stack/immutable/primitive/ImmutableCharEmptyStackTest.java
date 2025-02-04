@@ -147,6 +147,7 @@ public class ImmutableCharEmptyStackTest extends AbstractImmutableCharStackTestC
         Assert.assertEquals(new MutableCharacter((char) 0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -943,4 +944,5 @@ public class ImmutableCharEmptyStackTest extends AbstractImmutableCharStackTestC
             this.payloads.injectInto = ImmutableCharEmptyStackTest::injectInto;
         }
     }
+*/
 }

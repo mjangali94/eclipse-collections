@@ -37,6 +37,7 @@ public class ShortBooleanHashMapKeyValuesViewTest extends AbstractShortBooleanMa
         return new ShortBooleanHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class ShortBooleanHashMapKeyValuesViewTest extends AbstractShortBooleanMa
             this.payloads.aggregateByNonMutating = ShortBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

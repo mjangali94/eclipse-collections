@@ -42,6 +42,7 @@ public class ObjectShortHashMapValuesTest extends ObjectShortHashMapValuesTestCa
         return ObjectShortHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -822,4 +823,5 @@ public class ObjectShortHashMapValuesTest extends ObjectShortHashMapValuesTestCa
             this.payloads.chunk = ObjectShortHashMapValuesTest::chunk;
         }
     }
+*/
 }

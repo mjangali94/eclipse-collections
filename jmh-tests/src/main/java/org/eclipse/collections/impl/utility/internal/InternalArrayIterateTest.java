@@ -86,6 +86,7 @@ public class InternalArrayIterateTest {
         Assert.assertEquals(result, ShortLists.mutable.of((short) 1, (short) 2, (short) 3));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -170,4 +171,5 @@ public class InternalArrayIterateTest {
             this.payloads.collectShort = InternalArrayIterateTest::collectShort;
         }
     }
+*/
 }

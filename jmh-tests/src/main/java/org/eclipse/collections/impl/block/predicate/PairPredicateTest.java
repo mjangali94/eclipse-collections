@@ -44,6 +44,7 @@ public class PairPredicateTest {
         Assert.assertTrue(negatedPredicate.accept("2", "1"));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -80,4 +81,5 @@ public class PairPredicateTest {
             this.payloads.negate = PairPredicateTest::negate;
         }
     }
+*/
 }

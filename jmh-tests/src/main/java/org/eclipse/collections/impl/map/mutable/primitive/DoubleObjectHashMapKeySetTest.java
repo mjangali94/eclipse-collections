@@ -152,6 +152,7 @@ public class DoubleObjectHashMapKeySetTest extends AbstractDoubleSetTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1076,4 +1077,5 @@ public class DoubleObjectHashMapKeySetTest extends AbstractDoubleSetTestCase {
             this.payloads.chunk = DoubleObjectHashMapKeySetTest::chunk;
         }
     }
+*/
 }

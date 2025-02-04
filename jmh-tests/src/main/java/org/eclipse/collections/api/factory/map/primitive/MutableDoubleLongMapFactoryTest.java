@@ -38,6 +38,7 @@ public class MutableDoubleLongMapFactoryTest {
         Assert.assertEquals(DoubleLongHashMap.newWithKeysValues(1.0, 2L, 3.0, 4L, 5.0, 6L, 7.0, 8L), DoubleLongMaps.mutable.of(1.0, 2L, 3.0, 4L, 5.0, 6L, 7.0, 8L));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableDoubleLongMapFactoryTest {
             this.payloads.of = MutableDoubleLongMapFactoryTest::of;
         }
     }
+*/
 }

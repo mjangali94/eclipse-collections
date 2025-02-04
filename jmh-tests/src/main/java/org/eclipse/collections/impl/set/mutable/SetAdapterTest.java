@@ -182,6 +182,7 @@ public class SetAdapterTest extends AbstractMutableSetTestCase {
         Assert.assertThrows(NullPointerException.class, () -> SetAdapter.adapt(null));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2178,4 +2179,5 @@ public class SetAdapterTest extends AbstractMutableSetTestCase {
             this.payloads.adaptNull = SetAdapterTest::adaptNull;
         }
     }
+*/
 }

@@ -41,6 +41,7 @@ public class SynchronizedIntSetTest extends AbstractIntSetTestCase {
         Assert.assertEquals(set, set.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -885,4 +886,5 @@ public class SynchronizedIntSetTest extends AbstractIntSetTestCase {
             this.payloads.asSynchronized = SynchronizedIntSetTest::asSynchronized;
         }
     }
+*/
 }

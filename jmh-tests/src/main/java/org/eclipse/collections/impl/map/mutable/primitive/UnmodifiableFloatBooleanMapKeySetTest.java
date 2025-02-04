@@ -230,6 +230,7 @@ public class UnmodifiableFloatBooleanMapKeySetTest extends AbstractFloatSetTestC
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1162,4 +1163,5 @@ public class UnmodifiableFloatBooleanMapKeySetTest extends AbstractFloatSetTestC
             this.payloads.chunk = UnmodifiableFloatBooleanMapKeySetTest::chunk;
         }
     }
+*/
 }

@@ -104,6 +104,7 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase 
         Assert.assertEquals(FastList.newListWith(3.0, 2.0, 4.0, 1.0, 5.0), iterable.distinct().toList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1012,4 +1013,5 @@ public class SelectInstancesOfIterableTest extends AbstractLazyIterableTestCase 
             this.payloads.distinct = SelectInstancesOfIterableTest::distinct;
         }
     }
+*/
 }

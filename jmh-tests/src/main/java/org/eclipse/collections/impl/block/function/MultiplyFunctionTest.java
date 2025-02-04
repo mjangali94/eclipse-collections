@@ -35,6 +35,7 @@ public class MultiplyFunctionTest {
         Verify.assertClassNonInstantiable(MultiplyFunction.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -87,4 +88,5 @@ public class MultiplyFunctionTest {
             this.payloads.classIsNonInstantiable = MultiplyFunctionTest::classIsNonInstantiable;
         }
     }
+*/
 }

@@ -200,6 +200,7 @@ public class ImmutableByteDoubleEmptyMapTest extends AbstractImmutableByteDouble
         Assert.assertEquals(new MutableDouble(0.0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -708,4 +709,5 @@ public class ImmutableByteDoubleEmptyMapTest extends AbstractImmutableByteDouble
             this.payloads.injectInto = ImmutableByteDoubleEmptyMapTest::injectInto;
         }
     }
+*/
 }

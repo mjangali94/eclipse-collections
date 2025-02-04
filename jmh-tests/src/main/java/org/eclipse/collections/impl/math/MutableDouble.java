@@ -113,6 +113,7 @@ public final class MutableDouble extends Number implements Comparable<MutableDou
         return "MutableDouble{value=" + this.value + '}';
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -133,4 +134,5 @@ public final class MutableDouble extends Number implements Comparable<MutableDou
             this.payloads = new _Payloads();
         }
     }
+*/
 }

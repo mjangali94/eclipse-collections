@@ -213,6 +213,7 @@ public class UnmodifiableFloatDoubleMapKeySetTest extends AbstractFloatSetTestCa
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1137,4 +1138,5 @@ public class UnmodifiableFloatDoubleMapKeySetTest extends AbstractFloatSetTestCa
             this.payloads.sumConsistentRounding = UnmodifiableFloatDoubleMapKeySetTest::sumConsistentRounding;
         }
     }
+*/
 }

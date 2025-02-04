@@ -147,6 +147,7 @@ public class ImmutableShortEmptyStackTest extends AbstractImmutableShortStackTes
         Assert.assertEquals(new MutableShort((short) 0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -943,4 +944,5 @@ public class ImmutableShortEmptyStackTest extends AbstractImmutableShortStackTes
             this.payloads.injectInto = ImmutableShortEmptyStackTest::injectInto;
         }
     }
+*/
 }

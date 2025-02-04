@@ -2025,6 +2025,7 @@ public class IterateTest {
         Iterate.groupByUniqueKey(null, id -> id, UnifiedMap.newMap());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -3574,4 +3575,5 @@ public class IterateTest {
             this.payloads.groupByUniqueKey_target_throws_for_null = new se.chalmers.ju2jmh.api.ExceptionTest<>(IterateTest::groupByUniqueKey_target_throws_for_null, java.lang.IllegalArgumentException.class);
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class SynchronizedLongObjectMapKeyValuesViewTest extends AbstractLongObje
         return LongObjectHashMap.<Integer>newMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedLongObjectMapKeyValuesViewTest extends AbstractLongObje
             this.payloads.aggregateByNonMutating = SynchronizedLongObjectMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -77,6 +77,7 @@ public abstract class AbstractImmutableShortBooleanMapTestCase extends AbstractS
         Assert.assertNotEquals(map7, map8);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -409,4 +410,5 @@ public abstract class AbstractImmutableShortBooleanMapTestCase extends AbstractS
             this.payloads.testEquals = AbstractImmutableShortBooleanMapTestCase::testEquals;
         }
     }
+*/
 }

@@ -26,6 +26,7 @@ public class SetAdapterParallelSetIterableTest extends NonParallelUnsortedSetIte
         return SetAdapter.adapt(new HashSet<>(UnifiedSet.newSetWith(littleElements))).asParallel(this.executorService, this.batchSize);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -731,4 +732,5 @@ public class SetAdapterParallelSetIterableTest extends NonParallelUnsortedSetIte
             this.payloads.toString_interruptedException = SetAdapterParallelSetIterableTest::toString_interruptedException;
         }
     }
+*/
 }

@@ -103,6 +103,7 @@ public abstract class AbstractImmutableIntCollectionTestCase extends AbstractInt
         this.assertSizeAndContains(collection2, 1, 2, 3, 4);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -755,4 +756,5 @@ public abstract class AbstractImmutableIntCollectionTestCase extends AbstractInt
             this.payloads.newWithoutAll = AbstractImmutableIntCollectionTestCase::newWithoutAll;
         }
     }
+*/
 }

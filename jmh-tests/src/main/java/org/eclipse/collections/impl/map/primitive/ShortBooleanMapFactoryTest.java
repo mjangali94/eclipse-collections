@@ -47,6 +47,7 @@ public class ShortBooleanMapFactoryTest {
         Assert.assertTrue(ShortBooleanMaps.immutable.from(iterable, Short::valueOf, each -> Integer.valueOf(each) % 2 == 0) instanceof ImmutableShortBooleanMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -99,4 +100,5 @@ public class ShortBooleanMapFactoryTest {
             this.payloads.from = ShortBooleanMapFactoryTest::from;
         }
     }
+*/
 }

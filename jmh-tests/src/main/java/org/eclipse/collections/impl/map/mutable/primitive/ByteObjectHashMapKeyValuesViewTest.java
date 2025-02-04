@@ -37,6 +37,7 @@ public class ByteObjectHashMapKeyValuesViewTest extends AbstractByteObjectMapKey
         return ByteObjectHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class ByteObjectHashMapKeyValuesViewTest extends AbstractByteObjectMapKey
             this.payloads.aggregateByNonMutating = ByteObjectHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

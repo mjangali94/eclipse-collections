@@ -38,6 +38,7 @@ public class UnmodifiableObjectCharMapKeyValuesViewTest extends AbstractObjectCh
         return ObjectCharHashMap.newMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -818,4 +819,5 @@ public class UnmodifiableObjectCharMapKeyValuesViewTest extends AbstractObjectCh
             this.payloads.aggregateByNonMutating = UnmodifiableObjectCharMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

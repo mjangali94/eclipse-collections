@@ -188,6 +188,7 @@ public class CollectBooleanIterableTest {
         Verify.assertInstanceOf(LazyBooleanIterable.class, this.booleanIterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -392,4 +393,5 @@ public class CollectBooleanIterableTest {
             this.payloads.asLazy = CollectBooleanIterableTest::asLazy;
         }
     }
+*/
 }

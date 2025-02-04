@@ -604,6 +604,7 @@ public abstract class ImmutableSortedMapTestCase extends MapIterableTestCase {
         return Interval.zeroTo(this.size() - 1).toList();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2024,4 +2025,5 @@ public abstract class ImmutableSortedMapTestCase extends MapIterableTestCase {
             this.payloads.drop_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableSortedMapTestCase::drop_throws, java.lang.IllegalArgumentException.class);
         }
     }
+*/
 }

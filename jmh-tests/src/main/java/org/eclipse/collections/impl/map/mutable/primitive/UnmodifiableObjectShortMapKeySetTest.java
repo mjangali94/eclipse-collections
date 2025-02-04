@@ -120,6 +120,7 @@ public class UnmodifiableObjectShortMapKeySetTest {
         Assert.assertEquals(expected, HashBag.newBagWith(keySet.toArray(new String[keySet.size() + 1])));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -212,4 +213,5 @@ public class UnmodifiableObjectShortMapKeySetTest {
             this.payloads.keySetToArray = UnmodifiableObjectShortMapKeySetTest::keySetToArray;
         }
     }
+*/
 }

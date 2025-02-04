@@ -43,6 +43,7 @@ public class ParallelFlatCollectDistinctSetIterableTest extends ParallelUnsorted
         Assert.assertEquals(this.getExpected().toSet().groupByEach(new NegativeIntervalFunction()), this.classUnderTest().groupByEach(new NegativeIntervalFunction()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -748,4 +749,5 @@ public class ParallelFlatCollectDistinctSetIterableTest extends ParallelUnsorted
             this.payloads.groupByEach = ParallelFlatCollectDistinctSetIterableTest::groupByEach;
         }
     }
+*/
 }

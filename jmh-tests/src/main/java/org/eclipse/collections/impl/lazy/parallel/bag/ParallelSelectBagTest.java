@@ -31,6 +31,7 @@ public class ParallelSelectBagTest extends ParallelBagTestCase {
         return HashBag.newBagWith(littleElements).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -744,4 +745,5 @@ public class ParallelSelectBagTest extends ParallelBagTestCase {
             this.payloads.toString_interruptedException = ParallelSelectBagTest::toString_interruptedException;
         }
     }
+*/
 }

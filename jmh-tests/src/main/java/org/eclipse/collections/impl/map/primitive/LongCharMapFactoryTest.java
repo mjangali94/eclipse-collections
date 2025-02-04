@@ -44,6 +44,7 @@ public class LongCharMapFactoryTest {
         Assert.assertTrue(LongCharMaps.immutable.from(iterable, Long::valueOf, each -> each.charAt(0)) instanceof ImmutableLongCharMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -88,4 +89,5 @@ public class LongCharMapFactoryTest {
             this.payloads.from = LongCharMapFactoryTest::from;
         }
     }
+*/
 }

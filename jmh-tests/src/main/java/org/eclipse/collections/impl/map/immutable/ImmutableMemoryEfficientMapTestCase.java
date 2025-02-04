@@ -959,6 +959,7 @@ public abstract class ImmutableMemoryEfficientMapTestCase extends ImmutableMapTe
         Assert.assertEquals(map.zipWithIndex().toSet(), map.zipWithIndex(UnifiedSet.newSet()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1683,4 +1684,5 @@ public abstract class ImmutableMemoryEfficientMapTestCase extends ImmutableMapTe
             this.payloads.zipWithIndex = ImmutableMemoryEfficientMapTestCase::zipWithIndex;
         }
     }
+*/
 }

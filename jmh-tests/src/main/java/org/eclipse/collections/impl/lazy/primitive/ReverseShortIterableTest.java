@@ -271,6 +271,7 @@ public class ReverseShortIterableTest {
         Assert.assertEquals(ShortArrayList.newListWith((short) 1, (short) 2, (short) 3), ShortArrayList.newListWith((short) 2, (short) 3, (short) 1).asReversed().toSortedList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -579,4 +580,5 @@ public class ReverseShortIterableTest {
             this.payloads.toSortedList = ReverseShortIterableTest::toSortedList;
         }
     }
+*/
 }

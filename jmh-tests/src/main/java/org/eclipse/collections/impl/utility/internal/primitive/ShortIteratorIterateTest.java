@@ -62,6 +62,7 @@ public class ShortIteratorIterateTest {
         Assert.assertThrows(NoSuchElementException.class, () -> ShortIteratorIterate.max(new ShortArrayList().shortIterator()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -130,4 +131,5 @@ public class ShortIteratorIterateTest {
             this.payloads.max = ShortIteratorIterateTest::max;
         }
     }
+*/
 }

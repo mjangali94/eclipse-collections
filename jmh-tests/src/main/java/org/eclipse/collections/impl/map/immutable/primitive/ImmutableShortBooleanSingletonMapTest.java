@@ -215,6 +215,7 @@ public class ImmutableShortBooleanSingletonMapTest extends AbstractImmutableShor
         Assert.assertEquals(1, this.classUnderTest().count(BooleanPredicates.isTrue()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -571,4 +572,5 @@ public class ImmutableShortBooleanSingletonMapTest extends AbstractImmutableShor
             this.payloads.count = ImmutableShortBooleanSingletonMapTest::count;
         }
     }
+*/
 }

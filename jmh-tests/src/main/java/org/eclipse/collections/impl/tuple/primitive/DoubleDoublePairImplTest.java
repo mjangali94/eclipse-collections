@@ -53,6 +53,7 @@ public class DoubleDoublePairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair(1.0, 2.0).compareTo(PrimitiveTuples.pair(1.0, 3.0)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class DoubleDoublePairImplTest {
             this.payloads.compareTo = DoubleDoublePairImplTest::compareTo;
         }
     }
+*/
 }

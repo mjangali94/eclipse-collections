@@ -38,6 +38,7 @@ public class UnmodifiableLongByteMapKeyValuesViewTest extends AbstractLongByteMa
         return new LongByteHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableLongByteMapKeyValuesViewTest extends AbstractLongByteMa
             this.payloads.aggregateByNonMutating = UnmodifiableLongByteMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -130,6 +130,7 @@ public class TreeBagMultimapTest extends AbstractMutableSortedBagMultimapTestCas
         Verify.assertSortedBagsEqual(expected.get(2), actual.get(2));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -622,4 +623,5 @@ public class TreeBagMultimapTest extends AbstractMutableSortedBagMultimapTestCas
             this.payloads.testNewEmpty = TreeBagMultimapTest::testNewEmpty;
         }
     }
+*/
 }

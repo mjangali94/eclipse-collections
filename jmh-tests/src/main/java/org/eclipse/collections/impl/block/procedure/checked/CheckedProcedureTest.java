@@ -101,6 +101,7 @@ public class CheckedProcedureTest {
         procedure.value(new Timestamp(0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -169,4 +170,5 @@ public class CheckedProcedureTest {
             this.payloads.timestampProcedure = CheckedProcedureTest::timestampProcedure;
         }
     }
+*/
 }

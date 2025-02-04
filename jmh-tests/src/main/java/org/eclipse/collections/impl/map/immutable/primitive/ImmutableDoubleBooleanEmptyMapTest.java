@@ -195,6 +195,7 @@ public class ImmutableDoubleBooleanEmptyMapTest extends AbstractImmutableDoubleB
         Assert.assertEquals(0, this.classUnderTest().count(value -> true));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -551,4 +552,5 @@ public class ImmutableDoubleBooleanEmptyMapTest extends AbstractImmutableDoubleB
             this.payloads.isEmpty = ImmutableDoubleBooleanEmptyMapTest::isEmpty;
         }
     }
+*/
 }

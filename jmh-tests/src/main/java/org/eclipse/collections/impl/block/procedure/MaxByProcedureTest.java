@@ -57,6 +57,7 @@ public class MaxByProcedureTest {
         Assert.assertSame(third, procedure.getResult());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -101,4 +102,5 @@ public class MaxByProcedureTest {
             this.payloads.value = MaxByProcedureTest::value;
         }
     }
+*/
 }

@@ -211,6 +211,7 @@ public class ImmutableLongIntSingletonMapTest extends AbstractImmutableLongIntMa
         Assert.assertEquals(new MutableInteger(1), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -719,4 +720,5 @@ public class ImmutableLongIntSingletonMapTest extends AbstractImmutableLongIntMa
             this.payloads.injectInto = ImmutableLongIntSingletonMapTest::injectInto;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class MutableLongCharMapFactoryTest {
         Assert.assertEquals(LongCharHashMap.newWithKeysValues(1L, (char) 2, 3L, (char) 4, 5L, (char) 6, 7L, (char) 8), LongCharMaps.mutable.of(1L, (char) 2, 3L, (char) 4, 5L, (char) 6, 7L, (char) 8));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableLongCharMapFactoryTest {
             this.payloads.of = MutableLongCharMapFactoryTest::of;
         }
     }
+*/
 }

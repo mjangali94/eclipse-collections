@@ -491,6 +491,7 @@ public class LongObjectHashMapTest extends AbstractMutableLongObjectMapTestCase 
         Assert.assertEquals(1.082323233711138, result, 1.0e-15);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1975,4 +1976,5 @@ public class LongObjectHashMapTest extends AbstractMutableLongObjectMapTestCase 
             this.payloads.sumOfDoubleConsistentRounding = LongObjectHashMapTest::sumOfDoubleConsistentRounding;
         }
     }
+*/
 }

@@ -275,6 +275,7 @@ public class IntHashSetTest extends AbstractIntSetTestCase {
         Verify.assertClassNonInstantiable(IntSets.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1223,4 +1224,5 @@ public class IntHashSetTest extends AbstractIntSetTestCase {
             this.payloads.classIsNonInstantiable = IntHashSetTest::classIsNonInstantiable;
         }
     }
+*/
 }

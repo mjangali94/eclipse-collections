@@ -37,6 +37,7 @@ public class CharBooleanHashMapKeyValuesViewTest extends AbstractCharBooleanMapK
         return new CharBooleanHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class CharBooleanHashMapKeyValuesViewTest extends AbstractCharBooleanMapK
             this.payloads.aggregateByNonMutating = CharBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

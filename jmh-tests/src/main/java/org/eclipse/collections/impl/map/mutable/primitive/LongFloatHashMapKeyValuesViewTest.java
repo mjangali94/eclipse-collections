@@ -37,6 +37,7 @@ public class LongFloatHashMapKeyValuesViewTest extends AbstractLongFloatMapKeyVa
         return new LongFloatHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class LongFloatHashMapKeyValuesViewTest extends AbstractLongFloatMapKeyVa
             this.payloads.aggregateByNonMutating = LongFloatHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

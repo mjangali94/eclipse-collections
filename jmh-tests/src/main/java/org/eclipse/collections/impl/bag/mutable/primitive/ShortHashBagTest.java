@@ -68,6 +68,7 @@ public class ShortHashBagTest extends AbstractMutableShortBagTestCase {
         Assert.assertEquals(Short.valueOf((short) 17), sum);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -952,4 +953,5 @@ public class ShortHashBagTest extends AbstractMutableShortBagTestCase {
             this.payloads.injectInto = ShortHashBagTest::injectInto;
         }
     }
+*/
 }

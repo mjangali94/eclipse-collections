@@ -57,6 +57,7 @@ public class BooleanIterableIterateTest {
         Assert.assertTrue(BooleanIterableIterate.notEmpty(this.iterable));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -125,4 +126,5 @@ public class BooleanIterableIterateTest {
             this.payloads.notEmpty = BooleanIterableIterateTest::notEmpty;
         }
     }
+*/
 }

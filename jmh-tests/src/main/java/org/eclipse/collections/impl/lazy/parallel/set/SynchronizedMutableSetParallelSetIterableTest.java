@@ -24,6 +24,7 @@ public class SynchronizedMutableSetParallelSetIterableTest extends ParallelUnsor
         return UnifiedSet.newSetWith(littleElements).asSynchronized().asParallel(this.executorService, this.batchSize);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -729,4 +730,5 @@ public class SynchronizedMutableSetParallelSetIterableTest extends ParallelUnsor
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(SynchronizedMutableSetParallelSetIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class UnmodifiableByteShortMapKeyValuesViewTest extends AbstractByteShort
         return new ByteShortHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableByteShortMapKeyValuesViewTest extends AbstractByteShort
             this.payloads.aggregateByNonMutating = UnmodifiableByteShortMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

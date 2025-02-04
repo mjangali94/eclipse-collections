@@ -34,6 +34,7 @@ public class ImmutableObjectIntHashMapKeysViewTest extends AbstractObjectIntMapK
         return map.toImmutable().keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -918,4 +919,5 @@ public class ImmutableObjectIntHashMapKeysViewTest extends AbstractObjectIntMapK
             this.payloads.iterator = ImmutableObjectIntHashMapKeysViewTest::iterator;
         }
     }
+*/
 }

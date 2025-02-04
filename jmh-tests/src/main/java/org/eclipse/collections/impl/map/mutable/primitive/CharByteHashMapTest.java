@@ -443,6 +443,7 @@ public class CharByteHashMapTest extends AbstractMutableCharByteMapTestCase {
         Verify.assertClassNonInstantiable(CharByteMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1303,4 +1304,5 @@ public class CharByteHashMapTest extends AbstractMutableCharByteMapTestCase {
             this.payloads.classIsNonInstantiable = CharByteHashMapTest::classIsNonInstantiable;
         }
     }
+*/
 }

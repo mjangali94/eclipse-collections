@@ -698,6 +698,7 @@ public class ParallelIterateTest {
         Verify.assertClassNonInstantiable(ParallelIterate.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -987,4 +988,5 @@ public class ParallelIterateTest {
             this.payloads.classIsNonInstantiable = ParallelIterateTest::classIsNonInstantiable;
         }
     }
+*/
 }

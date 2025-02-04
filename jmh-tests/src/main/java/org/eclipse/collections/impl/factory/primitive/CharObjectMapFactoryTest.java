@@ -48,6 +48,7 @@ public class CharObjectMapFactoryTest {
         Assert.assertEquals(sourceMap, mapFactory.withAll(sourceMap));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -76,4 +77,5 @@ public class CharObjectMapFactoryTest {
             this.payloads.immutables = CharObjectMapFactoryTest::immutables;
         }
     }
+*/
 }

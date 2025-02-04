@@ -68,6 +68,7 @@ public class SetIterablesTest {
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -112,4 +113,5 @@ public class SetIterablesTest {
             this.payloads.difference = SetIterablesTest::difference;
         }
     }
+*/
 }

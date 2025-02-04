@@ -332,6 +332,7 @@ public class ComparatorsTest {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -592,4 +593,5 @@ public class ComparatorsTest {
             this.payloads.specializedComparator = ComparatorsTest::specializedComparator;
         }
     }
+*/
 }

@@ -64,6 +64,7 @@ public class ImmutableByteLongHashMapTest extends AbstractImmutableByteLongMapTe
         Assert.assertEquals(new MutableLong(6L), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -572,4 +573,5 @@ public class ImmutableByteLongHashMapTest extends AbstractImmutableByteLongMapTe
             this.payloads.injectInto = ImmutableByteLongHashMapTest::injectInto;
         }
     }
+*/
 }

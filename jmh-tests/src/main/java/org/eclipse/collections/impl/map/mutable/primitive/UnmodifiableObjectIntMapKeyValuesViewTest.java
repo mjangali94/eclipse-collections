@@ -38,6 +38,7 @@ public class UnmodifiableObjectIntMapKeyValuesViewTest extends AbstractObjectInt
         return ObjectIntHashMap.newMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -818,4 +819,5 @@ public class UnmodifiableObjectIntMapKeyValuesViewTest extends AbstractObjectInt
             this.payloads.aggregateByNonMutating = UnmodifiableObjectIntMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

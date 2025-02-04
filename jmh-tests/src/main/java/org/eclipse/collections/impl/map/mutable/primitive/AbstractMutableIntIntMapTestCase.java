@@ -721,6 +721,7 @@ public abstract class AbstractMutableIntIntMapTestCase extends AbstractIntIntMap
         Assert.assertEquals(map.keySet(), set);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1421,4 +1422,5 @@ public abstract class AbstractMutableIntIntMapTestCase extends AbstractIntIntMap
             this.payloads.serializeKeySet = AbstractMutableIntIntMapTestCase::serializeKeySet;
         }
     }
+*/
 }

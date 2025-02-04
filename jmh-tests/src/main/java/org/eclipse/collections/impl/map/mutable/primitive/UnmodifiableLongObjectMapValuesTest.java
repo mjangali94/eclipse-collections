@@ -123,6 +123,7 @@ public class UnmodifiableLongObjectMapValuesTest {
         Assert.assertEquals(expected, HashBag.newBagWith(values.toArray(new Integer[values.size() + 1])));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -215,4 +216,5 @@ public class UnmodifiableLongObjectMapValuesTest {
             this.payloads.valuesToArray = UnmodifiableLongObjectMapValuesTest::valuesToArray;
         }
     }
+*/
 }

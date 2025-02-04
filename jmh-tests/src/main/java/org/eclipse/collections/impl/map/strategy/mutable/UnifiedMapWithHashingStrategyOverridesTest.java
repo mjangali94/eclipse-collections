@@ -85,6 +85,7 @@ public class UnifiedMapWithHashingStrategyOverridesTest extends UnifiedMapWithHa
         return map.withKeysValues(key1, value1, key2, value2, key3, value3, key4, value4);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2481,4 +2482,5 @@ public class UnifiedMapWithHashingStrategyOverridesTest extends UnifiedMapWithHa
             this.payloads.trimToSize = UnifiedMapWithHashingStrategyOverridesTest::trimToSize;
         }
     }
+*/
 }

@@ -273,6 +273,7 @@ public class ImmutableObjectDoubleEmptyMapTest extends AbstractImmutableObjectDo
         Assert.assertEquals(new MutableDouble(0.0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public class ImmutableObjectDoubleEmptyMapTest extends AbstractImmutableObjectDo
             this.payloads.injectInto = ImmutableObjectDoubleEmptyMapTest::injectInto;
         }
     }
+*/
 }

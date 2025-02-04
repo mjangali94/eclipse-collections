@@ -38,6 +38,7 @@ public class SynchronizedFloatBooleanMapKeyValuesViewTest extends AbstractFloatB
         return new FloatBooleanHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedFloatBooleanMapKeyValuesViewTest extends AbstractFloatB
             this.payloads.aggregateByNonMutating = SynchronizedFloatBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -491,6 +491,7 @@ public class CharObjectHashMapTest extends AbstractMutableCharObjectMapTestCase 
         Assert.assertEquals(1.082323233711138, result, 1.0e-15);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1975,4 +1976,5 @@ public class CharObjectHashMapTest extends AbstractMutableCharObjectMapTestCase 
             this.payloads.sumOfDoubleConsistentRounding = CharObjectHashMapTest::sumOfDoubleConsistentRounding;
         }
     }
+*/
 }

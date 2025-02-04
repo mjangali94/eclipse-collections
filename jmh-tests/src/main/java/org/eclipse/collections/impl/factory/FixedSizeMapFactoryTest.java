@@ -105,6 +105,7 @@ public class FixedSizeMapFactoryTest {
         Assert.assertThrows(UnsupportedOperationException.class, () -> map.withMap(Maps.fixedSize.of("key4", "value4")));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -181,4 +182,5 @@ public class FixedSizeMapFactoryTest {
             this.payloads.testWithMap = FixedSizeMapFactoryTest::testWithMap;
         }
     }
+*/
 }

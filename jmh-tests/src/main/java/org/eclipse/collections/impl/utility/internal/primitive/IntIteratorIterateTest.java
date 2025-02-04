@@ -62,6 +62,7 @@ public class IntIteratorIterateTest {
         Assert.assertThrows(NoSuchElementException.class, () -> IntIteratorIterate.max(new IntArrayList().intIterator()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -130,4 +131,5 @@ public class IntIteratorIterateTest {
             this.payloads.max = IntIteratorIterateTest::max;
         }
     }
+*/
 }

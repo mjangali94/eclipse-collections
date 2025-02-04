@@ -129,6 +129,7 @@ public class MutableCharacter implements Comparable<MutableCharacter>, Serializa
         return "MutableCharacter{value=" + this.value + '}';
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -149,4 +150,5 @@ public class MutableCharacter implements Comparable<MutableCharacter>, Serializa
             this.payloads = new _Payloads();
         }
     }
+*/
 }

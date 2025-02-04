@@ -219,6 +219,7 @@ public class UnmodifiableLongBagTest extends AbstractMutableLongBagTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1103,4 +1104,5 @@ public class UnmodifiableLongBagTest extends AbstractMutableLongBagTestCase {
             this.payloads.longIterator_throws_for_consecutive_remove = UnmodifiableLongBagTest::longIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

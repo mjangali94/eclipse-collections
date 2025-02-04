@@ -72,6 +72,7 @@ public class MinAndMaxBlocksTest {
         Assert.assertSame(null, MaxFunction.LONG.value(null, null));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -124,4 +125,5 @@ public class MinAndMaxBlocksTest {
             this.payloads.maxBlocksNull = MinAndMaxBlocksTest::maxBlocksNull;
         }
     }
+*/
 }

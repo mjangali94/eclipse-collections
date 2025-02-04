@@ -55,6 +55,7 @@ public class ObjectIntHashMapWithHashingStrategyValuesTest extends ObjectIntHash
         return ObjectIntHashMapWithHashingStrategy.newMap(STRING_HASHING_STRATEGY);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ObjectIntHashMapWithHashingStrategyValuesTest extends ObjectIntHash
             this.payloads.chunk = ObjectIntHashMapWithHashingStrategyValuesTest::chunk;
         }
     }
+*/
 }

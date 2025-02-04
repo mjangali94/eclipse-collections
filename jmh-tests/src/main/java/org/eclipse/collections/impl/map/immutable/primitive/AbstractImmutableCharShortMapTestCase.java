@@ -101,6 +101,7 @@ public abstract class AbstractImmutableCharShortMapTestCase extends AbstractChar
         Assert.assertThrows(IllegalStateException.class, () -> this.newWithKeysValues((char) 1, (short) 1, (char) 2, (short) 1).flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -577,4 +578,5 @@ public abstract class AbstractImmutableCharShortMapTestCase extends AbstractChar
             this.payloads.flipUniqueValues = AbstractImmutableCharShortMapTestCase::flipUniqueValues;
         }
     }
+*/
 }

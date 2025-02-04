@@ -34,6 +34,7 @@ public class ImmutableDoubleObjectHashMapKeysViewTest extends AbstractLazyDouble
         return DoubleObjectHashMap.newWithKeysValues(element1, 1, element2, 2).toImmutable().keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -398,4 +399,5 @@ public class ImmutableDoubleObjectHashMapKeysViewTest extends AbstractLazyDouble
             this.payloads.asLazy = ImmutableDoubleObjectHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

@@ -96,6 +96,7 @@ public class IntArrayStackTest extends AbstractMutableIntStackTestCase {
         Verify.assertClassNonInstantiable(IntStacks.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -988,4 +989,5 @@ public class IntArrayStackTest extends AbstractMutableIntStackTestCase {
             this.payloads.classIsNonInstantiable = IntArrayStackTest::classIsNonInstantiable;
         }
     }
+*/
 }

@@ -88,6 +88,7 @@ public abstract class ConcurrentHashMapTestCase extends MutableMapTestCase {
         Assert.assertEquals(HashBag.newBag(map.values()).toStringOfItemToCount(), FastList.newList(Collections.nCopies(100, 2)), FastList.newList(map.values()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1833,4 +1834,5 @@ public abstract class ConcurrentHashMapTestCase extends MutableMapTestCase {
             this.payloads.updateValueWith_collisions = ConcurrentHashMapTestCase::updateValueWith_collisions;
         }
     }
+*/
 }

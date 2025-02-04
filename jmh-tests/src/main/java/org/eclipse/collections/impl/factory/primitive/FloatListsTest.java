@@ -214,6 +214,7 @@ public class FloatListsTest {
         Assert.assertEquals(FloatArrayList.newListWith(1.0f, 2.0f, 3.0f), FloatLists.mutable.ofAll(Lists.mutable.<Float>with(1.0f, 2.0f, 3.0f)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -322,4 +323,5 @@ public class FloatListsTest {
             this.payloads.ofAllIterable = FloatListsTest::ofAllIterable;
         }
     }
+*/
 }

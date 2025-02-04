@@ -113,6 +113,7 @@ public final class MutableFloat extends Number implements Comparable<MutableFloa
         return "MutableFloat{value=" + this.value + '}';
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -133,4 +134,5 @@ public final class MutableFloat extends Number implements Comparable<MutableFloa
             this.payloads = new _Payloads();
         }
     }
+*/
 }

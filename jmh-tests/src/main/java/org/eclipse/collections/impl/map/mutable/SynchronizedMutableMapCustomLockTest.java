@@ -43,6 +43,7 @@ public class SynchronizedMutableMapCustomLockTest extends MutableMapTestCase {
         return new SynchronizedMutableMap<>(UnifiedMap.newWithKeysValues(key1, value1, key2, value2, key3, value3, key4, value4), LOCK);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1783,4 +1784,5 @@ public class SynchronizedMutableMapCustomLockTest extends MutableMapTestCase {
             this.payloads.testClone = SynchronizedMutableMapCustomLockTest::testClone;
         }
     }
+*/
 }

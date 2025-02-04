@@ -64,6 +64,7 @@ public class ImmutableIntFloatHashMapTest extends AbstractImmutableIntFloatMapTe
         Assert.assertEquals(new MutableFloat(6.0f), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -572,4 +573,5 @@ public class ImmutableIntFloatHashMapTest extends AbstractImmutableIntFloatMapTe
             this.payloads.injectInto = ImmutableIntFloatHashMapTest::injectInto;
         }
     }
+*/
 }

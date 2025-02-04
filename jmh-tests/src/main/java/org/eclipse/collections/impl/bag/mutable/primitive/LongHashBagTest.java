@@ -68,6 +68,7 @@ public class LongHashBagTest extends AbstractMutableLongBagTestCase {
         Assert.assertEquals(Long.valueOf(17L), sum);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -952,4 +953,5 @@ public class LongHashBagTest extends AbstractMutableLongBagTestCase {
             this.payloads.injectInto = LongHashBagTest::injectInto;
         }
     }
+*/
 }

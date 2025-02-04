@@ -240,6 +240,7 @@ public class SelectDoubleIterableTest {
         Assert.assertEquals(new MutableDouble(3.0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -540,4 +541,5 @@ public class SelectDoubleIterableTest {
             this.payloads.injectInto = SelectDoubleIterableTest::injectInto;
         }
     }
+*/
 }

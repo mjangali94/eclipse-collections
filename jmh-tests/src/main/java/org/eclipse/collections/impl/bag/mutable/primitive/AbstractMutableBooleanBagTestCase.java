@@ -281,6 +281,7 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
         Assert.assertEquals(expected2, actual2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -845,4 +846,5 @@ public abstract class AbstractMutableBooleanBagTestCase extends AbstractMutableB
             this.payloads.selectUnique = AbstractMutableBooleanBagTestCase::selectUnique;
         }
     }
+*/
 }

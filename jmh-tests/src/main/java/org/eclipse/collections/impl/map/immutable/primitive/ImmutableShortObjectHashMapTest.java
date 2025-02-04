@@ -53,6 +53,7 @@ public class ImmutableShortObjectHashMapTest extends AbstractImmutableShortObjec
         Assert.assertEquals(this.classUnderTest(), map1);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1193,4 +1194,5 @@ public class ImmutableShortObjectHashMapTest extends AbstractImmutableShortObjec
             this.payloads.newWithoutAllKeys = ImmutableShortObjectHashMapTest::newWithoutAllKeys;
         }
     }
+*/
 }

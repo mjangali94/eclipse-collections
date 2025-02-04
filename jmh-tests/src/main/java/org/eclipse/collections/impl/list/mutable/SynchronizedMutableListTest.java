@@ -60,6 +60,7 @@ public class SynchronizedMutableListTest extends AbstractListTestCase {
         Assert.assertEquals("1, 2, 3", builder.toString());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2512,4 +2513,5 @@ public class SynchronizedMutableListTest extends AbstractListTestCase {
             this.payloads.appendString = SynchronizedMutableListTest::appendString;
         }
     }
+*/
 }

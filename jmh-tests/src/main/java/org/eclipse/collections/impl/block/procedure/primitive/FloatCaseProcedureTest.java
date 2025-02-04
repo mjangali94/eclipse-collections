@@ -70,6 +70,7 @@ public class FloatCaseProcedureTest {
         Assert.assertEquals(FloatLists.mutable.with(3.0f, 4.0f), defaultList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class FloatCaseProcedureTest {
             this.payloads.twoCasesWithDefault = FloatCaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

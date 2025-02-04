@@ -256,6 +256,7 @@ public class ImmutableTripletonMapTest extends ImmutableMemoryEfficientMapTestCa
         return new ImmutableTripletonMap<>(key1, value1, key2, value2, key3, value3);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -988,4 +989,5 @@ public class ImmutableTripletonMapTest extends ImmutableMemoryEfficientMapTestCa
             this.payloads.getOnly = ImmutableTripletonMapTest::getOnly;
         }
     }
+*/
 }

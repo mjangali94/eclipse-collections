@@ -722,6 +722,7 @@ public abstract class AbstractMutableLongCharMapTestCase extends AbstractLongCha
         Assert.assertEquals(map.keySet(), set);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1422,4 +1423,5 @@ public abstract class AbstractMutableLongCharMapTestCase extends AbstractLongCha
             this.payloads.serializeKeySet = AbstractMutableLongCharMapTestCase::serializeKeySet;
         }
     }
+*/
 }

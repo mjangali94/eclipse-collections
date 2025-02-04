@@ -412,6 +412,7 @@ public abstract class AbstractBooleanListTestCase extends AbstractMutableBoolean
         Assert.assertEquals(IntInterval.zeroTo(this.classUnderTest().size() - 1), list2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1160,4 +1161,5 @@ public abstract class AbstractBooleanListTestCase extends AbstractMutableBoolean
             this.payloads.collectWithIndex = AbstractBooleanListTestCase::collectWithIndex;
         }
     }
+*/
 }

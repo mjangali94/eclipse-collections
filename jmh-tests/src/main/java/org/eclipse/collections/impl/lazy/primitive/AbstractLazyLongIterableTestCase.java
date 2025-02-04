@@ -405,6 +405,7 @@ public abstract class AbstractLazyLongIterableTestCase {
         Assert.assertSame(iterable, iterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -769,4 +770,5 @@ public abstract class AbstractLazyLongIterableTestCase {
             this.payloads.asLazy = AbstractLazyLongIterableTestCase::asLazy;
         }
     }
+*/
 }

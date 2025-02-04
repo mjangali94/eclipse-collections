@@ -33,6 +33,7 @@ public class ShortLongHashMapKeysViewTest extends AbstractLazyShortIterableTestC
         return ShortLongHashMap.newWithKeysValues(element1, 1L, element2, 2L).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class ShortLongHashMapKeysViewTest extends AbstractLazyShortIterableTestC
             this.payloads.asLazy = ShortLongHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

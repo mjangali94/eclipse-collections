@@ -101,6 +101,7 @@ public abstract class AbstractImmutableFloatCharMapTestCase extends AbstractFloa
         Assert.assertThrows(IllegalStateException.class, () -> this.newWithKeysValues(1.0f, (char) 1, 2.0f, (char) 1).flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -577,4 +578,5 @@ public abstract class AbstractImmutableFloatCharMapTestCase extends AbstractFloa
             this.payloads.flipUniqueValues = AbstractImmutableFloatCharMapTestCase::flipUniqueValues;
         }
     }
+*/
 }

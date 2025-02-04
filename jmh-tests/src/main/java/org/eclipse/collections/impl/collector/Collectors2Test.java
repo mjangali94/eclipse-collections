@@ -1141,6 +1141,7 @@ public final class Collectors2Test {
         Verify.assertInstanceOf(MutableSortedMap.class, LARGE_INTERVAL.parallelStream().collect(Collectors2.aggregateBy(each -> each % 2, () -> 0, Integer::sum, SortedMaps.mutable::empty)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2137,4 +2138,5 @@ public final class Collectors2Test {
             this.payloads.aggregateBy_parallelStream_mutableSortedMap = Collectors2Test::aggregateBy_parallelStream_mutableSortedMap;
         }
     }
+*/
 }

@@ -37,6 +37,7 @@ public class IntLongHashMapKeyValuesViewTest extends AbstractIntLongMapKeyValues
         return new IntLongHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class IntLongHashMapKeyValuesViewTest extends AbstractIntLongMapKeyValues
             this.payloads.aggregateByNonMutating = IntLongHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

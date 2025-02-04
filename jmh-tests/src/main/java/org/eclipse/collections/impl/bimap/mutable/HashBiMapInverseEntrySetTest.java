@@ -38,6 +38,7 @@ public class HashBiMapInverseEntrySetTest extends AbstractMutableBiMapEntrySetTe
         return HashBiMap.newWithKeysValues(value, key).inverse();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -186,4 +187,5 @@ public class HashBiMapInverseEntrySetTest extends AbstractMutableBiMapEntrySetTe
             this.payloads.entry_toString = HashBiMapInverseEntrySetTest::entry_toString;
         }
     }
+*/
 }

@@ -158,6 +158,7 @@ public class FloatBooleanHashMapKeySetTest extends AbstractFloatSetTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1090,4 +1091,5 @@ public class FloatBooleanHashMapKeySetTest extends AbstractFloatSetTestCase {
             this.payloads.chunk = FloatBooleanHashMapKeySetTest::chunk;
         }
     }
+*/
 }

@@ -103,6 +103,7 @@ public abstract class AbstractImmutableCharCollectionTestCase extends AbstractCh
         this.assertSizeAndContains(collection2, (char) 1, (char) 2, (char) 3, (char) 4);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -755,4 +756,5 @@ public abstract class AbstractImmutableCharCollectionTestCase extends AbstractCh
             this.payloads.newWithoutAll = AbstractImmutableCharCollectionTestCase::newWithoutAll;
         }
     }
+*/
 }

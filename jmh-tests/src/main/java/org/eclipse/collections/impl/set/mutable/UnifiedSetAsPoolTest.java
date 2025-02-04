@@ -80,6 +80,7 @@ public class UnifiedSetAsPoolTest {
         Verify.assertEmpty(this.staticPool);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -148,4 +149,5 @@ public class UnifiedSetAsPoolTest {
             this.payloads.removeFromPool = UnifiedSetAsPoolTest::removeFromPool;
         }
     }
+*/
 }

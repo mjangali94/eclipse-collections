@@ -234,6 +234,7 @@ public class DoubleBooleanHashMapTest extends AbstractMutableDoubleBooleanMapTes
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -830,4 +831,5 @@ public class DoubleBooleanHashMapTest extends AbstractMutableDoubleBooleanMapTes
             this.payloads.updateValue_every_slot = DoubleBooleanHashMapTest::updateValue_every_slot;
         }
     }
+*/
 }

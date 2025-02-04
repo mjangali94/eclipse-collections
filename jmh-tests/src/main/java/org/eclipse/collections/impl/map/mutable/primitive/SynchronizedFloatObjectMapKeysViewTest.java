@@ -33,6 +33,7 @@ public class SynchronizedFloatObjectMapKeysViewTest extends AbstractLazyFloatIte
         return FloatObjectHashMap.newWithKeysValues(element1, 1, element2, 2).asSynchronized().keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class SynchronizedFloatObjectMapKeysViewTest extends AbstractLazyFloatIte
             this.payloads.asLazy = SynchronizedFloatObjectMapKeysViewTest::asLazy;
         }
     }
+*/
 }

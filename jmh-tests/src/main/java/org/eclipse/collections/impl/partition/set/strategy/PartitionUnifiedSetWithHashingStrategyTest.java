@@ -31,6 +31,7 @@ public class PartitionUnifiedSetWithHashingStrategyTest {
         Assert.assertEquals(rejected, partitionImmutableSet.getRejected());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -59,4 +60,5 @@ public class PartitionUnifiedSetWithHashingStrategyTest {
             this.payloads.toImmutable = PartitionUnifiedSetWithHashingStrategyTest::toImmutable;
         }
     }
+*/
 }

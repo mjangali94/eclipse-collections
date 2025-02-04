@@ -938,6 +938,7 @@ public class ListIterateTest {
         Assert.assertEquals(Lists.mutable.of(3, 2, 1), actual.getRejected());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1558,4 +1559,5 @@ public class ListIterateTest {
             this.payloads.partitionWhile = ListIterateTest::partitionWhile;
         }
     }
+*/
 }

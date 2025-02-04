@@ -27,6 +27,7 @@ public class MutableBagFactoryTest {
         Verify.assertEmpty(this.mutableBagFactory.of());
     }
 
+
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -34,12 +35,12 @@ public class MutableBagFactoryTest {
 
         private MutableBagFactoryTest instance;
 
-        //  @org.openjdk.jmh.annotations.Benchmark
+          @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_with() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.with);
         }
 
-        //@org.openjdk.jmh.annotations.Benchmark
+        @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_of() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.of);
         }
@@ -63,4 +64,5 @@ public class MutableBagFactoryTest {
             this.payloads.of = MutableBagFactoryTest::of;
         }
     }
+
 }

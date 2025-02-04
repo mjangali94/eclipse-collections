@@ -275,6 +275,7 @@ public class ShortHashSetTest extends AbstractShortSetTestCase {
         Verify.assertClassNonInstantiable(ShortSets.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1223,4 +1224,5 @@ public class ShortHashSetTest extends AbstractShortSetTestCase {
             this.payloads.classIsNonInstantiable = ShortHashSetTest::classIsNonInstantiable;
         }
     }
+*/
 }

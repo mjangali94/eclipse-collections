@@ -42,6 +42,7 @@ public class ImmutableByteHashSetTest extends AbstractImmutableByteHashSetTestCa
         return UnifiedSet.newSetWith(elements);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -758,4 +759,5 @@ public class ImmutableByteHashSetTest extends AbstractImmutableByteHashSetTestCa
             this.payloads.isCartesianProduct = ImmutableByteHashSetTest::isCartesianProduct;
         }
     }
+*/
 }

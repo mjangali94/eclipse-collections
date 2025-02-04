@@ -37,6 +37,7 @@ public class ShortLongHashMapKeyValuesViewTest extends AbstractShortLongMapKeyVa
         return new ShortLongHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class ShortLongHashMapKeyValuesViewTest extends AbstractShortLongMapKeyVa
             this.payloads.aggregateByNonMutating = ShortLongHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

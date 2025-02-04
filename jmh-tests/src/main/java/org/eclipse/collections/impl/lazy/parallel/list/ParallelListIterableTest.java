@@ -41,6 +41,7 @@ public class ParallelListIterableTest extends ParallelListIterableTestCase {
         FastList.newListWith(1, 2, 2, 3, 3, 3, 4, 4, 4, 4).asParallel(null, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -762,4 +763,5 @@ public class ParallelListIterableTest extends ParallelListIterableTestCase {
             this.payloads.asParallel_null_executorService = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelListIterableTest::asParallel_null_executorService, java.lang.NullPointerException.class);
         }
     }
+*/
 }

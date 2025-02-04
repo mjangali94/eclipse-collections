@@ -64,6 +64,7 @@ public class ImmutableDoubleDoubleHashMapTest extends AbstractImmutableDoubleDou
         Assert.assertEquals(new MutableDouble(6.0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -572,4 +573,5 @@ public class ImmutableDoubleDoubleHashMapTest extends AbstractImmutableDoubleDou
             this.payloads.injectInto = ImmutableDoubleDoubleHashMapTest::injectInto;
         }
     }
+*/
 }

@@ -25,6 +25,7 @@ public class ParallelDistinctListIterableTest extends ParallelUnsortedSetIterabl
         return FastList.newListWith(littleElements).asParallel(this.executorService, this.batchSize).asUnique();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -730,4 +731,5 @@ public class ParallelDistinctListIterableTest extends ParallelUnsortedSetIterabl
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelDistinctListIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

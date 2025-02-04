@@ -39,6 +39,7 @@ public class ImmutableShortSetFactoryImplTest {
         Assert.assertEquals(ShortHashSet.newSet(set).toImmutable(), ShortSets.immutable.ofAll(set));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -83,4 +84,5 @@ public class ImmutableShortSetFactoryImplTest {
             this.payloads.ofAll = ImmutableShortSetFactoryImplTest::ofAll;
         }
     }
+*/
 }

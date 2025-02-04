@@ -86,6 +86,7 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase {
         Assert.assertEquals(FastList.newListWith(3, 2, 4, 1, 5), distinctDistinct.toList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1010,4 +1011,5 @@ public class DistinctIterableTest extends AbstractLazyIterableTestCase {
             this.payloads.distinct = DistinctIterableTest::distinct;
         }
     }
+*/
 }

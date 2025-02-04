@@ -83,6 +83,7 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase {
         Assert.assertEquals(FastList.newListWith(3, 2, 4, 1, 5), iterable.distinct().toList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -999,4 +1000,5 @@ public class LazyIterableAdapterTest extends AbstractLazyIterableTestCase {
             this.payloads.distinct = LazyIterableAdapterTest::distinct;
         }
     }
+*/
 }

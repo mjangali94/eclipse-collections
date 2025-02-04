@@ -38,6 +38,7 @@ public class SynchronizedObjectShortMapKeyValuesViewTest extends AbstractObjectS
         return ObjectShortHashMap.newMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -818,4 +819,5 @@ public class SynchronizedObjectShortMapKeyValuesViewTest extends AbstractObjectS
             this.payloads.aggregateByNonMutating = SynchronizedObjectShortMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

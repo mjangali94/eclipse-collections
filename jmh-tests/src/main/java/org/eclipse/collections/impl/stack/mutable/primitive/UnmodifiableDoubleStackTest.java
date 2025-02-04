@@ -91,6 +91,7 @@ public class UnmodifiableDoubleStackTest extends AbstractDoubleStackTestCase {
         Assert.assertThrows(UnsupportedOperationException.class, iterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -959,4 +960,5 @@ public class UnmodifiableDoubleStackTest extends AbstractDoubleStackTestCase {
             this.payloads.doubleIterator_throws_for_remove_before_next = UnmodifiableDoubleStackTest::doubleIterator_throws_for_remove_before_next;
         }
     }
+*/
 }

@@ -42,6 +42,7 @@ public class FrozenFloatHashSetTest extends AbstractImmutableFloatHashSetTestCas
         return UnifiedSet.newSetWith(elements);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -822,4 +823,5 @@ public class FrozenFloatHashSetTest extends AbstractImmutableFloatHashSetTestCas
             this.payloads.cartesianProduct = FrozenFloatHashSetTest::cartesianProduct;
         }
     }
+*/
 }

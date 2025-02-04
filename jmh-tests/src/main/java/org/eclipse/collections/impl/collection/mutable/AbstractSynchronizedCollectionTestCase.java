@@ -46,6 +46,7 @@ public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCol
         Assert.assertSame(collection, collection.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1842,4 +1843,5 @@ public abstract class AbstractSynchronizedCollectionTestCase extends AbstractCol
             this.payloads.asSynchronized = AbstractSynchronizedCollectionTestCase::asSynchronized;
         }
     }
+*/
 }

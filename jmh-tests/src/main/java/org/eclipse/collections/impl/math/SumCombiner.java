@@ -33,6 +33,7 @@ public final class SumCombiner<T> extends AbstractProcedureCombiner<SumProcedure
         this.sum.add(sumProcedure.getSum());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -53,4 +54,5 @@ public final class SumCombiner<T> extends AbstractProcedureCombiner<SumProcedure
             this.payloads = new _Payloads();
         }
     }
+*/
 }

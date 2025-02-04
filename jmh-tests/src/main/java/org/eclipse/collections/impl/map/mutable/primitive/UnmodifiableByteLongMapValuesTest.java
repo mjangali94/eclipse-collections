@@ -350,6 +350,7 @@ public class UnmodifiableByteLongMapValuesTest extends AbstractMutableLongCollec
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1130,4 +1131,5 @@ public class UnmodifiableByteLongMapValuesTest extends AbstractMutableLongCollec
             this.payloads.chunk = UnmodifiableByteLongMapValuesTest::chunk;
         }
     }
+*/
 }

@@ -25,6 +25,7 @@ public class CompositeListParallelListIterableTest extends NonParallelListIterab
         return new CompositeFastList<Integer>().withAll(Lists.mutable.of(littleElements)).asParallel(null, this.batchSize);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -730,4 +731,5 @@ public class CompositeListParallelListIterableTest extends NonParallelListIterab
             this.payloads.toString_interruptedException = CompositeListParallelListIterableTest::toString_interruptedException;
         }
     }
+*/
 }

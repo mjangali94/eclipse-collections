@@ -631,6 +631,7 @@ public abstract class AbstractImmutableListTestCase extends AbstractImmutableCol
         Assert.assertSame(integers, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1883,4 +1884,5 @@ public abstract class AbstractImmutableListTestCase extends AbstractImmutableCol
             this.payloads.toImmutable = AbstractImmutableListTestCase::toImmutable;
         }
     }
+*/
 }

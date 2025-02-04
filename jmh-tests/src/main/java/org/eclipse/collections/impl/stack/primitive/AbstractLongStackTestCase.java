@@ -279,6 +279,7 @@ public abstract class AbstractLongStackTestCase extends AbstractLongIterableTest
         this.classUnderTest().forEachWithIndex(null);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1027,4 +1028,5 @@ public abstract class AbstractLongStackTestCase extends AbstractLongIterableTest
             this.payloads.forEachWithIndex = new se.chalmers.ju2jmh.api.ExceptionTest<>(AbstractLongStackTestCase::forEachWithIndex, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

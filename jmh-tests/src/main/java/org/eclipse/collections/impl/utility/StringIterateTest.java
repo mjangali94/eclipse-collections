@@ -681,6 +681,7 @@ public class StringIterateTest {
         Verify.assertClassNonInstantiable(StringIterate.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1357,4 +1358,5 @@ public class StringIterateTest {
             this.payloads.classIsNonInstantiable = StringIterateTest::classIsNonInstantiable;
         }
     }
+*/
 }

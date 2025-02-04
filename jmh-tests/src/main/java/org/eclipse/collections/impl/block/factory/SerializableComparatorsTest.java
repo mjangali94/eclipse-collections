@@ -44,6 +44,7 @@ public class SerializableComparatorsTest {
         Assert.assertThrows(NullPointerException.class, () -> SerializableComparators.reverse(null));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -96,4 +97,5 @@ public class SerializableComparatorsTest {
             this.payloads.reverse = SerializableComparatorsTest::reverse;
         }
     }
+*/
 }

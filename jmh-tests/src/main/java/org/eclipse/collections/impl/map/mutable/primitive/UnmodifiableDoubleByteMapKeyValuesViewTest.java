@@ -38,6 +38,7 @@ public class UnmodifiableDoubleByteMapKeyValuesViewTest extends AbstractDoubleBy
         return new DoubleByteHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableDoubleByteMapKeyValuesViewTest extends AbstractDoubleBy
             this.payloads.aggregateByNonMutating = UnmodifiableDoubleByteMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

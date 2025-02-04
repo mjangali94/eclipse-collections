@@ -37,6 +37,7 @@ public class CharCharHashMapKeyValuesViewTest extends AbstractCharCharMapKeyValu
         return new CharCharHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -833,4 +834,5 @@ public class CharCharHashMapKeyValuesViewTest extends AbstractCharCharMapKeyValu
             this.payloads.aggregateByNonMutating = CharCharHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

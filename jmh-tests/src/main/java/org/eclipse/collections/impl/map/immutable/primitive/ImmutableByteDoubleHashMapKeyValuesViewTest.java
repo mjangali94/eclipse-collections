@@ -39,6 +39,7 @@ public class ImmutableByteDoubleHashMapKeyValuesViewTest extends AbstractByteDou
         return new ByteDoubleHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableByteDoubleHashMapKeyValuesViewTest extends AbstractByteDou
             this.payloads.aggregateByNonMutating = ImmutableByteDoubleHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

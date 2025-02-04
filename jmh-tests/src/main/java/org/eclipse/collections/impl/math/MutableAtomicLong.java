@@ -120,6 +120,7 @@ public final class MutableAtomicLong extends AtomicLong implements Comparable<Mu
         return Long.valueOf(this.get());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -140,4 +141,5 @@ public final class MutableAtomicLong extends AtomicLong implements Comparable<Mu
             this.payloads = new _Payloads();
         }
     }
+*/
 }

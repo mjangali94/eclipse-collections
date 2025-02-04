@@ -67,6 +67,7 @@ public class BooleanCaseProcedureTest {
         Assert.assertEquals(BooleanLists.mutable.empty(), defaultList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -119,4 +120,5 @@ public class BooleanCaseProcedureTest {
             this.payloads.twoCasesWithDefault = BooleanCaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

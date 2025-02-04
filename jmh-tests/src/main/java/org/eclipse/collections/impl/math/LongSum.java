@@ -74,6 +74,7 @@ public final class LongSum implements Sum {
         return (int) (this.sum ^ this.sum >>> 32);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -94,4 +95,5 @@ public final class LongSum implements Sum {
             this.payloads = new _Payloads();
         }
     }
+*/
 }

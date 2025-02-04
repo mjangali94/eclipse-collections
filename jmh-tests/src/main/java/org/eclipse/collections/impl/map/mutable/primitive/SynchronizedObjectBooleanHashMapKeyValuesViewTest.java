@@ -36,6 +36,7 @@ public class SynchronizedObjectBooleanHashMapKeyValuesViewTest extends AbstractO
         return ObjectBooleanHashMap.newMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -752,4 +753,5 @@ public class SynchronizedObjectBooleanHashMapKeyValuesViewTest extends AbstractO
             this.payloads.aggregateByNonMutating = SynchronizedObjectBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

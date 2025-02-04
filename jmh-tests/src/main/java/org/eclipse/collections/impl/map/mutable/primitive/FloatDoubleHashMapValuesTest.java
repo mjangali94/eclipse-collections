@@ -520,6 +520,7 @@ public class FloatDoubleHashMapValuesTest extends AbstractMutableDoubleCollectio
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1356,4 +1357,5 @@ public class FloatDoubleHashMapValuesTest extends AbstractMutableDoubleCollectio
             this.payloads.chunk = FloatDoubleHashMapValuesTest::chunk;
         }
     }
+*/
 }

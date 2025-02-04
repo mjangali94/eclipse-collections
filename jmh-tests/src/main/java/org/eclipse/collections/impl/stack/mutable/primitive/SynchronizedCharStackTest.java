@@ -57,6 +57,7 @@ public class SynchronizedCharStackTest extends AbstractMutableCharStackTestCase 
         Assert.assertSame(stack1, stack1.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -933,4 +934,5 @@ public class SynchronizedCharStackTest extends AbstractMutableCharStackTestCase 
             this.payloads.asSynchronized = SynchronizedCharStackTest::asSynchronized;
         }
     }
+*/
 }

@@ -113,6 +113,7 @@ public class ImmutableShortEmptyBagTest extends AbstractImmutableShortBagTestCas
         Assert.assertEquals(new MutableShort((short) 0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -845,4 +846,5 @@ public class ImmutableShortEmptyBagTest extends AbstractImmutableShortBagTestCas
             this.payloads.injectInto = ImmutableShortEmptyBagTest::injectInto;
         }
     }
+*/
 }

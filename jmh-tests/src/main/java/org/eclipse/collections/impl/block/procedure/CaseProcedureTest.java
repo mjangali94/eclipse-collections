@@ -70,6 +70,7 @@ public class CaseProcedureTest {
         Verify.assertContains("CaseProcedure", procedure.toString());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class CaseProcedureTest {
             this.payloads.twoCasesWithDefault = CaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

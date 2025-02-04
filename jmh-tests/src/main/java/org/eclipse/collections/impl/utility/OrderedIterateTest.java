@@ -22,6 +22,7 @@ public class OrderedIterateTest {
         Verify.assertClassNonInstantiable(OrderedIterate.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -50,4 +51,5 @@ public class OrderedIterateTest {
             this.payloads.classIsNonInstantiable = OrderedIterateTest::classIsNonInstantiable;
         }
     }
+*/
 }

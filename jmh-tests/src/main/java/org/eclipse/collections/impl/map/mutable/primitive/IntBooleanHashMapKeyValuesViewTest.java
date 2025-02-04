@@ -37,6 +37,7 @@ public class IntBooleanHashMapKeyValuesViewTest extends AbstractIntBooleanMapKey
         return new IntBooleanHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class IntBooleanHashMapKeyValuesViewTest extends AbstractIntBooleanMapKey
             this.payloads.aggregateByNonMutating = IntBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

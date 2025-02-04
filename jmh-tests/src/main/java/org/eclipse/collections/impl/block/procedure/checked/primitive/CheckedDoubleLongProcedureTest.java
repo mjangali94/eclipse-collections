@@ -56,6 +56,7 @@ public final class CheckedDoubleLongProcedureTest {
         }.value(0.0, 0L));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -100,4 +101,5 @@ public final class CheckedDoubleLongProcedureTest {
             this.payloads.checkedException = CheckedDoubleLongProcedureTest::checkedException;
         }
     }
+*/
 }

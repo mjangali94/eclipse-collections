@@ -87,6 +87,7 @@ public class LazyLongIterableAdapterTest extends AbstractLazyLongIterableTestCas
         Verify.assertClassNonInstantiable(LazyLongIterate.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -459,4 +460,5 @@ public class LazyLongIterableAdapterTest extends AbstractLazyLongIterableTestCas
             this.payloads.classIsNonInstantiable = LazyLongIterableAdapterTest::classIsNonInstantiable;
         }
     }
+*/
 }

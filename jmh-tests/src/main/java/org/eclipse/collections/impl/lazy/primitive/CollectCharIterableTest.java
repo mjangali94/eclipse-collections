@@ -257,6 +257,7 @@ public class CollectCharIterableTest {
         Verify.assertInstanceOf(LazyCharIterable.class, this.charIterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -565,4 +566,5 @@ public class CollectCharIterableTest {
             this.payloads.asLazy = CollectCharIterableTest::asLazy;
         }
     }
+*/
 }

@@ -310,6 +310,7 @@ public class TapLongIterableTest {
         Assert.assertEquals(new MutableLong(15L), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -602,4 +603,5 @@ public class TapLongIterableTest {
             this.payloads.injectInto = TapLongIterableTest::injectInto;
         }
     }
+*/
 }

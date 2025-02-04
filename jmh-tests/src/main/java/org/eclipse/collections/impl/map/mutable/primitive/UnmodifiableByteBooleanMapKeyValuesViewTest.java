@@ -38,6 +38,7 @@ public class UnmodifiableByteBooleanMapKeyValuesViewTest extends AbstractByteBoo
         return new ByteBooleanHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class UnmodifiableByteBooleanMapKeyValuesViewTest extends AbstractByteBoo
             this.payloads.aggregateByNonMutating = UnmodifiableByteBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -499,6 +499,7 @@ public abstract class AbstractIntSetTestCase extends AbstractMutableIntCollectio
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1343,4 +1344,5 @@ public abstract class AbstractIntSetTestCase extends AbstractMutableIntCollectio
             this.payloads.cartesianProduct = AbstractIntSetTestCase::cartesianProduct;
         }
     }
+*/
 }

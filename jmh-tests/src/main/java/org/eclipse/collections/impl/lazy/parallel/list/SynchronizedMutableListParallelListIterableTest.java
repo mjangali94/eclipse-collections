@@ -181,6 +181,7 @@ public class SynchronizedMutableListParallelListIterableTest extends ParallelLis
         Assert.assertEquals(this.getExpected().toBag(), actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -886,4 +887,5 @@ public class SynchronizedMutableListParallelListIterableTest extends ParallelLis
             this.payloads.toString_interruptedException = SynchronizedMutableListParallelListIterableTest::toString_interruptedException;
         }
     }
+*/
 }

@@ -85,6 +85,7 @@ public class ImmutableLongSingletonListTest extends AbstractImmutableLongListTes
         Assert.assertEquals(-2, this.classUnderTest().binarySearch(5L));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -937,4 +938,5 @@ public class ImmutableLongSingletonListTest extends AbstractImmutableLongListTes
             this.payloads.binarySearch = ImmutableLongSingletonListTest::binarySearch;
         }
     }
+*/
 }

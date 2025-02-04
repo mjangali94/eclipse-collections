@@ -119,6 +119,7 @@ public class Functions2Test {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -219,4 +220,5 @@ public class Functions2Test {
             this.payloads.classIsNonInstantiable = Functions2Test::classIsNonInstantiable;
         }
     }
+*/
 }

@@ -22,6 +22,7 @@ public class DoNothingProcedure implements Procedure<Object> {
         // Do nothing.
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -42,4 +43,5 @@ public class DoNothingProcedure implements Procedure<Object> {
             this.payloads = new _Payloads();
         }
     }
+*/
 }

@@ -301,6 +301,7 @@ public class Predicates2Test {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -561,4 +562,5 @@ public class Predicates2Test {
             this.payloads.greaterEqualNumber = Predicates2Test::greaterEqualNumber;
         }
     }
+*/
 }

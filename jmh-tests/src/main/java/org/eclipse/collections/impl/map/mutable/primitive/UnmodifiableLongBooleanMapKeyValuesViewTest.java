@@ -38,6 +38,7 @@ public class UnmodifiableLongBooleanMapKeyValuesViewTest extends AbstractLongBoo
         return new LongBooleanHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class UnmodifiableLongBooleanMapKeyValuesViewTest extends AbstractLongBoo
             this.payloads.aggregateByNonMutating = UnmodifiableLongBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -144,6 +144,7 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase {
         });
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1012,4 +1013,5 @@ public class CharAdapterTest extends AbstractImmutableCharListTestCase {
             this.payloads.binarySearch = CharAdapterTest::binarySearch;
         }
     }
+*/
 }

@@ -203,6 +203,7 @@ public class ImmutableEmptyMapTest extends ImmutableMemoryEfficientMapTestCase {
         return new ImmutableEmptyMap<>();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -935,4 +936,5 @@ public class ImmutableEmptyMapTest extends ImmutableMemoryEfficientMapTestCase {
             this.payloads.getOnly = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableEmptyMapTest::getOnly, java.lang.IllegalStateException.class);
         }
     }
+*/
 }

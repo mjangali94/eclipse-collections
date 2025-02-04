@@ -454,6 +454,7 @@ public class SynchronizedLongByteMapValuesTest extends AbstractMutableByteCollec
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1234,4 +1235,5 @@ public class SynchronizedLongByteMapValuesTest extends AbstractMutableByteCollec
             this.payloads.chunk = SynchronizedLongByteMapValuesTest::chunk;
         }
     }
+*/
 }

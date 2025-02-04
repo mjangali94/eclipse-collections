@@ -27,6 +27,7 @@ public class AbstractImmutableEntryTest {
         Assert.assertEquals(Integer.valueOf(2), AbstractImmutableEntry.<Integer>getValueFunction().valueOf(entry));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -63,4 +64,5 @@ public class AbstractImmutableEntryTest {
             this.payloads.getValueFunction = AbstractImmutableEntryTest::getValueFunction;
         }
     }
+*/
 }

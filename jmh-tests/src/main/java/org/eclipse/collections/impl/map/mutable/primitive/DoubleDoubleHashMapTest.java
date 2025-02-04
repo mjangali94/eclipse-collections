@@ -420,6 +420,7 @@ public class DoubleDoubleHashMapTest extends AbstractMutableDoubleDoubleMapTestC
         Verify.assertClassNonInstantiable(DoubleDoubleMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1280,4 +1281,5 @@ public class DoubleDoubleHashMapTest extends AbstractMutableDoubleDoubleMapTestC
             this.payloads.classIsNonInstantiable = DoubleDoubleHashMapTest::classIsNonInstantiable;
         }
     }
+*/
 }

@@ -224,6 +224,7 @@ public class LongListsTest {
         Assert.assertEquals(true, LongLists.immutable.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).primitiveParallelStream().isParallel());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -348,4 +349,5 @@ public class LongListsTest {
             this.payloads.primitiveParallelStream = LongListsTest::primitiveParallelStream;
         }
     }
+*/
 }

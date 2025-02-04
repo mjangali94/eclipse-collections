@@ -38,6 +38,7 @@ public class MutableIntDoubleMapFactoryTest {
         Assert.assertEquals(IntDoubleHashMap.newWithKeysValues(1, 2.0, 3, 4.0, 5, 6.0, 7, 8.0), IntDoubleMaps.mutable.of(1, 2.0, 3, 4.0, 5, 6.0, 7, 8.0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -50,7 +51,7 @@ public class MutableIntDoubleMapFactoryTest {
             this.runBenchmark(this.payloads.with);
         }
 
-        //  @org.openjdk.jmh.annotations.Benchmark
+        // @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_of() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.of);
         }
@@ -74,4 +75,5 @@ public class MutableIntDoubleMapFactoryTest {
             this.payloads.of = MutableIntDoubleMapFactoryTest::of;
         }
     }
+*/
 }

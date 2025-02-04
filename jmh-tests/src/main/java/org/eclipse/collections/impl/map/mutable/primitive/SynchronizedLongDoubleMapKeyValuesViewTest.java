@@ -38,6 +38,7 @@ public class SynchronizedLongDoubleMapKeyValuesViewTest extends AbstractLongDoub
         return new LongDoubleHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedLongDoubleMapKeyValuesViewTest extends AbstractLongDoub
             this.payloads.aggregateByNonMutating = SynchronizedLongDoubleMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

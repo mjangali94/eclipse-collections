@@ -294,6 +294,7 @@ public abstract class AbstractMemoryEfficientMutableListTestCase {
         Assert.assertThrows(UnsupportedOperationException.class, subList::clear);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -595,4 +596,5 @@ public abstract class AbstractMemoryEfficientMutableListTestCase {
             this.payloads.subList_methodsThrow = AbstractMemoryEfficientMutableListTestCase::subList_methodsThrow;
         }
     }
+*/
 }

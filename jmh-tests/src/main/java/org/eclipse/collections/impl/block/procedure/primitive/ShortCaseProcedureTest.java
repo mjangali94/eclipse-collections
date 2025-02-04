@@ -70,6 +70,7 @@ public class ShortCaseProcedureTest {
         Assert.assertEquals(ShortLists.mutable.with((short) 3, (short) 4), defaultList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class ShortCaseProcedureTest {
             this.payloads.twoCasesWithDefault = ShortCaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

@@ -40,6 +40,7 @@ public class BooleanCaseFunctionTest {
         Verify.assertContains("BooleanCaseFunction", function.toString());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -84,4 +85,5 @@ public class BooleanCaseFunctionTest {
             this.payloads.defaultValue = BooleanCaseFunctionTest::defaultValue;
         }
     }
+*/
 }

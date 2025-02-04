@@ -25,6 +25,7 @@ public class SynchronizedSortedSetParallelSetIterableTest extends NonParallelSor
         return TreeSortedSet.newSetWith(Comparators.reverseNaturalOrder(), littleElements).asSynchronized().asParallel(this.executorService, this.batchSize);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -730,4 +731,5 @@ public class SynchronizedSortedSetParallelSetIterableTest extends NonParallelSor
             this.payloads.toString_interruptedException = SynchronizedSortedSetParallelSetIterableTest::toString_interruptedException;
         }
     }
+*/
 }

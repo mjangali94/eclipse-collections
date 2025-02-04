@@ -33,6 +33,7 @@ public class CollectIntProcedureTest {
         Assert.assertEquals(expected, targetList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -61,4 +62,5 @@ public class CollectIntProcedureTest {
             this.payloads.basicCase = CollectIntProcedureTest::basicCase;
         }
     }
+*/
 }

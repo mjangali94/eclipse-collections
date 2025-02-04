@@ -34,6 +34,7 @@ public class CharFunctionTest {
         Assert.assertEquals('1', CharFunction.TO_LOWERCASE.valueOf('1'));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -70,4 +71,5 @@ public class CharFunctionTest {
             this.payloads.toLowercase = CharFunctionTest::toLowercase;
         }
     }
+*/
 }

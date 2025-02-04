@@ -47,6 +47,7 @@ public class IntBooleanMapFactoryTest {
         Assert.assertTrue(IntBooleanMaps.immutable.from(iterable, Integer::valueOf, each -> Integer.valueOf(each) % 2 == 0) instanceof ImmutableIntBooleanMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -99,4 +100,5 @@ public class IntBooleanMapFactoryTest {
             this.payloads.from = IntBooleanMapFactoryTest::from;
         }
     }
+*/
 }

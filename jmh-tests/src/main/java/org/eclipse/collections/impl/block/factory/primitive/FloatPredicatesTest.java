@@ -80,6 +80,7 @@ public final class FloatPredicatesTest {
         Verify.assertClassNonInstantiable(FloatPredicates.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -180,4 +181,5 @@ public final class FloatPredicatesTest {
             this.payloads.classIsNonInstantiable = FloatPredicatesTest::classIsNonInstantiable;
         }
     }
+*/
 }

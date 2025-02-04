@@ -52,6 +52,7 @@ public class ImmutableLongArrayStackTest extends AbstractImmutableLongStackTestC
         Assert.assertEquals(new MutableLong(6L), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -864,4 +865,5 @@ public class ImmutableLongArrayStackTest extends AbstractImmutableLongStackTestC
             this.payloads.injectInto = ImmutableLongArrayStackTest::injectInto;
         }
     }
+*/
 }

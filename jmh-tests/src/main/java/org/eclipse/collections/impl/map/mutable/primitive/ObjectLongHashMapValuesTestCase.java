@@ -465,6 +465,7 @@ public abstract class ObjectLongHashMapValuesTestCase extends AbstractMutableLon
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1245,4 +1246,5 @@ public abstract class ObjectLongHashMapValuesTestCase extends AbstractMutableLon
             this.payloads.chunk = ObjectLongHashMapValuesTestCase::chunk;
         }
     }
+*/
 }

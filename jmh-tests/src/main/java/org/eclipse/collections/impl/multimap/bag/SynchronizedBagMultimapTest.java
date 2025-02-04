@@ -57,6 +57,7 @@ public class SynchronizedBagMultimapTest extends AbstractMutableBagMultimapTestC
         return HashBag.newBagWith(args);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -533,4 +534,5 @@ public class SynchronizedBagMultimapTest extends AbstractMutableBagMultimapTestC
             this.payloads.putOccurrences = SynchronizedBagMultimapTest::putOccurrences;
         }
     }
+*/
 }

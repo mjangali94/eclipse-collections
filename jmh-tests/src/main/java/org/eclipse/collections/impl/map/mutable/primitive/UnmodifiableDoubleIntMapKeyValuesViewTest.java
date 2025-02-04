@@ -38,6 +38,7 @@ public class UnmodifiableDoubleIntMapKeyValuesViewTest extends AbstractDoubleInt
         return new DoubleIntHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableDoubleIntMapKeyValuesViewTest extends AbstractDoubleInt
             this.payloads.aggregateByNonMutating = UnmodifiableDoubleIntMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

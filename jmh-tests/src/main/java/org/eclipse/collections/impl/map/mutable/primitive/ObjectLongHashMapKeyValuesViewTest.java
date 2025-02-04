@@ -38,6 +38,7 @@ public class ObjectLongHashMapKeyValuesViewTest extends AbstractObjectLongMapKey
         return ObjectLongHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -818,4 +819,5 @@ public class ObjectLongHashMapKeyValuesViewTest extends AbstractObjectLongMapKey
             this.payloads.aggregateByNonMutating = ObjectLongHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

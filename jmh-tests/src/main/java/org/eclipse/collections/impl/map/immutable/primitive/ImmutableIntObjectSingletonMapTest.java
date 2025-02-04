@@ -626,6 +626,7 @@ public class ImmutableIntObjectSingletonMapTest extends AbstractImmutableIntObje
         Verify.assertSortedBagsEqual(TreeBag.newBagWith(Comparators.byFunction(String::valueOf), "zero"), map1.toSortedBagBy(String::valueOf));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1758,4 +1759,5 @@ public class ImmutableIntObjectSingletonMapTest extends AbstractImmutableIntObje
             this.payloads.toSortedBagBy = ImmutableIntObjectSingletonMapTest::toSortedBagBy;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class UnmodifiableByteObjectMapKeyValuesViewTest extends AbstractByteObje
         return ByteObjectHashMap.<Integer>newMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class UnmodifiableByteObjectMapKeyValuesViewTest extends AbstractByteObje
             this.payloads.aggregateByNonMutating = UnmodifiableByteObjectMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

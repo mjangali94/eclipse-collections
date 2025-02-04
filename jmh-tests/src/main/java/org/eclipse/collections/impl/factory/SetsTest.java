@@ -719,6 +719,7 @@ public class SetsTest {
         Assert.assertSame(Sets.immutable.empty(), empty2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1227,4 +1228,5 @@ public class SetsTest {
             this.payloads.withAllEmptyImmutableSame = SetsTest::withAllEmptyImmutableSame;
         }
     }
+*/
 }

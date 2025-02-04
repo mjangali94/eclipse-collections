@@ -590,6 +590,7 @@ public abstract class AbstractFloatListTestCase extends AbstractMutableFloatColl
         Assert.assertTrue(zipEmpty.isEmpty());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1826,4 +1827,5 @@ public abstract class AbstractFloatListTestCase extends AbstractMutableFloatColl
             this.payloads.zip = AbstractFloatListTestCase::zip;
         }
     }
+*/
 }

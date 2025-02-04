@@ -96,6 +96,7 @@ public class ImmutableLongSingletonStackTest extends AbstractImmutableLongStackT
         Assert.assertEquals(new MutableLong(2L), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -884,4 +885,5 @@ public class ImmutableLongSingletonStackTest extends AbstractImmutableLongStackT
             this.payloads.injectInto = ImmutableLongSingletonStackTest::injectInto;
         }
     }
+*/
 }

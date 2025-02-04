@@ -42,6 +42,7 @@ public class ImmutableUnifiedMapWithHashingStrategy2Test extends MapIterableTest
         return new ImmutableUnifiedMapWithHashingStrategy<>(UnifiedMapWithHashingStrategy.newMapWith(HashingStrategies.nullSafeHashingStrategy(HashingStrategies.defaultStrategy()), Tuples.pair(key1, value1), Tuples.pair(key2, value2), Tuples.pair(key3, value3), Tuples.pair(key4, value4)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1254,4 +1255,5 @@ public class ImmutableUnifiedMapWithHashingStrategy2Test extends MapIterableTest
             this.payloads.test_toString = ImmutableUnifiedMapWithHashingStrategy2Test::test_toString;
         }
     }
+*/
 }

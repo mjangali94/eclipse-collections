@@ -200,6 +200,7 @@ public class ImmutableLongShortEmptyMapTest extends AbstractImmutableLongShortMa
         Assert.assertEquals(new MutableShort((short) 0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -708,4 +709,5 @@ public class ImmutableLongShortEmptyMapTest extends AbstractImmutableLongShortMa
             this.payloads.injectInto = ImmutableLongShortEmptyMapTest::injectInto;
         }
     }
+*/
 }

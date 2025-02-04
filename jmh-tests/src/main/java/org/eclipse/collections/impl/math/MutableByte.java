@@ -117,6 +117,7 @@ public class MutableByte extends Number implements Comparable<MutableByte> {
         return "MutableByte{value=" + this.value + '}';
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -137,4 +138,5 @@ public class MutableByte extends Number implements Comparable<MutableByte> {
             this.payloads = new _Payloads();
         }
     }
+*/
 }

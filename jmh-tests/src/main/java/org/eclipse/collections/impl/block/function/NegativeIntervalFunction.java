@@ -21,6 +21,7 @@ public class NegativeIntervalFunction implements Function<Integer, Iterable<Inte
         return Interval.fromTo(-1, -object);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -41,4 +42,5 @@ public class NegativeIntervalFunction implements Function<Integer, Iterable<Inte
             this.payloads = new _Payloads();
         }
     }
+*/
 }

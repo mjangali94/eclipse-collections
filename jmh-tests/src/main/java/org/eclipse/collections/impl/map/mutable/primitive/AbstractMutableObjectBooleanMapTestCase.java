@@ -488,6 +488,7 @@ public abstract class AbstractMutableObjectBooleanMapTestCase extends AbstractOb
         Assert.assertThrows(IllegalStateException.class, booleanIterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -932,4 +933,5 @@ public abstract class AbstractMutableObjectBooleanMapTestCase extends AbstractOb
             this.payloads.iterator_throws_on_invocation_of_remove_before_next = AbstractMutableObjectBooleanMapTestCase::iterator_throws_on_invocation_of_remove_before_next;
         }
     }
+*/
 }

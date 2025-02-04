@@ -211,6 +211,7 @@ public class ImmutableShortByteSingletonMapTest extends AbstractImmutableShortBy
         Assert.assertEquals(new MutableByte((byte) 1), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -719,4 +720,5 @@ public class ImmutableShortByteSingletonMapTest extends AbstractImmutableShortBy
             this.payloads.injectInto = ImmutableShortByteSingletonMapTest::injectInto;
         }
     }
+*/
 }

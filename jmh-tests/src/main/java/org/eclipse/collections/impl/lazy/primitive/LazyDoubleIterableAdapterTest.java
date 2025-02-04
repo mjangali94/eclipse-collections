@@ -87,6 +87,7 @@ public class LazyDoubleIterableAdapterTest extends AbstractLazyDoubleIterableTes
         Verify.assertClassNonInstantiable(LazyDoubleIterate.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -459,4 +460,5 @@ public class LazyDoubleIterableAdapterTest extends AbstractLazyDoubleIterableTes
             this.payloads.classIsNonInstantiable = LazyDoubleIterableAdapterTest::classIsNonInstantiable;
         }
     }
+*/
 }

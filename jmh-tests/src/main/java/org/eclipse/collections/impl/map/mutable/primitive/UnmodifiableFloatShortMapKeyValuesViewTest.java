@@ -38,6 +38,7 @@ public class UnmodifiableFloatShortMapKeyValuesViewTest extends AbstractFloatSho
         return new FloatShortHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableFloatShortMapKeyValuesViewTest extends AbstractFloatSho
             this.payloads.aggregateByNonMutating = UnmodifiableFloatShortMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -442,6 +442,7 @@ public class ByteHashSetTest extends AbstractByteSetTestCase {
         Assert.assertEquals(2, hashSet2.freeze().size());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1390,4 +1391,5 @@ public class ByteHashSetTest extends AbstractByteSetTestCase {
             this.payloads.freeze = ByteHashSetTest::freeze;
         }
     }
+*/
 }

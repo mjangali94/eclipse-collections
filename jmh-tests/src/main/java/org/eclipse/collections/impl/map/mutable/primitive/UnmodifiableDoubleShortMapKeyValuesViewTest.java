@@ -38,6 +38,7 @@ public class UnmodifiableDoubleShortMapKeyValuesViewTest extends AbstractDoubleS
         return new DoubleShortHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableDoubleShortMapKeyValuesViewTest extends AbstractDoubleS
             this.payloads.aggregateByNonMutating = UnmodifiableDoubleShortMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

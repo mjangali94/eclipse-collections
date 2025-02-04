@@ -232,6 +232,7 @@ public class SelectLongIterableTest {
         Assert.assertEquals(new MutableLong(3L), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -524,4 +525,5 @@ public class SelectLongIterableTest {
             this.payloads.injectInto = SelectLongIterableTest::injectInto;
         }
     }
+*/
 }

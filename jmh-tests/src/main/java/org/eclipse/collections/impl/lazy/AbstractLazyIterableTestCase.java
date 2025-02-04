@@ -756,6 +756,7 @@ public abstract class AbstractLazyIterableTestCase {
         Assert.assertEquals(HashBag.newBagWith(1, 2, 3, 4, 5), integers.distinct().toBag());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1640,4 +1641,5 @@ public abstract class AbstractLazyIterableTestCase {
             this.payloads.distinct = AbstractLazyIterableTestCase::distinct;
         }
     }
+*/
 }

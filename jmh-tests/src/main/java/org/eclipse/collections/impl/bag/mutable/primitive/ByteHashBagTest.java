@@ -68,6 +68,7 @@ public class ByteHashBagTest extends AbstractMutableByteBagTestCase {
         Assert.assertEquals(Byte.valueOf((byte) 17), sum);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -952,4 +953,5 @@ public class ByteHashBagTest extends AbstractMutableByteBagTestCase {
             this.payloads.injectInto = ByteHashBagTest::injectInto;
         }
     }
+*/
 }

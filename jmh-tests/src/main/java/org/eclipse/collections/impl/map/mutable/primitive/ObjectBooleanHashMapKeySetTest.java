@@ -41,6 +41,7 @@ public class ObjectBooleanHashMapKeySetTest extends ObjectBooleanHashMapKeySetTe
         return ObjectBooleanHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -173,4 +174,5 @@ public class ObjectBooleanHashMapKeySetTest extends ObjectBooleanHashMapKeySetTe
             this.payloads.keySetToArray = ObjectBooleanHashMapKeySetTest::keySetToArray;
         }
     }
+*/
 }

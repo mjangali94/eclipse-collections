@@ -202,6 +202,7 @@ public abstract class AbstractMutableSortedBagMultimapTestCase extends AbstractM
         Verify.assertListMultimapsEqual(expectedMultimap, collectedMultimap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -662,4 +663,5 @@ public abstract class AbstractMutableSortedBagMultimapTestCase extends AbstractM
             this.payloads.collectValues = AbstractMutableSortedBagMultimapTestCase::collectValues;
         }
     }
+*/
 }

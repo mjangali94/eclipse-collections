@@ -39,6 +39,7 @@ public class ImmutableCharSetFactoryImplTest {
         Assert.assertEquals(CharHashSet.newSet(set).toImmutable(), CharSets.immutable.ofAll(set));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -83,4 +84,5 @@ public class ImmutableCharSetFactoryImplTest {
             this.payloads.ofAll = ImmutableCharSetFactoryImplTest::ofAll;
         }
     }
+*/
 }

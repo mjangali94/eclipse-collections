@@ -144,6 +144,7 @@ public class SynchronizedDoubleDoubleMapKeySetTest extends AbstractDoubleSetTest
         Assert.assertEquals(this.newObjectCollectionWith(0.0, 1.0, 31.0, 32.0).hashCode(), set1.hashCode());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1068,4 +1069,5 @@ public class SynchronizedDoubleDoubleMapKeySetTest extends AbstractDoubleSetTest
             this.payloads.sum = SynchronizedDoubleDoubleMapKeySetTest::sum;
         }
     }
+*/
 }

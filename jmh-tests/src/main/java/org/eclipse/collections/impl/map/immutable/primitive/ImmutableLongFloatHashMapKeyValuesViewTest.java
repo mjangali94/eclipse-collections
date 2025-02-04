@@ -39,6 +39,7 @@ public class ImmutableLongFloatHashMapKeyValuesViewTest extends AbstractLongFloa
         return new LongFloatHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableLongFloatHashMapKeyValuesViewTest extends AbstractLongFloa
             this.payloads.aggregateByNonMutating = ImmutableLongFloatHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

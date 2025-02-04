@@ -57,6 +57,7 @@ public class ObjectCharHashMapTest extends ObjectCharHashMapTestCase {
         return ObjectCharHashMap.class;
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -861,4 +862,5 @@ public class ObjectCharHashMapTest extends ObjectCharHashMapTestCase {
             this.payloads.classIsNonInstantiable = ObjectCharHashMapTest::classIsNonInstantiable;
         }
     }
+*/
 }

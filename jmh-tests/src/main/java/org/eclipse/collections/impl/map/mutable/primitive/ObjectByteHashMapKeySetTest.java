@@ -42,6 +42,7 @@ public class ObjectByteHashMapKeySetTest extends ObjectByteHashMapKeySetTestCase
         return ObjectByteHashMap.newMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -174,4 +175,5 @@ public class ObjectByteHashMapKeySetTest extends ObjectByteHashMapKeySetTestCase
             this.payloads.keySetToArray = ObjectByteHashMapKeySetTest::keySetToArray;
         }
     }
+*/
 }

@@ -443,6 +443,7 @@ public class IntDoubleHashMapTest extends AbstractMutableIntDoubleMapTestCase {
         Verify.assertClassNonInstantiable(IntDoubleMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1303,4 +1304,5 @@ public class IntDoubleHashMapTest extends AbstractMutableIntDoubleMapTestCase {
             this.payloads.classIsNonInstantiable = IntDoubleHashMapTest::classIsNonInstantiable;
         }
     }
+*/
 }

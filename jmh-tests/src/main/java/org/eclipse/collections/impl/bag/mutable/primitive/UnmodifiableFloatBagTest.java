@@ -219,6 +219,7 @@ public class UnmodifiableFloatBagTest extends AbstractMutableFloatBagTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1159,4 +1160,5 @@ public class UnmodifiableFloatBagTest extends AbstractMutableFloatBagTestCase {
             this.payloads.floatIterator_throws_for_consecutive_remove = UnmodifiableFloatBagTest::floatIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

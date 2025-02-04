@@ -73,6 +73,7 @@ public class MutableSortedBagFactoryTest {
         Assert.assertEquals(TreeBag.newBag(Comparator.reverseOrder()), SortedBags.mutable.empty(Comparator.reverseOrder()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -165,4 +166,5 @@ public class MutableSortedBagFactoryTest {
             this.payloads.empty = MutableSortedBagFactoryTest::empty;
         }
     }
+*/
 }

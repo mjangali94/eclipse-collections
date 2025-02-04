@@ -68,6 +68,7 @@ public class IntHashBagTest extends AbstractMutableIntBagTestCase {
         Assert.assertEquals(Integer.valueOf(17), sum);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -952,4 +953,5 @@ public class IntHashBagTest extends AbstractMutableIntBagTestCase {
             this.payloads.injectInto = IntHashBagTest::injectInto;
         }
     }
+*/
 }

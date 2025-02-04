@@ -101,6 +101,7 @@ public class MultiReaderHashBagMultimapTest extends AbstractMutableBagMultimapTe
         Assert.assertEquals(HashBag.newBagWith("Four", "FourFour", "Four"), actual.get(Integer.valueOf(4)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -585,4 +586,5 @@ public class MultiReaderHashBagMultimapTest extends AbstractMutableBagMultimapTe
             this.payloads.pairIterableConstructorTest = MultiReaderHashBagMultimapTest::pairIterableConstructorTest;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class UnmodifiableIntShortMapKeyValuesViewTest extends AbstractIntShortMa
         return new IntShortHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableIntShortMapKeyValuesViewTest extends AbstractIntShortMa
             this.payloads.aggregateByNonMutating = UnmodifiableIntShortMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -41,6 +41,7 @@ public class SynchronizedFloatBagTest extends AbstractMutableFloatBagTestCase {
         Assert.assertEquals(bag, bag.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -981,4 +982,5 @@ public class SynchronizedFloatBagTest extends AbstractMutableFloatBagTestCase {
             this.payloads.asSynchronized = SynchronizedFloatBagTest::asSynchronized;
         }
     }
+*/
 }

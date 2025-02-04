@@ -1089,6 +1089,7 @@ public abstract class StackIterableTestCase extends AbstractRichIterableTestCase
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2933,4 +2934,5 @@ public abstract class StackIterableTestCase extends AbstractRichIterableTestCase
             this.payloads.aggregateByNonMutating = StackIterableTestCase::aggregateByNonMutating;
         }
     }
+*/
 }

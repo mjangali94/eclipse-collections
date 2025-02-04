@@ -38,6 +38,7 @@ public class UnmodifiableIntBooleanMapKeyValuesViewTest extends AbstractIntBoole
         return new IntBooleanHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class UnmodifiableIntBooleanMapKeyValuesViewTest extends AbstractIntBoole
             this.payloads.aggregateByNonMutating = UnmodifiableIntBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

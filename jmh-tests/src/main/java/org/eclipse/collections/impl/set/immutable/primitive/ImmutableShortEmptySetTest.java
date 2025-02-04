@@ -88,6 +88,7 @@ public class ImmutableShortEmptySetTest extends AbstractImmutableShortHashSetTes
         Assert.assertEquals(ShortBags.immutable.empty(), this.classUnderTest().toBag());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -812,4 +813,5 @@ public class ImmutableShortEmptySetTest extends AbstractImmutableShortHashSetTes
             this.payloads.toBag = ImmutableShortEmptySetTest::toBag;
         }
     }
+*/
 }

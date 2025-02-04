@@ -50,6 +50,7 @@ public class TapIteratorTest {
         Assert.assertEquals(IntLists.mutable.of(10, 20, 30), intList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -102,4 +103,5 @@ public class TapIteratorTest {
             this.payloads.iterator = TapIteratorTest::iterator;
         }
     }
+*/
 }

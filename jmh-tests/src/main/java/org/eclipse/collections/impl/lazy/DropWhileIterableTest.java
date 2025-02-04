@@ -166,6 +166,7 @@ public class DropWhileIterableTest extends AbstractLazyIterableTestCase {
         Assert.assertEquals(FastList.newListWith(2, 3, 4, 5), new DropWhileIterable<>(FastList.newListWith(1, 1, 2, 3, 3, 3, 4, 5), each -> each % 2 != 0).distinct().toList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1083,4 +1084,5 @@ public class DropWhileIterableTest extends AbstractLazyIterableTestCase {
             this.payloads.distinct = DropWhileIterableTest::distinct;
         }
     }
+*/
 }

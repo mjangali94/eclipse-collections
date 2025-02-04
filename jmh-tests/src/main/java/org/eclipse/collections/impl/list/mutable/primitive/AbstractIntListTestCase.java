@@ -603,6 +603,7 @@ public abstract class AbstractIntListTestCase extends AbstractMutableIntCollecti
         Assert.assertEquals(Arrays.asList(1, 2, 3), IntArrayList.newListWith(1, 2, 3).asUnmodifiable().primitiveParallelStream().boxed().collect(Collectors.toList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1799,4 +1800,5 @@ public abstract class AbstractIntListTestCase extends AbstractMutableIntCollecti
             this.payloads.parallelStream = AbstractIntListTestCase::parallelStream;
         }
     }
+*/
 }

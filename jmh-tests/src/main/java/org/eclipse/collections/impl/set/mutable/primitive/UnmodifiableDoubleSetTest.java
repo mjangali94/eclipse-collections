@@ -194,6 +194,7 @@ public class UnmodifiableDoubleSetTest extends AbstractDoubleSetTestCase {
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1118,4 +1119,5 @@ public class UnmodifiableDoubleSetTest extends AbstractDoubleSetTestCase {
             this.payloads.asUnmodifiable = UnmodifiableDoubleSetTest::asUnmodifiable;
         }
     }
+*/
 }

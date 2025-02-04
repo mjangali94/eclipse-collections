@@ -273,6 +273,7 @@ public class ImmutableObjectLongEmptyMapTest extends AbstractImmutableObjectLong
         Assert.assertEquals(new MutableLong(0L), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public class ImmutableObjectLongEmptyMapTest extends AbstractImmutableObjectLong
             this.payloads.injectInto = ImmutableObjectLongEmptyMapTest::injectInto;
         }
     }
+*/
 }

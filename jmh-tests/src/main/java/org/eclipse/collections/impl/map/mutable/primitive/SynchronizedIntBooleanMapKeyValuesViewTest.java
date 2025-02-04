@@ -38,6 +38,7 @@ public class SynchronizedIntBooleanMapKeyValuesViewTest extends AbstractIntBoole
         return new IntBooleanHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedIntBooleanMapKeyValuesViewTest extends AbstractIntBoole
             this.payloads.aggregateByNonMutating = SynchronizedIntBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

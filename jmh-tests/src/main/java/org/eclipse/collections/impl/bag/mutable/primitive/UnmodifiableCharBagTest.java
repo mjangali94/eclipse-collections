@@ -219,6 +219,7 @@ public class UnmodifiableCharBagTest extends AbstractMutableCharBagTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1103,4 +1104,5 @@ public class UnmodifiableCharBagTest extends AbstractMutableCharBagTestCase {
             this.payloads.charIterator_throws_for_consecutive_remove = UnmodifiableCharBagTest::charIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

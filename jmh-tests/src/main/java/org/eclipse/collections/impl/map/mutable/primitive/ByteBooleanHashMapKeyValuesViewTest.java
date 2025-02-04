@@ -37,6 +37,7 @@ public class ByteBooleanHashMapKeyValuesViewTest extends AbstractByteBooleanMapK
         return new ByteBooleanHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class ByteBooleanHashMapKeyValuesViewTest extends AbstractByteBooleanMapK
             this.payloads.aggregateByNonMutating = ByteBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

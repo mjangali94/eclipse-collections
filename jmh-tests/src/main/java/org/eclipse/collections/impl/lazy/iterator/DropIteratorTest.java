@@ -55,6 +55,7 @@ public class DropIteratorTest {
         Assert.assertThrows(NoSuchElementException.class, () -> new DropIterator<>(Lists.fixedSize.of(1, 2, 3), 4).next());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -99,4 +100,5 @@ public class DropIteratorTest {
             this.payloads.noSuchElementException = DropIteratorTest::noSuchElementException;
         }
     }
+*/
 }

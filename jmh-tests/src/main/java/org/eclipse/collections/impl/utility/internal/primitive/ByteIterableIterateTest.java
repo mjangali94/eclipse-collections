@@ -50,6 +50,7 @@ public class ByteIterableIterateTest {
         Verify.assertIterableSize(3, ByteIterableIterate.collect(this.iterable, String::valueOf, FastList.<String>newList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -102,4 +103,5 @@ public class ByteIterableIterateTest {
             this.payloads.collect_target = ByteIterableIterateTest::collect_target;
         }
     }
+*/
 }

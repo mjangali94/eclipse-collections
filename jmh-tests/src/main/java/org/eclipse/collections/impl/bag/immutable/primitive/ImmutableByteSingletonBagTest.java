@@ -74,6 +74,7 @@ public class ImmutableByteSingletonBagTest extends AbstractImmutableByteBagTestC
         Assert.assertEquals(new MutableByte((byte) 2), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -798,4 +799,5 @@ public class ImmutableByteSingletonBagTest extends AbstractImmutableByteBagTestC
             this.payloads.injectInto = ImmutableByteSingletonBagTest::injectInto;
         }
     }
+*/
 }

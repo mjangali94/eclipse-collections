@@ -606,6 +606,7 @@ public abstract class AbstractLongListTestCase extends AbstractMutableLongCollec
         Assert.assertEquals(Arrays.asList(1L, 2L, 3L), LongArrayList.newListWith(1L, 2L, 3L).asUnmodifiable().primitiveParallelStream().boxed().collect(Collectors.toList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1802,4 +1803,5 @@ public abstract class AbstractLongListTestCase extends AbstractMutableLongCollec
             this.payloads.parallelStream = AbstractLongListTestCase::parallelStream;
         }
     }
+*/
 }

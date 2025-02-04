@@ -70,6 +70,7 @@ public class CheckedBooleanIntProcedureTest {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -114,4 +115,5 @@ public class CheckedBooleanIntProcedureTest {
             this.payloads.valueWithUncheckedException = CheckedBooleanIntProcedureTest::valueWithUncheckedException;
         }
     }
+*/
 }

@@ -193,6 +193,7 @@ public class ImmutableFloatEmptyListTest extends AbstractImmutableFloatListTestC
         Assert.assertEquals(-1, this.classUnderTest().binarySearch(-1.0f));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1085,4 +1086,5 @@ public class ImmutableFloatEmptyListTest extends AbstractImmutableFloatListTestC
             this.payloads.binarySearch = ImmutableFloatEmptyListTest::binarySearch;
         }
     }
+*/
 }

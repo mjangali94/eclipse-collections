@@ -331,6 +331,7 @@ public class UnmodifiableDoubleObjectMapTest extends AbstractMutableDoubleObject
         Verify.assertInstanceOf(UnmodifiableObjectDoubleMap.class, this.classUnderTest().flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1671,4 +1672,5 @@ public class UnmodifiableDoubleObjectMapTest extends AbstractMutableDoubleObject
             this.payloads.flipUniqueValues = UnmodifiableDoubleObjectMapTest::flipUniqueValues;
         }
     }
+*/
 }

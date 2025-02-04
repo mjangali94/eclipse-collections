@@ -39,6 +39,7 @@ public class ImmutableShortLongHashMapKeyValuesViewTest extends AbstractShortLon
         return new ShortLongHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -835,4 +836,5 @@ public class ImmutableShortLongHashMapKeyValuesViewTest extends AbstractShortLon
             this.payloads.aggregateByNonMutating = ImmutableShortLongHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

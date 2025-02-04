@@ -38,6 +38,7 @@ public class UnmodifiableFloatCharMapKeyValuesViewTest extends AbstractFloatChar
         return new FloatCharHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class UnmodifiableFloatCharMapKeyValuesViewTest extends AbstractFloatChar
             this.payloads.aggregateByNonMutating = UnmodifiableFloatCharMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

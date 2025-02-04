@@ -161,6 +161,7 @@ public class LazyBooleanIterableAdapterTest {
         Assert.assertEquals(BooleanHashBag.newBagWith(false, true, true), this.iterable.toBag());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -333,4 +334,5 @@ public class LazyBooleanIterableAdapterTest {
             this.payloads.toBag = LazyBooleanIterableAdapterTest::toBag;
         }
     }
+*/
 }

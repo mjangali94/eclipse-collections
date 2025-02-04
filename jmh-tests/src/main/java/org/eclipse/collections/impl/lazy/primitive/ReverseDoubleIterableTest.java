@@ -278,6 +278,7 @@ public class ReverseDoubleIterableTest {
         Assert.assertEquals(DoubleArrayList.newListWith(1.0, 2.0, 3.0), DoubleArrayList.newListWith(2.0, 3.0, 1.0).asReversed().toSortedList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -594,4 +595,5 @@ public class ReverseDoubleIterableTest {
             this.payloads.toSortedList = ReverseDoubleIterableTest::toSortedList;
         }
     }
+*/
 }

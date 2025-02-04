@@ -820,6 +820,7 @@ public abstract class AbstractDoubleObjectMapKeyValuesViewTestCase {
         Assert.assertEquals(1, aggregation.get("1.0:2").intValue());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1624,4 +1625,5 @@ public abstract class AbstractDoubleObjectMapKeyValuesViewTestCase {
             this.payloads.aggregateByNonMutating = AbstractDoubleObjectMapKeyValuesViewTestCase::aggregateByNonMutating;
         }
     }
+*/
 }

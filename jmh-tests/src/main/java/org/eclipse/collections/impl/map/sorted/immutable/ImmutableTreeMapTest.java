@@ -259,6 +259,7 @@ public class ImmutableTreeMapTest extends ImmutableSortedMapTestCase {
         Assert.assertSame(immutableMap, SortedMaps.immutable.ofSortedMap(immutableMap));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1871,4 +1872,5 @@ public class ImmutableTreeMapTest extends ImmutableSortedMapTestCase {
             this.payloads.ofSortedMap = ImmutableTreeMapTest::ofSortedMap;
         }
     }
+*/
 }

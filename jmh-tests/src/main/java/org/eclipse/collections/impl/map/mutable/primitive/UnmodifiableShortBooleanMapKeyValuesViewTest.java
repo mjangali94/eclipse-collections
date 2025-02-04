@@ -38,6 +38,7 @@ public class UnmodifiableShortBooleanMapKeyValuesViewTest extends AbstractShortB
         return new ShortBooleanHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class UnmodifiableShortBooleanMapKeyValuesViewTest extends AbstractShortB
             this.payloads.aggregateByNonMutating = UnmodifiableShortBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

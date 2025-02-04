@@ -53,6 +53,7 @@ public abstract class AbstractImmutableObjectBooleanMapTestCase extends Abstract
         Assert.assertSame(map, map.toImmutable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -361,4 +362,5 @@ public abstract class AbstractImmutableObjectBooleanMapTestCase extends Abstract
             this.payloads.toImmutable = AbstractImmutableObjectBooleanMapTestCase::toImmutable;
         }
     }
+*/
 }

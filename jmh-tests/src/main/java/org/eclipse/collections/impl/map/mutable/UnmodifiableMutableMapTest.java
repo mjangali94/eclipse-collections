@@ -437,6 +437,7 @@ public class UnmodifiableMutableMapTest extends MutableMapTestCase {
         // Not applicable for unmodifiable maps
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2201,4 +2202,5 @@ public class UnmodifiableMutableMapTest extends MutableMapTestCase {
             this.payloads.updateValueWith_collisions = new se.chalmers.ju2jmh.api.ExceptionTest<>(UnmodifiableMutableMapTest::updateValueWith_collisions, java.lang.UnsupportedOperationException.class);
         }
     }
+*/
 }

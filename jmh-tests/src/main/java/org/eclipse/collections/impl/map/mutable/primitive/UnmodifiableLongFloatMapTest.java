@@ -332,6 +332,7 @@ public class UnmodifiableLongFloatMapTest extends AbstractMutableLongFloatMapTes
         Verify.assertInstanceOf(UnmodifiableFloatLongMap.class, this.classUnderTest().flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1080,4 +1081,5 @@ public class UnmodifiableLongFloatMapTest extends AbstractMutableLongFloatMapTes
             this.payloads.flipUniqueValues = UnmodifiableLongFloatMapTest::flipUniqueValues;
         }
     }
+*/
 }

@@ -47,6 +47,7 @@ public class ImmutableIntHashBagTest extends AbstractImmutableIntBagTestCase {
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -771,4 +772,5 @@ public class ImmutableIntHashBagTest extends AbstractImmutableIntBagTestCase {
             this.payloads.selectUnique = ImmutableIntHashBagTest::selectUnique;
         }
     }
+*/
 }

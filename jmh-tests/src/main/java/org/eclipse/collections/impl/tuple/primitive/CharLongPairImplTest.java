@@ -53,6 +53,7 @@ public class CharLongPairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair((char) 1, 2L).compareTo(PrimitiveTuples.pair((char) 1, 3L)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class CharLongPairImplTest {
             this.payloads.compareTo = CharLongPairImplTest::compareTo;
         }
     }
+*/
 }

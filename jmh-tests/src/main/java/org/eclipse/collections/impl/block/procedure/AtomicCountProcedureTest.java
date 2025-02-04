@@ -42,6 +42,7 @@ public class AtomicCountProcedureTest {
         assertEquals(25_000, atomicCountProcedure.getCount());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -86,4 +87,5 @@ public class AtomicCountProcedureTest {
             this.payloads.parallelProcessing = AtomicCountProcedureTest::parallelProcessing;
         }
     }
+*/
 }

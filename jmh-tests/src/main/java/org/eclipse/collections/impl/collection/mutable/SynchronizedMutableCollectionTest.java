@@ -141,6 +141,7 @@ public class SynchronizedMutableCollectionTest extends AbstractSynchronizedColle
         Assert.assertEquals(expectedSet.toList(), collWithout.withoutAll(FastList.newListWith(2, 4)).toList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1937,4 +1938,5 @@ public class SynchronizedMutableCollectionTest extends AbstractSynchronizedColle
             this.payloads.withoutAll = SynchronizedMutableCollectionTest::withoutAll;
         }
     }
+*/
 }

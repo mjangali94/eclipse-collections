@@ -40,6 +40,7 @@ public class StringsTest {
         Assert.assertEquals(2, adapter.count(i -> i == (int) 'l'));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -92,4 +93,5 @@ public class StringsTest {
             this.payloads.toCodePoints = StringsTest::toCodePoints;
         }
     }
+*/
 }

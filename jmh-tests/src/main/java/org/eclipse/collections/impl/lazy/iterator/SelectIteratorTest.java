@@ -44,6 +44,7 @@ public class SelectIteratorTest {
         Assert.assertThrows(UnsupportedOperationException.class, () -> new SelectIterator<>(Lists.fixedSize.of(), ignored -> true).remove());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -88,4 +89,5 @@ public class SelectIteratorTest {
             this.payloads.remove = SelectIteratorTest::remove;
         }
     }
+*/
 }

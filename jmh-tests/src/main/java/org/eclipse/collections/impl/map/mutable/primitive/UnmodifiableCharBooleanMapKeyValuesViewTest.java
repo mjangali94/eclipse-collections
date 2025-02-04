@@ -38,6 +38,7 @@ public class UnmodifiableCharBooleanMapKeyValuesViewTest extends AbstractCharBoo
         return new CharBooleanHashMap().asUnmodifiable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class UnmodifiableCharBooleanMapKeyValuesViewTest extends AbstractCharBoo
             this.payloads.aggregateByNonMutating = UnmodifiableCharBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

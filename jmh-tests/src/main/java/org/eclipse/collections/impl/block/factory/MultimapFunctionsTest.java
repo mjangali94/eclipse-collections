@@ -35,6 +35,7 @@ public class MultimapFunctionsTest {
         Verify.assertClassNonInstantiable(MultimapFunctions.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -71,4 +72,5 @@ public class MultimapFunctionsTest {
             this.payloads.classIsNonInstantiable = MultimapFunctionsTest::classIsNonInstantiable;
         }
     }
+*/
 }

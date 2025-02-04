@@ -225,6 +225,7 @@ public class IntBagsTest {
         Verify.assertClassNonInstantiable(IntBags.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -325,4 +326,5 @@ public class IntBagsTest {
             this.payloads.classIsNonInstantiable = IntBagsTest::classIsNonInstantiable;
         }
     }
+*/
 }

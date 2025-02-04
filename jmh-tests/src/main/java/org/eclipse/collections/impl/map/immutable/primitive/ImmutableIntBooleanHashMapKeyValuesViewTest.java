@@ -39,6 +39,7 @@ public class ImmutableIntBooleanHashMapKeyValuesViewTest extends AbstractIntBool
         return new IntBooleanHashMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -843,4 +844,5 @@ public class ImmutableIntBooleanHashMapKeyValuesViewTest extends AbstractIntBool
             this.payloads.aggregateByNonMutating = ImmutableIntBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

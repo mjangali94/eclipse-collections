@@ -63,6 +63,7 @@ public class ObjectByteMapFactoryTest {
         Assert.assertTrue(ObjectByteMaps.immutable.from(iterable, each -> each, Byte::valueOf) instanceof ImmutableObjectByteMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -115,4 +116,5 @@ public class ObjectByteMapFactoryTest {
             this.payloads.from = ObjectByteMapFactoryTest::from;
         }
     }
+*/
 }

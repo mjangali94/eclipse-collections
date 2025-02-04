@@ -55,6 +55,7 @@ public class FloatObjectMapFactoryTest {
         Assert.assertTrue(FloatObjectMaps.immutable.from(iterable, Float::valueOf, each -> each) instanceof ImmutableFloatObjectMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -107,4 +108,5 @@ public class FloatObjectMapFactoryTest {
             this.payloads.from = FloatObjectMapFactoryTest::from;
         }
     }
+*/
 }

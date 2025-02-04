@@ -35,6 +35,7 @@ public class ParallelUnsortedSetIterableTest extends ParallelUnsortedSetIterable
         UnifiedSet.newSetWith(1, 2, 3, 4).asParallel(null, 2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -756,4 +757,5 @@ public class ParallelUnsortedSetIterableTest extends ParallelUnsortedSetIterable
             this.payloads.asParallel_null_executorService = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelUnsortedSetIterableTest::asParallel_null_executorService, java.lang.NullPointerException.class);
         }
     }
+*/
 }

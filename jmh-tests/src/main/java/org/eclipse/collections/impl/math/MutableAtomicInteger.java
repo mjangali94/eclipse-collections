@@ -118,6 +118,7 @@ public final class MutableAtomicInteger extends AtomicInteger implements Compara
         return Integer.valueOf(this.get());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -138,4 +139,5 @@ public final class MutableAtomicInteger extends AtomicInteger implements Compara
             this.payloads = new _Payloads();
         }
     }
+*/
 }

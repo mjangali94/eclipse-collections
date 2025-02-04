@@ -85,6 +85,7 @@ public class ImmutableShortSingletonListTest extends AbstractImmutableShortListT
         Assert.assertEquals(-2, this.classUnderTest().binarySearch((short) 5));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -921,4 +922,5 @@ public class ImmutableShortSingletonListTest extends AbstractImmutableShortListT
             this.payloads.binarySearch = ImmutableShortSingletonListTest::binarySearch;
         }
     }
+*/
 }

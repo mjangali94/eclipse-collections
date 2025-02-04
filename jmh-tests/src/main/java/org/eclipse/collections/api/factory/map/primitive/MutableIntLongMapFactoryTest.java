@@ -38,6 +38,7 @@ public class MutableIntLongMapFactoryTest {
         Assert.assertEquals(IntLongHashMap.newWithKeysValues(1, 2L, 3, 4L, 5, 6L, 7, 8L), IntLongMaps.mutable.of(1, 2L, 3, 4L, 5, 6L, 7, 8L));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableIntLongMapFactoryTest {
             this.payloads.of = MutableIntLongMapFactoryTest::of;
         }
     }
+*/
 }

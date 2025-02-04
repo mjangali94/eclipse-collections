@@ -1029,6 +1029,7 @@ public abstract class AbstractListTestCase extends AbstractCollectionTestCase {
         Assert.assertEquals(Lists.mutable.with(4, 3, 2, 1), integers);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -3481,4 +3482,5 @@ public abstract class AbstractListTestCase extends AbstractCollectionTestCase {
             this.payloads.sort = AbstractListTestCase::sort;
         }
     }
+*/
 }

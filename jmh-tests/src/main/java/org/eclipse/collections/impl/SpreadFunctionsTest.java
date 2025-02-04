@@ -74,6 +74,7 @@ public class SpreadFunctionsTest {
         Assert.assertEquals(-1572485272L, SpreadFunctions.shortSpreadTwo((short) 234));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -174,4 +175,5 @@ public class SpreadFunctionsTest {
             this.payloads.shortSpreadTwo = SpreadFunctionsTest::shortSpreadTwo;
         }
     }
+*/
 }

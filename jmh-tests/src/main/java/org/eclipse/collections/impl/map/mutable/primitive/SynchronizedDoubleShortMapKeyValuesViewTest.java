@@ -38,6 +38,7 @@ public class SynchronizedDoubleShortMapKeyValuesViewTest extends AbstractDoubleS
         return new DoubleShortHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedDoubleShortMapKeyValuesViewTest extends AbstractDoubleS
             this.payloads.aggregateByNonMutating = SynchronizedDoubleShortMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

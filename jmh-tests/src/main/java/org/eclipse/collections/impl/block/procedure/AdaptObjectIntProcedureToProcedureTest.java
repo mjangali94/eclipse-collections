@@ -52,6 +52,7 @@ public class AdaptObjectIntProcedureToProcedureTest {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -80,4 +81,5 @@ public class AdaptObjectIntProcedureToProcedureTest {
             this.payloads.value = AdaptObjectIntProcedureToProcedureTest::value;
         }
     }
+*/
 }

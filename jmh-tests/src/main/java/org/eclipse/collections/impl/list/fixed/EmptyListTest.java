@@ -259,6 +259,7 @@ public class EmptyListTest {
         Assert.assertSame(Lists.immutable.empty(), new EmptyList<>().toImmutable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -551,4 +552,5 @@ public class EmptyListTest {
             this.payloads.toImmutable = EmptyListTest::toImmutable;
         }
     }
+*/
 }

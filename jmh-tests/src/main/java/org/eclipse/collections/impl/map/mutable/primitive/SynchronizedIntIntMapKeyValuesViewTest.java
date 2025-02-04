@@ -38,6 +38,7 @@ public class SynchronizedIntIntMapKeyValuesViewTest extends AbstractIntIntMapKey
         return new IntIntHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedIntIntMapKeyValuesViewTest extends AbstractIntIntMapKey
             this.payloads.aggregateByNonMutating = SynchronizedIntIntMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

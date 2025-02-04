@@ -140,6 +140,7 @@ public class IntBooleanHashMapKeySetTest extends AbstractIntSetTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -992,4 +993,5 @@ public class IntBooleanHashMapKeySetTest extends AbstractIntSetTestCase {
             this.payloads.chunk = IntBooleanHashMapKeySetTest::chunk;
         }
     }
+*/
 }

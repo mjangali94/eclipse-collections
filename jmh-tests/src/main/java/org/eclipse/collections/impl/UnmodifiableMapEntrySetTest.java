@@ -292,6 +292,7 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
         Assert.assertEquals(ShortHashSet.newSetWith((short) 1, (short) 2), this.getCollection().collectShort(entry -> Short.parseShort(entry.getValue())));
     }
 
+
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -744,4 +745,5 @@ public class UnmodifiableMapEntrySetTest extends UnmodifiableMutableCollectionTe
             this.payloads.collectShort = UnmodifiableMapEntrySetTest::collectShort;
         }
     }
+
 }

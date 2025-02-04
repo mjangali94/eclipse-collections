@@ -37,6 +37,7 @@ public class BooleanIteratorIterateTest {
         Verify.assertIterableSize(3, BooleanIteratorIterate.collect(this.iterable.booleanIterator(), String::valueOf, FastList.newList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -81,4 +82,5 @@ public class BooleanIteratorIterateTest {
             this.payloads.collect_target = BooleanIteratorIterateTest::collect_target;
         }
     }
+*/
 }

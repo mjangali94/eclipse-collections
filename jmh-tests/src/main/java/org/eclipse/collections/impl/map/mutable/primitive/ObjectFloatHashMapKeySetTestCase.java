@@ -211,6 +211,7 @@ public abstract class ObjectFloatHashMapKeySetTestCase {
         Assert.assertEquals(expected, HashBag.newBagWith(keySet.toArray(new String[keySet.size() + 1])));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -343,4 +344,5 @@ public abstract class ObjectFloatHashMapKeySetTestCase {
             this.payloads.keySetToArray = ObjectFloatHashMapKeySetTestCase::keySetToArray;
         }
     }
+*/
 }

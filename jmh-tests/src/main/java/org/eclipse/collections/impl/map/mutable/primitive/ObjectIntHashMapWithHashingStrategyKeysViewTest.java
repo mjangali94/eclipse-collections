@@ -33,6 +33,7 @@ public class ObjectIntHashMapWithHashingStrategyKeysViewTest extends AbstractObj
         return map.keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -917,4 +918,5 @@ public class ObjectIntHashMapWithHashingStrategyKeysViewTest extends AbstractObj
             this.payloads.iterator = ObjectIntHashMapWithHashingStrategyKeysViewTest::iterator;
         }
     }
+*/
 }

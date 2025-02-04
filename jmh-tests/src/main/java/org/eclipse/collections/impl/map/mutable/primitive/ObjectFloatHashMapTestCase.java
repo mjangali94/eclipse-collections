@@ -448,6 +448,7 @@ public abstract class ObjectFloatHashMapTestCase extends AbstractMutableObjectFl
         Verify.assertClassNonInstantiable(ObjectFloatMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1252,4 +1253,5 @@ public abstract class ObjectFloatHashMapTestCase extends AbstractMutableObjectFl
             this.payloads.classIsNonInstantiable = ObjectFloatHashMapTestCase::classIsNonInstantiable;
         }
     }
+*/
 }

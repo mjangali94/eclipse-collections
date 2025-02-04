@@ -28,6 +28,7 @@ public class SumOfDoubleProcedureTest {
         assertEquals(0.0, procedure.getCompensation(), 0.0);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -56,4 +57,5 @@ public class SumOfDoubleProcedureTest {
             this.payloads.getResult = SumOfDoubleProcedureTest::getResult;
         }
     }
+*/
 }

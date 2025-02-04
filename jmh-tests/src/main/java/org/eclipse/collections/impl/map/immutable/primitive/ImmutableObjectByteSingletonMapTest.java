@@ -283,6 +283,7 @@ public class ImmutableObjectByteSingletonMapTest extends AbstractImmutableObject
         Assert.assertEquals(new MutableByte((byte) 2), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -767,4 +768,5 @@ public class ImmutableObjectByteSingletonMapTest extends AbstractImmutableObject
             this.payloads.injectInto = ImmutableObjectByteSingletonMapTest::injectInto;
         }
     }
+*/
 }

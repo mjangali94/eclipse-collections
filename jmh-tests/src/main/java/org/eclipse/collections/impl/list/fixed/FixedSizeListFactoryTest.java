@@ -209,6 +209,7 @@ public class FixedSizeListFactoryTest {
         Assert.assertEquals("6", list6.getLast());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -341,4 +342,5 @@ public class FixedSizeListFactoryTest {
             this.payloads.getFirstGetLast = FixedSizeListFactoryTest::getFirstGetLast;
         }
     }
+*/
 }

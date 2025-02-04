@@ -181,6 +181,7 @@ public abstract class AbstractMutableCharStackTestCase extends AbstractCharStack
         Assert.assertNotSame(this.classUnderTest(), this.classUnderTest().newEmpty());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1057,4 +1058,5 @@ public abstract class AbstractMutableCharStackTestCase extends AbstractCharStack
             this.payloads.newEmpty = AbstractMutableCharStackTestCase::newEmpty;
         }
     }
+*/
 }

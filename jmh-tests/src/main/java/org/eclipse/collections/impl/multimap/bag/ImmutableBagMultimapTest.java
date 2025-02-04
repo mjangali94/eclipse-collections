@@ -194,6 +194,7 @@ public class ImmutableBagMultimapTest extends AbstractImmutableMultimapTestCase 
         Verify.assertBagMultimapsEqual(expectedImmutableMultimap, collectedMultimap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -382,4 +383,5 @@ public class ImmutableBagMultimapTest extends AbstractImmutableMultimapTestCase 
             this.payloads.collectValues = ImmutableBagMultimapTest::collectValues;
         }
     }
+*/
 }

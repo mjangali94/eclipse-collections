@@ -76,6 +76,7 @@ public class ObjectIntHashingStrategyMapsTest {
         Verify.assertClassNonInstantiable(ObjectIntMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -136,4 +137,5 @@ public class ObjectIntHashingStrategyMapsTest {
             this.payloads.classIsNonInstantiable = ObjectIntHashingStrategyMapsTest::classIsNonInstantiable;
         }
     }
+*/
 }

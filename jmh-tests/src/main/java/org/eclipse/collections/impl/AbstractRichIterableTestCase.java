@@ -1766,6 +1766,7 @@ public abstract class AbstractRichIterableTestCase {
         Assert.assertFalse(resultEmpty.isPresent());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -3354,4 +3355,5 @@ public abstract class AbstractRichIterableTestCase {
             this.payloads.reduceOptional = AbstractRichIterableTestCase::reduceOptional;
         }
     }
+*/
 }

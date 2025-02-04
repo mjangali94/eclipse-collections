@@ -82,6 +82,7 @@ public class SynchronizedLongIterableTest extends AbstractLongIterableTestCase {
         // Testing newCollection() is not applicable.
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -710,4 +711,5 @@ public class SynchronizedLongIterableTest extends AbstractLongIterableTestCase {
             this.payloads.testEquals = SynchronizedLongIterableTest::testEquals;
         }
     }
+*/
 }

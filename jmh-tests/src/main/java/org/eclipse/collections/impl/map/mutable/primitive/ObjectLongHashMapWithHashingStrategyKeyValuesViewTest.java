@@ -51,6 +51,7 @@ public class ObjectLongHashMapWithHashingStrategyKeyValuesViewTest extends Abstr
         return ObjectLongHashMapWithHashingStrategy.newMap(INTEGER_HASHING_STRATEGY);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -831,4 +832,5 @@ public class ObjectLongHashMapWithHashingStrategyKeyValuesViewTest extends Abstr
             this.payloads.aggregateByNonMutating = ObjectLongHashMapWithHashingStrategyKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

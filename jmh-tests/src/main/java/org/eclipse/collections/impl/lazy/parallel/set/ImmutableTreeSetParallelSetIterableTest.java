@@ -32,6 +32,7 @@ public class ImmutableTreeSetParallelSetIterableTest extends ParallelSortedSetIt
         return SortedSets.immutable.with(Comparators.reverseNaturalOrder(), littleElements);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -737,4 +738,5 @@ public class ImmutableTreeSetParallelSetIterableTest extends ParallelSortedSetIt
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableTreeSetParallelSetIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

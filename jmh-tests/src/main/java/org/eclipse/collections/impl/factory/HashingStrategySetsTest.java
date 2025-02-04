@@ -74,6 +74,7 @@ public class HashingStrategySetsTest {
         Verify.assertClassNonInstantiable(HashingStrategySets.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -118,4 +119,5 @@ public class HashingStrategySetsTest {
             this.payloads.classIsNonInstantiable = HashingStrategySetsTest::classIsNonInstantiable;
         }
     }
+*/
 }

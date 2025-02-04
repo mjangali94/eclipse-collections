@@ -276,6 +276,7 @@ public class IterablesTest {
         Verify.assertClassNonInstantiable(Iterables.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -448,4 +449,5 @@ public class IterablesTest {
             this.payloads.classIsNonInstantiable = IterablesTest::classIsNonInstantiable;
         }
     }
+*/
 }

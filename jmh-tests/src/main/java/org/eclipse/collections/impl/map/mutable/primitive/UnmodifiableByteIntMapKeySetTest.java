@@ -186,6 +186,7 @@ public class UnmodifiableByteIntMapKeySetTest extends AbstractByteSetTestCase {
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1030,4 +1031,5 @@ public class UnmodifiableByteIntMapKeySetTest extends AbstractByteSetTestCase {
             this.payloads.sum = UnmodifiableByteIntMapKeySetTest::sum;
         }
     }
+*/
 }

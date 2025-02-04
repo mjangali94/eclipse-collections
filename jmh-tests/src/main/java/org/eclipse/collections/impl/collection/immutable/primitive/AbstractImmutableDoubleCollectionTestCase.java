@@ -103,6 +103,7 @@ public abstract class AbstractImmutableDoubleCollectionTestCase extends Abstract
         this.assertSizeAndContains(collection2, 1.0, 2.0, 3.0, 4.0);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -811,4 +812,5 @@ public abstract class AbstractImmutableDoubleCollectionTestCase extends Abstract
             this.payloads.newWithoutAll = AbstractImmutableDoubleCollectionTestCase::newWithoutAll;
         }
     }
+*/
 }

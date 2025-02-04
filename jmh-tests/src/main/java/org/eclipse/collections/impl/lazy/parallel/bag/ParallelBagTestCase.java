@@ -111,6 +111,7 @@ public abstract class ParallelBagTestCase extends ParallelIterableTestCase {
         // Not applicable in serial
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -824,4 +825,5 @@ public abstract class ParallelBagTestCase extends ParallelIterableTestCase {
             this.payloads.toString_interruptedException = ParallelBagTestCase::toString_interruptedException;
         }
     }
+*/
 }

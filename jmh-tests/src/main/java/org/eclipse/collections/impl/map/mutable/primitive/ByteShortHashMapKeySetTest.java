@@ -117,6 +117,7 @@ public class ByteShortHashMapKeySetTest extends AbstractByteSetTestCase {
         Assert.assertEquals(this.newObjectCollectionWith((byte) 0, (byte) 1, (byte) 31, (byte) 32).hashCode(), set1.hashCode());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -961,4 +962,5 @@ public class ByteShortHashMapKeySetTest extends AbstractByteSetTestCase {
             this.payloads.sum = ByteShortHashMapKeySetTest::sum;
         }
     }
+*/
 }

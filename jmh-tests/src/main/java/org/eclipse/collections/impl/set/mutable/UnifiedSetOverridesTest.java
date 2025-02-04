@@ -35,6 +35,7 @@ public class UnifiedSetOverridesTest extends UnifiedSetTest {
         return set.with(littleElements);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2127,4 +2128,5 @@ public class UnifiedSetOverridesTest extends UnifiedSetTest {
             this.payloads.trimToSize = UnifiedSetOverridesTest::trimToSize;
         }
     }
+*/
 }

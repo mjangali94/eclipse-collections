@@ -358,6 +358,7 @@ public class SingletonMapTest extends AbstractMemoryEfficientMutableMapTest {
         return new SingletonMap<>(key1, value1);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1130,4 +1131,5 @@ public class SingletonMapTest extends AbstractMemoryEfficientMutableMapTest {
             this.payloads.getOnly = SingletonMapTest::getOnly;
         }
     }
+*/
 }

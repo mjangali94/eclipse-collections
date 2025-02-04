@@ -280,6 +280,7 @@ public class ReverseFloatIterableTest {
         Assert.assertEquals(FloatArrayList.newListWith(1.0f, 2.0f, 3.0f), FloatArrayList.newListWith(2.0f, 3.0f, 1.0f).asReversed().toSortedList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -596,4 +597,5 @@ public class ReverseFloatIterableTest {
             this.payloads.toSortedList = ReverseFloatIterableTest::toSortedList;
         }
     }
+*/
 }

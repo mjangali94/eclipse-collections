@@ -192,6 +192,7 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
         Assert.assertEquals(this.classUnderTest(), strings2);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -637,4 +638,5 @@ public class DoubletonListTest extends AbstractMemoryEfficientMutableListTestCas
             this.payloads.sort = DoubletonListTest::sort;
         }
     }
+*/
 }

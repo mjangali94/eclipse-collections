@@ -336,6 +336,7 @@ public class DoubleBooleanHashMapKeysViewTest {
         Verify.assertInstanceOf(LazyDoubleIterable.class, this.iterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -652,4 +653,5 @@ public class DoubleBooleanHashMapKeysViewTest {
             this.payloads.asLazy = DoubleBooleanHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

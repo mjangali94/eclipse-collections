@@ -718,6 +718,7 @@ public abstract class AbstractLongLongMapTestCase {
         Assert.assertThrows(IllegalArgumentException.class, () -> this.newWithKeysValues(1L, 1L).chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1186,4 +1187,5 @@ public abstract class AbstractLongLongMapTestCase {
             this.payloads.chunk = AbstractLongLongMapTestCase::chunk;
         }
     }
+*/
 }

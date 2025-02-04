@@ -491,6 +491,7 @@ public class ShortObjectHashMapTest extends AbstractMutableShortObjectMapTestCas
         Assert.assertEquals(2.1646464674222576, result, 1.0e-15);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1975,4 +1976,5 @@ public class ShortObjectHashMapTest extends AbstractMutableShortObjectMapTestCas
             this.payloads.sumOfDoubleConsistentRounding = ShortObjectHashMapTest::sumOfDoubleConsistentRounding;
         }
     }
+*/
 }

@@ -321,6 +321,7 @@ public class UnmodifiableShortListTest extends AbstractShortListTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1501,4 +1502,5 @@ public class UnmodifiableShortListTest extends AbstractShortListTestCase {
             this.payloads.shortIterator_throws_for_consecutive_remove = UnmodifiableShortListTest::shortIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

@@ -33,6 +33,7 @@ public class FloatLongHashMapKeysViewTest extends AbstractLazyFloatIterableTestC
         return FloatLongHashMap.newWithKeysValues(element1, 1L, element2, 2L).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class FloatLongHashMapKeysViewTest extends AbstractLazyFloatIterableTestC
             this.payloads.asLazy = FloatLongHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

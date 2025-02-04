@@ -53,6 +53,7 @@ public class FloatFloatPairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair(1.0f, 2.0f).compareTo(PrimitiveTuples.pair(1.0f, 3.0f)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class FloatFloatPairImplTest {
             this.payloads.compareTo = FloatFloatPairImplTest::compareTo;
         }
     }
+*/
 }

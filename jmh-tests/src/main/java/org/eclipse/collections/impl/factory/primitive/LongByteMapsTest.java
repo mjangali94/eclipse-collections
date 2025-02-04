@@ -50,6 +50,7 @@ public class LongByteMapsTest {
         Assert.assertEquals(sourceMap, mapFactory.withAll(sourceMap));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -86,4 +87,5 @@ public class LongByteMapsTest {
             this.payloads.mutables = LongByteMapsTest::mutables;
         }
     }
+*/
 }

@@ -33,6 +33,7 @@ public class ByteObjectHashMapKeysViewTest extends AbstractLazyByteIterableTestC
         return ByteObjectHashMap.newWithKeysValues(element1, 1, element2, 2).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class ByteObjectHashMapKeysViewTest extends AbstractLazyByteIterableTestC
             this.payloads.asLazy = ByteObjectHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

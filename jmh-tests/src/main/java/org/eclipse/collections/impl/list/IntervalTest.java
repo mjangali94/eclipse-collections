@@ -945,6 +945,7 @@ public class IntervalTest {
         Assert.assertThrows(RuntimeException.class, () -> Interval.oneTo(5).appendString(new ThrowingAppendable(), "[", ", ", "]"));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1597,4 +1598,5 @@ public class IntervalTest {
             this.payloads.appendStringThrows = IntervalTest::appendStringThrows;
         }
     }
+*/
 }

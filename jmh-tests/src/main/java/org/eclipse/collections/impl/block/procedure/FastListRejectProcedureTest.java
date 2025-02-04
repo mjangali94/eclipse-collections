@@ -27,6 +27,7 @@ public class FastListRejectProcedureTest {
         Assert.assertEquals(Lists.mutable.of(0, 1), procedure.getFastList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -55,4 +56,5 @@ public class FastListRejectProcedureTest {
             this.payloads.value = FastListRejectProcedureTest::value;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class SynchronizedIntLongMapKeyValuesViewTest extends AbstractIntLongMapK
         return new IntLongHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -834,4 +835,5 @@ public class SynchronizedIntLongMapKeyValuesViewTest extends AbstractIntLongMapK
             this.payloads.aggregateByNonMutating = SynchronizedIntLongMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

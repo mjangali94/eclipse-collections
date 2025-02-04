@@ -57,6 +57,7 @@ public class SynchronizedShortFloatMapTest extends AbstractMutableShortFloatMapT
         Assert.assertSame(this.map, this.map.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -757,4 +758,5 @@ public class SynchronizedShortFloatMapTest extends AbstractMutableShortFloatMapT
             this.payloads.asSynchronized = SynchronizedShortFloatMapTest::asSynchronized;
         }
     }
+*/
 }

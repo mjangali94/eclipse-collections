@@ -437,6 +437,7 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
         Verify.assertSetsEqual(Sets.mutable.of('a', 'b', 'c'), target);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2217,4 +2218,5 @@ public abstract class AbstractMutableBiMapTestCase extends MutableMapIterableTes
             this.payloads.into = AbstractMutableBiMapTestCase::into;
         }
     }
+*/
 }

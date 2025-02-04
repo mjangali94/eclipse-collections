@@ -50,6 +50,7 @@ public class ByteCaseFunctionTest {
         Assert.assertEquals("::Fizz::Buzz:Fizz:::Fizz:Buzz::Fizz:::FizzBuzz:::Fizz::Buzz", fizzBuzz);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -102,4 +103,5 @@ public class ByteCaseFunctionTest {
             this.payloads.fizzBuzz = ByteCaseFunctionTest::fizzBuzz;
         }
     }
+*/
 }

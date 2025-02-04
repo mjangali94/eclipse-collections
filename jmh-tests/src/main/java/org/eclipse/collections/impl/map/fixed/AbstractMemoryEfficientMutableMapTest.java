@@ -1101,6 +1101,7 @@ public abstract class AbstractMemoryEfficientMutableMapTest {
     @Test
     public abstract void asLazyValues();
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1841,4 +1842,5 @@ public abstract class AbstractMemoryEfficientMutableMapTest {
             this.payloads.asLazyValues = AbstractMemoryEfficientMutableMapTest::asLazyValues;
         }
     }
+*/
 }

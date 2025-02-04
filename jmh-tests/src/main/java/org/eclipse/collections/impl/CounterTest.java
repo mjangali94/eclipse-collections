@@ -50,6 +50,7 @@ public class CounterTest {
         Verify.assertPostSerializedEqualsAndHashCode(new Counter());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -94,4 +95,5 @@ public class CounterTest {
             this.payloads.serialization = CounterTest::serialization;
         }
     }
+*/
 }

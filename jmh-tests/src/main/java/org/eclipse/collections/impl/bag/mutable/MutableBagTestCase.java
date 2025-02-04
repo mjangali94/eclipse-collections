@@ -498,6 +498,7 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase {
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2502,4 +2503,5 @@ public abstract class MutableBagTestCase extends AbstractCollectionTestCase {
             this.payloads.distinctView = MutableBagTestCase::distinctView;
         }
     }
+*/
 }

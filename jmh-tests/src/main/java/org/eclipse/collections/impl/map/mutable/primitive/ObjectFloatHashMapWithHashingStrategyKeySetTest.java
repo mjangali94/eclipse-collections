@@ -114,6 +114,7 @@ public class ObjectFloatHashMapWithHashingStrategyKeySetTest extends ObjectFloat
         Assert.assertArrayEquals(people.toArray(keys2), keys1);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -246,4 +247,5 @@ public class ObjectFloatHashMapWithHashingStrategyKeySetTest extends ObjectFloat
             this.payloads.keySetToArray = ObjectFloatHashMapWithHashingStrategyKeySetTest::keySetToArray;
         }
     }
+*/
 }

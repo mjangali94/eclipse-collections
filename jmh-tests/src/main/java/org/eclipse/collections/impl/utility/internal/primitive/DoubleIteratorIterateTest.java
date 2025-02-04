@@ -69,6 +69,7 @@ public class DoubleIteratorIterateTest {
         Assert.assertThrows(NoSuchElementException.class, () -> DoubleIteratorIterate.max(new DoubleArrayList().doubleIterator()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -145,4 +146,5 @@ public class DoubleIteratorIterateTest {
             this.payloads.max = DoubleIteratorIterateTest::max;
         }
     }
+*/
 }

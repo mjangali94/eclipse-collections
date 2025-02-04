@@ -186,6 +186,7 @@ public class UnmodifiableLongObjectMapKeySetTest extends AbstractLongSetTestCase
         // Not applicable for Unmodifiable
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1030,4 +1031,5 @@ public class UnmodifiableLongObjectMapKeySetTest extends AbstractLongSetTestCase
             this.payloads.sum = UnmodifiableLongObjectMapKeySetTest::sum;
         }
     }
+*/
 }

@@ -49,6 +49,7 @@ public class ValueHolder {
         return this.doubleValue;
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -69,4 +70,5 @@ public class ValueHolder {
             this.payloads = new _Payloads();
         }
     }
+*/
 }

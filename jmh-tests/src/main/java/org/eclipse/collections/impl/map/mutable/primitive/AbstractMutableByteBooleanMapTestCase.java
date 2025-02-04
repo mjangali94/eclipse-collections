@@ -582,6 +582,7 @@ public abstract class AbstractMutableByteBooleanMapTestCase extends AbstractByte
         Assert.assertThrows(IllegalStateException.class, iterator::remove);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1074,4 +1075,5 @@ public abstract class AbstractMutableByteBooleanMapTestCase extends AbstractByte
             this.payloads.iterator_throws_on_consecutive_invocation_of_remove = AbstractMutableByteBooleanMapTestCase::iterator_throws_on_consecutive_invocation_of_remove;
         }
     }
+*/
 }

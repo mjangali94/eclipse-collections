@@ -85,6 +85,7 @@ public abstract class AbstractImmutableBiMapTestCase extends ImmutableMapIterabl
         Assert.assertEquals(expectedMap, actualMap);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -473,4 +474,5 @@ public abstract class AbstractImmutableBiMapTestCase extends ImmutableMapIterabl
             this.payloads.toMapTarget = AbstractImmutableBiMapTestCase::toMapTarget;
         }
     }
+*/
 }

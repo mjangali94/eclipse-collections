@@ -54,6 +54,7 @@ public abstract class MutableMapTestCase extends MutableMapIterableTestCase {
         Verify.assertEqualsAndHashCode(map, clone);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1794,4 +1795,5 @@ public abstract class MutableMapTestCase extends MutableMapIterableTestCase {
             this.payloads.testClone = MutableMapTestCase::testClone;
         }
     }
+*/
 }

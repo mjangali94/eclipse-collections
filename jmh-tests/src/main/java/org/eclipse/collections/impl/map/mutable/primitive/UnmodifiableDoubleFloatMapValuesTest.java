@@ -356,6 +356,7 @@ public class UnmodifiableDoubleFloatMapValuesTest extends AbstractMutableFloatCo
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1192,4 +1193,5 @@ public class UnmodifiableDoubleFloatMapValuesTest extends AbstractMutableFloatCo
             this.payloads.chunk = UnmodifiableDoubleFloatMapValuesTest::chunk;
         }
     }
+*/
 }

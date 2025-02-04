@@ -53,6 +53,7 @@ public class BooleanIntPairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair(true, 1).compareTo(PrimitiveTuples.pair(true, 2)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class BooleanIntPairImplTest {
             this.payloads.compareTo = BooleanIntPairImplTest::compareTo;
         }
     }
+*/
 }

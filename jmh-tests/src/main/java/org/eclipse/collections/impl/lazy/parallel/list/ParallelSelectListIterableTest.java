@@ -31,6 +31,7 @@ public class ParallelSelectListIterableTest extends ParallelListIterableTestCase
         return FastList.newListWith(littleElements).select(Predicates.greaterThan(0)).select(Predicates.lessThan(5));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -736,4 +737,5 @@ public class ParallelSelectListIterableTest extends ParallelListIterableTestCase
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelSelectListIterableTest::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

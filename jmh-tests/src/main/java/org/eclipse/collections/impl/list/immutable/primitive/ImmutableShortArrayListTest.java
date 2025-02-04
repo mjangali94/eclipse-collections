@@ -80,6 +80,7 @@ public class ImmutableShortArrayListTest extends AbstractImmutableShortListTestC
         Assert.assertEquals(-6, list.binarySearch((short) 10));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -932,4 +933,5 @@ public class ImmutableShortArrayListTest extends AbstractImmutableShortListTestC
             this.payloads.binarySearch = ImmutableShortArrayListTest::binarySearch;
         }
     }
+*/
 }

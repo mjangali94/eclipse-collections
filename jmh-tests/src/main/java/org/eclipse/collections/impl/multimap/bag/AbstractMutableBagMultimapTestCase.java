@@ -201,6 +201,7 @@ public abstract class AbstractMutableBagMultimapTestCase extends AbstractMutable
         Verify.assertBagsEqual(HashBag.newBagWith("d", "d", "d"), multimap.get("3"));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -677,4 +678,5 @@ public abstract class AbstractMutableBagMultimapTestCase extends AbstractMutable
             this.payloads.putOccurrences = AbstractMutableBagMultimapTestCase::putOccurrences;
         }
     }
+*/
 }

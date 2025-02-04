@@ -322,6 +322,7 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
         Assert.assertThrows(IllegalStateException.class, () -> this.list.getOnly());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -863,4 +864,5 @@ public class TripletonListTest extends AbstractMemoryEfficientMutableListTestCas
             this.payloads.testGetOnly = TripletonListTest::testGetOnly;
         }
     }
+*/
 }

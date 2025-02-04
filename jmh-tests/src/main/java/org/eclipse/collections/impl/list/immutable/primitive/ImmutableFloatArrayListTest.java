@@ -80,6 +80,7 @@ public class ImmutableFloatArrayListTest extends AbstractImmutableFloatListTestC
         Assert.assertEquals(-6, list.binarySearch(10.0f));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -988,4 +989,5 @@ public class ImmutableFloatArrayListTest extends AbstractImmutableFloatListTestC
             this.payloads.binarySearch = ImmutableFloatArrayListTest::binarySearch;
         }
     }
+*/
 }

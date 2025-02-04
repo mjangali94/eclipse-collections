@@ -44,6 +44,7 @@ public class DistinctIteratorTest {
         iterator.next();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -88,4 +89,5 @@ public class DistinctIteratorTest {
             this.payloads.nextException = new se.chalmers.ju2jmh.api.ExceptionTest<>(DistinctIteratorTest::nextException, java.util.NoSuchElementException.class);
         }
     }
+*/
 }

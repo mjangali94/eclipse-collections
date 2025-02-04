@@ -43,6 +43,7 @@ public class ChainedProcedureTest {
         Verify.assertContains("ChainedProcedure.with", new ChainedProcedure<>().toString());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -79,4 +80,5 @@ public class ChainedProcedureTest {
             this.payloads.toStringTest = ChainedProcedureTest::toStringTest;
         }
     }
+*/
 }

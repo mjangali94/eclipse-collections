@@ -798,6 +798,7 @@ public abstract class AbstractFloatBooleanMapKeyValuesViewTestCase {
         Assert.assertEquals(1, aggregation.get("1.0:false").intValue());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1602,4 +1603,5 @@ public abstract class AbstractFloatBooleanMapKeyValuesViewTestCase {
             this.payloads.aggregateByNonMutating = AbstractFloatBooleanMapKeyValuesViewTestCase::aggregateByNonMutating;
         }
     }
+*/
 }

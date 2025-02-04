@@ -49,6 +49,7 @@ public class IfProcedureTest {
         Assert.assertTrue(StringIterate.notEmptyOrWhitespace(s));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -85,4 +86,5 @@ public class IfProcedureTest {
             this.payloads.toStringTest = IfProcedureTest::toStringTest;
         }
     }
+*/
 }

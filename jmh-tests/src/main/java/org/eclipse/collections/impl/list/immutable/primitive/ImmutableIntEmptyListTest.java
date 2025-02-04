@@ -193,6 +193,7 @@ public class ImmutableIntEmptyListTest extends AbstractImmutableIntListTestCase 
         Assert.assertEquals(-1, this.classUnderTest().binarySearch(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1045,4 +1046,5 @@ public class ImmutableIntEmptyListTest extends AbstractImmutableIntListTestCase 
             this.payloads.binarySearch = ImmutableIntEmptyListTest::binarySearch;
         }
     }
+*/
 }

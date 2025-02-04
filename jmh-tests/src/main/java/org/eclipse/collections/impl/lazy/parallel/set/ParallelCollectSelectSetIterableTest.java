@@ -66,6 +66,7 @@ public class ParallelCollectSelectSetIterableTest extends ParallelIterableTestCa
         Assert.assertEquals(this.getExpected().toBag().groupByEach(new NegativeIntervalFunction()), this.classUnderTest().groupByEach(new NegativeIntervalFunction()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -771,4 +772,5 @@ public class ParallelCollectSelectSetIterableTest extends ParallelIterableTestCa
             this.payloads.groupByEach = ParallelCollectSelectSetIterableTest::groupByEach;
         }
     }
+*/
 }

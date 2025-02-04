@@ -53,6 +53,7 @@ public class MutableEmptyPrimitiveTest {
         Verify.assertEmpty(ShortStacks.mutable.with());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -81,4 +82,5 @@ public class MutableEmptyPrimitiveTest {
             this.payloads.isEmptyMutable = MutableEmptyPrimitiveTest::isEmptyMutable;
         }
     }
+*/
 }

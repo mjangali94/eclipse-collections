@@ -200,6 +200,7 @@ public class ImmutableDoubleLongEmptyMapTest extends AbstractImmutableDoubleLong
         Assert.assertEquals(new MutableLong(0L), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -708,4 +709,5 @@ public class ImmutableDoubleLongEmptyMapTest extends AbstractImmutableDoubleLong
             this.payloads.injectInto = ImmutableDoubleLongEmptyMapTest::injectInto;
         }
     }
+*/
 }

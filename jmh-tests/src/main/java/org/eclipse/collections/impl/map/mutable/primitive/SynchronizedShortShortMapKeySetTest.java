@@ -126,6 +126,7 @@ public class SynchronizedShortShortMapKeySetTest extends AbstractShortSetTestCas
         Assert.assertEquals(this.newObjectCollectionWith((short) 0, (short) 1, (short) 31, (short) 32).hashCode(), set1.hashCode());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -970,4 +971,5 @@ public class SynchronizedShortShortMapKeySetTest extends AbstractShortSetTestCas
             this.payloads.sum = SynchronizedShortShortMapKeySetTest::sum;
         }
     }
+*/
 }

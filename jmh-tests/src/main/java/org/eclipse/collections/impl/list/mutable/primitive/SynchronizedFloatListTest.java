@@ -41,6 +41,7 @@ public class SynchronizedFloatListTest extends AbstractFloatListTestCase {
         Assert.assertEquals(list, list.asSynchronized());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1277,4 +1278,5 @@ public class SynchronizedFloatListTest extends AbstractFloatListTestCase {
             this.payloads.asSynchronized = SynchronizedFloatListTest::asSynchronized;
         }
     }
+*/
 }

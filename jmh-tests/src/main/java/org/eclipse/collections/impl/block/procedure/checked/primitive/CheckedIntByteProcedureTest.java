@@ -56,6 +56,7 @@ public final class CheckedIntByteProcedureTest {
         }.value(0, (byte) 0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -100,4 +101,5 @@ public final class CheckedIntByteProcedureTest {
             this.payloads.checkedException = CheckedIntByteProcedureTest::checkedException;
         }
     }
+*/
 }

@@ -254,6 +254,7 @@ public class UnmodifiableBagTest extends UnmodifiableMutableCollectionTestCase<S
         Assert.assertEquals(expected, actual);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -738,4 +739,5 @@ public class UnmodifiableBagTest extends UnmodifiableMutableCollectionTestCase<S
             this.payloads.distinctView = UnmodifiableBagTest::distinctView;
         }
     }
+*/
 }

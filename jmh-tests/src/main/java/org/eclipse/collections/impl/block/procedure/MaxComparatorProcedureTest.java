@@ -45,6 +45,7 @@ public class MaxComparatorProcedureTest {
         assertEquals(procedure.getResult(), optional.get());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -73,4 +74,5 @@ public class MaxComparatorProcedureTest {
             this.payloads.value = MaxComparatorProcedureTest::value;
         }
     }
+*/
 }

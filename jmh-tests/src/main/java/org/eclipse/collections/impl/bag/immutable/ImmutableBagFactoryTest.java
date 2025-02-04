@@ -79,6 +79,7 @@ public class ImmutableBagFactoryTest {
         Verify.assertInstanceOf(ImmutableSingletonBag.class, singleton);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -131,4 +132,5 @@ public class ImmutableBagFactoryTest {
             this.payloads.singletonBagCreation = ImmutableBagFactoryTest::singletonBagCreation;
         }
     }
+*/
 }

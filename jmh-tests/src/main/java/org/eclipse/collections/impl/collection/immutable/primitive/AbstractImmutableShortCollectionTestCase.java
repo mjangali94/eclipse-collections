@@ -103,6 +103,7 @@ public abstract class AbstractImmutableShortCollectionTestCase extends AbstractS
         this.assertSizeAndContains(collection2, (short) 1, (short) 2, (short) 3, (short) 4);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -755,4 +756,5 @@ public abstract class AbstractImmutableShortCollectionTestCase extends AbstractS
             this.payloads.newWithoutAll = AbstractImmutableShortCollectionTestCase::newWithoutAll;
         }
     }
+*/
 }

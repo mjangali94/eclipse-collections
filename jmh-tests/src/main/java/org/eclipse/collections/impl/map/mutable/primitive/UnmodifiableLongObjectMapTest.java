@@ -303,6 +303,7 @@ public class UnmodifiableLongObjectMapTest extends AbstractMutableLongObjectMapT
         Verify.assertInstanceOf(UnmodifiableObjectLongMap.class, this.classUnderTest().flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1611,4 +1612,5 @@ public class UnmodifiableLongObjectMapTest extends AbstractMutableLongObjectMapT
             this.payloads.flipUniqueValues = UnmodifiableLongObjectMapTest::flipUniqueValues;
         }
     }
+*/
 }

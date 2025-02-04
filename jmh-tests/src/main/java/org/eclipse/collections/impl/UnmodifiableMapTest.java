@@ -128,6 +128,7 @@ public class UnmodifiableMapTest {
         Verify.assertEqualsAndHashCode(this.mutableMap.entrySet(), this.unmodifiableMap.entrySet());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -293,4 +294,5 @@ public class UnmodifiableMapTest {
             this.payloads.entrySetsEqual = UnmodifiableMapTest::entrySetsEqual;
         }
     }
+*/
 }

@@ -257,6 +257,7 @@ public class CollectLongIterableTest {
         Verify.assertInstanceOf(LazyLongIterable.class, this.longIterable.asLazy());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -565,4 +566,5 @@ public class CollectLongIterableTest {
             this.payloads.asLazy = CollectLongIterableTest::asLazy;
         }
     }
+*/
 }

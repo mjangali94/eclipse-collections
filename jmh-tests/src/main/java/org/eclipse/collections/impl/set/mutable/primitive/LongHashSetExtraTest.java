@@ -63,6 +63,7 @@ public class LongHashSetExtraTest {
         Assert.assertTrue(((long[]) table.get(set)).length < 10_000);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -99,4 +100,5 @@ public class LongHashSetExtraTest {
             this.payloads.testArrayGrowth = LongHashSetExtraTest::testArrayGrowth;
         }
     }
+*/
 }

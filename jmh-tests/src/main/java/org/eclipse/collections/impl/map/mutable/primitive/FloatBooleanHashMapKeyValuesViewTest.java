@@ -37,6 +37,7 @@ public class FloatBooleanHashMapKeyValuesViewTest extends AbstractFloatBooleanMa
         return new FloatBooleanHashMap();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -841,4 +842,5 @@ public class FloatBooleanHashMapKeyValuesViewTest extends AbstractFloatBooleanMa
             this.payloads.aggregateByNonMutating = FloatBooleanHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

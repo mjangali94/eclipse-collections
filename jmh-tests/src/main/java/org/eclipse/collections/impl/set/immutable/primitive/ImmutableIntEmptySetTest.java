@@ -88,6 +88,7 @@ public class ImmutableIntEmptySetTest extends AbstractImmutableIntHashSetTestCas
         Assert.assertEquals(IntBags.immutable.empty(), this.classUnderTest().toBag());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -812,4 +813,5 @@ public class ImmutableIntEmptySetTest extends AbstractImmutableIntHashSetTestCas
             this.payloads.toBag = ImmutableIntEmptySetTest::toBag;
         }
     }
+*/
 }

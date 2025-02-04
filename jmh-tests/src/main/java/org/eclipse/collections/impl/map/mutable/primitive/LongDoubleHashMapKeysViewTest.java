@@ -33,6 +33,7 @@ public class LongDoubleHashMapKeysViewTest extends AbstractLazyLongIterableTestC
         return LongDoubleHashMap.newWithKeysValues(element1, 1.0, element2, 2.0).keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class LongDoubleHashMapKeysViewTest extends AbstractLazyLongIterableTestC
             this.payloads.asLazy = LongDoubleHashMapKeysViewTest::asLazy;
         }
     }
+*/
 }

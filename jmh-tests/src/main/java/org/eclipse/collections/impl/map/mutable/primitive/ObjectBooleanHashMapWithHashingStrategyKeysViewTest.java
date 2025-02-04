@@ -61,6 +61,7 @@ public class ObjectBooleanHashMapWithHashingStrategyKeysViewTest extends Abstrac
         Assert.assertThrows(NoSuchElementException.class, iterator::next);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -945,4 +946,5 @@ public class ObjectBooleanHashMapWithHashingStrategyKeysViewTest extends Abstrac
             this.payloads.distinct = ObjectBooleanHashMapWithHashingStrategyKeysViewTest::distinct;
         }
     }
+*/
 }

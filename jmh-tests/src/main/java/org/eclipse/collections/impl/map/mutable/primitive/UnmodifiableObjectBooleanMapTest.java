@@ -266,6 +266,7 @@ public class UnmodifiableObjectBooleanMapTest extends AbstractMutableObjectBoole
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -734,4 +735,5 @@ public class UnmodifiableObjectBooleanMapTest extends AbstractMutableObjectBoole
             this.payloads.iterator_throws_on_consecutive_invocation_of_remove = UnmodifiableObjectBooleanMapTest::iterator_throws_on_consecutive_invocation_of_remove;
         }
     }
+*/
 }

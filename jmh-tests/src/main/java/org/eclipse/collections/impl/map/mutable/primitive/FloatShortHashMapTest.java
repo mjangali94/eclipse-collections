@@ -443,6 +443,7 @@ public class FloatShortHashMapTest extends AbstractMutableFloatShortMapTestCase 
         Verify.assertClassNonInstantiable(FloatShortMaps.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1303,4 +1304,5 @@ public class FloatShortHashMapTest extends AbstractMutableFloatShortMapTestCase 
             this.payloads.classIsNonInstantiable = FloatShortHashMapTest::classIsNonInstantiable;
         }
     }
+*/
 }

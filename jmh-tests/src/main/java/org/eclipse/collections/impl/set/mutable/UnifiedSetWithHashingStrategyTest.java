@@ -911,6 +911,7 @@ public class UnifiedSetWithHashingStrategyTest extends AbstractUnifiedSetTestCas
         Assert.assertEquals(2, set.size());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -3099,4 +3100,5 @@ public class UnifiedSetWithHashingStrategyTest extends AbstractUnifiedSetTestCas
             this.payloads.trimToSize = UnifiedSetWithHashingStrategyTest::trimToSize;
         }
     }
+*/
 }

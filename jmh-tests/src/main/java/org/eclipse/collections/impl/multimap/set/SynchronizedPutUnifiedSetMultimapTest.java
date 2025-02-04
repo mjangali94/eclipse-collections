@@ -85,6 +85,7 @@ public class SynchronizedPutUnifiedSetMultimapTest extends AbstractMutableSetMul
         Assert.assertTrue("{One=[1, 2]}".equals(toString) || "{One=[2, 1]}".equals(toString));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -553,4 +554,5 @@ public class SynchronizedPutUnifiedSetMultimapTest extends AbstractMutableSetMul
             this.payloads.testToString = SynchronizedPutUnifiedSetMultimapTest::testToString;
         }
     }
+*/
 }

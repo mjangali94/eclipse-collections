@@ -32,6 +32,7 @@ public class ObjectShortHashMapKeysViewTest extends AbstractObjectShortMapKeysVi
         return map.keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -916,4 +917,5 @@ public class ObjectShortHashMapKeysViewTest extends AbstractObjectShortMapKeysVi
             this.payloads.iterator = ObjectShortHashMapKeysViewTest::iterator;
         }
     }
+*/
 }

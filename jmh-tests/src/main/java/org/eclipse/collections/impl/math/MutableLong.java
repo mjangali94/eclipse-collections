@@ -121,6 +121,7 @@ public final class MutableLong extends Number implements Comparable<MutableLong>
         return "MutableLong{value=" + this.value + '}';
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -141,4 +142,5 @@ public final class MutableLong extends Number implements Comparable<MutableLong>
             this.payloads = new _Payloads();
         }
     }
+*/
 }

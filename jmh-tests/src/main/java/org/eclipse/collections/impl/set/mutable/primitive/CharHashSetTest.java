@@ -275,6 +275,7 @@ public class CharHashSetTest extends AbstractCharSetTestCase {
         Verify.assertClassNonInstantiable(CharSets.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1223,4 +1224,5 @@ public class CharHashSetTest extends AbstractCharSetTestCase {
             this.payloads.classIsNonInstantiable = CharHashSetTest::classIsNonInstantiable;
         }
     }
+*/
 }

@@ -44,6 +44,7 @@ public abstract class AbstractObjectIntMapKeysViewTestCase extends AbstractLazyI
         Assert.assertThrows(NoSuchElementException.class, iterator::next);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -928,4 +929,5 @@ public abstract class AbstractObjectIntMapKeysViewTestCase extends AbstractLazyI
             this.payloads.iterator = AbstractObjectIntMapKeysViewTestCase::iterator;
         }
     }
+*/
 }

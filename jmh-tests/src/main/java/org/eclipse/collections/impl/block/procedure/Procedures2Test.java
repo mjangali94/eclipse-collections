@@ -128,6 +128,7 @@ public class Procedures2Test {
         Assert.assertEquals(9, map.get("3").getSum());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -220,4 +221,5 @@ public class Procedures2Test {
             this.payloads.summarizeInt = Procedures2Test::summarizeInt;
         }
     }
+*/
 }

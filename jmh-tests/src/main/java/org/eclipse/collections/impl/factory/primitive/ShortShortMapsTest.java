@@ -50,6 +50,7 @@ public class ShortShortMapsTest {
         Assert.assertEquals(sourceMap, mapFactory.withAll(sourceMap));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -86,4 +87,5 @@ public class ShortShortMapsTest {
             this.payloads.mutables = ShortShortMapsTest::mutables;
         }
     }
+*/
 }

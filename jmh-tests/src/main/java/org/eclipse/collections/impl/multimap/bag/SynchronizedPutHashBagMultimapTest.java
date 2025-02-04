@@ -85,6 +85,7 @@ public class SynchronizedPutHashBagMultimapTest extends AbstractMutableBagMultim
         Assert.assertTrue("{One=[1, 2]}".equals(toString) || "{One=[2, 1]}".equals(toString));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -561,4 +562,5 @@ public class SynchronizedPutHashBagMultimapTest extends AbstractMutableBagMultim
             this.payloads.testToString = SynchronizedPutHashBagMultimapTest::testToString;
         }
     }
+*/
 }

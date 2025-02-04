@@ -70,6 +70,7 @@ public class IntCaseProcedureTest {
         Assert.assertEquals(IntLists.mutable.with(3, 4), defaultList);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -122,4 +123,5 @@ public class IntCaseProcedureTest {
             this.payloads.twoCasesWithDefault = IntCaseProcedureTest::twoCasesWithDefault;
         }
     }
+*/
 }

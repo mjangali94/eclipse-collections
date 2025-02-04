@@ -39,6 +39,7 @@ public class ImmutableByteSetFactoryImplTest {
         Assert.assertEquals(ByteHashSet.newSet(set).toImmutable(), ByteSets.immutable.ofAll(set));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -83,4 +84,5 @@ public class ImmutableByteSetFactoryImplTest {
             this.payloads.ofAll = ImmutableByteSetFactoryImplTest::ofAll;
         }
     }
+*/
 }

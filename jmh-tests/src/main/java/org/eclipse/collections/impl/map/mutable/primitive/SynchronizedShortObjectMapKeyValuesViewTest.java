@@ -38,6 +38,7 @@ public class SynchronizedShortObjectMapKeyValuesViewTest extends AbstractShortOb
         return ShortObjectHashMap.<Integer>newMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedShortObjectMapKeyValuesViewTest extends AbstractShortOb
             this.payloads.aggregateByNonMutating = SynchronizedShortObjectMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

@@ -271,6 +271,7 @@ public class ReverseCharIterableTest {
         Assert.assertEquals(CharArrayList.newListWith((char) 1, (char) 2, (char) 3), CharArrayList.newListWith((char) 2, (char) 3, (char) 1).asReversed().toSortedList());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -579,4 +580,5 @@ public class ReverseCharIterableTest {
             this.payloads.toSortedList = ReverseCharIterableTest::toSortedList;
         }
     }
+*/
 }

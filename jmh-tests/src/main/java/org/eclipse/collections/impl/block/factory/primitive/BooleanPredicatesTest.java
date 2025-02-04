@@ -92,6 +92,7 @@ public final class BooleanPredicatesTest {
         Verify.assertClassNonInstantiable(BooleanPredicates.class);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -184,4 +185,5 @@ public final class BooleanPredicatesTest {
             this.payloads.classIsNonInstantiable = BooleanPredicatesTest::classIsNonInstantiable;
         }
     }
+*/
 }

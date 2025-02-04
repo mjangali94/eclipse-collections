@@ -33,6 +33,7 @@ public class UnmodifiableDoubleObjectMapKeysViewTest extends AbstractLazyDoubleI
         return DoubleObjectHashMap.newWithKeysValues(element1, 1, element2, 2).asUnmodifiable().keysView();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -397,4 +398,5 @@ public class UnmodifiableDoubleObjectMapKeysViewTest extends AbstractLazyDoubleI
             this.payloads.asLazy = UnmodifiableDoubleObjectMapKeysViewTest::asLazy;
         }
     }
+*/
 }

@@ -38,6 +38,7 @@ public class MutableFloatByteMapFactoryTest {
         Assert.assertEquals(FloatByteHashMap.newWithKeysValues(1.0f, (byte) 2, 3.0f, (byte) 4, 5.0f, (byte) 6, 7.0f, (byte) 8), FloatByteMaps.mutable.of(1.0f, (byte) 2, 3.0f, (byte) 4, 5.0f, (byte) 6, 7.0f, (byte) 8));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -74,4 +75,5 @@ public class MutableFloatByteMapFactoryTest {
             this.payloads.of = MutableFloatByteMapFactoryTest::of;
         }
     }
+*/
 }

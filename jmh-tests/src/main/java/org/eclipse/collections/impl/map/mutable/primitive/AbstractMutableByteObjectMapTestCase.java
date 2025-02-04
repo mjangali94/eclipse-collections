@@ -681,6 +681,7 @@ public abstract class AbstractMutableByteObjectMapTestCase extends AbstractByteO
         Assert.assertThrows(IllegalStateException.class, () -> this.newWithKeysValues((byte) 1, "1", (byte) 2, "1").flipUniqueValues());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1957,4 +1958,5 @@ public abstract class AbstractMutableByteObjectMapTestCase extends AbstractByteO
             this.payloads.flipUniqueValues = AbstractMutableByteObjectMapTestCase::flipUniqueValues;
         }
     }
+*/
 }

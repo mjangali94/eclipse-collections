@@ -514,6 +514,7 @@ public class IntIntHashMapValuesTest extends AbstractMutableIntCollectionTestCas
         Assert.assertThrows(IllegalArgumentException.class, () -> iterable.chunk(-1));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1294,4 +1295,5 @@ public class IntIntHashMapValuesTest extends AbstractMutableIntCollectionTestCas
             this.payloads.chunk = IntIntHashMapValuesTest::chunk;
         }
     }
+*/
 }

@@ -321,6 +321,7 @@ public class UnmodifiableIntListTest extends AbstractIntListTestCase {
         // Not applicable for Unmodifiable*
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1517,4 +1518,5 @@ public class UnmodifiableIntListTest extends AbstractIntListTestCase {
             this.payloads.intIterator_throws_for_consecutive_remove = UnmodifiableIntListTest::intIterator_throws_for_consecutive_remove;
         }
     }
+*/
 }

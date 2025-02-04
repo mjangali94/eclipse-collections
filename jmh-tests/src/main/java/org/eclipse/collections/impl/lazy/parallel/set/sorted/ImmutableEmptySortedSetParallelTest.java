@@ -188,6 +188,7 @@ public class ImmutableEmptySortedSetParallelTest extends NonParallelSortedSetIte
         this.classUnderTest().maxBy(Integer::valueOf);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -909,4 +910,5 @@ public class ImmutableEmptySortedSetParallelTest extends NonParallelSortedSetIte
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ImmutableEmptySortedSetParallelTest::maxBy_null_throws, java.util.NoSuchElementException.class);
         }
     }
+*/
 }

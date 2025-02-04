@@ -49,6 +49,7 @@ public abstract class ParallelUnsortedSetIterableTestCase extends ParallelIterab
         return true;
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -754,4 +755,5 @@ public abstract class ParallelUnsortedSetIterableTestCase extends ParallelIterab
             this.payloads.maxBy_null_throws = new se.chalmers.ju2jmh.api.ExceptionTest<>(ParallelUnsortedSetIterableTestCase::maxBy_null_throws, java.lang.NullPointerException.class);
         }
     }
+*/
 }

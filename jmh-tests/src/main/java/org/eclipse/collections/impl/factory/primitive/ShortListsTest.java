@@ -214,6 +214,7 @@ public class ShortListsTest {
         Assert.assertEquals(ShortArrayList.newListWith((short) 1, (short) 2, (short) 3), ShortLists.mutable.ofAll(Lists.mutable.<Short>with((short) 1, (short) 2, (short) 3)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -322,4 +323,5 @@ public class ShortListsTest {
             this.payloads.ofAllIterable = ShortListsTest::ofAllIterable;
         }
     }
+*/
 }

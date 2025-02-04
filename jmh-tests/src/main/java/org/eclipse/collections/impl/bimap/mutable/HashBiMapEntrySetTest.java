@@ -38,6 +38,7 @@ public class HashBiMapEntrySetTest extends AbstractMutableBiMapEntrySetTest {
         return HashBiMap.newWithKeysValues(key, value);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -186,4 +187,5 @@ public class HashBiMapEntrySetTest extends AbstractMutableBiMapEntrySetTest {
             this.payloads.entry_toString = HashBiMapEntrySetTest::entry_toString;
         }
     }
+*/
 }

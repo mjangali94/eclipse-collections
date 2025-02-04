@@ -722,6 +722,7 @@ public abstract class AbstractMutableDoubleShortMapTestCase extends AbstractDoub
         Assert.assertEquals(map.keySet(), set);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1422,4 +1423,5 @@ public abstract class AbstractMutableDoubleShortMapTestCase extends AbstractDoub
             this.payloads.serializeKeySet = AbstractMutableDoubleShortMapTestCase::serializeKeySet;
         }
     }
+*/
 }

@@ -135,6 +135,7 @@ public class FlatCollectByteToObjectIterableTest {
         Assert.assertTrue(this.newPrimitiveWith((byte) 1, (byte) 2, (byte) 3).noneSatisfyWith(Predicates2.lessThan(), (byte) 0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -275,4 +276,5 @@ public class FlatCollectByteToObjectIterableTest {
             this.payloads.noneSatisfyWith = FlatCollectByteToObjectIterableTest::noneSatisfyWith;
         }
     }
+*/
 }

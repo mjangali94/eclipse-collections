@@ -770,6 +770,7 @@ public abstract class AbstractImmutableCollectionTestCase {
         Assert.assertEquals(collection.toList(), tapResult);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1518,4 +1519,5 @@ public abstract class AbstractImmutableCollectionTestCase {
             this.payloads.tap = AbstractImmutableCollectionTestCase::tap;
         }
     }
+*/
 }

@@ -211,6 +211,7 @@ public class ImmutableDoubleFloatSingletonMapTest extends AbstractImmutableDoubl
         Assert.assertEquals(new MutableFloat(1.0f), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -719,4 +720,5 @@ public class ImmutableDoubleFloatSingletonMapTest extends AbstractImmutableDoubl
             this.payloads.injectInto = ImmutableDoubleFloatSingletonMapTest::injectInto;
         }
     }
+*/
 }

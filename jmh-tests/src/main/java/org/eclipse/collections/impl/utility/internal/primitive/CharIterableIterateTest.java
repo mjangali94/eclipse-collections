@@ -50,6 +50,7 @@ public class CharIterableIterateTest {
         Verify.assertIterableSize(3, CharIterableIterate.collect(this.iterable, String::valueOf, FastList.<String>newList()));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -102,4 +103,5 @@ public class CharIterableIterateTest {
             this.payloads.collect_target = CharIterableIterateTest::collect_target;
         }
     }
+*/
 }

@@ -1159,6 +1159,7 @@ public class ArrayIterateTest {
         Assert.assertEquals(Tuples.twin(7, 3), ArrayIterate.max(integerTwins, Comparators.byFunction(Functions.secondOfPair())));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2347,4 +2348,5 @@ public class ArrayIterateTest {
             this.payloads.maxWithComparator = ArrayIterateTest::maxWithComparator;
         }
     }
+*/
 }

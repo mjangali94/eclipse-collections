@@ -181,6 +181,7 @@ public abstract class AbstractMutableFloatStackTestCase extends AbstractFloatSta
         Assert.assertNotSame(this.classUnderTest(), this.classUnderTest().newEmpty());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -1113,4 +1114,5 @@ public abstract class AbstractMutableFloatStackTestCase extends AbstractFloatSta
             this.payloads.newEmpty = AbstractMutableFloatStackTestCase::newEmpty;
         }
     }
+*/
 }

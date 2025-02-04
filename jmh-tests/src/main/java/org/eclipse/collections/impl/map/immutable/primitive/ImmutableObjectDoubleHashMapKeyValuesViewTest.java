@@ -39,6 +39,7 @@ public class ImmutableObjectDoubleHashMapKeyValuesViewTest extends AbstractObjec
         return ObjectDoubleHashMap.newMap().toImmutable();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -819,4 +820,5 @@ public class ImmutableObjectDoubleHashMapKeyValuesViewTest extends AbstractObjec
             this.payloads.aggregateByNonMutating = ImmutableObjectDoubleHashMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

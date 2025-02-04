@@ -30,6 +30,7 @@ public class ParallelCollectBagTest extends ParallelBagTestCase {
         return HashBag.newBagWith(littleElements).collect(String::valueOf).collect(string -> "null".equals(string) ? null : Integer.valueOf(string));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -743,4 +744,5 @@ public class ParallelCollectBagTest extends ParallelBagTestCase {
             this.payloads.toString_interruptedException = ParallelCollectBagTest::toString_interruptedException;
         }
     }
+*/
 }

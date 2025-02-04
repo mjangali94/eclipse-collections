@@ -143,6 +143,7 @@ public class UnmodifiableStackTest extends StackIterableTestCase {
         Verify.assertInstanceOf(UnmodifiableStack.class, this.unmodifiableStack.asUnmodifiable());
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -2108,4 +2109,5 @@ public class UnmodifiableStackTest extends StackIterableTestCase {
             this.payloads.asUnmodifiable = UnmodifiableStackTest::asUnmodifiable;
         }
     }
+*/
 }

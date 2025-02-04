@@ -211,6 +211,7 @@ public class ImmutableCharDoubleSingletonMapTest extends AbstractImmutableCharDo
         Assert.assertEquals(new MutableDouble(1.0), result);
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -719,4 +720,5 @@ public class ImmutableCharDoubleSingletonMapTest extends AbstractImmutableCharDo
             this.payloads.injectInto = ImmutableCharDoubleSingletonMapTest::injectInto;
         }
     }
+*/
 }

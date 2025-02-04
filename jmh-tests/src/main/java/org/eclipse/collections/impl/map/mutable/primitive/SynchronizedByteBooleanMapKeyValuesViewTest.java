@@ -38,6 +38,7 @@ public class SynchronizedByteBooleanMapKeyValuesViewTest extends AbstractByteBoo
         return new ByteBooleanHashMap().asSynchronized();
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -842,4 +843,5 @@ public class SynchronizedByteBooleanMapKeyValuesViewTest extends AbstractByteBoo
             this.payloads.aggregateByNonMutating = SynchronizedByteBooleanMapKeyValuesViewTest::aggregateByNonMutating;
         }
     }
+*/
 }

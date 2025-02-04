@@ -135,6 +135,7 @@ public class FlatCollectCharToObjectIterableTest {
         Assert.assertTrue(this.newPrimitiveWith((char) 1, (char) 2, (char) 3).noneSatisfyWith(Predicates2.lessThan(), (char) 0));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -275,4 +276,5 @@ public class FlatCollectCharToObjectIterableTest {
             this.payloads.noneSatisfyWith = FlatCollectCharToObjectIterableTest::noneSatisfyWith;
         }
     }
+*/
 }

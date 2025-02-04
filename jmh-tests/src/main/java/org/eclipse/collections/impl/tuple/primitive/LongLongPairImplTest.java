@@ -53,6 +53,7 @@ public class LongLongPairImplTest {
         Assert.assertEquals(-1, PrimitiveTuples.pair(1L, 2L).compareTo(PrimitiveTuples.pair(1L, 3L)));
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -113,4 +114,5 @@ public class LongLongPairImplTest {
             this.payloads.compareTo = LongLongPairImplTest::compareTo;
         }
     }
+*/
 }

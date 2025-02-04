@@ -335,6 +335,7 @@ public class UnmodifiableMutableListTest {
         }
     }
 
+/*
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
@@ -700,4 +701,5 @@ public class UnmodifiableMutableListTest {
             this.payloads.binarySearchWithComparator = UnmodifiableMutableListTest::binarySearchWithComparator;
         }
     }
+*/
 }
