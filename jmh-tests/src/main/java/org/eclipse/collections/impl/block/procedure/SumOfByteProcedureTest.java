@@ -39,7 +39,7 @@ public class SumOfByteProcedureTest {
 
         private SumOfByteProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getResult() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getResult);
         }

@@ -57,22 +57,22 @@ public class IntCaseFunctionTest {
 
         private IntCaseFunctionTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_noopCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.noopCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_basicCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.basicCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_defaultValue() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.defaultValue);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fizzBuzz() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fizzBuzz);
         }

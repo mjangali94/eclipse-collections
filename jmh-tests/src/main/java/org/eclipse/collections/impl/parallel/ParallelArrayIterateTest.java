@@ -124,27 +124,27 @@ public class ParallelArrayIterateTest {
 
         private ParallelArrayIterateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_parallelForEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.parallelForEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_parallelForEachException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.parallelForEachException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_parallelForEachPerformanceOneThread() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.parallelForEachPerformanceOneThread);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_parallelForEachPerformanceTwoThreads() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.parallelForEachPerformanceTwoThreads);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

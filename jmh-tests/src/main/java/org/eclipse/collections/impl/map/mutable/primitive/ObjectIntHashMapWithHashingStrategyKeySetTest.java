@@ -121,72 +121,72 @@ public class ObjectIntHashMapWithHashingStrategyKeySetTest extends ObjectIntHash
 
         private ObjectIntHashMapWithHashingStrategyKeySetTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_add() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.add);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_addAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.addAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_containsAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.containsAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_size() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.size);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_iterator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.iterator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeNullFromKeySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeNullFromKeySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeAllFromKeySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeAllFromKeySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_retainAllFromKeySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.retainAllFromKeySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_clearKeySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.clearKeySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_contains() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.contains);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeFromKeySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeFromKeySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_keySetEqualsAndHashCode() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.keySetEqualsAndHashCode);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_keySetToArray() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.keySetToArray);
         }

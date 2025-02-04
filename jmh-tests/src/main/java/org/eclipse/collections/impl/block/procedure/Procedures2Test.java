@@ -135,47 +135,47 @@ public class Procedures2Test {
 
         private Procedures2Test instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwing() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwing);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwingWithSuccessfulCompletion() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwingWithSuccessfulCompletion);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwingWithUserSpecifiedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwingWithUserSpecifiedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_asProcedure2() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.asProcedure2);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizeDouble() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizeDouble);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizeFloat() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizeFloat);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizeLong() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizeLong);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizeInt() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizeInt);
         }

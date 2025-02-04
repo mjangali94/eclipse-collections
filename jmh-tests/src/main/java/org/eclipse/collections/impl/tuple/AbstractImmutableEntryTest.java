@@ -34,12 +34,12 @@ public class AbstractImmutableEntryTest {
 
         private AbstractImmutableEntryTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getKeyFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getKeyFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getValueFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getValueFunction);
         }

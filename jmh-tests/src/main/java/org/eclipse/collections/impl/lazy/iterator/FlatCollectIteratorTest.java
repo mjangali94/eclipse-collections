@@ -42,17 +42,17 @@ public class FlatCollectIteratorTest {
 
         private FlatCollectIteratorTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_nextIfDoesntHaveAnything() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.nextIfDoesntHaveAnything);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeIsUnsupported() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeIsUnsupported);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_nextAfterEmptyIterable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.nextAfterEmptyIterable);
         }

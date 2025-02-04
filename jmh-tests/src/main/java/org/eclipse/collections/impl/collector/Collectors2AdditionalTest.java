@@ -548,302 +548,302 @@ public class Collectors2AdditionalTest {
 
         private Collectors2AdditionalTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_chunk() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.chunk);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_chunkParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.chunkParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_zip() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.zip);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_zipParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.zipParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_zipWithIndex() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.zipWithIndex);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_zipWithIndexParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.zipWithIndexParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByInt() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByInt);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByIntParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByIntParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByLong() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByLong);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByLongParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByLongParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByFloat() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByFloat);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByFloatParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByFloatParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByDouble() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByDouble);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByDoubleParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByDoubleParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByBigInteger() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByBigInteger);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByBigIntegerParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByBigIntegerParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByBigDecimal() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByBigDecimal);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sumByBigDecimalParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sumByBigDecimalParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_select() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.select);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_selectParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.selectParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_selectWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.selectWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_selectWithParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.selectWithParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_reject() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.reject);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_rejectParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.rejectParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_rejectWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.rejectWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_rejectWithParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.rejectWithParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_partition() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.partition);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_partitionParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.partitionParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_partitionWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.partitionWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_partitionWithParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.partitionWithParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collect() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collect);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_flatCollect() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.flatCollect);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_flatCollectParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.flatCollectParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectWithParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectWithParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectBoolean() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectBoolean);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectBooleanParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectBooleanParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectByte() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectByte);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectByteParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectByteParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectChar() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectChar);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectCharParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectCharParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectShort() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectShort);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectShortParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectShortParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectInt() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectInt);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectIntParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectIntParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectFloat() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectFloat);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectFloatParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectFloatParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectLong() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectLong);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectLongParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectLongParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectDouble() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectDouble);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectDoubleParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectDoubleParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizingBigDecimal() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizingBigDecimal);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizingBigDecimalParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizingBigDecimalParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summingBigDecimal() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summingBigDecimal);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summingBigDecimalParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summingBigDecimalParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizingBigInteger() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizingBigInteger);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizingBigIntegerParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizingBigIntegerParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summingBigInteger() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summingBigInteger);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summingBigIntegerParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summingBigIntegerParallel);
         }

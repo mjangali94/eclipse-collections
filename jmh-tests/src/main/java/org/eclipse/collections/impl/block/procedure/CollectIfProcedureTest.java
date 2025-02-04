@@ -33,7 +33,7 @@ public class CollectIfProcedureTest {
 
         private CollectIfProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_constructorWithSize() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.constructorWithSize);
         }

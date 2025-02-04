@@ -60,32 +60,32 @@ public class EmptyIteratorTest {
 
         private EmptyIteratorTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasPrevious() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasPrevious);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_previous() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.previous);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_previousIndex() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.previousIndex);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_set() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.set);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_add() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.add);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_nextIndex() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.nextIndex);
         }

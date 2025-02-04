@@ -51,17 +51,17 @@ public class SelectIteratorTest {
 
         private SelectIteratorTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_iterator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.iterator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_noSuchElementException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.noSuchElementException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_remove() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.remove);
         }

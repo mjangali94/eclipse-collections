@@ -135,92 +135,92 @@ public class UnmodifiableMapTest {
 
         private UnmodifiableMapTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testNullConstructorArgument() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testNullConstructorArgument);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testSize() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testSize);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testIsEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testIsEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testContainsKey() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testContainsKey);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testContainsValue() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testContainsValue);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testGet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testGet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testPut() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testPut);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testRemove() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testRemove);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testPutAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testPutAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testClear() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testClear);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testKeySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testKeySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testValues() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testValues);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testEntrySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testEntrySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testToString() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testToString);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testMutableTransparency() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testMutableTransparency);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.equalsAndHashCode);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_notNull() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.notNull);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_entrySetsEqual() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.entrySetsEqual);
         }

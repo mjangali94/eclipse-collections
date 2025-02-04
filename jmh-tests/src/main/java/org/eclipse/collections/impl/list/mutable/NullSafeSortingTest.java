@@ -127,62 +127,62 @@ public class NullSafeSortingTest {
 
         private NullSafeSortingTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptyFastList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptyFastList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fastListWithOneElement() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fastListWithOneElement);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fastListWithThreeElements() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fastListWithThreeElements);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_arrayIterate() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.arrayIterate);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptyArrayListAdapter() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptyArrayListAdapter);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_arrayListAdapterWithOneElement() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.arrayListAdapterWithOneElement);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_arrayListAdapterWithThreeElements() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.arrayListAdapterWithThreeElements);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_adaptedSingletonList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.adaptedSingletonList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_adaptedCustomList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.adaptedCustomList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptyList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptyList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_singletonList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.singletonList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doubletonList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doubletonList);
         }

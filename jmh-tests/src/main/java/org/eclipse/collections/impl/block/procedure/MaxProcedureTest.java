@@ -53,12 +53,12 @@ public class MaxProcedureTest {
 
         private MaxProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getResultOptional() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getResultOptional);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_value() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.value);
         }

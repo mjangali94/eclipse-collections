@@ -51,12 +51,12 @@ public class PairPredicateTest {
 
         private PairPredicateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_accept() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.accept);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_negate() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.negate);
         }

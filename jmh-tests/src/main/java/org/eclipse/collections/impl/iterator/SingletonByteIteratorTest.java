@@ -49,12 +49,12 @@ public final class SingletonByteIteratorTest {
 
         private SingletonByteIteratorTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasNext() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasNext);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_next() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.next);
         }

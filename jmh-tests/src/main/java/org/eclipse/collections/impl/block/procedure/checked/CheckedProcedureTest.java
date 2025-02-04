@@ -108,32 +108,32 @@ public class CheckedProcedureTest {
 
         private CheckedProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_dateProcedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.dateProcedure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectionProcedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectionProcedure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mapProcedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mapProcedure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedObjectIntProcedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedObjectIntProcedure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_numberProcedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.numberProcedure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_timestampProcedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.timestampProcedure);
         }

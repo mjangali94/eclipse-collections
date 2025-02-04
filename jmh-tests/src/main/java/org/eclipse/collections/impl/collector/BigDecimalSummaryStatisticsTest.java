@@ -103,32 +103,32 @@ public class BigDecimalSummaryStatisticsTest {
 
         private BigDecimalSummaryStatisticsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_jdkForEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.jdkForEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_each() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.each);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_merge() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.merge);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.empty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_summarizingBigDecimal() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.summarizingBigDecimal);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_average() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.average);
         }

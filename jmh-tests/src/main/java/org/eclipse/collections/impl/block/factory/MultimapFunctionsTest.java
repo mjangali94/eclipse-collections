@@ -42,12 +42,12 @@ public class MultimapFunctionsTest {
 
         private MultimapFunctionsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_get() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.get);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

@@ -39,7 +39,7 @@ public class MinComparatorProcedureTest {
 
         private MinComparatorProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_value() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.value);
         }

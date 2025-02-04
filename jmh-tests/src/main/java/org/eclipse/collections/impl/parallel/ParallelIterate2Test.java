@@ -48,7 +48,7 @@ public class ParallelIterate2Test {
 
         private ParallelIterate2Test instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_creationAndExecution() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.creationAndExecution);
         }

@@ -109,12 +109,12 @@ public class ObjectIntProcedureFJTaskRunnerTest {
 
         private ObjectIntProcedureFJTaskRunnerTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_taskCompletedUsingNonCombineOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.taskCompletedUsingNonCombineOne);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_joinUsingNonCombineOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.joinUsingNonCombineOne);
         }

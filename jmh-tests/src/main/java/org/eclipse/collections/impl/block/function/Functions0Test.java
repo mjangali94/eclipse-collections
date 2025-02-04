@@ -131,67 +131,67 @@ public class Functions0Test {
 
         private Functions0Test instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getTrue() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getTrue);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getFalse() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getFalse);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwing() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwing);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwingWithSuccessfulCompletion() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwingWithSuccessfulCompletion);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwingWithUserSpecifiedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwingWithUserSpecifiedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newFastList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newFastList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newUnifiedSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newUnifiedSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newHashBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newHashBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newUnifiedMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newUnifiedMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_zeroInteger() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.zeroInteger);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_zeroAtomicInteger() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.zeroAtomicInteger);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_zeroAtomicLong() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.zeroAtomicLong);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

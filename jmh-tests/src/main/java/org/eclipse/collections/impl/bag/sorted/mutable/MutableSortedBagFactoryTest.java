@@ -80,47 +80,47 @@ public class MutableSortedBagFactoryTest {
 
         private MutableSortedBagFactoryTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofElements() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofElements);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withElements() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withElements);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withAllComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withAllComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.empty);
         }

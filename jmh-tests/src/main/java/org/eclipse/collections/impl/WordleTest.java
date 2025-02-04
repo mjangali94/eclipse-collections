@@ -97,7 +97,7 @@ public class WordleTest {
 
         private WordleTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_wordleTest() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.wordleTest);
         }

@@ -57,12 +57,12 @@ public class HashingStrategyBagsTest {
 
         private HashingStrategyBagsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

@@ -38,7 +38,7 @@ public class PartitionUnifiedSetWithHashingStrategyTest {
 
         private PartitionUnifiedSetWithHashingStrategyTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutable);
         }

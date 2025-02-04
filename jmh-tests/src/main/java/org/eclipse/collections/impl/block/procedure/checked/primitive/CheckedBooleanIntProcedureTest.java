@@ -77,17 +77,17 @@ public class CheckedBooleanIntProcedureTest {
 
         private CheckedBooleanIntProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_value() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.value);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_valueWithCheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.valueWithCheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_valueWithUncheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.valueWithUncheckedException);
         }

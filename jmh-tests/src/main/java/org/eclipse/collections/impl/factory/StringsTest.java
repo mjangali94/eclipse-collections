@@ -47,22 +47,22 @@ public class StringsTest {
 
         private StringsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_asChars() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.asChars);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toChars() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toChars);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_asCodePoints() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.asCodePoints);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toCodePoints() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toCodePoints);
         }

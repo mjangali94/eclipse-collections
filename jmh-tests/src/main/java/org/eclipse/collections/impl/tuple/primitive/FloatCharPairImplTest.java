@@ -60,27 +60,27 @@ public class FloatCharPairImplTest {
 
         private FloatCharPairImplTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testEqualsAndHashCode() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testEqualsAndHashCode);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getOne);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getTwo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getTwo);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testToString() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testToString);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_compareTo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.compareTo);
         }

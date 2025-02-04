@@ -51,22 +51,22 @@ public class SerializableComparatorsTest {
 
         private SerializableComparatorsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_naturalOrder() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.naturalOrder);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_reverseNaturalOrder() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.reverseNaturalOrder);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_reverse() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.reverse);
         }

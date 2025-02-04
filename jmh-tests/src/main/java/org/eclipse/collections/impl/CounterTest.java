@@ -57,17 +57,17 @@ public class CounterTest {
 
         private CounterTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_basicLifecycle() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.basicLifecycle);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.equalsAndHashCode);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_serialization() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.serialization);
         }

@@ -132,7 +132,7 @@ public class MultimapKeyValuesSerializingProcedureTest {
 
         private MultimapKeyValuesSerializingProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testSerialization() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testSerialization);
         }

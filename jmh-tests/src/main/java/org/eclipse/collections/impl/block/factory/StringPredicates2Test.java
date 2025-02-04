@@ -91,47 +91,47 @@ public class StringPredicates2Test {
 
         private StringPredicates2Test instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_startsWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.startsWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_notStartsWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.notStartsWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_endsWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.endsWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_notEndsWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.notEndsWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_equalsIgnoreCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.equalsIgnoreCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_notEqualsIgnoreCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.notEqualsIgnoreCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_containsString() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.containsString);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_matches() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.matches);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

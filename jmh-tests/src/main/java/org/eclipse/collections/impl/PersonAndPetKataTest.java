@@ -512,182 +512,182 @@ public class PersonAndPetKataTest {
 
         private PersonAndPetKataTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doAnyPeopleHaveCats() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doAnyPeopleHaveCats);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doAnyPeopleHaveCatsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doAnyPeopleHaveCatsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doAllPeopleHaveCats() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doAllPeopleHaveCats);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doAllPeopleHaveCatsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doAllPeopleHaveCatsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doNoPeopleHaveCats() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doNoPeopleHaveCats);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doNoPeopleHaveCatsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doNoPeopleHaveCatsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_howManyPeopleHaveCats() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.howManyPeopleHaveCats);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_howManyPeopleHaveCatsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.howManyPeopleHaveCatsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getPeopleWithCats() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getPeopleWithCats);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getPeopleWithCatsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getPeopleWithCatsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getPeopleWhoDontHaveCats() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getPeopleWhoDontHaveCats);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getPeopleWhoDontHaveCatsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getPeopleWhoDontHaveCatsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_partitionPeopleByCatOwnersAndNonCatOwners() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.partitionPeopleByCatOwnersAndNonCatOwners);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_partitionPeopleByCatOwnersAndNonCatOwnersUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.partitionPeopleByCatOwnersAndNonCatOwnersUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_findPersonNamedMarySmith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.findPersonNamedMarySmith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_findPersonNamedMarySmithUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.findPersonNamedMarySmithUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getTheNamesOfBobSmithPets() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getTheNamesOfBobSmithPets);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getTheNamesOfBobSmithPetsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getTheNamesOfBobSmithPetsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getAllPetTypes() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getAllPetTypes);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getAllPetTypesUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getAllPetTypesUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupPeopleByLastName() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupPeopleByLastName);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupPeopleByLastNameUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupPeopleByLastNameUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupPeopleByTheirPets() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupPeopleByTheirPets);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupPeopleByTheirPetsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupPeopleByTheirPetsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getTotalNumberOfPets() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getTotalNumberOfPets);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getTotalNumberOfPetsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getTotalNumberOfPetsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testStrings() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testStrings);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getAgeStatisticsOfPets() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getAgeStatisticsOfPets);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getAgeStatisticsOfPetsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getAgeStatisticsOfPetsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getCountsByPetType() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getCountsByPetType);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getCountsByPetTypeUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getCountsByPetTypeUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getTop3Pets() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getTop3Pets);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getTop3PetsUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getTop3PetsUsingStreams);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getBottom3Pets() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getBottom3Pets);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getCountsByPetAge() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getCountsByPetAge);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getCountsByPetAgeUsingStreams() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getCountsByPetAgeUsingStreams);
         }

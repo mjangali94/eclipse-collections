@@ -44,17 +44,17 @@ public class AddFunctionTest {
 
         private AddFunctionTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_addStringBlockHandlesNulls() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.addStringBlockHandlesNulls);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_addLongFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.addLongFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

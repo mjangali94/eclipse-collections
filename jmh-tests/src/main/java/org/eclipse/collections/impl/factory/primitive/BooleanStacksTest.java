@@ -151,52 +151,52 @@ public class BooleanStacksTest {
 
         private BooleanStacksTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.empty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newStackWith_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newStackWith_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newStackWith_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newStackWith_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newStackWithArray_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newStackWithArray_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newStackWithArray_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newStackWithArray_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllBooleanIterable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllBooleanIterable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllIterable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllIterable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllReversed() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllReversed);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

@@ -38,12 +38,12 @@ public class MaxSizeFunctionTest {
 
         private MaxSizeFunctionTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_maxSizeCollection() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.maxSizeCollection);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_maxSizeMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.maxSizeMap);
         }

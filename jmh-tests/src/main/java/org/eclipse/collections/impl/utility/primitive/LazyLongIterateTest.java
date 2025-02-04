@@ -55,22 +55,22 @@ public class LazyLongIterateTest {
 
         private LazyLongIterateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_adapt() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.adapt);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectIf() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectIf);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.empty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_tap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.tap);
         }

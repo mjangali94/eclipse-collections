@@ -57,22 +57,22 @@ public class DoubleIterableIterateTest {
 
         private DoubleIterableIterateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_forEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.forEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_select_target() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.select_target);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_reject_target() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.reject_target);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collect_target() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collect_target);
         }

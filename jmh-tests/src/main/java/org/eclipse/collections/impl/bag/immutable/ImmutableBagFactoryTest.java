@@ -86,22 +86,22 @@ public class ImmutableBagFactoryTest {
 
         private ImmutableBagFactoryTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofOccurrences() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofOccurrences);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withOccurrences() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withOccurrences);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_singletonBagCreation() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.singletonBagCreation);
         }

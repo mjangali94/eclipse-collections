@@ -79,22 +79,22 @@ public class MinAndMaxBlocksTest {
 
         private MinAndMaxBlocksTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_minBlocks() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.minBlocks);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_minBlocksNull() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.minBlocksNull);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_maxBlocks() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.maxBlocks);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_maxBlocksNull() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.maxBlocksNull);
         }

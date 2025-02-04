@@ -232,122 +232,122 @@ public class PrimitiveStreamsTest {
 
         private PrimitiveStreamsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toIntList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toIntList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableIntList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableIntList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toIntSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toIntSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableIntSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableIntSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toIntBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toIntBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableIntBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableIntBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toIntStack() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toIntStack);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableIntStack() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableIntStack);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toLongList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toLongList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableLongList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableLongList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toLongSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toLongSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableLongSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableLongSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toLongBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toLongBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableLongBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableLongBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toLongStack() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toLongStack);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableLongStack() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableLongStack);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toDoubleList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toDoubleList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableDoubleList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableDoubleList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toDoubleSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toDoubleSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableDoubleSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableDoubleSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toDoubleBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toDoubleBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableDoubleBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableDoubleBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toDoubleStack() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toDoubleStack);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableDoubleStack() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableDoubleStack);
         }

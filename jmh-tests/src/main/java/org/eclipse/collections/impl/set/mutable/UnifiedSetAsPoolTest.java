@@ -87,32 +87,32 @@ public class UnifiedSetAsPoolTest {
 
         private UnifiedSetAsPoolTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getReturnsNullIfObjectIsNotPooled() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getReturnsNullIfObjectIsNotPooled);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getReturnsOriginalObjectForIdenticalObject() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getReturnsOriginalObjectForIdenticalObject);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getReturnsPooledObjectForEqualObject() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getReturnsPooledObjectForEqualObject);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_putReturnsPassedInObject() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.putReturnsPassedInObject);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_putAndGetReturnOriginalPooledObjectForEqualObject() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.putAndGetReturnOriginalPooledObjectForEqualObject);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeFromPool() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeFromPool);
         }

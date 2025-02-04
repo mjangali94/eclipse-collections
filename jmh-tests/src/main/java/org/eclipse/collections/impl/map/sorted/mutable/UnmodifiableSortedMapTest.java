@@ -72,32 +72,32 @@ public class UnmodifiableSortedMapTest {
 
         private UnmodifiableSortedMapTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_comparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.comparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_subMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.subMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_headMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.headMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_tailMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.tailMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_firstKey() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.firstKey);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_lasKey() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.lasKey);
         }

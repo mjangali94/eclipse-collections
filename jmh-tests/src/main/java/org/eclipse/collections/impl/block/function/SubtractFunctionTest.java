@@ -45,17 +45,17 @@ public class SubtractFunctionTest {
 
         private SubtractFunctionTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_subtractIntegerFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.subtractIntegerFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_subtractDoubleFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.subtractDoubleFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_subtractLongFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.subtractLongFunction);
         }

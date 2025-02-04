@@ -40,7 +40,7 @@ public class CollectIntProcedureTest {
 
         private CollectIntProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_basicCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.basicCase);
         }

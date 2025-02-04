@@ -232,52 +232,52 @@ public class ByteBagsTest {
 
         private ByteBagsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptyBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptyBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newBagWith_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newBagWith_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newBagWith_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newBagWith_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newBagWithArray_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newBagWithArray_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newBagWithArray_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newBagWithArray_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newBagWithBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newBagWithBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllIterable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllIterable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

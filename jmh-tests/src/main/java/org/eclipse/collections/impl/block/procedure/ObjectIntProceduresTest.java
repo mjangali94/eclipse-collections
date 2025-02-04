@@ -39,12 +39,12 @@ public class ObjectIntProceduresTest {
 
         private ObjectIntProceduresTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromObjectIntProcedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromObjectIntProcedure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

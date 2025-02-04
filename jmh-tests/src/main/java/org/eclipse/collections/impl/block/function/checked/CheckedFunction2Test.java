@@ -43,12 +43,12 @@ public class CheckedFunction2Test {
 
         private CheckedFunction2Test instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_value() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.value);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_exceptionHandling() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.exceptionHandling);
         }

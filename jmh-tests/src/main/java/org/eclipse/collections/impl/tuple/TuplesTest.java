@@ -243,102 +243,102 @@ public class TuplesTest {
 
         private TuplesTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_pairFrom() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.pairFrom);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_pair() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.pair);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_twin() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.twin);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_identicalTwin() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.identicalTwin);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_triple() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.triple);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_triplet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.triplet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_identicalTriplet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.identicalTriplet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_equalsHashCode() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.equalsHashCode);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_equalsHashCodeTriple() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.equalsHashCodeTriple);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_putToMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.putToMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testToString() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testToString);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_pairFunctions() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.pairFunctions);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_swap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.swap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_reverse() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.reverse);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_pairToList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.pairToList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_pairToFixedSizeList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.pairToFixedSizeList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_pairToImmutableList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.pairToImmutableList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_tripleToList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.tripleToList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_tripleToFixedSizeList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.tripleToFixedSizeList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_tripleToImmutableList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.tripleToImmutableList);
         }

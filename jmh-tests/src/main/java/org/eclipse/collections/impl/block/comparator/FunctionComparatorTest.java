@@ -93,17 +93,17 @@ public class FunctionComparatorTest {
 
         private FunctionComparatorTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_comparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.comparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_functionComparatorBuiltTheHardWay() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.functionComparatorBuiltTheHardWay);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_functionComparatorBuiltTheEasyWay() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.functionComparatorBuiltTheEasyWay);
         }

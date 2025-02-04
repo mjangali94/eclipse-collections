@@ -37,7 +37,7 @@ public class PartitionUnifiedSetTest {
 
         private PartitionUnifiedSetTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutable);
         }

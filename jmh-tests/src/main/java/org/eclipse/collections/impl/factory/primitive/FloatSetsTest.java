@@ -227,57 +227,57 @@ public class FloatSetsTest {
 
         private FloatSetsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newSetWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newSetWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newSetWithArray_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newSetWithArray_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newSetWithArray_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newSetWithArray_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newSetWithSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newSetWithSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllIterable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllIterable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProduct() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProduct);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProductSameElements() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProductSameElements);
         }

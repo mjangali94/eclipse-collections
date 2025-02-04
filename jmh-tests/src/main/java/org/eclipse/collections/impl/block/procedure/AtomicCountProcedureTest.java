@@ -49,17 +49,17 @@ public class AtomicCountProcedureTest {
 
         private AtomicCountProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getCount() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getCount);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_predicateException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.predicateException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_parallelProcessing() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.parallelProcessing);
         }

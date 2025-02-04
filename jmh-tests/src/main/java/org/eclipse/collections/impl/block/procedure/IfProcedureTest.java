@@ -56,12 +56,12 @@ public class IfProcedureTest {
 
         private IfProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_procedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.procedure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toStringTest() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toStringTest);
         }

@@ -71,32 +71,32 @@ public class SetIterateTest {
 
         private SetIterateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeAllIterableOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeAllIterableOne);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeAllIterableTwo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeAllIterableTwo);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeAllIterableThree() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeAllIterableThree);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeAllIterableFour() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeAllIterableFour);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeAllIterableFive() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeAllIterableFive);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_removeAllIterableSix() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.removeAllIterableSix);
         }

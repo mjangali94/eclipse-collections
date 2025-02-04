@@ -38,12 +38,12 @@ public class MinSizeFunctionTest {
 
         private MinSizeFunctionTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_minSizeCollection() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.minSizeCollection);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_minSizeMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.minSizeMap);
         }

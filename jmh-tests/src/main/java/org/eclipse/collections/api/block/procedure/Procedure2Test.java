@@ -35,7 +35,7 @@ public class Procedure2Test {
 
         private Procedure2Test instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_accept() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.accept);
         }

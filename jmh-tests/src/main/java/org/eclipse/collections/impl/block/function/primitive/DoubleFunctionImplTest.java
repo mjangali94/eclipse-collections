@@ -45,7 +45,7 @@ public final class DoubleFunctionImplTest {
 
         private DoubleFunctionImplTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testValueOf() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testValueOf);
         }

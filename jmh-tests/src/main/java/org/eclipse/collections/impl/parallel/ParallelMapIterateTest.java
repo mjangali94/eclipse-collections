@@ -79,37 +79,37 @@ public class ParallelMapIterateTest {
 
         private ParallelMapIterateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_forEachKeyValueWithNoParameters() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.forEachKeyValueWithNoParameters);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_forEachKeyValueWithExecutor() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.forEachKeyValueWithExecutor);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_forEachKeyValueWithMinForkSizeTaskCountAndExecutorParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.forEachKeyValueWithMinForkSizeTaskCountAndExecutorParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_forEachKeyValueWithMinForkSizeTaskCountAndExecutorSerial() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.forEachKeyValueWithMinForkSizeTaskCountAndExecutorSerial);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_forEachKeyValueWithMinForkSizeAndTaskCountParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.forEachKeyValueWithMinForkSizeAndTaskCountParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_forEachKeyValueWithMinForkSizeAndTaskCountSerial() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.forEachKeyValueWithMinForkSizeAndTaskCountSerial);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

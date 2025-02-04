@@ -96,32 +96,32 @@ public class ImmutableMapFactoryTest {
 
         private ImmutableMapFactoryTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_create0() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.create0);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_create1() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.create1);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_create2() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.create2);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_create3() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.create3);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_createWithDuplicates() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.createWithDuplicates);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_keyPreservation() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.keyPreservation);
         }

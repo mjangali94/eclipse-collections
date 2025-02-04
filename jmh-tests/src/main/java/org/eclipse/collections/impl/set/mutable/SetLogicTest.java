@@ -60,22 +60,22 @@ public class SetLogicTest {
 
         private SetLogicTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_inOnlyInAMutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.inOnlyInAMutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_onlyInAJdkLike() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.onlyInAJdkLike);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_inBothAAndBMutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.inBothAAndBMutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_inAOrBButNotInBoth() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.inAOrBButNotInBoth);
         }

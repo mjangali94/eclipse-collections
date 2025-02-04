@@ -32,7 +32,7 @@ public class PredicateTest {
 
         private PredicateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_test() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.test);
         }

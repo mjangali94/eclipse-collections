@@ -138,57 +138,57 @@ public class ObjectShortMapsTest {
 
         private ObjectShortMapsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mapWith_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mapWith_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mapWith_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mapWith_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptyMap_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptyMap_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptyMap_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptyMap_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newMapOfAll_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newMapOfAll_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newMapOfAll_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newMapOfAll_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newMapFrom_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newMapFrom_immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newMapFrom_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newMapFrom_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

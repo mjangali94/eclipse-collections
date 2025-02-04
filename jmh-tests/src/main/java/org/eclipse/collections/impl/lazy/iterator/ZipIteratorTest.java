@@ -29,7 +29,7 @@ public class ZipIteratorTest {
 
         private ZipIteratorTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testRemove() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testRemove);
         }

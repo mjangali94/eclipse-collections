@@ -81,52 +81,52 @@ public class SpreadFunctionsTest {
 
         private SpreadFunctionsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doubleSpreadOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doubleSpreadOne);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doubleSpreadTwo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doubleSpreadTwo);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_longSpreadOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.longSpreadOne);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_longSpreadTwo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.longSpreadTwo);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intSpreadOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intSpreadOne);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intSpreadTwo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intSpreadTwo);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_floatSpreadOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.floatSpreadOne);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_floatSpreadTwo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.floatSpreadTwo);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_shortSpreadOne() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.shortSpreadOne);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_shortSpreadTwo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.shortSpreadTwo);
         }

@@ -60,12 +60,12 @@ public class CounterProcedureTest {
 
         private CounterProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getCount() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getCount);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toStringTest() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toStringTest);
         }

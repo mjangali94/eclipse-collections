@@ -339,152 +339,152 @@ public class ComparatorsTest {
 
         private ComparatorsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_naturalOrder() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.naturalOrder);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_originalNaturalOrder() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.originalNaturalOrder);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_reverseNaturalOrder() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.reverseNaturalOrder);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_originalReverseNaturalOrder() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.originalReverseNaturalOrder);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_reverse() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.reverse);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_safeNullsLow() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.safeNullsLow);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byBooleanFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byBooleanFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byByteFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byByteFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byCharFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byCharFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byDoubleFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byDoubleFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byFloatFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byFloatFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byIntFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byIntFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byLongFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byLongFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byShortFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byShortFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_safeNullsHigh() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.safeNullsHigh);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_chainedComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.chainedComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFunctions() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFunctions);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_originalByFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.originalByFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFunctionsSafeNullsHigh() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFunctionsSafeNullsHigh);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFunctionsSafeNullsLow() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFunctionsSafeNullsLow);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFunctionsWithTwoArgs() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFunctionsWithTwoArgs);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFunctionsWithThreeArgs() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFunctionsWithThreeArgs);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_descendingCollectionSizeCompare() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.descendingCollectionSizeCompare);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ascendingCollectionSizeCompare() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ascendingCollectionSizeCompare);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_nullSafeEquals() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.nullSafeEquals);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_nullSafeCompare() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.nullSafeCompare);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_byFirstOfPair() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.byFirstOfPair);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_bySecondOfPair() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.bySecondOfPair);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_specializedComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.specializedComparator);
         }

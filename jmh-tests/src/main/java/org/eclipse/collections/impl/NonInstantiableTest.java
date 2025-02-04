@@ -72,12 +72,12 @@ public class NonInstantiableTest {
 
         private NonInstantiableTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_generatedNonInstantiableClassesThrow() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.generatedNonInstantiableClassesThrow);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_handCodedNonInstantiableClassesThrow() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.handCodedNonInstantiableClassesThrow);
         }

@@ -35,7 +35,7 @@ public class RejectProcedureTest {
 
         private RejectProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_getCollection() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.getCollection);
         }

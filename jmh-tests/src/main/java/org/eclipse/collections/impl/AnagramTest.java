@@ -140,37 +140,37 @@ public class AnagramTest {
 
         private AnagramTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_anagramsWithMultimapInlined() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.anagramsWithMultimapInlined);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_anagramsWithMultimapEclipseCollections1() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.anagramsWithMultimapEclipseCollections1);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_anagramsWithMultimapEclipseCollections3() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.anagramsWithMultimapEclipseCollections3);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_anagramsWithMultimapEclipseCollections4() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.anagramsWithMultimapEclipseCollections4);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_anagramsWithMultimapLazyIterable1() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.anagramsWithMultimapLazyIterable1);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_anagramsWithMultimapForEachMultiValue() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.anagramsWithMultimapForEachMultiValue);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_anagramsUsingMapGetIfAbsentPutInsteadOfGroupBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.anagramsUsingMapGetIfAbsentPutInsteadOfGroupBy);
         }

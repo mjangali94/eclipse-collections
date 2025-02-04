@@ -57,12 +57,12 @@ public class ByteFloatMapsTest {
 
         private ByteFloatMapsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mutables);
         }

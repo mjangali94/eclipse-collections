@@ -99,47 +99,47 @@ public final class BooleanPredicatesTest {
 
         private BooleanPredicatesTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testEqual() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testEqual);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testIsTrue() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testIsTrue);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testIsFalse() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testIsFalse);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testAnd() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testAnd);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testOr() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testOr);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testNot() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testNot);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testAlwaysTrue() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testAlwaysTrue);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testAlwaysFalse() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testAlwaysFalse);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

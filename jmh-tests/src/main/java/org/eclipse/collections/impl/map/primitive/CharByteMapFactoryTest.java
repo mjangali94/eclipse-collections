@@ -51,17 +51,17 @@ public class CharByteMapFactoryTest {
 
         private CharByteMapFactoryTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_of() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.of);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_from() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.from);
         }

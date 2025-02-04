@@ -61,32 +61,32 @@ public class PrimitiveFunctionsTest {
 
         private PrimitiveFunctionsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unboxNumberToInt() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unboxNumberToInt);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unboxNumberToFloat() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unboxNumberToFloat);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unboxNumberToLong() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unboxNumberToLong);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unboxNumberToDouble() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unboxNumberToDouble);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unboxDoubleToDouble() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unboxDoubleToDouble);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unboxFloatToFloat() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unboxFloatToFloat);
         }

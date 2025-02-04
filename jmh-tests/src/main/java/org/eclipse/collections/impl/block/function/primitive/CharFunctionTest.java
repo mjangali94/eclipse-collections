@@ -41,12 +41,12 @@ public class CharFunctionTest {
 
         private CharFunctionTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toUppercase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toUppercase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toLowercase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toLowercase);
         }

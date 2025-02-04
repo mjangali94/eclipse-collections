@@ -563,192 +563,192 @@ public class CheckedBlocksTest {
 
         private CheckedBlocksTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedFunction2CheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedFunction2CheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedFunction2RuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedFunction2RuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedCodeBlockCheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedCodeBlockCheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedCodeBlockRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedCodeBlockRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedProcedureCheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedProcedureCheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedProcedureRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedProcedureRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedObjectIntProcedureCheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedObjectIntProcedureCheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedObjectIntProcedureRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedObjectIntProcedureRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedFunctionCheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedFunctionCheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedFunctionRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedFunctionRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedPredicateCheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedPredicateCheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedPredicateRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedPredicateRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedPredicate2CheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedPredicate2CheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedPredicate2RuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedPredicate2RuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedProcedure2CheckedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedProcedure2CheckedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedProcedure2RuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedProcedure2RuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_codeBlockFailure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.codeBlockFailure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_codeBlockRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.codeBlockRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_codeBlockSuccess() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.codeBlockSuccess);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_procedureFailure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.procedureFailure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_procedureRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.procedureRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_procedureSuccess() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.procedureSuccess);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_objectIntProcedureFailure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.objectIntProcedureFailure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_objectIntProcedureRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.objectIntProcedureRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_objectIntProcedureSuccess() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.objectIntProcedureSuccess);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_functionFailure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.functionFailure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_functionRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.functionRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_functionSuccess() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.functionSuccess);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_predicateFailure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.predicateFailure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_predicateRuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.predicateRuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_predicateSuccess() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.predicateSuccess);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_procedure2Failure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.procedure2Failure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_procedure2RuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.procedure2RuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_procedure2Success() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.procedure2Success);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_predicate2Failure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.predicate2Failure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_predicate2RuntimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.predicate2RuntimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_predicate2Success() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.predicate2Success);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedFunction2SafeValue() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedFunction2SafeValue);
         }

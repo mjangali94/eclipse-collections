@@ -51,17 +51,17 @@ public class DistinctIteratorTest {
 
         private DistinctIteratorTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_remove() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.remove);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_iterator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.iterator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_nextException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.nextException);
         }

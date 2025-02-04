@@ -75,17 +75,17 @@ public class SetIterablesTest {
 
         private SetIterablesTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_union() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.union);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersect() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersect);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_difference() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.difference);
         }

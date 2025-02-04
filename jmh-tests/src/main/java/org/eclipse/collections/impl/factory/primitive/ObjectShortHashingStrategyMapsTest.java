@@ -83,27 +83,27 @@ public class ObjectShortHashingStrategyMapsTest {
 
         private ObjectShortHashingStrategyMapsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mapWith_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mapWith_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mapOf_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mapOf_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mapWithInitialCapacity_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mapWithInitialCapacity_mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

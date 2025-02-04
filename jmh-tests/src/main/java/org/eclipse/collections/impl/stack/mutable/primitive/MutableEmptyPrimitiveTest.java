@@ -60,7 +60,7 @@ public class MutableEmptyPrimitiveTest {
 
         private MutableEmptyPrimitiveTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isEmptyMutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isEmptyMutable);
         }

@@ -236,72 +236,72 @@ public class MapsTest {
 
         private MapsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutableWithDuplicateKeys() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutableWithDuplicateKeys);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fixedSize() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fixedSize);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fixedSizeWithDuplicateKeys() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fixedSizeWithDuplicateKeys);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_copyMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.copyMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newMapWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newMapWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_duplicates() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.duplicates);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mapKeyPreservation() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mapKeyPreservation);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_sortedMaps() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.sortedMaps);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofInitialCapacity() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofInitialCapacity);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withInitialCapacity() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withInitialCapacity);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withAllEmptyImmutableSame() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withAllEmptyImmutableSame);
         }

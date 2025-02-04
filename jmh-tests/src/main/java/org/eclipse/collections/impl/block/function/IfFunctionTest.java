@@ -52,17 +52,17 @@ public class IfFunctionTest {
 
         private IfFunctionTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_iterate() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.iterate);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testIf() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testIf);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ifElse() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ifElse);
         }

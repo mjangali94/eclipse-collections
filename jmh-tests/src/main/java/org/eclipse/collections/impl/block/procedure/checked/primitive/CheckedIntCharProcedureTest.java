@@ -63,17 +63,17 @@ public final class CheckedIntCharProcedureTest {
 
         private CheckedIntCharProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_regular() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.regular);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_runtimeException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.runtimeException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_checkedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.checkedException);
         }

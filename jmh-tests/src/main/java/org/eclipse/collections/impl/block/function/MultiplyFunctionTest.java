@@ -42,22 +42,22 @@ public class MultiplyFunctionTest {
 
         private MultiplyFunctionTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_integerBlock() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.integerBlock);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_doubleBlock() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.doubleBlock);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_longBlock() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.longBlock);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

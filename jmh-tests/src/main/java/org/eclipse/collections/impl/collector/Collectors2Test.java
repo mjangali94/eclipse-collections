@@ -1148,612 +1148,612 @@ public final class Collectors2Test {
 
         private Collectors2Test instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_makeString0() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.makeString0);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_makeString0Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.makeString0Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_makeString1() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.makeString1);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_makeString1Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.makeString1Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_makeString3() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.makeString3);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_makeString3Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.makeString3Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toListParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toListParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableListParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableListParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSetParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSetParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSetParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSetParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toBagParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toBagParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableBagParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableBagParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toListMultimap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toListMultimap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toListMultimapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toListMultimapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toListMultimap2() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toListMultimap2);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toListMultimap2Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toListMultimap2Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSetMultimap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSetMultimap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSetMultimapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSetMultimapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSetMultimap2() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSetMultimap2);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSetMultimap2Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSetMultimap2Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toBagMultimap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toBagMultimap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toBagMultimapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toBagMultimapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toBagMultimap2() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toBagMultimap2);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toBagMultimap2Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toBagMultimap2Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupingByToBagMultimap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupingByToBagMultimap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupingByPartition() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupingByPartition);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupingByChunk() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupingByChunk);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupingByCollectInt() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupingByCollectInt);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupingBySumByInt() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupingBySumByInt);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toStack() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toStack);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toStackParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toStackParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableStack() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableStack);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableStackParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableStackParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toMapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toMapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableMapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableMapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toBiMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toBiMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toBiMapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toBiMapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableBiMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableBiMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableBiMapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableBiMapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedSetParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedSetParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedSetBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedSetBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedSetByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedSetByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedSetParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedSetParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedSetBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedSetBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedSetByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedSetByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedBagParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedBagParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedBagBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedBagBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedBagByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedBagByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedBagParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedBagParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedBagBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedBagBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedBagByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedBagByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedSetWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedSetWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedSetParallelWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedSetParallelWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedSetWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedSetWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedSetParallelWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedSetParallelWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedBagWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedBagWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedBagParallelWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedBagParallelWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedBagWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedBagWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedBagParallelWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedBagParallelWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedListParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedListParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedListBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedListBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedListByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedListByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedList() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedList);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedListParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedListParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedListBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedListBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedListByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedListByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedListWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedListWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedListParallelWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedListParallelWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedMapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedMapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedMapWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedMapWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedMapParallelWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedMapParallelWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedMapBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedMapBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toSortedMapByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toSortedMapByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedMapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedMapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedMapWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedMapWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedMapParallelWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedMapParallelWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedMapBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedMapBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedMapByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedMapByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedListWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedListWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSortedListParallelWithComparator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSortedListParallelWithComparator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableListMultimap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableListMultimap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableListMultimapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableListMultimapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableListMultimap2() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableListMultimap2);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableListMultimap2Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableListMultimap2Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSetMultimap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSetMultimap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSetMultimapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSetMultimapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSetMultimap2() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSetMultimap2);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableSetMultimap2Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableSetMultimap2Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableBagMultimap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableBagMultimap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableBagMultimapParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableBagMultimapParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableBagMultimap2() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableBagMultimap2);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_toImmutableBagMultimap2Parallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.toImmutableBagMultimap2Parallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_countBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.countBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_countByParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.countByParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_countByEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.countByEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_countByEachParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.countByEachParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupByEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupByEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupByEachParallel() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupByEachParallel);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupByUniqueKey() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupByUniqueKey);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupByUniqueKey_throws_for_duplicate() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupByUniqueKey_throws_for_duplicate);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupByUniqueKey_parallelStream() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupByUniqueKey_parallelStream);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupByUniqueKey_parallelStream_throws_for_duplicate() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupByUniqueKey_parallelStream_throws_for_duplicate);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_groupByUniqueKey_parallelStream_duplicate_from_combiner() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.groupByUniqueKey_parallelStream_duplicate_from_combiner);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_aggregateBy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.aggregateBy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_aggregateBy_parallelStream() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.aggregateBy_parallelStream);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_aggregateBy_mutableSortedMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.aggregateBy_mutableSortedMap);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_aggregateBy_parallelStream_mutableSortedMap() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.aggregateBy_parallelStream_mutableSortedMap);
         }

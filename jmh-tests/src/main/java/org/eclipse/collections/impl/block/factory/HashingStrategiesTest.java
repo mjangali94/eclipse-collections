@@ -223,87 +223,87 @@ public class HashingStrategiesTest {
 
         private HashingStrategiesTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_defaultStrategy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.defaultStrategy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_nullSafeStrategy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.nullSafeStrategy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_nullSafeFromFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.nullSafeFromFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_identityHashingStrategy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.identityHashingStrategy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_chainedHashingStrategy() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.chainedHashingStrategy);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFunctionsTwoArgs() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFunctionsTwoArgs);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFunctionsThreeArgs() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFunctionsThreeArgs);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromBooleanFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromBooleanFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromByteFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromByteFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromCharFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromCharFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromDoubleFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromDoubleFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromFloatFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromFloatFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromIntFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromIntFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromLongFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromLongFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromShortFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromShortFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

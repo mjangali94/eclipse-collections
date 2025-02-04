@@ -726,307 +726,307 @@ public class SetsTest {
 
         private SetsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionUnique() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionUnique);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionUniqueSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionUniqueSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionOverlapping() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionOverlapping);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionOverlappingSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionOverlappingSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionIdentical() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionIdentical);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionIdenticalSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionIdenticalSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionAllUnique() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionAllUnique);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionAllOverlapping() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionAllOverlapping);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_unionAllIdentical() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.unionAllIdentical);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectUnique() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectUnique);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectUniqueSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectUniqueSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectOverlapping() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectOverlapping);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectOverlappingSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectOverlappingSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectIdentical() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectIdentical);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectIdenticalSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectIdenticalSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectAllUnique() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectAllUnique);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectAllOverlapping() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectAllOverlapping);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_intersectAllIdentical() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.intersectAllIdentical);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceUnique() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceUnique);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceUniqueSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceUniqueSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceOverlapping() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceOverlapping);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceOverlappingSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceOverlappingSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceIdentical() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceIdentical);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceIdenticalSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceIdenticalSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceAllUnique() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceAllUnique);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceAllOverlapping() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceAllOverlapping);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_differenceAllIdentical() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.differenceAllIdentical);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_symmetricDifferenceUnique() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.symmetricDifferenceUnique);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_symmetricDifferenceUniqueSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.symmetricDifferenceUniqueSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_symmetricDifferenceOverlapping() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.symmetricDifferenceOverlapping);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_symmetricDifferenceOverlappingSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.symmetricDifferenceOverlappingSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_symmetricDifferenceIdentical() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.symmetricDifferenceIdentical);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_symmetricDifferenceIdenticalSorted() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.symmetricDifferenceIdenticalSorted);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_subsetEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.subsetEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_subsetNotEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.subsetNotEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_subsetEqual() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.subsetEqual);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_properSubsetEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.properSubsetEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_properSubsetNotEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.properSubsetNotEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_properSubsetEqual() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.properSubsetEqual);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mutables() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mutables);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fixedSize() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fixedSize);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_multiReader() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.multiReader);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_powerSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.powerSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_powerSet_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.powerSet_empty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProduct() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProduct);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProductSameElements() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProductSameElements);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProductWithFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProductWithFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProduct_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProduct_empty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_castToSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.castToSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_copySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.copySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllImmutableSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllImmutableSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllMutableSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllMutableSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAllFixedSizeSet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAllFixedSizeSet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptySet() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptySet);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_newSetWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.newSetWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_setKeyPreservation() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.setKeyPreservation);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofInitialCapacity() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofInitialCapacity);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withInitialCapacity() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withInitialCapacity);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withAllEmptyImmutableSame() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withAllEmptyImmutableSame);
         }

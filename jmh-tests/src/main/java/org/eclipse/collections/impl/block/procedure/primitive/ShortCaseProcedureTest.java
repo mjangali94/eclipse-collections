@@ -77,22 +77,22 @@ public class ShortCaseProcedureTest {
 
         private ShortCaseProcedureTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_noopCaseAndThenDefault() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.noopCaseAndThenDefault);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_oneCaseWithDefault() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.oneCaseWithDefault);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_twoCasesNoDefault() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.twoCasesNoDefault);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_twoCasesWithDefault() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.twoCasesWithDefault);
         }

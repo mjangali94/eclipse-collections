@@ -62,22 +62,22 @@ public class ShortObjectMapFactoryTest {
 
         private ShortObjectMapFactoryTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.empty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_of() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.of);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_from() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.from);
         }

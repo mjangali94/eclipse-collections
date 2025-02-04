@@ -60,7 +60,7 @@ public class ImmutableEmptyPrimitiveTest {
 
         private ImmutableEmptyPrimitiveTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isEmptyImmutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isEmptyImmutable);
         }

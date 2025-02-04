@@ -94,42 +94,42 @@ public class CharPredicateTest {
 
         private CharPredicateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isUpperCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isUpperCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isLowerCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isLowerCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isDigit() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isDigit);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isDigitOrDot() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isDigitOrDot);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isLetter() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isLetter);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isLetterOrDigit() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isLetterOrDigit);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isWhitespace() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isWhitespace);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isUndefined() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isUndefined);
         }

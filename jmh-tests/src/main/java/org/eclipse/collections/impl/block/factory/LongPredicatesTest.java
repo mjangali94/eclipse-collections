@@ -97,57 +97,57 @@ public class LongPredicatesTest {
 
         private LongPredicatesTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isOdd() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isOdd);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isEven() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isEven);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_attributeIsOdd() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.attributeIsOdd);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_attributeIsEven() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.attributeIsEven);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isZero() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isZero);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isPositive() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isPositive);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isNegative() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isNegative);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_attributeIsZero() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.attributeIsZero);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_attributeIsPositive() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.attributeIsPositive);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_attributeIsNegative() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.attributeIsNegative);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

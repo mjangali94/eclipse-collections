@@ -45,12 +45,12 @@ public class MutableIntDoubleMapFactoryTest {
 
         private MutableIntDoubleMapFactoryTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_with() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.with);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_of() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.of);
         }

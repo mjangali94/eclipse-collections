@@ -70,12 +70,12 @@ public class LongHashSetExtraTest {
 
         private LongHashSetExtraTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testManyRemoves() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testManyRemoves);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testArrayGrowth() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.testArrayGrowth);
         }

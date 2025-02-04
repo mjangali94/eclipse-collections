@@ -79,32 +79,32 @@ public class ImmutableSortedBagFactoryTest {
 
         private ImmutableSortedBagFactoryTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.empty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofElements() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofElements);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withElements() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withElements);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofAll() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofAll);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ofSortedBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ofSortedBag);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withSortedBag() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withSortedBag);
         }

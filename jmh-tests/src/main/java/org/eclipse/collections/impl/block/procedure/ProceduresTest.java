@@ -227,72 +227,72 @@ public class ProceduresTest {
 
         private ProceduresTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwing() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwing);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwingWithSuccessfulCompletion() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwingWithSuccessfulCompletion);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_throwingWithUserSpecifiedException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.throwingWithUserSpecifiedException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_println() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.println);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_append() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.append);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_appendWithException() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.appendWithException);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromObjectIntProcedure() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromObjectIntProcedure);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_fromProcedureWithInt() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.fromProcedureWithInt);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_noop() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.noop);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_synchronizedEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.synchronizedEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_ifElse() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.ifElse);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_caseDefault() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.caseDefault);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_caseDefaultWithACase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.caseDefaultWithACase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

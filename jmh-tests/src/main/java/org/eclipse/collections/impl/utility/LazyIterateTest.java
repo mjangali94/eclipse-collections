@@ -213,92 +213,92 @@ public class LazyIterateTest {
 
         private LazyIterateTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_selectForEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.selectForEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_selectForEachWithIndex() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.selectForEachWithIndex);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_selectIterator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.selectIterator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_selectForEachWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.selectForEachWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_rejectForEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.rejectForEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_rejectForEachWithIndex() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.rejectForEachWithIndex);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_rejectIterator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.rejectIterator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_rejectForEachWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.rejectForEachWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectForEach() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectForEach);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectForEachWithIndex() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectForEachWithIndex);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectIterator() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectIterator);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_collectForEachWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.collectForEachWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_asDeferred() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.asDeferred);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProduct() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProduct);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProductDuplicatesToConcreteCollections() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProductDuplicatesToConcreteCollections);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProductWithFunction() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProductWithFunction);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_cartesianProduct_empty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.cartesianProduct_empty);
         }

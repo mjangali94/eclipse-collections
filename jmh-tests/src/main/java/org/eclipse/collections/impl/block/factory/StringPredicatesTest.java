@@ -232,132 +232,132 @@ public class StringPredicatesTest {
 
         private StringPredicatesTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_startsWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.startsWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_endsWith() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.endsWith);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_equalsIgnoreCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.equalsIgnoreCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_containsString() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.containsString);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_containsCharacter() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.containsCharacter);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_emptyAndNotEmpty() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.emptyAndNotEmpty);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_lessThan() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.lessThan);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_lessThanOrEqualTo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.lessThanOrEqualTo);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_greaterThan() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.greaterThan);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_greaterThanOrEqualTo() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.greaterThanOrEqualTo);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_matches() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.matches);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_size() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.size);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasLetters() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasLetters);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasDigits() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasDigits);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasLettersAndDigits() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasLettersAndDigits);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasLettersOrDigits() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasLettersOrDigits);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isAlpha() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isAlpha);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isAlphaNumeric() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isAlphaNumeric);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isBlank() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isBlank);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_notBlank() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.notBlank);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_isNumeric() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.isNumeric);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasLowerCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasLowerCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasUpperCase() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasUpperCase);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasUndefined() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasUndefined);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_hasSpaces() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.hasSpaces);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }

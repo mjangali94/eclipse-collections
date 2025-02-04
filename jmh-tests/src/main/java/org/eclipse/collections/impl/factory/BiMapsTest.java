@@ -87,22 +87,22 @@ public class BiMapsTest {
 
         private BiMapsTest instance;
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_immutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.immutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_mutable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.mutable);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_withAllEmptyImmutableSame() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.withAllEmptyImmutableSame);
         }
 
-        @org.openjdk.jmh.annotations.Benchmark
+        //  @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_classIsNonInstantiable() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.classIsNonInstantiable);
         }
