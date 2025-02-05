@@ -150,10 +150,10 @@
                         </annotationProcessorPaths>
                         <fork>true</fork>
                         <meminitial>8192m</meminitial>  <!-- Start with 8GB -->
-                        <maxmem>24576m</maxmem>          <!-- Allow up to 24GB -->
+                        <maxmem>30000m</maxmem>          <!-- Allow up to 24GB -->
                         <compilerArgs>
                             <arg>-J-Xms8g</arg>
-                            <arg>-J-Xmx24g</arg>
+                            <arg>-J-Xmx30g</arg>
                         </compilerArgs>
                     </configuration>
                 </plugin>
