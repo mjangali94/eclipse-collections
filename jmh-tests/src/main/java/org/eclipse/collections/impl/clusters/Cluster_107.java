@@ -1,0 +1,29 @@
+package org.eclipse.collections.impl.clusters;
+
+public class Cluster_107 {
+
+   @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
+    public static class _Benchmark {
+
+       private org.eclipse.collections.impl.bag.mutable.MultiReaderHashBagAsWriteUntouchableTest._Benchmark _Benchmark_benchmark_0;
+       private org.eclipse.collections.impl.bag.sorted.immutable.ImmutableSortedBagImplNoIteratorTest._Benchmark _Benchmark_benchmark_2;
+
+        @org.openjdk.jmh.annotations.Setup(org.openjdk.jmh.annotations.Level.Trial)
+        public void makePayloads() {
+            _Benchmark_benchmark_0 = new org.eclipse.collections.impl.bag.mutable.MultiReaderHashBagAsWriteUntouchableTest._Benchmark();
+            _Benchmark_benchmark_2 = new org.eclipse.collections.impl.bag.sorted.immutable.ImmutableSortedBagImplNoIteratorTest._Benchmark();
+            this._Benchmark_benchmark_0.makePayloads();
+            this._Benchmark_benchmark_0.makePayloads();
+            this._Benchmark_benchmark_2.makePayloads();
+        }
+        
+        @org.openjdk.jmh.annotations.Benchmark
+        public void benchmark_Cluster_107() throws java.lang.Throwable {
+            this._Benchmark_benchmark_0.runBenchmark(this._Benchmark_benchmark_0.payloads.minOptional);
+            this._Benchmark_benchmark_0.runBenchmark(this._Benchmark_benchmark_0.payloads.min_null_safe);
+            this._Benchmark_benchmark_2.runBenchmark(this._Benchmark_benchmark_2.payloads.groupByEachWithTarget);
+        }
+
+   }
+
+}
