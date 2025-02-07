@@ -1402,7 +1402,7 @@ public class ImmutableHashBagTest extends ImmutableBagTestCase {
             this.runBenchmark(this.payloads.selectUnique);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableHashBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableHashBagTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableHashBagTest();
             payload.accept(this.instance);
         }

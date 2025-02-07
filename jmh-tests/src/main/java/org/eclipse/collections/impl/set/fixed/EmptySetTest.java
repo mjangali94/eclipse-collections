@@ -591,7 +591,7 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase {
             this.runBenchmark(this.payloads.getOnly);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<EmptySetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<EmptySetTest> payload) throws java.lang.Throwable {
             this.instance = new EmptySetTest();
             this.instance.setUp();
             payload.accept(this.instance);

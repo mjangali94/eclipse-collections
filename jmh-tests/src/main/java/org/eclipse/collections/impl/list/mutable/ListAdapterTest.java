@@ -1637,7 +1637,7 @@ public class ListAdapterTest extends AbstractListTestCase {
             this.runBenchmark(this.payloads.adaptNull);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ListAdapterTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ListAdapterTest> payload) throws java.lang.Throwable {
             this.instance = new ListAdapterTest();
             payload.accept(this.instance);
         }

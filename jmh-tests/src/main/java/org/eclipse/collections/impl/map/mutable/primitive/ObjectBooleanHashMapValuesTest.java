@@ -339,7 +339,7 @@ public class ObjectBooleanHashMapValuesTest extends ObjectBooleanHashMapValuesTe
             this.runBenchmark(this.payloads.testHashCode);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ObjectBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ObjectBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new ObjectBooleanHashMapValuesTest();
             payload.accept(this.instance);
         }

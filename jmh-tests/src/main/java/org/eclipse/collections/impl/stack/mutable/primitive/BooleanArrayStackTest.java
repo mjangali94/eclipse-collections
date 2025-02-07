@@ -403,7 +403,7 @@ public class BooleanArrayStackTest extends AbstractMutableBooleanStackTestCase {
             this.runBenchmark(this.payloads.testPushPopAndPeek);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<BooleanArrayStackTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<BooleanArrayStackTest> payload) throws java.lang.Throwable {
             this.instance = new BooleanArrayStackTest();
             payload.accept(this.instance);
         }

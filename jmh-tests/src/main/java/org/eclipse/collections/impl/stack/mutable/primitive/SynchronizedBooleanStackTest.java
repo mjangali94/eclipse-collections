@@ -365,7 +365,7 @@ public class SynchronizedBooleanStackTest extends AbstractMutableBooleanStackTes
             this.runBenchmark(this.payloads.asSynchronized);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanStackTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanStackTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedBooleanStackTest();
             payload.accept(this.instance);
         }

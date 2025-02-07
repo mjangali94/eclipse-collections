@@ -220,7 +220,7 @@ public class ImmutableSortedBagMultimapImplTest extends AbstractImmutableMultima
             this.runBenchmark(this.payloads.empty);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSortedBagMultimapImplTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSortedBagMultimapImplTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableSortedBagMultimapImplTest();
             payload.accept(this.instance);
         }

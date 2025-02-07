@@ -376,7 +376,7 @@ public class MultiReaderFastListAsReadUntouchableTest extends UnmodifiableMutabl
             this.runBenchmark(this.payloads.serialization);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderFastListAsReadUntouchableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderFastListAsReadUntouchableTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderFastListAsReadUntouchableTest();
             payload.accept(this.instance);
         }

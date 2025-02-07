@@ -715,7 +715,7 @@ public class IntBooleanHashMapValuesTest extends AbstractMutableBooleanCollectio
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<IntBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<IntBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new IntBooleanHashMapValuesTest();
             payload.accept(this.instance);
         }

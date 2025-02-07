@@ -1220,7 +1220,7 @@ public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollect
             this.runBenchmark(this.payloads.toSortedBagBy);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderUnifiedSetAsWriteUntouchableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderUnifiedSetAsWriteUntouchableTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderUnifiedSetAsWriteUntouchableTest();
             payload.accept(this.instance);
         }

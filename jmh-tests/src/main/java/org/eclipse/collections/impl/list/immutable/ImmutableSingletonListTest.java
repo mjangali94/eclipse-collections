@@ -836,7 +836,7 @@ public class ImmutableSingletonListTest extends AbstractImmutableListTestCase {
             this.runBenchmark(this.payloads.getOnly);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSingletonListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSingletonListTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableSingletonListTest();
             payload.accept(this.instance);
         }

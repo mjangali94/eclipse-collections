@@ -1640,7 +1640,7 @@ public class ImmutableEmptySortedBagTest extends AbstractImmutableSortedBagTestC
             this.runBenchmark(this.payloads.selectUnique);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptySortedBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptySortedBagTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableEmptySortedBagTest();
             payload.accept(this.instance);
         }

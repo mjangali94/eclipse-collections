@@ -372,7 +372,7 @@ public class SynchronizedBooleanSetTest extends AbstractBooleanSetTestCase {
             this.runBenchmark(this.payloads.asSynchronized);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanSetTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedBooleanSetTest();
             this.instance.setup();
             payload.accept(this.instance);

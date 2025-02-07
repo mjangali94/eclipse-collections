@@ -330,7 +330,7 @@ public class ImmutableBooleanSingletonStackTest extends AbstractImmutableBoolean
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanSingletonStackTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanSingletonStackTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableBooleanSingletonStackTest();
             payload.accept(this.instance);
         }

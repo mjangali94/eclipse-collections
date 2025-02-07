@@ -382,7 +382,7 @@ public class ImmutableUnifiedSetWithHashingStrategyTest extends AbstractImmutabl
             this.runBenchmark(this.payloads.equalsAndHashCode);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableUnifiedSetWithHashingStrategyTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableUnifiedSetWithHashingStrategyTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableUnifiedSetWithHashingStrategyTest();
             payload.accept(this.instance);
         }

@@ -302,7 +302,7 @@ public class ImmutableBooleanArrayStackTest extends AbstractImmutableBooleanStac
             this.runBenchmark(this.payloads.newWithTopToBottom);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanArrayStackTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanArrayStackTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableBooleanArrayStackTest();
             payload.accept(this.instance);
         }

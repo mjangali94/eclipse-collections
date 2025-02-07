@@ -1557,7 +1557,7 @@ public class MultiReaderUnifiedSetTest extends MultiReaderMutableCollectionTestC
             this.runBenchmark(this.payloads.toSortedBagBy);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderUnifiedSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderUnifiedSetTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderUnifiedSetTest();
             payload.accept(this.instance);
         }

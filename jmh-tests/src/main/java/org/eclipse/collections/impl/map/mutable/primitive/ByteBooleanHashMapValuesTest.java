@@ -715,7 +715,7 @@ public class ByteBooleanHashMapValuesTest extends AbstractMutableBooleanCollecti
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ByteBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ByteBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new ByteBooleanHashMapValuesTest();
             payload.accept(this.instance);
         }

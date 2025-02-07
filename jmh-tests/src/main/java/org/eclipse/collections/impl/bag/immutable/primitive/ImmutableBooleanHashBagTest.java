@@ -274,7 +274,7 @@ public class ImmutableBooleanHashBagTest extends AbstractImmutableBooleanBagTest
             this.runBenchmark(this.payloads.selectUnique);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanHashBagTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableBooleanHashBagTest();
             payload.accept(this.instance);
         }

@@ -1005,7 +1005,7 @@ public class SingletonSetTest extends AbstractMemoryEfficientMutableSetTestCase 
             this.runBenchmark(this.payloads.max_null_throws_without_comparator);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SingletonSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SingletonSetTest> payload) throws java.lang.Throwable {
             this.instance = new SingletonSetTest();
             this.instance.setUp();
             payload.accept(this.instance);

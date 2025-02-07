@@ -249,7 +249,7 @@ public class MultiReaderHashBagAsUnmodifiableTest extends UnmodifiableMutableCol
             this.runBenchmark(this.payloads.selectUnique);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderHashBagAsUnmodifiableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderHashBagAsUnmodifiableTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderHashBagAsUnmodifiableTest();
             payload.accept(this.instance);
         }

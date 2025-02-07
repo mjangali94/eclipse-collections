@@ -502,7 +502,7 @@ public class SynchronizedBooleanListTest extends AbstractBooleanListTestCase {
             this.runBenchmark(this.payloads.asSynchronized);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanListTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedBooleanListTest();
             payload.accept(this.instance);
         }

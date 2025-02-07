@@ -720,7 +720,7 @@ public class ImmutableEmptySetWithHashingStrategyTest extends AbstractImmutableE
             this.runBenchmark(this.payloads.equalsAndHashCode);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptySetWithHashingStrategyTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptySetWithHashingStrategyTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableEmptySetWithHashingStrategyTest();
             payload.accept(this.instance);
         }

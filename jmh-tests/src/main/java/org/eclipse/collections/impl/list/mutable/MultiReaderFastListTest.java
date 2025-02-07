@@ -2618,7 +2618,7 @@ public class MultiReaderFastListTest extends AbstractListTestCase {
             this.runBenchmark(this.payloads.binarySearchWithComparator);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderFastListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderFastListTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderFastListTest();
             payload.accept(this.instance);
         }

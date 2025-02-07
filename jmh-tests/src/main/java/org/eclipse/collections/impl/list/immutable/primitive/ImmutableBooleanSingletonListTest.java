@@ -325,7 +325,7 @@ public class ImmutableBooleanSingletonListTest extends AbstractImmutableBooleanL
             this.runBenchmark(this.payloads.forEachWithIndex);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanSingletonListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanSingletonListTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableBooleanSingletonListTest();
             payload.accept(this.instance);
         }

@@ -1080,7 +1080,7 @@ public class ImmutableArrayListTest extends AbstractImmutableListTestCase {
             this.runBenchmark(this.payloads.getOnly_exception_when_multiple_items);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableArrayListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableArrayListTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableArrayListTest();
             payload.accept(this.instance);
         }

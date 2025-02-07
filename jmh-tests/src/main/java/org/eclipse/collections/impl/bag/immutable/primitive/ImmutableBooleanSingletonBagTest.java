@@ -294,7 +294,7 @@ public class ImmutableBooleanSingletonBagTest extends AbstractImmutableBooleanBa
             this.runBenchmark(this.payloads.selectUnique);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanSingletonBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanSingletonBagTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableBooleanSingletonBagTest();
             payload.accept(this.instance);
         }

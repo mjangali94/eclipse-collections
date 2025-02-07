@@ -541,7 +541,7 @@ public class TripletonSetTest extends AbstractMemoryEfficientMutableSetTestCase 
             this.runBenchmark(this.payloads.getOnly);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TripletonSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TripletonSetTest> payload) throws java.lang.Throwable {
             this.instance = new TripletonSetTest();
             this.instance.setUp();
             payload.accept(this.instance);

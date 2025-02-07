@@ -299,7 +299,7 @@ public class ImmutableHashBiMapTest extends AbstractImmutableBiMapTestCase {
             this.runBenchmark(this.payloads.keySet);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableHashBiMapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableHashBiMapTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableHashBiMapTest();
             payload.accept(this.instance);
         }

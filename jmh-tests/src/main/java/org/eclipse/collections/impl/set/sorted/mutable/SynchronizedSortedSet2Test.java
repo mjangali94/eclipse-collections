@@ -1428,7 +1428,7 @@ public class SynchronizedSortedSet2Test extends AbstractSortedSetTestCase {
             this.runBenchmark(this.payloads.toReversed);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedSortedSet2Test> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedSortedSet2Test> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedSortedSet2Test();
             payload.accept(this.instance);
         }

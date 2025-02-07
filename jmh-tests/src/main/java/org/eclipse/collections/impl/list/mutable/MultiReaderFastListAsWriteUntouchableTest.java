@@ -1614,7 +1614,7 @@ public class MultiReaderFastListAsWriteUntouchableTest extends AbstractListTestC
             this.runBenchmark(this.payloads.appendString);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderFastListAsWriteUntouchableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderFastListAsWriteUntouchableTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderFastListAsWriteUntouchableTest();
             payload.accept(this.instance);
         }

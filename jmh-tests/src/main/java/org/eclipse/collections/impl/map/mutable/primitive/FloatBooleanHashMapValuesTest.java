@@ -715,7 +715,7 @@ public class FloatBooleanHashMapValuesTest extends AbstractMutableBooleanCollect
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<FloatBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<FloatBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new FloatBooleanHashMapValuesTest();
             payload.accept(this.instance);
         }

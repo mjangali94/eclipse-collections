@@ -715,7 +715,7 @@ public class DoubleBooleanHashMapValuesTest extends AbstractMutableBooleanCollec
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<DoubleBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<DoubleBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new DoubleBooleanHashMapValuesTest();
             payload.accept(this.instance);
         }

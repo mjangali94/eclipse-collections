@@ -586,7 +586,7 @@ public class BooleanArrayListTest extends AbstractBooleanListTestCase {
             this.runBenchmark(this.payloads.removeIfWithStatefulPredicate);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<BooleanArrayListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<BooleanArrayListTest> payload) throws java.lang.Throwable {
             this.instance = new BooleanArrayListTest();
             payload.accept(this.instance);
         }

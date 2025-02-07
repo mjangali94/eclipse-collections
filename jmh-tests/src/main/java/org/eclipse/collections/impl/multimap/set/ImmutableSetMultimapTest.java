@@ -312,7 +312,7 @@ public class ImmutableSetMultimapTest extends AbstractImmutableMultimapTestCase 
             this.runBenchmark(this.payloads.collectValues);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSetMultimapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSetMultimapTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableSetMultimapTest();
             payload.accept(this.instance);
         }

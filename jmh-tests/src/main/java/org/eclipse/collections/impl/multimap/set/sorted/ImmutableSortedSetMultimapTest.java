@@ -347,7 +347,7 @@ public class ImmutableSortedSetMultimapTest extends AbstractImmutableMultimapTes
             this.runBenchmark(this.payloads.collectValues);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSortedSetMultimapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSortedSetMultimapTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableSortedSetMultimapTest();
             payload.accept(this.instance);
         }

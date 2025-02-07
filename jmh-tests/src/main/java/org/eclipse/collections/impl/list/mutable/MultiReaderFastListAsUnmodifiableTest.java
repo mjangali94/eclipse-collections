@@ -381,7 +381,7 @@ public class MultiReaderFastListAsUnmodifiableTest extends UnmodifiableMutableLi
             this.runBenchmark(this.payloads.subListListIterator);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderFastListAsUnmodifiableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderFastListAsUnmodifiableTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderFastListAsUnmodifiableTest();
             payload.accept(this.instance);
         }

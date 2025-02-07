@@ -2837,7 +2837,7 @@ public class FastListTest extends AbstractListTestCase {
             this.runBenchmark(this.payloads.testNegativeInitialCapacity);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<FastListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<FastListTest> payload) throws java.lang.Throwable {
             this.instance = new FastListTest();
             payload.accept(this.instance);
         }

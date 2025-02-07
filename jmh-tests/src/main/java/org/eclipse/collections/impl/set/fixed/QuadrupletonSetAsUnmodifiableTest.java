@@ -283,7 +283,7 @@ public class QuadrupletonSetAsUnmodifiableTest extends UnmodifiableMutableCollec
             this.runBenchmark(this.payloads.collectShort);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<QuadrupletonSetAsUnmodifiableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<QuadrupletonSetAsUnmodifiableTest> payload) throws java.lang.Throwable {
             this.instance = new QuadrupletonSetAsUnmodifiableTest();
             payload.accept(this.instance);
         }

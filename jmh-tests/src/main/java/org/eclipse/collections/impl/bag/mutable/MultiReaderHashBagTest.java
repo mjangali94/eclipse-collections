@@ -1784,7 +1784,7 @@ public class MultiReaderHashBagTest extends MultiReaderMutableCollectionTestCase
             this.runBenchmark(this.payloads.collectWithOccurrencesWithTarget);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderHashBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderHashBagTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderHashBagTest();
             payload.accept(this.instance);
         }

@@ -360,7 +360,7 @@ public class ImmutableBooleanEmptyStackTest extends AbstractImmutableBooleanStac
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanEmptyStackTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanEmptyStackTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableBooleanEmptyStackTest();
             payload.accept(this.instance);
         }

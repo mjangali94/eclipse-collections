@@ -105,7 +105,7 @@ public class HashBiMapInverseKeySetTest extends AbstractMutableBiMapKeySetTestCa
             this.runBenchmark(this.payloads.serialization);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapInverseKeySetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapInverseKeySetTest> payload) throws java.lang.Throwable {
             this.instance = new HashBiMapInverseKeySetTest();
             payload.accept(this.instance);
         }

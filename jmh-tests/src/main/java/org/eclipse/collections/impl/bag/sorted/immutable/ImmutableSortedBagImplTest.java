@@ -910,7 +910,7 @@ public class ImmutableSortedBagImplTest extends AbstractImmutableSortedBagTestCa
             this.runBenchmark(this.payloads.distinctView);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSortedBagImplTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSortedBagImplTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableSortedBagImplTest();
             payload.accept(this.instance);
         }

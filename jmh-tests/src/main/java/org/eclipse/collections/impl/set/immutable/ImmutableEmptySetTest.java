@@ -724,7 +724,7 @@ public class ImmutableEmptySetTest extends AbstractImmutableEmptySetTestCase {
             this.runBenchmark(this.payloads.countByEach_target);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptySetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptySetTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableEmptySetTest();
             payload.accept(this.instance);
         }

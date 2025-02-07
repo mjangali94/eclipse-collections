@@ -616,7 +616,7 @@ public class UnmodifiableShortBooleanMapValuesTest extends AbstractMutableBoolea
             this.runBenchmark(this.payloads.iterator_throws_on_consecutive_invocation_of_remove);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableShortBooleanMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableShortBooleanMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new UnmodifiableShortBooleanMapValuesTest();
             payload.accept(this.instance);
         }

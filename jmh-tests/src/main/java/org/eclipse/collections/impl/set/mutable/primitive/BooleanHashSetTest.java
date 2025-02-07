@@ -422,7 +422,7 @@ public class BooleanHashSetTest extends AbstractBooleanSetTestCase {
             this.runBenchmark(this.payloads.booleanIterator_with_remove);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<BooleanHashSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<BooleanHashSetTest> payload) throws java.lang.Throwable {
             this.instance = new BooleanHashSetTest();
             this.instance.setup();
             payload.accept(this.instance);

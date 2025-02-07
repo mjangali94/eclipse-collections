@@ -105,7 +105,7 @@ public class HashBiMapInverseValuesTest extends AbstractMutableBiMapValuesTestCa
             this.runBenchmark(this.payloads.valuesToArray);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapInverseValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapInverseValuesTest> payload) throws java.lang.Throwable {
             this.instance = new HashBiMapInverseValuesTest();
             payload.accept(this.instance);
         }

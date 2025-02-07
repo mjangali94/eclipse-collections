@@ -529,7 +529,7 @@ public class QuadrupletonSetTest extends AbstractMemoryEfficientMutableSetTestCa
             this.runBenchmark(this.payloads.getOnly);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<QuadrupletonSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<QuadrupletonSetTest> payload) throws java.lang.Throwable {
             this.instance = new QuadrupletonSetTest();
             this.instance.setUp();
             payload.accept(this.instance);

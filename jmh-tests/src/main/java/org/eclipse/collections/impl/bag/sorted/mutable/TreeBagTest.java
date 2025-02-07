@@ -1495,7 +1495,7 @@ public class TreeBagTest extends AbstractMutableSortedBagTestCase {
             this.runBenchmark(this.payloads.collectWithOccurrences);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TreeBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TreeBagTest> payload) throws java.lang.Throwable {
             this.instance = new TreeBagTest();
             payload.accept(this.instance);
         }

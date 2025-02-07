@@ -831,7 +831,7 @@ public class ImmutableDecapletonListTest extends AbstractImmutableListTestCase {
             this.runBenchmark(this.payloads.getOnly);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableDecapletonListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableDecapletonListTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableDecapletonListTest();
             payload.accept(this.instance);
         }

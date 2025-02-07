@@ -344,7 +344,7 @@ public class SynchronizedSortedSetMultimapTest extends AbstractMutableSortedSetM
             this.runBenchmark(this.payloads.collectValues);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedSortedSetMultimapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedSortedSetMultimapTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedSortedSetMultimapTest();
             payload.accept(this.instance);
         }

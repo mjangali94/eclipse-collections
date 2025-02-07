@@ -1275,7 +1275,7 @@ public class ImmutableEmptyListTest extends AbstractImmutableListTestCase {
             this.runBenchmark(this.payloads.countByEach_target);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptyListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptyListTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableEmptyListTest();
             payload.accept(this.instance);
         }

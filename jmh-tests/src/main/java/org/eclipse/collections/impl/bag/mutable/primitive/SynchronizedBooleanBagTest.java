@@ -398,7 +398,7 @@ public class SynchronizedBooleanBagTest extends AbstractMutableBooleanBagTestCas
             this.runBenchmark(this.payloads.asSynchronized);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanBagTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedBooleanBagTest();
             payload.accept(this.instance);
         }

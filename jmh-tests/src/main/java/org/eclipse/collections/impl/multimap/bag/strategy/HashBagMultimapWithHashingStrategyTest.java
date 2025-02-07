@@ -446,7 +446,7 @@ public class HashBagMultimapWithHashingStrategyTest extends AbstractMutableBagMu
             this.runBenchmark(this.payloads.testKeyHashingStrategy);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBagMultimapWithHashingStrategyTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBagMultimapWithHashingStrategyTest> payload) throws java.lang.Throwable {
             this.instance = new HashBagMultimapWithHashingStrategyTest();
             payload.accept(this.instance);
         }

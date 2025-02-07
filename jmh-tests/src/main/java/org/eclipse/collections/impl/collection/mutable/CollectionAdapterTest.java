@@ -1409,7 +1409,7 @@ public class CollectionAdapterTest extends AbstractCollectionTestCase {
             this.runBenchmark(this.payloads.partitionWith);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<CollectionAdapterTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<CollectionAdapterTest> payload) throws java.lang.Throwable {
             this.instance = new CollectionAdapterTest();
             payload.accept(this.instance);
         }

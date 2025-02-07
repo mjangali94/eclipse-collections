@@ -1353,7 +1353,7 @@ public class ImmutableEmptySortedSetTest extends AbstractImmutableSortedSetTestC
             this.runBenchmark(this.payloads.drop);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptySortedSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableEmptySortedSetTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableEmptySortedSetTest();
             payload.accept(this.instance);
         }

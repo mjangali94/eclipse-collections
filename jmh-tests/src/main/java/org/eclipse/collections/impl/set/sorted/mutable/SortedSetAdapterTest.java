@@ -1587,7 +1587,7 @@ public class SortedSetAdapterTest extends AbstractSortedSetTestCase {
             this.runBenchmark(this.payloads.adaptNull);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SortedSetAdapterTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SortedSetAdapterTest> payload) throws java.lang.Throwable {
             this.instance = new SortedSetAdapterTest();
             payload.accept(this.instance);
         }

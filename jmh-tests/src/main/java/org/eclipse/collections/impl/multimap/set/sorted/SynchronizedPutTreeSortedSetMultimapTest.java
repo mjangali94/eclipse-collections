@@ -369,7 +369,7 @@ public class SynchronizedPutTreeSortedSetMultimapTest extends AbstractMutableSor
             this.runBenchmark(this.payloads.testToString);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedPutTreeSortedSetMultimapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedPutTreeSortedSetMultimapTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedPutTreeSortedSetMultimapTest();
             payload.accept(this.instance);
         }

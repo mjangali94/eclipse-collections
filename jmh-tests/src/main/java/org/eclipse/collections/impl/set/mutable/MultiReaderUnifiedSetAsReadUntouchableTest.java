@@ -409,7 +409,7 @@ public class MultiReaderUnifiedSetAsReadUntouchableTest extends UnmodifiableMuta
             this.runBenchmark(this.payloads.cartesianProduct);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderUnifiedSetAsReadUntouchableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderUnifiedSetAsReadUntouchableTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderUnifiedSetAsReadUntouchableTest();
             payload.accept(this.instance);
         }

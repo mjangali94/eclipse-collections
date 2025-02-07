@@ -537,7 +537,7 @@ public class DoubletonSetTest extends AbstractMemoryEfficientMutableSetTestCase 
             this.runBenchmark(this.payloads.getOnly);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<DoubletonSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<DoubletonSetTest> payload) throws java.lang.Throwable {
             this.instance = new DoubletonSetTest();
             this.instance.setUp();
             payload.accept(this.instance);

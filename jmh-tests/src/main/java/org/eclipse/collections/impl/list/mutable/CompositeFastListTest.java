@@ -2081,7 +2081,7 @@ public class CompositeFastListTest extends AbstractListTestCase {
             this.runBenchmark(this.payloads.reverseForEachWithIndex);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<CompositeFastListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<CompositeFastListTest> payload) throws java.lang.Throwable {
             this.instance = new CompositeFastListTest();
             payload.accept(this.instance);
         }

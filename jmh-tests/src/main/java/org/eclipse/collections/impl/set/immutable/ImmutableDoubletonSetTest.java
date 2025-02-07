@@ -687,7 +687,7 @@ public class ImmutableDoubletonSetTest extends AbstractImmutableSetTestCase {
             this.runBenchmark(this.payloads.getOnly);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableDoubletonSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableDoubletonSetTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableDoubletonSetTest();
             payload.accept(this.instance);
         }

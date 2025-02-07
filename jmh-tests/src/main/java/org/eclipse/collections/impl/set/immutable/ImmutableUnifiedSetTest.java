@@ -358,7 +358,7 @@ public class ImmutableUnifiedSetTest extends AbstractImmutableUnifiedSetTestCase
             this.runBenchmark(this.payloads.batchForEach);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableUnifiedSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableUnifiedSetTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableUnifiedSetTest();
             payload.accept(this.instance);
         }

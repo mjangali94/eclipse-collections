@@ -1703,7 +1703,7 @@ public class UnmodifiableSortedSetTest extends AbstractSortedSetTestCase {
             this.runBenchmark(this.payloads.toReversed);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableSortedSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableSortedSetTest> payload) throws java.lang.Throwable {
             this.instance = new UnmodifiableSortedSetTest();
             this.instance.setUp();
             payload.accept(this.instance);

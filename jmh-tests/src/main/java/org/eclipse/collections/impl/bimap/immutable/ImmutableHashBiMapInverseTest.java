@@ -279,7 +279,7 @@ public class ImmutableHashBiMapInverseTest extends AbstractImmutableBiMapTestCas
             this.runBenchmark(this.payloads.toMapTarget);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableHashBiMapInverseTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableHashBiMapInverseTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableHashBiMapInverseTest();
             payload.accept(this.instance);
         }

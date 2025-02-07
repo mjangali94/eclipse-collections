@@ -1478,7 +1478,7 @@ public class SynchronizedSortedBagTest extends AbstractMutableSortedBagTestCase 
             this.runBenchmark(this.payloads.distinctView);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedSortedBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedSortedBagTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedSortedBagTest();
             payload.accept(this.instance);
         }

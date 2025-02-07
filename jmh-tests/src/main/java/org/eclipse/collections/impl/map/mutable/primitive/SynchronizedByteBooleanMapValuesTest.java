@@ -675,7 +675,7 @@ public class SynchronizedByteBooleanMapValuesTest extends AbstractMutableBoolean
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedByteBooleanMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedByteBooleanMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedByteBooleanMapValuesTest();
             payload.accept(this.instance);
         }

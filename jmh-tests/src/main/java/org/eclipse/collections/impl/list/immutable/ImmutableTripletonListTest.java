@@ -807,7 +807,7 @@ public class ImmutableTripletonListTest extends AbstractImmutableListTestCase {
             this.runBenchmark(this.payloads.getOnly);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableTripletonListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableTripletonListTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableTripletonListTest();
             payload.accept(this.instance);
         }

@@ -453,7 +453,7 @@ public class TreeBagMultimapTest extends AbstractMutableSortedBagMultimapTestCas
             this.runBenchmark(this.payloads.clear);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TreeBagMultimapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TreeBagMultimapTest> payload) throws java.lang.Throwable {
             this.instance = new TreeBagMultimapTest();
             payload.accept(this.instance);
         }

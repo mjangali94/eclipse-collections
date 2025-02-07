@@ -1429,7 +1429,7 @@ public class HashBagWithHashingStrategyTest extends MutableBagTestCase {
             this.runBenchmark(this.payloads.remove_with_hashing_strategy);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBagWithHashingStrategyTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBagWithHashingStrategyTest> payload) throws java.lang.Throwable {
             this.instance = new HashBagWithHashingStrategyTest();
             payload.accept(this.instance);
         }

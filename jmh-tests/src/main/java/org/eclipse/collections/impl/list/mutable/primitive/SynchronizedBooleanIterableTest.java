@@ -289,7 +289,7 @@ public class SynchronizedBooleanIterableTest extends AbstractBooleanIterableTest
             this.runBenchmark(this.payloads.testHashCode);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanIterableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedBooleanIterableTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedBooleanIterableTest();
             payload.accept(this.instance);
         }

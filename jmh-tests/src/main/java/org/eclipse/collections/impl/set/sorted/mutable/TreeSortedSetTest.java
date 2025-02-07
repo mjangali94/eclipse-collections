@@ -1459,7 +1459,7 @@ public class TreeSortedSetTest extends AbstractSortedSetTestCase {
             this.runBenchmark(this.payloads.toReversed);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TreeSortedSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TreeSortedSetTest> payload) throws java.lang.Throwable {
             this.instance = new TreeSortedSetTest();
             payload.accept(this.instance);
         }

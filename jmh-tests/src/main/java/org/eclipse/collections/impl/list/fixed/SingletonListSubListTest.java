@@ -271,7 +271,7 @@ public class SingletonListSubListTest extends UnmodifiableMemoryEfficientListTes
             this.runBenchmark(this.payloads.detectLastIndex);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SingletonListSubListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SingletonListSubListTest> payload) throws java.lang.Throwable {
             this.instance = new SingletonListSubListTest();
             payload.accept(this.instance);
         }

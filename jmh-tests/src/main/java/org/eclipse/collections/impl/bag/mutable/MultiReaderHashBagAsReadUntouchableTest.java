@@ -346,7 +346,7 @@ public class MultiReaderHashBagAsReadUntouchableTest extends UnmodifiableMutable
             this.runBenchmark(this.payloads.distinctView);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderHashBagAsReadUntouchableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderHashBagAsReadUntouchableTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderHashBagAsReadUntouchableTest();
             payload.accept(this.instance);
         }

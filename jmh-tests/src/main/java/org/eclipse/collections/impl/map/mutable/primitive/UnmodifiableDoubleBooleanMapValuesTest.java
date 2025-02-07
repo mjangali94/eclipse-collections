@@ -616,7 +616,7 @@ public class UnmodifiableDoubleBooleanMapValuesTest extends AbstractMutableBoole
             this.runBenchmark(this.payloads.iterator_throws_on_consecutive_invocation_of_remove);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableDoubleBooleanMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableDoubleBooleanMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new UnmodifiableDoubleBooleanMapValuesTest();
             payload.accept(this.instance);
         }

@@ -1588,7 +1588,7 @@ public class UnmodifiableBiMapTest extends AbstractMutableBiMapTestCase {
             this.runBenchmark(this.payloads.getIfAbsentPutWith_block_throws);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableBiMapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableBiMapTest> payload) throws java.lang.Throwable {
             this.instance = new UnmodifiableBiMapTest();
             payload.accept(this.instance);
         }

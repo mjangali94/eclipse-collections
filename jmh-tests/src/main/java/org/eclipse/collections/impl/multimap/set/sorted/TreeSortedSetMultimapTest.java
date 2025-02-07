@@ -453,7 +453,7 @@ public class TreeSortedSetMultimapTest extends AbstractMutableSortedSetMultimapT
             this.runBenchmark(this.payloads.testNewEmpty);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TreeSortedSetMultimapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<TreeSortedSetMultimapTest> payload) throws java.lang.Throwable {
             this.instance = new TreeSortedSetMultimapTest();
             payload.accept(this.instance);
         }

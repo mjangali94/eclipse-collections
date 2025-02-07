@@ -343,7 +343,7 @@ public class ImmutableBooleanArrayListTest extends AbstractImmutableBooleanListT
             this.runBenchmark(this.payloads.size);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanArrayListTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableBooleanArrayListTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableBooleanArrayListTest();
             payload.accept(this.instance);
         }

@@ -715,7 +715,7 @@ public class LongBooleanHashMapValuesTest extends AbstractMutableBooleanCollecti
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<LongBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<LongBooleanHashMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new LongBooleanHashMapValuesTest();
             payload.accept(this.instance);
         }

@@ -379,7 +379,7 @@ public class FastListMultimapTest extends AbstractMutableListMultimapTestCase {
             this.runBenchmark(this.payloads.pairIterableConstructorTest);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<FastListMultimapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<FastListMultimapTest> payload) throws java.lang.Throwable {
             this.instance = new FastListMultimapTest();
             payload.accept(this.instance);
         }

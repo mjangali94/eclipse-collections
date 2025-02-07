@@ -1257,7 +1257,7 @@ public class HashBiMapTest extends AbstractMutableBiMapTestCase {
             this.runBenchmark(this.payloads.forcePut_inverseKeyAndValuePreservation);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapTest> payload) throws java.lang.Throwable {
             this.instance = new HashBiMapTest();
             payload.accept(this.instance);
         }

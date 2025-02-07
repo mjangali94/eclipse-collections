@@ -1670,7 +1670,7 @@ public class UnmodifiableSortedBagTest extends AbstractMutableSortedBagTestCase 
             this.runBenchmark(this.payloads.collectWithOccurrences);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableSortedBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableSortedBagTest> payload) throws java.lang.Throwable {
             this.instance = new UnmodifiableSortedBagTest();
             payload.accept(this.instance);
         }

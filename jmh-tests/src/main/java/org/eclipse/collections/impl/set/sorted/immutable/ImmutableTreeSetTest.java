@@ -797,7 +797,7 @@ public class ImmutableTreeSetTest extends AbstractImmutableSortedSetTestCase {
             this.runBenchmark(this.payloads.collectShort);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableTreeSetTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableTreeSetTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableTreeSetTest();
             payload.accept(this.instance);
         }

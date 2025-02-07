@@ -1433,7 +1433,7 @@ public class ImmutableArrayBagTest extends ImmutableBagTestCase {
             this.runBenchmark(this.payloads.distinctView);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableArrayBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableArrayBagTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableArrayBagTest();
             payload.accept(this.instance);
         }

@@ -1336,7 +1336,7 @@ public class HashBagTest extends MutableBagTestCase {
             this.runBenchmark(this.payloads.newBagFromBag);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBagTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBagTest> payload) throws java.lang.Throwable {
             this.instance = new HashBagTest();
             payload.accept(this.instance);
         }

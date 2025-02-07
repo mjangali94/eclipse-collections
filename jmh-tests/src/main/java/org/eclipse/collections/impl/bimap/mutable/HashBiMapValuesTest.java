@@ -105,7 +105,7 @@ public class HashBiMapValuesTest extends AbstractMutableBiMapValuesTestCase {
             this.runBenchmark(this.payloads.valuesToArray);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new HashBiMapValuesTest();
             payload.accept(this.instance);
         }

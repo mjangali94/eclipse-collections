@@ -616,7 +616,7 @@ public class UnmodifiableCharBooleanMapValuesTest extends AbstractMutableBoolean
             this.runBenchmark(this.payloads.iterator_throws_on_consecutive_invocation_of_remove);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableCharBooleanMapValuesTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<UnmodifiableCharBooleanMapValuesTest> payload) throws java.lang.Throwable {
             this.instance = new UnmodifiableCharBooleanMapValuesTest();
             payload.accept(this.instance);
         }

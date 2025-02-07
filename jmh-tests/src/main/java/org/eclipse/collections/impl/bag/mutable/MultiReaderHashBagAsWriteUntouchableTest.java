@@ -1208,7 +1208,7 @@ public class MultiReaderHashBagAsWriteUntouchableTest extends AbstractCollection
             this.runBenchmark(this.payloads.distinctView);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderHashBagAsWriteUntouchableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderHashBagAsWriteUntouchableTest> payload) throws java.lang.Throwable {
             this.instance = new MultiReaderHashBagAsWriteUntouchableTest();
             payload.accept(this.instance);
         }

@@ -930,7 +930,7 @@ public class ImmutableSortedBagImplNoIteratorTest extends ImmutableSortedBagImpl
             this.runBenchmark(this.payloads.forLoop);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSortedBagImplNoIteratorTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableSortedBagImplNoIteratorTest> payload) throws java.lang.Throwable {
             this.instance = new ImmutableSortedBagImplNoIteratorTest();
             payload.accept(this.instance);
         }

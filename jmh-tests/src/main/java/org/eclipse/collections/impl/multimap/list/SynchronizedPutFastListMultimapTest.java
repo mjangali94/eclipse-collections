@@ -360,7 +360,7 @@ public class SynchronizedPutFastListMultimapTest extends AbstractMutableListMult
             this.runBenchmark(this.payloads.collectValues);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedPutFastListMultimapTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedPutFastListMultimapTest> payload) throws java.lang.Throwable {
             this.instance = new SynchronizedPutFastListMultimapTest();
             payload.accept(this.instance);
         }

@@ -365,7 +365,7 @@ public class FastListAsUnmodifiableTest extends UnmodifiableMutableListTestCase 
             this.runBenchmark(this.payloads.testEquals);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<FastListAsUnmodifiableTest> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<FastListAsUnmodifiableTest> payload) throws java.lang.Throwable {
             this.instance = new FastListAsUnmodifiableTest();
             payload.accept(this.instance);
         }
