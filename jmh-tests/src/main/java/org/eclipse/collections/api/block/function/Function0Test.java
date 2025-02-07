@@ -27,21 +27,21 @@ public class Function0Test {
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
-        private _Payloads payloads;
+        public _Payloads payloads;
 
-        private Function0Test instance;
+        public Function0Test instance;
 
         //@org.openjdk.jmh.annotations.Benchmark
         public void benchmark_get() throws java.lang.Throwable {
             this.runBenchmark(this.payloads.get);
         }
 
-        private void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<Function0Test> payload) throws java.lang.Throwable {
+        public void runBenchmark(se.chalmers.ju2jmh.api.ThrowingConsumer<Function0Test> payload) throws java.lang.Throwable {
             this.instance = new Function0Test();
             payload.accept(this.instance);
         }
 
-        private static class _Payloads {
+        public static class _Payloads {
 
             public se.chalmers.ju2jmh.api.ThrowingConsumer<Function0Test> get;
         }
