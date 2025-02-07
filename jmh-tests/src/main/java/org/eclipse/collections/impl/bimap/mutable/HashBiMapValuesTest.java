@@ -31,9 +31,9 @@ public class HashBiMapValuesTest extends AbstractMutableBiMapValuesTestCase {
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
-        private _Payloads payloads;
+        public _Payloads payloads;
 
-        private HashBiMapValuesTest instance;
+        public HashBiMapValuesTest instance;
 
         @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_add() throws java.lang.Throwable {
@@ -110,7 +110,7 @@ public class HashBiMapValuesTest extends AbstractMutableBiMapValuesTestCase {
             payload.accept(this.instance);
         }
 
-        private static class _Payloads {
+        public static class _Payloads {
 
             public se.chalmers.ju2jmh.api.ThrowingConsumer<HashBiMapValuesTest> add;
 

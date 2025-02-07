@@ -267,9 +267,9 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase {
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
-        private _Payloads payloads;
+        public _Payloads payloads;
 
-        private EmptySetTest instance;
+        public EmptySetTest instance;
 
         @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_asSynchronized() throws java.lang.Throwable {
@@ -597,7 +597,7 @@ public class EmptySetTest extends AbstractMemoryEfficientMutableSetTestCase {
             payload.accept(this.instance);
         }
 
-        private static class _Payloads {
+        public static class _Payloads {
 
             public se.chalmers.ju2jmh.api.ThrowingConsumer<EmptySetTest> asSynchronized;
 

@@ -156,9 +156,9 @@ public class SynchronizedSortedSetTest extends AbstractSynchronizedCollectionTes
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
-        private _Payloads payloads;
+        public _Payloads payloads;
 
-        private SynchronizedSortedSetTest instance;
+        public SynchronizedSortedSetTest instance;
 
         @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testNewCollection() throws java.lang.Throwable {
@@ -1290,7 +1290,7 @@ public class SynchronizedSortedSetTest extends AbstractSynchronizedCollectionTes
             payload.accept(this.instance);
         }
 
-        private static class _Payloads {
+        public static class _Payloads {
 
             public se.chalmers.ju2jmh.api.ThrowingConsumer<SynchronizedSortedSetTest> testNewCollection;
 

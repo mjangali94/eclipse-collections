@@ -106,9 +106,9 @@ public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollect
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
-        private _Payloads payloads;
+        public _Payloads payloads;
 
-        private MultiReaderUnifiedSetAsWriteUntouchableTest instance;
+        public MultiReaderUnifiedSetAsWriteUntouchableTest instance;
 
         @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_testNewCollection() throws java.lang.Throwable {
@@ -1225,7 +1225,7 @@ public class MultiReaderUnifiedSetAsWriteUntouchableTest extends AbstractCollect
             payload.accept(this.instance);
         }
 
-        private static class _Payloads {
+        public static class _Payloads {
 
             public se.chalmers.ju2jmh.api.ThrowingConsumer<MultiReaderUnifiedSetAsWriteUntouchableTest> testNewCollection;
 

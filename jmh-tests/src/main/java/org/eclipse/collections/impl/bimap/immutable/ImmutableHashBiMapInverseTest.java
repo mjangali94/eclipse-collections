@@ -45,9 +45,9 @@ public class ImmutableHashBiMapInverseTest extends AbstractImmutableBiMapTestCas
     @org.openjdk.jmh.annotations.State(org.openjdk.jmh.annotations.Scope.Thread)
     public static class _Benchmark {
 
-        private _Payloads payloads;
+        public _Payloads payloads;
 
-        private ImmutableHashBiMapInverseTest instance;
+        public ImmutableHashBiMapInverseTest instance;
 
         @org.openjdk.jmh.annotations.Benchmark
         public void benchmark_equalsAndHashCode() throws java.lang.Throwable {
@@ -284,7 +284,7 @@ public class ImmutableHashBiMapInverseTest extends AbstractImmutableBiMapTestCas
             payload.accept(this.instance);
         }
 
-        private static class _Payloads {
+        public static class _Payloads {
 
             public se.chalmers.ju2jmh.api.ThrowingConsumer<ImmutableHashBiMapInverseTest> equalsAndHashCode;
 
